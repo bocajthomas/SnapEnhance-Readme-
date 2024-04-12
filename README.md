@@ -1,2 +1,2 @@
 ### Features Explained 
-[----](https://github.com/bocajthomas/SnapEnhance-bocajthomas/blob/wiki/FeaturesExplained.md)
+[Features Explained](https://github.com/bocajthomas/SnapEnhance-bocajthomas/blob/wiki/FEATURESEXPLAINED.md)
