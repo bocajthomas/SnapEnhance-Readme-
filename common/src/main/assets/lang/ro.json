@@ -89,7 +89,8 @@
                 "streaks_expiration_short": "{hours}h"
             },
             "tasks": {
-                "no_tasks": "Fără sarcini"
+                "no_tasks": "Fără sarcini",
+                "merge_files_toast": "Îmbinând {count} fișiere"
             },
             "features": {
                 "disabled": "Dezactivat",
@@ -99,7 +100,15 @@
                 "list_group_format": "Grupul {name}"
             },
             "home_settings": {
-                "export_button": "Export"
+                "export_button": "Exportă",
+                "actions_title": "Acțiuni",
+                "debug_title": "Depanare",
+                "success_toast": "Gata!",
+                "message_logger_summary": "{messageCount} mesaje\n{storyCount} povești"
+            },
+            "home": {
+                "update_content": "Versiunea {version} este disponibilă!",
+                "update_button": "Descarcă"
             }
         },
         "dialogs": {

@@ -46,7 +46,10 @@
                 "saved_config_snackbar": "Einstellungen gespeichert"
             },
             "social": {
-                "streaks_expiration_short": "{hours}h"
+                "streaks_expiration_short": "{hours}h",
+                "empty_hint": "(leer)",
+                "friends_tab": "Freunde",
+                "groups_tab": "Gruppen"
             },
             "tasks": {
                 "no_tasks": "Keine Aufgaben",
@@ -533,6 +536,10 @@
                     "remove_groups_locked_status": {
                         "name": "Entfernen des Gruppen-Sperrstatus",
                         "description": "Ermöglicht es Ihnen, nach dem Rauswurf Gruppeninformationen anzuzeigen"
+                    },
+                    "auto_mark_as_read": {
+                        "name": "Automatisch als gelesen markieren",
+                        "description": "Markiert Nachrichten automatisch als gelesen wenn eine Nachricht gesendet wurde, auch wenn der Stealth Mode aktiviert ist"
                     }
                 }
             },
@@ -633,6 +640,10 @@
                     "video_playback_rate_slider": {
                         "name": "Schieberegler für die Videowiedergaberate",
                         "description": "Fügt einen Schieberegler im Opera-Kontextmenü hinzu, um die Videowiedergabegeschwindigkeit zu ändern\nHinweis: Änderungen gelten nur für nachfolgende Videos"
+                    },
+                    "hide_active_music": {
+                        "name": "Aktive Musik ausblenden",
+                        "description": "Verhindert, dass Snapchat erkennt, dass Sie Musik hören.\nSo können Sie mithilfe der Lautstärketasten Snaps aufnehmen, während Sie Musik hören"
                     }
                 }
             },

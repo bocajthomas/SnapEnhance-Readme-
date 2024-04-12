@@ -38,5 +38,103 @@
         "processing_toast": "প্রসেসিং হচ্ছে {path}...",
         "failed_generic_toast": "ডাউনলোড করতে সক্ষম হয়নি",
         "failed_to_create_preview_toast": "পুর্বরূপ তৈরি করতে সক্ষম হয়নি"
+    },
+    "setup": {
+        "mappings": {
+            "generate_button": "উৎপন্ন করুন",
+            "generate_success": "ম্যাপিংগুলি সফলভাবে উত্পন্ন হয়েছে ।",
+            "dialog": "স্ন্যাপচ্যাটের বিভিন্ন সংস্করণকে গতিশীলভাবে সমর্থন করতে, ম্যাপিং প্রয়োজন যাতে স্ন্যাপএনহান্স ঠিকমতো কাজ করে, এটি ৫ সেকেন্ডের বেশি সময় নেয় না।",
+            "generate_failure": "ম্যাপিং তৈরি করার চেষ্টা করতে গিয়ে একটি ত্রুটি ঘটেছে, অনুগ্রহ করে আবার চেষ্টা করুন।",
+            "generate_failure_no_snapchat": "স্ন্যাপএনহান্স স্ন্যাপচ্যাট সনাক্ত করতে অক্ষম ছিল, অনুগ্রহ করে স্ন্যাপচ্যাট পুনরায় ইনস্টল করার চেষ্টা করুন।"
+        },
+        "dialogs": {
+            "select_language": "নির্বাচন ভাষা",
+            "save_folder": "স্ন্যাপএনহান্স-এর স্ন্যাপচ্যাট থেকে মিডিয়া ডাউনলোড এবং সংরক্ষণ করার জন্য স্টোরেজ অনুমতি প্রয়োজন।\nঅনুগ্রহ করে নির্বাচন করুন যে মিডিয়া কোথায় ডাউনলোড করা উচিত।",
+            "select_save_folder_button": "ফোল্ডার নির্বাচন করুন"
+        },
+        "permissions": {
+            "dialog": "চালিয়ে যেতে আপনাকে নিম্নলিখিত শর্তগুলি মেনে চলতে হবে:",
+            "notification_access": "বিজ্ঞপ্তি অ্যাক্সেস",
+            "battery_optimization": "ব্যাটারি অপটিমাইজেশন",
+            "display_over_other_apps": "অন্যান্য অ্যাপের উপরে প্রদর্শন করুন",
+            "request_button": "অনুরোধ"
+        }
+    },
+    "manager": {
+        "routes": {
+            "tasks": "কার্য",
+            "home": "বাড়ি",
+            "home_settings": "সেটিংস",
+            "scripts": "লিপি",
+            "features": "বৈশিষ্ট্য",
+            "home_logs": "লগ",
+            "social": "সামাজিক",
+            "logged_stories": "লগ করা গল্প",
+            "manage_scope": "সুযোগ পরিচালনা করুন",
+            "messaging_preview": "পূর্বরূপ",
+            "logger_history": "লগার ইতিহাস"
+        },
+        "sections": {
+            "features": {
+                "disabled": "অক্ষম",
+                "export_option": "রপ্তানি",
+                "import_option": "আমদানি",
+                "reset_option": "রিসেট",
+                "config_export_success_toast": "কনফিগার সফলভাবে রপ্তানি করা হয়েছে",
+                "config_import_success_toast": "কনফিগ সফলভাবে আমদানি করা হয়েছে",
+                "saved_config_snackbar": "কনফিগার সংরক্ষণ করা হয়েছে",
+                "config_import_failure_toast": "কনফিগ আমদানি করতে ব্যর্থ হয়েছে {error}"
+            },
+            "social": {
+                "streaks_expiration_short": "{hours}h",
+                "friends_tab": "বন্ধুরা",
+                "groups_tab": "গোষ্ঠীগুলি",
+                "empty_hint": "(খালি)"
+            },
+            "tasks": {
+                "no_tasks": "কোন কাজ নেই",
+                "delete_files_option": "ফাইলগুলিও মুছে ফেলুন",
+                "remove_selected_tasks_confirm": "{count} কাজ সরান?",
+                "remove_selected_tasks_title": "নিশ্চিত আপনি নির্বাচিত কাজগুলি সরাতে চান?",
+                "remove_all_tasks_title": "নিশ্চিত আপনি সব কাজ অপসারণ করতে চান?",
+                "remove_all_tasks_confirm": "সমস্ত কাজ মুছে ফেলুন?",
+                "merge_files_toast": "{count} ফাইল মিশ্রণ"
+            },
+            "home_settings": {
+                "export_button": "রপ্তানি",
+                "message_logger_summary": "{messageCount} বার্তা\n{storyCount} গল্পগুলি",
+                "actions_title": "অ্যাকশন",
+                "message_logger_title": "বার্তা লগার",
+                "debug_title": "ডিবাগ",
+                "success_toast": "হয়ে গেছে!",
+                "clear_button": "পরিষ্কার",
+                "view_logger_history_button": "লগার ইতিহাস দেখুন"
+            },
+            "manage_scope": {
+                "e2ee_title": "এন্ড-টু-এন্ড এনক্রিপশন",
+                "logged_stories_button": "লগ করা গল্পগুলি দেখান",
+                "rules_title": "বিধিগুলি",
+                "not_found": "পাওয়া যায়নি",
+                "streaks_title": "রেখাগুলি",
+                "participants_text": "{count} অংশগ্রহণকারী"
+            },
+            "home": {
+                "update_content": "সংস্করণ {version} উপলব্ধ!",
+                "update_title": "স্ন্যাপএনহ্যান্স আপডেট",
+                "update_button": "ডাউনলোড"
+            },
+            "home_logs": {
+                "no_logs_hint": "কোনও লগ উপলব্ধ নেই",
+                "clear_logs_button": "লগ পরিষ্কার করুন",
+                "export_logs_button": "রপ্তানি লগ",
+                "saving_logs_toast": "লগগুলি সংরক্ষণ করা এটি কিছু সময় নিতে পারে ..।",
+                "saved_logs_success_toast": "লগগুলি সফলভাবে সংরক্ষণ করা হয়েছে",
+                "saved_logs_failure_toast": "লগ সংরক্ষণ করতে ব্যর্থ"
+            }
+        }
+    },
+    "scopes": {
+        "friend": "বন্ধু",
+        "group": "গোষ্ঠী"
     }
 }

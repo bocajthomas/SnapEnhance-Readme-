@@ -46,7 +46,10 @@
                 "saved_config_snackbar": "Configuration enregistrée"
             },
             "social": {
-                "streaks_expiration_short": "{hours}h"
+                "streaks_expiration_short": "{hours}h",
+                "groups_tab": "Groupes",
+                "empty_hint": "(vide)",
+                "friends_tab": "Amis"
             },
             "tasks": {
                 "no_tasks": "Aucune tâche",
@@ -633,6 +636,10 @@
                     "video_playback_rate_slider": {
                         "name": "Curseur de taux de lecture vidéo",
                         "description": "Ajoute un curseur dans le menu contextuel de l'opéra pour modifier la vitesse de lecture vidéo\nRemarque: Les modifications ne s'appliquent qu'aux vidéos suivantes"
+                    },
+                    "hide_active_music": {
+                        "description": "Empêche Snapchat de savoir si de la musique est jouée.\nCela va permettre de prendre des Snaps en utilisant les boutons de volume tout en écoutant de la musique.",
+                        "name": "Couper la musique active"
                     }
                 }
             },

@@ -46,7 +46,10 @@
                 "config_export_success_toast": "Konfigürasyon başarıyla dışa aktarıldı"
             },
             "social": {
-                "streaks_expiration_short": "{hours} saat"
+                "streaks_expiration_short": "{hours} saat",
+                "friends_tab": "Arkadaşlar",
+                "empty_hint": "(boş)",
+                "groups_tab": "Gruplar"
             },
             "tasks": {
                 "no_tasks": "Görev yok",

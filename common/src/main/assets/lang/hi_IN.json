@@ -46,7 +46,9 @@
                 "config_export_success_toast": "विन्यास सफलतापूर्वक निर्यात किया गया"
             },
             "social": {
-                "streaks_expiration_short": "{hours}h"
+                "streaks_expiration_short": "{hours}h",
+                "friends_tab": "दोस्त",
+                "groups_tab": "समूह"
             },
             "tasks": {
                 "no_tasks": "कोई कार्य नहीं",
@@ -393,7 +395,20 @@
                 "name": "डाउनलोडर"
             },
             "user_interface": {
-                "name": "प्रयोक्ता इंटरफ़ेस"
+                "name": "प्रयोक्ता इंटरफ़ेस",
+                "properties": {
+                    "amoled_dark_mode": {
+                        "name": "एमोलेड डार्क मोड"
+                    },
+                    "bootstrap_override": {
+                        "properties": {
+                            "home_tab": {
+                                "name": "होम टैब"
+                            }
+                        }
+                    }
+                },
+                "description": "स्नैपचैट का स्वरूप और अनुभव बदलें"
             }
         },
         "notices": {

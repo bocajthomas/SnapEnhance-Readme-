@@ -46,7 +46,10 @@
                 "export_option": "Exportálás"
             },
             "social": {
-                "streaks_expiration_short": "{hours} óra(ák)"
+                "streaks_expiration_short": "{hours} óra",
+                "groups_tab": "Csoportok",
+                "empty_hint": "(üres)",
+                "friends_tab": "Barátok"
             },
             "tasks": {
                 "no_tasks": "Nincsenek feladatok",
@@ -632,6 +635,10 @@
                     "video_playback_rate_slider": {
                         "name": "Videó lejátszási sebesség csúszka",
                         "description": "Hozzáad egy csúszkát az opera kontextus menüjébe a videó lejátszási sebesség megváltoztatásához\nMegjegyzés: A módosítások csak a következő videókra vonatkoznak"
+                    },
+                    "hide_active_music": {
+                        "name": "Aktív zene elrejtése",
+                        "description": "Megakadályozza, hogy a Snapchat megtudja, hogy éppen zenét hallgatsz\nEz lehetővé teszi, hogy zenehallgatás közben is készíthess pillanatképeket a vezérlő hangerőgombok segítségével"
                     }
                 },
                 "description": "Globális Snapchat beállítások módosítása"

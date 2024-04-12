@@ -1,14 +1,14 @@
 {
     "setup": {
         "dialogs": {
-            "select_language": "Kies taal",
-            "save_folder": "SnapEnhance heeft toegang voor opslag nodig om media van Snapchat te downloaden.\nKies de downloadlocatie.",
-            "select_save_folder_button": "Selecteer map"
+            "select_language": "Selecteer Taal",
+            "save_folder": "SnapEnhance vereist opslagrechten om media van Snapchat te downloaden en op te slaan.\nKies de downloadlocatie.",
+            "select_save_folder_button": "Selecteer Map"
         },
         "mappings": {
-            "dialog": "Om een breed bereik aan Snapchat-versies te ondersteunen, zijn er toewijzingen nodig om SnapEnhance goed te laten werken. Dit zou niet meer dan 5 seconden mogen duren.",
+            "dialog": "Om een scala aan Snapchat-versies te ondersteunen, zijn er mappings nodig om SnapEnhance goed te laten werken. Dit zou niet meer dan 5 seconden mogen duren.",
             "generate_button": "Genereren",
-            "generate_failure_no_snapchat": "SnapEnhance kon de Snapchat niet detecteren, probeer alstublieft Snapchat opnieuw te installeren.",
+            "generate_failure_no_snapchat": "SnapEnhance kon Snapchat niet detecteren, probeer alstublieft Snapchat opnieuw te installeren.",
             "generate_failure": "Er is een fout opgetreden tijdens het genereren van mappings, probeer het opnieuw.",
             "generate_success": "Mappings succesvol gegenereerd."
         },
@@ -54,7 +54,8 @@
                 "remove_selected_tasks_title": "Weet je zeker dat je de geselecteerde taak wilt verwijderen?",
                 "remove_all_tasks_title": "Weet je zeker dat je alle taken wilt verwijderen?",
                 "merge_files_toast": "{count} bestand(en) samenvoegen",
-                "remove_selected_tasks_confirm": "{count} taken verwijderen?"
+                "remove_selected_tasks_confirm": "{count} taken verwijderen?",
+                "delete_files_option": "Ook bestanden verwijderen"
             },
             "home": {
                 "update_title": "SnapEnhance Update",
@@ -66,7 +67,8 @@
                 "export_logs_button": "Exporteer logs",
                 "saving_logs_toast": "Logs opslaan, dit kan een ogenblik duren ...",
                 "saved_logs_success_toast": "Logs opslagen gelukt",
-                "saved_logs_failure_toast": "Gefaald om logs op te slaan"
+                "saved_logs_failure_toast": "Gefaald om logs op te slaan",
+                "clear_logs_button": "Logs wissen"
             },
             "home_settings": {
                 "actions_title": "Acties",
@@ -75,7 +77,8 @@
                 "export_button": "Exporteren",
                 "debug_title": "Debug",
                 "view_logger_history_button": "Bekijk Logs Geschiedenis",
-                "message_logger_summary": "{messageCount} berichten\n{storyCount} verhalen"
+                "message_logger_summary": "{messageCount} berichten\n{storyCount} verhalen",
+                "clear_button": "Wissen"
             },
             "manage_scope": {
                 "logged_stories_button": "Toon gelogde verhalen",
@@ -92,14 +95,33 @@
             },
             "logged_stories": {
                 "story_failed_to_load": "Gefaald om te laden",
-                "no_stories": "Geen verhalen gevonden"
+                "no_stories": "Geen verhalen gevonden",
+                "save_from_cache_button": "Opslaan uit Cache"
             },
             "messaging_preview": {
                 "message_fetch_failed": "Gefaald op berichten op te halen",
                 "no_message_hint": "Geen bericht",
                 "save_selection_option": "Selectie opslaan",
                 "save_all_option": "Alles Opslaan",
-                "mark_selection_as_seen_option": "Snap selecteren als gezien"
+                "mark_selection_as_seen_option": "Snap selecteren als gezien",
+                "bridge_connection_failed": "Kan geen verbinding maken met Snapchat via de bridge-service",
+                "bridge_init_failed": "Kan de berichtenbrug niet initialiseren",
+                "unsave_selection_option": "Selectie niet opslaan",
+                "unsave_all_option": "Alles niet opslaan",
+                "mark_all_as_seen_option": "Markeer alle Snaps als gezien",
+                "delete_selection_option": "Selectie verwijderen",
+                "delete_all_option": "Alles verwijderen"
+            },
+            "logger_history": {
+                "reverse_order_checkbox": "Omgekeerde Volgorde",
+                "list_friend_format": "Vriend {name}",
+                "list_group_format": "Groep {name}",
+                "no_more_messages": "Geen berichten meer",
+                "chat_attachment": "Bijlage {index}",
+                "empty_message": "Leeg chatbericht",
+                "message_parse_failed": "Kan het bericht niet parseren",
+                "unknown_sender": "Onbekende Afzender",
+                "download_attachment_failed_toast": "Kan bijlage niet downloaden"
             }
         },
         "dialogs": {
@@ -111,7 +133,17 @@
                 "category_friends": "Vrienden"
             },
             "scripting_warning": {
-                "title": "Waarschuwing"
+                "title": "Waarschuwing",
+                "content": "SnapEnhance bevat een scripttool waarmee door de gebruiker gedefinieerde code op uw apparaat kan worden uitgevoerd. Wees uiterst voorzichtig en installeer alleen modules van bekende, betrouwbare bronnen. Niet-geautoriseerde of niet-geverifieerde modules kunnen veiligheidsrisico's voor uw systeem opleveren."
+            },
+            "reset_config": {
+                "title": "Configuratie resetten",
+                "content": "Weet u zeker dat u de configuratie wilt resetten?",
+                "success_toast": "Configuratie succesvol gereset"
+            },
+            "messaging_action": {
+                "title": "Kies inhoudstypen om te verwerken",
+                "select_all_button": "Alles Selecteren"
             }
         }
     },
@@ -164,7 +196,8 @@
             }
         },
         "toasts": {
-            "enabled": "{ruleName} Ingeschakeld"
+            "enabled": "{ruleName} Ingeschakeld",
+            "disabled": "{ruleName} uitgeschakeld"
         }
     },
     "features": {
@@ -296,5 +329,18 @@
     "scopes": {
         "friend": "Vriend",
         "group": "Groep"
+    },
+    "actions": {
+        "clean_snapchat_cache": {
+            "name": "Snapchat-cache opschonen",
+            "description": "Schoont de Snapchat-cache op"
+        },
+        "export_chat_messages": {
+            "name": "Chatberichten exporteren"
+        },
+        "manage_friend_list": {
+            "description": "Importeer/exporteer uw vriendenlijst bij het maken van een back-up",
+            "name": "Vriendenlijst beheren"
+        }
     }
 }

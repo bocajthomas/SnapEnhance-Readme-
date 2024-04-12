@@ -46,7 +46,10 @@
                 "saved_config_snackbar": "Konfiguration gemt"
             },
             "social": {
-                "streaks_expiration_short": "{hours} timer"
+                "streaks_expiration_short": "{hours} timer",
+                "friends_tab": "Venner",
+                "groups_tab": "Grupper",
+                "empty_hint": "(tom)"
             },
             "tasks": {
                 "no_tasks": "Ingen opgaver",
@@ -533,6 +536,10 @@
                     "remove_groups_locked_status": {
                         "name": "Fjern gruppers låst status",
                         "description": "Giver dig mulighed for at se gruppeoplysninger efter at være blevet sparket ud"
+                    },
+                    "auto_mark_as_read": {
+                        "name": "Automatisk markér som læst",
+                        "description": "Markerer automatisk beskeder som læst, når du sender en besked til en samtale, selv når Stealth Mode er aktiveret"
                     }
                 }
             },
@@ -633,6 +640,10 @@
                     "force_upload_source_quality": {
                         "name": "Tving upload kilde kvalitet",
                         "description": "Tvinger Snapchat til at uploade medier i original kvalitet\nBemærk, at dette muligvis ikke fjerner metadata fra medier"
+                    },
+                    "hide_active_music": {
+                        "name": "Skjul aktiv musik",
+                        "description": "Forhindrer Snapchat i at vide, at du lytter til musik\nDette giver dig mulighed for at tage snaps ved hjælp af kontrollydstyrkeknapperne, mens du lytter til musik"
                     }
                 }
             },
