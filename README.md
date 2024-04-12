@@ -1,2 +1,5 @@
-### Features Explained 
-[Features Explained](https://github.com/bocajthomas/SnapEnhance-bocajthomas/blob/wiki/FEATURESEXPLAINED.md)
+# Features Explained 
+[TAP](https://github.com/bocajthomas/SnapEnhance-bocajthomas/blob/wiki/FeaturesExplained.md)
+
+# Installation Guides 
+[TAP](https://github.com/bocajthomas/SnapEnhance-bocajthomas/blob/wiki/InstallationGuides.md)
