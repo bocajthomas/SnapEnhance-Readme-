@@ -17,6 +17,12 @@
 > - `LSPatch`<br/>
 > - `Shizuku` Or `SAI`<br/>
 
+# Links
+> - [LSPatch](https://github.com/LSPosed/LSPatch)<br/>
+> - [Shizuku](https://play.google.com/store/apps/details?id=moe.shizuku.privileged.api)<br/>
+> - [SAI](https://github.com/Aefyr/SAI)<br/>
+> - [Snapchat(Google play)](https://play.google.com/store/apps/details?id=com.snapchat.android)<br/>
+
 <details closed>
  <summary> Installation Guide (LSPatch & SAI)</summary>
 
