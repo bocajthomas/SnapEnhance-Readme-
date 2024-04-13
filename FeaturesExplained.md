@@ -1847,6 +1847,29 @@ Sections From The Stories Page**
 
 <details closed>
   <summary>Custom Resolution</summary>
+
+### Explanation
+> **Allows Users To Set A Custom Camera Resolution `Width X Height`**
+
+### Example 
+>  - **`1920x1080`**
+
+### Note
+> **The Custom Resolution Must Be Supported By Your Device**
+
+### How To Enable/Setup
+>  1. Open SnapEnhance App 
+>  2. Go To "Features" Tab 
+>  3. Tap "Camera"
+>  4. Tap The Icon Next To "Custom Resolution"
+  5. Input Your Prefered Choice
+
+### How To Use
+>  1. Open Snapchat
+>  2. Take A Photo Or Video
+>  3. Save To Your Gallery
+>  4. Check The Resolution
+>  5. You Should Now See The Resolution You Set 
 </details>
 
 <details closed>
