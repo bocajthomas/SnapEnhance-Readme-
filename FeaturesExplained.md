@@ -1812,10 +1812,37 @@ Sections From The Stories Page**
 
 <details closed>
   <summary>HEVC Recording</summary>
+
+### Explanation
+> **Allows Users To Use HEVC `H.265` Codec For Video Recording**
+
+### How To Enable/Setup
+>  1. Open SnapEnhance App 
+>  2. Go To "Features" Tab 
+>  3. Tap "Camera"
+>  4. Toggle On "HEVC Recording"
+
+### How To Use
+>  1. Open Snapchat
+>  2. Take A Video
+>  3. Check The Video Info 
 </details>
 
 <details closed>
   <summary>Force Camera Source Encoding</summary>
+
+### Explanation
+> **Allows Users To Force The Camera Source Encoding**
+
+### How To Enable/Setup  
+>  1. Open SnapEnhance App 
+>  2. Go To "Features" Tab 
+>  3. Tap "Camera"
+>  4. Toggle On "Force Camera Source Encoding"
+
+### How To Use
+>  1. Open Snapchat
+>  2. Take A Video Or Photo 
 </details>
 
 <details closed>
