@@ -2003,14 +2003,55 @@ Sections From The Stories Page**
 ## Streak Reminder
 <details closed>
   <summary>Interval</summary>
+
+### Explanation
+> **Allows Users To Pick The Interval Between Each Reminder In Hours**
+
+### How To Enable/Setup
+>  1. Open SnapEnhance App 
+>  2. Go To "Features" Tab
+>  3. Toggle On "Streak Reminder" 
+>  4. Tap "Streak Reminder"
+>  5. Tap Next To "Interval"
+>  6. Input Your Prefered Choice
+
+### How To Use
+>  1. You Will Get Notification Each ( From you're Input )
 </details>
 
 <details closed>
   <summary>Remaining Time</summary>
+
+### Explanation
+> **Allows Users To Pick The Remaining Amount Of Time Before The Notification Is Shown In Hours**
+
+### How To Enable/Setup
+>  1. Open SnapEnhance App 
+>  2. Go To "Features" Tab
+>  3. Toggle On "Streak Reminder" 
+>  4. Tap "Streak Reminder"
+>  5. Tap Next To "Remaining Time"
+>  6. Input you're Prefered Choice
+
+### How To Use
+>  1. You Will Get A Notification When The Number Of Hours Left Of That Streak ( From Your Input )
 </details>
 
 <details closed>
   <summary>Group Notifications</summary>
+
+### Explanation
+> **Allows Users To Force Group Notifications Into A Single One**
+
+### How To Enable/Setup
+>  1. Open SnapEnhance App 
+>  2. Go To "Features" Tab
+>  3. Toggle On "Streak Reminder" 
+>  4. Tap "Streak Reminder"
+>  5. Toggle On "Group Notifications"
+
+### How To Use
+>  1. Group Notifications Will Be In A Single Notification 
 </details>
 
 ## Experimental 
