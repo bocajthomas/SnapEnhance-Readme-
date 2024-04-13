@@ -84,7 +84,7 @@ class FeatureManager(
             BypassVideoLengthRestriction(),
             MediaQualityLevelOverride(),
             MeoPasscodeBypass(),
-            AppPasscode(),
+            AppLock(),
             CameraTweaks(),
             InfiniteStoryBoost(),
             PinConversations(),

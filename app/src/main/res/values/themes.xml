@@ -9,4 +9,11 @@
         <item name="android:editTextColor">@color/primaryText</item>
         <item name="android:alertDialogTheme">@android:style/Theme.DeviceDefault.Dialog.Alert</item>
     </style>
+    <style name="BiometricPromptTheme" parent="AppTheme">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
 </resources>
