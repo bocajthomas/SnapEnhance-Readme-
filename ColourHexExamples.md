@@ -22,9 +22,9 @@
 "light salmon" = #FFA07A
 "dark orange" = #FF8C00
 "coral" = #FF7F50
-"hot_pink" = #FF69B4
+"hot pink" = #FF69B4
 "tomato" = #FF6347
-"orange_red" = #FF4500
+"orange red" = #FF4500
 "deep_pink" = #FF1493
 "fuchsia" = #FF00FF
 "magenta" = #FF00FF
@@ -51,85 +51,85 @@
 "lavender" = #E6E6FA
 "light cyan" = #E0FFFF
 "burlyWood" = #DEB887
-    <color name="plum">#DDA0DD</color>
-    <color name="gainsboro">#DCDCDC</color>
-    <color name="crimson">#DC143C</color>
-    <color name="pale_violet_red">#DB7093</color>
-    <color name="goldenrod">#DAA520</color>
-    <color name="orchid">#DA70D6</color>
-    <color name="thistle">#D8BFD8</color>
-    <color name="light_grey">#D3D3D3</color>
-    <color name="tan">#D2B48C</color>
-    <color name="chocolate">#D2691E</color>
-    <color name="peru">#CD853F</color>
-    <color name="indian_red">#CD5C5C</color>
-    <color name="medium_violet_red">#C71585</color>
-    <color name="silver">#C0C0C0</color>
-    <color name="dark_khaki">#BDB76B</color>
-    <color name="rosy_brown">#BC8F8F</color>
-    <color name="medium_orchid">#BA55D3</color>
-    <color name="dark_goldenrod">#B8860B</color>
-    <color name="fire_brick">#B22222</color>
-    <color name="powder_blue">#B0E0E6</color>
-    <color name="light_steel_blue">#B0C4DE</color>
-    <color name="pale_turquoise">#AFEEEE</color>
-    <color name="greenYellow">#ADFF2F</color>
-    <color name="light_blue">#ADD8E6</color>
-    <color name="dark_gray">#A9A9A9</color>
-    <color name="brown">#A52A2A</color>
-    <color name="sienna">#A0522D</color>
-    <color name="yellow_green">#9ACD32</color>
-    <color name="dark_orchid">#9932CC</color>
-    <color name="pale_green">#98FB98</color>
-    <color name="dark_violet">#9400D3</color>
-    <color name="mediumPurple">#9370DB</color>
-    <color name="_light_green">#90EE90</color>
-    <color name="dark_sea_green">#8FBC8F</color>
-    <color name="saddle_brown">#8B4513</color>
-    <color name="dark_magenta">#8B008B</color>
-    <color name="dark_red">#8B0000</color>
-    <color name="blue_violet">#8A2BE2</color>
-    <color name="light_sky_blue">#87CEFA</color>
-    <color name="sky_blue">#87CEEB</color>
-    <color name="gray">#808080</color>
-    <color name="olive">#808000</color>
-    <color name="purple">#800080</color>
-    <color name="maroon">#800000</color>
-    <color name="aquamarine">#7FFFD4</color>
-    <color name="chartreuse">#7FFF00</color>
-    <color name="lawn_green">#7CFC00</color>
-    <color name="medium_slate_blue">#7B68EE</color>
-    <color name="light_slate_gray">#778899</color>
-    <color name="slate_gray">#708090</color>
-    <color name="olive_drab">#6B8E23</color>
-    <color name="slate_blue">#6A5ACD</color>
-    <color name="dim_gray">#696969</color>
-    <color name="medium_aquamarine">#66CDAA</color>
-    <color name="cornflower_blue">#6495ED</color>
-    <color name="cadet_blue">#5F9EA0</color>
-    <color name="dark_olive_green">#556B2F</color>
-    <color name="indigo">#4B0082</color>
-    <color name="medium_turquoise">#48D1CC</color>
-    <color name="dark_slate_blue">#483D8B</color>
-    <color name="steel_blue">#4682B4</color>
-    <color name="royal_blue">#4169E1</color>
-    <color name="turquoise">#40E0D0</color>
-    <color name="medium_sea_green">#3CB371</color>
-    <color name="lime_green">#32CD32</color>
-    <color name="dark_slate_gray">#2F4F4F</color>
-    <color name="sea_green">#2E8B57</color>
-    <color name="forest_green">#228B22</color>
-    <color name="light_sea_green">#20B2AA</color>
-    <color name="dodger_blue">#1E90FF</color>
-    <color name="midnight_blue">#191970</color>
-    <color name="aqua">#00FFFF</color>
-    <color name="cyan">#00FFFF</color>
-    <color name="spring_green">#00FF7F</color>
-    <color name="lime">#00FF00</color>
-    <color name="medium_spring_green">#00FA9A</color>
-"dark_turquoise" = #00CED1
+"plum"#DDA0DD
+"gainsboro">#DCDCDC
+"crimson">#DC143C
+"pale_violet_red">#DB7093 
+"goldenrod">#DAA520      
+"orchid">#DA70D6      
+"thistle">#D8BFD8  
+"light_grey">#D3D3D3  
+"tan">#D2B48C
+"chocolate">#D2691E       
+"peru">#CD853F
+"indian_red">#CD5C5C
+"medium_violet_red">#C71585
+"silver">#C0C0C0
+"dark_khaki">#BDB76B
+"rosy_brown">#BC8F8F
+"medium_orchid">#BA55D3
+"dark_goldenrod">#B8860B
+"fire_brick">#B22222
+"powder_blue">#B0E0E6
+"light_steel_blue">#B0C4DE
+"pale_turquoise">#AFEEEE
+"greenYellow">#ADFF2F
+"light_blue">#ADD8E6
+"dark_gray">#A9A9A9
+"brown">#A52A2A
+"sienna">#A0522D
+"yellow_green">#9ACD32
+"dark_orchid">#9932CC
+"pale_green">#98FB98
+"dark_violet">#9400D3
+"mediumPurple">#9370DB
+"light_green">#90EE90
+"dark_sea_green">#8FBC8F
+"saddle_brown">#8B4513
+"dark_magenta">#8B008B
+"dark_red">#8B0000
+"blue_violet">#8A2BE2
+"light_sky_blue">#87CEFA
+"sky_blue">#87CEEB
+"gray">#808080
+"olive">#808000</color>
+"purple">#800080</color>
+"maroon">#800000</color>
+"aquamarine">#7FFFD4</color>
+"chartreuse">#7FFF00</color>
+"lawn_green">#7CFC00</color>
+"medium_slate_blue">#7B68EE</color>
+"light_slate_gray">#778899</color>
+"slate_gray">#708090</color>
+"olive_drab">#6B8E23</color>
+"slate_blue">#6A5ACD</color>
+"dim_gray">#696969</color>
+"medium_aquamarine">#66CDAA</color
+"cornflower_blue">#6495ED</color>
+"cadet_blue">#5F9EA0</color>
+"dark_olive_green">#556B2F</color>
+"indigo">#4B0082</color>
+"medium_turquoise">#48D1CC</color>
+"dark_slate_blue">#483D8B</color>
+"steel_blue">#4682B4</color>
+"royal_blue">#4169E1</color>
+"turquoise">#40E0D0</color>
+"medium_sea_green">#3CB371</color>
+"lime_green">#32CD32</color>
+"dark_slate_gray">#2F4F4F</color>
+"sea_green">#2E8B57</color>
+"forest_green">#228B22</color>
+"light_sea_green">#20B2AA</color>
+"dodger_blue">#1E90FF</color>
+"midnight_blue">#191970</color
+"aqua">#00FFFF</color>
+"cyan">#00FFFF</color>
+"spring_green">#00FF7F</color>
+"lime">#00FF00
+"medium_spring_green">#00FA9A
+"dark turquoise" = #00CED1
 "deep sky blue" = #00BFFF
-"dark_cyan" = #008B8B
+"dark cyan" = #008B8B
 "teal" = #008080
 "green" = #008000
 "dark green" = #006400
