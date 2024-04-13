@@ -1752,10 +1752,62 @@ Sections From The Stories Page**
 
 <details closed>
   <summary>Front Custom Frame Rate</summary>
+
+### Explanation
+> **Allows Users To Override The Front Camera Frame Rate**
+
+### Frame Rates Include
+>  - `5`
+>  - `10`
+>  - `20`
+>  - `25`
+>  - `30`
+>  - `48`
+>  - `60`
+>  - `90`
+>  - `120`
+
+### How To Enable/Setup
+  1. Open SnapEnhance App 
+  2. Go To "Features" Tab 
+  3. Tap "Camera"
+  4. Tap Next To "Front Custom Frame Rate"
+  5. Tap You're Prefered Choice
+
+### How To Use
+  1. Open Snapchat
+  2. Take A Video
+  3. You Will See Your Prefered Choice In Action 
 </details>
 
 <details closed>
   <summary>Back Custom Frame Rate</summary>
+
+### Explanation
+> **Allows Users To Override The Back Camera Frame Rate**
+
+### Frame Rates Include
+>  - `5`
+>  - `10`
+>  - `20`
+>  - `25`
+>  - `30`
+>  - `48`
+>  - `60`
+>  - `90`
+>  - `120`
+
+### How To Enable/Setup
+>  1. Open SnapEnhance App 
+>  2. Go To "Features" Tab 
+>  3. Tap "Camera"
+>  4. Tap Next To "Back Custom Frame Rate"
+>  5. Tap You're Prefered Choice
+
+### How To Use
+>  1. Open Snapchat
+>  2. Take A Video
+>  3. You Will See Your Prefered Choice In Action 
 </details>
 
 <details closed>
