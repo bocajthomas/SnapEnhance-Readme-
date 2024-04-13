@@ -1862,7 +1862,7 @@ Sections From The Stories Page**
 >  2. Go To "Features" Tab 
 >  3. Tap "Camera"
 >  4. Tap The Icon Next To "Custom Resolution"
-  5. Input Your Prefered Choice
+>  5. Input Your Prefered Choice
 
 ### How To Use
 >  1. Open Snapchat
@@ -1874,6 +1874,66 @@ Sections From The Stories Page**
 
 <details closed>
   <summary>Override Front Resolution</summary>
+
+### Explanation
+> **Allows Users To Override The Camera Resolution For The Front Camera**
+
+### Camera Resolutions Include
+>  - `4000х3000`
+>  - `3648x2736`
+>  - `4000х2252`
+>  - `З840х2160`
+>  - `27З6х27З6`
+>  - `З648х2048`
+>  - `З648х1640`
+>  - `2560х1440`
+>  - `1920х1440`
+>  - `2400x1080`
+>  - `2З20х1080`
+>  - `1920х1080`
+>  - `1920x824`
+>  - `1440x1080`
+>  - `1088x1088`
+>  - `1280x720`
+>  - `960x720`
+>  - `720x480`
+>  - `640x480`
+>  - `640x360`
+>  - `352x288`
+>  - `320x240`
+>  - `176x144`
+>  - `3392x2544`
+>  - `3392x1908`
+>  - `2208x2208`
+>  - `2560x1440`
+>  - `1920x1440`
+>  - `2400x1080`
+>  - `2320x1080`
+>  - `1920x1080`
+>  - `1920x824`
+>  - `1440x1080`
+>  - `1440x980`
+>  - `1088x1088`
+>  - `1280x720`
+>  - `960x720`
+>  - `720x480`
+>  - `640x480`
+>  - `640x360`
+>  - `352x288`
+>  - `320x240`
+>  - `176x144`
+
+### How To Enable/Setup
+>  1. Open SnapEnhance App 
+>  2. Go To "Features" Tab 
+>  3. Tap "Camera"
+>  4. Tap Next To "Override Front Resolution"
+>  5. Choose You're Prefered Choice
+
+### How To Use
+>  1. Open Snapchat
+>  2. Take A Video Or A Photo
+>  3. You Will See Your Prefered Resolution In Action 
 </details>
 
 <details closed>
