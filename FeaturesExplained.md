@@ -1710,10 +1710,44 @@ Sections From The Stories Page**
 
 <details closed>
   <summary>Immersive Preview</summary>
+
+### Explanation
+> **Allows Users To Prevent Snapchat From Cropping The Camera Preview**
+
+### Note 
+> **This Might Cause The Camera To Flicker On Some Devices**
+
+### How To Enable/Setup
+>  1. Open SnapEnhance App 
+>  2. Go To "Features" Tab 
+>  3. Tap "Camera"
+>  4. Toggle On "Immersive Preview"
+
+### How To Use
+>  1. Open Snapchat
+>  2. Go To Camera
+>  3. You Will Now See The Preview Is Now Full Screen
 </details>
 
 <details closed>
   <summary>Black Photos</summary>
+
+### Explanation
+> **Allows Users To Replace Captured Photos With A Black Background**
+
+### Note
+> **Videos Are Not Affected**
+
+### How To Enable/Setup
+  1. Open SnapEnhance App 
+  2. Go To "Features" Tab 
+  3. Tap "Camera"
+  4. Toggle On "Black Photos"
+
+### How To Use
+  1. Open Snapchat
+  2. Take A Photo
+  3. You Will Now See The Photo Is Now Black 
 </details>
 
 <details closed>
