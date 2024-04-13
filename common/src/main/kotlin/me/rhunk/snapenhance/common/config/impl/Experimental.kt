@@ -22,6 +22,10 @@ class Experimental : ConfigContainer() {
         val autoBackupCurrentAccount = boolean("auto_backup_current_account", defaultValue = true)
     }
 
+    class AppLockConfig: ConfigContainer(hasGlobalState = true) {
+        val lockOnResume = boolean("lock_on_resume", defaultValue = true)
+    }
+
     val nativeHooks = container("native_hooks", NativeHooks()) { icon = "Memory"; requireRestart() }
     val sessionEvents = container("session_events", SessionEventsConfig()) { requireRestart(); nativeHooks() }
     val spoof = container("spoof", Spoof()) { icon = "Fingerprint" ; addNotices(FeatureNotice.BAN_RISK); requireRestart() }
@@ -32,8 +36,7 @@ class Experimental : ConfigContainer() {
     val callRecorder = boolean("call_recorder") { requireRestart(); addNotices(FeatureNotice.UNSTABLE); }
     val accountSwitcher = container("account_switcher", AccountSwitcherConfig()) { requireRestart(); addNotices(FeatureNotice.UNSTABLE) }
     val editMessage = boolean("edit_message") { requireRestart(); addNotices(FeatureNotice.BAN_RISK) }
-    val appPasscode = string("app_passcode")
-    val appLockOnResume = boolean("app_lock_on_resume")
+    val appLock = container("app_lock", AppLockConfig()) { requireRestart(); addNotices(FeatureNotice.UNSTABLE) }
     val infiniteStoryBoost = boolean("infinite_story_boost")
     val meoPasscodeBypass = boolean("meo_passcode_bypass")
     val noFriendScoreDelay = boolean("no_friend_score_delay") { requireRestart()}
