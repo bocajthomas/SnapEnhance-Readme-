@@ -1687,6 +1687,25 @@ Sections From The Stories Page**
 ## Camera 
 <details closed>
   <summary>Disable Cameras</summary>
+
+### Explanation
+> **Allows Users To Prevent Snapchat From Using The Selected Cameras**
+
+### Selected Cameras Include
+>  - `Front Camera`
+>  - `Back Camera`
+
+### How To Enable/Setup
+>  1. Open SnapEnhance App 
+>  2. Go To "Features" Tab 
+>  3. Tap "Camera"
+>  4. Tap The Icon Next To "Disable Cameras"
+>  5. Toggle On  You're Prefered Choice
+
+### How To Use
+>  1. Open Snapchat
+>  2. Go To Camera
+>  3. It Should Now Be Blank 
 </details>
 
 <details closed>
