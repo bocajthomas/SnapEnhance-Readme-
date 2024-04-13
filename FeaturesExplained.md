@@ -1,4 +1,10 @@
-# Downloader
+# Updated V2.0.1 
+
+## Note 
+> - **Since SnapEnhance Is In Development.**
+> - **Some Features Maybe Incorrect/Changed**
+
+## Downloader
 <details closed>
   <summary>Save Folder</summary>
 
@@ -290,7 +296,7 @@
 >  2. Check The File Name 
 </details>
 
-# User Interface
+## User Interface
 <details closed>
   <summary>Friend Feed Menu Buttons</summary>
 
