@@ -6,7 +6,7 @@ import me.rhunk.snapenhance.common.config.FeatureNotice
 
 class DownloaderConfig : ConfigContainer() {
     inner class FFMpegOptions : ConfigContainer() {
-        val threads = integer("threads", 1)
+        val threads = integer("threads", 4) // Bump Default Value to 4 Tested on Pixel 5 (Qualcomm Snapdragon 765G) Had no lag
         val preset = unique("preset", "ultrafast", "superfast", "veryfast", "faster", "fast", "medium", "slow", "slower", "veryslow") {
             addFlags(ConfigFlag.NO_TRANSLATE)
         }
