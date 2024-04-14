@@ -2063,14 +2063,73 @@ Sections From The Stories Page**
 ## Experimental 
 <details closed>
   <summary>Native Hooks</summary>
+
+### Explanation
+> **Allows Users To Use Unsafe Features That Hook Into Snapchat's Native Code**
+
+### Native Features Include
+>  - `Disable Bitmoji`
+
+### How To Enable/Setup
+>  1. Open SnapEnhance App 
+>  2. Go To "Features" Tab
+>  3. Tap "Experimental"
+>  4. Toggle On "Native Hooks"
+>  5. Tap "Native Hooks"
+>  6. Toggle On You're Prefered Choice 
+
+### How To Use
+>  1. Open Snapchat
+>  2. You Will See You're Prefered Choice Working 
 </details>
 
 <details closed>
   <summary>Session Events</summary>
+
+### Explanation
+> **Allows Users To Record Session Events**
+
+### Note 
+> **This Feature Requires Experimental `Native Hooks` To Work Correctly**
+
+### Session Events Includes
+>  - `Capture Duplex Events`
+>  - `Allow Running in Background`
+
+### How To Enable/Setup
+>  1. Open SnapEnhance App 
+>  2. Go To "Features" Tab
+>  3. Tap "Experimental"
+>  4. Toggle On "Session Events"
+>  5. Tap "Session Events"
+>  6. Toggle On Your Prefered Choice
+
+### How To Use
+>  1. Open Snapchat
+>  2. `Currently Unknown`
 </details>
 
 <details closed>
   <summary>Spoof</summary>
+
+### Explanation
+> **Allows Users To Spoof Various Information**
+
+### Information Includes 
+>  - `Play Store Installer Package Name`
+>  - `Device Fingerprint`
+>  - `Android ID`
+>  - `Remove VPN Transport Flag`
+>  - `Remove Mock Location Flag`
+>  - `Randomize Persistent Device Token`
+
+### How To Enable/Setup
+>  1. Open SnapEnhance App 
+>  2. Go To "Features" Tab
+>  3. Tap "Experimental"
+>  4. Toggle On "Spoof"
+>  5. Tap Spoof
+>  6. Toggle Your Prefered Choice / Tap The Icon Next To Your Prefered Choice 
 </details>
 
 <details closed>
