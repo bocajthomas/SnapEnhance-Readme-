@@ -1,11 +1,7 @@
-name: Beta CI
+name: Pull Request CI
 on:
-  workflow_dispatch:
-      inputs:
-        ci_upload:
-          description: 'Upload to CI channel'
-          required: false
-          type: boolean
+  pull_request:
+    branches: ["dev"]
 
 jobs:
   job_armv8:
