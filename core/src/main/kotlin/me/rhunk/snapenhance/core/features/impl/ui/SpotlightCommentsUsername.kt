@@ -30,6 +30,7 @@ class SpotlightCommentsUsername : Feature("SpotlightCommentsUsername", loadParam
 
             fun setUsername(username: String) {
                 usernameCache[posterUserId] = username
+                if (commentsCreatorBadgeTimestamp.text.contains(username)) return
                 commentsCreatorBadgeTimestamp.text = " (${username})" + commentsCreatorBadgeTimestamp.text.toString()
             }
 
