@@ -30,6 +30,10 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
         val effectiveBackgroundColourSurface by lazy { parseColor(customizeUIConfig.backgroundColourSurface.get()) }
         val effectiveActionMenuBackgroundColour by lazy { parseColor(customizeUIConfig.actionMenuBackgroundColour.get()) }
         val effectiveActionMenuRoundBackgroundColour by lazy { parseColor(customizeUIConfig.actionMenuRoundBackgroundColour.get()) }
+        val effectiveChatColour by lazy { parseColor(customizeUIConfig.chatColour.get()) }
+        val effectiveSnapColour by lazy { parseColor(customizeUIConfig.snapColour.get()) }
+        val effectiveBaseColour by lazy { parseColor(customizeUIConfig.baseColour.get()) }
+        val effectiveIconColour by lazy { parseColor(customizeUIConfig.iconColour.get()) }
 
         val attributeCache = mutableMapOf<String, Int>()
 
@@ -85,6 +89,18 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
 
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(effectiveActionMenuRoundBackgroundColour ?: return@hook))
+                    }
+                    getAttribute("sigColorChat") -> {
+                        ephemeralHook("getColor", effectiveChatColour ?: return@hook)
+                    }
+                    getAttribute("sigColorChatSnap") -> {
+                        ephemeralHook("getColor", effectiveSnapColour ?: return@hook)
+                    }
+                    getAttribute("sigColorbase") -> {
+                        ephemeralHook("getColor", effectiveBaseColour ?: return@hook)
+                    }
+                    getAttribute("sigColorIcon") -> {
+                        ephemeralHook("getColor", effectiveIconColour ?: return@hook)
                     }
                 }
             }
