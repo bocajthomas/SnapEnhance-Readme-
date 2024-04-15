@@ -377,6 +377,22 @@
                             "action_menu_round_background_colour": {
                                 "name": "Action Menu Round Background Color",
                                 "description": "Changes Snapchats chat action menu round background color\nInput hex code"
+                            },
+                            "chat_colour": {
+                                "name": "Chat Color ( Test )",
+                                "description": "Changes Snapchats chat color\nInput hex code"
+                            },
+                            "snap_colour": {
+                                "name": "Snap Color ( Test )",
+                                "description": "Changes Snapchats snap color\nInput hex code"
+                            },
+                            "base_colour": {
+                                "name": "Base Color ( Test )",
+                                "description": "Changes Snapchats base color\nInput hex code"
+                            },
+                            "icon_colour": {
+                                "name": "Icon Color ( Test )",
+                                "description": "Changes Snapchats icon color\nInput hex code"
                             }
                         }
                     },
