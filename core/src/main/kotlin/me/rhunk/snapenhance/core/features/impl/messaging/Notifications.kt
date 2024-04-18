@@ -201,7 +201,7 @@ class Notifications : Feature("Notifications", loadParams = FeatureLoadParams.IN
                     }, onSuccess = {
                         context.coroutineScope.launch(coroutineDispatcher) {
                             appendNotificationText("${myUser.displayName ?: myUser.mutableUsername}: $input")
-                            context.feature(AutoMarkAsRead::class).takeIf { it.isEnabled }?.markConversationsAsRead(listOf(conversationId))
+                            context.feature(AutoMarkAsRead::class).takeIf { it.canMarkConversationAsRead }?.markConversationsAsRead(listOf(conversationId))
                         }
                     })
                 }

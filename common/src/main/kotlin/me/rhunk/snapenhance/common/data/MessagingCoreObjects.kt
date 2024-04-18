@@ -45,6 +45,7 @@ enum class MessagingRuleType(
     STEALTH("stealth", true),
     AUTO_DOWNLOAD("auto_download", true),
     AUTO_SAVE("auto_save", true, defaultValue = "blacklist"),
+    AUTO_OPEN_SNAPS("auto_open_snaps", true, configNotices = arrayOf(FeatureNotice.BAN_RISK, FeatureNotice.UNSTABLE), defaultValue = null),
     UNSAVEABLE_MESSAGES("unsaveable_messages", true, configNotices = arrayOf(FeatureNotice.REQUIRE_NATIVE_HOOKS), defaultValue = null),
     HIDE_FRIEND_FEED("hide_friend_feed", false, showInFriendMenu = false),
     E2E_ENCRYPTION("e2e_encryption", false),

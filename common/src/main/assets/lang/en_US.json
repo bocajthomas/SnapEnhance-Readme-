@@ -199,6 +199,14 @@
                     "whitelist": "Unsaveable Messages"
                 }
             },
+            "auto_open_snaps": {
+                "name": "Auto Open Snaps",
+                "description": "Automatically opens Snaps when receiving them",
+                "options": {
+                    "blacklist": "Exclude from Auto Open Snaps",
+                    "whitelist": "Auto Open Snaps"
+                }
+            },
             "hide_friend_feed": {
                 "name": "Hide from Friend Feed"
             },
@@ -490,7 +498,7 @@
                     },
                     "auto_mark_as_read": {
                         "name": "Auto Mark as Read",
-                        "description": "Automatically marks messages as read when sending a message to a conversation, even when Stealth Mode is enabled"
+                        "description": "Automatically marks messages/snaps as read even when Stealth Mode is enabled"
                     },
                     "loop_media_playback": {
                         "name": "Loop Media Playback",
@@ -890,6 +898,10 @@
                         "name": "Hidden Snapchat Plus Features",
                         "description": "Enables unreleased/beta Snapchat Plus features\nMight not work on older Snapchat versions"
                     },
+                    "custom_streaks_expiration_format": {
+                        "name": "Custom Streaks Expiration Format",
+                        "description": "Customizes the Streaks Expiration format\n\nAvailable variables:\n - %c: Streaks Count\n - %e: Hourglass Emoji\n - %d: Days\n - %h: Hours\n - %m: Minutes\n - %s: Seconds\n - %w: Remaining Time"
+                    },
                     "disable_composer_modules": {
                         "name": "Disable Composer Modules",
                         "description": "Prevents selected composer modules from being loaded\nNames must be separated by a comma"
@@ -945,6 +957,7 @@
                 "auto_download": "\u2B07\uFE0F Auto Download",
                 "auto_save": "\uD83D\uDCAC Auto Save Messages",
                 "unsaveable_messages": "\u2B07\uFE0F Unsaveable Messages",
+                "auto_open_snaps": "\uD83D\uDCF7 Auto Open Snaps",
                 "stealth": "\uD83D\uDC7B Stealth Mode",
                 "mark_snaps_as_seen": "\uD83D\uDC40 Mark Snaps as seen",
                 "mark_stories_as_seen_locally": "\uD83D\uDC40 Mark Stories as seen locally",
@@ -1092,6 +1105,10 @@
                 "location_indicator": "Adds a \uD83D\uDCCD icon to snaps when they have been sent with location enabled",
                 "ovf_editor_indicator": "Indicates if a snap has been sent using OVF Editor",
                 "director_mode_indicator": "Adds a \u270F\uFE0F icon to snaps when they have been sent using Director Mode, which can be used to send gallery images as snaps"
+            },
+            "auto_mark_as_read": {
+                "conversation_read": "Mark conversation as read when sending a message",
+                "snap_reply": "Mark snaps as read when replying to them"
             }
         }
     },
@@ -1351,6 +1368,11 @@
         "outgoing_secret_message": "Key exchange response",
         "incoming_pk_message": "You just received a public key request. Click below to accept it.",
         "incoming_secret_message": "Your friend just accepted your public key. Click below to accept the secret."
+    },
+
+    "auto_open_snaps": {
+        "title": "Auto Open Snaps",
+        "notification_content": "{count} Snaps opened"
     },
 
     "suspend_location_updates": {

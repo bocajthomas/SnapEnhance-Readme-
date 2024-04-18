@@ -2,13 +2,13 @@ package me.rhunk.snapenhance.core.features.impl.ui
 
 import android.content.res.Resources
 import android.util.Size
-import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup.MarginLayoutParams
 import android.widget.FrameLayout
 import me.rhunk.snapenhance.common.util.ktx.findFieldsToString
 import me.rhunk.snapenhance.core.event.events.impl.AddViewEvent
 import me.rhunk.snapenhance.core.event.events.impl.BindViewEvent
+import me.rhunk.snapenhance.core.event.events.impl.LayoutInflateEvent
 import me.rhunk.snapenhance.core.features.Feature
 import me.rhunk.snapenhance.core.features.FeatureLoadParams
 import me.rhunk.snapenhance.core.util.hook.HookStage
@@ -72,12 +72,9 @@ class UITweaks : Feature("UITweaks", loadParams = FeatureLoadParams.ACTIVITY_CRE
             }
         }
 
-        LayoutInflater::class.java.hook("inflate", HookStage.AFTER) { param ->
-            val id = param.args().firstOrNull() as? Int ?: return@hook
-            val result = param.getResult() as? View ?: return@hook
-
-            if (id == getId("chat_input_bar_sharing_drawer_button", "layout") && hiddenElements.contains("hide_live_location_share_button")) {
-                hideView(result)
+        context.event.subscribe(LayoutInflateEvent::class) { event ->
+            if (event.layoutId == getId("chat_input_bar_sharing_drawer_button", "layout") && hiddenElements.contains("hide_live_location_share_button")) {
+                hideView(event.view ?: return@subscribe)
             }
         }
 

@@ -22,17 +22,20 @@ fun Resources.getIdentifier(name: String, type: String): Int {
     return getIdentifier(name, type, Constants.SNAPCHAT_PACKAGE_NAME)
 }
 
-@SuppressLint("DiscouragedApi")
 fun Resources.getId(name: String): Int {
-    return getIdentifier(name, "id", Constants.SNAPCHAT_PACKAGE_NAME)
+    return getIdentifier(name, "id")
+}
+
+fun Resources.getLayoutId(name: String): Int {
+    return getIdentifier(name, "layout")
 }
 
 fun Resources.getDimens(name: String): Int {
-    return getDimensionPixelSize(getIdentifier(name, "dimen"))
+    return getDimensionPixelSize(getIdentifier(name, "dimen").takeIf { it > 0 } ?: return 0)
 }
 
 fun Resources.getDimensFloat(name: String): Float {
-    return getDimension(getIdentifier(name, "dimen"))
+    return getDimension(getIdentifier(name, "dimen").takeIf { it > 0 } ?: return 0F)
 }
 
 fun Resources.getStyledAttributes(name: String, theme: Theme): TypedArray {

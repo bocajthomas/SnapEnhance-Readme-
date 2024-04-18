@@ -2,6 +2,7 @@ package me.rhunk.snapenhance.core.event
 
 import android.app.Activity
 import android.content.Intent
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams
@@ -128,6 +129,30 @@ class EventDispatcher(
                     setArg(1, index)
                     setArg(2, layoutParams)
                 }
+                postHookEvent()
+            }
+        }
+
+        LayoutInflater::class.java.getMethod(
+            "inflate",
+            Int::class.java,
+            ViewGroup::class.java,
+            Boolean::class.javaPrimitiveType
+        ).hook(HookStage.AFTER) { param ->
+            val layoutId = param.argNullable<Int>(0) ?: return@hook
+            val parent = param.argNullable<ViewGroup>(1)
+            val result = param.getResult() as? View
+
+            context.event.post(
+                LayoutInflateEvent(
+                    layoutId = layoutId,
+                    parent = parent,
+                    view = result
+                ).apply {
+                    adapter = param
+                }
+            ) {
+                if (canceled) param.setResult(null)
                 postHookEvent()
             }
         }

@@ -6,7 +6,6 @@ import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import android.net.Uri
 import android.os.ParcelFileDescriptor
-import android.widget.Button
 import android.widget.FrameLayout
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -31,6 +30,7 @@ import kotlinx.coroutines.withContext
 import me.rhunk.snapenhance.common.data.FileType
 import me.rhunk.snapenhance.common.ui.AppMaterialTheme
 import me.rhunk.snapenhance.common.ui.createComposeAlertDialog
+import me.rhunk.snapenhance.common.ui.createComposeView
 import me.rhunk.snapenhance.common.util.snap.MediaDownloaderHelper
 import me.rhunk.snapenhance.core.event.events.impl.ActivityResultEvent
 import me.rhunk.snapenhance.core.event.events.impl.AddViewEvent
@@ -503,16 +503,22 @@ class AccountSwitcher: Feature("Account Switcher", loadParams = FeatureLoadParam
         }
 
         findClass("com.snap.identity.loginsignup.ui.LoginSignupActivity").apply {
-            hook("onCreate", HookStage.AFTER) { param ->
+            hook("onPostCreate", HookStage.AFTER) { param ->
                 activity = param.thisObject()
-                activity!!.findViewById<FrameLayout>(android.R.id.content).addView(Button(activity).apply {
-                    text = "Switch Account"
+                activity!!.findViewById<FrameLayout>(android.R.id.content).addView(createComposeView(activity!!) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                    ) {
+                        Button(
+                            onClick = { showManagementPopup() },
+                            modifier = Modifier.padding(16.dp)
+                        ) {
+                            Text("Switch Account")
+                        }
+                    }
+                }.apply {
                     layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT).apply {
                         gravity = android.view.Gravity.TOP or android.view.Gravity.START
-                        setMargins(32, 32, 0, 0)
-                    }
-                    setOnClickListener {
-                        showManagementPopup()
                     }
                 })
             }

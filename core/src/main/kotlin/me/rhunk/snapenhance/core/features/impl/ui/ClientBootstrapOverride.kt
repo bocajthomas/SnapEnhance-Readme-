@@ -6,14 +6,14 @@ import me.rhunk.snapenhance.core.features.FeatureLoadParams
 import java.io.File
 
 
-class ClientBootstrapOverride : Feature("ClientBootstrapOverride", loadParams = FeatureLoadParams.ACTIVITY_CREATE_SYNC) {
+class ClientBootstrapOverride: Feature("ClientBootstrapOverride", loadParams = FeatureLoadParams.INIT_SYNC) {
 
     private val clientBootstrapFolder by lazy { File(context.androidContext.filesDir, "client-bootstrap") }
 
     private val appearanceStartupConfigFile by lazy { File(clientBootstrapFolder, "appearancestartupconfig") }
     private val plusFile by lazy { File(clientBootstrapFolder, "plus") }
 
-    override fun onActivityCreate() {
+    override fun init() {
         val bootstrapOverrideConfig = context.config.userInterface.bootstrapOverride
 
         if (!clientBootstrapFolder.exists() && (bootstrapOverrideConfig.appAppearance.getNullable() != null || bootstrapOverrideConfig.homeTab.getNullable() != null)) {

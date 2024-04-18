@@ -35,6 +35,7 @@ class ClassMapper(
             FriendingDataSourcesMapper(),
             OperaViewerParamsMapper(),
             MemoriesPresenterMapper(),
+            StreaksExpirationMapper(),
         )
     }
 

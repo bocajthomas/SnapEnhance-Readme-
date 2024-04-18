@@ -145,10 +145,10 @@ class MediaDownloader : MessagingRuleFeature("MediaDownloader", MessagingRuleTyp
                     if (context.isMainActivityPaused) {
                         context.shortToast(message)
                     }
-                    throwable?.let {
+                    throwable?.let { t ->
                         context.inAppOverlay.showStatusToast(
                             icon = Icons.Outlined.Error,
-                            text = message + it.takeIf { it.isNotEmpty() }.orEmpty(),
+                            text = message + t.takeIf { it.isNotEmpty() }?.let { " $it" }.orEmpty(),
                         )
                         return
                     }
