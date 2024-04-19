@@ -95,6 +95,7 @@ class AutoOpenSnaps: MessagingRuleFeature("Auto Open Snaps", MessagingRuleType.A
         }
 
         context.event.subscribe(BuildMessageEvent::class, priority = 103) { event ->
+            if (event.message.senderId?.toString() == context.database.myUserId) return@subscribe
             val conversationId = event.message.messageDescriptor?.conversationId?.toString() ?: return@subscribe
             val clientMessageId = event.message.messageDescriptor?.messageId ?: return@subscribe
 
