@@ -2129,11 +2129,34 @@ Sections From The Stories Page**
 >  3. Tap "Experimental"
 >  4. Toggle On "Spoof"
 >  5. Tap Spoof
->  6. Toggle Your Prefered Choice / Tap The Icon Next To Your Prefered Choice 
+>  6. Toggle Your Prefered Choice / Tap The Icon Next To Your Prefered Choice
+
+### How To Use
+  1. Spoofs Your Info 
 </details>
 
 <details closed>
   <summary>Convert Message Locally</summary>
+
+### Explanation
+> **Allows Users To Convert Snaps To Chat External Media Locally**
+
+### Note 
+> **This Appears In Chat Download Context Menu**
+
+### How To Enable/Setup
+  1. Open SnapEnhance App 
+  2. Go To "Features" Tab
+  3. Tap "Experimental"
+  4. Toggle On "Convert Message Locally"
+
+### How To Use
+  1. Open Snapchat
+  2. Go To Someone's Chat
+  3. Hold Down On A Snap
+  4. Tap "Convert message"
+  5. Tap "convert_external_media"
+  6. You Will Now See It's Convert
 </details>
 
 <details closed>
