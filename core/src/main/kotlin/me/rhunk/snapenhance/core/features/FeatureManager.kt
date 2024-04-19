@@ -16,6 +16,7 @@ import me.rhunk.snapenhance.core.features.impl.global.*
 import me.rhunk.snapenhance.core.features.impl.messaging.*
 import me.rhunk.snapenhance.core.features.impl.spying.HalfSwipeNotifier
 import me.rhunk.snapenhance.core.features.impl.spying.MessageLogger
+import me.rhunk.snapenhance.core.features.impl.FriendMutationObserver
 import me.rhunk.snapenhance.core.features.impl.spying.StealthMode
 import me.rhunk.snapenhance.core.features.impl.tweaks.*
 import me.rhunk.snapenhance.core.features.impl.ui.*
@@ -64,6 +65,7 @@ class FeatureManager(
             ScopeSync(),
             PreventMessageListAutoScroll(),
             Messaging(),
+            FriendMutationObserver(),
             AutoMarkAsRead(),
             MediaDownloader(),
             StealthMode(),

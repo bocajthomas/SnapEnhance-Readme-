@@ -538,6 +538,10 @@
                         "name": "Instant Delete",
                         "description": "Removes the confirmation dialog when deleting messages"
                     },
+                    "relationship_notifier": {
+                        "name": "Relationship Notifier",
+                        "description": "Notifies you when someone removes you as a friend"
+                    },
                     "better_notifications": {
                         "name": "Better Notifications",
                         "description": "Adds more information in received notifications"
@@ -951,6 +955,7 @@
                 "download_button": "Add download button",
                 "mark_as_read_button": "Mark as Read button",
                 "mark_as_read_and_save_in_chat": "Save in Chat when marking as read (depends on Auto Save)",
+                "friend_add_source": "Show friend add source",
                 "group": "Group notifications"
             },
             "friend_feed_menu_buttons": {
@@ -1373,6 +1378,13 @@
     "auto_open_snaps": {
         "title": "Auto Open Snaps",
         "notification_content": "{count} Snaps opened"
+    },
+
+    "friend_mutation_observer": {
+        "notification_channel_name": "Friend Mutation Observer",
+        "removed_friend_notification_title": "Friend Removed",
+        "removed_friend_notification_content": "{username} has removed you as a friend",
+        "removed_friend_notification_content_with_display_name": "{displayName} ({username}) has removed you as a friend"
     },
 
     "suspend_location_updates": {

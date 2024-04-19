@@ -12,10 +12,7 @@ import android.os.Bundle
 import android.os.UserHandle
 import de.robv.android.xposed.XposedBridge
 import de.robv.android.xposed.XposedHelpers
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import me.rhunk.snapenhance.common.data.ContentType
 import me.rhunk.snapenhance.common.data.MediaReferenceType
 import me.rhunk.snapenhance.common.data.MessageUpdate
@@ -28,6 +25,7 @@ import me.rhunk.snapenhance.common.util.snap.SnapWidgetBroadcastReceiverHelper
 import me.rhunk.snapenhance.core.event.events.impl.SnapWidgetBroadcastReceiveEvent
 import me.rhunk.snapenhance.core.features.Feature
 import me.rhunk.snapenhance.core.features.FeatureLoadParams
+import me.rhunk.snapenhance.core.features.impl.FriendMutationObserver
 import me.rhunk.snapenhance.core.features.impl.downloader.MediaDownloader
 import me.rhunk.snapenhance.core.features.impl.downloader.decoder.MessageDecoder
 import me.rhunk.snapenhance.core.features.impl.spying.StealthMode
@@ -94,6 +92,18 @@ class Notifications : Feature("Notifications", loadParams = FeatureLoadParams.IN
         notification
     ) as Notification.Builder
 
+    private fun setNotificationText(notification: Notification, text: String) {
+        notification.extras.putString("android.text", text)
+        notification.extras.putString("android.bigText", text)
+        notification.extras.putParcelableArray("android.messages", text.split("\n").map {
+            Bundle().apply {
+                putBundle("extras", Bundle())
+                putString("text", it)
+                putLong("time", System.currentTimeMillis())
+            }
+        }.toTypedArray())
+    }
+
     private fun computeNotificationMessages(notification: Notification, conversationId: String) {
         val messageText = StringBuilder().apply {
             cachedMessages.computeIfAbsent(conversationId) { sortedMapOf() }.forEach {
@@ -102,17 +112,7 @@ class Notifications : Feature("Notifications", loadParams = FeatureLoadParams.IN
             }
         }.toString()
 
-        with(notification.extras) {
-            putString("android.text", messageText)
-            putString("android.bigText", messageText)
-            putParcelableArray("android.messages", messageText.split("\n").map {
-                Bundle().apply {
-                    putBundle("extras", Bundle())
-                    putString("text", it)
-                    putLong("time", System.currentTimeMillis())
-                }
-            }.toTypedArray())
-        }
+        setNotificationText(notification, messageText)
     }
 
     private fun setupNotificationActionButtons(contentType: ContentType, conversationId: String, message: Message, notificationData: NotificationData) {
@@ -423,11 +423,6 @@ class Notifications : Feature("Notifications", loadParams = FeatureLoadParams.IN
                 notificationData.notification.setObjectField("mGroupKey", SNAPCHAT_NOTIFICATION_GROUP)
             }
 
-            val conversationId = extras.getString("conversation_id").also { id ->
-                sentNotifications.computeIfAbsent(notificationData.id) { id ?: "" }
-            } ?: return@hook
-
-            val serverMessageId = extras.getString("message_id") ?: return@hook
             val notificationType = extras.getString("notification_type")?.lowercase() ?: return@hook
 
             if (!canSendNotification(notificationType)) {
@@ -435,8 +430,30 @@ class Notifications : Feature("Notifications", loadParams = FeatureLoadParams.IN
                 return@hook
             }
 
+            if (notificationType == "addfriend" && betterNotificationFilter.contains("friend_add_source")) {
+                val userId = notificationData.notification.shortcutId?.split("|")?.lastOrNull() ?: return@hook
+                runBlocking {
+                    var addSource: String? = null
+                    withTimeoutOrNull(7000) {
+                        while (true) {
+                            addSource = context.feature(FriendMutationObserver::class).getFriendAddSource(userId)
+                            if (addSource != null) break
+                            delay(500)
+                        }
+                    }
+                    setNotificationText(notificationData.notification, addSource ?: return@runBlocking)
+                }
+                return@hook
+            }
+
             if (!betterNotificationFilter.contains("chat_preview") && !betterNotificationFilter.contains("media_preview")) return@hook
             if (notificationType == "typing") return@hook
+
+            val serverMessageId = extras.getString("message_id") ?: return@hook
+            val conversationId = extras.getString("conversation_id").also { id ->
+                sentNotifications.computeIfAbsent(notificationData.id) { id ?: "" }
+            } ?: return@hook
+
             param.setResult(null)
             val conversationManager = context.feature(Messaging::class).conversationManager ?: return@hook
 
