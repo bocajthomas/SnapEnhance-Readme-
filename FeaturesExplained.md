@@ -2180,14 +2180,59 @@ Sections From The Stories Page**
 
 <details closed>
   <summary>Media File Picker</summary>
+
+### Explanation
+> **Allows Users To Pick Any Video/Audio File From The Gallery**
+
+### How To Enable/Setup
+>  1. Open SnapEnhance App 
+>  2. Go To "Features" Tab
+>  3. Tap "Experimental"
+>  4. Toggle On "Media File Picker"
+
+### How To Use
+>  1. Open Snapchat
+>  2. Go To A Chat
+>  3. Tap The Camera roll Icon
+>  4. You Should See An Upload Icon On The Right
+>  5. Tap The Icon
+>  6. Pick Something
+>  7. Then Send 
 </details>
 
 <details closed>
   <summary>Story Logger</summary>
+
+### Explanation
+> **Allows Users To Save A History Of Friends Stories**
+
+### How To Enable/Setup
+>  1. Open SnapEnhance App 
+>  2. Go To "Features" Tab
+>  3. Tap "Experimental"
+>  4. Toggle On "Story Logger"
+
+### How To Use
+>  1. `Currently Unknown`
+
 </details>
 
 <details closed>
   <summary>Call Recorder</summary>
+
+### Explanation
+> **Allows Users To Automatically Records Audio Calls**
+
+### How To Enable/Setup
+>  1. Open SnapEnhance App 
+>  2. Go To "Features" Tab
+>  3. Tap "Experimental"
+>  4. Toggle On "Call Recorder"
+
+### How To Use
+>  1. Open Snapchat
+>  2. Make A Call
+*  3. It will Now Record Only The Other Users Voice 
 </details>
 
 <details closed>
