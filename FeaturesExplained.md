@@ -1581,6 +1581,27 @@ Sections From The Stories Page**
 </details>
 
 <details closed>
+  <summary>Hide Active Music</summary>
+
+### Explanation
+> **Allows Users To Prevent Snapchat From Knowing You're Listening To Music**
+
+### Note
+> **This Will Allow You To Take Snaps Using Control Volume Buttons While Listening To Music**
+
+### How To Enable/Setup
+>  1. Open SnapEnhance App 
+>  2. Go To "Features" Tab 
+>  3. Tap "Global"
+>  4. Toggle On "Hide Active Music"
+
+### How To Use
+>  1. Play Some Music
+>  2. Open Snapchat
+>  3. Take A Photo Using The Volume Control Buttons
+</details>
+
+<details closed>
   <summary>Disable Snap Splitting</summary>
 
 ### Explanation
