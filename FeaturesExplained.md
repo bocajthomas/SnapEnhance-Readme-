@@ -1,8 +1,9 @@
 # Updated V2.0.1 
 
 ## Note 
-> - **Since SnapEnhance Is In Development.**
-> - **Some Features Maybe Incorrect/Changed**
+> **Since SnapEnhance Is In Development**
+
+> **So Some Features Maybe Incorrect/Changed**
 
 ## Downloader
 <details closed>
