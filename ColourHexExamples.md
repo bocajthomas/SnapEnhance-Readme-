@@ -3,35 +3,68 @@
 
 ### White 
 > - `#FFFFFF`
+
 ### ivory
 > - `#FFFFF0`
+
 ### Light Yellow
 > - `#FFFFE0`
+
 ### Yellow
 > - `#FFFF00`
+
 ### Snow
 > - `#FFFAFA`  
+
 ### Floral White
 > - `#FFFAF0`
+
 ### Lemon Chiffon
 > - `#FFFACD`
+
 ### Cornsilk
 > - `#FFF8DC`
+
 ### Seashell
 > - `#FFF5EE`
+
 ### Lavender Blush
 > - `#FFF0F5`
-> - "papaya whip" = #FFEFD5
-> - "blanched almond" = #FFEBCD
-> - "misty rose" = #FFE4E1
-> - "bisque" = #FFE4C4
-> - "moccasin" = #FFE4B5
-> - "navajo white" = #FFDEAD
-> - "peach puff" = #FFDAB9
-> - "cold" = #FFD700
-> - "pink" = #FFC0CB
-> - "light pink" = #FFB6C1
-> - "orange" = #FFA500
+
+### Papaya Whip
+> - `#FFEFD5`
+
+### Blanched Almond
+> - `#FFEBCD`
+
+### Misty Rose
+> - `#FFE4E1`
+
+### Bisque
+> - `#FFE4C4`
+
+### Moccasin
+> - `#FFE4B5`
+
+### Navajo White
+> - `#FFDEAD`
+
+### Peach Puff
+> - `#FFDAB9`
+
+### Cold
+> - `#FFD700`
+
+### Pink
+> - `#FFC0CB`
+
+### Light Pink
+> - `#FFB6C1`
+
+### Orange
+> - `#FFA500`
+
+### Not Finished 
 > - "light salmon" = #FFA07A
 > - "dark orange" = #FF8C00
 > - "coral" = #FF7F50
