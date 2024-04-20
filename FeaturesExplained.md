@@ -874,6 +874,29 @@
 </details>
 
 <details closed>
+  <summary>Auto Mark as Read</summary>
+
+### Explanation
+> **Allows Users To Automatically Marks Messages/Snaps As Read Even When Stealth Mode Is Enabled**
+
+### Auto Mark Includes 
+>  - `Mark snaps as read when replying to them`
+>  - `Mark conversation as read when sending a message`
+
+### How To Enable/Setup
+>  1. Open SnapEnhance App 
+>  2. Go To "Features" Tab 
+>  3. Tap "Messaging"
+>  4. Tap Next To "Auto Mark as Read"
+>  5. Toggle On You're Prefered Choice
+
+### How To Use
+>  1. Open Snapchat
+>  2. You Can See Messages Will Get Auto Marked As Read 
+
+</details>
+
+<details closed>
   <summary>Loop Media Playback</summary>
 
 ### Explanation
