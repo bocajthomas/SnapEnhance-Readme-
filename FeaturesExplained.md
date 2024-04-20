@@ -1,7 +1,7 @@
 # Updated V2.0.2
 
 ## Note 
-> **Since SnapEnhance Is In Development**
+> **Currently Work In Progress**
 
 > **So Some Features Maybe Incorrect/Changed**
 
@@ -2475,6 +2475,37 @@ Sections From The Stories Page**
 >  2. Tap Your Profile
 >  3. Tap Snapchat+ ( You Will Need `Snapchat Plus` Enabled )
 >  4. You Will Now See Some New Features
+</details>
+
+<details closed>
+  <summary>Custom Streaks Expiration Format</summary>
+
+### Explanation
+> **Allows Users To Customize The Streaks Expiration format**
+
+### Note
+> **You Will Need `Show Streak Expiration Info` Toggled On**
+
+### Available variables
+>  - `%c`: Streaks Count 
+>  - `%e`: Hourglass Emoji 
+>  - `%d`: Days 
+>  - `%h`: Hours 
+>  - `%m`: Minutes 
+>  - `%s`: Seconds 
+>  - `%w`: Remaining Time
+
+### How To Enable/Setup
+>  1. Open SnapEnhance App 
+>  2. Go To "Features" Tab
+>  3. Tap "Experimental"
+>  4. Tap The Icon Next To "Custom Streaks Expiration Format"
+>  5. Input You're Prefered Choice From The `Available Variables` List
+
+### How To Use
+>  1. Open Snapchat
+>  2. You Will Now See Some Changes On The End Of A Friend On The Friend Feed 
+
 </details>
 
 <details closed>
