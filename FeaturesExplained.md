@@ -2132,7 +2132,7 @@ Sections From The Stories Page**
 >  6. Toggle Your Prefered Choice / Tap The Icon Next To Your Prefered Choice
 
 ### How To Use
-  1. Spoofs Your Info 
+>  1. Spoofs Your Info 
 </details>
 
 <details closed>
@@ -2145,22 +2145,37 @@ Sections From The Stories Page**
 > **This Appears In Chat Download Context Menu**
 
 ### How To Enable/Setup
-  1. Open SnapEnhance App 
-  2. Go To "Features" Tab
-  3. Tap "Experimental"
-  4. Toggle On "Convert Message Locally"
+>  1. Open SnapEnhance App 
+>  2. Go To "Features" Tab
+>  3. Tap "Experimental"
+>  4. Toggle On "Convert Message Locally"
 
 ### How To Use
-  1. Open Snapchat
-  2. Go To Someone's Chat
-  3. Hold Down On A Snap
-  4. Tap "Convert message"
-  5. Tap "convert_external_media"
-  6. You Will Now See It's Convert
+>  1. Open Snapchat
+>  2. Go To Someone's Chat
+>  3. Hold Down On A Snap
+>  4. Tap "Convert message"
+>  5. Tap "convert_external_media"
+>  6. You Will Now See It's Converted 
 </details>
 
 <details closed>
   <summary>New Chat Action Menu</summary>
+
+### Explanation
+> **Allows Users To Use The New Chat Action Menu Drawer**
+
+### How To Enable/Setup
+>  1. Open SnapEnhance App 
+>  2. Go To "Features" Tab
+>  3. Tap "Experimental"
+>  4. Toggle On "New Chat Action Menu"
+
+### How To Use
+>  1. Open Snapchat
+>  2. Open A Chat
+>  3. Hold Down On That Chat
+>  4. You Will Now See The New Chat Action Menu
 </details>
 
 <details closed>
