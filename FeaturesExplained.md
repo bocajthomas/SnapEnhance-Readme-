@@ -311,6 +311,7 @@
 >  - `Stealth Mode`
 >  - `Auto Download`
 >  - `Auto Save Messages`
+>  - `Auto Open Snaps`
 >  - `Unsaveable Messages`
 >  - `Use E2E Encryption`
 
