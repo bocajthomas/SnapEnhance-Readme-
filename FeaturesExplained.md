@@ -2298,10 +2298,40 @@ Sections From The Stories Page**
 
 <details closed>
   <summary>Infinite Story Boost</summary>
+
+### Explanation
+> **Allows Users To Bypass The Story Boost Limit Delay**
+
+### How To Enable/Setup
+>  1. Open SnapEnhance App 
+>  2. Go To "Features" Tab
+>  3. Tap "Experimental"
+>  4. Toggle On "Infinite Story Boost"
+
+### How To Use
+>  1. Open Snapchat
+>  2. `Currently Unknown`
 </details>
 
 <details closed>
   <summary>My Eyes Only Passcode Bypass</summary>
+
+### Explanation
+> **Allows Users To Bypass The My Eyes Only Passcode**
+
+### Note 
+> **This Will Only Work If The Passcode Has Been Entered Correctly Before**
+
+### How To Enable/Setup
+>  1. Open SnapEnhance App 
+>  2. Go To "Features" Tab
+>  3. Tap "Experimental"
+>  4. Toggle On "My Eyes Only Passcode Bypass"
+
+### How To Use
+>  1. Open Snapchat
+>  2. Go To "My Eyes Only"
+>  3. You Can Now Input Any Number To Give You Access
 </details>
 
 <details closed>
