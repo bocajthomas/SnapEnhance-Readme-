@@ -1714,6 +1714,37 @@ Sections From The Stories Page**
 </details>
 
 <details closed>
+  <summary>Auto Open Snaps</summary>
+
+### Explanation
+> **Allows Users To Automatically Opens Snaps When Receiving Them**
+
+### Note 
+> **Use This In Combination With `Friend Feed Menu Buttons`**
+> **This Features Requires Experimental `Native Hooks` To Work Correctly**
+
+### Stealth Mode Includes 
+>  - `Whitelist mode`
+>  - `Blacklist mode`
+
+### Key
+>  - `Whitelist mode` = **Allow** 
+>  - `Blacklist mode` = **Do Not Allow**
+
+### How To Enable/Setup
+>  1. Open SnapEnhance App 
+>  2. Go To "Features" Tab 
+>  3. Tap "Rules"
+>  4. Tap Next To "Auto Open Snaps"
+>  5. Tap Your Prefered Choice
+
+### How To Use
+>  1. Open Snapchat
+>  2. Hold Down On A Friends Bitmoji
+>  3. Toggle On "Auto Open Snaps"
+</details>
+
+<details closed>
   <summary>Unsaveable Messages</summary>
 
 ### Explanation
