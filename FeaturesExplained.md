@@ -2336,26 +2336,124 @@ Sections From The Stories Page**
 
 <details closed>
   <summary>No Friend Score Delay</summary>
+
+### Explanation
+> **Allows Users To Remove The Delay When Viewing A Friends Score**
+
+### How To Enable/Setup
+>  1. Open SnapEnhance App 
+>  2. Go To "Features" Tab
+>  3. Tap "Experimental"
+>  4. Toggle On "No Friend Score Delay"
+
+### How To Use
+>  1. Open Snapchat
+>  2. You Will Now See Other People's Snapscore Change Instantly
 </details>
 
 <details closed>
   <summary>End-To-End Encryption</summary>
+
+### Explanation
+> **Allows Users To Encrypts Your Messages With AES Using A Shared Secret Key**
+
+### Note 
+> **Make Sure To Save Your Key Somewhere Safe**
+
+### How To Enable/Setup
+>  1. Open SnapEnhance App 
+>  2. Go To "Features" Tab
+>  3. Tap "Experimental"
+>  4. Toggle On "End-To-End Encryption"
+
+### How To Use
+>  1. Open Snapchat
+>  2. Start Chatting Away
 </details>
 
 <details closed>
   <summary>Hidden Snapchat Plus Features</summary>
+
+### Explanation
+> **Allows Users To Enables Unreleased/Beta Snapchat Plus Features**
+
+### Note 
+> **Might Not Work On Older Snapchat Versions**
+
+### How To Enable/Setup
+>  1. Open SnapEnhance App 
+>  2. Go To "Features" Tab
+>  3. Tap "Experimental"
+>  4. Toggle On "Hidden Snapchat Plus Features"
+
+### How To Use
+>  1. Open Snapchat
+>  2. Tap Your Profile
+>  3. Tap Snapchat+ ( You Will Need `Snapchat Plus` Enabled )
+>  4. You Will Now See Some New Features
 </details>
 
 <details closed>
   <summary>Add Friend Source Spoof</summary>
+
+### Explanation
+> **Allows Users To Spoof The Source Of A Friend Request**
+
+### Spoof Sources Include
+>  - `By Username`
+>  - `By Mention`
+>  - `By Group Chat`
+>  - `By QR Code`
+>  - `By Community`
+
+### How To Enable/Setup
+>  1. Open SnapEnhance App 
+>  2. Go To "Features" Tab
+>  3. Tap "Experimental"
+>  4. Tap Next To "Add Friend Source Spoof"
+>  5. Tap You're Prefered Choice
+
+### How To Use
+>  1. Open Snapchat
+>  2. Add Someone
+>  3. It Will Now Spoof Your Request From You're Prefered Choice 
 </details>
 
 <details closed>
   <summary>Disable Composer Modules</summary>
+
+### Explanation
+> **Allows Users To Prevent Selected Composer Modules From Being Loaded**
+
+### Note 
+> **Names Must Be Separated By A Comma**
+
+### How To Enable/Setup
+>  1. Open SnapEnhance App 
+>  2. Go To "Features" Tab
+>  3. Tap "Experimental"
+>  4. Tap The Icon Next To "Disable Composer Modules"
+>  5. Input You're Prefered Choice
+
+### How To Use
+>  - It Will Hide From You're Choice 
 </details>
 
 <details closed>
   <summary>Prevent Forced Logout</summary>
+
+### Explanation
+> **Allows Users To Prevent Snapchat From Logging You Out When You Login On Another Device**
+
+### How To Enable/Setup
+>  1. Open SnapEnhance App 
+>  2. Go To "Features" Tab
+>  3. Tap "Experimental"
+>  4. Toggle On "Prevent Forced Logout"
+
+### How To Use
+>  1. Login Into You're Account On A Another Device
+>  2. It Should Not Log You Out 
 </details>
 
 ## Scripting
