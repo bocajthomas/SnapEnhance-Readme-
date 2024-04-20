@@ -1311,7 +1311,8 @@
 ### Explanation
 > **Allows Users To Automatically Confirms Selected Actions**
 
-### Actions Include 
+### Actions Include
+>  - `Erase Message`
 >  - `Remove Friend`
 >  - `Block Friend`
 >  - `Ignore Friend`
