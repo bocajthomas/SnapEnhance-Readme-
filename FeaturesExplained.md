@@ -2232,7 +2232,7 @@ Sections From The Stories Page**
 ### How To Use
 >  1. Open Snapchat
 >  2. Make A Call
-*  3. It will Now Record Only The Other Users Voice 
+>  3. It will Now Record Only The Other Users Voice 
 </details>
 
 <details closed>
