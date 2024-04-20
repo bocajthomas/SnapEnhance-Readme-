@@ -1692,7 +1692,7 @@ Sections From The Stories Page**
 ### Note 
 > **Use This In Combination With `Friend Feed Menu Buttons`**
 
-### Stealth Mode Includes 
+### Auto Save Includes 
 >  - `Whitelist mode`
 >  - `Blacklist mode`
 
@@ -1723,7 +1723,7 @@ Sections From The Stories Page**
 > **Use This In Combination With `Friend Feed Menu Buttons`**
 > **This Features Requires Experimental `Native Hooks` To Work Correctly**
 
-### Stealth Mode Includes 
+### Auto Open Snaps Includes 
 >  - `Whitelist mode`
 >  - `Blacklist mode`
 
@@ -1754,7 +1754,7 @@ Sections From The Stories Page**
 > **Use This In Combination With `Friend Feed Menu Buttons`**
 > **This Features Requires Experimental `Native Hooks` To Work Correctly**
 
-### Stealth Mode Includes 
+### Unsaveable Messages Includes 
 >  - `Whitelist mode`
 >  - `Blacklist mode`
 
