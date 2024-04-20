@@ -1071,24 +1071,6 @@
 </details>
 
 <details closed>
-  <summary>Instant Delete</summary>
-
-### Explanation
-> **Allows Users To Remove The Confirmation Dialog When Deleting Messages**
-
-### How To Enable/Setup
->  1. Open SnapEnhance App 
->  2. Go To "Features" Tab 
->  3. Tap "Messaging"
->  4. Toggle On "Instant Delete"
-
-### How To Use
->  1. Open Snapchat
->  2. Delete A Message
->  3. You Should Now See There's No Delete Dialog 
-</details>
-
-<details closed>
   <summary>Better Notifications</summary>
 
 ### Explanation
