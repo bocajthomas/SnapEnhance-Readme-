@@ -2459,20 +2459,93 @@ Sections From The Stories Page**
 ## Scripting
 <details closed>
   <summary>Developer Mode</summary>
+
+### Explanation
+> **Allows Users To Shows Debug Info On Snapchat's UI**
+
+### How To Enable/Setup
+>  1. Open SnapEnhance App 
+>  2. Go To "Features" Tab
+>  3. Tap "Scripting"
+>  4. Toggle On "Developer Mode"
+
+### How To Use
+>  1. Open Snapchat
+>  2. Open A Chat
+>  3. Hold Down On A Chat/Snap/Media
+>  4. You Will Now See `Info`,`Refs`,`Arroyo`,`Message` Debug Info 
 </details>
 
 <details closed>
   <summary>Module Folder</summary>
+
+> **Allows Users To Pick The Folder Where The Scripts Are Located**
+
+### How To Enable/Setup
+>  1. Open SnapEnhance App 
+>  2. Go To "Features" Tab
+>  3. Tap "Scripting"
+>  4. Tap "Module Folder"
+>  5. Create/Pick The Folder
+>  6. Tap "Use This Folder"
+>  7. Tap "Allow"
+
+### How To Use
+>  1. Open SnapEnhance
+>  2. Go To "Scripts"
+>  3. Reload By Pulling Down
+>  4. You're Scripts Should Now Be There
 </details>
 
 <details closed>
   <summary>Auto Reload</summary>
+
+### Explanation
+> **Allows Users To Automatically Reloads Scripts When They Change**
+
+### Auto Reload Includes
+>  - `Snapchat Only`
+>  - `All (Snapchat + SnapEnhance)`
+
+### How To Enable/Setup
+  1. Open SnapEnhance App 
+  2. Go To "Features" Tab
+  3. Tap "Scripting"
+  4. Tap Next To "Auto Reload"
+  5. Tap You're Prefered Choice
+
+### How To Use
+ - This Just Auto Reloads 
 </details>
 
 <details closed>
   <summary>Integrated UI</summary>
+
+### Explanation
+> **Allows Users To Add Custom UI Components To Snapchat From Scripts**
+
+### How To Enable/Setup
+>  1. Open SnapEnhance App 
+>  2. Go To "Features" Tab
+>  3. Tap "Scripting"
+>  4. Toggle On "Integrated UI"
+
+### How To Use
+>  1. Make/Use A Script That Has UI Components 
 </details>
 
 <details closed>
-  <summary>Disable Log Anonymization </summary>
+  <summary>Disable Log Anonymization</summary>
+
+### Explanation
+> **Allows Users To Disable The Anonymization Of Logs**
+
+### How To Enable/Setup
+>  1. Open SnapEnhance App 
+>  2. Go To "Features" Tab
+>  3. Tap "Scripting"
+>  4. Toggle On "Disable Log Anonymization"
+
+### How To Use
+>  - Disables Logs 
 </details>
