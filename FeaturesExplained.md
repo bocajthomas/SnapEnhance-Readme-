@@ -2238,18 +2238,62 @@ Sections From The Stories Page**
 
 <details closed>
   <summary>Account Switcher</summary>
+
+### Explanation
+> **Allows Users To Switch Between Accounts Without Logging Out**
+
+### Note 
+> **This Feature Is Experimental And Will Likely Change In The Future**
+
+### How To Enable/Setup
+>  1. Open SnapEnhance App 
+>  2. Go To "Features" Tab
+>  3. Tap "Experimental"
+>  4. Toggle On "Account Switcher"
+
+### How To Use
+>  1. Open Snapchat
+>  2. Long Press On Search Icon ( This is Next To You're Bitmoji Profile) 
 </details>
 
 <details closed>
   <summary>Edit Messages</summary>
+
+### Explanation
+> **Allows Users To Edit Messages In Conversations**
+
+### How To Enable/Setup
+>  1. Open SnapEnhance App 
+>  2. Go To "Features" Tab
+>  3. Tap "Experimental"
+>  4. Toggle On "Edit Messages"
+
+### How To Use
+>  1. Open Snapchat
+>  2. Go To A Chat
+>  3. Send A Message
+>  4. Hold Down On That Message
+>  5. Tap "Edit Message"
+>  6. Edit You're Message
+>  7. Tap "Save"
+>  8. You're Message Should Now Change
 </details>
 
 <details closed>
-  <summary>App Passcode</summary>
-</details>
+  <summary>App Lock</summary>
 
-<details closed>
-  <summary>App Lock On Resume</summary>
+### Explanation
+> **Allows Users To Prevent Access To Snapchat Without A Passcode**
+
+### How To Enable/Setup
+>  1. Open SnapEnhance App 
+>  2. Go To "Features" Tab
+>  3. Tap "Experimental"
+>  4. Toggle On "App Lock"
+
+### How To Use
+>  1. Open Snapchat
+>  2. You Will Now See Snapchat Needs A Passcode/Fingerprint To Unlock
 </details>
 
 <details closed>
