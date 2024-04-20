@@ -534,13 +534,9 @@
                         "name": "Prevent Message Sending",
                         "description": "Prevents sending certain types of messages"
                     },
-                    "instant_delete": {
-                        "name": "Instant Delete",
-                        "description": "Removes the confirmation dialog when deleting messages"
-                    },
-                    "relationship_notifier": {
-                        "name": "Relationship Notifier",
-                        "description": "Notifies you when someone removes you as a friend"
+                    "friend_mutation_notifier": {
+                        "name": "Friend Mutation Notifier",
+                        "description": "Notifies you when something changes in a friend's profile"
                     },
                     "better_notifications": {
                         "name": "Better Notifications",
@@ -1055,6 +1051,7 @@
                 "3d": "3D Bitmoji"
             },
             "disable_confirmation_dialogs": {
+                "erase_message": "Erase Message",
                 "remove_friend": "Remove Friend",
                 "block_friend": "Block Friend",
                 "ignore_friend": "Ignore Friend",
@@ -1114,6 +1111,14 @@
             "auto_mark_as_read": {
                 "conversation_read": "Mark conversation as read when sending a message",
                 "snap_reply": "Mark snaps as read when replying to them"
+            },
+            "friend_mutation_notifier": {
+                "remove_friend": "Notify when someone removes you as a friend",
+                "birthday_changes": "Notify when someone changes their birthday",
+                "bitmoji_selfie_changes": "Notify when someone changes their Bitmoji selfie",
+                "bitmoji_avatar_changes": "Notify when someone changes their Bitmoji avatar",
+                "bitmoji_background_changes": "Notify when someone changes their Bitmoji background",
+                "bitmoji_scene_changes": "Notify when someone changes their Bitmoji scene"
             }
         }
     },
@@ -1382,9 +1387,14 @@
 
     "friend_mutation_observer": {
         "notification_channel_name": "Friend Mutation Observer",
-        "removed_friend_notification_title": "Friend Removed",
-        "removed_friend_notification_content": "{username} has removed you as a friend",
-        "removed_friend_notification_content_with_display_name": "{displayName} ({username}) has removed you as a friend"
+        "friend_removed": "{username} has removed you as a friend",
+        "birthday_removed": "{username} has removed their birthday ({birthday})",
+        "birthday_added": "{username} has added their birthday ({birthday})",
+        "birthday_changed": "{username} has changed their birthday from {oldBirthday} to {newBirthday}",
+        "bitmoji_selfie_changed": "{username} has changed their Bitmoji selfie",
+        "bitmoji_avatar_changed": "{username} has changed their Bitmoji avatar",
+        "bitmoji_background_changed": "{username} has changed their Bitmoji background",
+        "bitmoji_scene_changed": "{username} has changed their Bitmoji scene"
     },
 
     "suspend_location_updates": {

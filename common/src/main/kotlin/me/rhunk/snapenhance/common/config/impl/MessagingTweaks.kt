@@ -72,8 +72,14 @@ class MessagingTweaks : ConfigContainer() {
         customOptionTranslationPath = "features.options.notifications"
         nativeHooks()
     }
-    val instantDelete = boolean("instant_delete") { requireRestart() }
-    val relationshipNotifier = boolean("relationship_notifier") { requireRestart() }
+    val friendMutationNotifier = multiple("friend_mutation_notifier",
+        "remove_friend",
+        "birthday_changes",
+        "bitmoji_selfie_changes",
+        "bitmoji_avatar_changes",
+        "bitmoji_background_changes",
+        "bitmoji_scene_changes",
+    ) { requireRestart() }
     val betterNotifications = multiple("better_notifications",
         "chat_preview",
         "media_preview",

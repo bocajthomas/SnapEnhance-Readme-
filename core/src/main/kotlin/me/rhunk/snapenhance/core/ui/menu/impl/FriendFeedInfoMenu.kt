@@ -175,6 +175,7 @@ class FriendFeedInfoMenu : AbstractMenu() {
 
         targetPerson?.streakExpirationTimestamp?.takeIf { it > 0 }?.let {
             val timeSecondDiff = ((it - System.currentTimeMillis()) / 1000 / 60).toInt()
+            if (timeSecondDiff <= 0) return@let
             messageBuilder.append("\n")
                 .append("\uD83D\uDD25 ") //fire emoji
                 .append(

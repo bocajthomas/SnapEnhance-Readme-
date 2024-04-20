@@ -105,7 +105,6 @@ class FeatureManager(
             HideQuickAddFriendFeed(),
             CallStartConfirmation(),
             SnapPreview(),
-            InstantDelete(),
             BypassScreenshotDetection(),
             HalfSwipeNotifier(),
             DisableConfirmationDialogs(),
