@@ -1083,6 +1083,7 @@
 >  - `Add download button`
 >  - `Mark as Read button`
 >  - `Save in Chat when marking as read (depends on Auto Save)`
+>  - `Show friend add source`
 >  - `Group notifications`
 
 ### How To Enable/Setup
