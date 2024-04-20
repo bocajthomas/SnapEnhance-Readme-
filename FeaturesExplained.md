@@ -1046,6 +1046,31 @@
 </details>
 
 <details closed>
+  <summary>Friend Mutation Notifier</summary>
+
+### Explanation
+> **Allows Users To Get Notifications When Something Changes In A Friend's Profile**
+
+### Friend Mutation Notifier Includes 
+>  - `Notify when someone removes you as a friend`
+>  - `Notify when someone changes their birthday`
+>  - `Notify when someone changes their Bitmoji selfie`
+>  - `Notify when someone changes their Bitmoji avatar`
+>  - `Notify when someone changes their Bitmoji background`
+>  - `Notify when someone changes their Bitmoji scene`
+
+### How To Enable/Setup
+>  1. Open SnapEnhance App 
+>  2. Go To "Features" Tab 
+>  3. Tap "Messaging"
+>  4. Tap The Icon Next To "Friend Mutation Notifier"
+>  5. Toggle On You're Prefered Choice
+
+### How To Use
+  - You Will Get Notifications When You're Friend Changes Something On There Profile 
+</details>
+
+<details closed>
   <summary>Instant Delete</summary>
 
 ### Explanation
