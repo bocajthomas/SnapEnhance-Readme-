@@ -1,16 +1,26 @@
 # Colors Feature 
-### Example Hex Codes 
+## Example Hex Codes 
 
-> - "white" = #FFFFFF
-> - "ivory" = #FFFFF0
-> - "light yellow" = #FFFFE0
-> - "yellow" = #FFFF00
-> - "snow" = #FFFAFA  
-> - "floral white" = #FFFAF0
-> - "lemon chiffon" = #FFFACD
-> - "cornsilk" = #FFF8DC
-> - "seashell" = #FFF5EE
-> - "lavender blush" = #FFF0F5
+### White 
+> - `#FFFFFF`
+### ivory
+> - `#FFFFF0`
+### Light Yellow
+> - `#FFFFE0`
+### Yellow
+> - `#FFFF00`
+### Snow
+> - `#FFFAFA`  
+### Floral White
+> - `#FFFAF0`
+### Lemon Chiffon
+> - `#FFFACD`
+### Cornsilk
+> - `#FFF8DC`
+### Seashell
+> - `#FFF5EE`
+### Lavender Blush
+> - `#FFF0F5`
 > - "papaya whip" = #FFEFD5
 > - "blanched almond" = #FFEBCD
 > - "misty rose" = #FFE4E1
