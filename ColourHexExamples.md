@@ -1,5 +1,5 @@
 # Colors Feature
-> **Simply Copy & Paste The `Hex Codes` 
+> **Simply Copy & Paste The `Hex Codes`** 
 
 ## Example Hex Codes 
 
