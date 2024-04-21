@@ -253,60 +253,174 @@
 > - `#98FB98`
 
 ### To Do 
-> - "dark violet" = #9400D3
-> - "mediumPurple" = #9370DB
-> - "light green" = #90EE90
-> - "dark sea green" = #8FBC8F
-> - "saddle brown" = #8B4513
-> - "dark magenta" = #8B008B
-> - "dark red" = #8B0000
-> - "blue violet" = #8A2BE2
-> - "light sky blue" = #87CEFA
-> - "sky blue" = #87CEEB
-> - "gray" = #808080
-> - "olive" = #808000
-> - "purple" = #800080
-> - "maroon" = #800000
-> - "aquamarine" = #7FFFD4
-> - "chartreuse" = #7FFF00
-> - "lawn green" = #7CFC00
-> - "medium slate blue" = #7B68EE
-> - "light slate gray" = #778899
-> - "slate gray" = #708090
-> - "olive drab" = #6B8E23
-> - "slate blue" = #6A5ACD
-> - "dim gray" = #696969
-> - "medium aquamarine" = #66CDAA
-> - "cornflower blue" = #6495ED
-> - "cadet blue" = #5F9EA0
-> - "dark olive green" = #556B2F
-> - "indigo" = #4B0082
-> - "medium turquoise" = #48D1CC
-> - "dark slate blue" = #483D8B
-> - "steel blue" = #4682B4
-> - "royal blue" = #4169E1
-> - "turquoise" = #40E0D0
-> - "medium sea green" = #3CB371
-> - "lime green" = #32CD32
-> - "dark slate gray" = #2F4F4F
-> - "sea green" = #2E8B57
-> - "forest green" = #228B22
-> - "light sea green" = #20B2AA
-> - "dodger blue" = #1E90FF
-> - "midnight blue" = #191970
-> - "aqua" = #00FFFF
-> "cyan" = #00FFFF
-> "spring green" = #00FF7F
-> "lime" = #00FF00
-> "medium spring green" = #00FA9A
-> "dark turquoise" = #00CED1
-> "deep sky blue" = #00BFFF
-> "dark cyan" = #008B8B
-> "teal" = #008080
-> "green" = #008000
-> "dark green" = #006400
-> "blue" = #0000FF
-> "medium blue" = #0000CD
-> "dark_blue" = #00008B
-> "navy" = #000080
-> "black" = #000000
+
+dark violet
+#9400D3
+
+mediumPurple
+#9370DB
+
+light green
+#90EE90
+
+dark sea green
+#8FBC8F
+
+saddle brown
+#8B4513
+
+dark magenta
+#8B008B
+
+dark red
+#8B0000
+
+blue violet
+#8A2BE2
+
+light sky blue
+#87CEFA
+
+sky blue
+#87CEEB
+
+gray
+#808080
+
+olive
+#808000
+
+purple
+#800080
+
+maroon
+#800000
+
+aquamarine
+#7FFFD4
+
+chartreuse
+#7FFF00
+
+lawn green
+#7CFC00
+
+medium slate blue
+#7B68EE
+
+light slate gray
+#778899
+
+slate gray
+#708090
+
+olive drab
+#6B8E23
+
+slate blue
+#6A5ACD
+
+dim gray
+#696969
+
+medium aquamarine
+#66CDAA
+
+cornflower blue
+#6495ED
+
+cadet blue
+#5F9EA0
+
+dark olive green
+#556B2F
+
+indigo
+#4B0082
+
+medium turquoise
+#48D1CC
+
+dark slate blue
+#483D8B
+
+steel blue
+#4682B4
+
+royal blue
+#4169E1
+
+turquoise
+#40E0D0
+
+medium sea green
+#3CB371
+
+lime green
+#32CD32
+
+dark slate gray
+#2F4F4F
+
+sea green
+#2E8B57
+
+forest green
+#228B22
+
+light sea green
+#20B2AA
+
+dodger blue
+#1E90FF
+
+midnight blue
+#191970
+
+aqua
+#00FFFF
+
+cyan
+#00FFFF
+
+spring green
+#00FF7F
+
+lime
+#00FF00
+
+medium spring green
+#00FA9A
+
+dark turquoise
+#00CED1
+
+deep sky blue
+#00BFFF
+
+dark cyan
+#008B8B
+
+teal
+#008080
+
+green
+#008000
+
+dark green
+#006400
+
+blue
+#0000FF
+
+medium blue
+#0000CD
+
+dark blue
+#00008B
+
+navy
+#000080
+
+black
+#000000
