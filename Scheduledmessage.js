@@ -25,7 +25,7 @@ var events = require("events");
     // Replace this variable with you`re custom message
     var customResponse = "..";
     
-    // Replace this variable with you`re custom message 
+    // Replace this variable with you`re custom time
     var customTime = "05:00";
 
     function createConversationToolboxUI() {
