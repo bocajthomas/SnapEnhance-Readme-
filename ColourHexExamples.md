@@ -1,4 +1,6 @@
-# Colors Feature 
+# Colors Feature
+> **Simply Copy & Paste The `Hex Codes` 
+
 ## Example Hex Codes 
 
 ### White 
@@ -202,12 +204,22 @@
 ### Silver
 > - `#C0C0C0`
 
-### To Do
-> - "dark khaki" = #BDB76B
-> - "rosy brown" = #BC8F8F
-> - "medium orchid" = #BA55D3
-> - "dark goldenrod" = #B8860B
-> - "fire brick" = #B22222
+### Dark Khaki
+> - `#BDB76B`
+
+### Rosy Brown
+> - `#BC8F8F`
+
+### Medium Orchid
+> - `#BA55D3`
+
+### Dark Goldenrod
+> - `#B8860B`
+
+### Fire Brick 
+> - `#B22222`
+
+### To Do 
 > - "powder blue" = #B0E0E6
 > - "light steel blue" = #B0C4DE
 > - "pale turquoise" = #AFEEEE
