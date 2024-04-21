@@ -90,16 +90,16 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(effectiveActionMenuRoundBackgroundColour ?: return@hook))
                     }
-                    getAttribute("sigColorChat") -> {
+                    getAttribute("sigColorChatChat") -> {
                         ephemeralHook("getColor", effectiveChatColour ?: return@hook)
                     }
-                    getAttribute("sigColorChatSnap") -> {
+                    getAttribute("sigColorChatSnapWithSound") -> {
                         ephemeralHook("getColor", effectiveSnapColour ?: return@hook)
                     }
-                    getAttribute("sigColorbase") -> {
+                    getAttribute("sigColorbaseAppYellow") -> {
                         ephemeralHook("getColor", effectiveBaseColour ?: return@hook)
                     }
-                    getAttribute("sigColorIcon") -> {
+                    getAttribute("sigColorIconPrimary") -> {
                         ephemeralHook("getColor", effectiveIconColour ?: return@hook)
                     }
                 }
