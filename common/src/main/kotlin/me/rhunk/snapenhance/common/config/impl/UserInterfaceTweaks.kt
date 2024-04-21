@@ -29,9 +29,6 @@ class UserInterfaceTweaks : ConfigContainer() {
         val actionMenuBackgroundColour = string("action_menu_background_colour") { inputCheck = checkInputColor }
         val actionMenuRoundBackgroundColour = string("action_menu_round_background_colour") { inputCheck = checkInputColor }
         val chatColour = string("chat_colour") { inputCheck = checkInputColor }
-        val snapColour = string("snap_colour") { inputCheck = checkInputColor }
-        val baseColour = string("base_colour") { inputCheck = checkInputColor } 
-        val iconColour = string("icon_colour") { inputCheck = checkInputColor }
     }
 
     val friendFeedMenuButtons = multiple(
