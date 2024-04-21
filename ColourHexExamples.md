@@ -218,19 +218,41 @@
 
 ### Fire Brick 
 > - `#B22222`
+ 
+### Powder Blue
+> - `#B0E0E6`
+
+### Light Steel Blue
+> - `#B0C4DE`
+
+### Pale Turquoise
+> - `#AFEEEE`
+
+### Green & Yellow
+> - `#ADFF2F`
+
+### Light Blue
+> - `#ADD8E6`
+
+### Dark Gray
+> - `#A9A9A9`
+
+### Brown
+> - `#A52A2A`
+
+### Sienna
+> - `#A0522D`
+
+### Yellow Green
+> - `#9ACD32`
+
+### Dark Orchid
+> - `#9932CC`
+
+### Pale Green
+> - `#98FB98`
 
 ### To Do 
-> - "powder blue" = #B0E0E6
-> - "light steel blue" = #B0C4DE
-> - "pale turquoise" = #AFEEEE
-> - "green & yellow" = #ADFF2F
-> - "light blue" = #ADD8E6
-> - "dark gray" = #A9A9A9
-> - "brown" = #A52A2A
-> - "sienna" = #A0522D
-> - "yellow green" = #9ACD32
-> - "dark orchid" = #9932CC
-> - "pale green" = #98FB98
 > - "dark violet" = #9400D3
 > - "mediumPurple" = #9370DB
 > - "light green" = #90EE90
