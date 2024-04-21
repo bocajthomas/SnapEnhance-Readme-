@@ -64,53 +64,145 @@
 ### Orange
 > - `#FFA500`
 
-### Not Finished 
-"light salmon" = #FFA07A
-"dark orange" = #FF8C00
-"coral" = #FF7F50
-"hot pink" = #FF69B4
-"tomato" = #FF6347
-"orange red" = #FF4500
-"deep_pink" = #FF1493
-"fuchsia" = #FF00FF
-"magenta" = #FF00FF
-"red" = #FF0000
-"old lace" = #FDF5E6
-"light goldenrod yellow" = #FAFAD2
-"linen" = #FAF0E6
-"antique white" = #FAEBD7
-salmon" = #FA8072
-"ghost white" = #F8F8FF
-"mint cream" = #F5FFFA
-white smoke" = #F5F5F5
-beige" = #F5F5DC
-wheat" = #F5DEB3
-sandy brown" = #F4A460
-azure" = #F0FFFF
-honeydew" = #F0FFF0
-alice blue" = #F0F8FF
-khaki" = #F0E68C
-light coral" = #F08080
-pale goldenrod" = #EEE8AA
-violet" = #EE82EE
-dark salmon" = #E9967A
-lavender" = #E6E6FA
-light cyan" = #E0FFFF
-burlyWood" = #DEB887
-plum" = #DDA0DD
-gainsboro" = #DCDCDC
-crimson" = #DC143C
-pale violet red" = #DB7093 
-goldenrod" = #DAA520      
-orchid" = #DA70D6      
-thistle" = #D8BFD8  
-light grey" = #D3D3D3  
-tan" = #D2B48C
-"chocolate" = #D2691E       
-> - "peru" = #CD853F
-> - "indian red" = #CD5C5C
-> - "medium violet red" = #C71585
-> - "silver" = #C0C0C0
+### Light Salmon
+> - `#FFA07A`
+
+### Dark Orange
+> - `#FF8C00`
+
+### Coral
+> - `#FF7F50`
+
+### Hot Pink
+> - `#FF69B4`
+
+### Tomato
+> - `#FF6347`
+
+### Orange Red
+> - `#FF4500`
+
+### Deep Pink
+> - `#FF1493`
+
+### Fuchsia
+> - `#FF00FF`
+
+### Magenta
+> - `#FF00FF`
+
+### Red
+> - `#FF0000`
+
+### Old Lace
+> - `#FDF5E6`
+
+### Light Goldenrod Yellow
+> - `#FAFAD2`
+
+### Linen
+> - `#FAF0E6`
+
+### Antique White
+> - `#FAEBD7`
+
+### Salmon
+> - `#FA8072`
+
+### Ghost White
+> - `#F8F8FF`
+
+### Mint Cream
+> - `#F5FFFA`
+
+### White Smoke
+> - `#F5F5F5`
+
+### Beige
+> - `#F5F5DC`
+
+### Wheat
+> - `#F5DEB3`
+
+### Sandy Brown
+> - `#F4A460`
+
+### Azure
+> - `#F0FFFF`
+
+### Honeydew
+> - `#F0FFF0`
+
+### Alice Blue
+> - `#F0F8FF`
+
+### Khaki
+> - `#F0E68C`
+
+### Light Coral
+> - `#F08080`
+
+### Pale Goldenrod
+> - `#EEE8AA`
+
+### Violet
+> - `#EE82EE`
+
+### Dark Salmon
+> - `#E9967A`
+
+### Lavender
+> - `#E6E6FA`
+
+### Light Cyan
+> - `#E0FFFF`
+
+### BurlyWood
+> - `#DEB887`
+
+### Plum
+> - `#DDA0DD`
+
+### Gainsboro
+> - `#DCDCDC`
+
+### Crimson
+> - `#DC143C`
+
+### Pale Violet Red
+> - `#DB7093`
+
+### Goldenrod
+> - `#DAA520`  
+
+### Orchid
+> - `#DA70D6`   
+
+### Thistle
+> - `#D8BFD8`
+
+### Light Grey
+> - `#D3D3D3`
+
+### Tan
+> - `#D2B48C`
+
+### Chocolate
+> - `#D2691E`   
+
+### Peru
+> - `#CD853F`
+
+### Indian Red
+> - `#CD5C5C`
+
+### Medium Violet Red
+> - `#C71585`
+
+### Silver
+> - `#C0C0C0`
+
+### To Do
 > - "dark khaki" = #BDB76B
 > - "rosy brown" = #BC8F8F
 > - "medium orchid" = #BA55D3
