@@ -129,11 +129,11 @@ class FriendMutationObserver: Feature("FriendMutationObserver", loadParams = Fea
                                 }
                             }
 
-                            if (config.contains("bitmoji_avatar_changes") && databaseFriend.bitmojiSelfieId != friend.get("bitmoji_avatar_id")?.asString) {
+                            if (config.contains("bitmoji_avatar_changes") && databaseFriend.bitmojiAvatarId != friend.get("bitmoji_avatar_id")?.asString) {
                                 sendWarnNotification(translation.format("bitmoji_avatar_changed", "username" to formatUsername(databaseFriend)))
                             }
 
-                            if (config.contains("bitmoji_selfie_changes") && databaseFriend.bitmojiAvatarId != friend.get("bitmoji_selfie_id")?.asString) {
+                            if (config.contains("bitmoji_selfie_changes") && databaseFriend.bitmojiSelfieId != friend.get("bitmoji_selfie_id")?.asString) {
                                 sendWarnNotification(translation.format("bitmoji_selfie_changed", "username" to formatUsername(databaseFriend)))
                             }
 

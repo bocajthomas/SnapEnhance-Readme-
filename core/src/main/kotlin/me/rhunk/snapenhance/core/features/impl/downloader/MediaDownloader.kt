@@ -264,12 +264,13 @@ class MediaDownloader : MessagingRuleFeature("MediaDownloader", MessagingRuleTyp
             val messageId = id.substring(id.lastIndexOf(":") + 1).toLong()
             val conversationMessage = context.database.getConversationMessageFromId(messageId)!!
 
-            val senderId = conversationMessage.senderId!!
             val conversationId = conversationMessage.clientConversationId!!
 
-            if (!forceDownload && !canUseRule(senderId)) {
+            if (!forceDownload && !canUseRule(conversationId)) {
                 return
             }
+
+            val senderId = conversationMessage.senderId!!
 
             if (!forceDownload && context.config.downloader.preventSelfAutoDownload.get() && senderId == context.database.myUserId) return
 

@@ -80,13 +80,14 @@ object DataProcessors {
         type = Type.MAP_COORDINATES,
         serialize = {
             JsonObject().apply {
-                addProperty("lat", it.first)
-                addProperty("lng", it.second)
+                addProperty("lat", it.first.takeIf { it in -90.0..90.0 } ?: 0.0)
+                addProperty("lng", it.second.takeIf { it in -180.0..180.0 } ?: 0.0)
             }
         },
         deserialize = { obj ->
             val jsonObject = obj.asJsonObject
-            jsonObject["lat"].asDouble to jsonObject["lng"].asDouble
+            (jsonObject["lat"].asDouble.takeIf { it in -90.0..90.0 } ?: 0.0) to
+                (jsonObject["lng"].asDouble.takeIf { it in -180.0..180.0 } ?: 0.0)
         },
     )
 
