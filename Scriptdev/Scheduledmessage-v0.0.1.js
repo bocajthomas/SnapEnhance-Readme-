@@ -30,11 +30,10 @@ var events = require("events");
             start: function (builder, args) {
                 builder.button("Send Message", function () {
                     var conversationId = args["conversationId"];
-                				setTimeout(function() {
-                								messaging.sendChatMessage(conversationId, customResponse, function () { });
-                								
-                				}, 1000};
-            });
+                    setTimeout(function() {
+                        messaging.sendChatMessage(conversationId, customResponse, function () { });
+                    }, 1000};
+                });
 
                 builder.button("Send 50 replies", function () {
                     var conversationId = args["conversationId"];
