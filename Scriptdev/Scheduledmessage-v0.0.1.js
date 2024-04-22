@@ -31,7 +31,7 @@ var events = require("events");
                     var conversationId = args["conversationId"];
                     setTimeout(function() {
                         messaging.sendChatMessage(conversationId, customResponse, function () {});
-                    }, 1000};
+                    }, 1000);
                 });
                 
                 builder.button("Send 50 replies", function () {
