@@ -2,7 +2,7 @@
 // name: test
 // displayName: Test
 // description: A script for test
-// version: 1.0
+// version: 0.0.1
 // author: Jacob
 // ==/SE_module==
 
@@ -29,11 +29,10 @@ var events = require("events");
         conversationToolboxContext.events.push({
             start: function (builder, args) {
                 builder.button("Send custom message", function () {
-                				var conversationId = args["conversationId"];
-                    
-                				setTimeout(function() {
-                								messaging.sendChatMessage(conversationId, customResponse, function () { });
-                				}, 2000);
+                    var conversationId = args["conversationId"];
+                    setTimeout(function() {
+                        messaging.sendChatMessage(conversationId, customResponse, function () { });
+                    }, 2000);
                 });
 
                 builder.button("Send 50 replies", function () {
