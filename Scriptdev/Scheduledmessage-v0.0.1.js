@@ -17,7 +17,6 @@ var events = require("events");
 
 (function () {
     'use strict';
-
     var conversationToolboxContext = {
         events: [],
     };
@@ -31,10 +30,10 @@ var events = require("events");
                 builder.button("Send Message", function () {
                     var conversationId = args["conversationId"];
                     setTimeout(function() {
-                        messaging.sendChatMessage(conversationId, customResponse, function () { });
+                        messaging.sendChatMessage(conversationId, customResponse, function () {});
                     }, 1000};
                 });
-
+                
                 builder.button("Send 50 replies", function () {
                     var conversationId = args["conversationId"];
                     for (var i = 0; i < 50; i++) {
