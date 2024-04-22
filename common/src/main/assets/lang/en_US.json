@@ -381,15 +381,6 @@
                             "chat_colour": {
                                 "name": "Sent & Received Color",
                                 "description": "Changes Snapchats Sent & Received text color on the chat page\nInput a hex code"
-                            },
-                            "border_colour": {
-                                "name": "Border Color",
-                                "description": "Changes Snapchats border color\nInput a hex code"
-                            },
-                            "camera_icon_colour": {
-                                "name": "Camera Icon Color",
-                                "description": "Changes Snapchats camera icon color on the navagation bar\nInput hex code"
-                            
                             }
                         }
                     },
