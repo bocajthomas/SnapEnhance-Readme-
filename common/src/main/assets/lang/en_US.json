@@ -360,27 +360,35 @@
                         "properties": {
                             "text_colour": {
                                 "name": "Text Color",
-                                "description": "Changes Snapchats text color\nInput hex code"
+                                "description": "Changes Snapchats text color\nInput hex a code"
                             },
                             "background_colour": {
                                 "name": "Background Color",
-                                "description": "Changes Snapchats background color\nInput hex Code"
+                                "description": "Changes Snapchats background color\nInput hex a code"
                             },
                             "background_colour_surface": {
                                 "name": "Background Surface Color",
-                                "description": "Changes Snapchats background surface color\nInput hex code"
+                                "description": "Changes Snapchats background surface color\nInput a hex code"
                             },
                             "action_menu_background_colour": {
                                 "name": "Action Menu Background Color",
-                                "description": "Changes Snapchats chat action menu background color\nInput hex code"
+                                "description": "Changes Snapchats chat action menu background color\nInput a hex code"
                             },
                             "action_menu_round_background_colour": {
                                 "name": "Action Menu Round Background Color",
-                                "description": "Changes Snapchats chat action menu round background color\nInput hex code"
+                                "description": "Changes Snapchats chat action menu round background color\nInput a hex code"
                             },
                             "chat_colour": {
-                                "name": "Chat Color",
-                                "description": "Changes Snapchats chat color \nInput hex code"
+                                "name": "Sent & Received Color",
+                                "description": "Changes Snapchats Sent & Received text color on the chat page\nInput a hex code"
+                            },
+                            "border_colour": {
+                                "name": "Border Color",
+                                "description": "Changes Snapchats border color\nInput a hex code"
+                            },
+                            "camera_icon_colour": {
+                                "name": "Camera Icon Color",
+                                "description": "Changes Snapchats camera icon color on the navagation bar\nInput hex code"
                             
                             }
                         }
