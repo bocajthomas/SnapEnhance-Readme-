@@ -362,6 +362,10 @@
                                 "name": "Text Color",
                                 "description": "Changes Snapchats text color\nInput hex a code"
                             },
+                            "chat_colour": {
+                                "name": "Sent & Received Color",
+                                "description": "Changes Snapchats Sent & Received text color on the chat page\nInput a hex code"
+                            },
                             "background_colour": {
                                 "name": "Background Color",
                                 "description": "Changes Snapchats background color\nInput hex a code"
@@ -377,10 +381,6 @@
                             "action_menu_round_background_colour": {
                                 "name": "Action Menu Round Background Color",
                                 "description": "Changes Snapchats chat action menu round background color\nInput a hex code"
-                            },
-                            "chat_colour": {
-                                "name": "Sent & Received Color",
-                                "description": "Changes Snapchats Sent & Received text color on the chat page\nInput a hex code"
                             }
                         }
                     },
