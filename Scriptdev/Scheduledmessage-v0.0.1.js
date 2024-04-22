@@ -21,15 +21,17 @@ var events = require("events");
         events: [],
     };
 
-    // Replace this variable with your custom message
-    var inputMessage = "..";
-
+    // Replace Inside " " with your custom message
+    var inputMessage = "Input You're Text Here";
+    // Replace Inside " " with your Time preference 
+    var time = "2000";
+	
     function createConversationToolboxUI() {
         conversationToolboxContext.events.push({
             start: function (builder, args) {
                 builder.button("Send Message", function () {
                     var conversationId = args["conversationId"];
-			sleep(2000)
+			sleep(time)
 			messaging.sendChatMessage(conversationId, inputMessage, function () { });
 		});
 	    });
