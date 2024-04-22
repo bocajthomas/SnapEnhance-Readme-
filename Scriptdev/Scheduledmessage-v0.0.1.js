@@ -29,11 +29,10 @@ var events = require("events");
             start: function (builder, args) {
                 builder.button("Send Message", function () {
                     var conversationId = args["conversationId"];
-                				
-                				sleep(2000).then(() => {
-                        messaging.sendChatMessage(conversationId, inputMessage, function () { });
-                				});
-                });
+			sleep(2000).then(() => {
+				messaging.sendChatMessage(conversationId, inputMessage, function () { });
+			});
+		});
                 
                 builder.button("Send 50 replies", function () {
                     var conversationId = args["conversationId"];
@@ -44,10 +43,9 @@ var events = require("events");
             },
         });
     }
-				
-				function sleep (time) {
-								return new Promise((resolve) => setTimeout(resolve, time));
-				};
+    function sleep (time) {
+	    return new Promise((resolve) => setTimeout(resolve, time));
+    };
 				
     var snapActivityContext = {
         activity: null,
