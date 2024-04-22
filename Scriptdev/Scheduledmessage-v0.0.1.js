@@ -32,16 +32,9 @@ var events = require("events");
 			sleep(2000)
 			messaging.sendChatMessage(conversationId, inputMessage, function () { });
 		});
-                
-                builder.button("Send 50 replies", function () {
-                    var conversationId = args["conversationId"];
-                    for (var i = 0; i < 50; i++) {
-                        messaging.sendChatMessage(conversationId, "AI Is texting rn it can send 100 texts per second", function () { });
-                    }
-                });
-            },
-        });
+	    });
     };
+
 				
     var snapActivityContext = {
         activity: null,
@@ -51,63 +44,10 @@ var events = require("events");
     function start(_a) {
         _a.snapActivityContext; _a.conversationToolboxContext; _a.settingsContext;
         createInterface();
-        initAutoReply();
     }
 
     function createInterface() {
         createConversationToolboxUI();
-    }
-
-    function initAutoReply() {
-        snapActivityContext.events.push({
-            start: function (activity) {
-                var myUserId = getMyUserId(activity);
-                var messageAlreadyReply = [];
-                events.onConversationUpdated(function (update) {
-                    var message = update.messages[0];
-                    if (!message && !message.messageDescriptor)
-                        return;
-                    var conversationId = message.messageDescriptor.conversationId;
-                    var messageType = message.messageContent.contentType;
-                    if (messageType == "CHAT" || messageType == "NOTE") {
-                        if (message.senderId.toString() != myUserId) {
-                            var isAlreadySend_1 = false;
-                            messageAlreadyReply.forEach(function (id) {
-                                if (id == message.messageDescriptor.messageId) {
-                                    isAlreadySend_1 = true;
-                                }
-                            });
-                            if (!isAlreadySend_1) {
-                                var useAutoReply = JSON.parse("" + getIfUseAutoReply(conversationId.toString()));
-                                if (useAutoReply) {
-                                    if (messageType == "NOTE") {
-                                        messaging.sendChatMessage(conversationId.toString(), vocalReply[Math.round(Math.random() * vocalReply.length)], function () { });
-                                        return;
-                                    }
-                                    replyWithAI(conversationId.toString());
-                                }
-                                messageAlreadyReply.push(message.messageDescriptor.messageId);
-                            }
-                        }
-                    }
-                });
-            },
-        });
-    }
-
-    function getMyUserId(context) {
-        var database = context.openOrCreateDatabase("arroyo.db", 0, null);
-        var cursor = database.rawQuery("SELECT value FROM required_values WHERE key = 'USERID'", null);
-        try {
-            if (cursor.moveToFirst()) {
-                return cursor.getString(0);
-            }
-        }
-        finally {
-            cursor.close();
-            database.close();
-        }
-        return null;
     }
 
     var snapApplicationContext = {
