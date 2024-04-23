@@ -42,23 +42,32 @@ var events = require("events");
         conversationToolboxContext.events.push({
             start: function (builder, args) {
                 builder.button("Send Message", function () {
-                    var conversationId = args["conversationId"];
-			toasts();
-			messaging.sendChatMessage(conversationId, inputMessage, function () { });
+			sMessaging();
 		});
 	    }
 	});
     }
     // TODO: create new function for sending message				
-    
+    function sMessaging() {
+	    snapActivityContext.events.push({
+		    start: function (activity) {
+			    var conversationId = args["conversationId"];
+			    toasts();
+			    messaging.sendChatMessage(conversationId, inputMessage, function () { });
+		    });
+    }
+			    
+	    
+ 
     var snapActivityContext = {
         activity: null,
         events: [],
     };
 
     function start(_a) {
-        _a.snapActivityContext; _a.conversationToolboxContext; _a.settingsContext;
-        createInterface();
+	    _a.snapActivityContext; _a.conversationToolboxContext; _a.settingsContext;
+	    createInterface();
+	    sMessaging();
     }
 
     function toasts() {
