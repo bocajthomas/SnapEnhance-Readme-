@@ -11,6 +11,7 @@
 // - "Auto Reload" To "ALL"
 
 // NOTE!
+// Currently You Can Not Schedule a message
 // Crashes and slowness will Happen 
 
 var networking = require("networking");
