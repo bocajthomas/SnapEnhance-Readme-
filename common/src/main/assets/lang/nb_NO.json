@@ -22,6 +22,22 @@
             },
             "tasks": {
                 "no_tasks": "Ingen oppgaver"
+            },
+            "home": {
+                "update_content": "Versjon {versjon} er tilgjengelig!",
+                "update_button": "Nedlast",
+                "update_title": "SnapEnhance Oppdatering"
+            },
+            "home_logs": {
+                "no_logs_hint": "igjen logg tilgjengelig",
+                "clear_logs_button": "Slett Logg",
+                "export_logs_button": "Eksporter Logg",
+                "saving_logs_toast": "Lagrer logg, dette kan ta en stund ...",
+                "saved_logs_success_toast": "Logg lagret vellykket",
+                "saved_logs_failure_toast": "Feil under lagring av logg"
+            },
+            "home_settings": {
+                "actions_title": "Handlinger"
             }
         },
         "dialogs": {
@@ -116,5 +132,9 @@
                 }
             }
         }
+    },
+    "scopes": {
+        "friend": "Venn",
+        "group": "Gruppe"
     }
 }

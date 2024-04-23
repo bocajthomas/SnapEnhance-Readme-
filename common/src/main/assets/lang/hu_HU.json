@@ -502,10 +502,6 @@
                         "name": "Üzenetküldés megakadályozása",
                         "description": "Megakadályozza bizonyos típusú üzenetek küldését"
                     },
-                    "instant_delete": {
-                        "name": "Azonnali törlés",
-                        "description": "Eltávolítja a megerősítő párbeszédpanelt az üzenetek törlésekor"
-                    },
                     "half_swipe_notifier": {
                         "name": "Fél húzás értesítő",
                         "description": "Értesít, ha valaki félig belecsapódik egy beszélgetésbe",
@@ -754,14 +750,6 @@
                                 "description": "Megakadályozza, hogy a Snapchat felismerje a VPN-eket"
                             }
                         }
-                    },
-                    "app_passcode": {
-                        "name": "Alkalmazás jelszó",
-                        "description": "Beállít egy jelszót az alkalmazás zárolásához"
-                    },
-                    "app_lock_on_resume": {
-                        "name": "Alkalmazás zárolása folytatáskor",
-                        "description": "Zárolja az alkalmazást az újbóli megnyitásakor"
                     },
                     "infinite_story_boost": {
                         "name": "Végtelen történet Boost",

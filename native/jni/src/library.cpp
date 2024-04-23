@@ -10,6 +10,7 @@
 #include "hooks/fstat_hook.h"
 #include "hooks/sqlite_mutex.h"
 #include "hooks/duplex_hook.h"
+#include "hooks/composer_hook.h"
 
 bool JNICALL init(JNIEnv *env, jobject clazz) {
     LOGD("Initializing native");
@@ -29,13 +30,16 @@ bool JNICALL init(JNIEnv *env, jobject clazz) {
 
     LOGD("client_module offset=0x%lx, size=0x%zx", client_module.base, client_module.size);
 
-    AssetHook::init(env);
+    util::remap_sections(BUILD_PACKAGE);
+
     UnaryCallHook::init(env);
+    AssetHook::init(env);
     FstatHook::init();
     SqliteMutexHook::init();
     DuplexHook::init(env);
-
-    util::remap_sections(BUILD_PACKAGE);
+    if (common::native_config->composer_hooks) {
+        ComposerHook::init();
+    }
 
     LOGD("Native initialized");
     return true;
@@ -49,6 +53,7 @@ void JNICALL load_config(JNIEnv *env, jobject, jobject config_object) {
     native_config->disable_bitmoji = GET_CONFIG_BOOL("disableBitmoji");
     native_config->disable_metrics = GET_CONFIG_BOOL("disableMetrics");
     native_config->hook_asset_open = GET_CONFIG_BOOL("hookAssetOpen");
+    native_config->composer_hooks = GET_CONFIG_BOOL("composerHooks");
 }
 
 void JNICALL lock_database(JNIEnv *env, jobject, jstring database_name, jobject runnable) {
@@ -80,6 +85,8 @@ extern "C" JNIEXPORT jint JNICALL JNI_OnLoad(JavaVM *vm, void *_) {
     methods.push_back({"init", "()Z", (void *)init});
     methods.push_back({"loadConfig", "(L" BUILD_NAMESPACE "/NativeConfig;)V", (void *)load_config});
     methods.push_back({"lockDatabase", "(Ljava/lang/String;Ljava/lang/Runnable;)V", (void *)lock_database});
+    methods.push_back({"setComposerLoader", "(Ljava/lang/String;)V", (void *) ComposerHook::setComposerLoader});
+    methods.push_back({"composerEval", "(Ljava/lang/String;)Ljava/lang/String;",(void *) ComposerHook::composerEval});
 
     env->RegisterNatives(env->FindClass(std::string(BUILD_NAMESPACE "/NativeLib").c_str()), methods.data(), methods.size());
     return JNI_VERSION_1_6;

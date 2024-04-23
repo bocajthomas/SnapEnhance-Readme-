@@ -770,6 +770,24 @@
                         "name": "Native Hooks",
                         "description": "Unsafe Features that hook into Snapchat's native code",
                         "properties": {
+                            "composer_hooks": {
+                                "name": "Composer Hooks",
+                                "description": "Injects code into the Composer cross-platform UI framework",
+                                "properties": {
+                                    "bypass_camera_roll_limit": {
+                                        "name": "Bypass Camera Roll Limit",
+                                        "description": "Increases the maximum amount of media you can send from the camera roll"
+                                    },
+                                    "composer_console": {
+                                        "name": "Composer Console",
+                                        "description": "Allows you to execute JavaScript code in Composer (arm64 only)"
+                                    },
+                                    "composer_logs": {
+                                        "name": "Composer Logs",
+                                        "description": "Redirects console logs of Composer to SnapEnhance"
+                                    }
+                                }
+                            },
                             "disable_bitmoji": {
                                 "name": "Disable Bitmoji",
                                 "description": "Disables Friends Profile Bitmoji"

@@ -442,14 +442,6 @@
                         "name": "Väärennä",
                         "description": "Väärennä erinäisiä tietoja sinusta"
                     },
-                    "app_passcode": {
-                        "name": "Sovelluksen Pääsykoodi",
-                        "description": "Aseta pääsykoodi sovelluksen lukitsemiseksi"
-                    },
-                    "app_lock_on_resume": {
-                        "name": "Sovelluksen Lukitus Jatkossa",
-                        "description": "Lukitsee sovelluksen, kun se avataan uudelleen"
-                    },
                     "infinite_story_boost": {
                         "name": "Loputon Tarinan Tehostus",
                         "description": "Ohita Story Boost Limit -viive"

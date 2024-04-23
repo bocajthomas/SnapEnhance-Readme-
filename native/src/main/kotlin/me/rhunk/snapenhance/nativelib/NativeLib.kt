@@ -2,6 +2,7 @@ package me.rhunk.snapenhance.nativelib
 
 import android.util.Log
 
+@Suppress("KotlinJniMissingFunction")
 class NativeLib {
     var nativeUnaryCallCallback: (NativeRequestData) -> Unit = {}
     var nativeShouldLoadAsset: (String) -> Boolean = { true }
@@ -62,4 +63,6 @@ class NativeLib {
     private external fun init(): Boolean
     private external fun loadConfig(config: NativeConfig)
     private external fun lockDatabase(name: String, callback: Runnable)
+    external fun setComposerLoader(code: String)
+    external fun composerEval(code: String): String?
 }

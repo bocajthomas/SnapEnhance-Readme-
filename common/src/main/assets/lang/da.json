@@ -75,7 +75,7 @@
                 "streaks_title": "Streaks",
                 "reminder_button": "Indstil påmindelse",
                 "logged_stories_button": "Vis loggede historier",
-                "e2ee_title": "Ende til ende kryptering",
+                "e2ee_title": "End-to-End Kryptering",
                 "rules_title": "Regler",
                 "participants_text": "{count} deltagere",
                 "not_found": "Ikke fundet",
@@ -195,6 +195,14 @@
                 "options": {
                     "blacklist": "Udelad fra meddelelser, der ikke kan gemmes",
                     "whitelist": "Meddelelser, der ikke kan gemmes"
+                }
+            },
+            "auto_open_snaps": {
+                "name": "Auto åbn snaps",
+                "description": "Åbner automatisk Snaps, når de modtages",
+                "options": {
+                    "blacklist": "Udeluk fra automatisk åbning af Snaps",
+                    "whitelist": "Auto-åbn Snaps"
                 }
             }
         },
@@ -396,7 +404,7 @@
                         "description": "Tilsidesætter tekstfelt adfærd"
                     },
                     "snap_preview": {
-                        "name": "Snap Forhåndsvisning",
+                        "name": "Snap-forhåndsvisning",
                         "description": "Viser en lille forhåndsvisning ud for usete snaps i chat"
                     },
                     "prevent_message_list_auto_scroll": {
@@ -501,10 +509,6 @@
                             }
                         }
                     },
-                    "instant_delete": {
-                        "name": "Øjeblikkelig sletning",
-                        "description": "Fjerner bekræftelsesdialogen ved sletning af beskeder"
-                    },
                     "loop_media_playback": {
                         "name": "Løkke medie afspilning",
                         "description": "Løkke medie afspilning, når du ser Snaps / Stories"
@@ -539,7 +543,11 @@
                     },
                     "auto_mark_as_read": {
                         "name": "Automatisk markér som læst",
-                        "description": "Markerer automatisk beskeder som læst, når du sender en besked til en samtale, selv når Stealth Mode er aktiveret"
+                        "description": "Automatisk markerer beskeder/snaps som læst, selv når Stealth-tilstand er aktiveret"
+                    },
+                    "friend_mutation_notifier": {
+                        "description": "Giver dig besked, når noget ændrer sig i en vens profil",
+                        "name": "Ven Mutation Notifier"
                     }
                 }
             },
@@ -703,7 +711,7 @@
                 "properties": {
                     "interval": {
                         "description": "Intervallet mellem hver påmindelse (timer)",
-                        "name": "Interval"
+                        "name": "Tidsrum"
                     },
                     "remaining_hours": {
                         "name": "Resterende tid",
@@ -758,14 +766,6 @@
                                 "description": "Spoof dit Android-id til den angivne værdi"
                             }
                         }
-                    },
-                    "app_passcode": {
-                        "name": "App Pin-kode",
-                        "description": "Sætter en adgangskode til at låse app'en"
-                    },
-                    "app_lock_on_resume": {
-                        "name": "App Lås Ved Genoptagelse",
-                        "description": "Låser appen, når den genåbnes"
                     },
                     "infinite_story_boost": {
                         "name": "Uendelig Historie Boost",
@@ -856,6 +856,20 @@
                     "edit_message": {
                         "name": "Rediger beskeder",
                         "description": "Giver dig mulighed for at redigere beskeder i samtaler"
+                    },
+                    "app_lock": {
+                        "name": "Applås",
+                        "description": "Forhindrer adgang til Snapchat uden en adgangskode",
+                        "properties": {
+                            "lock_on_resume": {
+                                "name": "Lås ved genoptagelse",
+                                "description": "Låser appen, når den genåbnes"
+                            }
+                        }
+                    },
+                    "custom_streaks_expiration_format": {
+                        "name": "Tilpasset format til udløb af Streaks",
+                        "description": "Tilpasser formatet for udløbet af Streaks\n\nTilgængelige variabler:\n- %c: Antal Streaks\n- %e: Timeglas Emoji\n- %d: Dage\n- %h: Timer\n- %m: Minutter\n- %s: Sekunder\n- %w: Resterende tid"
                     }
                 }
             },
@@ -898,7 +912,8 @@
                 "mark_as_read_and_save_in_chat": "Gem i chat, når du markerer som læst (afhænger af automatisk lagring)",
                 "mark_as_read_button": "Knappen Marker som læst",
                 "chat_preview": "Vis en forhåndsvisning af chat",
-                "media_preview": "Vis en forhåndsvisning af medier"
+                "media_preview": "Vis en forhåndsvisning af medier",
+                "friend_add_source": "Vis venne-tilføjelseskilde"
             },
             "friend_feed_menu_buttons": {
                 "auto_download": "⬇️ Auto-download",
@@ -908,7 +923,8 @@
                 "e2e_encryption": "🔒 Brug E2E Kryptering",
                 "mark_stories_as_seen_locally": "👀 Markér historier som set lokalt",
                 "mark_snaps_as_seen": "👀 Markér Snaps som set",
-                "unsaveable_messages": "⬇️ Beskeder, der ikke kan gemmes"
+                "unsaveable_messages": "⬇️ Beskeder, der ikke kan gemmes",
+                "auto_open_snaps": "📷 Automatisk åbn Snaps"
             },
             "path_format": {
                 "create_author_folder": "Opret mappe for hver forfatter",
@@ -992,7 +1008,8 @@
                 "block_friend": "Bloker ven 🚫",
                 "ignore_friend": "Ignorer ven",
                 "hide_friend": "Skjul ven",
-                "hide_conversation": "Skjul samtale"
+                "hide_conversation": "Skjul samtale",
+                "erase_message": "Slet besked"
             },
             "disable_permission_requests": {
                 "camera": "Kamera",
@@ -1007,7 +1024,7 @@
             },
             "old_bitmoji_selfie": {
                 "3d": "3D Bitmoji",
-                "2d": "2D Bitmoji"
+                "2d": "To-dimensionelle Bitmoji"
             },
             "auto_purge": {
                 "6_hours": "6 Timer",
@@ -1051,6 +1068,18 @@
                 "encryption_indicator": "Tilføjer et 🔒 ikon ud for beskeder, der kun er blevet sendt til dig",
                 "platform_indicator": "Tilføjer platforms ikonet, hvorfra et medie blev sendt (f.eks. Android, iOS, Web)",
                 "director_mode_indicator": "Tilføjer et ✏️ ikon til snaps, når de er blevet sendt ved hjælp af Director Mode, som kan bruges til at sende galleribilleder som snaps"
+            },
+            "auto_mark_as_read": {
+                "conversation_read": "Marker samtalen som læst, når du sender en besked",
+                "snap_reply": "Marker snaps som læst, når du svarer på dem"
+            },
+            "friend_mutation_notifier": {
+                "remove_friend": "Giv besked, når nogen fjerner dig som ven",
+                "birthday_changes": "Giv besked, når nogen ændrer deres fødselsdag",
+                "bitmoji_selfie_changes": "Giv besked, når nogen ændrer deres Bitmoji selfie",
+                "bitmoji_avatar_changes": "Giv besked, når nogen ændrer deres Bitmoji avatar",
+                "bitmoji_background_changes": "Giv besked, når nogen ændrer deres Bitmoji baggrund",
+                "bitmoji_scene_changes": "Giv besked, når nogen ændrer deres Bitmoji scene"
             }
         }
     },
@@ -1166,7 +1195,7 @@
         "failed_gallery_toast": "Kunne ikke gemme i galleri {error}",
         "dash_dialog": {
             "download_all": "Hent alle",
-            "title": "Hent dash medier",
+            "title": "Download dash-medier",
             "segment_text": "Segment {from} - {to}"
         },
         "dash_no_chapter": "Intet kapitel fundet"
@@ -1314,7 +1343,7 @@
         },
         "confirmation_dialogs": {
             "confirmation_1": "ADVARSEL: Dette vil overskrive din eksisterende nøgle. Du mister adgangen til alle krypterede beskeder fra denne ven. Er du sikker på, at du vil fortsætte?",
-            "title": "Ende til ende kryptering",
+            "title": "End-to-end kryptering",
             "confirmation_2": "Dit fjols er du VIRKELIG sikker på, at du vil fortsætte? Dette er din sidste chance for at fortryde."
         },
         "accept_secret_key_success_toast": "Færdig! Du kan nu sende og modtage krypterede beskeder med denne ven.",
@@ -1335,5 +1364,25 @@
     "scopes": {
         "friend": "Ven",
         "group": "Gruppe"
+    },
+    "biometric_auth": {
+        "unlock_button": "Lås op",
+        "title": "Lås Snapchat op",
+        "subtitle": "Godkend venligst for at låse Snapchat op"
+    },
+    "auto_open_snaps": {
+        "title": "Auto Åbn Snaps",
+        "notification_content": "{count} Snaps åbnet"
+    },
+    "friend_mutation_observer": {
+        "friend_removed": "{username} har fjernet dig som ven",
+        "birthday_removed": "{username} har fjernet deres fødselsdag ({birthday})",
+        "birthday_added": "{username} har tilføjet deres fødselsdag ({birthday})",
+        "birthday_changed": "{username} har ændret deres fødselsdag fra {oldBirthday} til {newBirthday}",
+        "bitmoji_selfie_changed": "{username} har ændret deres Bitmoji selfie",
+        "bitmoji_avatar_changed": "{username} har ændret deres Bitmoji avatar",
+        "bitmoji_scene_changed": "{username} har ændret deres Bitmoji scene",
+        "bitmoji_background_changed": "{username} har ændret deres Bitmoji baggrund",
+        "notification_channel_name": "Venmutationobserver"
     }
 }

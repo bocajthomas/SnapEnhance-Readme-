@@ -41,6 +41,18 @@
             },
             "tasks": {
                 "no_tasks": "کوئی کام نہیں"
+            },
+            "home_logs": {
+                "export_logs_button": "لوگ ایکسپورٹ کریں"
+            },
+            "home": {
+                "update_title": "سنیپ انہنس اپڈیٹ",
+                "update_button": "ڈاؤن لوڈ"
+            },
+            "home_settings": {
+                "actions_title": "کارروائی",
+                "success_toast": "ہو گیا!",
+                "export_button": "ایکسپورت"
             }
         },
         "dialogs": {
@@ -402,14 +414,6 @@
                         "name": "فریب",
                         "description": "آپ کے بارے میں مختلف معلومات کو فریب دیتا ہے"
                     },
-                    "app_passcode": {
-                        "name": "ایپ پاس کوڈ",
-                        "description": "ایپ کو منظم کرنے کے لئے ایک پاس کوڈ تعین کرتا ہے"
-                    },
-                    "app_lock_on_resume": {
-                        "name": "ریزوم پر ایپ لاک",
-                        "description": "ایپ کو دوبارہ کھولنے پر ایپ کو لاک کرتا ہے"
-                    },
                     "infinite_story_boost": {
                         "name": "بے انتہا کہانی کی بوسٹ",
                         "description": "کہانی کی بوسٹ لمبائی کی پابندی کو چھوڑ دیتا ہے"
@@ -642,5 +646,8 @@
     "streaks_reminder": {
         "notification_title": "مسلسلی",
         "notification_text": "آپ {hoursLeft} گھنٹوں میں اپنے دوست {friend} کے ساتھ اپنے مسلسلی کو خوو دیں گے"
+    },
+    "scopes": {
+        "friend": "ڈوست"
     }
 }

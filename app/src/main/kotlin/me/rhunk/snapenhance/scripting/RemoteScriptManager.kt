@@ -124,6 +124,13 @@ class RemoteScriptManager(
     }
 
     override fun getScriptContent(moduleName: String): String? {
+        if (moduleName.startsWith("composer/")) {
+            return runCatching {
+                context.androidContext.assets.open("composer/${moduleName.removePrefix("composer/")}").use {
+                    it.bufferedReader().readText()
+                }
+            }.getOrNull()
+        }
         return getScriptInputStream(moduleName) { it?.bufferedReader()?.readText() }
     }
 

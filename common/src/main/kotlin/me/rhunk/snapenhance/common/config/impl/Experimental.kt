@@ -9,7 +9,14 @@ class Experimental : ConfigContainer() {
         val allowRunningInBackground = boolean("allow_running_in_background", true)
     }
 
+    class ComposerHooksConfig: ConfigContainer(hasGlobalState = true) {
+        val bypassCameraRollLimit = boolean("bypass_camera_roll_limit")
+        val composerConsole = boolean("composer_console")
+        val composerLogs = boolean("composer_logs")
+    }
+
     class NativeHooks : ConfigContainer(hasGlobalState = true) {
+        val composerHooks = container("composer_hooks", ComposerHooksConfig()) { requireRestart() }
         val disableBitmoji = boolean("disable_bitmoji")
     }
 

@@ -116,7 +116,12 @@
                 "rules_title": "বিধিগুলি",
                 "not_found": "পাওয়া যায়নি",
                 "streaks_title": "রেখাগুলি",
-                "participants_text": "{count} অংশগ্রহণকারী"
+                "participants_text": "{count} অংশগ্রহণকারী",
+                "streaks_length_text": "দৈর্ঘ্য: {length}",
+                "streaks_expiration_text": "{eta}-এ মেয়াদ শেষ হবে",
+                "streaks_expiration_text_expired": "মেয়াদোত্তীর্ণ",
+                "reminder_button": "অনুস্মারক সেট করুন",
+                "delete_scope_confirm_dialog_title": "নিশ্চিত আপনি একটি {scope} মুছতে চান?"
             },
             "home": {
                 "update_content": "সংস্করণ {version} উপলব্ধ!",
@@ -130,6 +135,41 @@
                 "saving_logs_toast": "লগগুলি সংরক্ষণ করা এটি কিছু সময় নিতে পারে ..।",
                 "saved_logs_success_toast": "লগগুলি সফলভাবে সংরক্ষণ করা হয়েছে",
                 "saved_logs_failure_toast": "লগ সংরক্ষণ করতে ব্যর্থ"
+            },
+            "logged_stories": {
+                "story_failed_to_load": "লোড করতে ব্যর্থ হয়েছে",
+                "no_stories": "কোনো গল্প খুঁজে পাওয়া যায়নি",
+                "save_from_cache_button": "ক্যাশ থেকে সংরক্ষণ করুন"
+            },
+            "messaging_preview": {
+                "bridge_init_failed": "মেসেজিং ব্রিজ শুরু করতে ব্যর্থ হয়েছে",
+                "message_fetch_failed": "বার্তা আনতে ব্যর্থ হয়েছে",
+                "save_selection_option": "সেভ সিলেকশন",
+                "unsave_selection_option": "আনসেভ সিলেকশন",
+                "unsave_all_option": "সব আনসেভ করুন",
+                "mark_selection_as_seen_option": "নির্বাচিত স্ন্যাপটি দেখা হিসেবে চিহ্নিত করুন",
+                "delete_selection_option": "ডিলিট সিলেকশন",
+                "delete_all_option": "সব মুছে ফেলুন",
+                "bridge_connection_failed": "স্ন্যাপচ্যাটে ব্রিজ সার্ভিসের মাধ্যমে সংযোগ করতে ব্যর্থ হয়েছে",
+                "no_message_hint": "কোন বার্তা নেই",
+                "save_all_option": "সব সংরক্ষণ করুন",
+                "mark_all_as_seen_option": "সমস্ত স্ন্যাপস যেমন দেখা যায় চিহ্নিত করুন"
+            },
+            "logger_history": {
+                "list_friend_format": "বন্ধু {name}",
+                "list_group_format": "গ্রুপ {name}",
+                "no_more_messages": "আর কোনো বার্তা নেই",
+                "reverse_order_checkbox": "বিপরীত ক্রম",
+                "chat_attachment": "সংযুক্তি {index}",
+                "empty_message": "খালি চ্যাট বার্তা",
+                "unknown_sender": "অজানা প্রেরক",
+                "download_attachment_failed_toast": "সংযুক্তি ডাউনলোড করতে ব্যর্থ",
+                "message_parse_failed": "বার্তা পার্স করতে ব্যর্থ"
+            }
+        },
+        "dialogs": {
+            "add_friend": {
+                "title": "বন্ধু বা গ্রুপ যোগ করুন"
             }
         }
     },

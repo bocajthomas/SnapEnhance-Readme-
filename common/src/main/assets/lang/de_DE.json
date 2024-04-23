@@ -196,6 +196,14 @@
                     "whitelist": "Nicht speicherbare Nachrichten"
                 },
                 "description": "Verhindert, dass Nachrichten im Chat von anderen Personen gespeichert werden können"
+            },
+            "auto_open_snaps": {
+                "name": "Automatisches Öffnen von Snaps",
+                "description": "Öffnet Snaps automatisch beim Empfang",
+                "options": {
+                    "blacklist": "Von der automatischen Snap-Öffnung ausschließen",
+                    "whitelist": "Auto-Öffnen von Snaps"
+                }
             }
         },
         "toasts": {
@@ -521,10 +529,6 @@
                         "name": "Bestätigung des Starts eines Anrufs",
                         "description": "Zeigt einen Bestätigungsdialog beim Starten eines Anrufs an"
                     },
-                    "instant_delete": {
-                        "name": "Sofortiges Löschen",
-                        "description": "Entfernt den Bestätigungsdialog beim Löschen von Nachrichten"
-                    },
                     "loop_media_playback": {
                         "name": "Medien Wiedergabe Wiederholen",
                         "description": "Wiederholt Snaps & Stories beim ansehen in einer Schleife"
@@ -539,7 +543,11 @@
                     },
                     "auto_mark_as_read": {
                         "name": "Automatisch als gelesen markieren",
-                        "description": "Markiert Nachrichten automatisch als gelesen wenn eine Nachricht gesendet wurde, auch wenn der Stealth Mode aktiviert ist"
+                        "description": "Markiert Nachrichten bzw. Snaps automatisch als gelesen wenn der Stealth Mode aktiviert ist"
+                    },
+                    "friend_mutation_notifier": {
+                        "name": "Freund-Mutationsbenachrichtigung",
+                        "description": "Benachrichtigt Sie, wenn sich etwas im Profil eines Freundes ändert"
                     }
                 }
             },
@@ -759,14 +767,6 @@
                             }
                         }
                     },
-                    "app_passcode": {
-                        "name": "App-Passcode",
-                        "description": "Legt einen Passcode zum Entsperren der App fest"
-                    },
-                    "app_lock_on_resume": {
-                        "name": "App-Sperre beim Fortsetzen",
-                        "description": "Sperrt die App, wenn sie erneut geöffnet wird"
-                    },
                     "infinite_story_boost": {
                         "name": "Unendlicher Story Boost",
                         "description": "Story Boost Limit Verzögerung umgehen"
@@ -856,6 +856,20 @@
                     "edit_message": {
                         "description": "Ermöglicht es Nachrichten in Konversationen zu bearbeiten",
                         "name": "Nachrichten bearbeiten"
+                    },
+                    "app_lock": {
+                        "name": "App-Sperre",
+                        "description": "Verhindert den Zugriff auf Snapchat ohne einen passcode",
+                        "properties": {
+                            "lock_on_resume": {
+                                "description": "Sperrt die App wenn sie wieder geöffnet wird",
+                                "name": "Sperren beim fortsetzen"
+                            }
+                        }
+                    },
+                    "custom_streaks_expiration_format": {
+                        "name": "Benutzerdefiniertes Ablaufdatum für Serien",
+                        "description": "Passt das Ablaufdatumformat für Serien an\n\nVerfügbare Variablen:\n- %c: Anzahl der Serien\n- %e: Sanduhr-Emoji\n- %d: Tage\n- %h: Stunden\n- %m: Minuten\n- %s: Sekunden\n- %w: Verbleibende Zeit"
                     }
                 }
             },
@@ -898,7 +912,8 @@
                 "mark_as_read_and_save_in_chat": "Im Chat speichern, wenn als gelesen markiert (hängt von der automatischen Speicherung ab)",
                 "mark_as_read_button": "Als gelesen markieren Button",
                 "media_preview": "Eine Vorschau der Medien anzeigen",
-                "chat_preview": "Eine Vorschau des Chats anzeigen"
+                "chat_preview": "Eine Vorschau des Chats anzeigen",
+                "friend_add_source": "Zeige Freund hinzufügen Quelle"
             },
             "friend_feed_menu_buttons": {
                 "auto_download": "⬇️ Auto-Download",
@@ -908,7 +923,8 @@
                 "e2e_encryption": "🔒 E2E-Verschlüsselung verwenden",
                 "mark_stories_as_seen_locally": "👀 Stories als lokal gesehen markieren",
                 "mark_snaps_as_seen": "👀 Snaps als gesehen markieren",
-                "unsaveable_messages": "⬇️ Nicht speicherbare Nachrichten"
+                "unsaveable_messages": "⬇️ Nicht speicherbare Nachrichten",
+                "auto_open_snaps": "📷 Automatisches Öffnen von Snaps"
             },
             "path_format": {
                 "create_author_folder": "Erzeuge ein Verzeichnis für jeden Benutzer",
@@ -1010,7 +1026,8 @@
                 "remove_friend": "Freund entfernen",
                 "hide_friend": "Freund ausblenden",
                 "ignore_friend": "Freund ignorieren",
-                "block_friend": "Freund blockieren"
+                "block_friend": "Freund blockieren",
+                "erase_message": "Nachricht löschen"
             },
             "edit_text_override": {
                 "bypass_text_input_limit": "Umgehen des Limits für die Texteingabe",
@@ -1051,6 +1068,18 @@
                 "platform_indicator": "Fügt das Plattformsymbol hinzu, von der aus ein Medium gesendet wurde (z. B. Android, iOS, Web)",
                 "director_mode_indicator": "Fügt Snaps ein ✏️-Symbol hinzu, wenn sie mit dem Director-Modus gesendet wurden, der verwendet werden kann, um Galeriebilder als Snaps zu senden",
                 "ovf_editor_indicator": "Kennzeichnet, ob ein Snap mit dem OVF-Editor gesendet wurde"
+            },
+            "auto_mark_as_read": {
+                "conversation_read": "Markiert Konversation als gelesen sobald eine Narchicht gesendet wird",
+                "snap_reply": "Markiert Snaps als gelesen sobald auf sie geantwortet wird"
+            },
+            "friend_mutation_notifier": {
+                "remove_friend": "Benachrichtige, wenn dich jemand als Freund entfernt",
+                "bitmoji_avatar_changes": "Benachrichtige, wenn jemand sein Bitmoji-Avatar ändert",
+                "bitmoji_background_changes": "Benachrichtige, wenn jemand den Hintergrund seines Bitmoji ändert",
+                "birthday_changes": "Benachrichtige, wenn jemand sein Geburtsdatum ändert",
+                "bitmoji_selfie_changes": "Benachrichtigen, wenn jemand sein Bitmoji-Selfie ändert",
+                "bitmoji_scene_changes": "Benachrichtige, wenn jemand seine Bitmoji-Szene ändert"
             }
         }
     },
@@ -1335,5 +1364,25 @@
         "accept_public_key_failure_toast": "Akzeptieren des öffentlichen Schlüssels fehlgeschlagen",
         "unencrypted_conversation_send_failure_toast": "Sie können keine verschlüsselten Inhalte zu verschlüsselten und unverschlüsselten Gesprächen gleichzeitig senden!",
         "incoming_secret_message": "Ihr Freund hat gerade Ihren öffentlichen Schlüssel akzeptiert. Klicken Sie unten, um das Passwort zu akzeptieren."
+    },
+    "biometric_auth": {
+        "unlock_button": "Entsperren",
+        "title": "Entsperre Snapchat",
+        "subtitle": "Bitte authentifizieren Sie sich um Snapchat zu entsperren"
+    },
+    "auto_open_snaps": {
+        "title": "Auto-Öffnen von Snaps",
+        "notification_content": "{count} Snaps geöffnet"
+    },
+    "friend_mutation_observer": {
+        "birthday_removed": "{username} hat sein Geburtsdatum ({birthday}) entfernt",
+        "birthday_changed": "{username} hat sein Geburtsdatum von {oldBirthday} auf {newBirthday} geändert",
+        "bitmoji_background_changed": "{username} hat den Hintergrund seines Bitmoji geändert",
+        "birthday_added": "{username} hat sein Geburtsdatum ({birthday}) hinzugefügt",
+        "bitmoji_scene_changed": "{username} hat seine Bitmoji-Szene geändert",
+        "bitmoji_selfie_changed": "{username} hat sein Bitmoji-Selfie geändert",
+        "bitmoji_avatar_changed": "{username} hat sein Bitmoji-Avatar geändert",
+        "notification_channel_name": "Freund-Mutationsbeobachter",
+        "friend_removed": "{username} hat dich als Freund entfernt"
     }
 }

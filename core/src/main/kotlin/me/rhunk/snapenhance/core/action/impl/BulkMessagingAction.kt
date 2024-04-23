@@ -45,6 +45,7 @@ import me.rhunk.snapenhance.mapper.impl.FriendRelationshipChangerMapper
 import java.net.URL
 import java.text.DateFormat
 import java.util.Date
+import kotlin.random.Random
 
 class BulkMessagingAction : AbstractAction() {
     enum class SortBy {
@@ -67,7 +68,12 @@ class BulkMessagingAction : AbstractAction() {
 
     private val translation by lazy { context.translation.getCategory("bulk_messaging_action") }
 
-    private fun removeAction(ctx: Context, ids: List<String>, action: (String) -> Unit = {}): Job {
+    private fun removeAction(
+        ctx: Context,
+        ids: List<String>,
+        delay: Pair<Long, Long>,
+        action: (String) -> Unit = {},
+    ): Job {
         var index = 0
         val dialog = ViewAppearanceHelper.newAlertDialogBuilder(ctx)
             .setTitle("...")
@@ -89,7 +95,7 @@ class BulkMessagingAction : AbstractAction() {
                         translation.format("progress_status", "index" to index.toString(), "total" to ids.size.toString())
                     )
                 }
-                delay(100)
+                delay(Random.nextLong(delay.first, delay.second))
             }
             withContext(Dispatchers.Main) {
                 dialog.dismiss()
@@ -431,7 +437,7 @@ class BulkMessagingAction : AbstractAction() {
                                     context.shortToast("Failed to fetch conversations: $error")
                                 }, onSuccess = { conversations ->
                                     context.runOnUiThread {
-                                        removeAction(ctx, conversations.map { it.second }.distinct()) {
+                                        removeAction(ctx, conversations.map { it.second }.distinct(), delay = 100L to 400L) {
                                             messaging.clearConversationFromFeed(it, onError = { error ->
                                                 context.shortToast("Failed to clear conversation: $error")
                                             })
@@ -457,7 +463,7 @@ class BulkMessagingAction : AbstractAction() {
                         action = {
                             removeAction(ctx, selectedFriends.toList().also {
                                 selectedFriends.clear()
-                            }) { removeFriend(it) }.invokeOnCompletion {
+                            }, delay = 500L to 1200L) { removeFriend(it) }.invokeOnCompletion {
                                 coroutineScope.launch { refreshList() }
                             }
                         }

@@ -1,12 +1,12 @@
 {
     "setup": {
         "dialogs": {
-            "select_language": "Dil Seç",
-            "save_folder": "SnapEnhance, Snapchat'ten medya indirmek ve kaydetmek için depolama izinleri gerektirir.\nLütfen medyanın indirileceği konumu seçin.",
-            "select_save_folder_button": "Klasör Seç"
+            "select_language": "Dil Seçin",
+            "save_folder": "SnapEnhance, Snapchat'tan Medya indirmek ve Kaydetmek için Depolama izinlerine ihtiyaç duyar.\nLütfen medyanın indirileceği konumu seçin.",
+            "select_save_folder_button": "Dosya Seç"
         },
         "mappings": {
-            "dialog": "Birden çok Snapchat sürümlerini dinamik olarak desteklemek için ve SnapEnhance'in düzgün çalışması için eşlemeler gereklidir, bu işlem genellikle 5 saniyeden fazla sürmez.",
+            "dialog": "Çok çeşitli Snapchat Sürümlerini dinamik olarak desteklemek için, SnapEnhance'in düzgün çalışması için eşlemeler gereklidir; bu işlem 5 saniyeden fazla sürmemelidir.",
             "generate_button": "Oluştur",
             "generate_failure_no_snapchat": "SnapEnhance Snapchat'i algılayamadı, lütfen Snapchat'i yeniden yüklemeyi deneyin.",
             "generate_failure": "Eşlemeleri oluşturmaya çalışırken bir hata oluştu, lütfen tekrar deneyin.",
@@ -196,6 +196,14 @@
                     "whitelist": "Kaydedilemeyen Mesajlar"
                 },
                 "description": "Mesajların diğer kişiler tarafından sohbete kaydedilmesini önler"
+            },
+            "auto_open_snaps": {
+                "description": "Snap'leri alırken otomatik olarak açar",
+                "options": {
+                    "whitelist": "Snap'leri Otomatik Aç",
+                    "blacklist": "Otomatik Açılan Snap'lerden Hariç Tut"
+                },
+                "name": "Snap'leri Otomatik Aç"
             }
         },
         "toasts": {
@@ -517,10 +525,6 @@
                         "name": "Hikaye Tekrar İzleme Göstergesini Önle",
                         "description": "Herhangi birinin hikayelerini tekrar izlediğinizi bilmesini engeller"
                     },
-                    "instant_delete": {
-                        "name": "Anında Silme",
-                        "description": "Mesajları silerken onay iletişim kutusunu kaldırır"
-                    },
                     "hide_peek_a_peek": {
                         "description": "Bir sohbete yarım kaydırma yaptığınızda bildirim gönderilmesini önler",
                         "name": "Peek-a-Peek'i Gizle"
@@ -536,6 +540,14 @@
                     "remove_groups_locked_status": {
                         "name": "Grupların Kilitli Durumunu Kaldır",
                         "description": "Atıldıktan sonra grup bilgilerini görüntülemenizi sağlar"
+                    },
+                    "auto_mark_as_read": {
+                        "name": "Otomatik Okundu Olarak İşaretle",
+                        "description": "Gizli Mod etkinleştirildiğinde bile mesajları/snapleri otomatik olarak okundu olarak işaretler"
+                    },
+                    "friend_mutation_notifier": {
+                        "name": "Arkadaş Değişimi Bildiricisi",
+                        "description": "Bir arkadaşınızın profilinde bir değişiklik olduğunda size bildirir"
                     }
                 }
             },
@@ -755,14 +767,6 @@
                             }
                         }
                     },
-                    "app_passcode": {
-                        "name": "Uygulama Şifresi",
-                        "description": "Uygulamayı kilitlemek için bir parola ayarlar"
-                    },
-                    "app_lock_on_resume": {
-                        "name": "Uygulama Yeniden Açıldığında Kilit",
-                        "description": "Uygulama yeniden açıldığında kilitlenir"
-                    },
                     "infinite_story_boost": {
                         "name": "Sonsuz Hikaye Takviyesi",
                         "description": "Hikaye Takviye Limiti gecikmesini atlayın"
@@ -852,6 +856,20 @@
                     "edit_message": {
                         "name": "Mesajları Düzenle",
                         "description": "Görüşmelerdeki mesajları düzenlemenizi sağlar"
+                    },
+                    "app_lock": {
+                        "properties": {
+                            "lock_on_resume": {
+                                "description": "Uygulama yeniden başlatıldığında otomatik olarak kilitler",
+                                "name": "Yeniden Başlatmada Kilitle"
+                            }
+                        },
+                        "name": "Uygulama Kilidi",
+                        "description": "Snapchat'e şifre olmadan erişimi engeller"
+                    },
+                    "custom_streaks_expiration_format": {
+                        "name": "Özel Serilerin Son Kullanım Formatı",
+                        "description": "Özel Serilerin Son Kullanım Formatını Kişiselleştir\n\nKullanılabilir değişkenler:\n- %c: Seri Sayısı\n- %e: Kum Saati Emoji\n- %d: Günler\n- %h: Saatler\n- %m: Dakikalar\n- %s: Saniyeler\n- %w: Kalan Zaman"
                     }
                 }
             },
@@ -894,7 +912,8 @@
                 "mark_as_read_and_save_in_chat": "Okundu olarak işaretlendiğinde Sohbet'e kaydet (Otomatik Kaydet'e bağlıdır)",
                 "mark_as_read_button": "Okundu olarak işaretle düğmesi",
                 "media_preview": "Medyanın önizlemesini göster",
-                "chat_preview": "Sohbetin önizlemesini göster"
+                "chat_preview": "Sohbetin önizlemesini göster",
+                "friend_add_source": "Arkadaş ekleme kaynağını göster"
             },
             "friend_feed_menu_buttons": {
                 "auto_download": "⬇️ Otomatik İndirme",
@@ -904,7 +923,8 @@
                 "e2e_encryption": "🔒 E2E Şifreleme Kullan",
                 "mark_stories_as_seen_locally": "👀 Hikayeleri görüldü olarak işaretleyin",
                 "mark_snaps_as_seen": "👀 Snap'leri görüldü olarak işaretleyin",
-                "unsaveable_messages": "⬇️ Kaydedilemeyen Mesajlar"
+                "unsaveable_messages": "⬇️ Kaydedilemeyen Mesajlar",
+                "auto_open_snaps": "📷 Snap'leri Otomatik Aç"
             },
             "path_format": {
                 "create_author_folder": "Her kullanıcı için klasör oluştur",
@@ -1006,7 +1026,8 @@
                 "remove_friend": "Arkadaşı Kaldır",
                 "hide_friend": "Arkadaşı Gizle",
                 "ignore_friend": "Arkadaşı Yoksay",
-                "block_friend": "Arkadaşı Engelle"
+                "block_friend": "Arkadaşı Engelle",
+                "erase_message": "Mesajı Sil"
             },
             "edit_text_override": {
                 "bypass_text_input_limit": "Metin Giriş Sınırını Atla",
@@ -1047,6 +1068,18 @@
                 "ovf_editor_indicator": "OVF Editor kullanılarak bir snap gönderilip gönderilmediğini gösterir",
                 "director_mode_indicator": "Galeri görüntülerini snap olarak göndermek için kullanılabilen Yönetmen Modu kullanılarak gönderildiklerinde snap'lere bir ✏️ simgesi ekler",
                 "location_indicator": "Konum etkinleştirilerek gönderildiklerinde snap'lere bir 📍 simgesi ekler"
+            },
+            "auto_mark_as_read": {
+                "conversation_read": "Mesaj gönderirken konuşmayı okundu olarak işaretle",
+                "snap_reply": "Yanıt verirken snap'leri okundu olarak işaretle"
+            },
+            "friend_mutation_notifier": {
+                "bitmoji_selfie_changes": "Birisi Bitmoji selfie'sini değiştirdiğinde bildir",
+                "bitmoji_scene_changes": "Birisi Bitmoji sahnesini değiştirdiğinde bildir",
+                "bitmoji_avatar_changes": "Birisi Bitmoji avatarını değiştirdiğinde bildir",
+                "remove_friend": "Birisi sizi arkadaşlıktan çıkardığında bildir",
+                "birthday_changes": "Birisi doğum gününü değiştirdiğinde bildir",
+                "bitmoji_background_changes": "Birisi Bitmoji arka planını değiştirdiğinde bildir"
             }
         }
     },
@@ -1331,5 +1364,25 @@
         "incoming_pk_message": "Az önce bir açık anahtar isteği aldınız. Kabul etmek için aşağıya tıklayın.",
         "native_hooks_send_failure_toast": "Gönderilemedi! Lütfen ayarlardan Yerel Kancaları etkinleştirin.",
         "encryption_failed_toast": "İleti şifrelenemedi! Daha fazla ayrıntı için logcat'i kontrol edin."
+    },
+    "biometric_auth": {
+        "unlock_button": "Kilidi Aç",
+        "title": "Snapchat Kilidini Aç",
+        "subtitle": "Snapchat'in kilidini açmak için lütfen giriş yap"
+    },
+    "auto_open_snaps": {
+        "title": "Snap'leri Otomatik Aç",
+        "notification_content": "{count} Snap Açıldı"
+    },
+    "friend_mutation_observer": {
+        "notification_channel_name": "Arkadaş Değişim Gözlemcisi",
+        "birthday_removed": "{username} doğum gününü ({birthday}) kaldırdı",
+        "birthday_added": "{username} doğum gününü ekledi ({birthday})",
+        "bitmoji_avatar_changed": "{username} Bitmoji avatarını değiştirdi",
+        "friend_removed": "{username} sizi arkadaşlıktan çıkardı",
+        "birthday_changed": "{username} doğum gününü {oldBirthday} yerine {newBirthday} olarak değiştirdi",
+        "bitmoji_selfie_changed": "{username} Bitmoji selfie'sini değiştirdi",
+        "bitmoji_background_changed": "{username} Bitmoji arka planını değiştirdi",
+        "bitmoji_scene_changed": "{username} Bitmoji sahnesini değiştirdi"
     }
 }
