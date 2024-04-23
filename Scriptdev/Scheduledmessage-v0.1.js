@@ -28,7 +28,7 @@ var events = require("events");
     var time = "2000";
     
     // DO NOT CHANGE!! THIS IS A CONVERTER 
-    var convert = parselnt(time);
+    var convert = 2000;
 
     function createConversationToolboxUI() {
         conversationToolboxContext.events.push({
