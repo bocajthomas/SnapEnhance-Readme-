@@ -29,7 +29,7 @@ var events = require("events");
     };
 
     // Replace Inside " " With You're Custom Message
-    var inputMessage = "Jacob Thomas Aka Bocajthomas";
+    var inputMessage = "https://github.com/bocajthomas/SnapEnhance/blob/scripts/Scriptdev/Scheduledmessage-v0.1.js";
     
     // Replace The Number With Time In Ms ( Milliseconds )
     // 1000 Ms = 1 second 
