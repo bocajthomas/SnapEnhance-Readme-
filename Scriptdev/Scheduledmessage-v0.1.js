@@ -6,6 +6,9 @@
 // author: Jacob Thomas 
 // ==/SE_module==
 
+// Required Feature:
+// 1. "Integrated UI" 
+
 var networking = require("networking");
 var messaging = require("messaging");
 var config = require("config");
