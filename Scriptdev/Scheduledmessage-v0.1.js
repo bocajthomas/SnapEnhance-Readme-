@@ -23,13 +23,16 @@ var events = require("events");
 
     // Replace Inside " " With You're Custom Message
     var inputMessage = "Jacob Thomas Aka Bocajthomas";
+    
+    // Replace Inside " " With Time In Ms ( Milliseconds )
+    var time = "2000";
 
     function createConversationToolboxUI() {
         conversationToolboxContext.events.push({
             start: function (builder, args) {
                 builder.button("Send Message", function () {
                     var conversationId = args["conversationId"];
-			sleep(2000)
+			sleep(time)
 			messaging.sendChatMessage(conversationId, inputMessage, function () { });
 		});
 	    }
