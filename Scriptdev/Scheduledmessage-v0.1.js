@@ -48,6 +48,20 @@ var events = require("events");
 	    }
 	});
     }
+    var settingsContext = {
+	    events: [],
+    };
+
+    // TODO: Finish Input 	
+    // function createManagerToolboxUI () {
+	    // settingsContext.events.push(
+		    // start: function (builder) {
+		    //builder.row(function (builder) {
+			    //builder.textInput("Input text")
+		    //});
+	    //};
+    //}
+			
     // TODO: create new function for sending message				
     
     var snapActivityContext = {
