@@ -10,6 +10,9 @@
 // - "Integrated UI"
 // - "Auto Reload" To "ALL"
 
+// NOTE!
+// Crashes and slowness will Happen 
+
 var networking = require("networking");
 var messaging = require("messaging");
 var config = require("config");
@@ -29,8 +32,11 @@ var events = require("events");
     var inputMessage = "Jacob Thomas Aka Bocajthomas";
     
     // Replace The Number With Time In Ms ( Milliseconds )
+    // 1000 Ms = 1 second 
     var time = 2000;
-    
+	
+
+    // TODO: 3 buttons with diff Timer  
     function createConversationToolboxUI() {
         conversationToolboxContext.events.push({
             start: function (builder, args) {
@@ -42,7 +48,8 @@ var events = require("events");
 	    }
 	});
     }
-				
+    // TODO: create new function for sending message				
+    
     var snapActivityContext = {
         activity: null,
         events: [],
