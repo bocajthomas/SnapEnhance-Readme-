@@ -7,7 +7,8 @@
 // ==/SE_module==
 
 // Required Feature:
-// 1. "Integrated UI" 
+// - "Integrated UI"
+// - "Auto Reload" To "ALL"
 
 var networking = require("networking");
 var messaging = require("messaging");
