@@ -32,16 +32,9 @@ var events = require("events");
 			sleep(2000)
 			messaging.sendChatMessage(conversationId, inputMessage, function () { });
 		});
-                
-                builder.button("Send 50 replies", function () {
-                    var conversationId = args["conversationId"];
-                    for (var i = 0; i < 50; i++) {
-                        messaging.sendChatMessage(conversationId, "AI Is texting rn it can send 100 texts per second", function () { });
-                    }
-                });
-            },
-        });
-    };
+	    }
+	});
+    },
 				
     var snapActivityContext = {
         activity: null,
