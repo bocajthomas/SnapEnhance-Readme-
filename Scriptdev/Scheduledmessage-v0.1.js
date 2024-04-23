@@ -42,7 +42,11 @@ var events = require("events");
             start: function (builder, args) {
                 builder.button("Send Message", function () {
                     var conversationId = args["conversationId"];
-			sleep(time)
+			shortToast("Sending In : 2")
+			sleep(1000)
+			shortToast("Sending In : 1")
+			sleep(1000)
+			shortToast("Success")
 			messaging.sendChatMessage(conversationId, inputMessage, function () { });
 		});
 	    }
