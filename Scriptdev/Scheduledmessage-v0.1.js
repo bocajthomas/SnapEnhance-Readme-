@@ -42,11 +42,7 @@ var events = require("events");
             start: function (builder, args) {
                 builder.button("Send Message", function () {
                     var conversationId = args["conversationId"];
-			shortToast("Sending In : 2")
-			sleep(1000)
-			shortToast("Sending In : 1")
-			sleep(1000)
-			shortToast("Success")
+			toasts();
 			messaging.sendChatMessage(conversationId, inputMessage, function () { });
 		});
 	    }
@@ -62,6 +58,12 @@ var events = require("events");
     function start(_a) {
         _a.snapActivityContext; _a.conversationToolboxContext; _a.settingsContext;
         createInterface();
+    }
+
+    function toasts() {
+	    shortToast("Sending message")
+	    sleep(time)
+	    shortToast("Send")
     }
 
     function createInterface() {
