@@ -28,14 +28,14 @@ var events = require("events");
     var time = "2000";
     
     // DO NOT CHANGE!! THIS IS A CONVERTER 
-    var convertTime = parselnt(time);
+    var convert = parselnt(time);
 
     function createConversationToolboxUI() {
         conversationToolboxContext.events.push({
             start: function (builder, args) {
                 builder.button("Send Message", function () {
                     var conversationId = args["conversationId"];
-			sleep(convertTime)
+			sleep(convert)
 			messaging.sendChatMessage(conversationId, inputMessage, function () { });
 		});
 	    }
