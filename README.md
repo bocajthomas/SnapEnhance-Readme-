@@ -1,8 +1,3 @@
-# Features Explained 
-[TAP](https://github.com/bocajthomas/SnapEnhance-bocajthomas/blob/wiki/FeaturesExplained.md)
+# Scheduled Messages
+[TAP](https://github.com/bocajthomas/SnapEnhance/blob/scripts/Scriptdev/Scheduledmessage-v0.1.js)
 
-# Installation Guides 
-[TAP](https://github.com/bocajthomas/SnapEnhance-bocajthomas/blob/wiki/InstallationGuides.md)
-
-# Troubleshooting
-[TAP](https://github.com/bocajthomas/SnapEnhance-bocajthomas/blob/wiki/Troubleshooting.md)
