@@ -26,13 +26,16 @@ var events = require("events");
     
     // Replace Inside " " With Time In Ms ( Milliseconds )
     var time = "2000";
+    
+    // DO NOT CHANGE!! THIS IS A CONVERTER 
+    var convertTime = parselnt(time);
 
     function createConversationToolboxUI() {
         conversationToolboxContext.events.push({
             start: function (builder, args) {
                 builder.button("Send Message", function () {
                     var conversationId = args["conversationId"];
-			sleep(time)
+			sleep(convertTime)
 			messaging.sendChatMessage(conversationId, inputMessage, function () { });
 		});
 	    }
