@@ -47,14 +47,16 @@ var events = require("events");
 	    }
 	});
     }
-    // TODO: create new function for sending message				
+    
+    // TODO: test & redo sMessaging				
     function sMessaging() {
 	    snapActivityContext.events.push({
 		    start: function (activity) {
 			    var conversationId = args["conversationId"];
 			    toasts();
 			    messaging.sendChatMessage(conversationId, inputMessage, function () { });
-		    });
+		    },
+	    });
     }
 			    
 	    
