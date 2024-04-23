@@ -29,14 +29,13 @@ var events = require("events");
     };
 
     // Replace Inside " " With You're Custom Message
-    var defaultText = "input Message";
+    var inputMessage = "https://github.com/bocajthomas/SnapEnhance/blob/scripts/Scriptdev/Scheduledmessage-v0.1.js";
     
     // Replace The Number With Time In Ms ( Milliseconds )
     // 1000 Ms = 1 second 
     var time = 2000;
 	
-    var userInput = getName(userinput);
-    
+
     // TODO: 3 buttons with diff Timer  
     function createConversationToolboxUI() {
         conversationToolboxContext.events.push({
@@ -44,29 +43,11 @@ var events = require("events");
                 builder.button("Send Message", function () {
                     var conversationId = args["conversationId"];
 			toasts();
-			messaging.sendChatMessage(conversationId, userInput, function () { });
+			messaging.sendChatMessage(conversationId, inputMessage, function () { });
 		});
 	    }
 	});
     }
-    var settingsContext = {
-	    events: [],
-    };
-
-    // TODO: Finish Input 	
-    function createManagerToolboxUI() {
-	    settingsContext.events.push(
-		    start: function (builder) {
-		    builder.row(function (builder) {
-			    builder.textInput("Type Youre Message", config.get("userinput", defaultText), function (value) {
-			    config.set("userinput", value, true);
-			    }) 
-				    .maxLInes(8)
-				    .singleLine(false);
-		    });
-	    };
-    }
-			
     // TODO: create new function for sending message				
     
     var snapActivityContext = {
@@ -87,7 +68,6 @@ var events = require("events");
 
     function createInterface() {
         createConversationToolboxUI();
-	createManagerToolboxUI();
     }
 
     var snapApplicationContext = {
