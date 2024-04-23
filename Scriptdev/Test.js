@@ -1,11 +1,3 @@
-// ==SE_module==
-// name: replay_with_ai
-// displayName: AI Respond
-// description: A straightforward AI for automatic responses to your friends
-// version: 1.0
-// author: Suleyman Laarabi
-// ==/SE_module==
-
 var networking = require("networking");
 var messaging = require("messaging");
 var config = require("config");
