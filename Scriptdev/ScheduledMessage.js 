@@ -11,7 +11,7 @@
 // - "Auto Reload" To "ALL"
 
 // NOTE!
-// This version allows scheduling messages.
+// scheduling messages is currently broken. Toolbox works. Sending message doesn't.
 
 var networking = require("networking");
 var messaging = require("messaging");
@@ -31,14 +31,14 @@ var events = require("events");
   // Replace Inside " " With You're Custom Message
   var inputMessage = "Your message here";
 
-  // Function to schedule message sending
+  // TODO: Fix schedulemessage function 
   function scheduleMessage(conversationId, delayInMs) {
     setTimeout(function () {
       messaging.sendChatMessage(conversationId, inputMessage, function () { });
     }, delayInMs);
   }
 
-  // TODO: 3 buttons with diff Timers  
+  // TODO: fix temporary freeze/not allowing to send the message in the background while doing other tasks on Snapchat 
   function createConversationToolboxUI() {
     conversationToolboxContext.events.push({
       start: function (builder, args) {
