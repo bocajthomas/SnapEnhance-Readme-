@@ -202,6 +202,17 @@ class DatabaseAccess(
         }
     }
 
+    fun getFriendInfoByUsername(username: String): FriendInfo? {
+        return useDatabase(DatabaseType.MAIN)?.performOperation {
+            readDatabaseObject(
+                FriendInfo(),
+                "FriendWithUsername",
+                "usernameForSorting = ?",
+                arrayOf(username)
+            )
+        }
+    }
+
     fun getAllFriends(): List<FriendInfo> {
         return useDatabase(DatabaseType.MAIN)?.performOperation {
             safeRawQuery(

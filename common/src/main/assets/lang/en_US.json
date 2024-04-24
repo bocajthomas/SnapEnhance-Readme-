@@ -774,6 +774,10 @@
                                 "name": "Composer Hooks",
                                 "description": "Injects code into the Composer cross-platform UI framework",
                                 "properties": {
+                                    "show_first_created_username": {
+                                        "name": "Show First Created Username",
+                                        "description": "Shows the first created username next to the current username in the profile page"
+                                    },
                                     "bypass_camera_roll_limit": {
                                         "name": "Bypass Camera Roll Limit",
                                         "description": "Increases the maximum amount of media you can send from the camera roll"

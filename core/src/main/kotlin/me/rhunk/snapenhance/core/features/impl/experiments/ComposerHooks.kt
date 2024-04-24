@@ -130,25 +130,36 @@ class ComposerHooks: Feature("ComposerHooks", loadParams = FeatureLoadParams.ACT
         }
     }
 
+    private fun getConfig(): Map<String, Any> {
+        return HashMap<String, Any>().apply {
+            put("bypassCameraRollLimit", config.bypassCameraRollLimit.get())
+            put("showFirstCreatedUsername", config.showFirstCreatedUsername.get())
+            put("composerConsole", config.composerConsole.get())
+            put("composerLogs", config.composerLogs.get())
+        }
+    }
+
     private fun handleExportCall(composerMarshaller: ComposerMarshaller): Boolean {
         val argc = composerMarshaller.getSize()
         if (argc < 1) return false
         val action = composerMarshaller.getUntyped(0) as? String ?: return false
 
         when (action) {
-            "getConfig" -> {
-                composerMarshaller.pushUntyped(
-                    HashMap<String, Any>().apply {
-                        put("bypassCameraRollLimit", config.bypassCameraRollLimit.get())
-                        put("composerConsole", config.composerConsole.get())
-                        put("composerLogs", config.composerLogs.get())
-                    }
-                )
-            }
+            "getConfig" -> composerMarshaller.pushUntyped(getConfig())
             "showToast" -> {
                 if (argc < 2) return false
-                val message = composerMarshaller.getUntyped(1) as? String ?: return false
-                context.shortToast(message)
+                context.shortToast(composerMarshaller.getUntyped(1) as? String ?: return false)
+            }
+            "getFriendInfoByUsername" -> {
+                if (argc < 2) return false
+                val username = composerMarshaller.getUntyped(1) as? String ?: return false
+                runCatching {
+                    composerMarshaller.pushUntyped(context.database.getFriendInfoByUsername(username)?.let {
+                        context.gson.toJson(it)
+                    })
+                }.onFailure {
+                    composerMarshaller.pushUntyped(null)
+                }
             }
             "log" -> {
                 if (argc < 3) return false
@@ -167,9 +178,10 @@ class ComposerHooks: Feature("ComposerHooks", loadParams = FeatureLoadParams.ACT
             }
             "eval" -> {
                 if (argc < 2) return false
-                val code = composerMarshaller.getUntyped(1) as? String ?: return false
                 runCatching {
-                    composerMarshaller.pushUntyped(context.native.composerEval(code))
+                    composerMarshaller.pushUntyped(context.native.composerEval(
+                        composerMarshaller.getUntyped(1) as? String ?: return false
+                    ))
                 }.onFailure {
                     composerMarshaller.pushUntyped(it.toString())
                 }
