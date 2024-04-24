@@ -43,7 +43,7 @@ var events = require("events");
     conversationToolboxContext.events.push({
       start: function (builder, args) {
         builder.button("Send in 5 seconds", function () {
-          scheduleMessage(args["conversationId"], 5000); // Delay of 5 seconds (5000ms)
+          scheduleMessage(args["conversationId"], 2000); // Delay of 2 seconds (5000ms)
         });
         builder.button("Send in 10 seconds", function () {
           scheduleMessage(args["conversationId"], 10000); // Delay of 10 seconds (10000ms)
