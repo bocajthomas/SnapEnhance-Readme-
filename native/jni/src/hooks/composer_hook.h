@@ -99,13 +99,15 @@ namespace ComposerHook {
         if (global_instance == 0 || global_ctx == nullptr) {
             global_instance = instance;
             global_ctx = ctx;
-            LOGD("Injecting composer loader");
 
-            composer_loader->resize(composer_loader->size() + input_len);
-            memcpy((void*) (composer_loader->c_str() + composer_loader->size() - input_len), input, input_len);
+            if (composer_loader != nullptr) {
+                LOGD("Injecting composer loader");
+                composer_loader->resize(composer_loader->size() + input_len);
+                memcpy((void*) (composer_loader->c_str() + composer_loader->size() - input_len), input, input_len);
 
-            input = (char*) composer_loader->c_str();
-            input_len = composer_loader->size();
+                input = (char*) composer_loader->c_str();
+                input_len = composer_loader->size();
+            }
         } else {
             if (composer_loader != nullptr) {
                 delete composer_loader;
