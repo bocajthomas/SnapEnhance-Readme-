@@ -30,6 +30,7 @@ import me.rhunk.snapenhance.common.ui.createComposeAlertDialog
 import me.rhunk.snapenhance.common.ui.createComposeView
 import me.rhunk.snapenhance.core.features.Feature
 import me.rhunk.snapenhance.core.features.FeatureLoadParams
+import me.rhunk.snapenhance.core.features.impl.downloader.MediaDownloader
 import me.rhunk.snapenhance.core.util.hook.HookStage
 import me.rhunk.snapenhance.core.util.hook.Hooker
 import me.rhunk.snapenhance.core.util.hook.hook
@@ -131,12 +132,13 @@ class ComposerHooks: Feature("ComposerHooks", loadParams = FeatureLoadParams.ACT
     }
 
     private fun getConfig(): Map<String, Any> {
-        return HashMap<String, Any>().apply {
-            put("bypassCameraRollLimit", config.bypassCameraRollLimit.get())
-            put("showFirstCreatedUsername", config.showFirstCreatedUsername.get())
-            put("composerConsole", config.composerConsole.get())
-            put("composerLogs", config.composerLogs.get())
-        }
+        return mapOf<String, Any>(
+            "operaDownloadButton" to context.config.downloader.operaDownloadButton.get(),
+            "bypassCameraRollLimit" to config.bypassCameraRollLimit.get(),
+            "showFirstCreatedUsername" to config.showFirstCreatedUsername.get(),
+            "composerConsole" to config.composerConsole.get(),
+            "composerLogs" to config.composerLogs.get()
+        )
     }
 
     private fun handleExportCall(composerMarshaller: ComposerMarshaller): Boolean {
@@ -150,6 +152,7 @@ class ComposerHooks: Feature("ComposerHooks", loadParams = FeatureLoadParams.ACT
                 if (argc < 2) return false
                 context.shortToast(composerMarshaller.getUntyped(1) as? String ?: return false)
             }
+            "downloadLastOperaMedia" -> context.feature(MediaDownloader::class).downloadLastOperaMediaAsync(composerMarshaller.getUntyped(1) == true)
             "getFriendInfoByUsername" -> {
                 if (argc < 2) return false
                 val username = composerMarshaller.getUntyped(1) as? String ?: return false
@@ -174,16 +177,6 @@ class ComposerHooks: Feature("ComposerHooks", loadParams = FeatureLoadParams.ACT
                     "info" -> context.log.info(message, tag)
                     "warn" -> context.log.warn(message, tag)
                     "error" -> context.log.error(message, tag)
-                }
-            }
-            "eval" -> {
-                if (argc < 2) return false
-                runCatching {
-                    composerMarshaller.pushUntyped(context.native.composerEval(
-                        composerMarshaller.getUntyped(1) as? String ?: return false
-                    ))
-                }.onFailure {
-                    composerMarshaller.pushUntyped(it.toString())
                 }
             }
             else -> context.log.warn("Unknown action: $action", "Composer")

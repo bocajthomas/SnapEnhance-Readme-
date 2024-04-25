@@ -85,7 +85,7 @@ We no longer offer official `LSPatch` binaries for obvious reasons. However, you
   - `Call Start Confirmation`
   - `Auto Save Messages` 
   - `Prevent Message Sending`
-  - `Instant Delete`
+  - `Friend Mutation Notifier`
   - `Better Notifications` 
   - `Notifications Blacklist`
   - `Message Logger`
@@ -149,6 +149,7 @@ We no longer offer official `LSPatch` binaries for obvious reasons. However, you
   - `No Friend Score Delay`
   - `End-to-End Encryption`
   - `Enable Hidden Snapchat Plus Features`
+  - `Custom Streaks Expiration Format`
   - `Add Friend Source Spoof`
   - `Disable Composer Modules`
   - `Prevent Forced Logout`
