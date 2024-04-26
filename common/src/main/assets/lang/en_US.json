@@ -648,6 +648,10 @@
                         "name": "Block Ads",
                         "description": "Prevents Advertisements from being displayed"
                     },
+                    "disable_custom_tabs": {
+                        "name": "Disable Custom Tabs",
+                        "description": "Opens links in supported applications rather than in the Web Browser"
+                    },
                     "disable_permission_requests": {
                         "name": "Disable Permission Requests",
                         "description": "Prevents Snapchat from asking for specific permissions"

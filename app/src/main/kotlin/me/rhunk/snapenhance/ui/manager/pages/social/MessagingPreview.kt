@@ -33,12 +33,12 @@ import me.rhunk.snapenhance.common.Constants
 import me.rhunk.snapenhance.common.ReceiversConfig
 import me.rhunk.snapenhance.common.data.ContentType
 import me.rhunk.snapenhance.common.data.SocialScope
+import me.rhunk.snapenhance.common.messaging.MessagingConstraints
+import me.rhunk.snapenhance.common.messaging.MessagingTask
+import me.rhunk.snapenhance.common.messaging.MessagingTaskConstraint
+import me.rhunk.snapenhance.common.messaging.MessagingTaskType
 import me.rhunk.snapenhance.common.util.protobuf.ProtoReader
 import me.rhunk.snapenhance.common.util.snap.SnapWidgetBroadcastReceiverHelper
-import me.rhunk.snapenhance.messaging.MessagingConstraints
-import me.rhunk.snapenhance.messaging.MessagingTask
-import me.rhunk.snapenhance.messaging.MessagingTaskConstraint
-import me.rhunk.snapenhance.messaging.MessagingTaskType
 import me.rhunk.snapenhance.ui.manager.Routes
 import me.rhunk.snapenhance.ui.util.Dialog
 
@@ -299,14 +299,17 @@ class MessagingPreview: Routes.Route() {
                     else selectConstraintsDialog = true
                 }
                 ActionButton(text = translation[if (hasSelection) "mark_selection_as_seen_option" else "mark_all_as_seen_option"], icon = Icons.Rounded.RemoveRedEye) {
-                    launchMessagingTask(MessagingTaskType.READ, listOf(
+                    launchMessagingTask(
+                        MessagingTaskType.READ, listOf(
                         MessagingConstraints.NO_USER_ID(messagingBridge.myUserId),
                         MessagingConstraints.CONTENT_TYPE(arrayOf(ContentType.SNAP))
                     ))
                     runCurrentTask()
                 }
                 ActionButton(text = translation[if (hasSelection) "delete_selection_option" else "delete_all_option"], icon = Icons.Rounded.DeleteForever) {
-                    launchMessagingTask(MessagingTaskType.DELETE, listOf(MessagingConstraints.USER_ID(messagingBridge.myUserId))) { message ->
+                    launchMessagingTask(MessagingTaskType.DELETE, listOf(MessagingConstraints.USER_ID(messagingBridge.myUserId), {
+                        contentType != ContentType.STATUS.id
+                    })) { message ->
                         coroutineScope.launch {
                             message.contentType = ContentType.STATUS.id
                         }

@@ -26,6 +26,7 @@ class ConversationManager(
     private val fetchMessage by lazy { findMethodByName("fetchMessage") }
     private val clearConversation by lazy { findMethodByName("clearConversation") }
     private val getOneOnOneConversationIds by lazy { findMethodByName("getOneOnOneConversationIds") }
+    private val dismissStreakRestore by lazy { findMethodByName("dismissStreakRestore") }
 
 
     private fun getCallbackClass(name: String): Class<*> {
@@ -175,4 +176,11 @@ class ConversationManager(
     }
 
     fun isEditMessageSupported() = instanceNonNull()::class.java.methods.any { it.name == "editMessage" }
+
+    fun dismissStreakRestore(conversationId: String, onSuccess: () -> Unit, onError: (error: String) -> Unit) {
+        val callback = CallbackBuilder(getCallbackClass("Callback"))
+            .override("onSuccess") { onSuccess() }
+            .override("onError") { onError(it.arg<Any>(0).toString()) }.build()
+        dismissStreakRestore.invoke(instanceNonNull(), conversationId.toSnapUUID().instanceNonNull(), callback)
+    }
 }

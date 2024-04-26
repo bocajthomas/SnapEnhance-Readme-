@@ -3,7 +3,11 @@ package me.rhunk.snapenhance.core.action.impl
 import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.view.Gravity
+import android.view.View
+import android.widget.LinearLayout
 import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -27,12 +31,15 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import me.rhunk.snapenhance.common.data.ContentType
 import me.rhunk.snapenhance.common.data.FriendLinkType
 import me.rhunk.snapenhance.common.database.impl.FriendInfo
+import me.rhunk.snapenhance.common.messaging.MessagingConstraints
+import me.rhunk.snapenhance.common.messaging.MessagingTask
+import me.rhunk.snapenhance.common.messaging.MessagingTaskType
 import me.rhunk.snapenhance.common.ui.createComposeAlertDialog
 import me.rhunk.snapenhance.common.util.ktx.copyToClipboard
 import me.rhunk.snapenhance.common.util.snap.BitmojiSelfie
@@ -72,34 +79,45 @@ class BulkMessagingAction : AbstractAction() {
         ctx: Context,
         ids: List<String>,
         delay: Pair<Long, Long>,
-        action: (String) -> Unit = {},
-    ): Job {
-        var index = 0
-        val dialog = ViewAppearanceHelper.newAlertDialogBuilder(ctx)
-            .setTitle("...")
-            .setView(ProgressBar(ctx))
-            .setCancelable(false)
-            .show()
+        action: suspend (id: String, setDialogMessage: (String) -> Unit) -> Unit = { _, _ -> }
+    ) = context.coroutineScope.launch {
+        val statusTextView = TextView(ctx)
+        val dialog = withContext(Dispatchers.Main) {
+            ViewAppearanceHelper.newAlertDialogBuilder(ctx)
+                .setTitle("...")
+                .setView(LinearLayout(ctx).apply {
+                    orientation = LinearLayout.VERTICAL
+                    gravity = Gravity.CENTER
+                    addView(statusTextView.apply {
+                        layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT)
+                        textAlignment = View.TEXT_ALIGNMENT_CENTER
+                    })
+                    addView(ProgressBar(ctx))
+                })
+                .setCancelable(false)
+                .show()
+        }
 
-        return context.coroutineScope.launch {
-            ids.forEach { id ->
-                runCatching {
-                    action(id)
-                }.onFailure {
-                    context.log.error("Failed to process $it", it)
-                    context.shortToast("Failed to process $id")
-                }
-                index++
-                withContext(Dispatchers.Main) {
-                    dialog.setTitle(
-                        translation.format("progress_status", "index" to index.toString(), "total" to ids.size.toString())
-                    )
-                }
-                delay(Random.nextLong(delay.first, delay.second))
+        ids.forEachIndexed { index, id ->
+            launch(Dispatchers.Main) {
+                dialog.setTitle(
+                    translation.format("progress_status", "index" to (index + 1).toString(), "total" to ids.size.toString())
+                )
             }
-            withContext(Dispatchers.Main) {
-                dialog.dismiss()
+            runCatching {
+                action(id) {
+                    launch(Dispatchers.Main) {
+                        statusTextView.text = it
+                    }
+                }
+            }.onFailure {
+                context.log.error("Failed to process $it", it)
+                context.shortToast("Failed to process $id")
             }
+            delay(Random.nextLong(delay.first, delay.second))
+        }
+        withContext(Dispatchers.Main) {
+            dialog.dismiss()
         }
     }
 
@@ -378,20 +396,22 @@ class BulkMessagingAction : AbstractAction() {
                                 Text(text = (friendInfo.displayName ?: friendInfo.mutableUsername).toString(), fontSize = 16.sp, fontWeight = FontWeight.Bold, overflow = TextOverflow.Ellipsis, maxLines = 1)
                                 Text(text = friendInfo.mutableUsername.toString(), fontSize = 10.sp, fontWeight = FontWeight.Light, overflow = TextOverflow.Ellipsis, maxLines = 1)
                             }
-                            Text(text = "Relationship: " + remember(friendInfo) {
-                                 context.translation["friendship_link_type.${FriendLinkType.fromValue(friendInfo.friendLinkType).shortName}"]
-                            }, fontSize = 12.sp, fontWeight = FontWeight.Light)
-                            remember(friendInfo) { friendInfo.addedTimestamp.takeIf { it > 0L }?.let {
-                                DateFormat.getDateTimeInstance().format(Date(friendInfo.addedTimestamp))
-                            } }?.let {
-                                Text(text = "Added $it", fontSize = 12.sp, fontWeight = FontWeight.Light)
+                            val userInfo = remember(friendInfo) {
+                                buildString {
+                                    append("Relationship: ")
+                                    append(context.translation["friendship_link_type.${FriendLinkType.fromValue(friendInfo.friendLinkType).shortName}"])
+                                    friendInfo.addedTimestamp.takeIf { it > 0L }?.let {
+                                        append("\nAdded ${DateFormat.getDateTimeInstance().format(Date(it))}")
+                                    }
+                                    friendInfo.snapScore.takeIf { it > 0 }?.let {
+                                        append("\nSnap Score: $it")
+                                    }
+                                    friendInfo.streakLength.takeIf { it > 0 }?.let {
+                                        append("\nStreaks length: $it")
+                                    }
+                                }
                             }
-                            remember(friendInfo) { friendInfo.snapScore.takeIf { it > 0 } }?.let {
-                                Text(text = "Snap Score: $it", fontSize = 12.sp, fontWeight = FontWeight.Light)
-                            }
-                            remember(friendInfo) { friendInfo.streakLength.takeIf { it > 0 } }?.let {
-                                Text(text = "Streaks length: $it", fontSize = 12.sp, fontWeight = FontWeight.Light)
-                            }
+                            Text(text = userInfo, fontSize = 12.sp, fontWeight = FontWeight.Light, lineHeight = 16.sp, overflow = TextOverflow.Ellipsis)
                         }
 
                         Checkbox(
@@ -421,56 +441,65 @@ class BulkMessagingAction : AbstractAction() {
 
             val ctx = LocalContext.current
 
+            val actions = remember {
+                mapOf<() -> String, () -> Unit>(
+                    { "Clean " + selectedFriends.size + " conversations" } to {
+                        context.feature(Messaging::class).conversationManager?.getOneOnOneConversationIds(selectedFriends.toList().also {
+                            selectedFriends.clear()
+                        }, onError = { error ->
+                            context.shortToast("Failed to fetch conversations: $error")
+                        }, onSuccess = { conversations ->
+                            removeAction(ctx, conversations.map { it.second }.distinct(), delay = 10L to 40L) { conversationId, setDialogMessage ->
+                                cleanConversation(
+                                    conversationId, setDialogMessage
+                                )
+                            }.invokeOnCompletion {
+                                coroutineScope.launch { refreshList() }
+                            }
+                        })
+                    },
+                    { "Remove " + selectedFriends.size + " friends" } to {
+                        removeAction(ctx, selectedFriends.toList().also {
+                            selectedFriends.clear()
+                        }, delay = 500L to 1200L) { userId, _ -> removeFriend(userId) }.invokeOnCompletion {
+                            coroutineScope.launch { refreshList() }
+                        }
+                    },
+                    { "Clean " + selectedFriends.size + " conversations and remove " + selectedFriends.size + " friends" } to {
+                        context.feature(Messaging::class).conversationManager?.getOneOnOneConversationIds(selectedFriends.toList().also {
+                            selectedFriends.clear()
+                        }, onError = { error ->
+                            context.shortToast("Failed to fetch conversations: $error")
+                        }, onSuccess = { conversations ->
+                            removeAction(ctx, conversations.map { it.second }.distinct(), delay = 500L to 1200L) { conversationId, setDialogMessage ->
+                                cleanConversation(
+                                    conversationId, setDialogMessage
+                                )
+                                removeFriend(conversations.firstOrNull { it.second == conversationId }?.first ?: return@removeAction)
+                            }.invokeOnCompletion {
+                                coroutineScope.launch { refreshList() }
+                            }
+                        })
+                    }
+                )
+            }
+
             Column(
                 modifier = Modifier.fillMaxWidth(),
             ) {
-                Button(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(2.dp),
-                    onClick = {
-                        showConfirmationDialog = true
-                        action = {
-                            val messaging = context.feature(Messaging::class)
-                            messaging.conversationManager?.apply {
-                                getOneOnOneConversationIds(selectedFriends, onError = { error ->
-                                    context.shortToast("Failed to fetch conversations: $error")
-                                }, onSuccess = { conversations ->
-                                    context.runOnUiThread {
-                                        removeAction(ctx, conversations.map { it.second }.distinct(), delay = 100L to 400L) {
-                                            messaging.clearConversationFromFeed(it, onError = { error ->
-                                                context.shortToast("Failed to clear conversation: $error")
-                                            })
-                                        }.invokeOnCompletion {
-                                            coroutineScope.launch { refreshList() }
-                                        }
-                                    }
-                                })
-                                selectedFriends.clear()
-                            }
-                        }
-                    },
-                    enabled = selectedFriends.isNotEmpty()
-                ) {
-                    Text(text = "Clear " + selectedFriends.size + " conversations")
-                }
-                Button(
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(2.dp),
-                    onClick = {
-                        showConfirmationDialog = true
-                        action = {
-                            removeAction(ctx, selectedFriends.toList().also {
-                                selectedFriends.clear()
-                            }, delay = 500L to 1200L) { removeFriend(it) }.invokeOnCompletion {
-                                coroutineScope.launch { refreshList() }
-                            }
-                        }
-                    },
-                    enabled = selectedFriends.isNotEmpty()
-                ) {
-                    Text(text = "Remove " + selectedFriends.size + " friends")
+                actions.forEach { (text, actionFunction) ->
+                    Button(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(2.dp),
+                        onClick = {
+                            showConfirmationDialog = true
+                            action = actionFunction
+                        },
+                        enabled = selectedFriends.isNotEmpty()
+                    ) {
+                        Text(text = remember(selectedFriends.size) { text() })
+                    }
                 }
             }
         }
@@ -519,5 +548,24 @@ class BulkMessagingAction : AbstractAction() {
                 it.name == "subscribe" && it.parameterTypes.isEmpty()
             }.invoke(completable)
         }
+    }
+
+    private suspend fun cleanConversation(
+        conversationId: String,
+        setDialogMessage: (String) -> Unit
+    ) {
+        val messageCount = mutableIntStateOf(0)
+        MessagingTask(
+            context.messagingBridge,
+            conversationId,
+            taskType = MessagingTaskType.DELETE,
+            constraints = listOf(MessagingConstraints.MY_USER_ID(context.messagingBridge), {
+                contentType != ContentType.STATUS.id
+            }),
+            processedMessageCount = messageCount,
+            onSuccess = {
+                setDialogMessage("${messageCount.intValue} deleted messages")
+            },
+        ).run()
     }
 }

@@ -127,6 +127,7 @@ class FeatureManager(
             AutoOpenSnaps(),
             CustomStreaksExpirationFormat(),
             ComposerHooks(),
+            DisableCustomTabs(),
         )
 
         initializeFeatures()

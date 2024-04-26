@@ -1,4 +1,4 @@
-package me.rhunk.snapenhance.messaging
+package me.rhunk.snapenhance.common.messaging
 
 import androidx.compose.runtime.MutableIntState
 import kotlinx.coroutines.delay
@@ -67,9 +67,9 @@ class MessagingTask(
             error?.takeIf { error != "DUPLICATE_REQUEST" }?.let {
                 onFailure(message, error)
             }
-            onSuccess(message)
             processedMessageCount.intValue++
-            delay(Random.nextLong(20, 50))
+            onSuccess(message)
+            delay(Random.nextLong(50, 80))
         }
     }
 
