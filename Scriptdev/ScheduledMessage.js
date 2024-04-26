@@ -7,10 +7,10 @@
 // ==/SE_module==
 
 // Required Feature:
-// - "Integrated UI"
-// - "Auto Reload" To "ALL"
+// - Integrated UI
+// - Auto Reload To ALL
 
-// NOTE!
+// NOTE:
 // scheduling messages is currently broken. Toolbox works. Sending message doesn't.
 
 var networking = require("networking");
@@ -31,13 +31,23 @@ var events = require("events");
   // Replace Inside " " With You're Custom Message
   var inputMessage = "Your message here";
 
-  // TODO: Fix schedulemessage function 
+  // TODO: Test & Fix 
   function scheduleMessage(conversationId, delayInMs) {
     setTimeout(function () {
-      messaging.sendChatMessage(conversationId, inputMessage, function () { });
+      try {
+        messaging.sendChatMessage(conversationId,inputMessage, function (error) {
+          if (error) {
+            shortToast("Errors sending message");
+          } else {
+            shortToast("message sent");
+          }
+        });
+      } catch (error) {
+        shortToast("Unexpected Error");
+      }
     }, delayInMs);
   }
-
+        
   // TODO: fix temporary freeze/not allowing to send the message in the background while doing other tasks on Snapchat 
   function createConversationToolboxUI() {
     conversationToolboxContext.events.push({
@@ -61,9 +71,7 @@ var events = require("events");
   };
 
   function start(_a) {
-    _a.snapActivityContext;
-    _a.conversationToolboxContext;
-    _a.settingsContext;
+    _a.snapActivityContext; _a.conversationToolboxContext; _a.settingsContext;
     createInterface();
   }
 
