@@ -2,11 +2,11 @@
     "setup": {
         "dialogs": {
             "select_language": "Dil Seçin",
-            "save_folder": "SnapEnhance, Snapchat'tan Medya indirmek ve Kaydetmek için Depolama izinlerine ihtiyaç duyar.\nLütfen medyanın indirileceği konumu seçin.",
-            "select_save_folder_button": "Dosya Seç"
+            "save_folder": "SnapEnhance, Snapchat'ten Medya indirmek ve Kaydetmek için Depolama izinleri gerektirir.\nLütfen medyanın indirileceği konumu seçin.",
+            "select_save_folder_button": "Klasör Seç"
         },
         "mappings": {
-            "dialog": "Çok çeşitli Snapchat Sürümlerini dinamik olarak desteklemek için, SnapEnhance'in düzgün çalışması için eşlemeler gereklidir; bu işlem 5 saniyeden fazla sürmemelidir.",
+            "dialog": "Çok çeşitli Snapchat Sürümlerini dinamik olarak desteklemek için, SnapEnhance'in düzgün çalışması için eşlemeler gereklidir, bu işlem 5 saniyeden fazla sürmemelidir.",
             "generate_button": "Oluştur",
             "generate_failure_no_snapchat": "SnapEnhance Snapchat'i algılayamadı, lütfen Snapchat'i yeniden yüklemeyi deneyin.",
             "generate_failure": "Eşlemeleri oluşturmaya çalışırken bir hata oluştu, lütfen tekrar deneyin.",
@@ -652,6 +652,10 @@
                     "hide_active_music": {
                         "name": "Aktif Müziği Gizle",
                         "description": "Snapchat'in müzik dinlediğinizi bilmesini engeller\nBu sayede müzik dinlerken ses kontrol düğmelerini kullanarak fotoğraf çekebilirsiniz"
+                    },
+                    "disable_custom_tabs": {
+                        "name": "Özel Sekmeleri Devre Dışı Bırak",
+                        "description": "Bağlantıları Web Tarayıcı yerine desteklenen uygulamalarda açar"
                     }
                 }
             },
@@ -734,6 +738,28 @@
                             "disable_bitmoji": {
                                 "name": "Bitmoji'yi Devre Dışı Bırak",
                                 "description": "Arkadaş Profili Bitmoji'sini devre dışı bırakır"
+                            },
+                            "composer_hooks": {
+                                "properties": {
+                                    "bypass_camera_roll_limit": {
+                                        "name": "Film Rulosu Sınırını Atla",
+                                        "description": "Film rulosundan gönderebileceğiniz maksimum medya miktarını artırır"
+                                    },
+                                    "composer_console": {
+                                        "name": "Composer Konsolu",
+                                        "description": "Composer'da JavaScript kodu çalıştırmanıza izin verir (yalnızca arm64)"
+                                    },
+                                    "composer_logs": {
+                                        "name": "Composer Günlükleri",
+                                        "description": "Composer'ın konsol günlüklerini SnapEnhance'a yönlendirir"
+                                    },
+                                    "show_first_created_username": {
+                                        "name": "İlk Oluşturulan Kullanıcı Adını Göster",
+                                        "description": "Profil sayfasında mevcut kullanıcı adının yanında ilk oluşturulan kullanıcı adını gösterir"
+                                    }
+                                },
+                                "name": "Composer Kancaları",
+                                "description": "Composer çapraz platform UI çerçevesine kod enjekte eder"
                             }
                         }
                     },
@@ -801,10 +827,6 @@
                         "name": "Gizli Snapchat Plus Özellikleri",
                         "description": "Yayınlanmamış/beta Snapchat Plus özelliklerini etkinleştirir\nEski Snapchat sürümlerinde çalışmayabilir"
                     },
-                    "disable_composer_modules": {
-                        "name": "Composer Modüllerini Devre Dışı Bırakma",
-                        "description": "Seçili composer modüllerinin yüklenmesini engeller\nİsimler virgül ile ayrılmalıdır"
-                    },
                     "prevent_forced_logout": {
                         "name": "Zorla Oturum Kapatmayı Önleme",
                         "description": "Başka bir cihazdan giriş yaptığınızda Snapchat'in oturumunuzu kapatmasını engeller"
@@ -868,8 +890,8 @@
                         "description": "Snapchat'e şifre olmadan erişimi engeller"
                     },
                     "custom_streaks_expiration_format": {
-                        "name": "Özel Serilerin Son Kullanım Formatı",
-                        "description": "Özel Serilerin Son Kullanım Formatını Kişiselleştir\n\nKullanılabilir değişkenler:\n- %c: Seri Sayısı\n- %e: Kum Saati Emoji\n- %d: Günler\n- %h: Saatler\n- %m: Dakikalar\n- %s: Saniyeler\n- %w: Kalan Zaman"
+                        "name": "Özel Serilerin Sona Erme Biçimi",
+                        "description": "Seri Sona Erme biçimini özelleştirir\n\nKullanılabilir değişkenler:\n - %c: Seri Sayısı\n - %e: Kum Saati Emojisi\n - %d: Gün\n - %h: Saat\n - %m: Dakika\n - %s: Saniye\n - %w: Kalan Süre"
                     }
                 }
             },

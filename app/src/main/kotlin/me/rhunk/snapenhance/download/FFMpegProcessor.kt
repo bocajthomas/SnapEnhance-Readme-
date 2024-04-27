@@ -115,7 +115,7 @@ class FFMpegProcessor(
         // load ffmpeg native sync to avoid native crash
         synchronized(this) { FFmpegKit.listSessions() }
         val globalArguments = ArgumentList().apply {
-            this += "-hwaccel auto" //Use hwaccel If Available
+            this += "-hwaccel mediacodec" //Use hwaccel If Available
             this += "-y"
             this += "-threads" to ffmpegOptions.threads.get().toString()
         }
@@ -128,7 +128,7 @@ class FFMpegProcessor(
 
         val outputArguments = ArgumentList().apply {
             this += "-preset" to (ffmpegOptions.preset.getNullable() ?: "ultrafast")
-            this += "-c:v" to (ffmpegOptions.customVideoCodec.get().takeIf { it.isNotEmpty() } ?: "libx264")
+            this += "-c:v" to (ffmpegOptions.customVideoCodec.get().takeIf { it.isNotEmpty() } ?: "h264_mediacodec")
             this += "-c:a" to (ffmpegOptions.customAudioCodec.get().takeIf { it.isNotEmpty() } ?: "copy")
             this += "-crf" to ffmpegOptions.constantRateFactor.get().let { "\"$it\"" }
             this += "-b:v" to ffmpegOptions.videoBitrate.get().toString() + "K"

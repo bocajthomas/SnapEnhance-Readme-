@@ -871,6 +871,24 @@
                             "disable_bitmoji": {
                                 "description": "Dezactivează Bitmoji-ul Profilului Prietenilor",
                                 "name": "Dezactivează Bitmoji"
+                            },
+                            "composer_hooks": {
+                                "name": "Ganți Composer",
+                                "properties": {
+                                    "composer_console": {
+                                        "description": "Permite executarea de cod JavaScript în Composer (doar pentru arhitectura arm64)",
+                                        "name": "Consolă Composer"
+                                    },
+                                    "composer_logs": {
+                                        "name": "Jurnalele Composer",
+                                        "description": "Redirecționează jurnalele consolei Composer către SnapEnhance"
+                                    },
+                                    "bypass_camera_roll_limit": {
+                                        "description": "Crește cantitatea maximă de media pe care o poți trimite din Ruloul Camerei",
+                                        "name": "Ocolește Limita Ruloului Camerei"
+                                    }
+                                },
+                                "description": "Injectează cod în framework-ul UI cross-platform Composer"
                             }
                         },
                         "name": "Hook-uri Native(Un set de funcții încorporate care permit dezvoltatorilor să adauge funcționalități la componente)",
@@ -941,10 +959,6 @@
                     "new_chat_action_menu": {
                         "name": "Noul meniu de acțiune de chat",
                         "description": "Utilizați noul sertar de meniu de acțiuni de chat"
-                    },
-                    "disable_composer_modules": {
-                        "description": "Împiedică încărcarea modulelor compozitoare selectate\nNumele trebuie separate prin virgulă",
-                        "name": "Dezactivare Module Compozitor"
                     },
                     "prevent_forced_logout": {
                         "name": "Preveniți deconectarea forțată",

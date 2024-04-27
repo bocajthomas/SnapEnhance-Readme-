@@ -1,5 +1,7 @@
 package me.rhunk.snapenhance.core.features.impl.messaging
 
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.WarningAmber
 import me.rhunk.snapenhance.common.data.ContentType
 import me.rhunk.snapenhance.common.util.protobuf.ProtoEditor
 import me.rhunk.snapenhance.common.util.protobuf.ProtoReader
@@ -15,32 +17,14 @@ import me.rhunk.snapenhance.nativelib.NativeLib
 class SendOverride : Feature("Send Override", loadParams = FeatureLoadParams.INIT_SYNC) {
     private var isLastSnapSavable = false
     private val typeNames by lazy {
-        mutableListOf(
-            "ORIGINAL",
-            "SNAP",
-            "NOTE"
-        ).also {
+        mutableListOf("ORIGINAL", "SNAP", "NOTE").also {
             if (NativeLib.initialized) {
                 it.add("SAVABLE_SNAP")
             }
-        }.associateWith {
-            it
-        }
+        }.associateWith { it }
     }
 
     override fun init() {
-        context.event.subscribe(NativeUnaryCallEvent::class) { event ->
-            if (event.uri != "/messagingcoreservice.MessagingCoreService/CreateContentMessage") return@subscribe
-            if (isLastSnapSavable) {
-                val protoEditor = ProtoEditor(event.buffer)
-                protoEditor.edit(4) {
-                    remove(7)
-                    addVarInt(7, 3)
-                }
-                event.buffer = protoEditor.toByteArray()
-            }
-        }
-
         val stripSnapMetadata = context.config.messaging.stripMediaMetadata.get()
 
         context.event.subscribe(SendMessageWithContentEvent::class, {
@@ -90,9 +74,28 @@ class SendOverride : Feature("Send Override", loadParams = FeatureLoadParams.INI
             event.messageContent.content = newMessageContent
         }
 
-        context.event.subscribe(SendMessageWithContentEvent::class, {
-            context.config.messaging.galleryMediaSendOverride.get()
-        }) { event ->
+        val configOverrideType = context.config.messaging.galleryMediaSendOverride.getNullable() ?: return
+
+        context.event.subscribe(NativeUnaryCallEvent::class) { event ->
+            if (event.uri != "/messagingcoreservice.MessagingCoreService/CreateContentMessage") return@subscribe
+            if (isLastSnapSavable) {
+                event.buffer = ProtoEditor(event.buffer).apply {
+                    edit {
+                        edit(4) {
+                            remove(7)
+                            addVarInt(7, 3) // savePolicy = VIEW_SESSION
+                        }
+                        add(6) {
+                            from(9) {
+                                addVarInt(1, 1)
+                            }
+                        }
+                    }
+                }.toByteArray()
+            }
+        }
+
+        context.event.subscribe(SendMessageWithContentEvent::class) { event ->
             isLastSnapSavable = false
             if (event.destinations.stories?.isNotEmpty() == true && event.destinations.conversations?.isEmpty() == true) return@subscribe
             val localMessageContent = event.messageContent
@@ -104,43 +107,51 @@ class SendOverride : Feature("Send Override", loadParams = FeatureLoadParams.INI
 
             event.canceled = true
 
+            fun sendMedia(overrideType: String): Boolean {
+                if (overrideType != "ORIGINAL" && messageProtoReader.followPath(3)?.getCount(3) != 1) {
+                    context.inAppOverlay.showStatusToast(
+                        icon = Icons.Default.WarningAmber,
+                        context.translation["gallery_media_send_override.multiple_media_toast"]
+                    )
+                    return false
+                }
+
+                when (overrideType) {
+                    "SNAP", "SAVABLE_SNAP" -> {
+                        val extras = messageProtoReader.followPath(3, 3, 13)?.getBuffer()
+
+                        localMessageContent.contentType = ContentType.SNAP
+                        localMessageContent.content = MessageSender.redSnapProto(extras)
+                        if (overrideType == "SAVABLE_SNAP") {
+                            isLastSnapSavable = true
+                        }
+                    }
+                    "NOTE" -> {
+                        localMessageContent.contentType = ContentType.NOTE
+                        localMessageContent.content =
+                            MessageSender.audioNoteProto(messageProtoReader.getVarInt(3, 3, 5, 1, 1, 15) ?: context.feature(MediaFilePicker::class).lastMediaDuration ?: 0)
+                    }
+                }
+
+                return true
+            }
+
+            if (configOverrideType != "always_ask") {
+                if (sendMedia(configOverrideType)) {
+                    event.invokeOriginal()
+                }
+                return@subscribe
+            }
+
             context.runOnUiThread {
                 ViewAppearanceHelper.newAlertDialogBuilder(context.mainActivity!!)
                     .setItems(typeNames.values.map {
                         context.translation["features.options.gallery_media_send_override.$it"]
                     }.toTypedArray()) { dialog, which ->
                         dialog.dismiss()
-                        val overrideType = typeNames.keys.toTypedArray()[which]
-
-                        if (overrideType != "ORIGINAL" && messageProtoReader.followPath(3)?.getCount(3) != 1) {
-                            context.runOnUiThread {
-                                ViewAppearanceHelper.newAlertDialogBuilder(context.mainActivity!!)
-                                    .setMessage(context.translation["gallery_media_send_override.multiple_media_toast"])
-                                    .setPositiveButton(context.translation["button.ok"], null)
-                                    .show()
-                            }
-                            return@setItems
+                        if (sendMedia(typeNames.keys.toTypedArray()[which])) {
+                            event.invokeOriginal()
                         }
-
-                        when (overrideType) {
-                            "SNAP", "SAVABLE_SNAP" -> {
-                                val extras = messageProtoReader.followPath(3, 3, 13)?.getBuffer()
-
-                                localMessageContent.contentType = ContentType.SNAP
-                                localMessageContent.content = MessageSender.redSnapProto(extras)
-                                if (overrideType == "SAVABLE_SNAP") {
-                                    isLastSnapSavable = true
-                                }
-                            }
-
-                            "NOTE" -> {
-                                localMessageContent.contentType = ContentType.NOTE
-                                localMessageContent.content =
-                                    MessageSender.audioNoteProto(messageProtoReader.getVarInt(3, 3, 5, 1, 1, 15) ?: context.feature(MediaFilePicker::class).lastMediaDuration ?: 0)
-                            }
-                        }
-
-                        event.invokeOriginal()
                     }
                     .setNegativeButton(context.translation["button.cancel"], null)
                     .show()

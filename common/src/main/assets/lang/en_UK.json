@@ -686,6 +686,10 @@
                     "hide_active_music": {
                         "name": "Hide Active Music",
                         "description": "Prevents Snapchat from knowing you're listening to music\nThis will allow you to take snaps using control volume buttons while listening to music"
+                    },
+                    "disable_custom_tabs": {
+                        "name": "Disable Custom Tabs",
+                        "description": "Opens links in supported applications rather than in the Web Browser"
                     }
                 }
             },
@@ -764,6 +768,28 @@
                             "disable_bitmoji": {
                                 "name": "Disable Bitmoji",
                                 "description": "Disables Friends Profile Bitmoji"
+                            },
+                            "composer_hooks": {
+                                "properties": {
+                                    "composer_console": {
+                                        "name": "Composer Console",
+                                        "description": "Allows you to execute JavaScript code in Composer (arm64 only)"
+                                    },
+                                    "bypass_camera_roll_limit": {
+                                        "name": "Bypass Camera Roll Limit",
+                                        "description": "Increases the maximum amount of media you can send from the camera roll"
+                                    },
+                                    "composer_logs": {
+                                        "name": "Composer Logs",
+                                        "description": "Redirects console logs of Composer to SnapEnhance"
+                                    },
+                                    "show_first_created_username": {
+                                        "description": "Shows the first created username next to the current username in the profile page",
+                                        "name": "Show First Created Username"
+                                    }
+                                },
+                                "name": "Composer Hooks",
+                                "description": "Injects code into the Composer cross-platform UI framework"
                             }
                         }
                     },
@@ -878,10 +904,6 @@
                     "hidden_snapchat_plus_features": {
                         "description": "Enables unreleased/beta Snapchat Plus features\nMight not work on older Snapchat versions",
                         "name": "Hidden Snapchat Plus Features"
-                    },
-                    "disable_composer_modules": {
-                        "name": "Disable Composer Modules",
-                        "description": "Prevents selected composer modules from being loaded\nNames must be separated by a comma"
                     },
                     "prevent_forced_logout": {
                         "name": "Prevent Forced Logout",

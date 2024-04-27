@@ -21,6 +21,7 @@ class Global : ConfigContainer() {
     inner class BetterLocation : ConfigContainer(hasGlobalState = true) {
         val spoofLocation = boolean("spoof_location") { requireRestart() }
         val coordinates = mapCoordinates("coordinates", 0.0 to 0.0) // lat, long
+        val walkRadius = string("walk_radius") { requireRestart(); inputCheck = { it.toDoubleOrNull()?.isFinite() == true && it.toDouble() >= 0.0 } }
         val alwaysUpdateLocation = boolean("always_update_location") { requireRestart() }
         val suspendLocationUpdates = boolean("suspend_location_updates") { requireRestart() }
         val spoofBatteryLevel = string("spoof_battery_level") { requireRestart(); inputCheck = { it.isEmpty() || it.toIntOrNull() in 0..100 } }

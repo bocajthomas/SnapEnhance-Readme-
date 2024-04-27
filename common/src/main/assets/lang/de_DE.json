@@ -734,6 +734,24 @@
                             "disable_bitmoji": {
                                 "name": "Bitmojis deaktivieren",
                                 "description": "Deaktiviert das Freundesprofil Bitmoji"
+                            },
+                            "composer_hooks": {
+                                "properties": {
+                                    "bypass_camera_roll_limit": {
+                                        "name": "Umgeht das Kamerarollenlimit",
+                                        "description": "Erhöht die maximale Anzahl von Medien, die Sie aus der Kamerarolle senden können"
+                                    },
+                                    "composer_console": {
+                                        "name": "Composer-Konsole",
+                                        "description": "Ermöglicht das Ausführen von JavaScript-Code in Composer (nur arm64)"
+                                    },
+                                    "composer_logs": {
+                                        "name": "Composer-Protokolle",
+                                        "description": "Leitet Konsolenprotokolle von Composer zu SnapEnhance um"
+                                    }
+                                },
+                                "name": "Composer Haken",
+                                "description": "Injiziert Code in das Composer UI-Framework (nur arm64)"
                             }
                         }
                     },
@@ -800,10 +818,6 @@
                     "hidden_snapchat_plus_features": {
                         "name": "Versteckte Snapchat Plus-Funktionen",
                         "description": "Aktiviert unveröffentlichte/beta Snapchat Plus Funktionen\nKönnte auf älteren Snapchat-Versionen nicht funktionieren"
-                    },
-                    "disable_composer_modules": {
-                        "name": "Composer-Module deaktivieren",
-                        "description": "Verhindert, dass ausgewählte Composer-Module geladen werden\nDie Namen müssen durch ein Komma getrennt werden"
                     },
                     "prevent_forced_logout": {
                         "name": "Erzwungenen Logout verhindern",

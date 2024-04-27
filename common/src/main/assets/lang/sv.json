@@ -636,10 +636,6 @@
                         "description": "Använd den nya chattåtgärdsmenylådan",
                         "name": "Ny chattåtgärdsmeny"
                     },
-                    "disable_composer_modules": {
-                        "name": "Inaktivera kompositörsmoduler",
-                        "description": "Förhindrar att valda kompositörsmoduler laddas\nNamn måste avgränsas med kommatecken"
-                    },
                     "session_events": {
                         "properties": {
                             "allow_running_in_background": {

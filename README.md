@@ -151,7 +151,6 @@ We no longer offer official `LSPatch` binaries for obvious reasons. However, you
   - `Enable Hidden Snapchat Plus Features`
   - `Custom Streaks Expiration Format`
   - `Add Friend Source Spoof`
-  - `Disable Composer Modules`
   - `Prevent Forced Logout`
 </details>
 
@@ -250,6 +249,8 @@ Thanks to everyone involved including the [third-party libraries](https://github
 - [TheVisual](https://github.com/TheVisual)
 - [CanerKaraca23](https://github.com/CanerKaraca23)
 - [bocajthomas](https://github.com/bocajthomas)
+- [w451](https://github.com/w451)
+
 ## Donate
 - LTC: LbBnT9GxgnFhwy891EdDKqGmpn7XtduBdE
 - BCH: qpu57a05kqljjadvpgjc6t894apprvth9slvlj4vpj

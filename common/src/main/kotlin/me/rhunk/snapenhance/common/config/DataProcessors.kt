@@ -73,7 +73,7 @@ object DataProcessors {
     val STRING_UNIQUE_SELECTION = PropertyDataProcessor(
         type = Type.STRING_UNIQUE_SELECTION,
         serialize = { JsonPrimitive(it) },
-        deserialize = { obj -> obj.takeIf { !it.isJsonNull }?.asString }
+        deserialize = { obj -> obj.takeIf { !it.isJsonNull }?.asString?.takeIf { it != "false" && it != "true" } }
     )
 
     val MAP_COORDINATES = PropertyDataProcessor(

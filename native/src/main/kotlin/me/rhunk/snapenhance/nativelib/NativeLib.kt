@@ -5,7 +5,6 @@ import android.util.Log
 @Suppress("KotlinJniMissingFunction")
 class NativeLib {
     var nativeUnaryCallCallback: (NativeRequestData) -> Unit = {}
-    var nativeShouldLoadAsset: (String) -> Boolean = { true }
 
     companion object {
         var initialized = false
@@ -38,11 +37,6 @@ class NativeLib {
         if (nativeRequestData.canceled || !nativeRequestData.buffer.contentEquals(buffer)) return nativeRequestData
         return null
     }
-
-    @Suppress("unused")
-    private fun shouldLoadAsset(name: String) = runCatching {
-        nativeShouldLoadAsset(name)
-    }.getOrNull() ?: true
 
     fun loadNativeConfig(config: NativeConfig) {
         if (!initialized) return

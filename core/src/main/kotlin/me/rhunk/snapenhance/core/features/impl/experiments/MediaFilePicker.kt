@@ -176,7 +176,7 @@ class MediaFilePicker : Feature("Media File Picker", loadParams = FeatureLoadPar
 
             val isAudio = context.androidContext.contentResolver.getType(event.intent.data!!)!!.startsWith("audio/")
 
-            if (isAudio || !context.config.messaging.galleryMediaSendOverride.get()) {
+            if (isAudio || context.config.messaging.galleryMediaSendOverride.getNullable() == null) {
                 startConversation(isAudio)
                 return@subscribe
             }

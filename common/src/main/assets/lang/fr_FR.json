@@ -651,7 +651,7 @@
                     },
                     "hide_active_music": {
                         "description": "Empêche Snapchat de savoir que vous écoutez de la musique\nCela vous permettra de prendre des snaps en utilisant les boutons de volume de contrôle tout en écoutant de la musique",
-                        "name": "Couper la musique active"
+                        "name": "Cache la musique active"
                     }
                 }
             },
@@ -733,6 +733,24 @@
                             "disable_bitmoji": {
                                 "name": "Désactiver le Bitmoji",
                                 "description": "Désactive le Bitmoji sur le profil d'amis"
+                            },
+                            "composer_hooks": {
+                                "name": "Hooks Composer",
+                                "description": "Injecte du code dans le framework d'interface utilisateur multiplateforme de Composer (uniquement arm64)",
+                                "properties": {
+                                    "bypass_camera_roll_limit": {
+                                        "name": "Dépassement de la limite de la pellicule de l'appareil photo",
+                                        "description": "Augmente le nombre maximal de médias que vous pouvez envoyer depuis la pellicule de l'appareil photo"
+                                    },
+                                    "composer_console": {
+                                        "name": "Console de Composer",
+                                        "description": "Permet d'exécuter du code JavaScript dans Composer"
+                                    },
+                                    "composer_logs": {
+                                        "name": "Journaux de Composer",
+                                        "description": "Redirige les journaux de console de Composer vers SnapEnhance"
+                                    }
+                                }
                             }
                         },
                         "description": "Fonctionnalités non fiables qui se greffent au code natif de Snapchat"
@@ -797,10 +815,6 @@
                         "name": "Fonctionnalités Snapchat Plus cachées",
                         "description": "Active les fonctionnalités non publiées/beta de Snapchat Plus\nPeut ne pas fonctionner sur les anciennes versions de Snapchat"
                     },
-                    "disable_composer_modules": {
-                        "name": "Désactiver des modules Composer",
-                        "description": "Empêche le chargement des modules composer sélectionnés\nLes noms doivent être séparés par une virgule"
-                    },
                     "meo_passcode_bypass": {
                         "description": "Contourner le code d'accès My Eyes Only\nCela ne fonctionnera que si le code d'accès a été saisi correctement auparavant",
                         "name": "Contournement du code d'accès de My Eyes Only"
@@ -861,14 +875,14 @@
                         "properties": {
                             "lock_on_resume": {
                                 "description": "Verrouille l'application lors de sa réouverture",
-                                "name": "Verrouiller la reprise"
+                                "name": "Verrouiller à la reprise"
                             }
                         },
                         "name": "Verrou d'application",
                         "description": "Empêche l'accès à Snapchat sans mot de passe"
                     },
                     "custom_streaks_expiration_format": {
-                        "name": "Format personnalisé d'expiration des séries",
+                        "name": "Format personnalisé d'expiration des flammes",
                         "description": "Personnalise le format d'expiration des séries\n\nVariables disponibles :\n- %c : Nombre de séries\n- %e : Emoji sablier\n- %d : Jours\n- %h : Heures\n- %m : Minutes\n- %s : Secondes\n- %w : Temps restant"
                     }
                 }
@@ -1346,13 +1360,13 @@
             "title": "Chiffrement de bout en bout",
             "confirmation_2": "Êtes-vous VRAIMENT sûr de vouloir continuer ? C'est votre dernière chance de faire marche arrière."
         },
-        "unencrypted_conversation_send_failure_toast": "Vous ne pouvez pas envoyer de contenu crypté à des conversations cryptées et non cryptées !",
+        "unencrypted_conversation_send_failure_toast": "Vous ne pouvez pas envoyer de contenu chiffré à des conversations chiffrées et non chiffrées !",
         "accept_public_key_success_toast": "Clé publique acceptée avec succès !",
-        "native_hooks_send_failure_toast": "Échec de l'envoi ! Veuillez activer les Crochets Natifs dans les paramètres.",
+        "native_hooks_send_failure_toast": "Échec de l'envoi ! Veuillez activer les Hooks Natifs dans les paramètres.",
         "accept_secret_key_success_toast": "Terminé ! Vous pouvez désormais envoyer et recevoir des messages chiffrés avec cet ami.",
         "accept_public_key_failure_toast": "Échec de l'acceptation de la clé publique",
         "accept_secret_button": "Accepter la clé publique",
-        "no_participants_to_encrypt_toast": "Vous n'avez aucun ami dans cette conversation avec qui crypter les messages !",
+        "no_participants_to_encrypt_toast": "Vous n'avez aucun ami dans cette conversation avec qui chiffrer les messages !",
         "accept_secret_key_failure_toast": "Échec de l'acceptation de la clé secrète",
         "encryption_failed_toast": "Échec de chiffrement du message ! Veuillez vérifier le logcat pour plus de détails.",
         "accept_public_key_button": "Accepter la clé publique",
@@ -1366,7 +1380,7 @@
         "group": "Groupe"
     },
     "biometric_auth": {
-        "title": "Débloquez Snapchat",
+        "title": "Débloquer Snapchat",
         "subtitle": "Veuillez vous authentifier pour déverrouiller Snapchat",
         "unlock_button": "Déverrouiller"
     },

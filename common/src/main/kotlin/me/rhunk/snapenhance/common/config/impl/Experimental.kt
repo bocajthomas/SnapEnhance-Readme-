@@ -61,6 +61,5 @@ class Experimental : ConfigContainer() {
         "added_by_qr_code",
         "added_by_community",
     ) { addNotices(FeatureNotice.BAN_RISK) }
-    val disableComposerModules = string("disable_composer_modules") { requireRestart(); nativeHooks() }
     val preventForcedLogout = boolean("prevent_forced_logout") { requireRestart(); addNotices(FeatureNotice.BAN_RISK, FeatureNotice.INTERNAL_BEHAVIOR); }
 }

@@ -498,6 +498,24 @@
                             "disable_bitmoji": {
                                 "description": "Отключает Bitmoji профиля друзей",
                                 "name": "Отключить Bitmoji"
+                            },
+                            "composer_hooks": {
+                                "name": "Крюки композитора",
+                                "description": "Встраивает код в кросс-платформенный UI-фреймворк Composer (только для архитектуры arm64)",
+                                "properties": {
+                                    "bypass_camera_roll_limit": {
+                                        "name": "Обход ограничения на количество фотографий в галерее",
+                                        "description": "Увеличивает максимальное количество медиафайлов, которые можно отправить из галереи"
+                                    },
+                                    "composer_logs": {
+                                        "name": "Логи Composer",
+                                        "description": "Перенаправляет журналы консоли Composer в SnapEnhance"
+                                    },
+                                    "composer_console": {
+                                        "name": "Консоль Composer",
+                                        "description": "Позволяет выполнять JavaScript-код в Composer"
+                                    }
+                                }
                             }
                         },
                         "name": "Native Hooks",
@@ -606,10 +624,6 @@
                     "prevent_forced_logout": {
                         "name": "Предотвращение принудительного выхода из системы",
                         "description": "Предотвращает выход из системы Snapchat при входе на другом устройстве"
-                    },
-                    "disable_composer_modules": {
-                        "description": "Предотвращает загрузку выбранных модулей составителя\nИмена должны быть разделены запятой",
-                        "name": "Отключение модулей составителя"
                     },
                     "hidden_snapchat_plus_features": {
                         "description": "Включает нереализованные/бета-версии функций Snapchat Plus\nМожет не работать в старых версиях Snapchat",

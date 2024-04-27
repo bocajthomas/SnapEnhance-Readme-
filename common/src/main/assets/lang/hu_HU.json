@@ -196,6 +196,14 @@
                     "blacklist": "Kizárás a nem menthető üzenetekből"
                 },
                 "description": "Megakadályozza, hogy az üzeneteket elmenthessék mások a chatben"
+            },
+            "auto_open_snaps": {
+                "name": "Automatikus Snap-ek",
+                "description": "Automatikusan megnyitja a Snap-eket, amikor megkapja azokat",
+                "options": {
+                    "blacklist": "A kihagyás az automatikus snap-ekből",
+                    "whitelist": "Automatikus snap-ek megnyitása"
+                }
             }
         },
         "toasts": {
@@ -531,6 +539,14 @@
                     "remove_groups_locked_status": {
                         "name": "Csoportok zárolt státuszának eltávolítása",
                         "description": "Lehetővé teszi a csoportinformációk megtekintését, miután kirúgták"
+                    },
+                    "auto_mark_as_read": {
+                        "name": "Automatikus megjelölés olvasottnak",
+                        "description": "Automatikusan megjelöli az üzeneteket/snap-eket olvasottként, még akkor is, ha a Láthatatlanság mód be van kapcsolva"
+                    },
+                    "friend_mutation_notifier": {
+                        "name": "Barát Módosítás Értesítő",
+                        "description": "Értesít, amikor valami változik egy barát profiljában"
                     }
                 },
                 "description": "Változtasd meg a barátaiddal való kapcsolattartásodat"
@@ -716,6 +732,24 @@
                             "disable_bitmoji": {
                                 "name": "Bitmoji kikapcsolása",
                                 "description": "Barátok Bitmoji-jának kikapcsolása"
+                            },
+                            "composer_hooks": {
+                                "properties": {
+                                    "bypass_camera_roll_limit": {
+                                        "name": "Kameragörgő korlát kikerülése",
+                                        "description": "Növeli a kameragörgőről küldhető média maximális mennyiségét"
+                                    },
+                                    "composer_console": {
+                                        "description": "Lehetővé teszi JavaScript kód végrehajtását a Composerben",
+                                        "name": "Összetevő Konzol"
+                                    },
+                                    "composer_logs": {
+                                        "name": "Összetevő Naplók",
+                                        "description": "A Composer konzolnaplóit átirányítja a SnapEnhance felé"
+                                    }
+                                },
+                                "name": "Összetevő Horgok",
+                                "description": "Kód befecskendezése a Composer keresztplatformú UI keretrendszerbe (csak arm64)"
                             }
                         },
                         "name": "Natív hookok",
@@ -772,10 +806,6 @@
                     "hidden_snapchat_plus_features": {
                         "name": "Engedélyezi a rejtett Snapchat Plusz funkciókat",
                         "description": "Engedélyezi a még nem megjelent/béta Snapchat Plusz funkciókat\nRégebbi Snapchat verziókon lehetséges hogy nem működik"
-                    },
-                    "disable_composer_modules": {
-                        "description": "Megakadályozza a kiválasztott Kompózer modulok betöltődését\nA neveket vesszővel kell elválasztani",
-                        "name": "Letiltja a Kompozitáló modulokat"
                     },
                     "convert_message_locally": {
                         "name": "Üzenet helyi átalakítása",
@@ -840,6 +870,20 @@
                     "prevent_forced_logout": {
                         "name": "Kényszerített kijelentkezés megakadályozása",
                         "description": "Megakadályozza, hogy a Snapchat kijelentkezzen, amikor egy másik eszközön jelentkezel be"
+                    },
+                    "app_lock": {
+                        "name": "App Zár",
+                        "description": "Megakadályozza a Snapchat hozzáférését jelszó nélkül",
+                        "properties": {
+                            "lock_on_resume": {
+                                "name": "Zár a folytatásnál",
+                                "description": "Az alkalmazás zárolása annak újbóli megnyitásakor"
+                            }
+                        }
+                    },
+                    "custom_streaks_expiration_format": {
+                        "name": "Egyedi sorozat lejárati formátum",
+                        "description": "Egyedi sorozat lejárati formátum\n\nElérhető változók:\n- %c: Sorozatok Száma\n- %e: Homokóra Emoji\n- %d: Napok\n- %h: Órák\n- %m: Perc\n- %s: Másodperc\n- %w: Hátralévő Idő"
                     }
                 }
             },
@@ -882,7 +926,8 @@
                 "media_preview": "A média előnézetének megjelenítése",
                 "mark_as_read_button": "Olvasottként jelölés gomb",
                 "chat_preview": "A chat előnézetének megjelenítése",
-                "mark_as_read_and_save_in_chat": "Mentés a Chatben, amikor olvasottként jelöli (az automatikus mentéstől függ)"
+                "mark_as_read_and_save_in_chat": "Mentés a Chatben, amikor olvasottként jelöli (az automatikus mentéstől függ)",
+                "friend_add_source": "Mutassa a barát hozzáadás forrását"
             },
             "friend_feed_menu_buttons": {
                 "auto_download": "⬇️ Automatikus letöltés",
@@ -892,7 +937,8 @@
                 "e2e_encryption": "🔒 Végpontok közötti titkosítás használata",
                 "unsaveable_messages": "⬇️ Nem menthető üzenetek",
                 "mark_snaps_as_seen": "👀 Snapek megjelölése látottként",
-                "mark_stories_as_seen_locally": "👀 Snapek megjelölése látottként helyileg"
+                "mark_stories_as_seen_locally": "👀 Snapek megjelölése látottként helyileg",
+                "auto_open_snaps": "📷 Automatikus Snaps Megnyitás"
             },
             "auto_download_sources": {
                 "friend_snaps": "Barát Snap-ek",
@@ -963,7 +1009,8 @@
                 "ignore_friend": "Barát ignorálása",
                 "clear_conversation": "Beszélgetés törlése a Friend Feedből",
                 "hide_friend": "Barát elrejtése",
-                "hide_conversation": "Beszélgetés elrejtése"
+                "hide_conversation": "Beszélgetés elrejtése",
+                "erase_message": "Üzenet Törlése"
             },
             "auto_purge": {
                 "1_month": "1 hónap",
@@ -1035,6 +1082,18 @@
                 "added_by_mention": "Említés szerint",
                 "added_by_group_chat": "Csoportos chat szerint",
                 "added_by_qr_code": "QR kód szerint"
+            },
+            "auto_mark_as_read": {
+                "conversation_read": "Az üzenet küldésekor jelölje a beszélgetést olvasottként",
+                "snap_reply": "Azokat a Snap-eket jelölje olvasottnak, amelyekre válaszol"
+            },
+            "friend_mutation_notifier": {
+                "birthday_changes": "Értesítés, ha valaki megváltoztatja a születésnapját",
+                "bitmoji_avatar_changes": "Értesítés, ha valaki megváltoztatja a Bitmoji avatarát",
+                "bitmoji_scene_changes": "Értesítés, ha valaki megváltoztatja a Bitmoji jelenetét",
+                "remove_friend": "Értesítés, ha valaki eltávolít téged barátként",
+                "bitmoji_selfie_changes": "Értesítés, ha valaki megváltoztatja a Bitmoji önarcképét",
+                "bitmoji_background_changes": "Értesítés, ha valaki megváltoztatja a Bitmoji háttérképét"
             }
         }
     },
@@ -1319,5 +1378,25 @@
         "accept_secret_button": "Titok elfogadása",
         "outgoing_secret_message": "Kulcs cserélésre a válasz",
         "incoming_secret_message": "A barátod elfogadta a publikus kulcsot. Kattints lejjebb az elfogadáshoz."
+    },
+    "friend_mutation_observer": {
+        "bitmoji_avatar_changed": "{username} megváltoztatta a Bitmoji avatarát",
+        "friend_removed": "{username} eltávolított téged barátként",
+        "birthday_changed": "{username} megváltoztatta a születésnapját: {oldBirthday} -ról {newBirthday} -re",
+        "bitmoji_scene_changed": "{username} megváltoztatta a Bitmoji-jelenetét",
+        "notification_channel_name": "Barát Mutáció Megfigyelő",
+        "birthday_removed": "{username} eltávolította a születésnapját ({birthday})",
+        "birthday_added": "{username} hozzáadta a születésnapját ({birthday})",
+        "bitmoji_selfie_changed": "{username} megváltoztatta a Bitmoji önarcképét",
+        "bitmoji_background_changed": "{username} megváltoztatta a Bitmoji háttérképét"
+    },
+    "biometric_auth": {
+        "unlock_button": "Feloldás",
+        "title": "Snapchat feloldása",
+        "subtitle": "Kérlek, azonosítsd magad a Snapchat feloldásához"
+    },
+    "auto_open_snaps": {
+        "title": "Automatikus Snaps Megnyitás",
+        "notification_content": "{count} Snaps megnyitva"
     }
 }

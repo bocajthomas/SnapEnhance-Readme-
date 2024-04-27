@@ -652,6 +652,10 @@
                     "hide_active_music": {
                         "name": "Skjul aktiv musik",
                         "description": "Forhindrer Snapchat i at vide, at du lytter til musik\nDette giver dig mulighed for at tage snaps ved hjælp af kontrollydstyrkeknapperne, mens du lytter til musik"
+                    },
+                    "disable_custom_tabs": {
+                        "name": "Deaktiver bruger tilpassede faner",
+                        "description": "Åbner links i understøttede programmer i stedet for i webbrowseren"
                     }
                 }
             },
@@ -734,6 +738,28 @@
                             "disable_bitmoji": {
                                 "name": "Deaktivér Bitmoji",
                                 "description": "Deaktiverer Venner Profil Bitmoji"
+                            },
+                            "composer_hooks": {
+                                "properties": {
+                                    "composer_console": {
+                                        "description": "Giver dig mulighed for at udføre JavaScript-kode i Composer (kun arm64)",
+                                        "name": "Komponistkonsol"
+                                    },
+                                    "composer_logs": {
+                                        "name": "Komponistlogfiler",
+                                        "description": "Omdirigerer konsollogfiler fra Composer til SnapEnhance"
+                                    },
+                                    "bypass_camera_roll_limit": {
+                                        "name": "Undgå grænsen for kamerarulle",
+                                        "description": "Øger det maksimale antal medier, du kan sende fra kamerarullen"
+                                    },
+                                    "show_first_created_username": {
+                                        "name": "Vis første oprettede brugernavn",
+                                        "description": "Viser det første oprettede brugernavn ud for det aktuelle brugernavn på profilsiden"
+                                    }
+                                },
+                                "name": "Komponistkroge",
+                                "description": "Injicerer kode i Composer-grænsefladen på tværs af platforme"
                             }
                         }
                     },
@@ -844,10 +870,6 @@
                     "media_file_picker": {
                         "name": "Mediefilvælger",
                         "description": "Giver dig mulighed for at vælge en hvilken som helst video-/lydfil fra galleriet"
-                    },
-                    "disable_composer_modules": {
-                        "name": "Deaktiver komponente moduler",
-                        "description": "Forhindrer udvalgte komponente moduler i at blive indlæst\nNavne skal adskilles med komma"
                     },
                     "prevent_forced_logout": {
                         "description": "Forhindrer Snapchat i at logge dig ud, når du logger på en anden enhed",
