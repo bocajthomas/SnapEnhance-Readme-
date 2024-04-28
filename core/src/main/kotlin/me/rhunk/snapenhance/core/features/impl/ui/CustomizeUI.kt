@@ -25,13 +25,13 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
 
         //TODO: color picker
         val customizeUIConfig = context.config.userInterface.customizeUi
-        val effectiveTextColour by lazy { parseColor(customizeUIConfig.textColour.get()) }
-        val effectiveBackgroundColour by lazy { parseColor(customizeUIConfig.backgroundColour.get()) }
-        val effectiveBackgroundColourSurface by lazy { parseColor(customizeUIConfig.backgroundColourSurface.get()) }
-        val effectiveActionMenuBackgroundColour by lazy { parseColor(customizeUIConfig.actionMenuBackgroundColour.get()) }
-        val effectiveActionMenuRoundBackgroundColour by lazy { parseColor(customizeUIConfig.actionMenuRoundBackgroundColour.get()) }
-        val effectiveChatColour by lazy { parseColor(customizeUIConfig.chatColour.get()) }
-       
+        val effectiveTextColor by lazy { parseColor(customizeUIConfig.textColor.get()) }
+        val effectivesendAndReceivedTextColor by lazy { parseColor(customizeUIConfig.sendAndReceivedTextColor.get()) }
+        val effectiveBackgroundColor by lazy { parseColor(customizeUIConfig.backgroundColor.get()) }
+        val effectiveBackgroundColorSurface by lazy { parseColor(customizeUIConfig.backgroundColorSurface.get()) }
+        val effectiveActionMenuBackgroundColor by lazy { parseColor(customizeUIConfig.actionMenuBackgroundColor.get()) }
+        val effectiveActionMenuRoundBackgroundColor by lazy { parseColor(customizeUIConfig.actionMenuRoundBackgroundColor.get()) }
+        
         val attributeCache = mutableMapOf<String, Int>()
 
         fun getAttribute(name: String): Int {
@@ -69,38 +69,38 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
             if (isCustomizeUI) {
                 when (array[0]) {
                     getAttribute("sigColorTextPrimary") -> {
-                        ephemeralHook("getColor", effectiveTextColour ?: return@hook)
+                        ephemeralHook("getColor", effectiveTextColor ?: return@hook)
                     }
 
                     getAttribute("sigColorBackgroundMain") -> {
-                        ephemeralHook("getColor", effectiveBackgroundColour ?: return@hook)
+                        ephemeralHook("getColor", effectiveBackgroundColor ?: return@hook)
                     }
 
                     getAttribute("sigColorBackgroundSurface") -> {
-                        ephemeralHook("getColor", effectiveBackgroundColourSurface ?: return@hook)
+                        ephemeralHook("getColor", effectiveBackgroundColorSurface ?: return@hook)
                     }
 
                     getAttribute("actionSheetBackgroundDrawable") -> {
-                        ephemeralHook("getDrawable", ColorDrawable(effectiveActionMenuBackgroundColour ?: return@hook))
+                        ephemeralHook("getDrawable", ColorDrawable(effectiveActionMenuBackgroundColor ?: return@hook))
                     }
 
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
-                        ephemeralHook("getDrawable", ColorDrawable(effectiveActionMenuRoundBackgroundColour ?: return@hook))
+                        ephemeralHook("getDrawable", ColorDrawable(effectiveActionMenuRoundBackgroundColor ?: return@hook))
                     }
                     getAttribute("sigColorChatActivity") -> {
-                        ephemeralHook("getColor", effectiveChatColour ?: return@hook)
+                        ephemeralHook("getColor", effectivesendAndReceivedTextColor ?: return@hook)
                     }
                     getAttribute("sigColorChatChat") -> {
-                        ephemeralHook("getColor", effectiveChatColour ?: return@hook)
+                        ephemeralHook("getColor", effectivesendAndReceivedTextColor ?: return@hook)
                     }
                     getAttribute("sigColorChatPendingSending") -> {
-                        ephemeralHook("getColor", effectiveChatColour ?: return@hook)
+                        ephemeralHook("getColor", effectivesendAndReceivedTextColor ?: return@hook)
                     }
                     getAttribute("sigColorChatSnapWithSound") -> {
-                        ephemeralHook("getColor", effectiveChatColour ?: return@hook)
+                        ephemeralHook("getColor", effectivesendAndReceivedTextColor ?: return@hook)
                     }
                     getAttribute("sigColorChatSnapWithoutSound") -> {
-                        ephemeralHook("getColor", effectiveChatColour ?: return@hook)
+                        ephemeralHook("getColor", effectivesendAndReceivedTextColor ?: return@hook)
                     }
                 }
             }
