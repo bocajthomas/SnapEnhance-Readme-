@@ -23,12 +23,12 @@ class UserInterfaceTweaks : ConfigContainer() {
         private val checkInputColor = { value: String ->
             value.isEmpty() || runCatching { Color.parseColor(value) }.isSuccess
         }
-        val textColour = string("text_colour") { inputCheck = checkInputColor }
-        val sendAndReceivedTextColour = string("send_and_received_text_colour") { inputCheck = checkInputColor }
-        val backgroundColour = string("background_colour") { inputCheck = checkInputColor }
-        val backgroundColourSurface = string("background_colour_surface") { inputCheck = checkInputColor }
-        val actionMenuBackgroundColour = string("action_menu_background_colour") { inputCheck = checkInputColor }
-        val actionMenuRoundBackgroundColour = string("action_menu_round_background_colour") { inputCheck = checkInputColor }    
+        val textColor = string("text_color") { inputCheck = checkInputColor }
+        val sendAndReceivedTextColor = string("send_and_received_text_color") { inputCheck = checkInputColor }
+        val backgroundColor = string("background_color") { inputCheck = checkInputColor }
+        val backgroundColorSurface = string("background_color_surface") { inputCheck = checkInputColor }
+        val actionMenuBackgroundColor = string("action_menu_background_color") { inputCheck = checkInputColor }
+        val actionMenuRoundBackgroundColor = string("action_menu_round_background_color") { inputCheck = checkInputColor }    
     }
 
     val friendFeedMenuButtons = multiple(
