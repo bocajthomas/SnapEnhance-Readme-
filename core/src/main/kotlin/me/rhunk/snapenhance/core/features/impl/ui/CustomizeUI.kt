@@ -31,7 +31,9 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
         val effectiveBackgroundColorSurface by lazy { parseColor(customizeUIConfig.backgroundColorSurface.get()) }
         val effectiveActionMenuBackgroundColor by lazy { parseColor(customizeUIConfig.actionMenuBackgroundColor.get()) }
         val effectiveActionMenuRoundBackgroundColor by lazy { parseColor(customizeUIConfig.actionMenuRoundBackgroundColor.get()) }
-        
+        val effectiveCameraGridLines by lazy { parseColor(customizeUIConfig.cameraGridLines.get()) }
+
+
         val attributeCache = mutableMapOf<String, Int>()
 
         fun getAttribute(name: String): Int {
@@ -101,6 +103,9 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     }
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", effectivesendAndReceivedTextColor ?: return@hook)
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", effectiveCameraGridLines ?: return@hook)
                     }
                 }
             }
