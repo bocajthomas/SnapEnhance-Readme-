@@ -394,6 +394,7 @@
                                 "name": "Camera Gridlines Color",
                                 "description": "Changes Snapchats gridlines color on the camera\nInput a hex color code\nNote: enable the grid on the my camera settings"
                             }
+                        }
                     },
                     "friend_feed_message_preview": {
                         "name": "Friend Feed Message Preview",
