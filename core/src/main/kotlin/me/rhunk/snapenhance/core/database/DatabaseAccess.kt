@@ -429,4 +429,62 @@ class DatabaseAccess(
             }
         }
     }
+
+    private fun getBestFriends(): List<FriendInfo> {
+        return useDatabase(DatabaseType.MAIN)?.performOperation {
+            safeRawQuery(
+                "SELECT * FROM Friend WHERE friendmojiCategories != ''",
+                null
+            )?.use { query ->
+                val list = mutableListOf<FriendInfo>()
+                while (query.moveToNext()) {
+                    val friendInfo = FriendInfo()
+                    try {
+                        friendInfo.write(query)
+                    } catch (_: Throwable) {}
+                    list.add(friendInfo)
+                }
+                list
+            }
+        } ?: emptyList()
+    }
+
+    fun updatePinnedBestFriendStatus(userId: String, friendmoji: String) {
+        useDatabase(DatabaseType.MAIN, writeMode = true)?.apply {
+            val numberOneBestFriends = getBestFriends().filter { friend ->
+                friend.friendmojiCategories?.split(",")?.any { it.startsWith("number_one") } == true
+            }
+
+            numberOneBestFriends.forEach { friendInfo ->
+                performOperation {
+                    update(
+                        "Friend",
+                        ContentValues().apply {
+                            put("friendmojiCategories", friendInfo.friendmojiCategories?.split(",")?.filter {
+                                it == "on_fire" || it == "birthday"
+                            }?.joinToString(",") ?: "")
+                            put("isPinnedBestFriend", 0)
+                        },
+                        "userId = ?",
+                        arrayOf(friendInfo.userId)
+                    )
+                }
+            }
+
+            val friend = getFriendInfo(userId) ?: return@apply
+            performOperation {
+                update(
+                    "Friend",
+                    ContentValues().apply {
+                        put("friendmojiCategories", (friend.friendmojiCategories?.split(",") ?: listOf()).toMutableList().apply {
+                            add(friendmoji)
+                        }.joinToString(","))
+                        put("isPinnedBestFriend", 1)
+                    },
+                    "userId = ?",
+                    arrayOf(userId)
+                )
+            }
+        }?.close()
+    }
 }

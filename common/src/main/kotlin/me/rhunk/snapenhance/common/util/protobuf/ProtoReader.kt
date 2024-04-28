@@ -167,6 +167,7 @@ class ProtoReader(private val buffer: ByteArray) {
         }
         return value
     }
+    fun getFixed64(vararg ids: Int) = followPath(*ids, excludeLast = true)?.getFixed64(ids.last())
 
 
     fun getFixed32(id: Int): Int {

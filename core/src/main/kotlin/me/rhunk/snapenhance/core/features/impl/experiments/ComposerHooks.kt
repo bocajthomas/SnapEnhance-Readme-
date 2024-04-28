@@ -167,7 +167,7 @@ class ComposerHooks: Feature("ComposerHooks", loadParams = FeatureLoadParams.ACT
             "log" -> {
                 if (argc < 3) return false
                 val logLevel = composerMarshaller.getUntyped(1) as? String ?: return false
-                val message = composerMarshaller.getUntyped(2) as? String ?: return false
+                val message = (composerMarshaller.getUntyped(2) as? String)?.takeIf { it.length < 1024 * 512 } ?: return false
 
                 val tag = "ComposerLogs"
 

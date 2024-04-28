@@ -940,6 +940,10 @@
                         "name": "No Friend Score Delay",
                         "description": "Removes the delay when viewing a Friends Score"
                     },
+                    "best_friend_pinning": {
+                        "name": "Best Friend Pinning",
+                        "description": "Allows you to pin a friend as your number one best friend. Note: only you can see your pinned best friend"
+                    },
                     "e2ee": {
                         "name": "End-To-End Encryption",
                         "description": "Encrypts your messages with AES using a shared secret key\nMake sure to save your key somewhere safe!",

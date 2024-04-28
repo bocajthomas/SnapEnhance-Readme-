@@ -127,6 +127,7 @@ class FeatureManager(
             CustomStreaksExpirationFormat(),
             ComposerHooks(),
             DisableCustomTabs(),
+            BestFriendPinning(),
         )
         initializeFeatures()
     }

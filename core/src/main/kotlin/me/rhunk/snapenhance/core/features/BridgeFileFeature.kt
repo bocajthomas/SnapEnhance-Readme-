@@ -51,4 +51,11 @@ abstract class BridgeFileFeature(name: String, private val bridgeFileType: Bridg
         fileLines.add(line)
         updateFile()
     }
+
+    protected fun clear() {
+        fileLines.clear()
+        updateFile()
+    }
+
+    protected fun lines() = fileLines.toList()
 }
