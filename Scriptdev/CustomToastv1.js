@@ -2,7 +2,7 @@
 // name: custom_toast
 // displayName: Custom Toast
 // description: A Script that shows a custom toast on the startup of Snapchat.
-// version: 0.2
+// version: 1.0
 // author: Gabe Modz & Jacob Thomas 
 // ==/SE_module==
 
@@ -15,7 +15,6 @@ var javaInterfaces = require("java-interfaces");
 var hooker = require("hooker");
 var events = require("events");
 
-// TODO: link text input to the toast 
 var settingsContext = {
         events: [],
 };
@@ -34,8 +33,10 @@ function createManagerToolBoxUI() {
     });
 }
 
+// TODO: Test the Input and see if the inputed text shows on the toast 
 module.onSnapMainActivityCreate = activity => {
-    shortToast("Welcome back Gabriel")
+        const customPrompt = config.get("customPrompt", defaultPrompt);
+        shortToast(customPrompt);
 }
 function createInterface() {
         createManagerToolBoxUI();
