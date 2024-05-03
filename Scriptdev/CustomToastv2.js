@@ -15,6 +15,7 @@ var javaInterfaces = require("java-interfaces");
 var hooker = require("hooker");
 var events = require("events");
 
+// TODO: Test & Fix
 var settingsContext = {
         events: [],
 };
@@ -27,7 +28,7 @@ function createManagerToolBoxUI() {
                 builder.textInput("Custom Prompt", config.get("customPrompt", defaultPrompt), function (value) {
                     config.set("customPrompt", value, true);
                 }) .maxLines(8)
-                    .singleLine(false);
+                   .singleLine(false);
             });
         },
     });
@@ -36,3 +37,15 @@ function createManagerToolBoxUI() {
 module.onSnapMainActivityCreate = activity => {
     shortToast("Welcome back Gabriel")
 }
+function createInterface() {
+        createManagerToolBoxUI();
+}
+function start(_) {
+        createInterface();
+}
+start();
+im.create("settings" /* EnumUI.SETTINGS */, function (builder, args) {
+        settingsContext.events.forEach(function (event) {
+            event.start(builder, args);
+        });
+});
