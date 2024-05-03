@@ -25,7 +25,7 @@ function createManagerToolBoxUI() {
         start: function (builder) {
             builder.row(function (builder) {
                 builder.textInput("Custom Prompt", config.get("customPrompt", defaultPrompt), function (value) {
-                    config.set("customPrompt", value, true);
+                    config.set("customPrompt", string, true);
                 }) .maxLines(8)
                    .singleLine(false);
             });
@@ -33,7 +33,7 @@ function createManagerToolBoxUI() {
     });
 }
 
-// TODO: Test the Input and see if the inputed text shows on the toast 
+// TODO: fix error message "org.mozilla.javascript.NativeJavaObject@7277a10" when toast is shown  
 module.onSnapMainActivityCreate = activity => {
         const customPrompt = config.get("customPrompt", defaultPrompt);
         shortToast(customPrompt);
