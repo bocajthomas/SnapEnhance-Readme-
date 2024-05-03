@@ -15,6 +15,10 @@ var javaInterfaces = require("java-interfaces");
 var hooker = require("hooker");
 var events = require("events");
 
+var settingsContext = {
+        events: [],
+};
+
 var defaultPrompt = "Test";
 function createManagerToolBoxUI() {
     settingsContext.events.push({
