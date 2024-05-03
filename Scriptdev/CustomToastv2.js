@@ -15,7 +15,7 @@ var javaInterfaces = require("java-interfaces");
 var hooker = require("hooker");
 var events = require("events");
 
-// TODO: Test & Fix
+// TODO: link text input to the toast 
 var settingsContext = {
         events: [],
 };
