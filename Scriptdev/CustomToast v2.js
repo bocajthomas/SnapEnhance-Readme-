@@ -3,7 +3,7 @@
 // displayName: Custom Toast
 // description: A Script that shows a custom toast on the startup of Snapchat.
 // version: 0.2
-// author: Gabe Modz 
+// author: Gabe Modz & Jacob Thomas 
 // ==/SE_module==
 
 module.onSnapMainActivityCreate = activity => {
