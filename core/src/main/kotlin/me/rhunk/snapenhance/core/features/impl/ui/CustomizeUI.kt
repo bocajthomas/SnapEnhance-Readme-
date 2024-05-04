@@ -317,6 +317,7 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                         ephemeralHook("getColor", 0xFF08D6FF.toInt())
                     }
                 }
+
             }
             // Credit To @jwhc1 (Telegram) For This Theme 
             if (themePicker == "dark_blue") {
@@ -341,7 +342,7 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     }
                 }
             }
-            
+
             if (themePicker == "custom") {
                 when (array[0]) {
                     getAttribute("sigColorTextPrimary") -> {
