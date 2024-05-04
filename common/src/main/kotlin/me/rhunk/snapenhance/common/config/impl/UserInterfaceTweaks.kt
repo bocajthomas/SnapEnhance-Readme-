@@ -33,7 +33,7 @@ class UserInterfaceTweaks : ConfigContainer() {
     }
 
     inner class CustomizeUIConfig : ConfigContainer() {
-        val themePicker = unique("theme_picker", "amoled_dark_mode", "modern_minimalism", "serene_nature", "energetic_pop", "luxurious_night", "playful_candy", "retro_arcade", "rustic_country", "ocean_breeze", "sunset_glow", "space_adventure", "custom") 
+        val themePicker = unique("theme_picker", "amoled_dark_mode", "modern_minimalism", "serene_nature", "energetic_pop", "luxurious_night", "playful_candy", "retro_arcade", "rustic_country", "ocean_breeze", "sunset_glow", "space_adventure", "light_blue", "custom") 
         val colors = container("colors", ColorsConfig())
     }
 
