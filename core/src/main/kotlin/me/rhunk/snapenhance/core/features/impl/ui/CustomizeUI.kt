@@ -317,7 +317,30 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                         ephemeralHook("getColor", 0xFF08D6FF.toInt())
                     }
                 }
-            }    
+            }
+            // Credit To @jwhc1 (Telegram) For This Theme 
+            if (themePicker == "dark_blue") {
+                when (array[0]) {
+                    getAttribute("sigColorTextPrimary") -> {
+                        ephemeralHook("getColor", 0xFF98C2FD.toInt())
+                    }
+                    getAttribute("sigColorBackgroundMain"),
+                    getAttribute("sigColorBackgroundSurface") -> {
+                        ephemeralHook("getColor", 0xFF192744.toInt())
+                    }
+                    getAttribute("actionSheetBackgroundDrawable"),
+                    getAttribute("actionSheetRoundedBackgroundDrawable") -> {
+                        ephemeralHook("getDrawable", ColorDrawable(0xFF192744.toInt()))
+                    }
+                    getAttribute("sigColorChatActivity"),
+                    getAttribute("sigColorChatChat"),
+                    getAttribute("sigColorChatPendingSending"),
+                    getAttribute("sigColorChatSnapWithSound"),
+                    getAttribute("sigColorChatSnapWithoutSound") -> {
+                        ephemeralHook("getColor", 0xFF98C2FD.toInt())
+                    }
+                }
+            }
             
             if (themePicker == "custom") {
                 when (array[0]) {
