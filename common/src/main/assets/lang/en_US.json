@@ -391,6 +391,10 @@
                                     "action_menu_round_background_color": {
                                         "name": "Action Menu Round Background Color",
                                         "description": "Changes Snapchats chat action menu round background color\nInput a hex color code"
+                                    },
+                                    "camera_grid_lines": {
+                                        "name": "Camera Gridlines Color",
+                                        "description": "Changes Snapchats Gridlines color on the Camera Preview \nInput a hex color code\nNote: Enable the grid on the my camera settings"
                                     }
                                 }
                             }
