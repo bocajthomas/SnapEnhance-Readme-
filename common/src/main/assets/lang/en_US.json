@@ -1038,7 +1038,8 @@
                 "ocean_breeze": "Ocean Breeze",
                 "sunset_glow": "Sunset Glow",
                 "space_adventure": "Space Adventure",
-                "custom": "Custom"
+                "light_blue": "Light Blue",
+                "custom": "Custom Colors"
             },
             "friend_feed_menu_buttons": {
                 "auto_download": "\u2B07\uFE0F Auto Download",
