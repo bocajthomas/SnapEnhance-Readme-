@@ -29,6 +29,7 @@ class UserInterfaceTweaks : ConfigContainer() {
         val backgroundColorSurface = string("background_color_surface") { inputCheck = checkInputColor }
         val actionMenuBackgroundColor = string("action_menu_background_color") { inputCheck = checkInputColor }
         val actionMenuRoundBackgroundColor = string("action_menu_round_background_color") { inputCheck = checkInputColor }
+        val cameraGridLines = string("camera_grid_lines") { inputCheck = checkInputColor }
     }
 
     inner class CustomizeUIConfig : ConfigContainer() {
