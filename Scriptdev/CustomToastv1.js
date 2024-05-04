@@ -19,7 +19,7 @@ var settingsContext = {
         events: [],
 };
 
-var defaultPrompt = "Test";
+var defaultPrompt = "Welcome";
 function createManagerToolBoxUI() {
     settingsContext.events.push({
         start: function (builder) {
@@ -32,10 +32,9 @@ function createManagerToolBoxUI() {
         },
     });
 }
-
-// TODO: fix error message "org.mozilla.javascript.NativeJavaObject@7277a10" when toast is shown  
+  
 module.onSnapMainActivityCreate = activity => {
-        const customPrompt = String(config.get("customPrompt"));
+        const customPrompt = String(config.get("customPrompt", defaultPrompt));
         shortToast(customPrompt);
 }
 function createInterface() {
