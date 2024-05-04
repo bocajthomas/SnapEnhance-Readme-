@@ -33,8 +33,8 @@ class UserInterfaceTweaks : ConfigContainer() {
     }
 
     inner class CustomizeUIConfig : ConfigContainer() {
-        companion object {
-            val themes = arrayOf("amoled_dark_mode", 
+        val themePicker = unique("theme_picker", 
+                                 "amoled_dark_mode", 
                                  "modern_minimalism", 
                                  "serene_nature", 
                                  "energetic_pop", 
@@ -48,8 +48,6 @@ class UserInterfaceTweaks : ConfigContainer() {
                                  "light_blue", 
                                  "dark_blue", 
                                  "custom")
-        }
-        val themePicker = unique("theme_picker", *themes)
         val colors = container("colors", ColorsConfig())
     }
 
