@@ -19,7 +19,7 @@ class UserInterfaceTweaks : ConfigContainer() {
         val amount = integer("amount", defaultValue = 1)
     }
 
-    inner class CustomizeUIConfig : ConfigContainer(hasGlobalState = true) {
+    class ColorsConfig : ConfigContainer() {
         private val checkInputColor = { value: String ->
             value.isEmpty() || runCatching { Color.parseColor(value) }.isSuccess
         }
@@ -29,7 +29,11 @@ class UserInterfaceTweaks : ConfigContainer() {
         val backgroundColorSurface = string("background_color_surface") { inputCheck = checkInputColor }
         val actionMenuBackgroundColor = string("action_menu_background_color") { inputCheck = checkInputColor }
         val actionMenuRoundBackgroundColor = string("action_menu_round_background_color") { inputCheck = checkInputColor }
-        val cameraGridLines = string("camera_grid_lines") { inputCheck = checkInputColor }
+    }
+
+    inner class CustomizeUIConfig : ConfigContainer() {
+        val themePicker = unique("theme_picker", "amoled_dark_mode", "modern_minimalism", "serene_nature", "energetic_pop", "luxurious_night", "playful_candy", "retro_arcade", "rustic_country", "ocean_breeze", "sunset_glow", "space_adventure", "custom") 
+        val colors = container("colors", ColorsConfig())
     }
 
     val friendFeedMenuButtons = multiple(
@@ -37,7 +41,6 @@ class UserInterfaceTweaks : ConfigContainer() {
     ).apply {
         set(mutableListOf("conversation_info", MessagingRuleType.STEALTH.key))
     }
-    val amoledDarkMode = boolean("amoled_dark_mode") { requireRestart() }
     val customizeUi = container("customize_ui", CustomizeUIConfig()) { addNotices(FeatureNotice.UNSTABLE); requireRestart() }
     val friendFeedMessagePreview = container("friend_feed_message_preview", FriendFeedMessagePreview()) { requireRestart() }
     val snapPreview = boolean("snap_preview") { addNotices(FeatureNotice.UNSTABLE); requireRestart() }
