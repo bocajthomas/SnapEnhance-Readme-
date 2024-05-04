@@ -77,6 +77,13 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFF5F5F5.toInt()))
                     }
+                    getAttribute("sigColorChatActivity"),
+                    getAttribute("sigColorChatChat"),
+                    getAttribute("sigColorChatPendingSending"),
+                    getAttribute("sigColorChatSnapWithSound"),
+                    getAttribute("sigColorChatSnapWithoutSound") -> {
+                        ephemeralHook("getColor", 0xFF333333.toInt())
+                    }
                 }
             }
             
@@ -92,6 +99,13 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetBackgroundDrawable"),
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFFFFDE7.toInt()))
+                    }
+                    getAttribute("sigColorChatActivity"),
+                    getAttribute("sigColorChatChat"),
+                    getAttribute("sigColorChatPendingSending"),
+                    getAttribute("sigColorChatSnapWithSound"),
+                    getAttribute("sigColorChatSnapWithoutSound") -> {
+                        ephemeralHook("getColor", 0xFF2E8B57.toInt())
                     }
                 }
             }
@@ -109,6 +123,13 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFF212121.toInt()))
                     }
+                    getAttribute("sigColorChatActivity"),
+                    getAttribute("sigColorChatChat"),
+                    getAttribute("sigColorChatPendingSending"),
+                    getAttribute("sigColorChatSnapWithSound"),
+                    getAttribute("sigColorChatSnapWithoutSound") -> {
+                        ephemeralHook("getColor", 0xFFFFDD00.toInt())
+                    }
                 }
             }
 
@@ -124,6 +145,13 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetBackgroundDrawable"),
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFF303030.toInt()))
+                    }
+                    getAttribute("sigColorChatActivity"),
+                    getAttribute("sigColorChatChat"),
+                    getAttribute("sigColorChatPendingSending"),
+                    getAttribute("sigColorChatSnapWithSound"),
+                    getAttribute("sigColorChatSnapWithoutSound") -> {
+                        ephemeralHook("getColor", 0xFFFDFCCC.toInt())
                     }
                 }
             }
@@ -141,6 +169,13 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFC2F0F0.toInt()))
                     }
+                    getAttribute("sigColorChatActivity"),
+                    getAttribute("sigColorChatChat"),
+                    getAttribute("sigColorChatPendingSending"),
+                    getAttribute("sigColorChatSnapWithSound"),
+                    getAttribute("sigColorChatSnapWithoutSound") -> {
+                        ephemeralHook("getColor", 0xFFF473B9.toInt())
+                    }
                 }
             }
 
@@ -156,6 +191,13 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetBackgroundDrawable"),
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFF00008B.toInt()))
+                    }
+                    getAttribute("sigColorChatActivity"),
+                    getAttribute("sigColorChatChat"),
+                    getAttribute("sigColorChatPendingSending"),
+                    getAttribute("sigColorChatSnapWithSound"),
+                    getAttribute("sigColorChatSnapWithoutSound") -> {
+                        ephemeralHook("getColor", 0xFFFFF9C4.toInt())
                     }
                 }
             }
@@ -173,6 +215,13 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFEAEAEA.toInt()))
                     }
+                    getAttribute("sigColorChatActivity"),
+                    getAttribute("sigColorChatChat"),
+                    getAttribute("sigColorChatPendingSending"),
+                    getAttribute("sigColorChatSnapWithSound"),
+                    getAttribute("sigColorChatSnapWithoutSound") -> {
+                        ephemeralHook("getColor", 0xFF77332E.toInt())
+                    }
                 }
             }
 
@@ -188,6 +237,13 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetBackgroundDrawable"),
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFE5E5E5.toInt()))
+                    }
+                    getAttribute("sigColorChatActivity"),
+                    getAttribute("sigColorChatChat"),
+                    getAttribute("sigColorChatPendingSending"),
+                    getAttribute("sigColorChatSnapWithSound"),
+                    getAttribute("sigColorChatSnapWithoutSound") -> {
+                        ephemeralHook("getColor", 0xFF38B3DE.toInt())
                     }
                 }
             }
@@ -205,6 +261,13 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFF0E68C.toInt()))
                     }
+                    getAttribute("sigColorChatActivity"),
+                    getAttribute("sigColorChatChat"),
+                    getAttribute("sigColorChatPendingSending"),
+                    getAttribute("sigColorChatSnapWithSound"),
+                    getAttribute("sigColorChatSnapWithoutSound") -> {
+                        ephemeralHook("getColor", 0xFF293145.toInt())
+                    }
                 }
             }
 
@@ -221,9 +284,41 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFF222222.toInt()))
                     }
+                    getAttribute("sigColorChatActivity"),
+                    getAttribute("sigColorChatChat"),
+                    getAttribute("sigColorChatPendingSending"),
+                    getAttribute("sigColorChatSnapWithSound"),
+                    getAttribute("sigColorChatSnapWithoutSound") -> {
+                        ephemeralHook("getColor", 0xFFA5BFF7.toInt())
+                    }
                 }
             }
-                
+            // Credit To @Gabe_does_tech (Telegram) For This Theme 
+            if (themePicker == "light_blue") {
+                when (array[0]) {
+                    getAttribute("sigColorTextPrimary") -> {
+                        ephemeralHook("getColor", 0xFF03BAFC.toInt())
+                    }
+                    getAttribute("sigColorBackgroundMain") -> {
+                        ephemeralHook("getColor", 0xFFBDE6FF.toInt())
+                    }
+                    getAttribute("sigColorBackgroundSurface") -> {
+                        ephemeralHook("getColor", 0xFF78DBFF.toInt())
+                    }
+                    getAttribute("actionSheetBackgroundDrawable"),
+                    getAttribute("actionSheetRoundedBackgroundDrawable") -> {
+                        ephemeralHook("getDrawable", ColorDrawable(0xFF78DBFF.toInt()))
+                    }
+                    getAttribute("sigColorChatActivity"),
+                    getAttribute("sigColorChatChat"),
+                    getAttribute("sigColorChatPendingSending"),
+                    getAttribute("sigColorChatSnapWithSound"),
+                    getAttribute("sigColorChatSnapWithoutSound") -> {
+                        ephemeralHook("getColor", 0xFF08D6FF.toInt())
+                    }
+                }
+            }    
+            
             if (themePicker == "custom") {
                 when (array[0]) {
                     getAttribute("sigColorTextPrimary") -> {
