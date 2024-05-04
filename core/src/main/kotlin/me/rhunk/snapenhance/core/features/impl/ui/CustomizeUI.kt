@@ -18,22 +18,19 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
     }
 
     override fun onActivityCreate() {
-        val isAmoledMode = context.config.userInterface.amoledDarkMode.get()
-        val isCustomizeUI = context.config.userInterface.customizeUi.globalState == true
-
-        if (!isAmoledMode && !isCustomizeUI) return
-
+        
         //TODO: color picker
         val customizeUIConfig = context.config.userInterface.customizeUi
-        val effectiveTextColor by lazy { parseColor(customizeUIConfig.textColor.get()) }
-        val effectivesendAndReceivedTextColor by lazy { parseColor(customizeUIConfig.sendAndReceivedTextColor.get()) }
-        val effectiveBackgroundColor by lazy { parseColor(customizeUIConfig.backgroundColor.get()) }
-        val effectiveBackgroundColorSurface by lazy { parseColor(customizeUIConfig.backgroundColorSurface.get()) }
-        val effectiveActionMenuBackgroundColor by lazy { parseColor(customizeUIConfig.actionMenuBackgroundColor.get()) }
-        val effectiveActionMenuRoundBackgroundColor by lazy { parseColor(customizeUIConfig.actionMenuRoundBackgroundColor.get()) }
-        val effectiveCameraGridLines by lazy { parseColor(customizeUIConfig.cameraGridLines.get()) }
-
-
+        val colorsConfig = context.config.userInterface.customizeUi.colors
+        val themePicker = customizeUIConfig.themePicker.getNullable() ?: return
+        val effectiveTextColor by lazy { parseColor(colorsConfig.textColor.get()) }
+        val effectivesendAndReceivedTextColor by lazy { parseColor(colorsConfig.sendAndReceivedTextColor.get()) }
+        val effectiveBackgroundColor by lazy { parseColor(colorsConfig.backgroundColor.get()) }
+        val effectiveBackgroundColorSurface by lazy { parseColor(colorsConfig.backgroundColorSurface.get()) }
+        val effectiveActionMenuBackgroundColor by lazy { parseColor(colorsConfig.actionMenuBackgroundColor.get()) }
+        val effectiveActionMenuRoundBackgroundColor by lazy { parseColor(colorsConfig.actionMenuRoundBackgroundColor.get()) }
+        val effectiveCameraGridLines by lazy { parseColor(colorsConfig.cameraGridLines.get()) }
+        
         val attributeCache = mutableMapOf<String, Int>()
 
         fun getAttribute(name: String): Int {
@@ -51,8 +48,7 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     it.setResult(content)
                 }
             }
-
-            if (isAmoledMode) {
+            if (themePicker == "amoled_dark_mode") {
                 when (array[0]) {
                     getAttribute("sigColorTextPrimary") -> {
                         ephemeralHook("getColor", 0xFFFFFFFF.toInt())
@@ -67,53 +63,212 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     }
                 }
             }
+                
+            if (themePicker == "modern_minimalism") {
+                when (array[0]) {
+                    getAttribute("sigColorTextPrimary") -> {
+                        ephemeralHook("getColor", 0xFF333333.toInt())
+                    }
+                    getAttribute("sigColorBackgroundMain"),
+                    getAttribute("sigColorBackgroundSurface") -> {
+                        ephemeralHook("getColor", 0xFFF5F5F5.toInt())
+                    }
+                    getAttribute("actionSheetBackgroundDrawable"),
+                    getAttribute("actionSheetRoundedBackgroundDrawable") -> {
+                        ephemeralHook("getDrawable", ColorDrawable(0xFFF5F5F5.toInt()))
+                    }
+                }
+            }
+            
+            if (themePicker == "serene_nature") {
+                when (array[0]) {
+                    getAttribute("sigColorTextPrimary") -> {
+                        ephemeralHook("getColor", 0xFF2E8B57.toInt())
+                    }
+                    getAttribute("sigColorBackgroundMain"),
+                    getAttribute("sigColorBackgroundSurface") -> {
+                        ephemeralHook("getColor", 0xFFFFFDE7.toInt())
+                    }
+                    getAttribute("actionSheetBackgroundDrawable"),
+                    getAttribute("actionSheetRoundedBackgroundDrawable") -> {
+                        ephemeralHook("getDrawable", ColorDrawable(0xFFFFFDE7.toInt()))
+                    }
+                }
+            }
 
-            if (isCustomizeUI) {
+            if (themePicker == "energetic_pop") {
+                when (array[0]) {
+                    getAttribute("sigColorTextPrimary") -> {
+                         ephemeralHook("getColor", 0xFFFFDD00.toInt())
+                    }
+                    getAttribute("sigColorBackgroundMain"),
+                    getAttribute("sigColorBackgroundSurface") -> {
+                        ephemeralHook("getColor", 0xFF212121.toInt())
+                    }
+                    getAttribute("actionSheetBackgroundDrawable"),
+                    getAttribute("actionSheetRoundedBackgroundDrawable") -> {
+                        ephemeralHook("getDrawable", ColorDrawable(0xFF212121.toInt()))
+                    }
+                }
+            }
+
+            if (themePicker == "luxurious_night") {
+                when (array[0]) {
+                    getAttribute("sigColorTextPrimary") -> {
+                        ephemeralHook("getColor", 0xFFFDFCCC.toInt())
+                    }
+                    getAttribute("sigColorBackgroundMain"),
+                    getAttribute("sigColorBackgroundSurface") -> {
+                        ephemeralHook("getColor", 0xFF303030.toInt())
+                    }
+                    getAttribute("actionSheetBackgroundDrawable"),
+                    getAttribute("actionSheetRoundedBackgroundDrawable") -> {
+                        ephemeralHook("getDrawable", ColorDrawable(0xFF303030.toInt()))
+                    }
+                }
+            }
+
+            if (themePicker == "playful_candy") {
+                when (array[0]) {
+                    getAttribute("sigColorTextPrimary") -> {
+                        ephemeralHook("getColor", 0xFFF473B9.toInt())
+                    }
+                    getAttribute("sigColorBackgroundMain"),
+                    getAttribute("sigColorBackgroundSurface") -> {
+                        ephemeralHook("getColor", 0xFFC2F0F0.toInt())
+                    }
+                    getAttribute("actionSheetBackgroundDrawable"),
+                    getAttribute("actionSheetRoundedBackgroundDrawable") -> {
+                        ephemeralHook("getDrawable", ColorDrawable(0xFFC2F0F0.toInt()))
+                    }
+                }
+            }
+
+            if (themePicker == "retro_arcade") {
+                when (array[0]) {
+                    getAttribute("sigColorTextPrimary") -> {
+                        ephemeralHook("getColor", 0xFFFFF9C4.toInt())
+                    }
+                    getAttribute("sigColorBackgroundMain"),
+                    getAttribute("sigColorBackgroundSurface") -> {
+                        ephemeralHook("getColor", 0xFF00008B.toInt())
+                    }
+                    getAttribute("actionSheetBackgroundDrawable"),
+                    getAttribute("actionSheetRoundedBackgroundDrawable") -> {
+                        ephemeralHook("getDrawable", ColorDrawable(0xFF00008B.toInt()))
+                    }
+                }
+            }
+
+            if (themePicker == "rustic_country") {
+                when (array[0]) {
+                    getAttribute("sigColorTextPrimary") -> {
+                        ephemeralHook("getColor", 0xFF77332E.toInt())
+                    }
+                    getAttribute("sigColorBackgroundMain"),
+                    getAttribute("sigColorBackgroundSurface") -> {
+                        ephemeralHook("getColor", 0xFFEAEAEA.toInt())
+                    }
+                    getAttribute("actionSheetBackgroundDrawable"),
+                    getAttribute("actionSheetRoundedBackgroundDrawable") -> {
+                        ephemeralHook("getDrawable", ColorDrawable(0xFFEAEAEA.toInt()))
+                    }
+                }
+            }
+
+            if (themePicker == "ocean_breeze") {
+                when (array[0]) {
+                    getAttribute("sigColorTextPrimary") -> {
+                        ephemeralHook("getColor", 0xFF38B3DE.toInt())
+                    }
+                    getAttribute("sigColorBackgroundMain"),
+                    getAttribute("sigColorBackgroundSurface") -> {
+                        ephemeralHook("getColor", 0xFFE5E5E5.toInt())
+                    }
+                    getAttribute("actionSheetBackgroundDrawable"),
+                    getAttribute("actionSheetRoundedBackgroundDrawable") -> {
+                        ephemeralHook("getDrawable", ColorDrawable(0xFFE5E5E5.toInt()))
+                    }
+                }
+            }
+
+            if (themePicker == "sunset_glow") {
+                when (array[0]) {
+                    getAttribute("sigColorTextPrimary") -> {
+                        ephemeralHook("getColor", 0xFF293145.toInt())
+                    }
+                    getAttribute("sigColorBackgroundMain"),
+                    getAttribute("sigColorBackgroundSurface") -> {
+                        ephemeralHook("getColor", 0xFFF0E68C.toInt())
+                    }
+                    getAttribute("actionSheetBackgroundDrawable"),
+                    getAttribute("actionSheetRoundedBackgroundDrawable") -> {
+                        ephemeralHook("getDrawable", ColorDrawable(0xFFF0E68C.toInt()))
+                    }
+                }
+            }
+
+            if (themePicker == "space_adventure") {
+                when (array[0]) {
+                    getAttribute("sigColorTextPrimary") -> {
+                        ephemeralHook("getColor", 0xFFA5BFF7.toInt())
+                    }
+                    getAttribute("sigColorBackgroundMain"),
+                    getAttribute("sigColorBackgroundSurface") -> {
+                        ephemeralHook("getColor", 0xFF222222.toInt())
+                    }
+                    getAttribute("actionSheetBackgroundDrawable"),
+                    getAttribute("actionSheetRoundedBackgroundDrawable") -> {
+                        ephemeralHook("getDrawable", ColorDrawable(0xFF222222.toInt()))
+                    }
+                }
+            }
+                
+            if (themePicker == "custom") {
                 when (array[0]) {
                     getAttribute("sigColorTextPrimary") -> {
                         ephemeralHook("getColor", effectiveTextColor ?: return@hook)
                     }
-
-                    getAttribute("sigColorTextSecondary") -> {
-                        ephemeralHook("getColor", effectiveTextColor ?: return@hook)
-                    }
-
+                        
                     getAttribute("sigColorBackgroundMain") -> {
                         ephemeralHook("getColor", effectiveBackgroundColor ?: return@hook)
                     }
-
+                        
                     getAttribute("sigColorBackgroundSurface") -> {
                         ephemeralHook("getColor", effectiveBackgroundColorSurface ?: return@hook)
                     }
-
+                        
                     getAttribute("actionSheetBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(effectiveActionMenuBackgroundColor ?: return@hook))
                     }
-
+                        
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(effectiveActionMenuRoundBackgroundColor ?: return@hook))
                     }
-                    
+                        
                     getAttribute("sigColorChatActivity") -> {
                         ephemeralHook("getColor", effectivesendAndReceivedTextColor ?: return@hook)
                     }
-                    
+                        
                     getAttribute("sigColorChatChat") -> {
                         ephemeralHook("getColor", effectivesendAndReceivedTextColor ?: return@hook)
+                        
                     }
-                    
+                        
                     getAttribute("sigColorChatPendingSending") -> {
                         ephemeralHook("getColor", effectivesendAndReceivedTextColor ?: return@hook)
+                        
                     }
-                    
+                        
                     getAttribute("sigColorChatSnapWithSound") -> {
-                        ephemeralHook("getColor", effectivesendAndReceivedTextColor ?: return@hook)
+                            ephemeralHook("getColor", effectivesendAndReceivedTextColor ?: return@hook)
+                        
                     }
-                    
+                        
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", effectivesendAndReceivedTextColor ?: return@hook)
                     }
-                    
+
                     getAttribute("sigExceptionColorCameraGridLines") -> {
                         ephemeralHook("getColor", effectiveCameraGridLines ?: return@hook)
                     }
@@ -122,5 +277,3 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
         }
     }
 }
-
-                
