@@ -24,7 +24,7 @@ function createManagerToolBoxUI() {
     settingsContext.events.push({
         start: function (builder) {
             builder.row(function (builder) {
-                builder.textInput("Custom Prompt", config.get("customPrompt", defaultPrompt), function (value) {
+                builder.textInput("Type You're Welcome Message", config.get("customPrompt", defaultPrompt), function (value) {
                     config.set("customPrompt", value, true);
                 }) .maxLines(8)
                    .singleLine(false);
@@ -34,7 +34,7 @@ function createManagerToolBoxUI() {
 }
   
 module.onSnapMainActivityCreate = activity => {
-        const customPrompt = String(config.get("customPrompt", defaultPrompt));
+        const customPrompt = String(config.get("customPrompt")) || "Welcome";
         shortToast(customPrompt);
 }
 function createInterface() {
