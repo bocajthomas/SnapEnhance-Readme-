@@ -25,7 +25,7 @@ function createManagerToolBoxUI() {
         start: function (builder) {
             builder.row(function (builder) {
                 builder.textInput("Custom Prompt", config.get("customPrompt", defaultPrompt), function (value) {
-                    config.set("customPrompt", string, true);
+                    config.set("customPrompt", value, true);
                 }) .maxLines(8)
                    .singleLine(false);
             });
