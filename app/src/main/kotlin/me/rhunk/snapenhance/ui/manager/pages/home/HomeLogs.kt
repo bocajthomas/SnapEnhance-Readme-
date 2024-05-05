@@ -31,6 +31,7 @@ import androidx.navigation.NavBackStackEntry
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withContext
 import me.rhunk.snapenhance.LogReader
 import me.rhunk.snapenhance.common.logger.LogChannel
@@ -64,8 +65,12 @@ class HomeLogs : Routes.Route() {
             modifier = Modifier.align(Alignment.CenterVertically)
         ) {
             DropdownMenuItem(onClick = {
-                context.log.clearLogs()
-                navigate()
+                context.coroutineScope.launch {
+                    context.log.clearLogs()
+                }
+                routes.navController.navigate(routeInfo.id) {
+                    popUpTo(routeInfo.id) { inclusive = true }
+                }
                 showDropDown = false
             }, text = {
                 Text(translation["clear_logs_button"])
@@ -148,63 +153,73 @@ class HomeLogs : Routes.Route() {
                     }
                 }
                 items(lineCount) { index ->
-                    val logLine = remember(index) { logReader?.getLogLine(index) } ?: return@items
+                    val logLine by remember(index) {
+                        mutableStateOf(runBlocking(Dispatchers.IO) {
+                            logReader?.getLogLine(index)
+                        })
+                    }
                     var expand by remember { mutableStateOf(false) }
 
-                    Box(modifier = Modifier
-                        .fillMaxWidth()
-                        .pointerInput(Unit) {
-                            detectTapGestures(
-                                onLongPress = {
-                                    coroutineScope.launch {
-                                        clipboardManager.setText(AnnotatedString(logLine.message))
-                                    }
-                                },
-                                onTap = {
-                                    expand = !expand
-                                }
-                            )
-                        }) {
-
-                        Row(
-                            modifier = Modifier
-                                .padding(4.dp)
-                                .fillMaxWidth()
-                                .defaultMinSize(minHeight = 30.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            if (!expand) {
-                                Icon(
-                                    imageVector = when (logLine.logLevel) {
-                                        LogLevel.DEBUG -> Icons.Outlined.BugReport
-                                        LogLevel.ERROR, LogLevel.ASSERT -> Icons.Outlined.Report
-                                        LogLevel.INFO, LogLevel.VERBOSE -> Icons.Outlined.Info
-                                        LogLevel.WARN -> Icons.Outlined.Warning
+                    logLine?.let { line ->
+                        Box(modifier = Modifier
+                            .fillMaxWidth()
+                            .pointerInput(Unit) {
+                                detectTapGestures(
+                                    onLongPress = {
+                                        coroutineScope.launch {
+                                            clipboardManager.setText(
+                                                AnnotatedString(
+                                                    line.message
+                                                )
+                                            )
+                                        }
                                     },
-                                    contentDescription = null,
+                                    onTap = {
+                                        expand = !expand
+                                    }
                                 )
+                            }) {
+                            Row(
+                                modifier = Modifier
+                                    .padding(4.dp)
+                                    .fillMaxWidth()
+                                    .defaultMinSize(minHeight = 30.dp),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                if (!expand) {
+                                    Icon(
+                                        imageVector = when (line.logLevel) {
+                                            LogLevel.DEBUG -> Icons.Outlined.BugReport
+                                            LogLevel.ERROR, LogLevel.ASSERT -> Icons.Outlined.Report
+                                            LogLevel.INFO, LogLevel.VERBOSE -> Icons.Outlined.Info
+                                            LogLevel.WARN -> Icons.Outlined.Warning
+                                            else -> Icons.Outlined.Info
+                                        },
+                                        contentDescription = null,
+                                    )
+
+                                    Text(
+                                        text = LogChannel.fromChannel(line.tag)?.shortName ?: line.tag,
+                                        modifier = Modifier.padding(start = 4.dp),
+                                        fontWeight = FontWeight.Light,
+                                        fontSize = 10.sp,
+                                    )
+
+                                    Text(
+                                        text = line.dateTime,
+                                        modifier = Modifier.padding(start = 4.dp, end = 4.dp),
+                                        fontSize = 10.sp
+                                    )
+                                }
 
                                 Text(
-                                    text = LogChannel.fromChannel(logLine.tag)?.shortName ?: logLine.tag,
-                                    modifier = Modifier.padding(start = 4.dp),
-                                    fontWeight = FontWeight.Light,
+                                    text = line.message.trimIndent(),
                                     fontSize = 10.sp,
-                                )
-
-                                Text(
-                                    text = logLine.dateTime,
-                                    modifier = Modifier.padding(start = 4.dp, end = 4.dp),
-                                    fontSize = 10.sp
+                                    maxLines = if (expand) Int.MAX_VALUE else 6,
+                                    overflow = if (expand) TextOverflow.Visible else TextOverflow.Ellipsis,
+                                    softWrap = !expand,
                                 )
                             }
-
-                            Text(
-                                text = logLine.message.trimIndent(),
-                                fontSize = 10.sp,
-                                maxLines = if (expand) Int.MAX_VALUE else 6,
-                                overflow = if (expand) TextOverflow.Visible else TextOverflow.Ellipsis,
-                                softWrap = !expand,
-                            )
                         }
                     }
                 }

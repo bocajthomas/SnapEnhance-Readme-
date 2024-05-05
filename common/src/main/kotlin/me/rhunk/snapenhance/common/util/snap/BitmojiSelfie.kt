@@ -16,7 +16,7 @@ object BitmojiSelfie {
         return when (type) {
             BitmojiSelfieType.STANDARD -> "${type.prefixUrl}$selfieId-$avatarId-v1.webp?transparent=1"
             BitmojiSelfieType.THREE_D -> "${type.prefixUrl}$selfieId-$avatarId-v1.webp?trim=circle"
-            BitmojiSelfieType.NEW_THREE_D -> "${type.prefixUrl}$selfieId-$avatarId-v1.webp?trim=circle&ua=1"
+            BitmojiSelfieType.NEW_THREE_D -> "${type.prefixUrl}$selfieId-$avatarId-v1.webp?trim=circle&ua=2"
         }
     }
 }
