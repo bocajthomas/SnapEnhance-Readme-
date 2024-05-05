@@ -362,11 +362,11 @@
                         "properties": {
                             "theme_picker": {
                                 "name": "Theme Picker",
-                                "description": "Preset Snapchat Themes\nFor custom use the options below"
+                                "description": "Preset Snapchat Themes"
                             },
                             "colors": {
                                 "name": "Custom Colors",
-                                "description": "Customize Individual colors\nNote: Select Custom on Theme Picker to use",
+                                "description": "Customize Individual colors\nNote: Select Custom Colors on Theme Picker to use",
                                 "properties": {
                                     "text_color": {
                                         "name": "Text Color",
