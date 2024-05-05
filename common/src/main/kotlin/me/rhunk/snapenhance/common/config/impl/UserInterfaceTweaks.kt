@@ -85,6 +85,20 @@ class UserInterfaceTweaks : ConfigContainer() {
                                  "vintage_comic",
                                  "neon_arcade",
                                  "space_cadet",
+                                 "cherry_blossom",
+                                 "cyber_glitch",
+                                 "ginger_snap",
+                                 "vintage_travel",
+                                 "lava_flow",
+                                 "cotton_candy_clouds",
+                                 "rusty_robot",
+                                 "ocean_fog",
+                                 "stained_glass",
+                                 "spicy_chili_pepper",
+                                 "minimalist_night",
+                                 "pirate_treasure",
+                                 "lemon_meringue",
+                                 "alien_landscape",
                                  "custom")
         
         val colors = container("colors", ColorsConfig())
