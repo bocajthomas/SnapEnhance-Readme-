@@ -356,41 +356,47 @@
                         "name": "Enable App Appearance Settings",
                         "description": "Enables the hidden App Appearance Setting\nMay not be required on newer Snapchat versions"
                     },
-                    "amoled_dark_mode": {
-                        "name": "AMOLED Dark Mode",
-                        "description": "Enables AMOLED dark mode\nMake sure Snapchats Dark mode is enabled"
-                    },
                     "customize_ui": {
                         "name": "Colors",
                         "description": "Customize Snapchats Colors",
                         "properties": {
-                            "text_color": {
-                                "name": "Text Color",
-                                "description": "Changes Snapchats text color\nInput hex color code"
+                            "theme_picker": {
+                                "name": "Theme Picker",
+                                "description": "Preset Snapchat Themes"
                             },
-                            "send_and_received_text_color": {
-                                "name": "Sent & Received Text Color",
-                                "description": "Changes Snapchats Sent and Received text color on the friend feed\nInput a hex color code"
-                            },
-                            "background_color": {
-                                "name": "Background Color",
-                                "description": "Changes Snapchats background color\nInput a hex color code"
-                            },
-                            "background_color_surface": {
-                                "name": "Background Surface Color",
-                                "description": "Changes Snapchats background surface color\nInput a hex color code"
-                            },
-                            "action_menu_background_color": {
-                                "name": "Action Menu Background Color",
-                                "description": "Changes Snapchats chat action menu background color\nInput a hex color code"
-                            },
-                            "action_menu_round_background_color": {
-                                "name": "Action Menu Round Background Color",
-                                "description": "Changes Snapchats chat action menu round background color\nInput a hex color code"
-                            },
-                            "camera_grid_lines": {
-                                "name": "Camera Gridlines Color",
-                                "description": "Changes Snapchats Gridlines color on the Camera Preview \nInput a hex color code\nNote: Enable the grid on the my camera settings"
+                            "colors": {
+                                "name": "Custom Colors",
+                                "description": "Customize Individual colors\nNote: Select Custom Colors on Theme Picker to use",
+                                "properties": {
+                                    "text_color": {
+                                        "name": "Text Color",
+                                        "description": "Changes Snapchats text color\nInput hex color code"
+                                    },
+                                    "send_and_received_text_color": {
+                                        "name": "Sent & Received Text Color",
+                                        "description": "Changes Snapchats Sent and Received text color on the friend feed\nInput a hex color code"
+                                    },
+                                    "background_color": {
+                                        "name": "Background Color",
+                                        "description": "Changes Snapchats background color\nInput a hex color code"
+                                    },
+                                    "background_color_surface": {
+                                        "name": "Background Surface Color",
+                                        "description": "Changes Snapchats background surface color\nInput a hex color code"
+                                    },
+                                    "action_menu_background_color": {
+                                        "name": "Action Menu Background Color",
+                                        "description": "Changes Snapchats chat action menu background color\nInput a hex color code"
+                                    },
+                                    "action_menu_round_background_color": {
+                                        "name": "Action Menu Round Background Color",
+                                        "description": "Changes Snapchats chat action menu round background color\nInput a hex color code"
+                                    },
+                                    "camera_grid_lines": {
+                                        "name": "Camera Gridlines Color",
+                                        "description": "Changes Snapchats Gridlines color on the Camera Preview \nInput a hex color code\nNote: Enable the grid on the my camera settings"
+                                    }
+                                }
                             }
                         }
                     },
@@ -1019,6 +1025,74 @@
                 "mark_as_read_and_save_in_chat": "Save in Chat when marking as read (depends on Auto Save)",
                 "friend_add_source": "Show friend add source",
                 "group": "Group notifications"
+            },
+            "theme_picker": {
+                "amoled_dark_mode": "AMOLED Dark Mode",
+                "modern_minimalism": "Modern Minimalism",
+                "serene_nature": "Serene Nature",
+                "energetic_pop": "Energetic Pop",
+                "luxurious_night": "Luxurious Night",
+                "playful_candy": "Playful Candy",
+                "retro_arcade": "Retro Arcade",
+                "rustic_country": "Rustic Country",
+                "ocean_breeze": "Ocean Breeze",
+                "sunset_glow": "Sunset Glow",
+                "space_adventure": "Space Adventure",
+                "light_blue": "Light Blue",
+                "dark_blue": "Dark Blue",
+                "earthy_autumn": "Earthy Autumn",
+                "watercolor_wash": "Watercolor Wash",
+                "lemon_zest": "Lemon Zest",
+                "tropical_paradise": "Tropical Paradise",
+                "industrial_chic": "Industrial Chic",
+                "cherry_bomb": "Cherry Bomb",
+                "woodland_mystery": "Woodland Mystery",
+                "galaxy_glitter": "Galaxy Glitter",
+                "creamy_vanilla": "Creamy Vanilla",
+                "spicy_chili": "Spicy Chili",
+                "spring_meadow": "Spring Meadow",
+                "midnight_library": "Midnight Library",
+                "lemon_sorbet": "Lemon Sorbet",
+                "cosmic_night": "Cosmic Night",
+                "spicy_mustard": "Spicy Mustard",
+                "peppermint_candy": "Peppermint Candy",
+                "gingerbread_house": "Gingerbread House",
+                "art_deco_glam": "Art Deco Glam",
+                "ocean_depths": "Ocean Depths",
+                "bubblegum_pink": "Bubblegum Pink",
+                "firefly_night": "Firefly Night",
+                "apple_orchard": "Apple Orchard",
+                "lavender_field": "Lavender Field",
+                "lemon_drop": "Lemon Drop",
+                "modern_farmhouse": "Modern Farmhouse",
+                "black_cat": "Black Cat",
+                "mint_chocolate": "Mint Chocolate",
+                "desert_sunset": "Desert Sunset",
+                "pumpkin_spice": "Pumpkin Spice",
+                "sky_blue": "Sky Blue",
+                "tropical_jungle": "Tropical Jungle",
+                "black_marble": "Black Marble",
+                "coffee_shop": "Coffee Shop",
+                "mermaid_lagoon": "Mermaid Lagoon",
+                "creamsicle": "Creamsicle",
+                "vintage_comic": "Vintage Comic",
+                "neon_arcade": "Neon Arcade",
+                "space_cadet": "Space Cadet",
+                "cherry_blossom": "Cherry Blossom",
+                "cyber_glitch": "Cyber Glitch",
+                "ginger_snap": "Ginger Snap",
+                "vintage_travel": "Vintage Travel",
+                "lava_flow": "Lava Flow",
+                "cotton_candy_clouds": "Cotton Candy Clouds",
+                "rusty_robot": "Rusty Robot",
+                "ocean_fog": "Ocean Fog",
+                "stained_glass": "Stained Glass",
+                "spicy_chili_pepper": "Spicy Chili Pepper",
+                "minimalist_night": "Minimalist Night",
+                "pirate_treasure": "Pirate Treasure",
+                "lemon_meringue": "Lemon Meringue",
+                "alien_landscape": "Alien Landscape",
+                "custom": "Custom Colors"
             },
             "friend_feed_menu_buttons": {
                 "auto_download": "\u2B07\uFE0F Auto Download",
