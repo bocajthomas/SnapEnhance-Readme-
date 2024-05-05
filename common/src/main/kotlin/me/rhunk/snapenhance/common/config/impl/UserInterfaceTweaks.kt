@@ -86,6 +86,7 @@ class UserInterfaceTweaks : ConfigContainer() {
                                  "neon_arcade",
                                  "space_cadet",
                                  "custom")
+        
         val colors = container("colors", ColorsConfig())
     }
 
