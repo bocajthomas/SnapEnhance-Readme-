@@ -1216,6 +1216,328 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     }
                 }
             }
+
+            if (themePicker == "cherry_blossom") {
+                when (array[0]) {
+                    getAttribute("sigColorTextPrimary") -> {
+                        ephemeralHook("getColor", 0xFF293145.toInt())
+                    }
+                    getAttribute("sigColorBackgroundMain"),
+                    getAttribute("sigColorBackgroundSurface") -> {
+                        ephemeralHook("getColor", 0xFFF0E68C.toInt())
+                    }
+                    getAttribute("actionSheetBackgroundDrawable"),
+                    getAttribute("actionSheetRoundedBackgroundDrawable") -> {
+                        ephemeralHook("getDrawable", ColorDrawable(0xFFF0E68C.toInt()))
+                    }
+                    getAttribute("sigColorChatActivity"),
+                    getAttribute("sigColorChatChat"),
+                    getAttribute("sigColorChatPendingSending"),
+                    getAttribute("sigColorChatSnapWithSound"),
+                    getAttribute("sigColorChatSnapWithoutSound") -> {
+                        ephemeralHook("getColor", 0xFF293145.toInt())
+                    }
+                }
+            }
+
+            if (themePicker == "cyber_glitch") {
+                when (array[0]) {
+                    getAttribute("sigColorTextPrimary") -> {
+                        ephemeralHook("getColor", 0xFF00FF00.toInt())
+                    }
+                    getAttribute("sigColorBackgroundMain"),
+                    getAttribute("sigColorBackgroundSurface") -> {
+                        ephemeralHook("getColor", 0xFF000000.toInt())
+                    }
+                    getAttribute("actionSheetBackgroundDrawable"),
+                    getAttribute("actionSheetRoundedBackgroundDrawable") -> {
+                        ephemeralHook("getDrawable", ColorDrawable(0xFF000000.toInt()))
+                    }
+                    getAttribute("sigColorChatActivity"),
+                    getAttribute("sigColorChatChat"),
+                    getAttribute("sigColorChatPendingSending"),
+                    getAttribute("sigColorChatSnapWithSound"),
+                    getAttribute("sigColorChatSnapWithoutSound") -> {
+                        ephemeralHook("getColor", 0xFF00FF00.toInt())
+                    }
+                }
+            }
+
+            if (themePicker == "ginger_snap") {
+                when (array[0]) {
+                    getAttribute("sigColorTextPrimary") -> {
+                        ephemeralHook("getColor", 0xFFFFFFFF.toInt())
+                    }
+                    getAttribute("sigColorBackgroundMain"),
+                    getAttribute("sigColorBackgroundSurface") -> {
+                        ephemeralHook("getColor", 0xFFC6893A.toInt())
+                    }
+                    getAttribute("actionSheetBackgroundDrawable"),
+                    getAttribute("actionSheetRoundedBackgroundDrawable") -> {
+                        ephemeralHook("getDrawable", ColorDrawable(0xFFC6893A.toInt()))
+                    }
+                    getAttribute("sigColorChatActivity"),
+                    getAttribute("sigColorChatChat"),
+                    getAttribute("sigColorChatPendingSending"),
+                    getAttribute("sigColorChatSnapWithSound"),
+                    getAttribute("sigColorChatSnapWithoutSound") -> {
+                        ephemeralHook("getColor", 0xFFFFFFFF.toInt())
+                    }
+                }
+            }
+
+            if (themePicker == "vintage_travel") {
+                when (array[0]) {
+                    getAttribute("sigColorTextPrimary") -> {
+                        ephemeralHook("getColor", 0xFF333333.toInt())
+                    }
+                    getAttribute("sigColorBackgroundMain"),
+                    getAttribute("sigColorBackgroundSurface") -> {
+                        ephemeralHook("getColor", 0xFFECEAF3.toInt())
+                    }
+                    getAttribute("actionSheetBackgroundDrawable"),
+                    getAttribute("actionSheetRoundedBackgroundDrawable") -> {
+                        ephemeralHook("getDrawable", ColorDrawable(0xFFECEAF3.toInt()))
+                    }
+                    getAttribute("sigColorChatActivity"),
+                    getAttribute("sigColorChatChat"),
+                    getAttribute("sigColorChatPendingSending"),
+                    getAttribute("sigColorChatSnapWithSound"),
+                    getAttribute("sigColorChatSnapWithoutSound") -> {
+                        ephemeralHook("getColor", 0xFF333333.toInt())
+                    }
+                }
+            }
+
+            if (themePicker == "lava_flow") {
+                when (array[0]) {
+                    getAttribute("sigColorTextPrimary") -> {
+                        ephemeralHook("getColor", 0xFFFFCC00.toInt())
+                    }
+                    getAttribute("sigColorBackgroundMain"),
+                    getAttribute("sigColorBackgroundSurface") -> {
+                        ephemeralHook("getColor", 0xFFC70039.toInt())
+                    }
+                    getAttribute("actionSheetBackgroundDrawable"),
+                    getAttribute("actionSheetRoundedBackgroundDrawable") -> {
+                        ephemeralHook("getDrawable", ColorDrawable(0xFFC70039.toInt()))
+                    }
+                    getAttribute("sigColorChatActivity"),
+                    getAttribute("sigColorChatChat"),
+                    getAttribute("sigColorChatPendingSending"),
+                    getAttribute("sigColorChatSnapWithSound"),
+                    getAttribute("sigColorChatSnapWithoutSound") -> {
+                        ephemeralHook("getColor", 0xFFFFCC00.toInt())
+                    }
+                }
+            }
+
+            if (themePicker == "cotton_candy_clouds") {
+                when (array[0]) {
+                    getAttribute("sigColorTextPrimary") -> {
+                        ephemeralHook("getColor", 0xFF333333.toInt())
+                    }
+                    getAttribute("sigColorBackgroundMain"),
+                    getAttribute("sigColorBackgroundSurface") -> {
+                        ephemeralHook("getColor", 0xFFF0F8FF.toInt())
+                    }
+                    getAttribute("actionSheetBackgroundDrawable"),
+                    getAttribute("actionSheetRoundedBackgroundDrawable") -> {
+                        ephemeralHook("getDrawable", ColorDrawable(0xFFF0F8FF.toInt()))
+                    }
+                    getAttribute("sigColorChatActivity"),
+                    getAttribute("sigColorChatChat"),
+                    getAttribute("sigColorChatPendingSending"),
+                    getAttribute("sigColorChatSnapWithSound"),
+                    getAttribute("sigColorChatSnapWithoutSound") -> {
+                        ephemeralHook("getColor", 0xFF333333.toInt())
+                    }
+                }
+            }
+
+            if (themePicker == "rusty_robot") {
+                when (array[0]) {
+                    getAttribute("sigColorTextPrimary") -> {
+                        ephemeralHook("getColor", 0xFFF7CA48.toInt())
+                    }
+                    getAttribute("sigColorBackgroundMain"),
+                    getAttribute("sigColorBackgroundSurface") -> {
+                        ephemeralHook("getColor", 0xFF303030.toInt())
+                    }
+                    getAttribute("actionSheetBackgroundDrawable"),
+                    getAttribute("actionSheetRoundedBackgroundDrawable") -> {
+                        ephemeralHook("getDrawable", ColorDrawable(0xFF303030.toInt()))
+                    }
+                    getAttribute("sigColorChatActivity"),
+                    getAttribute("sigColorChatChat"),
+                    getAttribute("sigColorChatPendingSending"),
+                    getAttribute("sigColorChatSnapWithSound"),
+                    getAttribute("sigColorChatSnapWithoutSound") -> {
+                        ephemeralHook("getColor", 0xFFF7CA48.toInt())
+                    }
+                }
+            }
+
+            if (themePicker == "ocean_fog") {
+                when (array[0]) {
+                    getAttribute("sigColorTextPrimary") -> {
+                        ephemeralHook("getColor", 0xFF333333.toInt())
+                    }
+                    getAttribute("sigColorBackgroundMain"),
+                    getAttribute("sigColorBackgroundSurface") -> {
+                        ephemeralHook("getColor", 0xFFB0C4DE.toInt())
+                    }
+                    getAttribute("actionSheetBackgroundDrawable"),
+                    getAttribute("actionSheetRoundedBackgroundDrawable") -> {
+                        ephemeralHook("getDrawable", ColorDrawable(0xFFB0C4DE.toInt()))
+                    }
+                    getAttribute("sigColorChatActivity"),
+                    getAttribute("sigColorChatChat"),
+                    getAttribute("sigColorChatPendingSending"),
+                    getAttribute("sigColorChatSnapWithSound"),
+                    getAttribute("sigColorChatSnapWithoutSound") -> {
+                        ephemeralHook("getColor", 0xFF333333.toInt())
+                    }
+                }
+            }
+
+            if (themePicker == "stained_glass") {
+                when (array[0]) {
+                    getAttribute("sigColorTextPrimary") -> {
+                        ephemeralHook("getColor", 0xFF000000.toInt())
+                    }
+                    getAttribute("sigColorBackgroundMain"),
+                    getAttribute("sigColorBackgroundSurface") -> {
+                        ephemeralHook("getColor", 0xFFF5F5F5.toInt())
+                    }
+                    getAttribute("actionSheetBackgroundDrawable"),
+                    getAttribute("actionSheetRoundedBackgroundDrawable") -> {
+                        ephemeralHook("getDrawable", ColorDrawable(0xFFF5F5F5.toInt()))
+                    }
+                    getAttribute("sigColorChatActivity"),
+                    getAttribute("sigColorChatChat"),
+                    getAttribute("sigColorChatPendingSending"),
+                    getAttribute("sigColorChatSnapWithSound"),
+                    getAttribute("sigColorChatSnapWithoutSound") -> {
+                        ephemeralHook("getColor", 0xFF000000.toInt())
+                    }
+                }
+            }
+
+            if (themePicker == "spicy_chili_pepper") {
+                when (array[0]) {
+                    getAttribute("sigColorTextPrimary") -> {
+                        ephemeralHook("getColor", 0xFFFFFFFF.toInt())
+                    }
+                    getAttribute("sigColorBackgroundMain"),
+                    getAttribute("sigColorBackgroundSurface") -> {
+                        ephemeralHook("getColor", 0xFFC70039.toInt())
+                    }
+                    getAttribute("actionSheetBackgroundDrawable"),
+                    getAttribute("actionSheetRoundedBackgroundDrawable") -> {
+                        ephemeralHook("getDrawable", ColorDrawable(0xFFC70039.toInt()))
+                    }
+                    getAttribute("sigColorChatActivity"),
+                    getAttribute("sigColorChatChat"),
+                    getAttribute("sigColorChatPendingSending"),
+                    getAttribute("sigColorChatSnapWithSound"),
+                    getAttribute("sigColorChatSnapWithoutSound") -> {
+                        ephemeralHook("getColor", 0xFFFFFFFF.toInt())
+                    }
+                }
+            }
+
+            if (themePicker == "minimalist_night") {
+                when (array[0]) {
+                    getAttribute("sigColorTextPrimary") -> {
+                        ephemeralHook("getColor", 0xFFA5BFF7.toInt())
+                    }
+                    getAttribute("sigColorBackgroundMain"),
+                    getAttribute("sigColorBackgroundSurface") -> {
+                        ephemeralHook("getColor", 0xFF000000.toInt())
+                    }
+                    getAttribute("actionSheetBackgroundDrawable"),
+                    getAttribute("actionSheetRoundedBackgroundDrawable") -> {
+                        ephemeralHook("getDrawable", ColorDrawable(0xFF000000.toInt()))
+                    }
+                    getAttribute("sigColorChatActivity"),
+                    getAttribute("sigColorChatChat"),
+                    getAttribute("sigColorChatPendingSending"),
+                    getAttribute("sigColorChatSnapWithSound"),
+                    getAttribute("sigColorChatSnapWithoutSound") -> {
+                        ephemeralHook("getColor", 0xFFA5BFF7.toInt())
+                    }
+                }
+            }
+
+            if (themePicker == "pirate_treasure") {
+                when (array[0]) {
+                    getAttribute("sigColorTextPrimary") -> {
+                        ephemeralHook("getColor", 0xFFFCE5C7.toInt())
+                    }
+                    getAttribute("sigColorBackgroundMain"),
+                    getAttribute("sigColorBackgroundSurface") -> {
+                        ephemeralHook("getColor", 0xFF333333.toInt())
+                    }
+                    getAttribute("actionSheetBackgroundDrawable"),
+                    getAttribute("actionSheetRoundedBackgroundDrawable") -> {
+                        ephemeralHook("getDrawable", ColorDrawable(0xFF333333.toInt()))
+                    }
+                    getAttribute("sigColorChatActivity"),
+                    getAttribute("sigColorChatChat"),
+                    getAttribute("sigColorChatPendingSending"),
+                    getAttribute("sigColorChatSnapWithSound"),
+                    getAttribute("sigColorChatSnapWithoutSound") -> {
+                        ephemeralHook("getColor", 0xFFFCE5C7.toInt())
+                    }
+                }
+            }
+
+            if (themePicker == "lemon_meringue") {
+                when (array[0]) {
+                    getAttribute("sigColorTextPrimary") -> {
+                        ephemeralHook("getColor", 0xFF000000.toInt())
+                    }
+                    getAttribute("sigColorBackgroundMain"),
+                    getAttribute("sigColorBackgroundSurface") -> {
+                        ephemeralHook("getColor", 0xFFFCFFE7.toInt())
+                    }
+                    getAttribute("actionSheetBackgroundDrawable"),
+                    getAttribute("actionSheetRoundedBackgroundDrawable") -> {
+                        ephemeralHook("getDrawable", ColorDrawable(0xFFFCFFE7.toInt()))
+                    }
+                    getAttribute("sigColorChatActivity"),
+                    getAttribute("sigColorChatChat"),
+                    getAttribute("sigColorChatPendingSending"),
+                    getAttribute("sigColorChatSnapWithSound"),
+                    getAttribute("sigColorChatSnapWithoutSound") -> {
+                        ephemeralHook("getColor", 0xFF000000.toInt())
+                    }
+                }
+            }
+
+            if (themePicker == "alien_landscape") {
+                when (array[0]) {
+                    getAttribute("sigColorTextPrimary") -> {
+                        ephemeralHook("getColor", 0xFFFFFFFF.toInt())
+                    }
+                    getAttribute("sigColorBackgroundMain"),
+                    getAttribute("sigColorBackgroundSurface") -> {
+                        ephemeralHook("getColor", 0xFF9B59B6.toInt())
+                    }
+                    getAttribute("actionSheetBackgroundDrawable"),
+                    getAttribute("actionSheetRoundedBackgroundDrawable") -> {
+                        ephemeralHook("getDrawable", ColorDrawable(0xFF9B59B6.toInt()))
+                    }
+                    getAttribute("sigColorChatActivity"),
+                    getAttribute("sigColorChatChat"),
+                    getAttribute("sigColorChatPendingSending"),
+                    getAttribute("sigColorChatSnapWithSound"),
+                    getAttribute("sigColorChatSnapWithoutSound") -> {
+                        ephemeralHook("getColor", 0xFFFFFFFF.toInt())
+                    }
+                }
+            }
             
             if (themePicker == "custom") {
                 when (array[0]) {
