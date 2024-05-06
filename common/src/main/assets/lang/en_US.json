@@ -366,47 +366,47 @@
                             },
                             "colors": {
                                 "name": "Custom Colors",
-                                "description": "Customize Individual colors\nNote: Select Custom Colors on Theme Picker to use",
+                                "description": "Customize Individual colors\nNote: Select Custom Colors on Theme Picker to use\nInput hex color codes",
                                 "properties": {
                                     "text_color": {
                                         "name": "Main Text Color",
-                                        "description": "Changes Snapchats main text color\nInput hex color code"
+                                        "description": "Changes Snapchats main text color"
                                     },
                                     "chat_chat_text_color": {
                                         "name": "Main Friend Feed Text Color",
-                                        "description": "Changes the text color of ( New Chat / New Snap And Chats / Typing / Calling / Missed call / Speaking / New Voice Note ) on the friend feed\nInput hex color code"
+                                        "description": "Changes the text color of ( New Chat / New Snap And Chats / Typing / Calling / Missed call / Speaking / New Voice Note ) on the friend feed"
                                     },
                                     "pending_sending_text_color": {
                                         "name": "Secondary Friend Feed Text Color",
-                                        "description": "Changes the text color of ( Delivered / Recevived / Sending / Opened / Tap To Chat / Hold To Replay / Replayed / Saved In Chat / Called ) on the friend feed\nInput hex color code"
+                                        "description": "Changes the text color of ( Delivered / Recevived / Sending / Opened / Tap To Chat / Hold To Replay / Replayed / Saved In Chat / Called ) on the friend feed"
                                     },
                                     "snap_with_sound_text_color": {
                                         "name": "Snaps With Sound Text Color",
-                                        "description": "Changes the text color of ( New Snap ) on the friend feed\nNote: Video Snaps Only\nInput hex color code"
+                                        "description": "Changes the text color of ( New Snap ) on the friend feed\nNote: Video Snaps Only"
                                     },
                                     "snap_without_sound_text_color": {
                                         "name": "Snaps Without Sound Text Color",
-                                        "description": "Changes the text color of ( New Snap ) on the friend feed\nNote: Video Snaps Only\nInput hex color code"
+                                        "description": "Changes the text color of ( New Snap ) on the friend feed\nNote: Video Snaps Only"
                                     },
                                     "background_color": {
                                         "name": "Background Color",
-                                        "description": "Changes Snapchats background color\nInput a hex color code"
+                                        "description": "Changes Snapchats background color"
                                     },
                                     "background_color_surface": {
                                         "name": "Background Surface Color",
-                                        "description": "Changes Snapchats background surface color\nInput a hex color code"
+                                        "description": "Changes Snapchats background surface color"
                                     },
                                     "action_menu_background_color": {
                                         "name": "Action Menu Background Color",
-                                        "description": "Changes Snapchats chat action menu background color\nInput a hex color code"
+                                        "description": "Changes Snapchats chat action menu background color"
                                     },
                                     "action_menu_round_background_color": {
                                         "name": "Action Menu Round Background Color",
-                                        "description": "Changes Snapchats chat action menu round background color\nInput a hex color code"
+                                        "description": "Changes Snapchats chat action menu round background color"
                                     },
                                     "camera_grid_lines": {
                                         "name": "Camera Gridlines Color",
-                                        "description": "Changes Snapchats Gridlines color on the Camera Preview \nInput a hex color code\nNote: Enable the grid on the my camera settings"
+                                        "description": "Changes Snapchats Gridlines color on the Camera Preview\nNote: Enable the grid on the my camera settings"
                                     }
                                 }
                             }
