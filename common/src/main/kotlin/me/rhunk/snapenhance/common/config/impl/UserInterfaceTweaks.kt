@@ -24,7 +24,10 @@ class UserInterfaceTweaks : ConfigContainer() {
             value.isEmpty() || runCatching { Color.parseColor(value) }.isSuccess
         }
         val textColor = string("text_color") { inputCheck = checkInputColor }
-        val sendAndReceivedTextColor = string("send_and_received_text_color") { inputCheck = checkInputColor }
+        val chatChatTextColor = string("chat_chat_text_color") { inputCheck = checkInputColor }
+        val pendingSendingTextColor = string("pending_sending_text_color") { inputCheck = checkInputColor }
+        val snapWithSoundTextColor = string("snap_with_sound_text_color") { inputCheck = checkInputColor }
+        val snapWithoutSoundTextColor = string("snap_without_sound_text_color") { inputCheck = checkInputColor }
         val backgroundColor = string("background_color") { inputCheck = checkInputColor }
         val backgroundColorSurface = string("background_color_surface") { inputCheck = checkInputColor }
         val actionMenuBackgroundColor = string("action_menu_background_color") { inputCheck = checkInputColor }
