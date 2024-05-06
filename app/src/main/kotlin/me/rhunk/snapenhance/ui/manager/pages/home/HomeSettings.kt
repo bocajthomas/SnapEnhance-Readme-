@@ -18,6 +18,7 @@ import androidx.compose.ui.window.Dialog
 import androidx.core.net.toUri
 import androidx.navigation.NavBackStackEntry
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import me.rhunk.snapenhance.common.Constants
 import me.rhunk.snapenhance.common.action.EnumAction
@@ -273,7 +274,9 @@ class HomeSettings : Routes.Route() {
                 }
                 Button(onClick = {
                     runCatching {
-                        selectedFileType.resolve(context.androidContext).delete()
+                        context.coroutineScope.launch {
+                            selectedFileType.resolve(context.androidContext).delete()
+                        }
                     }.onFailure {
                         context.log.error("Failed to clear file", it)
                         context.longToast("Failed to clear file! ${it.localizedMessage}")

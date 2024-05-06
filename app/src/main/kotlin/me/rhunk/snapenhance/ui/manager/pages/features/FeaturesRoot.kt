@@ -44,7 +44,6 @@ import me.rhunk.snapenhance.ui.manager.MainActivity
 import me.rhunk.snapenhance.ui.manager.Routes
 import me.rhunk.snapenhance.ui.util.*
 
-@OptIn(ExperimentalMaterial3Api::class)
 class FeaturesRoot : Routes.Route() {
     private val alertDialogs by lazy { AlertDialogs(context.translation) }
 
@@ -291,7 +290,7 @@ class FeaturesRoot : Routes.Route() {
             FeatureNotice.REQUIRE_NATIVE_HOOKS.key to Color(0xFFFF5722),
         )
 
-        Card(
+        ElevatedCard(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 10.dp, end = 10.dp, top = 5.dp, bottom = 5.dp)

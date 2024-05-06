@@ -16,7 +16,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.StrokeCap
- import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
 import androidx.documentfile.provider.DocumentFile
 import androidx.lifecycle.Lifecycle
@@ -28,6 +28,7 @@ import me.rhunk.snapenhance.bridge.DownloadCallback
 import me.rhunk.snapenhance.common.data.download.DownloadMetadata
 import me.rhunk.snapenhance.common.data.download.MediaDownloadSource
 import me.rhunk.snapenhance.common.data.download.createNewFilePath
+import me.rhunk.snapenhance.common.ui.rememberAsyncMutableState
 import me.rhunk.snapenhance.common.util.ktx.longHashCode
 import me.rhunk.snapenhance.download.DownloadProcessor
 import me.rhunk.snapenhance.download.FFMpegProcessor
@@ -133,34 +134,46 @@ class TasksRoot : Routes.Route() {
         }
     }
 
-    override val topBarActions: @Composable() (RowScope.() -> Unit) = {
+    override val topBarActions: @Composable (RowScope.() -> Unit) = {
         var showConfirmDialog by remember { mutableStateOf(false) }
+        val coroutineScope = rememberCoroutineScope()
 
-        if (taskSelection.size == 1 && taskSelection.firstOrNull()?.second?.exists() == true) {
-            taskSelection.firstOrNull()?.second?.takeIf { it.exists() }?.let { documentFile ->
-                IconButton(onClick = {
-                    runCatching {
-                        context.androidContext.startActivity(Intent(Intent.ACTION_VIEW).apply {
-                            setDataAndType(documentFile.uri, documentFile.type)
-                            flags = Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_ACTIVITY_NEW_TASK
-                        })
-                        taskSelection.clear()
-                    }.onFailure {
-                        context.log.error("Failed to open file ${taskSelection.first().second}", it)
+        if (taskSelection.size == 1) {
+            val selectionExists by rememberAsyncMutableState(defaultValue = false) {
+                taskSelection.firstOrNull()?.second?.exists() == true
+            }
+            if (selectionExists) {
+                taskSelection.firstOrNull()?.second?.let { documentFile ->
+                    IconButton(onClick = {
+                        runCatching {
+                            context.androidContext.startActivity(Intent(Intent.ACTION_VIEW).apply {
+                                setDataAndType(documentFile.uri, documentFile.type)
+                                flags = Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_ACTIVITY_NEW_TASK
+                            })
+                            taskSelection.clear()
+                        }.onFailure {
+                            context.log.error("Failed to open file ${taskSelection.first().second}", it)
+                        }
+                    }) {
+                        Icon(Icons.AutoMirrored.Filled.OpenInNew, contentDescription = "Open")
                     }
-                }) {
-                    Icon(Icons.AutoMirrored.Filled.OpenInNew, contentDescription = "Open")
                 }
             }
         }
 
-        if (taskSelection.size > 1 && taskSelection.all { it.second?.type?.contains("video") == true }) {
-            IconButton(onClick = {
-                mergeSelection(taskSelection.toList().also {
-                    taskSelection.clear()
-                }.map { it.first to it.second!! })
-            }) {
-                Icon(Icons.Filled.Merge, contentDescription = "Merge")
+        if (taskSelection.size > 1) {
+            val canMergeSelection by rememberAsyncMutableState(defaultValue = false, keys = arrayOf(taskSelection.size)) {
+                taskSelection.all { it.second?.type?.contains("video") == true }
+            }
+
+            if (canMergeSelection) {
+                IconButton(onClick = {
+                    mergeSelection(taskSelection.toList().also {
+                        taskSelection.clear()
+                    }.map { it.first to it.second!! })
+                }) {
+                    Icon(Icons.Filled.Merge, contentDescription = "Merge")
+                }
             }
         }
 
@@ -187,9 +200,12 @@ class TasksRoot : Routes.Route() {
                         if (taskSelection.isNotEmpty()) {
                             Text(translation["remove_selected_tasks_title"])
                             Row (
-                                modifier = Modifier.padding(top = 10.dp).fillMaxWidth().clickable {
-                                    alsoDeleteFiles = !alsoDeleteFiles
-                                },
+                                modifier = Modifier
+                                    .padding(top = 10.dp)
+                                    .fillMaxWidth()
+                                    .clickable {
+                                        alsoDeleteFiles = !alsoDeleteFiles
+                                    },
                                 horizontalArrangement = Arrangement.spacedBy(5.dp),
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
@@ -207,19 +223,22 @@ class TasksRoot : Routes.Route() {
                     Button(
                         onClick = {
                             showConfirmDialog = false
-
                             if (taskSelection.isNotEmpty()) {
                                 taskSelection.forEach { (task, documentFile) ->
-                                    context.taskManager.removeTask(task)
-                                    recentTasks.remove(task)
-                                    if (alsoDeleteFiles) {
-                                        documentFile?.delete()
+                                    coroutineScope.launch(Dispatchers.IO) {
+                                        context.taskManager.removeTask(task)
+                                        if (alsoDeleteFiles) {
+                                            documentFile?.delete()
+                                        }
                                     }
+                                    recentTasks.remove(task)
                                 }
                                 activeTasks = activeTasks.filter { task -> !taskSelection.map { it.first }.contains(task.task) }
                                 taskSelection.clear()
                             } else {
-                                context.taskManager.clearAllTasks()
+                                coroutineScope.launch(Dispatchers.IO) {
+                                    context.taskManager.clearAllTasks()
+                                }
                                 recentTasks.clear()
                                 activeTasks.forEach {
                                     runCatching {
@@ -255,15 +274,16 @@ class TasksRoot : Routes.Route() {
         var taskProgressLabel by remember { mutableStateOf<String?>(null) }
         var taskProgress by remember { mutableIntStateOf(-1) }
         val isSelected by remember { derivedStateOf { taskSelection.any { it.first == task } } }
-        var documentFile by remember { mutableStateOf<DocumentFile?>(null) }
-        var isDocumentFileReadable by remember { mutableStateOf(true) }
 
-        LaunchedEffect(taskStatus.key) {
-            launch(Dispatchers.IO) {
-                documentFile = DocumentFile.fromSingleUri(context.androidContext, task.extra?.toUri() ?: return@launch)
-                isDocumentFileReadable = documentFile?.canRead() ?: false
+        var documentFileMimeType by remember { mutableStateOf("") }
+        var isDocumentFileReadable by remember { mutableStateOf(true) }
+        val documentFile by rememberAsyncMutableState(defaultValue = null, keys = arrayOf(taskStatus.key)) {
+            DocumentFile.fromSingleUri(context.androidContext, task.extra?.toUri() ?: return@rememberAsyncMutableState null)?.apply {
+                documentFileMimeType = type ?: ""
+                isDocumentFileReadable = canRead()
             }
         }
+
 
         val listener = remember { PendingTaskListener(
             onStateChange = {
@@ -285,19 +305,21 @@ class TasksRoot : Routes.Route() {
             }
         }
 
-        OutlinedCard(modifier = modifier.clickable {
-            if (isSelected) {
-                taskSelection.removeIf { it.first == task }
-                return@clickable
+        OutlinedCard(modifier = modifier
+            .clickable {
+                if (isSelected) {
+                    taskSelection.removeIf { it.first == task }
+                    return@clickable
+                }
+                taskSelection.add(task to documentFile)
             }
-            taskSelection.add(task to documentFile)
-        }.let {
-            if (isSelected) {
-                it
-                    .border(2.dp, MaterialTheme.colorScheme.primary)
-                    .clip(MaterialTheme.shapes.medium)
-            } else it
-        }) {
+            .let {
+                if (isSelected) {
+                    it
+                        .border(2.dp, MaterialTheme.colorScheme.primary)
+                        .clip(MaterialTheme.shapes.medium)
+                } else it
+            }) {
             Row(
                 modifier = Modifier.padding(15.dp),
                 verticalAlignment = Alignment.CenterVertically
@@ -305,13 +327,12 @@ class TasksRoot : Routes.Route() {
                 Column(
                     modifier = Modifier.padding(end = 15.dp)
                 ) {
-                    documentFile?.let { file ->
-                        val mimeType = file.type ?: ""
+                    documentFile?.let {
                         when {
                             !isDocumentFileReadable -> Icon(Icons.Filled.DeleteOutline, contentDescription = "File not found")
-                            mimeType.contains("image") -> Icon(Icons.Filled.Image, contentDescription = "Image")
-                            mimeType.contains("video") -> Icon(Icons.Filled.Videocam, contentDescription = "Video")
-                            mimeType.contains("audio") -> Icon(Icons.Filled.MusicNote, contentDescription = "Audio")
+                            documentFileMimeType.contains("image") -> Icon(Icons.Filled.Image, contentDescription = "Image")
+                            documentFileMimeType.contains("video") -> Icon(Icons.Filled.Videocam, contentDescription = "Video")
+                            documentFileMimeType.contains("audio") -> Icon(Icons.Filled.MusicNote, contentDescription = "Audio")
                             else -> Icon(Icons.Filled.FileCopy, contentDescription = "File")
                         }
                     } ?: run {
