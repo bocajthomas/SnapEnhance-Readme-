@@ -24,7 +24,10 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
         val colorsConfig = context.config.userInterface.customizeUi.colors
         val themePicker = customizeUIConfig.themePicker.getNullable() ?: return
         val effectiveTextColor by lazy { parseColor(colorsConfig.textColor.get()) }
-        val effectivesendAndReceivedTextColor by lazy { parseColor(colorsConfig.sendAndReceivedTextColor.get()) }
+        val effectiveChatChatTextColor by lazy { parseColor(colorsConfig.chatChatTextColor.get()) }
+        val effectivePendingSendingTextColor by lazy { parseColor(colorsConfig.pendingSendingTextColor.get()) }
+        val effectiveSnapWithSoundTextColor by lazy { parseColor(colorsConfig.snapWithSoundTextColor.get()) }
+        val effectiveSnapWithoutSoundTextColor by lazy { parseColor(colorsConfig.snapWithoutSoundTextColor.get()) }
         val effectiveBackgroundColor by lazy { parseColor(colorsConfig.backgroundColor.get()) }
         val effectiveBackgroundColorSurface by lazy { parseColor(colorsConfig.backgroundColorSurface.get()) }
         val effectiveActionMenuBackgroundColor by lazy { parseColor(colorsConfig.actionMenuBackgroundColor.get()) }
@@ -77,12 +80,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFF5F5F5.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFF333333.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFFF5F5F5.toInt())
                     }
                 }
             }
@@ -100,12 +105,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFFFFDE7.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFF2E8B57.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFFFFFDE7.toInt())
                     }
                 }
             }
@@ -123,12 +130,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFF212121.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFFFFDD00.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFF212121.toInt())
                     }
                 }
             }
@@ -146,12 +155,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFF303030.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFFFDFCCC.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFF303030.toInt())
                     }
                 }
             }
@@ -169,12 +180,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFC2F0F0.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFFF473B9.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFFC2F0F0.toInt())
                     }
                 }
             }
@@ -192,12 +205,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFF00008B.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFFFFF9C4.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFF00008B.toInt())
                     }
                 }
             }
@@ -215,12 +230,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFEAEAEA.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFF77332E.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFFEAEAEA.toInt())
                     }
                 }
             }
@@ -238,12 +255,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFE5E5E5.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFF38B3DE.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFFE5E5E5.toInt())
                     }
                 }
             }
@@ -261,12 +280,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFF0E68C.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFF293145.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFFF0E68C.toInt())
                     }
                 }
             }
@@ -284,12 +305,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFF222222.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFFA5BFF7.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFF222222.toInt())
                     }
                 }
             }
@@ -309,11 +332,13 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFF78DBFF.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
+                        ephemeralHook("getColor", 0xFF08D6FF.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
                         ephemeralHook("getColor", 0xFF08D6FF.toInt())
                     }
                 }
@@ -333,12 +358,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFF192744.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFF98C2FD.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFF192744.toInt())
                     }
                 }
             }
@@ -356,12 +383,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFF800000.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFFF7CAC9.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFF800000.toInt())
                     }
                 }
             }
@@ -379,12 +408,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFFFF5F3.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFF3F51B5.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFFFFF5F3.toInt())
                     }
                 }
             }
@@ -402,12 +433,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFFFFFE0.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFF222222.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFFFFFFE0.toInt())
                     }
                 }
             }
@@ -425,12 +458,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFD3FFCE.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFF000000.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFFD3FFCE.toInt())
                     }
                 }
             }
@@ -448,12 +483,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFEEEEEE.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFF424242.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFFEEEEEE.toInt())
                     }
                 }
             }
@@ -471,12 +508,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFC24641.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFFFFFFFF.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFFC24641.toInt())
                     }
                 }
             }
@@ -494,12 +533,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFF333333.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFFC2C2F0.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFF333333.toInt())
                     }
                 }
             }
@@ -517,12 +558,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFF2F4F4F.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFFFFFFFF.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFF2F4F4F.toInt())
                     }
                 }
             }
@@ -540,12 +583,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFF1F1F1.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFF333333.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFFF1F1F1.toInt())
                     }
                 }
             }
@@ -563,12 +608,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFC70039.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFFF5F5F5.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFFC70039.toInt())
                     }
                 }
             }
@@ -586,12 +633,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFF5FBE0.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFF388E3C.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFFF5FBE0.toInt())
                     }
                 }
             }
@@ -609,12 +658,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFF424242.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFFEAEAEA.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFF424242.toInt())
                     }
                 }
             }
@@ -632,12 +683,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFFCFFE7.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFF000000.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFFFCFFE7.toInt())
                     }
                 }
             }
@@ -655,12 +708,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFF2F4F4F.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFFFFFFFF.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFF2F4F4F.toInt())
                     }
                 }
             }
@@ -678,12 +733,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFFCC01E.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFFFFFFFF.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFFFCC01E.toInt())
                     }
                 }
             }
@@ -701,12 +758,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFFFDDCF.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFF29ABCA.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFFFFDDCF.toInt())
                     }
                 }
             }
@@ -724,12 +783,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFCDB391.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFF333333.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFFCDB391.toInt())
                     }
                 }
             }
@@ -747,12 +808,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFF8F8F8.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFF000000.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFFF8F8F8.toInt())
                     }
                 }
             }
@@ -770,12 +833,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFF000080.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFFFFFFFF.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFF000080.toInt())
                     }
                 }
             }
@@ -793,12 +858,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFFFC0CB.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFFFFFFFF.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFFFFC0CB.toInt())
                     }
                 }
             }
@@ -816,12 +883,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFF222222.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFFFFFFF0.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFF222222.toInt())
                     }
                 }
             }
@@ -839,12 +908,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFF4D35E.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFF333333.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFFF4D35E.toInt())
                     }
                 }
             }
@@ -862,12 +933,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFBDBDBD.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFF293145.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFFBDBDBD.toInt())
                     }
                 }
             }
@@ -885,12 +958,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFFCE5C7.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFF000000.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFFFCE5C7.toInt())
                     }
                 }
             }
@@ -908,12 +983,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFF2F2F2.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFF333333.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFFF2F2F2.toInt())
                     }
                 }
             }
@@ -931,12 +1008,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFF000000.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFFFFFFFF.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFF000000.toInt())
                     }
                 }
             }
@@ -954,12 +1033,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFF98FF98.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFFFFFFFF.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFF98FF98.toInt())
                     }
                 }
             }
@@ -977,12 +1058,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFF7CA48.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFF293145.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFFF7CA48.toInt())
                     }
                 }
             }
@@ -1000,12 +1083,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFC7893A.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFFFFFFFF.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFFC7893A.toInt())
                     }
                 }
             }
@@ -1023,12 +1108,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFADD8E6.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFF333333.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFFADD8E6.toInt())
                     }
                 }
             }
@@ -1046,12 +1133,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFA0C48E.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFF2E8B57.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFFA0C48E.toInt())
                     }
                 }
             }
@@ -1069,12 +1158,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFF222222.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFFFFFFFF.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFF222222.toInt())
                     }
                 }
             }
@@ -1092,12 +1183,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFC2B280.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFFFFFFFF.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFFC2B280.toInt())
                     }
                 }
             }
@@ -1115,12 +1208,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFC6E2FF.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFF293145.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFFC6E2FF.toInt())
                     }
                 }
             }
@@ -1138,12 +1233,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFFCE5C7.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFF293145.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFFFCE5C7.toInt())
                     }
                 }
             }
@@ -1161,12 +1258,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFF5F5F5.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFF000000.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFFF5F5F5.toInt())
                     }
                 }
             }
@@ -1184,12 +1283,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFF80000.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFFFFFFFF.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFFF80000.toInt())
                     }
                 }
             }
@@ -1207,12 +1308,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFF2F4F4F.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFFFFFFFF.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFF2F4F4F.toInt())
                     }
                 }
             }
@@ -1230,12 +1333,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFF0E68C.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFF293145.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFFF0E68C.toInt())
                     }
                 }
             }
@@ -1253,12 +1358,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFF000000.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFF00FF00.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFF000000.toInt())
                     }
                 }
             }
@@ -1276,12 +1383,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFC6893A.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFFFFFFFF.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFFC6893A.toInt())
                     }
                 }
             }
@@ -1299,12 +1408,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFECEAF3.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFF333333.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFFECEAF3.toInt())
                     }
                 }
             }
@@ -1322,12 +1433,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFC70039.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFFFFCC00.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFFC70039.toInt())
                     }
                 }
             }
@@ -1345,12 +1458,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFF0F8FF.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFF333333.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFFF0F8FF.toInt())
                     }
                 }
             }
@@ -1368,12 +1483,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFF303030.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFFF7CA48.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFF303030.toInt())
                     }
                 }
             }
@@ -1391,12 +1508,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFB0C4DE.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFF333333.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFFB0C4DE.toInt())
                     }
                 }
             }
@@ -1414,12 +1533,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFF5F5F5.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFF000000.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFFF5F5F5.toInt())
                     }
                 }
             }
@@ -1437,12 +1558,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFC70039.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFFFFFFFF.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFFC70039.toInt())
                     }
                 }
             }
@@ -1460,12 +1583,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFF000000.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFFA5BFF7.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFF000000.toInt())
                     }
                 }
             }
@@ -1483,12 +1608,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFF333333.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFFFCE5C7.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFF333333.toInt())
                     }
                 }
             }
@@ -1506,12 +1633,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFFFCFFE7.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFF000000.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFFFCFFE7.toInt())
                     }
                 }
             }
@@ -1529,12 +1658,14 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     getAttribute("actionSheetRoundedBackgroundDrawable") -> {
                         ephemeralHook("getDrawable", ColorDrawable(0xFF9B59B6.toInt()))
                     }
-                    getAttribute("sigColorChatActivity"),
                     getAttribute("sigColorChatChat"),
                     getAttribute("sigColorChatPendingSending"),
                     getAttribute("sigColorChatSnapWithSound"),
                     getAttribute("sigColorChatSnapWithoutSound") -> {
                         ephemeralHook("getColor", 0xFFFFFFFF.toInt())
+                    }
+                    getAttribute("sigExceptionColorCameraGridLines") -> {
+                        ephemeralHook("getColor", 0xFF9B59B6.toInt())
                     }
                 }
             }
@@ -1561,27 +1692,23 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                         ephemeralHook("getDrawable", ColorDrawable(effectiveActionMenuRoundBackgroundColor ?: return@hook))
                     }
                         
-                    getAttribute("sigColorChatActivity") -> {
-                        ephemeralHook("getColor", effectivesendAndReceivedTextColor ?: return@hook)
-                    }
-                        
                     getAttribute("sigColorChatChat") -> {
-                        ephemeralHook("getColor", effectivesendAndReceivedTextColor ?: return@hook)
+                        ephemeralHook("getColor", effectiveChatChatTextColor ?: return@hook)
                         
                     }
                         
                     getAttribute("sigColorChatPendingSending") -> {
-                        ephemeralHook("getColor", effectivesendAndReceivedTextColor ?: return@hook)
+                        ephemeralHook("getColor", effectivePendingSendingTextColor ?: return@hook)
                         
                     }
                         
                     getAttribute("sigColorChatSnapWithSound") -> {
-                            ephemeralHook("getColor", effectivesendAndReceivedTextColor ?: return@hook)
+                            ephemeralHook("getColor", effectiveSnapWithSoundTextColor ?: return@hook)
                         
                     }
                         
                     getAttribute("sigColorChatSnapWithoutSound") -> {
-                        ephemeralHook("getColor", effectivesendAndReceivedTextColor ?: return@hook)
+                        ephemeralHook("getColor", effectiveSnapWithoutSoundTextColor ?: return@hook)
                     }
 
                     getAttribute("sigExceptionColorCameraGridLines") -> {
