@@ -369,12 +369,24 @@
                                 "description": "Customize Individual colors\nNote: Select Custom Colors on Theme Picker to use",
                                 "properties": {
                                     "text_color": {
-                                        "name": "Text Color",
-                                        "description": "Changes Snapchats text color\nInput hex color code"
+                                        "name": "Main Text Color",
+                                        "description": "Changes Snapchats main text color\nInput hex color code"
                                     },
-                                    "send_and_received_text_color": {
-                                        "name": "Sent & Received Text Color",
-                                        "description": "Changes Snapchats Sent and Received text color on the friend feed\nInput a hex color code"
+                                    "chat_chat_text_color": {
+                                        "name": "Main Friend Feed Text Color",
+                                        "description": "Changes the text color of ( New Chat / New Snap And Chats / Typing / Calling / Missed call / Speaking / New Voice Note ) on the friend feed\nInput hex color code"
+                                    },
+                                    "pending_sending_text_color": {
+                                        "name": "Secondary Friend Feed Text Color",
+                                        "description": "Changes the text color of ( Delivered / Recevived / Sending / Opened / Tap To Chat / Hold To Replay / Replayed / Saved In Chat / Called ) on the friend feed\nInput hex color code"
+                                    },
+                                    "snap_with_sound_text_color": {
+                                        "name": "Snaps With Sound Text Color",
+                                        "description": "Changes the text color of ( New Snap ) on the friend feed\nNote: Video Snaps Only\nInput hex color code"
+                                    },
+                                    "snap_without_sound_text_color": {
+                                        "name": "Snaps Without Sound Text Color",
+                                        "description": "Changes the text color of ( New Snap ) on the friend feed\nNote: Video Snaps Only\nInput hex color code"
                                     },
                                     "background_color": {
                                         "name": "Background Color",
