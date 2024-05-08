@@ -23,16 +23,16 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
         val customizeUIConfig = context.config.userInterface.customizeUi
         val colorsConfig = context.config.userInterface.customizeUi.colors
         val themePicker = customizeUIConfig.themePicker.getNullable() ?: return
-        val effectiveTextColor by lazy { parseColor(colorsConfig.textColor.get()) }
-        val effectiveChatChatTextColor by lazy { parseColor(colorsConfig.chatChatTextColor.get()) }
-        val effectivePendingSendingTextColor by lazy { parseColor(colorsConfig.pendingSendingTextColor.get()) }
-        val effectiveSnapWithSoundTextColor by lazy { parseColor(colorsConfig.snapWithSoundTextColor.get()) }
-        val effectiveSnapWithoutSoundTextColor by lazy { parseColor(colorsConfig.snapWithoutSoundTextColor.get()) }
-        val effectiveBackgroundColor by lazy { parseColor(colorsConfig.backgroundColor.get()) }
-        val effectiveBackgroundColorSurface by lazy { parseColor(colorsConfig.backgroundColorSurface.get()) }
-        val effectiveActionMenuBackgroundColor by lazy { parseColor(colorsConfig.actionMenuBackgroundColor.get()) }
-        val effectiveActionMenuRoundBackgroundColor by lazy { parseColor(colorsConfig.actionMenuRoundBackgroundColor.get()) }
-        val effectiveCameraGridLines by lazy { parseColor(colorsConfig.cameraGridLines.get()) }
+        val effectiveTextColor = colorsConfig.textColor.getNullable()
+        val effectiveChatChatTextColor = colorsConfig.chatChatTextColor.getNullable()
+        val effectivePendingSendingTextColor = colorsConfig.pendingSendingTextColor.getNullable()
+        val effectiveSnapWithSoundTextColor = colorsConfig.snapWithSoundTextColor.getNullable()
+        val effectiveSnapWithoutSoundTextColor = colorsConfig.snapWithoutSoundTextColor.getNullable()
+        val effectiveBackgroundColor = colorsConfig.backgroundColor.getNullable()
+        val effectiveBackgroundColorSurface = colorsConfig.backgroundColorSurface.getNullable()
+        val effectiveActionMenuBackgroundColor = colorsConfig.actionMenuBackgroundColor.getNullable()
+        val effectiveActionMenuRoundBackgroundColor = colorsConfig.actionMenuRoundBackgroundColor.getNullable()
+        val effectiveCameraGridLines = colorsConfig.cameraGridLines.getNullable()
         
         val attributeCache = mutableMapOf<String, Int>()
 
