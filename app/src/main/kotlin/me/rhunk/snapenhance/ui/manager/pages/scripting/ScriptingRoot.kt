@@ -16,7 +16,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.net.toUri
-import androidx.documentfile.provider.DocumentFile
 import androidx.navigation.NavBackStackEntry
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -26,6 +25,8 @@ import me.rhunk.snapenhance.common.scripting.type.ModuleInfo
 import me.rhunk.snapenhance.common.scripting.ui.EnumScriptInterface
 import me.rhunk.snapenhance.common.scripting.ui.InterfaceManager
 import me.rhunk.snapenhance.common.scripting.ui.ScriptInterface
+import me.rhunk.snapenhance.common.ui.AsyncUpdateDispatcher
+import me.rhunk.snapenhance.common.ui.rememberAsyncMutableState
 import me.rhunk.snapenhance.ui.manager.Routes
 import me.rhunk.snapenhance.ui.util.ActivityLauncherHelper
 import me.rhunk.snapenhance.ui.util.chooseFolder
@@ -42,8 +43,8 @@ class ScriptingRoot : Routes.Route() {
 
     @Composable
     fun ModuleItem(script: ModuleInfo) {
-        var enabled by remember {
-            mutableStateOf(context.modDatabase.isScriptEnabled(script.name))
+        var enabled by rememberAsyncMutableState(defaultValue = false) {
+            context.modDatabase.isScriptEnabled(script.name)
         }
         var openSettings by remember {
             mutableStateOf(false)
@@ -78,24 +79,30 @@ class ScriptingRoot : Routes.Route() {
                 Switch(
                     checked = enabled,
                     onCheckedChange = { isChecked ->
-                        context.modDatabase.setScriptEnabled(script.name, isChecked)
-                        enabled = isChecked
-                        runCatching {
-                            val modulePath = context.scriptManager.getModulePath(script.name)!!
-                            context.scriptManager.unloadScript(modulePath)
-                            if (isChecked) {
-                                context.scriptManager.loadScript(modulePath)
-                                context.scriptManager.runtime.getModuleByName(script.name)
-                                    ?.callFunction("module.onSnapEnhanceLoad")
-                                context.shortToast("Loaded script ${script.name}")
-                            } else {
-                                context.shortToast("Unloaded script ${script.name}")
-                            }
-                        }.onFailure { throwable ->
-                            enabled = !isChecked
-                            ("Failed to ${if (isChecked) "enable" else "disable"} script").let {
-                                context.log.error(it, throwable)
-                                context.shortToast(it)
+                        context.coroutineScope.launch(Dispatchers.IO) {
+                            runCatching {
+                                context.modDatabase.setScriptEnabled(script.name, isChecked)
+                                withContext(Dispatchers.Main) {
+                                    enabled = isChecked
+                                }
+                                val modulePath = context.scriptManager.getModulePath(script.name)!!
+                                context.scriptManager.unloadScript(modulePath)
+                                if (isChecked) {
+                                    context.scriptManager.loadScript(modulePath)
+                                    context.scriptManager.runtime.getModuleByName(script.name)
+                                        ?.callFunction("module.onSnapEnhanceLoad")
+                                    context.shortToast("Loaded script ${script.name}")
+                                } else {
+                                    context.shortToast("Unloaded script ${script.name}")
+                                }
+                            }.onFailure { throwable ->
+                                withContext(Dispatchers.Main) {
+                                    enabled = !isChecked
+                                }
+                                ("Failed to ${if (isChecked) "enable" else "disable"} script").let {
+                                    context.log.error(it, throwable)
+                                    context.shortToast(it)
+                                }
                             }
                         }
                     }
@@ -161,37 +168,33 @@ class ScriptingRoot : Routes.Route() {
     }
 
     override val content: @Composable (NavBackStackEntry) -> Unit = {
-        var scriptModules by remember { mutableStateOf(listOf<ModuleInfo>()) }
-        var scriptingFolder by remember { mutableStateOf(null as DocumentFile?) }
+        val reloadDispatcher = remember { AsyncUpdateDispatcher(updateOnFirstComposition = false) }
+        val scriptingFolder by rememberAsyncMutableState(defaultValue = null, updateDispatcher = reloadDispatcher) {
+            context.scriptManager.getScriptsFolder()
+        }
+        val scriptModules by rememberAsyncMutableState(defaultValue = emptyList(), updateDispatcher = reloadDispatcher) {
+            context.scriptManager.sync()
+            context.modDatabase.getScripts()
+        }
+
         val coroutineScope = rememberCoroutineScope()
 
         var refreshing by remember {
             mutableStateOf(false)
         }
 
-        fun syncScripts() {
-            runCatching {
-                scriptingFolder = context.scriptManager.getScriptsFolder()
-                context.scriptManager.sync()
-                scriptModules = context.modDatabase.getScripts()
-            }.onFailure {
-                context.log.error("Failed to sync scripts", it)
-            }
-        }
-
         LaunchedEffect(Unit) {
             refreshing = true
             withContext(Dispatchers.IO) {
-                syncScripts()
+                reloadDispatcher.dispatch()
                 refreshing = false
             }
         }
 
         val pullRefreshState = rememberPullRefreshState(refreshing, onRefresh = {
             refreshing = true
-            syncScripts()
-            coroutineScope.launch {
-                delay(300)
+            coroutineScope.launch(Dispatchers.IO) {
+                reloadDispatcher.dispatch()
                 refreshing = false
             }
         })
@@ -206,7 +209,7 @@ class ScriptingRoot : Routes.Route() {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 item {
-                    if (scriptingFolder == null) {
+                    if (scriptingFolder == null && !refreshing) {
                         Text(
                             text = "No scripts folder selected",
                             style = MaterialTheme.typography.bodySmall,
@@ -218,7 +221,7 @@ class ScriptingRoot : Routes.Route() {
                                 context.config.root.scripting.moduleFolder.set(it)
                                 context.config.writeConfig()
                                 coroutineScope.launch {
-                                    syncScripts()
+                                    reloadDispatcher.dispatch()
                                 }
                             }
                         }) {

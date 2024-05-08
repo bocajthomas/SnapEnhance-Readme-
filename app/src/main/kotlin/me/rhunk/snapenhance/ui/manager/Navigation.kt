@@ -78,7 +78,7 @@ class Navigation(
             val currentRoute = routes.getCurrentRoute(navBackStackEntry)
             primaryRoutes.forEach { route ->
                 NavigationBarItem(
-                    alwaysShowLabel = false,
+                    alwaysShowLabel = true,
                     icon = {
                         Icon(imageVector = route.routeInfo.icon, contentDescription = null)
                     },
@@ -88,7 +88,7 @@ class Navigation(
                             softWrap = false,
                             fontSize = 12.sp,
                             modifier = Modifier.wrapContentWidth(unbounded = true),
-                            text = if (currentRoute == route) context.translation["manager.routes.${route.routeInfo.key.substringBefore("/")}"] else "",
+                            text = remember(context.translation.loadedLocale) { context.translation["manager.routes.${route.routeInfo.key.substringBefore("/")}"] },
                         )
                     },
                     selected = currentRoute == route,

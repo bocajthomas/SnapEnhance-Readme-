@@ -19,6 +19,8 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import me.rhunk.snapenhance.bridge.BridgeService
 import me.rhunk.snapenhance.common.BuildConfig
 import me.rhunk.snapenhance.common.bridge.types.BridgeFileType
@@ -94,27 +96,36 @@ class RemoteSideContext(
     val gson: Gson by lazy { GsonBuilder().setPrettyPrinting().create() }
 
     fun reload() {
-        log.verbose("Loading RemoteSideContext")
         runCatching {
-            config.loadFromContext(androidContext)
-            translation.apply {
-                userLocale = config.locale
-                loadFromContext(androidContext)
-            }
-            mappings.apply {
-                loadFromContext(androidContext)
-                init(androidContext)
-            }
-            taskManager.init()
-            modDatabase.init()
-            streaksReminder.init()
-            scriptManager.init()
-            messageLogger.init()
-            tracker.init()
-            config.root.messaging.messageLogger.takeIf {
-                it.globalState == true
-            }?.getAutoPurgeTime()?.let {
-                messageLogger.purgeAll(it)
+            runBlocking(Dispatchers.IO) {
+                log.init()
+                log.verbose("Loading RemoteSideContext")
+                config.loadFromContext(androidContext)
+                launch {
+                    translation.apply {
+                        userLocale = config.locale
+                        loadFromContext(androidContext)
+                    }
+                }
+                launch {
+                    mappings.apply {
+                        loadFromContext(androidContext)
+                        init(androidContext)
+                    }
+                }
+                launch { taskManager.init() }
+                launch { modDatabase.init() }
+                launch { streaksReminder.init() }
+                launch { scriptManager.init() }
+                messageLogger.init()
+                tracker.init()
+                config.root.messaging.messageLogger.takeIf {
+                    it.globalState == true
+                }?.getAutoPurgeTime()?.let {
+                    launch {
+                        messageLogger.purgeAll(it)
+                    }
+                }
             }
         }.onFailure {
             log.error("Failed to load RemoteSideContext", it)

@@ -1,6 +1,7 @@
 package me.rhunk.snapenhance
 
 import me.rhunk.snapenhance.bridge.logger.TrackerInterface
+import me.rhunk.snapenhance.common.data.ScopedTrackerRule
 import me.rhunk.snapenhance.common.data.TrackerEventsResult
 import me.rhunk.snapenhance.common.data.TrackerRule
 import me.rhunk.snapenhance.common.data.TrackerRuleEvent
@@ -24,6 +25,8 @@ class RemoteTracker(
             events.getOrPut(rule) { mutableListOf() }.add(event)
         }
 
-        return TrackerEventsResult(events).toSerialized()
+        return TrackerEventsResult(events.mapKeys {
+            ScopedTrackerRule(it.key, context.modDatabase.getRuleTrackerScopes(it.key.id))
+        }).toSerialized()
     }
 }
