@@ -20,19 +20,16 @@ class UserInterfaceTweaks : ConfigContainer() {
     }
 
     class ColorsConfig : ConfigContainer() {
-        private val checkInputColor = { value: String ->
-            value.isEmpty() || runCatching { Color.parseColor(value) }.isSuccess
-        }
-        val textColor = string("text_color") { inputCheck = checkInputColor }
-        val chatChatTextColor = string("chat_chat_text_color") { inputCheck = checkInputColor }
-        val pendingSendingTextColor = string("pending_sending_text_color") { inputCheck = checkInputColor }
-        val snapWithSoundTextColor = string("snap_with_sound_text_color") { inputCheck = checkInputColor }
-        val snapWithoutSoundTextColor = string("snap_without_sound_text_color") { inputCheck = checkInputColor }
-        val backgroundColor = string("background_color") { inputCheck = checkInputColor }
-        val backgroundColorSurface = string("background_color_surface") { inputCheck = checkInputColor }
-        val actionMenuBackgroundColor = string("action_menu_background_color") { inputCheck = checkInputColor }
-        val actionMenuRoundBackgroundColor = string("action_menu_round_background_color") { inputCheck = checkInputColor }
-        val cameraGridLines = string("camera_grid_lines") { inputCheck = checkInputColor }
+        val textColor = color("text_color")
+        val chatChatTextColor = color("chat_chat_text_color")
+        val pendingSendingTextColor = color("pending_sending_text_color")
+        val snapWithSoundTextColor = color("snap_with_sound_text_color")
+        val snapWithoutSoundTextColor = color("snap_without_sound_text_color")
+        val backgroundColor = color("background_color")
+        val backgroundColorSurface = color("background_color_surface")
+        val actionMenuBackgroundColor = color("action_menu_background_color")
+        val actionMenuRoundBackgroundColor = color("action_menu_round_background_color")
+        val cameraGridLines = color("camera_grid_lines")
     }
 
     inner class CustomizeUIConfig : ConfigContainer() {
