@@ -2,6 +2,8 @@ package me.rhunk.snapenhance
 
 import android.util.Log
 import com.google.gson.GsonBuilder
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import me.rhunk.snapenhance.common.data.FileType
 import me.rhunk.snapenhance.common.logger.AbstractLogger
 import me.rhunk.snapenhance.common.logger.LogChannel
@@ -70,33 +72,39 @@ class LogReader(
     }
 
     fun incrementLineCount() {
-        randomAccessFile.seek(randomAccessFile.length())
-        startLineIndexes.add(randomAccessFile.filePointer + 1)
-        lineCount++
+        synchronized(randomAccessFile) {
+            randomAccessFile.seek(randomAccessFile.length())
+            startLineIndexes.add(randomAccessFile.filePointer + 1)
+            lineCount++
+        }
     }
 
     private fun queryLineCount(): Int {
-        randomAccessFile.seek(0)
-        var lineCount = 0
-        var lastPointer: Long
-        var line: String?
+        synchronized(randomAccessFile) {
+            randomAccessFile.seek(0)
+            var lineCount = 0
+            var lastPointer: Long
+            var line: String?
 
-        while (randomAccessFile.also {
-            lastPointer = it.filePointer
-        }.readLine().also { line = it } != null) {
-            if (line?.startsWith('|') == true) {
-                lineCount++
-                startLineIndexes.add(lastPointer + 1)
+            while (randomAccessFile.also {
+                    lastPointer = it.filePointer
+                }.readLine().also { line = it } != null) {
+                if (line?.startsWith('|') == true) {
+                    lineCount++
+                    startLineIndexes.add(lastPointer + 1)
+                }
             }
-        }
 
-        return lineCount
+            return lineCount
+        }
     }
 
     private fun getLine(index: Int): String? {
         if (index <= 0 || index > lineCount) return null
-        randomAccessFile.seek(startLineIndexes[index])
-        return readLogLine()?.toString()
+        synchronized(randomAccessFile) {
+            randomAccessFile.seek(startLineIndexes[index])
+            return readLogLine()?.toString()
+        }
     }
 
     fun getLogLine(index: Int): LogLine? {
@@ -109,7 +117,6 @@ class LogManager(
     private val remoteSideContext: RemoteSideContext
 ): AbstractLogger(LogChannel.MANAGER) {
     companion object {
-        private const val TAG = "SnapEnhanceManager"
         private val LOG_LIFETIME = 24.hours
     }
 
@@ -118,13 +125,13 @@ class LogManager(
     var lineAddListener = { _: LogLine -> }
 
     private val logFolder = File(remoteSideContext.androidContext.cacheDir, "logs")
-    private var logFile: File
+    private var logFile: File? = null
 
     private val uuidRegex by lazy { Regex("[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}", RegexOption.MULTILINE) }
     private val contentUriRegex by lazy { Regex("content://[a-zA-Z0-9_\\-./]+") }
     private val filePathRegex by lazy { Regex("([a-zA-Z0-9_\\-./]+)\\.(${FileType.entries.joinToString("|") { file -> file.fileExtension.toString() }})") }
 
-    init {
+    fun init() {
         if (!logFolder.exists()) {
             logFolder.mkdirs()
         }
@@ -153,7 +160,9 @@ class LogManager(
                 tag = tag,
                 message = anonymizedMessage
             )
-            logFile.appendText("|$line\n", Charsets.UTF_8)
+            remoteSideContext.coroutineScope.launch(Dispatchers.IO) {
+                logFile?.appendText("|$line\n", Charsets.UTF_8)
+            }
             lineAddListener(line)
             Log.println(logLevel.priority, tag, anonymizedMessage)
         }.onFailure {
@@ -172,8 +181,8 @@ class LogManager(
         val currentTime = System.currentTimeMillis()
         logFile = File(logFolder, "snapenhance_${getCurrentDateTime(pathSafe = true)}.log").also {
             it.createNewFile()
+            remoteSideContext.sharedPreferences.edit().putString("log_file", it.absolutePath).putLong("last_created", currentTime).apply()
         }
-        remoteSideContext.sharedPreferences.edit().putString("log_file", logFile.absolutePath).putLong("last_created", currentTime).apply()
     }
 
     fun clearLogs() {
@@ -201,7 +210,7 @@ class LogManager(
         zipOutputStream.close()
     }
 
-    fun newReader(onAddLine: (LogLine) -> Unit) = LogReader(logFile).also {
+    fun newReader(onAddLine: (LogLine) -> Unit) = LogReader(logFile!!).also {
         lineAddListener = { line -> it.incrementLineCount(); onAddLine(line) }
     }
 

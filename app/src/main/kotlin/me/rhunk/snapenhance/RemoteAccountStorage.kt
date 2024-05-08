@@ -7,8 +7,10 @@ import me.rhunk.snapenhance.core.util.ktx.toParcelFileDescriptor
 class RemoteAccountStorage(
     private val context: RemoteSideContext
 ): AccountStorage.Stub() {
-    private val accountFolder = context.androidContext.filesDir.resolve("accounts").also {
-        if (!it.exists()) it.mkdirs()
+    private val accountFolder by lazy {
+        context.androidContext.filesDir.resolve("accounts").also {
+            if (!it.exists()) it.mkdirs()
+        }
     }
 
     override fun getAccounts(): Map<String, String> {

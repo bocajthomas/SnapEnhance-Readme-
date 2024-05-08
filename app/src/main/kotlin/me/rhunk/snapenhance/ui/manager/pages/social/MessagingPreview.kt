@@ -478,12 +478,14 @@ class MessagingPreview: Routes.Route() {
 
             isBridgeConnected = context.hasMessagingBridge()
             if (isBridgeConnected) {
-                onMessagingBridgeReady(scope, id)
-            } else {
-                SnapWidgetBroadcastReceiverHelper.create("wakeup") {}.also {
-                    context.androidContext.sendBroadcast(it)
+                withContext(Dispatchers.IO) {
+                    onMessagingBridgeReady(scope, id)
                 }
+            } else {
                 coroutineScope.launch(Dispatchers.IO) {
+                    SnapWidgetBroadcastReceiverHelper.create("wakeup") {}.also {
+                        context.androidContext.sendBroadcast(it)
+                    }
                     withTimeout(10000) {
                         while (!context.hasMessagingBridge()) {
                             delay(100)

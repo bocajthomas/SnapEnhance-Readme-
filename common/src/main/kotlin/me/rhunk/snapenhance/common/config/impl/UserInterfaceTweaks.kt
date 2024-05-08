@@ -18,9 +18,12 @@ class UserInterfaceTweaks : ConfigContainer() {
         val amount = integer("amount", defaultValue = 1)
     }
 
-    inner class CustomizeUIConfig : ConfigContainer(hasGlobalState = true) {
+    class ColorsConfig : ConfigContainer() {
         val textColor = color("text_color")
-        val sendAndReceivedTextColor = color("send_and_received_text_color")
+        val chatChatTextColor = color("chat_chat_text_color")
+        val pendingSendingTextColor = color("pending_sending_text_color")
+        val snapWithSoundTextColor = color("snap_with_sound_text_color")
+        val snapWithoutSoundTextColor = color("snap_without_sound_text_color")
         val backgroundColor = color("background_color")
         val backgroundColorSurface = color("background_color_surface")
         val actionMenuBackgroundColor = color("action_menu_background_color")
@@ -28,12 +31,83 @@ class UserInterfaceTweaks : ConfigContainer() {
         val cameraGridLines = color("camera_grid_lines")
     }
 
+    inner class CustomizeUIConfig : ConfigContainer() {
+        val themePicker = unique("theme_picker", 
+                                 "amoled_dark_mode", 
+                                 "modern_minimalism", 
+                                 "serene_nature", 
+                                 "energetic_pop", 
+                                 "luxurious_night", 
+                                 "playful_candy", 
+                                 "retro_arcade", 
+                                 "rustic_country", 
+                                 "ocean_breeze", 
+                                 "sunset_glow", 
+                                 "space_adventure", 
+                                 "light_blue", 
+                                 "dark_blue",
+                                 "earthy_autumn",
+                                 "watercolor_wash",
+                                 "lemon_zest",
+                                 "tropical_paradise",
+                                 "industrial_chic",
+                                 "cherry_bomb",
+                                 "woodland_mystery",
+                                 "galaxy_glitter",
+                                 "creamy_vanilla",
+                                 "spicy_chili",
+                                 "spring_meadow",
+                                 "midnight_library",
+                                 "lemon_sorbet",
+                                 "cosmic_night",
+                                 "spicy_mustard",
+                                 "peppermint_candy",
+                                 "gingerbread_house",
+                                 "art_deco_glam",
+                                 "ocean_depths",
+                                 "bubblegum_pink",
+                                 "firefly_night",
+                                 "apple_orchard",
+                                 "lavender_field",
+                                 "lemon_drop",
+                                 "modern_farmhouse",
+                                 "black_cat",
+                                 "mint_chocolate",
+                                 "desert_sunset",
+                                 "pumpkin_spice",
+                                 "sky_blue",
+                                 "tropical_jungle",
+                                 "black_marble",
+                                 "coffee_shop",
+                                 "mermaid_lagoon",
+                                 "creamsicle",
+                                 "vintage_comic",
+                                 "neon_arcade",
+                                 "space_cadet",
+                                 "cherry_blossom",
+                                 "cyber_glitch",
+                                 "ginger_snap",
+                                 "vintage_travel",
+                                 "lava_flow",
+                                 "cotton_candy_clouds",
+                                 "rusty_robot",
+                                 "ocean_fog",
+                                 "stained_glass",
+                                 "spicy_chili_pepper",
+                                 "minimalist_night",
+                                 "pirate_treasure",
+                                 "lemon_meringue",
+                                 "alien_landscape",
+                                 "custom")
+        
+        val colors = container("colors", ColorsConfig())
+    }
+
     val friendFeedMenuButtons = multiple(
         "friend_feed_menu_buttons","conversation_info", "mark_snaps_as_seen", "mark_stories_as_seen_locally", *MessagingRuleType.entries.filter { it.showInFriendMenu }.map { it.key }.toTypedArray()
     ).apply {
         set(mutableListOf("conversation_info", MessagingRuleType.STEALTH.key))
     }
-    val amoledDarkMode = boolean("amoled_dark_mode") { requireRestart() }
     val customizeUi = container("customize_ui", CustomizeUIConfig()) { addNotices(FeatureNotice.UNSTABLE); requireRestart() }
     val friendFeedMessagePreview = container("friend_feed_message_preview", FriendFeedMessagePreview()) { requireRestart() }
     val snapPreview = boolean("snap_preview") { addNotices(FeatureNotice.UNSTABLE); requireRestart() }

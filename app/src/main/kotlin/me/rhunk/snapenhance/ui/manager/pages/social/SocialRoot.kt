@@ -38,15 +38,32 @@ class SocialRoot : Routes.Route() {
     private var friendList: List<MessagingFriendInfo> by mutableStateOf(emptyList())
     private var groupList: List<MessagingGroupInfo> by mutableStateOf(emptyList())
 
-    fun updateScopeLists() {
-        context.coroutineScope.launch(Dispatchers.IO) {
+    private fun updateScopeLists() {
+        context.coroutineScope.launch {
             friendList = context.modDatabase.getFriends(descOrder = true)
             groupList = context.modDatabase.getGroups()
         }
     }
 
     private val addFriendDialog by lazy {
-        AddFriendDialog(context, this)
+        AddFriendDialog(context, AddFriendDialog.Actions(
+            onFriendState = { friend, state ->
+                if (state) {
+                    context.bridgeService?.triggerScopeSync(SocialScope.FRIEND, friend.userId)
+                } else {
+                    context.modDatabase.deleteFriend(friend.userId)
+                }
+            },
+            onGroupState = { group, state ->
+                if (state) {
+                    context.bridgeService?.triggerScopeSync(SocialScope.GROUP, group.conversationId)
+                } else {
+                    context.modDatabase.deleteGroup(group.conversationId)
+                }
+            },
+            getFriendState = { friend -> context.modDatabase.getFriendInfo(friend.userId) != null },
+            getGroupState = { group -> context.modDatabase.getGroupInfo(group.conversationId) != null }
+        ))
     }
 
     @Composable
@@ -82,7 +99,7 @@ class SocialRoot : Routes.Route() {
                     SocialScope.FRIEND -> friendList[index].userId
                 }
 
-                Card(
+                ElevatedCard(
                     modifier = Modifier
                         .padding(10.dp)
                         .fillMaxWidth()
@@ -203,6 +220,11 @@ class SocialRoot : Routes.Route() {
         if (showAddFriendDialog) {
             addFriendDialog.Content {
                 showAddFriendDialog = false
+            }
+            DisposableEffect(Unit) {
+                onDispose {
+                    updateScopeLists()
+                }
             }
         }
 
