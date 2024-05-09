@@ -17,9 +17,11 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavBackStackEntry
 import com.google.gson.JsonParser
 import kotlinx.coroutines.Dispatchers
@@ -30,6 +32,7 @@ import me.rhunk.snapenhance.common.bridge.wrapper.LoggedMessage
 import me.rhunk.snapenhance.common.bridge.wrapper.LoggerWrapper
 import me.rhunk.snapenhance.common.data.ContentType
 import me.rhunk.snapenhance.common.data.download.*
+import me.rhunk.snapenhance.common.ui.rememberAsyncMutableState
 import me.rhunk.snapenhance.common.util.ktx.copyToClipboard
 import me.rhunk.snapenhance.common.util.ktx.longHashCode
 import me.rhunk.snapenhance.common.util.protobuf.ProtoReader
@@ -38,6 +41,7 @@ import me.rhunk.snapenhance.core.features.impl.downloader.decoder.MessageDecoder
 import me.rhunk.snapenhance.download.DownloadProcessor
 import me.rhunk.snapenhance.ui.manager.Routes
 import java.nio.ByteBuffer
+import java.text.DateFormat
 import java.util.UUID
 import kotlin.math.absoluteValue
 
@@ -117,7 +121,7 @@ class LoggerHistoryRoot : Routes.Route() {
         ) {
             Row(
                 modifier = Modifier
-                    .padding(4.dp)
+                    .padding(8.dp)
                     .fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -144,6 +148,26 @@ class LoggerHistoryRoot : Routes.Route() {
                                                     context.androidContext.copyToClipboard(content)
                                                 })
                                             })
+
+                                        val edits by rememberAsyncMutableState(defaultValue = emptyList()) {
+                                            loggerWrapper.getMessageEdits(selectedConversation!!, message.messageId)
+                                        }
+                                        edits.forEach { messageEdit ->
+                                            val date = remember {
+                                                DateFormat.getDateTimeInstance().format(messageEdit.timestamp)
+                                            }
+                                            Text(
+                                                modifier = Modifier.pointerInput(Unit) {
+                                                    detectTapGestures(onLongPress = {
+                                                        context.androidContext.copyToClipboard(messageEdit.messageText)
+                                                    })
+                                                }.fillMaxWidth().padding(start = 4.dp),
+                                                text = messageEdit.messageText + " (edited at $date)",
+                                                fontWeight = FontWeight.Light,
+                                                fontStyle = FontStyle.Italic,
+                                                fontSize = 12.sp
+                                            )
+                                        }
                                         ContentHeader()
                                     }
                                 }

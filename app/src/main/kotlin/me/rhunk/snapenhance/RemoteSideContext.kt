@@ -113,9 +113,11 @@ class RemoteSideContext(
                         init(androidContext)
                     }
                 }
+                launch {
+                    modDatabase.init()
+                    streaksReminder.init()
+                }
                 launch { taskManager.init() }
-                launch { modDatabase.init() }
-                launch { streaksReminder.init() }
                 launch { scriptManager.init() }
                 messageLogger.init()
                 tracker.init()
