@@ -5,6 +5,7 @@ enum class AttachmentType(
 ) {
     SNAP("snap"),
     STICKER("sticker"),
+    GIF("gif"),
     EXTERNAL_MEDIA("external_media"),
     NOTE("note"),
     ORIGINAL_STORY("original_story"),

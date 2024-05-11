@@ -286,28 +286,34 @@
 
             messageObject.appendChild(((messageContainer) => {
                 messageContainer.classList.add("content")
-                messageContainer.innerHTML = message.serializedContent
 
                 const observers = []
-                if (!message.serializedContent) {
-                    messageContainer.innerHTML = ""
-                    let messageData = ""
-                    switch (message.type) {
-                        case "SNAP":
-                            messageContainer.appendChild(document.querySelector('.red_snap_svg').cloneNode(true))
-                            messageData = "Snap"
-                            break
-                        default:
-                            messageData = message.type
-                    }
-                    messageContainer.innerHTML += messageData
-                    messageContainer.onclick = () => {
-                        observers.forEach(f => f())
+
+                function loadContent() {
+                    if (!message.serializedContent) {
+                        let messageData = ""
+                        switch (message.type) {
+                            case "SNAP":
+                                messageContainer.appendChild(document.querySelector('.red_snap_svg').cloneNode(true))
+                                messageData += "Snap"
+                                break
+                            default:
+                                messageData += message.type
+                        }
+                        messageContainer.innerHTML = messageData
+                        messageContainer.onclick = () => {
+                            messageContainer.prepend(document.createElement("br"))
+                            observers.forEach(f => f())
+                        }
+                    } else {
+                        messageContainer.innerHTML = message.serializedContent
                     }
                 }
 
+                loadContent()
+
                 if (message.attachments && message.attachments.length > 0) {
-                    message.attachments.forEach((attachment, index) => {
+                    message.attachments.reverse().forEach((attachment, index) => {
                         const mediaKey = attachment.key.replace(/(=)/g, "")
 
                         observers.push(() => {
@@ -316,12 +322,11 @@
                             if (!originalMedia) {
                                 return
                             }
-                            messageContainer.innerHTML = ""
 
                             const originalMediaUrl = decodeMedia(originalMedia)
 
                             const mediaContainer = document.createElement("div")
-                            messageContainer.appendChild(mediaContainer)
+                            messageContainer.prepend(mediaContainer)
 
                             const imageTag = document.createElement("img")
                             imageTag.src = originalMediaUrl
@@ -356,6 +361,8 @@
                     new IntersectionObserver(entries => {
                         if (!fetched && entries[0].isIntersecting === true) {
                             fetched = true
+                            loadContent()
+                            messageContainer.prepend(document.createElement("br"))
                             observers.forEach(c => {
                                 try {
                                     c()

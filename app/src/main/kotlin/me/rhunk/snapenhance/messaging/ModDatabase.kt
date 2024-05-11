@@ -3,6 +3,7 @@ package me.rhunk.snapenhance.messaging
 import android.content.ContentValues
 import android.database.sqlite.SQLiteDatabase
 import com.google.gson.JsonArray
+import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.runBlocking
 import me.rhunk.snapenhance.RemoteSideContext
 import me.rhunk.snapenhance.common.data.*
@@ -21,7 +22,7 @@ class ModDatabase(
     private val executor = Executors.newSingleThreadExecutor()
     private lateinit var database: SQLiteDatabase
 
-    var receiveMessagingDataCallback: (friends: List<MessagingFriendInfo>, groups: List<MessagingGroupInfo>) -> Unit = { _, _ -> }
+    var receiveMessagingDataCallback: (friends: List<Friend>, groups: List<Group>) -> Unit = { _, _ -> }
 
     fun executeAsync(block: () -> Unit) {
         executor.execute {
@@ -36,34 +37,9 @@ class ModDatabase(
     fun init() {
         database = context.androidContext.openOrCreateDatabase("main.db", 0, null)
         SQLiteDatabaseHelper.createTablesFromSchema(database, mapOf(
-            "friends" to listOf(
-                "id INTEGER PRIMARY KEY AUTOINCREMENT",
-                "userId CHAR(36) UNIQUE",
-                "dmConversationId VARCHAR(36)",
-                "displayName VARCHAR",
-                "mutableUsername VARCHAR",
-                "bitmojiId VARCHAR",
-                "selfieId VARCHAR"
-            ),
-            "groups" to listOf(
-                "id INTEGER PRIMARY KEY AUTOINCREMENT",
-                "conversationId CHAR(36) UNIQUE",
-                "name VARCHAR",
-                "participantsCount INTEGER"
-            ),
-            "rules" to listOf(
-                "id INTEGER PRIMARY KEY AUTOINCREMENT",
-                "type VARCHAR",
-                "targetUuid VARCHAR"
-            ),
-            "streaks" to listOf(
-                "id VARCHAR PRIMARY KEY",
-                "notify BOOLEAN",
-                "expirationTimestamp BIGINT",
-                "length INTEGER"
-            ),
             "scripts" to listOf(
-                "name VARCHAR PRIMARY KEY",
+                "id INTEGER PRIMARY KEY AUTOINCREMENT",
+                "name VARCHAR NOT NULL",
                 "version VARCHAR NOT NULL",
                 "displayName VARCHAR",
                 "description VARCHAR",
@@ -95,176 +71,8 @@ class ModDatabase(
         ))
     }
 
-    fun getGroups(): List<MessagingGroupInfo> {
-        return database.rawQuery("SELECT * FROM groups", null).use { cursor ->
-            val groups = mutableListOf<MessagingGroupInfo>()
-            while (cursor.moveToNext()) {
-                groups.add(MessagingGroupInfo.fromCursor(cursor))
-            }
-            groups
-        }
-    }
-
-    fun getFriends(descOrder: Boolean = false): List<MessagingFriendInfo> {
-        return database.rawQuery("SELECT * FROM friends LEFT OUTER JOIN streaks ON friends.userId = streaks.id ORDER BY id ${if (descOrder) "DESC" else "ASC"}", null).use { cursor ->
-            val friends = mutableListOf<MessagingFriendInfo>()
-            while (cursor.moveToNext()) {
-                runCatching {
-                    friends.add(MessagingFriendInfo.fromCursor(cursor))
-                }.onFailure {
-                    context.log.error("Failed to parse friend", it)
-                }
-            }
-            friends
-        }
-    }
-
-
-    fun syncGroupInfo(conversationInfo: MessagingGroupInfo) {
-        executeAsync {
-            try {
-                database.execSQL("INSERT OR REPLACE INTO groups (conversationId, name, participantsCount) VALUES (?, ?, ?)", arrayOf(
-                    conversationInfo.conversationId,
-                    conversationInfo.name,
-                    conversationInfo.participantsCount
-                ))
-            } catch (e: Exception) {
-                throw e
-            }
-        }
-    }
-
-    fun syncFriend(friend: MessagingFriendInfo) {
-        executeAsync {
-            try {
-                database.execSQL(
-                    "INSERT OR REPLACE INTO friends (userId, dmConversationId, displayName, mutableUsername, bitmojiId, selfieId) VALUES (?, ?, ?, ?, ?, ?)",
-                    arrayOf(
-                        friend.userId,
-                        friend.dmConversationId,
-                        friend.displayName,
-                        friend.mutableUsername,
-                        friend.bitmojiId,
-                        friend.selfieId
-                    )
-                )
-                //sync streaks
-                friend.streaks?.takeIf { it.length > 0 }?.let {
-                    val streaks = getFriendStreaks(friend.userId)
-
-                    database.execSQL("INSERT OR REPLACE INTO streaks (id, notify, expirationTimestamp, length) VALUES (?, ?, ?, ?)", arrayOf(
-                        friend.userId,
-                        streaks?.notify ?: true,
-                        it.expirationTimestamp,
-                        it.length
-                    ))
-                } ?: database.execSQL("DELETE FROM streaks WHERE id = ?", arrayOf(friend.userId))
-            } catch (e: Exception) {
-                throw e
-            }
-        }
-    }
-
-    fun getRules(targetUuid: String): List<MessagingRuleType> {
-        return database.rawQuery("SELECT type FROM rules WHERE targetUuid = ?", arrayOf(
-            targetUuid
-        )).use { cursor ->
-            val rules = mutableListOf<MessagingRuleType>()
-            while (cursor.moveToNext()) {
-                runCatching {
-                    rules.add(MessagingRuleType.getByName(cursor.getStringOrNull("type")!!) ?: return@runCatching)
-                }.onFailure {
-                    context.log.error("Failed to parse rule", it)
-                }
-            }
-            rules
-        }
-    }
-
-    fun setRule(targetUuid: String, type: String, enabled: Boolean) {
-        executeAsync {
-            if (enabled) {
-                database.execSQL("INSERT OR REPLACE INTO rules (targetUuid, type) VALUES (?, ?)", arrayOf(
-                    targetUuid,
-                    type
-                ))
-            } else {
-                database.execSQL("DELETE FROM rules WHERE targetUuid = ? AND type = ?", arrayOf(
-                    targetUuid,
-                    type
-                ))
-            }
-        }
-    }
-
-    fun getFriendInfo(userId: String): MessagingFriendInfo? {
-        return database.rawQuery("SELECT * FROM friends LEFT OUTER JOIN streaks ON friends.userId = streaks.id WHERE userId = ?", arrayOf(userId)).use { cursor ->
-            if (!cursor.moveToFirst()) return@use null
-            MessagingFriendInfo.fromCursor(cursor)
-        }
-    }
-
-    fun findFriend(conversationId: String): MessagingFriendInfo? {
-        return database.rawQuery("SELECT * FROM friends WHERE dmConversationId = ?", arrayOf(conversationId)).use { cursor ->
-            if (!cursor.moveToFirst()) return@use null
-            MessagingFriendInfo.fromCursor(cursor)
-        }
-    }
-
-    fun deleteFriend(userId: String) {
-        executeAsync {
-            database.execSQL("DELETE FROM friends WHERE userId = ?", arrayOf(userId))
-            database.execSQL("DELETE FROM streaks WHERE id = ?", arrayOf(userId))
-            database.execSQL("DELETE FROM rules WHERE targetUuid = ?", arrayOf(userId))
-        }
-    }
-
-    fun deleteGroup(conversationId: String) {
-        executeAsync {
-            database.execSQL("DELETE FROM groups WHERE conversationId = ?", arrayOf(conversationId))
-            database.execSQL("DELETE FROM rules WHERE targetUuid = ?", arrayOf(conversationId))
-        }
-    }
-
-    fun getGroupInfo(conversationId: String): MessagingGroupInfo? {
-        return database.rawQuery("SELECT * FROM groups WHERE conversationId = ?", arrayOf(conversationId)).use { cursor ->
-            if (!cursor.moveToFirst()) return@use null
-            MessagingGroupInfo.fromCursor(cursor)
-        }
-    }
-
-    fun getFriendStreaks(userId: String): FriendStreaks? {
-        return database.rawQuery("SELECT * FROM streaks WHERE id = ?", arrayOf(userId)).use { cursor ->
-            if (!cursor.moveToFirst()) return@use null
-            FriendStreaks(
-                notify = cursor.getInteger("notify") == 1,
-                expirationTimestamp = cursor.getLongOrNull("expirationTimestamp") ?: 0L,
-                length = cursor.getInteger("length")
-            )
-        }
-    }
-
-    fun setFriendStreaksNotify(userId: String, notify: Boolean) {
-        executeAsync {
-            database.execSQL("UPDATE streaks SET notify = ? WHERE id = ?", arrayOf(
-                if (notify) 1 else 0,
-                userId
-            ))
-        }
-    }
-
-    fun getRuleIds(type: String): MutableList<String> {
-        return database.rawQuery("SELECT targetUuid FROM rules WHERE type = ?", arrayOf(type)).use { cursor ->
-            val ruleIds = mutableListOf<String>()
-            while (cursor.moveToNext()) {
-                ruleIds.add(cursor.getStringOrNull("targetUuid")!!)
-            }
-            ruleIds
-        }
-    }
-
     fun getScripts(): List<ModuleInfo> {
-        return database.rawQuery("SELECT * FROM scripts", null).use { cursor ->
+        return database.rawQuery("SELECT * FROM scripts ORDER BY id DESC", null).use { cursor ->
             val scripts = mutableListOf<ModuleInfo>()
             while (cursor.moveToNext()) {
                 scripts.add(
@@ -299,7 +107,7 @@ class ModDatabase(
     }
 
     fun syncScripts(availableScripts: List<ModuleInfo>) {
-        executeAsync {
+        runBlocking(executor.asCoroutineDispatcher()) {
             val enabledScripts = getScripts()
             val enabledScriptPaths = enabledScripts.map { it.name }
             val availableScriptPaths = availableScripts.map { it.name }

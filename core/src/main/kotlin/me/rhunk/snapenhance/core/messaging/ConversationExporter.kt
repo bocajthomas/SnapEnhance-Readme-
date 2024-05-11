@@ -9,9 +9,7 @@ import me.rhunk.snapenhance.common.data.ContentType
 import me.rhunk.snapenhance.common.database.impl.FriendFeedEntry
 import me.rhunk.snapenhance.common.database.impl.FriendInfo
 import me.rhunk.snapenhance.common.util.snap.MediaDownloaderHelper
-import me.rhunk.snapenhance.common.util.snap.RemoteMediaResolver
 import me.rhunk.snapenhance.core.ModContext
-import me.rhunk.snapenhance.core.features.impl.downloader.decoder.AttachmentType
 import me.rhunk.snapenhance.core.features.impl.downloader.decoder.MessageDecoder
 import me.rhunk.snapenhance.core.wrapper.impl.Message
 import me.rhunk.snapenhance.core.wrapper.impl.SnapUUID
@@ -21,6 +19,7 @@ import java.io.InputStream
 import java.io.OutputStream
 import java.text.DateFormat
 import java.util.Date
+import java.util.concurrent.CopyOnWriteArraySet
 import java.util.concurrent.Executors
 import java.util.zip.Deflater
 import java.util.zip.DeflaterInputStream
@@ -104,54 +103,55 @@ class ConversationExporter(
         }
     }
 
+    private val downloadedMediaIdCache = CopyOnWriteArraySet<String>()
+    private val pendingDownloadMediaIdCache = CopyOnWriteArraySet<String>()
 
-    @OptIn(ExperimentalEncodingApi::class)
     private fun downloadMedia(message: Message) {
         downloadThreadExecutor.execute {
             MessageDecoder.decode(message.messageContent!!).forEach decode@{ attachment ->
-                if (attachment.mediaUrlKey?.isEmpty() == true) return@decode
-                val protoMediaReference = Base64.UrlSafe.decode(attachment.mediaUrlKey ?: return@decode)
-
+                if (attachment.mediaUniqueId in downloadedMediaIdCache || attachment.mediaUniqueId in pendingDownloadMediaIdCache) return@decode
+                pendingDownloadMediaIdCache.add(attachment.mediaUniqueId!!)
                 for (i in 0..5) {
-                    printLog("downloading ${attachment.mediaUrlKey}... (attempt ${i + 1}/5)")
+                    printLog("downloading ${attachment.boltKey ?: attachment.directUrl}... (attempt ${i + 1}/5)")
                     runCatching {
-                        RemoteMediaResolver.downloadBoltMedia(protoMediaReference, decryptionCallback = {
-                            (attachment.attachmentInfo?.encryption?.decryptInputStream(it) ?: it)
-                        }) { downloadedInputStream, _ ->
-                            downloadedInputStream.use { inputStream ->
-                                MediaDownloaderHelper.getSplitElements(inputStream) { type, splitInputStream ->
-                                    val mediaKey = "${type}_${Base64.UrlSafe.encode(protoMediaReference).replace("=", "")}"
-                                    val bufferedInputStream = BufferedInputStream(splitInputStream)
-                                    val fileType = MediaDownloaderHelper.getFileType(bufferedInputStream)
-                                    val mediaFile = cacheFolder.resolve("$mediaKey.${fileType.fileExtension}")
+                        attachment.openStream { downloadedInputStream ->
+                            MediaDownloaderHelper.getSplitElements(downloadedInputStream!!) { type, splitInputStream ->
+                                val mediaKey = "${type}_${attachment.mediaUniqueId}"
+                                val bufferedInputStream = BufferedInputStream(splitInputStream)
+                                val fileType = MediaDownloaderHelper.getFileType(bufferedInputStream)
+                                val mediaFile = cacheFolder.resolve("$mediaKey.${fileType.fileExtension}")
 
-                                    mediaFile.outputStream().use { fos ->
-                                        bufferedInputStream.copyTo(fos)
-                                    }
+                                mediaFile.outputStream().use { fos ->
+                                    bufferedInputStream.copyTo(fos)
+                                }
 
-                                    writeThreadExecutor.execute {
-                                        outputFileStream.write("<div class=\"media-$mediaKey\"><!-- ".toByteArray())
-                                        mediaFile.inputStream().use {
-                                            val deflateInputStream = DeflaterInputStream(it, Deflater(Deflater.BEST_SPEED, true))
-                                            (XposedHelpers.newInstance(
-                                                Base64InputStream::class.java,
-                                                deflateInputStream,
-                                                android.util.Base64.DEFAULT or android.util.Base64.NO_WRAP,
-                                                true
-                                            ) as InputStream).copyTo(outputFileStream)
-                                            outputFileStream.write(" --></div>\n".toByteArray())
-                                            outputFileStream.flush()
-                                        }
+                                writeThreadExecutor.execute {
+                                    outputFileStream.write("<div class=\"media-$mediaKey\"><!-- ".toByteArray())
+                                    mediaFile.inputStream().use {
+                                        val deflateInputStream = DeflaterInputStream(it, Deflater(Deflater.BEST_SPEED, true))
+                                        (XposedHelpers.newInstance(
+                                            Base64InputStream::class.java,
+                                            deflateInputStream,
+                                            android.util.Base64.DEFAULT or android.util.Base64.NO_WRAP,
+                                            true
+                                        ) as InputStream).copyTo(outputFileStream)
+                                        outputFileStream.write(" --></div>\n".toByteArray())
+                                        outputFileStream.flush()
                                     }
                                 }
+                            }
+                            writeThreadExecutor.execute {
+                                downloadedMediaIdCache.add(attachment.mediaUniqueId!!)
                             }
                         }
                         return@decode
                     }.onFailure {
-                        printLog("failed to download media ${attachment.mediaUrlKey}. retrying...")
+                        downloadedMediaIdCache.remove(attachment.mediaUniqueId!!)
+                        printLog("failed to download media ${attachment.boltKey}. retrying...")
                         it.printStackTrace()
                     }
                 }
+                pendingDownloadMediaIdCache.remove(attachment.mediaUniqueId!!)
             }
         }
     }
@@ -168,7 +168,13 @@ class ConversationExporter(
         }
         val contentType = message.messageContent?.contentType ?: return
 
-        if (exportParams.downloadMedias && (contentType == ContentType.NOTE || contentType == ContentType.SNAP || contentType == ContentType.EXTERNAL_MEDIA)) {
+        if (exportParams.downloadMedias && (contentType == ContentType.NOTE ||
+                    contentType == ContentType.SNAP ||
+                    contentType == ContentType.EXTERNAL_MEDIA ||
+                    contentType == ContentType.STICKER ||
+                    contentType == ContentType.SHARE ||
+                    contentType == ContentType.MAP_REACTION)
+            ) {
             downloadMedia(message)
         }
 
@@ -201,10 +207,9 @@ class ConversationExporter(
             name("attachments").beginArray()
             MessageDecoder.decode(message.messageContent!!)
                 .forEach attachments@{ attachments ->
-                    if (attachments.type == AttachmentType.STICKER) //TODO: implement stickers
-                        return@attachments
                     beginObject()
-                    name("key").value(attachments.mediaUrlKey?.replace("=", ""))
+                    name("url").value(attachments.boltKey ?: attachments.directUrl)
+                    name("key").value(attachments.mediaUniqueId)
                     name("type").value(attachments.type.toString())
                     name("encryption").apply {
                         attachments.attachmentInfo?.encryption?.let { encryption ->

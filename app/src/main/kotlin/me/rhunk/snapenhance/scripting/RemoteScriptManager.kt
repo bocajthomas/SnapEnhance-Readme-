@@ -17,6 +17,8 @@ import me.rhunk.snapenhance.core.util.ktx.toParcelFileDescriptor
 import me.rhunk.snapenhance.scripting.impl.IPCListeners
 import me.rhunk.snapenhance.scripting.impl.ManagerIPC
 import me.rhunk.snapenhance.scripting.impl.ManagerScriptConfig
+import okhttp3.OkHttpClient
+import okhttp3.Request
 import java.io.File
 import java.io.InputStream
 import kotlin.system.exitProcess
@@ -26,6 +28,10 @@ class RemoteScriptManager(
 ) : IScripting.Stub() {
     val runtime = ScriptRuntime(context.androidContext, context.log).apply {
         scripting = this@RemoteScriptManager
+    }
+
+    private val okHttpClient by lazy {
+        OkHttpClient.Builder().build()
     }
 
     private var autoReloadListener: AutoReloadListener? = null
@@ -49,6 +55,7 @@ class RemoteScriptManager(
     private val ipcListeners = IPCListeners()
 
     fun sync() {
+        cachedModuleInfo.clear()
         getScriptFileNames().forEach { name ->
             runCatching {
                 getScriptInputStream(name) { stream ->
@@ -77,7 +84,11 @@ class RemoteScriptManager(
 
         sync()
         enabledScripts.forEach { name ->
-            loadScript(name)
+            runCatching {
+                loadScript(name)
+            }.onFailure {
+                context.log.error("Failed to load script $name", it)
+            }
         }
     }
 
@@ -87,10 +98,10 @@ class RemoteScriptManager(
 
     fun loadScript(path: String) {
         val content = getScriptContent(path) ?: return
+        runtime.load(path, content)
         if (context.config.root.scripting.autoReload.getNullable() != null) {
             autoReloadHandler.addFile(getScriptsFolder()?.findFile(path) ?: return)
         }
-        runtime.load(path, content)
     }
 
     fun unloadScript(scriptPath: String) {
@@ -117,6 +128,34 @@ class RemoteScriptManager(
 
     private fun getScriptFileNames(): List<String> {
         return (getScriptsFolder() ?: return emptyList()).listFiles().filter { it.name?.endsWith(".js") ?: false }.map { it.name!! }
+    }
+
+    fun importFromUrl(
+        url: String
+    ): ModuleInfo {
+        val response = okHttpClient.newCall(Request.Builder().url(url).build()).execute()
+        if (!response.isSuccessful) {
+            throw Exception("Failed to fetch script. Code: ${response.code}")
+        }
+        response.body.byteStream().use { inputStream ->
+            val bufferedInputStream = inputStream.buffered()
+            bufferedInputStream.mark(0)
+            val moduleInfo = runtime.readModuleInfo(bufferedInputStream.bufferedReader())
+            bufferedInputStream.reset()
+
+            val scriptPath = moduleInfo.name + ".js"
+            val scriptFile = getScriptsFolder()?.findFile(scriptPath) ?: getScriptsFolder()?.createFile("text/javascript", scriptPath)
+                ?: throw Exception("Failed to create script file")
+
+            context.androidContext.contentResolver.openOutputStream(scriptFile.uri)?.use { output ->
+                bufferedInputStream.copyTo(output)
+            }
+
+            sync()
+            loadScript(scriptPath)
+            runtime.removeModule(scriptPath)
+            return moduleInfo
+        }
     }
 
     override fun getEnabledScripts(): List<String> {

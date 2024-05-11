@@ -23,8 +23,8 @@ import me.rhunk.snapenhance.common.bridge.FileLoaderWrapper
 import me.rhunk.snapenhance.common.bridge.types.BridgeFileType
 import me.rhunk.snapenhance.common.bridge.types.FileActionType
 import me.rhunk.snapenhance.common.bridge.types.LocalePair
-import me.rhunk.snapenhance.common.data.MessagingFriendInfo
-import me.rhunk.snapenhance.common.data.MessagingGroupInfo
+import me.rhunk.snapenhance.common.data.Friend
+import me.rhunk.snapenhance.common.data.Group
 import me.rhunk.snapenhance.common.data.MessagingRuleType
 import me.rhunk.snapenhance.common.data.SocialScope
 import me.rhunk.snapenhance.common.util.toSerialized
@@ -185,7 +185,7 @@ class BridgeClient(
         service.triggerSync(scope.key, id)
     }
 
-    fun passGroupsAndFriends(groups: List<MessagingGroupInfo>, friends: List<MessagingFriendInfo>) =
+    fun passGroupsAndFriends(groups: List<Group>, friends: List<Friend>) =
         safeServiceCall {
             service.passGroupsAndFriends(
                 groups.mapNotNull { it.toSerialized() },

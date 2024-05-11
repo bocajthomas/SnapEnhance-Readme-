@@ -11,6 +11,7 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.core.app.CoreComponentFactory
 import androidx.documentfile.provider.DocumentFile
+import androidx.room.Room
 import coil.ImageLoader
 import coil.decode.VideoFrameDecoder
 import coil.disk.DiskCache
@@ -32,6 +33,7 @@ import me.rhunk.snapenhance.e2ee.E2EEImplementation
 import me.rhunk.snapenhance.messaging.ModDatabase
 import me.rhunk.snapenhance.messaging.StreaksReminder
 import me.rhunk.snapenhance.scripting.RemoteScriptManager
+import me.rhunk.snapenhance.storage.AppDatabase
 import me.rhunk.snapenhance.task.TaskManager
 import me.rhunk.snapenhance.ui.manager.MainActivity
 import me.rhunk.snapenhance.ui.manager.data.InstallationSummary
@@ -65,6 +67,7 @@ class RemoteSideContext(
     val translation = LocaleWrapper()
     val mappings = MappingsWrapper()
     val taskManager = TaskManager(this)
+    @Deprecated("Use RemoteSideContext.database instead")
     val modDatabase = ModDatabase(this)
     val streaksReminder = StreaksReminder(this)
     val log = LogManager(this)
@@ -74,6 +77,7 @@ class RemoteSideContext(
     val messageLogger by lazy { LoggerWrapper(androidContext.getDatabasePath(BridgeFileType.MESSAGE_LOGGER_DATABASE.fileName)) }
     val tracker = RemoteTracker(this)
     val accountStorage = RemoteAccountStorage(this)
+    lateinit var database: AppDatabase
 
     //used to load bitmoji selfies and download previews
     val imageLoader by lazy {
@@ -114,6 +118,10 @@ class RemoteSideContext(
                     }
                 }
                 launch {
+                    database = Room
+                        .databaseBuilder(androidContext, AppDatabase::class.java, "snapenhance")
+                        .fallbackToDestructiveMigration()
+                        .build()
                     modDatabase.init()
                     streaksReminder.init()
                 }

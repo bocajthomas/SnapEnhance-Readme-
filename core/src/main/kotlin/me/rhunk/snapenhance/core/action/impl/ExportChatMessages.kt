@@ -356,7 +356,10 @@ class ExportChatMessages : AbstractAction() {
 
         var foundMessageCount = 0
 
-        var lastMessageId = fetchMessagesPaginated(conversationId, Long.MAX_VALUE, amount = 1).firstOrNull()?.messageDescriptor?.messageId ?: run {
+        var lastMessageId = fetchMessagesPaginated(conversationId, Long.MAX_VALUE, amount = 1).firstOrNull()?.also {
+            conversationExporter.readMessage(it)
+            foundMessageCount++
+        }?.messageDescriptor?.messageId ?: run {
             logDialog(translation["no_messages_found"])
             return
         }

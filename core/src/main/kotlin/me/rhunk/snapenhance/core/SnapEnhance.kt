@@ -14,9 +14,10 @@ import me.rhunk.snapenhance.bridge.SyncCallback
 import me.rhunk.snapenhance.common.Constants
 import me.rhunk.snapenhance.common.ReceiversConfig
 import me.rhunk.snapenhance.common.action.EnumAction
+import me.rhunk.snapenhance.common.data.Friend
 import me.rhunk.snapenhance.common.data.FriendStreaks
-import me.rhunk.snapenhance.common.data.MessagingFriendInfo
-import me.rhunk.snapenhance.common.data.MessagingGroupInfo
+import me.rhunk.snapenhance.common.data.Group
+import me.rhunk.snapenhance.common.data.SyncResult
 import me.rhunk.snapenhance.common.util.toSerialized
 import me.rhunk.snapenhance.core.bridge.BridgeClient
 import me.rhunk.snapenhance.core.bridge.loadFromBridge
@@ -257,7 +258,7 @@ class SnapEnhance {
             val feedEntries = appContext.database.getFeedEntries(Int.MAX_VALUE)
 
             val groups = feedEntries.filter { it.friendUserId == null }.map {
-                MessagingGroupInfo(
+                Group(
                     it.key!!,
                     it.feedDisplayName!!,
                     it.participantsSize
@@ -265,14 +266,14 @@ class SnapEnhance {
             }
 
             val friends = feedEntries.filter { it.friendUserId != null }.map {
-                MessagingFriendInfo(
+                Friend(
+                    id = null,
                     it.friendUserId!!,
                     appContext.database.getConversationLinkFromUserId(it.friendUserId!!)?.clientConversationId,
                     it.friendDisplayName,
                     it.friendDisplayUsername!!.split("|")[1],
                     it.bitmojiAvatarId,
                     it.bitmojiSelfieId,
-                    streaks = null
                 )
             }
 
@@ -284,15 +285,18 @@ class SnapEnhance {
         appContext.bridgeClient.sync(object : SyncCallback.Stub() {
             override fun syncFriend(uuid: String): String? {
                 return appContext.database.getFriendInfo(uuid)?.let {
-                    MessagingFriendInfo(
-                        userId = it.userId!!,
-                        dmConversationId = appContext.database.getConversationLinkFromUserId(it.userId!!)?.clientConversationId,
-                        displayName = it.displayName,
-                        mutableUsername = it.mutableUsername!!,
-                        bitmojiId = it.bitmojiAvatarId,
-                        selfieId = it.bitmojiSelfieId,
-                        streaks = if (it.streakLength > 0) {
+                    SyncResult(
+                        friend = Friend(
+                            userId = it.userId!!,
+                            dmConversationId = appContext.database.getConversationLinkFromUserId(it.userId!!)?.clientConversationId,
+                            displayName = it.displayName,
+                            mutableUsername = it.mutableUsername!!,
+                            bitmojiId = it.bitmojiAvatarId,
+                            selfieId = it.bitmojiSelfieId,
+                        ),
+                        friendStreaks = if (it.streakLength > 0) {
                             FriendStreaks(
+                                userId = it.userId!!,
                                 expirationTimestamp = it.streakExpirationTimestamp,
                                 length = it.streakLength
                             )
@@ -303,10 +307,12 @@ class SnapEnhance {
 
             override fun syncGroup(uuid: String): String? {
                 return appContext.database.getFeedEntryByConversationId(uuid)?.let {
-                    MessagingGroupInfo(
-                        it.key!!,
-                        it.feedDisplayName!!,
-                        it.participantsSize
+                    SyncResult(
+                        group = Group(
+                            it.key!!,
+                            it.feedDisplayName!!,
+                            it.participantsSize
+                        )
                     ).toSerialized()
                 }
             }
@@ -326,13 +332,8 @@ class SnapEnhance {
 
         Resources::class.java.getMethod("getString", Int::class.javaPrimitiveType).hook(HookStage.BEFORE) { param ->
             val key = param.arg<Int>(0)
-            val name = stringResources[key] ?: return@hook
-            // FIXME: prevent blank string in translations
-            if (name == "date_range_input_title") {
-                param.setResult("")
-                return@hook
-            }
-            param.setResult(appContext.translation.getOrNull("material3_strings.$name") ?: return@hook)
+            val name = stringResources[key]?.replaceFirst("m3c_", "") ?: return@hook
+            param.setResult(appContext.translation.getOrNull("material3_strings.${name}") ?: "")
         }
     }
 }

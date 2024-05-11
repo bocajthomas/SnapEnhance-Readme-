@@ -3,20 +3,58 @@ package me.rhunk.snapenhance.core.features.impl.downloader.decoder
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonElement
 import com.google.gson.JsonObject
+import me.rhunk.snapenhance.common.data.download.DownloadMediaType
+import me.rhunk.snapenhance.common.data.download.InputMedia
+import me.rhunk.snapenhance.common.data.download.MediaEncryptionKeyPair
 import me.rhunk.snapenhance.common.data.download.toKeyPair
 import me.rhunk.snapenhance.common.util.protobuf.ProtoReader
+import me.rhunk.snapenhance.common.util.snap.RemoteMediaResolver
 import me.rhunk.snapenhance.core.wrapper.impl.MessageContent
+import java.io.InputStream
+import java.net.URL
 import kotlin.io.encoding.Base64
 import kotlin.io.encoding.ExperimentalEncodingApi
 
 data class DecodedAttachment(
-    val mediaUrlKey: String?,
+    val boltKey: String?,
+    val directUrl: String? = null,
     val type: AttachmentType,
     val attachmentInfo: AttachmentInfo?
 ) {
     @OptIn(ExperimentalEncodingApi::class)
     val mediaUniqueId: String? by lazy {
-        runCatching { Base64.UrlSafe.decode(mediaUrlKey.toString()) }.getOrNull()?.let { ProtoReader(it).getString(2, 2)?.substringBefore(".") }
+        runCatching {
+            Base64.UrlSafe.decode(boltKey.toString())
+        }.getOrNull()?.let {
+            ProtoReader(it).getString(2, 2)?.substringBefore(".")
+        } ?: directUrl?.substringAfterLast("/")?.substringBeforeLast("?")?.substringBeforeLast(".")?.let { Base64.UrlSafe.encode(it.toByteArray()) }
+    }
+
+    @OptIn(ExperimentalEncodingApi::class)
+    inline fun openStream(crossinline callback: (InputStream?) -> Unit) {
+        boltKey?.let { mediaUrlKey ->
+            RemoteMediaResolver.downloadBoltMedia(Base64.decode(mediaUrlKey), decryptionCallback = {
+                attachmentInfo?.encryption?.decryptInputStream(it) ?: it
+            }, resultCallback = { inputStream, _ ->
+                callback(inputStream)
+            })
+        } ?: directUrl?.let { rawMediaUrl ->
+            URL(rawMediaUrl).openStream().let { inputStream ->
+                attachmentInfo?.encryption?.decryptInputStream(inputStream) ?: inputStream
+            }.use(callback)
+        } ?: callback(null)
+    }
+
+    fun createInputMedia(
+        isOverlay: Boolean = false
+    ): InputMedia? {
+        return InputMedia(
+            content = boltKey ?: directUrl ?: return null,
+            type = if (boltKey != null) DownloadMediaType.PROTO_MEDIA else DownloadMediaType.REMOTE_MEDIA,
+            encryption = attachmentInfo?.encryption,
+            attachmentType = type.key,
+            isOverlay = isOverlay
+        )
     }
 }
 
@@ -24,30 +62,39 @@ data class DecodedAttachment(
 object MessageDecoder {
     private val gson = GsonBuilder().create()
 
-    private fun decodeAttachment(protoReader: ProtoReader): AttachmentInfo? {
-        val mediaInfo = protoReader.followPath(1, 1) ?: return null
+    private fun ProtoReader.decodeClearTextEncryption(encoded: Boolean = true): MediaEncryptionKeyPair? {
+        val key = if (encoded) Base64.decode(getString(1)?.trim() ?: return null) else getByteArray(1) ?: return null
+        val iv = if (encoded) Base64.decode(getString(2)?.trim() ?: return null) else getByteArray(2) ?: return null
 
+        return Pair(key, iv).toKeyPair()
+    }
+
+    private fun ProtoReader.decodeMediaMetadata(): AttachmentInfo {
         return AttachmentInfo(
             encryption = run {
-                val encryptionProtoIndex = if (mediaInfo.contains(19)) 19 else 4
-                val encryptionProto = mediaInfo.followPath(encryptionProtoIndex) ?: return@run null
-
-                var key = encryptionProto.getByteArray(1) ?: return@run null
-                var iv = encryptionProto.getByteArray(2) ?: return@run null
-
-                if (encryptionProtoIndex == 4) {
-                    key = Base64.decode(encryptionProto.getString(1)?.replace("\n","") ?: return@run null)
-                    iv = Base64.decode(encryptionProto.getString(2)?.replace("\n","") ?: return@run null)
+                followPath(4)?.apply {
+                    decodeClearTextEncryption(encoded = true)?.let {
+                        return@run it
+                    }
                 }
 
-                Pair(key, iv).toKeyPair()
+                followPath(19)?.apply {
+                    decodeClearTextEncryption( encoded = false)?.let { encryption ->
+                        return@run encryption
+                    }
+                }
+                null
             },
-            resolution = mediaInfo.followPath(5)?.let {
+            resolution = followPath(5)?.let {
                 (it.getVarInt(1)?.toInt() ?: 0) to (it.getVarInt(2)?.toInt() ?: 0)
             },
-            duration = mediaInfo.getVarInt(15)   // external medias
-                ?: mediaInfo.getVarInt(13) // audio notes
+            duration = getVarInt(15)   // external medias
+                ?: getVarInt(13) // audio notes
         )
+    }
+
+    private fun ProtoReader.decodeAttachment(): AttachmentInfo? {
+        return followPath(1, 1)?.decodeMediaMetadata()
     }
 
     @OptIn(ExperimentalEncodingApi::class)
@@ -79,7 +126,13 @@ object MessageDecoder {
         return decode(
             ProtoReader(messageContent.content!!),
             customMediaReferences = getEncodedMediaReferences(gson.toJsonTree(messageContent.instanceNonNull()))
-        )
+        ).toMutableList().apply {
+            if (messageContent.quotedMessage?.takeIf { it.isPresent() } != null && messageContent.quotedMessage!!.content?.takeIf { it.isPresent() } != null) {
+                addAll(0, decode(
+                    MessageContent(messageContent.quotedMessage!!.content!!.instanceNonNull())
+                ))
+            }
+        }
     }
 
     fun decode(messageContent: JsonObject): List<DecodedAttachment> {
@@ -88,7 +141,11 @@ object MessageDecoder {
                 .map { it.asByte }
                 .toByteArray()),
             customMediaReferences = getEncodedMediaReferences(messageContent)
-        )
+        ).toMutableList().apply {
+            if (messageContent.has("mQuotedMessage") && messageContent.getAsJsonObject("mQuotedMessage").has("mContent")) {
+                addAll(0, decode(messageContent.getAsJsonObject("mQuotedMessage").getAsJsonObject("mContent")))
+            }
+        }
     }
 
     fun decode(
@@ -100,31 +157,65 @@ object MessageDecoder {
         customMediaReferences?.let { mediaReferences.addAll(it) }
         var mediaKeyIndex = 0
 
-        fun decodeSnapDocMediaPlayback(type: AttachmentType, protoReader: ProtoReader) {
+        fun ProtoReader.decodeSnapDocMediaPlayback(type: AttachmentType) {
             decodedAttachment.add(
                 DecodedAttachment(
-                    mediaUrlKey = mediaReferences.getOrNull(mediaKeyIndex++),
+                    boltKey = mediaReferences.getOrNull(mediaKeyIndex++),
                     type = type,
-                    attachmentInfo = decodeAttachment(protoReader) ?: return
+                    attachmentInfo = decodeAttachment() ?: return
                 )
             )
         }
 
-        fun decodeSnapDocMedia(type: AttachmentType, protoReader: ProtoReader) {
-            protoReader.followPath(5) { decodeSnapDocMediaPlayback(type,this) }
+        fun ProtoReader.decodeSnapDocMedia(type: AttachmentType) {
+            followPath(5) { decodeSnapDocMediaPlayback(type) }
         }
 
-        fun decodeSticker(protoReader: ProtoReader) {
-            protoReader.followPath(1) {
+        fun ProtoReader.decodeStickers() {
+            followPath(1) {
+                val packId = getString(1)
+                val reference = getString(2) ?: return@followPath
+                val stickerUrl = when (packId) {
+                    "snap" -> "https://gcs.sc-cdn.net/sticker-packs-sc/stickers/$reference"
+                    "bitmoji" -> reference.split(":").let {
+                        "https://cf-st.sc-cdn.net/3d/render/${
+                            it.getOrNull(0) ?: return@followPath
+                        }-${it.drop(2).joinToString("-")}-v${it.getOrNull(1) ?: return@followPath}.webp?ua=2"
+                    }
+                    else -> return@followPath
+                }
                 decodedAttachment.add(
                     DecodedAttachment(
-                        mediaUrlKey = null,
+                        boltKey = null,
+                        directUrl = stickerUrl,
                         type = AttachmentType.STICKER,
                         attachmentInfo = BitmojiSticker(
-                            reference = getString(2) ?: return@followPath
+                            reference = reference
                         )
                     )
                 )
+            }
+            followPath(2, 1) {
+                decodedAttachment.add(
+                    DecodedAttachment(
+                        boltKey = mediaReferences.getOrNull(mediaKeyIndex++),
+                        type = AttachmentType.STICKER,
+                        attachmentInfo = decodeMediaMetadata()
+                    )
+                )
+            }
+        }
+
+        fun ProtoReader.decodeShares() {
+            // saved story
+            followPath(24, 2) {
+                decodeSnapDocMedia(AttachmentType.EXTERNAL_MEDIA)
+            }
+            // memories story
+            followPath(11) {
+                eachBuffer(3) {
+                    decodeSnapDocMedia(AttachmentType.EXTERNAL_MEDIA)
+                }
             }
         }
 
@@ -140,24 +231,24 @@ object MessageDecoder {
         mediaReader.apply {
             // external media
             eachBuffer(3, 3) {
-                decodeSnapDocMedia(AttachmentType.EXTERNAL_MEDIA, this)
+                decodeSnapDocMedia(AttachmentType.EXTERNAL_MEDIA)
             }
 
             // stickers
-            followPath(4) { decodeSticker(this) }
+            followPath(4) { decodeStickers() }
 
             // shares
-            followPath(5, 24, 2) {
-                decodeSnapDocMedia(AttachmentType.EXTERNAL_MEDIA, this)
+            followPath(5) {
+                decodeShares()
             }
 
             // audio notes
             followPath(6) note@{
-                val audioNote = decodeAttachment(this) ?: return@note
+                val audioNote = decodeAttachment() ?: return@note
 
                 decodedAttachment.add(
                     DecodedAttachment(
-                        mediaUrlKey = mediaReferences.getOrNull(mediaKeyIndex++),
+                        boltKey = mediaReferences.getOrNull(mediaKeyIndex++),
                         type = AttachmentType.NOTE,
                         attachmentInfo = audioNote
                     )
@@ -168,29 +259,71 @@ object MessageDecoder {
             followPath(7) {
                 // original story reply
                 followPath(3) {
-                    decodeSnapDocMedia(AttachmentType.ORIGINAL_STORY, this)
+                    decodeSnapDocMedia(AttachmentType.ORIGINAL_STORY)
                 }
 
                 // external medias
                 followPath(12) {
-                    eachBuffer(3) { decodeSnapDocMedia(AttachmentType.EXTERNAL_MEDIA, this) }
+                    eachBuffer(3) { decodeSnapDocMedia(AttachmentType.EXTERNAL_MEDIA) }
                 }
 
                 // attached sticker
-                followPath(13) { decodeSticker(this) }
+                followPath(13) { decodeStickers()  }
+
+                // reply shares
+                followPath(14) { decodeShares() }
 
                 // attached audio note
-                followPath(15) { decodeSnapDocMediaPlayback(AttachmentType.NOTE, this) }
+                followPath(15) { decodeSnapDocMediaPlayback(AttachmentType.NOTE) }
+
+                // reply snap
+                followPath(17) {
+                    decodeSnapDocMedia(AttachmentType.SNAP)
+                }
             }
 
             // snaps
             followPath(11) {
-                decodeSnapDocMedia(AttachmentType.SNAP, this)
+                decodeSnapDocMedia(AttachmentType.SNAP)
+            }
+
+            // creative tools items
+            followPath(14, 2, 2) {
+                // custom sticker
+                followPath(3) sticker@{
+                    decodedAttachment.add(
+                        DecodedAttachment(
+                            boltKey = if (contains(4)) {
+                                Base64.UrlSafe.encode(getByteArray(4, 4) ?: return@sticker)
+                            } else mediaReferences.getOrNull(mediaKeyIndex++),
+                            type = AttachmentType.STICKER,
+                            attachmentInfo = AttachmentInfo(
+                                encryption = decodeClearTextEncryption(encoded = true) ?: followPath(5)
+                                    ?.decodeClearTextEncryption(encoded = false)
+                            )
+                        )
+                    )
+                }
+
+                // gifs
+                followPath(13) {
+                    eachBuffer(4) {
+                        followPath(2) {
+                            decodedAttachment.add(
+                                DecodedAttachment(
+                                    boltKey = getByteArray(4)?.let { Base64.UrlSafe.encode(it) },
+                                    type = AttachmentType.GIF,
+                                    attachmentInfo = null
+                                )
+                            )
+                        }
+                    }
+                }
             }
 
             // map reaction
             followPath(20, 2) {
-                decodeSnapDocMedia(AttachmentType.EXTERNAL_MEDIA, this)
+                decodeSnapDocMedia(AttachmentType.EXTERNAL_MEDIA)
             }
         }
 

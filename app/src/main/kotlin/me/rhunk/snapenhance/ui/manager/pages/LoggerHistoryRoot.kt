@@ -31,7 +31,10 @@ import me.rhunk.snapenhance.bridge.DownloadCallback
 import me.rhunk.snapenhance.common.bridge.wrapper.LoggedMessage
 import me.rhunk.snapenhance.common.bridge.wrapper.LoggerWrapper
 import me.rhunk.snapenhance.common.data.ContentType
-import me.rhunk.snapenhance.common.data.download.*
+import me.rhunk.snapenhance.common.data.download.DownloadMetadata
+import me.rhunk.snapenhance.common.data.download.DownloadRequest
+import me.rhunk.snapenhance.common.data.download.MediaDownloadSource
+import me.rhunk.snapenhance.common.data.download.createNewFilePath
 import me.rhunk.snapenhance.common.ui.rememberAsyncMutableState
 import me.rhunk.snapenhance.common.util.ktx.copyToClipboard
 import me.rhunk.snapenhance.common.util.ktx.longHashCode
@@ -83,13 +86,7 @@ class LoggerHistoryRoot : Routes.Route() {
             }
         ).enqueue(
             DownloadRequest(
-                inputMedias = arrayOf(
-                    InputMedia(
-                        content = attachment.mediaUrlKey!!,
-                        type = DownloadMediaType.PROTO_MEDIA,
-                        encryption = attachment.attachmentInfo?.encryption,
-                    )
-                )
+                inputMedias = arrayOf(attachment.createInputMedia()!!)
             ),
             DownloadMetadata(
                 mediaIdentifier = attachmentHash,
@@ -128,91 +125,98 @@ class LoggerHistoryRoot : Routes.Route() {
                 contentView()
 
                 LaunchedEffect(Unit, message) {
-                    runCatching {
-                        decodeMessage(message) { senderId, contentType, messageReader, attachments ->
-                            val senderUsername = senderId?.let { context.modDatabase.getFriendInfo(it)?.mutableUsername } ?: translation["unknown_sender"]
+                    withContext(Dispatchers.IO) {
+                        runCatching {
+                            decodeMessage(message) { senderId, contentType, messageReader, attachments ->
+                                val senderUsername = senderId?.let { context.database.friendDao().getByUserId(it)?.mutableUsername } ?: translation["unknown_sender"]
 
-                            @Composable
-                            fun ContentHeader() {
-                                Text("$senderUsername (${contentType.toString().lowercase()})", modifier = Modifier.padding(end = 4.dp), fontWeight = FontWeight.ExtraLight)
-                            }
+                                @Composable
+                                fun ContentHeader() {
+                                    Text("$senderUsername (${contentType.toString().lowercase()})", modifier = Modifier.padding(end = 4.dp), fontWeight = FontWeight.ExtraLight)
+                                }
 
-                            if (contentType == ContentType.CHAT) {
-                                val content = messageReader.getString(2, 1) ?: "[${translation["empty_message"]}]"
-                                contentView = {
-                                    Column {
-                                        Text(content, modifier = Modifier
-                                            .fillMaxWidth()
-                                            .pointerInput(Unit) {
-                                                detectTapGestures(onLongPress = {
-                                                    context.androidContext.copyToClipboard(content)
-                                                })
-                                            })
-
-                                        val edits by rememberAsyncMutableState(defaultValue = emptyList()) {
-                                            loggerWrapper.getMessageEdits(selectedConversation!!, message.messageId)
-                                        }
-                                        edits.forEach { messageEdit ->
-                                            val date = remember {
-                                                DateFormat.getDateTimeInstance().format(messageEdit.timestamp)
-                                            }
-                                            Text(
-                                                modifier = Modifier.pointerInput(Unit) {
+                                if (contentType == ContentType.CHAT) {
+                                    val content = messageReader.getString(2, 1) ?: "[${translation["empty_message"]}]"
+                                    contentView = {
+                                        Column {
+                                            Text(content, modifier = Modifier
+                                                .fillMaxWidth()
+                                                .pointerInput(Unit) {
                                                     detectTapGestures(onLongPress = {
-                                                        context.androidContext.copyToClipboard(messageEdit.messageText)
+                                                        context.androidContext.copyToClipboard(content)
                                                     })
-                                                }.fillMaxWidth().padding(start = 4.dp),
-                                                text = messageEdit.messageText + " (edited at $date)",
-                                                fontWeight = FontWeight.Light,
-                                                fontStyle = FontStyle.Italic,
-                                                fontSize = 12.sp
-                                            )
+                                                })
+
+                                            val edits by rememberAsyncMutableState(defaultValue = emptyList()) {
+                                                loggerWrapper.getMessageEdits(selectedConversation!!, message.messageId)
+                                            }
+                                            edits.forEach { messageEdit ->
+                                                val date = remember {
+                                                    DateFormat.getDateTimeInstance().format(messageEdit.timestamp)
+                                                }
+                                                Text(
+                                                    modifier = Modifier
+                                                        .pointerInput(Unit) {
+                                                            detectTapGestures(onLongPress = {
+                                                                context.androidContext.copyToClipboard(
+                                                                    messageEdit.messageText
+                                                                )
+                                                            })
+                                                        }
+                                                        .fillMaxWidth()
+                                                        .padding(start = 4.dp),
+                                                    text = messageEdit.messageText + " (edited at $date)",
+                                                    fontWeight = FontWeight.Light,
+                                                    fontStyle = FontStyle.Italic,
+                                                    fontSize = 12.sp
+                                                )
+                                            }
+                                            ContentHeader()
+                                        }
+                                    }
+                                    return@runCatching
+                                }
+                                contentView = {
+                                    Column column@{
+                                        if (attachments.isEmpty()) return@column
+                                        FlowRow(
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .padding(2.dp),
+                                            horizontalArrangement = Arrangement.spacedBy(4.dp),
+                                        ) {
+                                            attachments.forEachIndexed { index, attachment ->
+                                                ElevatedButton(onClick = {
+                                                    context.coroutineScope.launch {
+                                                        runCatching {
+                                                            downloadAttachment(message.timestamp, attachment)
+                                                        }.onFailure {
+                                                            context.log.error("Failed to download attachment", it)
+                                                            context.shortToast(translation["download_attachment_failed_toast"])
+                                                        }
+                                                    }
+                                                }) {
+                                                    Icon(
+                                                        imageVector = Icons.Default.Download,
+                                                        contentDescription = "Download",
+                                                        modifier = Modifier.padding(end = 4.dp)
+                                                    )
+                                                    Text(translation.format("chat_attachment", "index" to (index + 1).toString()))
+                                                }
+                                            }
                                         }
                                         ContentHeader()
                                     }
                                 }
-                                return@runCatching
                             }
+                        }.onFailure {
+                            context.log.error("Failed to parse message", it)
                             contentView = {
-                                Column column@{
-                                    if (attachments.isEmpty()) return@column
-
-                                    FlowRow(
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .padding(2.dp),
-                                        horizontalArrangement = Arrangement.spacedBy(4.dp),
-                                    ) {
-                                        attachments.forEachIndexed { index, attachment ->
-                                            ElevatedButton(onClick = {
-                                                context.coroutineScope.launch {
-                                                    runCatching {
-                                                        downloadAttachment(message.timestamp, attachment)
-                                                    }.onFailure {
-                                                        context.log.error("Failed to download attachment", it)
-                                                        context.shortToast(translation["download_attachment_failed_toast"])
-                                                    }
-                                                }
-                                            }) {
-                                                Icon(
-                                                    imageVector = Icons.Default.Download,
-                                                    contentDescription = "Download",
-                                                    modifier = Modifier.padding(end = 4.dp)
-                                                )
-                                                Text(translation.format("chat_attachment", "index" to (index + 1).toString()))
-                                            }
-                                        }
-                                    }
-                                    ContentHeader()
-                                }
+                                Text("[${translation["message_parse_failed"]}]")
                             }
-                        }
-                    }.onFailure {
-                        context.log.error("Failed to parse message", it)
-                        contentView = {
-                            Text("[${translation["message_parse_failed"]}]")
                         }
                     }
+
                 }
             }
         }
@@ -236,15 +240,19 @@ class LoggerHistoryRoot : Routes.Route() {
             ) {
                 fun formatConversationId(conversationId: String?): String? {
                     if (conversationId == null) return null
-                    return context.modDatabase.getGroupInfo(conversationId)?.name?.let {
+                    return context.database.groupDao().getByConversationId(conversationId)?.name?.let {
                         translation.format("list_group_format", "name" to it)
-                    } ?: context.modDatabase.findFriend(conversationId)?.let {
+                    } ?: context.database.friendDao().getByDmConversationId(conversationId)?.let {
                         translation.format("list_friend_format", "name" to (it.displayName?.let { name -> "$name (${it.mutableUsername})" } ?: it.mutableUsername))
                     } ?: conversationId
                 }
 
+                val textFieldConversation by rememberAsyncMutableState(defaultValue = "Select a conversation", keys = arrayOf(selectedConversation)) {
+                    formatConversationId(selectedConversation) ?: "Select a conversation"
+                }
+
                 OutlinedTextField(
-                    value = remember(selectedConversation) { formatConversationId(selectedConversation) ?: "Select a conversation" },
+                    value = textFieldConversation,
                     onValueChange = {},
                     readOnly = true,
                     modifier = Modifier
@@ -267,7 +275,9 @@ class LoggerHistoryRoot : Routes.Route() {
                             selectedConversation = conversationId
                             expanded = false
                         }, text = {
-                            Text(remember(conversationId) { formatConversationId(conversationId) ?: "Unknown conversation" })
+                            Text(rememberAsyncMutableState(defaultValue = "...") {
+                                formatConversationId(conversationId) ?: "Unknown conversation"
+                            }.value)
                         })
                     }
                 }

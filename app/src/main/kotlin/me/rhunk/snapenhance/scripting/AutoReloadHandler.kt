@@ -15,23 +15,27 @@ class AutoReloadHandler(
     private val lastModifiedMap = mutableMapOf<Uri, Long>()
 
     fun addFile(file: DocumentFile) {
-        files.add(file)
-        lastModifiedMap[file.uri] = file.lastModified()
+        synchronized(lastModifiedMap) {
+            files.add(file)
+            lastModifiedMap[file.uri] = file.lastModified()
+        }
     }
 
     fun start() {
         coroutineScope.launch(Dispatchers.IO) {
             while (true) {
-                files.forEach { file ->
-                    val lastModified = lastModifiedMap[file.uri] ?: return@forEach
-                    runCatching {
-                        val newLastModified = file.lastModified()
-                        if (newLastModified > lastModified) {
-                            lastModifiedMap[file.uri] = newLastModified
-                            onReload(file)
+                synchronized(lastModifiedMap) {
+                    files.forEach { file ->
+                        val lastModified = lastModifiedMap[file.uri] ?: return@forEach
+                        runCatching {
+                            val newLastModified = file.lastModified()
+                            if (newLastModified > lastModified) {
+                                lastModifiedMap[file.uri] = newLastModified
+                                onReload(file)
+                            }
+                        }.onFailure {
+                            it.printStackTrace()
                         }
-                    }.onFailure {
-                        it.printStackTrace()
                     }
                 }
                 delay(1000)

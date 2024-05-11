@@ -15,8 +15,7 @@ import androidx.compose.material.icons.outlined.CheckCircle
 import androidx.compose.material.icons.outlined.Error
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.Warning
-import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import me.rhunk.snapenhance.bridge.DownloadCallback
 import me.rhunk.snapenhance.common.data.FileType
@@ -53,11 +52,9 @@ import me.rhunk.snapenhance.core.wrapper.impl.media.opera.Layer
 import me.rhunk.snapenhance.core.wrapper.impl.media.opera.ParamMap
 import me.rhunk.snapenhance.core.wrapper.impl.media.toKeyPair
 import me.rhunk.snapenhance.mapper.impl.OperaPageViewControllerMapper
-import java.io.ByteArrayInputStream
 import java.nio.file.Paths
 import java.util.UUID
 import kotlin.coroutines.suspendCoroutine
-import kotlin.io.encoding.Base64
 import kotlin.io.encoding.ExperimentalEncodingApi
 import kotlin.math.absoluteValue
 
@@ -545,7 +542,6 @@ class MediaDownloader : MessagingRuleFeature("MediaDownloader", MessagingRuleTyp
         attachments: List<DecodedAttachment>,
         forceAllowDuplicate: Boolean = false
     ) {
-        //TODO: stickers
         attachments.forEach { attachment ->
             runCatching {
                 provideDownloadManagerClient(
@@ -555,12 +551,11 @@ class MediaDownloader : MessagingRuleFeature("MediaDownloader", MessagingRuleTyp
                     friendInfo = friendInfo,
                     forceAllowDuplicate = forceAllowDuplicate,
                     creationTimestamp = message.creationTimestamp,
-                ).downloadSingleMedia(
-                    mediaData = attachment.mediaUrlKey!!,
-                    mediaType = DownloadMediaType.PROTO_MEDIA,
-                    encryption = attachment.attachmentInfo?.encryption,
-                    attachmentType = attachment.type
-                )
+                ).apply {
+                    downloadInputMedias(
+                        arrayOf(attachment.createInputMedia()!!)
+                    )
+                }
             }.onFailure {
                 context.longToast(translations["failed_generic_toast"])
                 context.log.error("Failed to download", it)
@@ -568,22 +563,117 @@ class MediaDownloader : MessagingRuleFeature("MediaDownloader", MessagingRuleTyp
         }
     }
 
+    private fun DecodedAttachment.getInfo(): String {
+        return "${translations["attachment_type.${type.key}"]} ${attachmentInfo?.resolution?.let { "(${it.first}x${it.second})" } ?: ""}"
+    }
 
     @SuppressLint("SetTextI18n")
-    @OptIn(ExperimentalCoroutinesApi::class)
+    private fun previewAttachment(
+        attachment: DecodedAttachment
+    ) {
+        var previewBitmap: Bitmap? = null
+        val previewCoroutine = context.coroutineScope.launch {
+            runCatching {
+                attachment.openStream { attachmentStream ->
+                    val downloadedMediaList = mutableMapOf<SplitMediaAssetType, ByteArray>()
+
+                    MediaDownloaderHelper.getSplitElements(attachmentStream!!) {
+                            type, inputStream ->
+                        downloadedMediaList[type] = inputStream.readBytes()
+                    }
+
+                    val originalMedia = downloadedMediaList[SplitMediaAssetType.ORIGINAL] ?: return@openStream
+                    val overlay = downloadedMediaList[SplitMediaAssetType.OVERLAY]
+
+                    var bitmap = PreviewUtils.createPreview(originalMedia, isVideo = FileType.fromByteArray(originalMedia).isVideo)
+                        ?: throw Exception("preview is null")
+
+                    overlay?.also {
+                        bitmap = PreviewUtils.mergeBitmapOverlay(bitmap, BitmapFactory.decodeByteArray(it, 0, it.size))
+                    }
+
+                    previewBitmap = bitmap
+                }
+            }.onFailure {
+                context.shortToast(translations["failed_to_create_preview_toast"])
+                context.log.error("Failed to create preview", it)
+            }
+        }
+
+        with(ViewAppearanceHelper.newAlertDialogBuilder(context.mainActivity)) {
+            val viewGroup = LinearLayout(context).apply {
+                layoutParams = MarginLayoutParams(
+                    MarginLayoutParams.MATCH_PARENT,
+                    MarginLayoutParams.MATCH_PARENT
+                )
+                gravity = Gravity.CENTER_HORIZONTAL or Gravity.CENTER_VERTICAL
+                addView(ProgressBar(context).apply {
+                    isIndeterminate = true
+                })
+            }
+
+            setOnDismissListener {
+                previewCoroutine.cancel()
+            }
+
+            previewCoroutine.invokeOnCompletion { cause ->
+                if (previewCoroutine.isCancelled) return@invokeOnCompletion
+                runOnUiThread {
+                    viewGroup.removeAllViews()
+                    if (cause != null) {
+                        viewGroup.addView(TextView(context).apply {
+                            text =
+                                translations["failed_to_create_preview_toast"] + "\n" + cause.message
+                            setPadding(30, 30, 30, 30)
+                        })
+                        return@runOnUiThread
+                    }
+
+                    viewGroup.addView(ImageView(context).apply {
+                        setImageBitmap(previewBitmap)
+                        layoutParams = LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.MATCH_PARENT
+                        )
+                        adjustViewBounds = true
+                    })
+                }
+            }
+
+            runOnUiThread {
+                show().apply {
+                    setContentView(viewGroup)
+                    window?.setLayout(
+                        context.resources.displayMetrics.widthPixels,
+                        context.resources.displayMetrics.heightPixels
+                    )
+                }
+            }
+        }
+    }
+
+    @SuppressLint("SetTextI18n")
     fun downloadMessageId(messageId: Long, forceAllowDuplicate: Boolean = false, isPreview: Boolean = false) {
         val messageLogger = context.feature(MessageLogger::class)
         val message = context.database.getConversationMessageFromId(messageId) ?: throw Exception("Message not found in database")
 
-        //get the message author
-        val friendInfo: FriendInfo = context.database.getFriendInfo(message.senderId!!) ?: throw Exception("Friend not found in database")
+        val friendInfo = context.database.getFriendInfo(message.senderId!!) ?: throw Exception("Friend not found in database")
         val authorName = friendInfo.usernameForSorting!!
 
-        val decodedAttachments = (messageLogger.takeIf { it.isEnabled }?.getMessageObject(message.clientConversationId!!, message.clientMessageId.toLong())?.let {
-            MessageDecoder.decode(it.getAsJsonObject("mMessageContent"))
-        } ?: MessageDecoder.decode(
-            protoReader = ProtoReader(message.messageContent!!)
-        )).toMutableList()
+        val decodedAttachments = (
+            messageLogger.takeIf { it.isEnabled }?.getMessageObject(message.clientConversationId!!, message.clientMessageId.toLong())?.let {
+                MessageDecoder.decode(it.getAsJsonObject("mMessageContent"))
+            } ?: MessageDecoder.decode(
+                protoReader = ProtoReader(message.messageContent!!)
+            ).toMutableList().apply {
+                val quotedMessage = message.quotedServerMessageId?.takeIf { it > 0 }?.let { quotedMessageId ->
+                    context.database.getConversationServerMessage(message.clientConversationId!!, quotedMessageId)
+                } ?: return@apply
+                addAll(0, MessageDecoder.decode(
+                    protoReader = ProtoReader(quotedMessage.messageContent ?: return@apply)
+                ))
+            }
+        ).toMutableList()
 
         context.feature(Messaging::class).conversationManager?.takeIf {
             decodedAttachments.isEmpty()
@@ -623,7 +713,7 @@ class MediaDownloader : MessagingRuleFeature("MediaDownloader", MessagingRuleTyp
                     }
                     setMultiChoiceItems(
                         decodedAttachments.mapIndexed { index, decodedAttachment ->
-                            "${index + 1}: ${translations["attachment_type.${decodedAttachment.type.key}"]} ${decodedAttachment.attachmentInfo?.resolution?.let { "(${it.first}x${it.second})" } ?: ""}"
+                            "${index + 1}: ${decodedAttachment.getInfo()}"
                         }.toTypedArray(),
                         decodedAttachments.map { true }.toBooleanArray()
                     ) { _, which, isChecked ->
@@ -642,88 +732,29 @@ class MediaDownloader : MessagingRuleFeature("MediaDownloader", MessagingRuleTyp
                     }
                 }.show()
             }
-
             return
         }
 
-        runBlocking {
-            val firstAttachment = decodedAttachments.first()
+        if (decodedAttachments.size == 1) {
+            previewAttachment(decodedAttachments.first())
+            return
+        }
 
-            val previewCoroutine = async {
-                val downloadedMedia = RemoteMediaResolver.downloadBoltMedia(Base64.decode(firstAttachment.mediaUrlKey!!), decryptionCallback = {
-                    firstAttachment.attachmentInfo?.encryption?.decryptInputStream(it) ?: it
-                }) ?: return@async null
-
-                val downloadedMediaList = mutableMapOf<SplitMediaAssetType, ByteArray>()
-
-                MediaDownloaderHelper.getSplitElements(ByteArrayInputStream(downloadedMedia)) {
-                    type, inputStream ->
-                    downloadedMediaList[type] = inputStream.readBytes()
+        runOnUiThread {
+            ViewAppearanceHelper.newAlertDialogBuilder(context.mainActivity).apply {
+                var selectedAttachment = 0
+                setSingleChoiceItems(
+                    decodedAttachments.mapIndexed { index, decodedAttachment -> "${index + 1}: ${decodedAttachment.getInfo()}" }.toTypedArray(),
+                    0
+                ) { _, which ->
+                    selectedAttachment = which
                 }
-
-                val originalMedia = downloadedMediaList[SplitMediaAssetType.ORIGINAL] ?: return@async null
-                val overlay = downloadedMediaList[SplitMediaAssetType.OVERLAY]
-
-                var bitmap: Bitmap? = PreviewUtils.createPreview(originalMedia, isVideo = FileType.fromByteArray(originalMedia).isVideo)
-
-                if (bitmap == null) {
-                    context.shortToast(translations["failed_to_create_preview_toast"])
-                    return@async null
+                setTitle(translations["select_attachments_title"])
+                setNegativeButton(this@MediaDownloader.context.translation["button.cancel"]) { dialog, _ -> dialog.dismiss() }
+                setPositiveButton(this@MediaDownloader.context.translation["chat_action_menu.preview_button"]) { _, _ ->
+                    previewAttachment(decodedAttachments[selectedAttachment])
                 }
-
-                overlay?.also {
-                    bitmap = PreviewUtils.mergeBitmapOverlay(bitmap!!, BitmapFactory.decodeByteArray(it, 0, it.size))
-                }
-
-                bitmap
-            }
-
-            with(ViewAppearanceHelper.newAlertDialogBuilder(context.mainActivity)) {
-                val viewGroup = LinearLayout(context).apply {
-                    layoutParams = MarginLayoutParams(MarginLayoutParams.MATCH_PARENT, MarginLayoutParams.MATCH_PARENT)
-                    gravity = Gravity.CENTER_HORIZONTAL or Gravity.CENTER_VERTICAL
-                    addView(ProgressBar(context).apply {
-                        isIndeterminate = true
-                    })
-                }
-
-                setOnDismissListener {
-                    previewCoroutine.cancel()
-                }
-
-                previewCoroutine.invokeOnCompletion { cause ->
-                    runOnUiThread {
-                        viewGroup.removeAllViews()
-                        if (cause != null) {
-                            viewGroup.addView(TextView(context).apply {
-                                text = translations["failed_to_create_preview_toast"] + "\n" + cause.message
-                                setPadding(30, 30, 30, 30)
-                            })
-                            return@runOnUiThread
-                        }
-
-                        viewGroup.addView(ImageView(context).apply {
-                            setImageBitmap(previewCoroutine.getCompleted())
-                            layoutParams = LinearLayout.LayoutParams(
-                                LinearLayout.LayoutParams.MATCH_PARENT,
-                                LinearLayout.LayoutParams.MATCH_PARENT
-                            )
-                            adjustViewBounds = true
-                        })
-                    }
-                }
-
-                runOnUiThread {
-                    show().apply {
-                        setContentView(viewGroup)
-                        window?.setLayout(
-                            context.resources.displayMetrics.widthPixels,
-                            context.resources.displayMetrics.heightPixels
-                        )
-                    }
-                    previewCoroutine.start()
-                }
-            }
+            }.show()
         }
     }
 

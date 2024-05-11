@@ -3,11 +3,11 @@ package me.rhunk.snapenhance.common.scripting
 import android.content.Context
 import android.os.ParcelFileDescriptor
 import me.rhunk.snapenhance.bridge.scripting.IScripting
+import me.rhunk.snapenhance.common.BuildConfig
 import me.rhunk.snapenhance.common.logger.AbstractLogger
 import me.rhunk.snapenhance.common.scripting.type.ModuleInfo
 import org.mozilla.javascript.ScriptableObject
 import java.io.BufferedReader
-import java.io.ByteArrayInputStream
 import java.io.InputStream
 
 open class ScriptRuntime(
@@ -35,7 +35,7 @@ open class ScriptRuntime(
         return modules.values.find { it.moduleInfo.name == name }
     }
 
-    private fun readModuleInfo(reader: BufferedReader): ModuleInfo {
+    fun readModuleInfo(reader: BufferedReader): ModuleInfo {
         val header = reader.readLine()
         if (!header.startsWith("// ==SE_module==")) {
             throw Exception("Invalid module header")
@@ -74,6 +74,10 @@ open class ScriptRuntime(
         return readModuleInfo(inputStream.bufferedReader())
     }
 
+    fun removeModule(scriptPath: String) {
+        modules.remove(scriptPath)
+    }
+
     fun unload(scriptPath: String) {
         val module = modules[scriptPath] ?: return
         logger.info("Unloading module $scriptPath")
@@ -81,27 +85,30 @@ open class ScriptRuntime(
         modules.remove(scriptPath)
     }
 
-    fun load(scriptPath: String, pfd: ParcelFileDescriptor) {
-        load(scriptPath, ParcelFileDescriptor.AutoCloseInputStream(pfd).use {
-            it.readBytes().toString(Charsets.UTF_8)
-        })
+    fun load(scriptPath: String, pfd: ParcelFileDescriptor): JSModule {
+        return ParcelFileDescriptor.AutoCloseInputStream(pfd).use {
+            load(scriptPath, it)
+        }
     }
 
-    fun load(scriptPath: String, content: String): JSModule? {
+    fun load(scriptPath: String, content: InputStream): JSModule {
         logger.info("Loading module $scriptPath")
-        return runCatching {
-            JSModule(
-                scriptRuntime = this,
-                moduleInfo = readModuleInfo(ByteArrayInputStream(content.toByteArray(Charsets.UTF_8)).bufferedReader()),
-                content = content,
-            ).apply {
-                load {
-                    buildModuleObject(this, this@apply)
-                }
-                modules[scriptPath] = this
+        val bufferedReader = content.bufferedReader()
+        val moduleInfo = readModuleInfo(bufferedReader)
+
+        if (moduleInfo.minSEVersion != null && moduleInfo.minSEVersion > BuildConfig.VERSION_CODE) {
+            throw Exception("Module requires a newer version of SnapEnhance (min version: ${moduleInfo.minSEVersion})")
+        }
+
+        return JSModule(
+            scriptRuntime = this,
+            moduleInfo = moduleInfo,
+            reader = bufferedReader,
+        ).apply {
+            load {
+                buildModuleObject(this, this@apply)
             }
-        }.onFailure {
-            logger.error("Failed to load module $scriptPath", it)
-        }.getOrNull()
+            modules[scriptPath] = this
+        }
     }
 }

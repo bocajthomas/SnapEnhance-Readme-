@@ -6,6 +6,7 @@ import me.rhunk.snapenhance.common.database.DatabaseObject
 import me.rhunk.snapenhance.common.util.ktx.getBlobOrNull
 import me.rhunk.snapenhance.common.util.ktx.getInteger
 import me.rhunk.snapenhance.common.util.ktx.getLong
+import me.rhunk.snapenhance.common.util.ktx.getLongOrNull
 import me.rhunk.snapenhance.common.util.ktx.getStringOrNull
 
 @Suppress("ArrayInDataClass")
@@ -19,6 +20,7 @@ data class ConversationMessage(
     var contentType: Int = 0,
     var creationTimestamp: Long = 0,
     var readTimestamp: Long = 0,
+    var quotedServerMessageId: Long? = null,
     var senderId: String? = null
 ) : DatabaseObject {
 
@@ -34,6 +36,7 @@ data class ConversationMessage(
             contentType = getInteger("content_type")
             creationTimestamp = getLong("creation_timestamp")
             readTimestamp = getLong("read_timestamp")
+            quotedServerMessageId = getLongOrNull("quoted_server_message_id")
             senderId = getStringOrNull("sender_id")
         }
     }

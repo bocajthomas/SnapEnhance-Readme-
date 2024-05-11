@@ -25,6 +25,7 @@ import me.rhunk.snapenhance.core.util.EvictingMap
 import me.rhunk.snapenhance.core.util.ktx.getDimens
 import me.rhunk.snapenhance.core.util.ktx.getId
 import me.rhunk.snapenhance.core.util.ktx.getIdentifier
+import me.rhunk.snapenhance.core.wrapper.impl.getMessageText
 import java.util.WeakHashMap
 import kotlin.math.absoluteValue
 
@@ -55,9 +56,8 @@ class FriendFeedMessagePreview : Feature("FriendFeedMessagePreview", loadParams 
                     }
                     ?: return@mapNotNull null
 
-            val messageString = messageContainer.getString(2, 1)
-                ?: ContentType.fromMessageContainer(messageContainer)?.name
-                ?: ContentType.fromId(message.contentType)
+            val contentType = ContentType.fromMessageContainer(messageContainer) ?: ContentType.fromId(message.contentType)
+            val messageString = messageContainer.getBuffer().getMessageText(contentType) ?: contentType.name
 
             val friendName = friendNameCache.getOrPut(message.senderId ?: return@mapNotNull null) {
                 context.database.getFriendInfo(message.senderId ?: return@mapNotNull null)?.let { it.displayName?: it.mutableUsername } ?: "Unknown"

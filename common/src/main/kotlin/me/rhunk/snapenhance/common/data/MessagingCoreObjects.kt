@@ -2,15 +2,23 @@ package me.rhunk.snapenhance.common.data
 
 import android.database.Cursor
 import android.os.Parcelable
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
 import me.rhunk.snapenhance.common.config.FeatureNotice
 import me.rhunk.snapenhance.common.data.download.toKeyPair
-import me.rhunk.snapenhance.common.util.ktx.getIntOrNull
 import me.rhunk.snapenhance.common.util.ktx.getInteger
-import me.rhunk.snapenhance.common.util.ktx.getLongOrNull
 import me.rhunk.snapenhance.common.util.ktx.getStringOrNull
 import kotlin.time.Duration.Companion.hours
 
+
+@Parcelize
+data class SyncResult(
+    val friend: Friend? = null,
+    val group: Group? = null,
+    val friendStreaks: FriendStreaks? = null
+): Parcelable
 
 enum class RuleState(
     val key: String
@@ -61,10 +69,12 @@ enum class MessagingRuleType(
 }
 
 @Parcelize
+@Entity
 data class FriendStreaks(
-    val notify: Boolean = true,
-    val expirationTimestamp: Long,
-    val length: Int
+    @PrimaryKey @ColumnInfo(name = "userId") val userId: String,
+    @ColumnInfo(name = "notify") val notify: Boolean = true,
+    @ColumnInfo(name = "expirationTimestamp") val expirationTimestamp: Long,
+    @ColumnInfo(name = "length") val length: Int
 ): Parcelable {
     fun hoursLeft() = (expirationTimestamp - System.currentTimeMillis()) / 1000 / 60 / 60
 
@@ -74,14 +84,15 @@ data class FriendStreaks(
 }
 
 @Parcelize
-data class MessagingGroupInfo(
-    val conversationId: String,
-    val name: String,
-    val participantsCount: Int
+@Entity
+data class Group(
+    @PrimaryKey @ColumnInfo(name = "conversationId") val conversationId: String,
+    @ColumnInfo(name = "name") val name: String,
+    @ColumnInfo(name = "participantsCount") val participantsCount: Int
 ): Parcelable {
     companion object {
-        fun fromCursor(cursor: Cursor): MessagingGroupInfo {
-            return MessagingGroupInfo(
+        fun fromCursor(cursor: Cursor): Group {
+            return Group(
                 conversationId = cursor.getStringOrNull("conversationId")!!,
                 name = cursor.getStringOrNull("name")!!,
                 participantsCount = cursor.getInteger("participantsCount")
@@ -91,31 +102,25 @@ data class MessagingGroupInfo(
 }
 
 @Parcelize
-data class MessagingFriendInfo(
-    val userId: String,
-    val dmConversationId: String?,
-    val displayName: String?,
-    val mutableUsername: String,
-    val bitmojiId: String?,
-    val selfieId: String?,
-    var streaks: FriendStreaks?,
+@Entity
+data class Friend(
+    @PrimaryKey val id: Int? = null,
+    @ColumnInfo(name = "userId") val userId: String,
+    @ColumnInfo(name = "dmConversationId") val dmConversationId: String?,
+    @ColumnInfo(name = "displayName") val displayName: String?,
+    @ColumnInfo(name = "mutableUsername") val mutableUsername: String,
+    @ColumnInfo(name = "bitmojiId") val bitmojiId: String?,
+    @ColumnInfo(name = "selfieId") val selfieId: String?,
 ): Parcelable {
     companion object {
-        fun fromCursor(cursor: Cursor): MessagingFriendInfo {
-            return MessagingFriendInfo(
+        fun fromCursor(cursor: Cursor): Friend {
+            return Friend(
                 userId = cursor.getStringOrNull("userId")!!,
                 dmConversationId = cursor.getStringOrNull("dmConversationId"),
                 displayName = cursor.getStringOrNull("displayName"),
                 mutableUsername = cursor.getStringOrNull("mutableUsername")!!,
                 bitmojiId = cursor.getStringOrNull("bitmojiId"),
-                selfieId = cursor.getStringOrNull("selfieId"),
-                streaks = cursor.getLongOrNull("expirationTimestamp")?.let {
-                    FriendStreaks(
-                        notify = cursor.getIntOrNull("notify") == 1,
-                        expirationTimestamp = it,
-                        length = cursor.getIntOrNull("length") ?: 0
-                    )
-                }
+                selfieId = cursor.getStringOrNull("selfieId")
             )
         }
     }

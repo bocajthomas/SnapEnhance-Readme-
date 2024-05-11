@@ -1,6 +1,5 @@
 package me.rhunk.snapenhance.download
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory

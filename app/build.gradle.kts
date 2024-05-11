@@ -8,6 +8,7 @@ import java.io.ByteArrayOutputStream
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.kotlinAndroid)
+    alias(libs.plugins.ksp)
     id("kotlin-parcelize")
 }
 
@@ -151,6 +152,11 @@ dependencies {
     fullImplementation(libs.coil.video)
     fullImplementation(libs.colorpicker.compose)
     fullImplementation(libs.androidx.ui.tooling.preview)
+
+    implementation(libs.androidx.room.runtime)
+    annotationProcessor(libs.androidx.room.compiler)
+    ksp(libs.androidx.room.compiler)
+
     properties["debug_flavor"]?.let {
         debugImplementation(libs.androidx.ui.tooling)
     }

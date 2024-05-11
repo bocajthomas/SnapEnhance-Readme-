@@ -68,6 +68,14 @@ class DownloadManagerClient (
         )
     }
 
+    fun downloadInputMedias(inputMedias: Array<InputMedia>) {
+        enqueueDownloadRequest(
+            DownloadRequest(
+                inputMedias = inputMedias
+            )
+        )
+    }
+
     fun downloadStream(
         streamUrl: String,
         audioStreamFormat: AudioStreamFormat

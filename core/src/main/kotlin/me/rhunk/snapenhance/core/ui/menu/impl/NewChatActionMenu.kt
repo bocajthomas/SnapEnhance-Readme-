@@ -193,7 +193,7 @@ class NewChatActionMenu : AbstractMenu() {
                                 decodedAttachments.mapIndexed { index, attachment ->
                                     StringBuilder().apply {
                                         append("---- media $index ----\n")
-                                        append("resolveProto: ${attachment.mediaUrlKey}\n")
+                                        append("resolveProto: ${attachment.boltKey}\n")
                                         append("type: ${attachment.type}\n")
                                         attachment.attachmentInfo?.apply {
                                             encryption?.let {
@@ -207,11 +207,16 @@ class NewChatActionMenu : AbstractMenu() {
                                             }
                                         }
                                         runCatching {
-                                            val mediaHeaders = RemoteMediaResolver.getMediaHeaders(
-                                                Base64.UrlSafe.decode(attachment.mediaUrlKey ?: return@runCatching))
-                                            append("content-type: ${mediaHeaders["content-type"]}\n")
-                                            append("content-length: ${Formatter.formatShortFileSize(context, mediaHeaders["content-length"]?.toLongOrNull() ?: 0)}\n")
-                                            append("creation-date: ${mediaHeaders["last-modified"]}\n")
+                                            attachment.boltKey?.let {
+                                                val mediaHeaders = RemoteMediaResolver.getMediaHeaders(
+                                                    Base64.UrlSafe.decode(it))
+                                                append("content-type: ${mediaHeaders["content-type"]}\n")
+                                                append("content-length: ${Formatter.formatShortFileSize(context, mediaHeaders["content-length"]?.toLongOrNull() ?: 0)}\n")
+                                                append("creation-date: ${mediaHeaders["last-modified"]}\n")
+                                            }
+                                            attachment.directUrl?.let {
+                                                append("url: $it\n")
+                                            }
                                         }
                                     }.toString()
                                 }.joinToString("\n\n")

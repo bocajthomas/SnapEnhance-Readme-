@@ -10,7 +10,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -25,8 +24,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import me.rhunk.snapenhance.RemoteSideContext
 import me.rhunk.snapenhance.common.ReceiversConfig
-import me.rhunk.snapenhance.common.data.MessagingFriendInfo
-import me.rhunk.snapenhance.common.data.MessagingGroupInfo
+import me.rhunk.snapenhance.common.data.Friend
+import me.rhunk.snapenhance.common.data.Group
 import me.rhunk.snapenhance.common.ui.rememberAsyncMutableState
 import me.rhunk.snapenhance.common.util.snap.BitmojiSelfie
 import me.rhunk.snapenhance.common.util.snap.SnapWidgetBroadcastReceiverHelper
@@ -37,10 +36,10 @@ class AddFriendDialog(
     private val actionHandler: Actions,
 ) {
     class Actions(
-        val onFriendState: (friend: MessagingFriendInfo, state: Boolean) -> Unit,
-        val onGroupState: (group: MessagingGroupInfo, state: Boolean) -> Unit,
-        val getFriendState: (friend: MessagingFriendInfo) -> Boolean,
-        val getGroupState: (group: MessagingGroupInfo) -> Boolean,
+        val onFriendState: (friend: Friend, state: Boolean) -> Unit,
+        val onGroupState: (group: Group, state: Boolean) -> Unit,
+        val getFriendState: (friend: Friend) -> Boolean,
+        val getGroupState: (group: Group) -> Boolean,
     )
 
     private val stateCache = mutableMapOf<String, Boolean>()
@@ -142,8 +141,8 @@ class AddFriendDialog(
 
     @Composable
     fun Content(dismiss: () -> Unit = { }) {
-        var cachedFriends by remember { mutableStateOf(null as List<MessagingFriendInfo>?) }
-        var cachedGroups by remember { mutableStateOf(null as List<MessagingGroupInfo>?) }
+        var cachedFriends by remember { mutableStateOf(null as List<Friend>?) }
+        var cachedGroups by remember { mutableStateOf(null as List<Group>?) }
 
         val coroutineScope = rememberCoroutineScope()
 
