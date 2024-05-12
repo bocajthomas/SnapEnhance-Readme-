@@ -38,6 +38,8 @@ import me.rhunk.snapenhance.common.Constants
 import me.rhunk.snapenhance.common.action.EnumAction
 import me.rhunk.snapenhance.common.ui.rememberAsyncMutableState
 import me.rhunk.snapenhance.common.ui.rememberAsyncMutableStateList
+import me.rhunk.snapenhance.storage.getQuickTiles
+import me.rhunk.snapenhance.storage.setQuickTiles
 import me.rhunk.snapenhance.ui.manager.Routes
 import me.rhunk.snapenhance.ui.manager.data.Updater
 import me.rhunk.snapenhance.ui.util.ActivityLauncherHelper
@@ -186,7 +188,7 @@ class HomeRoot : Routes.Route() {
             }
 
             val selectedTiles = rememberAsyncMutableStateList(defaultValue = listOf()) {
-                context.modDatabase.getQuickTiles()
+                context.database.getQuickTiles()
             }
 
             val latestUpdate by rememberAsyncMutableState(defaultValue = null) {
@@ -261,7 +263,7 @@ class HomeRoot : Routes.Route() {
                                     selectedTiles.add(0, card.first)
                                 }
                                 context.coroutineScope.launch {
-                                    context.modDatabase.setQuickTiles(selectedTiles)
+                                    context.database.setQuickTiles(selectedTiles)
                                 }
                             }
 

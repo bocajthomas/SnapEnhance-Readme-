@@ -10,6 +10,7 @@ import me.rhunk.snapenhance.core.features.impl.downloader.ProfilePictureDownload
 import me.rhunk.snapenhance.core.features.impl.experiments.*
 import me.rhunk.snapenhance.core.features.impl.global.*
 import me.rhunk.snapenhance.core.features.impl.messaging.*
+import me.rhunk.snapenhance.core.features.impl.spying.FriendTracker
 import me.rhunk.snapenhance.core.features.impl.spying.HalfSwipeNotifier
 import me.rhunk.snapenhance.core.features.impl.spying.MessageLogger
 import me.rhunk.snapenhance.core.features.impl.spying.StealthMode
@@ -112,7 +113,7 @@ class FeatureManager(
             OperaViewerParamsOverride(),
             StealthModeIndicator(),
             DisablePermissionRequests(),
-            SessionEvents(),
+            FriendTracker(),
             DefaultVolumeControls(),
             CallRecorder(),
             DisableMemoriesSnapFeed(),

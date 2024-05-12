@@ -24,23 +24,24 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavBackStackEntry
 import kotlinx.coroutines.launch
 import me.rhunk.snapenhance.R
-import me.rhunk.snapenhance.common.data.Friend
-import me.rhunk.snapenhance.common.data.Group
+import me.rhunk.snapenhance.common.data.MessagingFriendInfo
+import me.rhunk.snapenhance.common.data.MessagingGroupInfo
 import me.rhunk.snapenhance.common.data.SocialScope
 import me.rhunk.snapenhance.common.ui.rememberAsyncMutableState
 import me.rhunk.snapenhance.common.util.snap.BitmojiSelfie
+import me.rhunk.snapenhance.storage.*
 import me.rhunk.snapenhance.ui.manager.Routes
 import me.rhunk.snapenhance.ui.util.coil.BitmojiImage
 import me.rhunk.snapenhance.ui.util.pagerTabIndicatorOffset
 
 class SocialRoot : Routes.Route() {
-    private var friendList: List<Friend> by mutableStateOf(emptyList())
-    private var groupList: List<Group> by mutableStateOf(emptyList())
+    private var friendList: List<MessagingFriendInfo> by mutableStateOf(emptyList())
+    private var groupList: List<MessagingGroupInfo> by mutableStateOf(emptyList())
 
     private fun updateScopeLists() {
         context.coroutineScope.launch {
-            friendList = context.database.friendDao().getAllDesc()
-            groupList = context.database.groupDao().getAll()
+            friendList = context.database.getFriends(descOrder = true)
+            groupList = context.database.getGroups()
         }
     }
 
@@ -50,18 +51,18 @@ class SocialRoot : Routes.Route() {
                 if (state) {
                     context.bridgeService?.triggerScopeSync(SocialScope.FRIEND, friend.userId)
                 } else {
-                    context.database.friendDao().delete(friend.userId)
+                    context.database.deleteFriend(friend.userId)
                 }
             },
             onGroupState = { group, state ->
                 if (state) {
                     context.bridgeService?.triggerScopeSync(SocialScope.GROUP, group.conversationId)
                 } else {
-                    context.database.groupDao().delete(group.conversationId)
+                    context.database.deleteGroup(group.conversationId)
                 }
             },
-            getFriendState = { friend -> context.database.friendDao().exists(friend.userId) },
-            getGroupState = { group -> context.database.groupDao().exists(group.conversationId) }
+            getFriendState = { friend -> context.database.getFriendInfo(friend.userId) != null },
+            getGroupState = { group -> context.database.getGroupInfo(group.conversationId) != null }
         ))
     }
 
@@ -135,8 +136,8 @@ class SocialRoot : Routes.Route() {
 
                             SocialScope.FRIEND -> {
                                 val friend = friendList[index]
-                                val streaks by rememberAsyncMutableState(defaultValue = null) {
-                                    context.database.friendStreaksDao().getByUserId(friend.userId)
+                                val streaks by rememberAsyncMutableState(defaultValue = friend.streaks) {
+                                    context.database.getFriendStreaks(friend.userId)
                                 }
 
                                 BitmojiImage(

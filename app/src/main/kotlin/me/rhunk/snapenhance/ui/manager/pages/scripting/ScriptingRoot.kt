@@ -32,6 +32,9 @@ import me.rhunk.snapenhance.common.scripting.ui.InterfaceManager
 import me.rhunk.snapenhance.common.scripting.ui.ScriptInterface
 import me.rhunk.snapenhance.common.ui.AsyncUpdateDispatcher
 import me.rhunk.snapenhance.common.ui.rememberAsyncMutableState
+import me.rhunk.snapenhance.storage.getScripts
+import me.rhunk.snapenhance.storage.isScriptEnabled
+import me.rhunk.snapenhance.storage.setScriptEnabled
 import me.rhunk.snapenhance.ui.manager.Routes
 import me.rhunk.snapenhance.ui.util.ActivityLauncherHelper
 import me.rhunk.snapenhance.ui.util.Dialog
@@ -241,7 +244,7 @@ class ScriptingRoot : Routes.Route() {
     @Composable
     fun ModuleItem(script: ModuleInfo) {
         var enabled by rememberAsyncMutableState(defaultValue = false) {
-            context.modDatabase.isScriptEnabled(script.name)
+            context.database.isScriptEnabled(script.name)
         }
         var openSettings by remember {
             mutableStateOf(false)
@@ -306,7 +309,7 @@ class ScriptingRoot : Routes.Route() {
                                     context.shortToast("Unloaded script ${script.name}")
                                 }
 
-                                context.modDatabase.setScriptEnabled(script.name, isChecked)
+                                context.database.setScriptEnabled(script.name, isChecked)
                                 withContext(Dispatchers.Main) {
                                     enabled = isChecked
                                 }
@@ -413,7 +416,7 @@ class ScriptingRoot : Routes.Route() {
             updateDispatcher = reloadDispatcher
         ) {
             context.scriptManager.sync()
-            context.modDatabase.getScripts()
+            context.database.getScripts()
         }
 
         val coroutineScope = rememberCoroutineScope()

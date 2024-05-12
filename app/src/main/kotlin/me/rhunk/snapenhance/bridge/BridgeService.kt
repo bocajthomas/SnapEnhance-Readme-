@@ -11,15 +11,14 @@ import me.rhunk.snapenhance.bridge.snapclient.MessagingBridge
 import me.rhunk.snapenhance.common.bridge.types.BridgeFileType
 import me.rhunk.snapenhance.common.bridge.types.FileActionType
 import me.rhunk.snapenhance.common.bridge.wrapper.LocaleWrapper
-import me.rhunk.snapenhance.common.data.Friend
-import me.rhunk.snapenhance.common.data.Group
+import me.rhunk.snapenhance.common.data.MessagingFriendInfo
+import me.rhunk.snapenhance.common.data.MessagingGroupInfo
 import me.rhunk.snapenhance.common.data.SocialScope
-import me.rhunk.snapenhance.common.data.SyncResult
 import me.rhunk.snapenhance.common.logger.LogLevel
 import me.rhunk.snapenhance.common.util.toParcelable
 import me.rhunk.snapenhance.download.DownloadProcessor
 import me.rhunk.snapenhance.download.FFMpegProcessor
-import me.rhunk.snapenhance.storage.MessagingRule
+import me.rhunk.snapenhance.storage.*
 import me.rhunk.snapenhance.task.Task
 import me.rhunk.snapenhance.task.TaskType
 import java.io.File
@@ -49,33 +48,34 @@ class BridgeService : Service() {
 
     fun triggerScopeSync(scope: SocialScope, id: String, updateOnly: Boolean = false) {
         runCatching {
-            val database = remoteSideContext.database
-            val syncResult = toParcelable<SyncResult>(when (scope) {
+            val modDatabase = remoteSideContext.database
+            val syncedObject = when (scope) {
                 SocialScope.FRIEND -> {
-                    if (updateOnly && database.friendDao().getByUserId(id) == null) return
+                    if (updateOnly && modDatabase.getFriendInfo(id) == null) return
                     syncCallback.syncFriend(id)
                 }
                 SocialScope.GROUP -> {
-                    if (updateOnly && database.groupDao().getByConversationId(id) == null) return
+                    if (updateOnly && modDatabase.getGroupInfo(id) == null) return
                     syncCallback.syncGroup(id)
                 }
                 else -> null
-            } ?: run {
+            }
+
+            if (syncedObject == null) {
                 remoteSideContext.log.warn("Failed to sync $scope $id")
                 return
-            })
+            }
 
             when (scope) {
                 SocialScope.FRIEND -> {
-                    database.friendDao().insertOrUpdate(syncResult?.friend ?: return)
-                    if (syncResult.friendStreaks != null)  {
-                        database.friendStreaksDao().insertOrUpdate(syncResult.friendStreaks!!)
-                    } else {
-                        database.friendStreaksDao().delete(id)
+                    toParcelable<MessagingFriendInfo>(syncedObject)?.let {
+                        modDatabase.syncFriend(it)
                     }
                 }
                 SocialScope.GROUP -> {
-                    database.groupDao().insert(syncResult?.group ?: return)
+                    toParcelable<MessagingGroupInfo>(syncedObject)?.let {
+                        modDatabase.syncGroupInfo(it)
+                    }
                 }
             }
         }.onFailure {
@@ -195,27 +195,24 @@ class BridgeService : Service() {
         }
 
         override fun getRules(uuid: String): List<String> {
-            return remoteSideContext.database.messagingRuleDao().getAll(uuid).map { it.type }
+            return remoteSideContext.database.getRules(uuid).map { it.key }
         }
 
         override fun getRuleIds(type: String): MutableList<String> {
-            return remoteSideContext.database.messagingRuleDao().getIds(type).toMutableList()
+            return remoteSideContext.database.getRuleIds(type)
         }
 
         override fun setRule(uuid: String, rule: String, state: Boolean) {
-            remoteSideContext.database.messagingRuleDao().setState(
-                MessagingRule(type = rule, targetUuid = uuid),
-                state
-            )
+            remoteSideContext.database.setRule(uuid, rule, state)
         }
 
         override fun sync(callback: SyncCallback) {
             syncCallback = callback
             measureTimeMillis {
-                remoteSideContext.database.friendDao().getAll().map { it.userId } .forEach { friendId ->
+                remoteSideContext.database.getFriends().map { it.userId } .forEach { friendId ->
                     triggerScopeSync(SocialScope.FRIEND, friendId, true)
                 }
-                remoteSideContext.database.groupDao().getAll().map { it.conversationId }.forEach { groupId ->
+                remoteSideContext.database.getGroups().map { it.conversationId }.forEach { groupId ->
                     triggerScopeSync(SocialScope.GROUP, groupId, true)
                 }
             }.also {
@@ -233,9 +230,9 @@ class BridgeService : Service() {
             friends: List<String>
         ) {
             remoteSideContext.log.verbose("Received ${groups.size} groups and ${friends.size} friends")
-            remoteSideContext.modDatabase.receiveMessagingDataCallback(
-                friends.mapNotNull { toParcelable<Friend>(it) },
-                groups.mapNotNull { toParcelable<Group>(it) }
+            remoteSideContext.database.receiveMessagingDataCallback(
+                friends.mapNotNull { toParcelable<MessagingFriendInfo>(it) },
+                groups.mapNotNull { toParcelable<MessagingGroupInfo>(it) }
             )
         }
 

@@ -1,4 +1,4 @@
-package me.rhunk.snapenhance.core.features.impl.experiments
+package me.rhunk.snapenhance.core.features.impl.spying
 
 import android.app.Notification
 import android.app.NotificationChannel
@@ -22,13 +22,13 @@ import me.rhunk.snapenhance.nativelib.NativeLib
 import java.lang.reflect.Method
 import java.nio.ByteBuffer
 
-class SessionEvents : Feature("Session Events", loadParams = FeatureLoadParams.INIT_SYNC) {
+class FriendTracker : Feature("Friend Tracker", loadParams = FeatureLoadParams.INIT_SYNC) {
     private val conversationPresenceState = mutableMapOf<String, MutableMap<String, FriendPresenceState?>>() // conversationId -> (userId -> state)
     private val tracker by lazy { context.bridgeClient.getTracker() }
     private val notificationManager by lazy { context.androidContext.getSystemService(NotificationManager::class.java).apply {
         createNotificationChannel(NotificationChannel(
-            "session_events",
-            "Session Events",
+            "friend_tracker",
+            "Friend Tracker",
             NotificationManager.IMPORTANCE_DEFAULT
         ))
     } }
@@ -50,7 +50,7 @@ class SessionEvents : Feature("Session Events", loadParams = FeatureLoadParams.I
             id,
             Notification.Builder(
                 context.androidContext,
-                "session_events"
+                "friend_tracker"
                 )
                 .setSmallIcon(android.R.drawable.ic_dialog_info)
                 .setAutoCancel(true)
@@ -306,7 +306,7 @@ class SessionEvents : Feature("Session Events", loadParams = FeatureLoadParams.I
     }
 
     override fun init() {
-        val sessionEventsConfig = context.config.experimental.sessionEvents
+        val sessionEventsConfig = context.config.friendTracker
         if (sessionEventsConfig.globalState != true) return
 
         if (sessionEventsConfig.allowRunningInBackground.get()) {
@@ -324,7 +324,7 @@ class SessionEvents : Feature("Session Events", loadParams = FeatureLoadParams.I
             }
         }
 
-        if (sessionEventsConfig.captureDuplexEvents.get()) {
+        if (sessionEventsConfig.recordMessagingEvents.get()) {
             val messageHandlerClass = findClass("com.snapchat.client.duplex.MessageHandler\$CppProxy").apply {
                 hook("onReceive", HookStage.BEFORE) { param ->
                     param.setResult(null)

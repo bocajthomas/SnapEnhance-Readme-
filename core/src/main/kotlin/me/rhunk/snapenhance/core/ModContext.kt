@@ -17,15 +17,15 @@ import me.rhunk.snapenhance.common.Constants
 import me.rhunk.snapenhance.common.bridge.wrapper.LocaleWrapper
 import me.rhunk.snapenhance.common.bridge.wrapper.MappingsWrapper
 import me.rhunk.snapenhance.common.config.ModConfig
+import me.rhunk.snapenhance.core.action.ActionManager
 import me.rhunk.snapenhance.core.bridge.BridgeClient
 import me.rhunk.snapenhance.core.bridge.loadFromBridge
 import me.rhunk.snapenhance.core.database.DatabaseAccess
 import me.rhunk.snapenhance.core.event.EventBus
 import me.rhunk.snapenhance.core.event.EventDispatcher
 import me.rhunk.snapenhance.core.features.Feature
-import me.rhunk.snapenhance.core.logger.CoreLogger
-import me.rhunk.snapenhance.core.action.ActionManager
 import me.rhunk.snapenhance.core.features.FeatureManager
+import me.rhunk.snapenhance.core.logger.CoreLogger
 import me.rhunk.snapenhance.core.messaging.CoreMessagingBridge
 import me.rhunk.snapenhance.core.messaging.MessageSender
 import me.rhunk.snapenhance.core.scripting.CoreScriptRuntime

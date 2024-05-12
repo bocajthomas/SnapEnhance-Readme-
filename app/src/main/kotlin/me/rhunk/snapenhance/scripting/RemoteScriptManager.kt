@@ -17,6 +17,8 @@ import me.rhunk.snapenhance.core.util.ktx.toParcelFileDescriptor
 import me.rhunk.snapenhance.scripting.impl.IPCListeners
 import me.rhunk.snapenhance.scripting.impl.ManagerIPC
 import me.rhunk.snapenhance.scripting.impl.ManagerScriptConfig
+import me.rhunk.snapenhance.storage.isScriptEnabled
+import me.rhunk.snapenhance.storage.syncScripts
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import java.io.File
@@ -70,7 +72,7 @@ class RemoteScriptManager(
             }
         }
 
-        context.modDatabase.syncScripts(cachedModuleInfo.values.toList())
+        context.database.syncScripts(cachedModuleInfo.values.toList())
     }
 
     fun init() {
@@ -161,7 +163,7 @@ class RemoteScriptManager(
     override fun getEnabledScripts(): List<String> {
         return runCatching {
             getScriptFileNames().filter {
-                context.modDatabase.isScriptEnabled(cachedModuleInfo[it]?.name ?: return@filter false)
+                context.database.isScriptEnabled(cachedModuleInfo[it]?.name ?: return@filter false)
             }
         }.onFailure {
             context.log.error("Failed to get enabled scripts", it)

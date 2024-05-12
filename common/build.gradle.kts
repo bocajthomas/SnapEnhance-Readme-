@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
-    alias(libs.plugins.ksp)
     id("kotlin-parcelize")
 }
 
@@ -47,10 +46,6 @@ dependencies {
     implementation(libs.rhino.android) {
         exclude(group = "org.mozilla", module = "rhino-runtime")
     }
-
-    compileOnly(libs.androidx.room.runtime)
-    compileOnly(libs.androidx.room.compiler)
-    ksp(libs.androidx.room.compiler)
 
     compileOnly(libs.androidx.activity.ktx)
     compileOnly(platform(libs.androidx.compose.bom))

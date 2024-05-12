@@ -1,14 +1,12 @@
 package me.rhunk.snapenhance.common.config.impl
 
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Fingerprint
+import androidx.compose.material.icons.filled.Memory
 import me.rhunk.snapenhance.common.config.ConfigContainer
 import me.rhunk.snapenhance.common.config.FeatureNotice
 
 class Experimental : ConfigContainer() {
-    class SessionEventsConfig : ConfigContainer(hasGlobalState = true) {
-        val captureDuplexEvents = boolean("capture_duplex_events", true)
-        val allowRunningInBackground = boolean("allow_running_in_background", true)
-    }
-
     class ComposerHooksConfig: ConfigContainer(hasGlobalState = true) {
         val showFirstCreatedUsername = boolean("show_first_created_username")
         val bypassCameraRollLimit = boolean("bypass_camera_roll_limit")
@@ -34,9 +32,8 @@ class Experimental : ConfigContainer() {
         val lockOnResume = boolean("lock_on_resume", defaultValue = true)
     }
 
-    val nativeHooks = container("native_hooks", NativeHooks()) { icon = "Memory"; requireRestart() }
-    val sessionEvents = container("session_events", SessionEventsConfig()) { requireRestart(); nativeHooks() }
-    val spoof = container("spoof", Spoof()) { icon = "Fingerprint" ; addNotices(FeatureNotice.BAN_RISK); requireRestart() }
+    val nativeHooks = container("native_hooks", NativeHooks()) { icon = Icons.Default.Memory; requireRestart() }
+    val spoof = container("spoof", Spoof()) { icon = Icons.Default.Fingerprint ; addNotices(FeatureNotice.BAN_RISK); requireRestart() }
     val convertMessageLocally = boolean("convert_message_locally") { requireRestart() }
     val newChatActionMenu = boolean("new_chat_action_menu") { requireRestart() }
     val mediaFilePicker = boolean("media_file_picker") { requireRestart(); addNotices(FeatureNotice.UNSTABLE) }

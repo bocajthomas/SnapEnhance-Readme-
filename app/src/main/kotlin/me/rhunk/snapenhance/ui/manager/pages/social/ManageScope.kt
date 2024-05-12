@@ -16,19 +16,16 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.compose.currentBackStackEntryAsState
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import me.rhunk.snapenhance.common.data.FriendStreaks
-import me.rhunk.snapenhance.common.data.Friend
-import me.rhunk.snapenhance.common.data.Group
+import me.rhunk.snapenhance.common.data.MessagingFriendInfo
+import me.rhunk.snapenhance.common.data.MessagingGroupInfo
 import me.rhunk.snapenhance.common.data.MessagingRuleType
 import me.rhunk.snapenhance.common.data.SocialScope
 import me.rhunk.snapenhance.common.ui.rememberAsyncMutableState
 import me.rhunk.snapenhance.common.ui.rememberAsyncMutableStateList
 import me.rhunk.snapenhance.common.util.snap.BitmojiSelfie
-import me.rhunk.snapenhance.storage.MessagingRule
+import me.rhunk.snapenhance.storage.*
 import me.rhunk.snapenhance.ui.manager.Routes
 import me.rhunk.snapenhance.ui.util.AlertDialogs
 import me.rhunk.snapenhance.ui.util.Dialog
@@ -40,15 +37,13 @@ class ManageScope: Routes.Route() {
     private val dialogs by lazy { AlertDialogs(context.translation) }
 
     private fun deleteScope(scope: SocialScope, id: String, coroutineScope: CoroutineScope) {
-        coroutineScope.launch(Dispatchers.IO) {
-            when (scope) {
-                SocialScope.FRIEND -> context.database.friendDao().delete(id)
-                SocialScope.GROUP -> context.database.groupDao().delete(id)
-            }
-            withContext(context.database.transactionExecutor.asCoroutineDispatcher()) {
-                launch(Dispatchers.Main) {
-                    routes.navController.popBackStack()
-                }
+        when (scope) {
+            SocialScope.FRIEND -> context.database.deleteFriend(id)
+            SocialScope.GROUP -> context.database.deleteGroup(id)
+        }
+        context.database.executeAsync {
+            coroutineScope.launch {
+                routes.navController.popBackStack()
             }
         }
     }
@@ -101,8 +96,8 @@ class ManageScope: Routes.Route() {
                 SocialScope.FRIEND -> {
                     var streaks by remember { mutableStateOf(null as FriendStreaks?) }
                     val friend by rememberAsyncMutableState(null) {
-                        context.database.friendDao().getByUserId(id)?.also {
-                            streaks = context.database.friendStreaksDao().getByUserId(id)
+                        context.database.getFriendInfo(id)?.also {
+                            streaks = context.database.getFriendStreaks(id)
                         }.also {
                             hasScope = it != null
                         }
@@ -113,7 +108,7 @@ class ManageScope: Routes.Route() {
                 }
                 SocialScope.GROUP -> {
                     val group by rememberAsyncMutableState(null) {
-                        context.database.groupDao().getByConversationId(id).also {
+                        context.database.getGroupInfo(id).also {
                             hasScope = it != null
                         }
                     }
@@ -149,7 +144,7 @@ class ManageScope: Routes.Route() {
         Spacer(modifier = Modifier.height(16.dp))
 
         val rules = rememberAsyncMutableStateList(listOf()) {
-            context.database.messagingRuleDao().getAll(id)
+            context.database.getRules(id)
         }
 
         SectionTitle(translation["rules_title"])
@@ -157,7 +152,7 @@ class ManageScope: Routes.Route() {
         ContentCard {
             MessagingRuleType.entries.forEach { ruleType ->
                 var ruleEnabled by remember(rules.size) {
-                    mutableStateOf(rules.any { it.type == ruleType.key })
+                    mutableStateOf(rules.any { it.key == ruleType.key })
                 }
 
                 val ruleState = context.config.root.rules.getRuleState(ruleType)
@@ -177,9 +172,7 @@ class ManageScope: Routes.Route() {
                     Switch(checked = ruleEnabled,
                         enabled = if (ruleType.listMode) ruleState != null else true,
                         onCheckedChange = {
-                            context.coroutineScope.launch {
-                                context.database.messagingRuleDao().setState(MessagingRule(targetUuid = id, type = ruleType.key), it)
-                            }
+                            context.database.setRule(id, ruleType.key, it)
                             ruleEnabled = it
                         }
                     )
@@ -250,7 +243,7 @@ class ManageScope: Routes.Route() {
     @Composable
     private fun Friend(
         id: String,
-        friend: Friend,
+        friend: MessagingFriendInfo,
         streaks: FriendStreaks?
     ) {
         Column(
@@ -332,9 +325,7 @@ class ManageScope: Routes.Route() {
                                 modifier = Modifier.padding(end = 10.dp)
                             )
                             Switch(checked = shouldNotify, onCheckedChange = {
-                                context.coroutineScope.launch {
-                                    context.database.friendStreaksDao().setNotify(id, it)
-                                }
+                                context.database.setFriendStreaksNotify(id, it)
                                 shouldNotify = it
                             })
                         }
@@ -421,7 +412,7 @@ class ManageScope: Routes.Route() {
     }
 
     @Composable
-    private fun Group(group: Group) {
+    private fun Group(group: MessagingGroupInfo) {
         Column(
             modifier = Modifier
                 .padding(10.dp)

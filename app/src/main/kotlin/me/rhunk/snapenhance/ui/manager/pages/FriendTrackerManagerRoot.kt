@@ -40,6 +40,7 @@ import me.rhunk.snapenhance.common.ui.rememberAsyncMutableState
 import me.rhunk.snapenhance.common.ui.rememberAsyncMutableStateList
 import me.rhunk.snapenhance.common.ui.rememberAsyncUpdateDispatcher
 import me.rhunk.snapenhance.common.util.snap.BitmojiSelfie
+import me.rhunk.snapenhance.storage.*
 import me.rhunk.snapenhance.ui.manager.Routes
 import me.rhunk.snapenhance.ui.manager.pages.social.AddFriendDialog
 import me.rhunk.snapenhance.ui.util.coil.BitmojiImage
@@ -61,8 +62,8 @@ class FriendTrackerManagerRoot : Routes.Route() {
         if (currentPage == 1) {
             ExtendedFloatingActionButton(
                 icon = { Icon(Icons.Default.Add, contentDescription = "Add Rule") },
-                expanded = false,
-                text = {},
+                expanded = true,
+                text = { Text("Add Rule") },
                 onClick = { showAddRulePopup = true }
             )
         }
@@ -242,11 +243,11 @@ class FriendTrackerManagerRoot : Routes.Route() {
                                 .padding(8.dp),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            var databaseFriend by remember { mutableStateOf<Friend?>(null) }
+                            var databaseFriend by remember { mutableStateOf<MessagingFriendInfo?>(null) }
 
                             LaunchedEffect(Unit) {
                                 launch(Dispatchers.IO) {
-                                    databaseFriend = context.database.friendDao().getByUserId(log.userId)
+                                    databaseFriend = context.database.getFriendInfo(log.userId)
                                 }
                             }
                             BitmojiImage(
@@ -304,13 +305,13 @@ class FriendTrackerManagerRoot : Routes.Route() {
     ) {
         val events = rememberAsyncMutableStateList(defaultValue = emptyList()) {
             currentRuleId?.let { ruleId ->
-                context.modDatabase.getTrackerEvents(ruleId)
+                context.database.getTrackerEvents(ruleId)
             } ?: emptyList()
         }
         var currentScopeType by remember { mutableStateOf(TrackerScopeType.BLACKLIST) }
         val scopes = rememberAsyncMutableStateList(defaultValue = emptyList()) {
             currentRuleId?.let { ruleId ->
-                context.modDatabase.getRuleTrackerScopes(ruleId).also {
+                context.database.getRuleTrackerScopes(ruleId).also {
                     currentScopeType = if (it.isEmpty()) {
                         TrackerScopeType.WHITELIST
                     } else {
@@ -321,15 +322,15 @@ class FriendTrackerManagerRoot : Routes.Route() {
         }
         val ruleName = rememberAsyncMutableState(defaultValue = "", keys = arrayOf(currentRuleId)) {
             currentRuleId?.let { ruleId ->
-                context.modDatabase.getTrackerRule(ruleId)?.name ?: "Custom Rule"
+                context.database.getTrackerRule(ruleId)?.name ?: "Custom Rule"
             } ?: "Custom Rule"
         }
 
         fun saveRule() {
             runCatching {
-                val ruleId = currentRuleId ?: context.modDatabase.newTrackerRule()
+                val ruleId = currentRuleId ?: context.database.newTrackerRule()
                 events.forEach { event ->
-                    context.modDatabase.addOrUpdateTrackerRuleEvent(
+                    context.database.addOrUpdateTrackerRuleEvent(
                         event.id.takeIf { it > -1 },
                         ruleId,
                         event.eventType,
@@ -337,8 +338,8 @@ class FriendTrackerManagerRoot : Routes.Route() {
                         event.actions
                     )
                 }
-                context.modDatabase.setTrackerRuleName(ruleId, ruleName.value.trim())
-                context.modDatabase.setRuleTrackerScopes(ruleId, currentScopeType, scopes)
+                context.database.setTrackerRuleName(ruleId, ruleName.value.trim())
+                context.database.setRuleTrackerScopes(ruleId, currentScopeType, scopes)
             }.onFailure {
                 context.log.error("Failed to save rule", it)
                 context.shortToast("Failed to save rule. Please check logs for more details.")
@@ -550,7 +551,7 @@ class FriendTrackerManagerRoot : Routes.Route() {
                                     Text(event.eventType)
                                     OutlinedIconButton(onClick = {
                                         if (event.id > -1) {
-                                            context.modDatabase.deleteTrackerRuleEvent(event.id)
+                                            context.database.deleteTrackerRuleEvent(event.id)
                                         }
                                         events.remove(event)
                                     }) {
@@ -582,7 +583,7 @@ class FriendTrackerManagerRoot : Routes.Route() {
             dismissButton = {
                 currentRuleId?.let { ruleId ->
                     Button(onClick = {
-                        context.modDatabase.deleteTrackerRule(ruleId)
+                        context.database.deleteTrackerRule(ruleId)
                         onDismiss()
                     }) {
                         Text("Delete")
@@ -596,7 +597,7 @@ class FriendTrackerManagerRoot : Routes.Route() {
     private fun ConfigRulesTab() {
         val updateRules = rememberAsyncUpdateDispatcher()
         val rules = rememberAsyncMutableStateList(defaultValue = listOf(), updateDispatcher = updateRules) {
-            context.modDatabase.getTrackerRules()
+            context.database.getTrackerRules()
         }
         val coroutineScope = rememberCoroutineScope()
 
@@ -616,21 +617,21 @@ class FriendTrackerManagerRoot : Routes.Route() {
                 items(rules, key = { it.id }) { rule ->
                     val updateRuleState = rememberAsyncUpdateDispatcher()
                     val ruleName by rememberAsyncMutableState(defaultValue = rule.name, updateDispatcher = updateRuleState) {
-                        context.modDatabase.getTrackerRule(rule.id)?.name ?: "(empty)"
+                        context.database.getTrackerRule(rule.id)?.name ?: "(empty)"
                     }
                     val eventCount by rememberAsyncMutableState(defaultValue = 0, updateDispatcher = updateRuleState) {
-                        context.modDatabase.getTrackerEvents(rule.id).size
+                        context.database.getTrackerEvents(rule.id).size
                     }
                     val scopeCount by rememberAsyncMutableState(defaultValue = 0, updateDispatcher = updateRuleState) {
-                        context.modDatabase.getRuleTrackerScopes(rule.id).size
+                        context.database.getRuleTrackerScopes(rule.id).size
                     }
 
                     var editRuleDialog by remember { mutableStateOf(false) }
 
                     if (editRuleDialog) {
                         EditRuleDialog(rule.id, onDismiss = {
-                            context.modDatabase.executeAsync {
-                                if (context.modDatabase.getTrackerRule(rule.id) == null) {
+                            context.database.executeAsync {
+                                if (context.database.getTrackerRule(rule.id) == null) {
                                     coroutineScope.launch {
                                         rules.removeIf { it.id == rule.id }
                                     }
@@ -678,8 +679,8 @@ class FriendTrackerManagerRoot : Routes.Route() {
                                 horizontalArrangement = Arrangement.End,
                             ) {
                                 val scopesBitmoji = rememberAsyncMutableStateList(defaultValue = emptyList(), updateDispatcher = updateRuleState) {
-                                    context.modDatabase.getRuleTrackerScopes(rule.id, limit = 10).mapNotNull {
-                                        context.database.friendDao().getByUserId(it.key)?.let { friend ->
+                                    context.database.getRuleTrackerScopes(rule.id, limit = 10).mapNotNull {
+                                        context.database.getFriendInfo(it.key)?.let { friend ->
                                             friend.selfieId to friend.bitmojiId
                                         }
                                     }.take(4)

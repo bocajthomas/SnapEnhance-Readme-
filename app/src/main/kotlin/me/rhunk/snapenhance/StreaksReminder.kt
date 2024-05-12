@@ -1,4 +1,4 @@
-package me.rhunk.snapenhance.messaging
+package me.rhunk.snapenhance
 
 import android.app.AlarmManager
 import android.app.NotificationChannel
@@ -9,14 +9,11 @@ import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
 import androidx.core.graphics.drawable.toBitmap
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
-import me.rhunk.snapenhance.R
-import me.rhunk.snapenhance.RemoteSideContext
-import me.rhunk.snapenhance.SharedContextHolder
 import me.rhunk.snapenhance.bridge.ForceStartActivity
 import me.rhunk.snapenhance.common.util.snap.BitmojiSelfie
+import me.rhunk.snapenhance.storage.getFriendStreaks
+import me.rhunk.snapenhance.storage.getFriends
 import me.rhunk.snapenhance.ui.util.coil.ImageRequestHelper
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.milliseconds
@@ -58,29 +55,22 @@ class StreaksReminder(
                 PendingIntent.FLAG_IMMUTABLE)
         )
 
-        val notifyFriendList = runBlocking(Dispatchers.IO) {
-            remoteSideContext.database.friendDao().getAll()
-                .associateBy { remoteSideContext.database.friendStreaksDao().getByUserId(it.userId) }
-                .filter { (streaks, _) -> streaks != null && streaks.notify && streaks.isAboutToExpire(remainingHours) }
-        }
+        val notifyFriendList = remoteSideContext.database.getFriends()
+            .associateBy { remoteSideContext.database.getFriendStreaks(it.userId) }
+            .filter { (streaks, _) -> streaks != null && streaks.notify && streaks.isAboutToExpire(remainingHours) }
 
-        val notificationManager by lazy {
-            getNotificationManager(ctx).also {
-                if (streaksReminderConfig.groupNotifications.get() && notifyFriendList.isNotEmpty()) {
-                    it.notify(
-                        0, NotificationCompat.Builder(ctx, NOTIFICATION_CHANNEL_ID)
-                            .setPriority(NotificationCompat.PRIORITY_HIGH)
-                            .setAutoCancel(true)
-                            .setGroup("streaks")
-                            .setGroupSummary(true)
-                            .setSmallIcon(R.drawable.streak_icon)
-                            .build()
-                    )
-                }
-            }
-        }
-
+        val notificationManager = getNotificationManager(ctx)
         val streaksReminderTranslation = remoteSideContext.translation.getCategory("streaks_reminder")
+
+        if (streaksReminderConfig.groupNotifications.get() && notifyFriendList.isNotEmpty()) {
+            notificationManager.notify(0, NotificationCompat.Builder(ctx, NOTIFICATION_CHANNEL_ID)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setAutoCancel(true)
+                .setGroup("streaks")
+                .setGroupSummary(true)
+                .setSmallIcon(R.drawable.streak_icon)
+                .build())
+        }
 
         notifyFriendList.forEach { (streaks, friend) ->
             remoteSideContext.coroutineScope.launch {
