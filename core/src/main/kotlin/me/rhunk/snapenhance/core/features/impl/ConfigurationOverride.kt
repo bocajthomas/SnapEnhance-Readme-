@@ -45,7 +45,7 @@ class ConfigurationOverride : Feature("Configuration Override", loadParams = Fea
 
             overrideProperty("STREAK_EXPIRATION_INFO", { context.config.userInterface.streakExpirationInfo.get() },
                 { true })
-            overrideProperty("TRANSCODING_MAX_QUALITY", { context.config.global.forceUploadSourceQuality.get() },
+            overrideProperty("TRANSCODING_MAX_QUALITY", { context.config.global.mediaUploadQualityConfig.forceVideoUploadSourceQuality.get() },
                 { true }, isAppExperiment = true)
 
             overrideProperty("CAMERA_ME_ENABLE_HEVC_RECORDING", { context.config.camera.hevcRecording.get() },

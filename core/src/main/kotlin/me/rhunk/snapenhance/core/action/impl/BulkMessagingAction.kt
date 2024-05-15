@@ -36,11 +36,13 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import me.rhunk.snapenhance.common.data.ContentType
 import me.rhunk.snapenhance.common.data.FriendLinkType
+import me.rhunk.snapenhance.common.database.impl.ConversationMessage
 import me.rhunk.snapenhance.common.database.impl.FriendInfo
 import me.rhunk.snapenhance.common.messaging.MessagingConstraints
 import me.rhunk.snapenhance.common.messaging.MessagingTask
 import me.rhunk.snapenhance.common.messaging.MessagingTaskType
 import me.rhunk.snapenhance.common.ui.createComposeAlertDialog
+import me.rhunk.snapenhance.common.ui.rememberAsyncMutableState
 import me.rhunk.snapenhance.common.util.ktx.copyToClipboard
 import me.rhunk.snapenhance.common.util.snap.BitmojiSelfie
 import me.rhunk.snapenhance.core.action.AbstractAction
@@ -61,6 +63,8 @@ class BulkMessagingAction : AbstractAction() {
         ADDED_TIMESTAMP,
         SNAP_SCORE,
         STREAK_LENGTH,
+        MOST_MESSAGES_SENT,
+        MOST_RECENT_MESSAGE,
     }
 
     enum class Filter {
@@ -71,6 +75,8 @@ class BulkMessagingAction : AbstractAction() {
         DELETED,
         SUGGESTED,
         BUSINESS_ACCOUNTS,
+        STREAKS,
+        NON_STREAKS,
     }
 
     private val translation by lazy { context.translation.getCategory("bulk_messaging_action") }
@@ -158,6 +164,8 @@ class BulkMessagingAction : AbstractAction() {
                 Filter.SUGGESTED -> friend.friendLinkType == FriendLinkType.SUGGESTED.value
                 Filter.DELETED -> friend.friendLinkType == FriendLinkType.DELETED.value
                 Filter.BUSINESS_ACCOUNTS -> friend.businessCategory > 0
+                Filter.STREAKS -> friend.friendLinkType == FriendLinkType.MUTUAL.value && friend.addedTimestamp > 0 && friend.streakLength != 0
+                Filter.NON_STREAKS -> friend.friendLinkType == FriendLinkType.MUTUAL.value&& friend.addedTimestamp > 0 && friend.streakLength == 0
             } && nameFilter.takeIf { it.isNotBlank() }?.let { name ->
                 friend.mutableUsername?.contains(
                     name,
@@ -165,6 +173,12 @@ class BulkMessagingAction : AbstractAction() {
                 ) == true || friend.displayName?.contains(name, ignoreCase = true) == true
             } ?: true
         }
+    }
+
+    private fun getDMLastMessage(userId: String?): ConversationMessage? {
+        return context.database.getConversationLinkFromUserId(userId ?: return null)?.clientConversationId?.let {
+            context.database.getMessagesFromConversationId(it, 1)
+        }?.firstOrNull()
     }
 
     @OptIn(ExperimentalMaterial3Api::class, ExperimentalFoundationApi::class)
@@ -193,6 +207,12 @@ class BulkMessagingAction : AbstractAction() {
                     SortBy.ADDED_TIMESTAMP -> newFriends.sortBy { it.addedTimestamp }
                     SortBy.SNAP_SCORE -> newFriends.sortBy { it.snapScore }
                     SortBy.STREAK_LENGTH -> newFriends.sortBy { it.streakLength }
+                    SortBy.MOST_MESSAGES_SENT -> newFriends.sortByDescending {
+                        getDMLastMessage(it.userId)?.serverMessageId ?: 0
+                    }
+                    SortBy.MOST_RECENT_MESSAGE -> newFriends.sortByDescending {
+                        getDMLastMessage(it.userId)?.creationTimestamp
+                    }
                 }
                 if (sortReverseOrder) newFriends.reverse()
                 withContext(Dispatchers.Main) {
@@ -283,7 +303,7 @@ class BulkMessagingAction : AbstractAction() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .weight(1f),
-                verticalArrangement = Arrangement.spacedBy(2.dp)
+                verticalArrangement = Arrangement.spacedBy(3.dp)
             ) {
                 stickyHeader {
                     Row(
@@ -393,10 +413,14 @@ class BulkMessagingAction : AbstractAction() {
                                 horizontalArrangement = Arrangement.spacedBy(3.dp),
                                 verticalAlignment = Alignment.CenterVertically
                             ){
-                                Text(text = (friendInfo.displayName ?: friendInfo.mutableUsername).toString(), fontSize = 16.sp, fontWeight = FontWeight.Bold, overflow = TextOverflow.Ellipsis, maxLines = 1)
-                                Text(text = friendInfo.mutableUsername.toString(), fontSize = 10.sp, fontWeight = FontWeight.Light, overflow = TextOverflow.Ellipsis, maxLines = 1)
+                                Text(text = (friendInfo.displayName ?: friendInfo.mutableUsername).toString(), fontSize = 16.sp, fontWeight = FontWeight.Bold, overflow = TextOverflow.Ellipsis, maxLines = 1, lineHeight = 10.sp)
+                                Text(text = friendInfo.mutableUsername.toString(), fontSize = 10.sp, fontWeight = FontWeight.Light, overflow = TextOverflow.Ellipsis, maxLines = 1, lineHeight = 10.sp)
                             }
-                            val userInfo = remember(friendInfo) {
+                            val lastMessage by rememberAsyncMutableState(defaultValue = null) {
+                                getDMLastMessage(friendInfo.userId)
+                            }
+
+                            val userInfo = remember(friendInfo, lastMessage) {
                                 buildString {
                                     append("Relationship: ")
                                     append(context.translation["friendship_link_type.${FriendLinkType.fromValue(friendInfo.friendLinkType).shortName}"])
@@ -409,9 +433,13 @@ class BulkMessagingAction : AbstractAction() {
                                     friendInfo.streakLength.takeIf { it > 0 }?.let {
                                         append("\nStreaks length: $it")
                                     }
+                                    lastMessage?.let {
+                                        append("\nSent messages: ${it.serverMessageId}")
+                                        append("\nLast message date: ${DateFormat.getDateTimeInstance().format(Date(it.creationTimestamp))}")
+                                    }
                                 }
                             }
-                            Text(text = userInfo, fontSize = 12.sp, fontWeight = FontWeight.Light, lineHeight = 16.sp, overflow = TextOverflow.Ellipsis)
+                            Text(text = userInfo, fontSize = 12.sp, fontWeight = FontWeight.Light, lineHeight = 12.sp, overflow = TextOverflow.Ellipsis)
                         }
 
                         Checkbox(

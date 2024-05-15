@@ -82,14 +82,15 @@ fun AppDatabase.deleteTrackerRuleEvent(eventId: Int) {
     }
 }
 
-fun AppDatabase.getTrackerRules(): List<TrackerRule> {
+fun AppDatabase.getTrackerRulesDesc(): List<TrackerRule> {
     val rules = mutableListOf<TrackerRule>()
 
-    database.rawQuery("SELECT * FROM tracker_rules", null).use { cursor ->
+    database.rawQuery("SELECT * FROM tracker_rules ORDER BY id DESC", null).use { cursor ->
         while (cursor.moveToNext()) {
             rules.add(
                 TrackerRule(
                     id = cursor.getInteger("id"),
+                    enabled = cursor.getInteger("enabled") == 1,
                     name = cursor.getStringOrNull("name") ?: "",
                 )
             )
@@ -104,6 +105,7 @@ fun AppDatabase.getTrackerRule(ruleId: Int): TrackerRule? {
         if (!cursor.moveToFirst()) return@use null
         TrackerRule(
             id = cursor.getInteger("id"),
+            enabled = cursor.getInteger("enabled") == 1,
             name = cursor.getStringOrNull("name") ?: "",
         )
     }
@@ -112,6 +114,12 @@ fun AppDatabase.getTrackerRule(ruleId: Int): TrackerRule? {
 fun AppDatabase.setTrackerRuleName(ruleId: Int, name: String) {
     executeAsync {
         database.execSQL("UPDATE tracker_rules SET name = ? WHERE id = ?", arrayOf(name, ruleId))
+    }
+}
+
+fun AppDatabase.setTrackerRuleState(ruleId: Int, enabled: Boolean) {
+    executeAsync {
+        database.execSQL("UPDATE tracker_rules SET enabled = ? WHERE id = ?", arrayOf(if (enabled) 1 else 0, ruleId))
     }
 }
 
@@ -142,11 +150,12 @@ fun AppDatabase.getTrackerEvents(eventType: String): Map<TrackerRuleEvent, Track
             "FROM tracker_rules_events " +
             "INNER JOIN tracker_rules " +
             "ON tracker_rules_events.rule_id = tracker_rules.id " +
-            "WHERE event_type = ?", arrayOf(eventType)
+            "WHERE event_type = ? AND tracker_rules.enabled = 1", arrayOf(eventType)
     ).use { cursor ->
         while (cursor.moveToNext()) {
             val trackerRule = TrackerRule(
                 id = cursor.getInteger("rule_id"),
+                enabled = true,
                 name = cursor.getStringOrNull("name") ?: "",
             )
             val trackerRuleEvent = TrackerRuleEvent(

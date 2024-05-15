@@ -101,29 +101,23 @@ class RemoteSideContext(
                 log.verbose("Loading RemoteSideContext")
                 config.loadFromContext(androidContext)
                 launch {
-                    translation.apply {
-                        userLocale = config.locale
-                        loadFromContext(androidContext)
-                    }
-                }
-                launch {
                     mappings.apply {
                         loadFromContext(androidContext)
                         init(androidContext)
                     }
                 }
-                launch {
-                    database.init()
-                    streaksReminder.init()
+                translation.apply {
+                    userLocale = config.locale
+                    loadFromContext(androidContext)
                 }
-                launch { taskManager.init() }
-                launch { scriptManager.init() }
-                messageLogger.init()
-                tracker.init()
-                config.root.messaging.messageLogger.takeIf {
-                    it.globalState == true
-                }?.getAutoPurgeTime()?.let {
-                    launch {
+                database.init()
+                streaksReminder.init()
+                scriptManager.init()
+                launch {
+                    taskManager.init()
+                    config.root.messaging.messageLogger.takeIf {
+                        it.globalState == true
+                    }?.getAutoPurgeTime()?.let {
                         messageLogger.purgeAll(it)
                     }
                 }

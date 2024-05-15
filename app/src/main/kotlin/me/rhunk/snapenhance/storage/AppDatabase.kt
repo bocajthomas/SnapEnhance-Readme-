@@ -67,6 +67,7 @@ class AppDatabase(
             ),
             "tracker_rules" to listOf(
                 "id INTEGER PRIMARY KEY AUTOINCREMENT",
+                "enabled BOOLEAN DEFAULT 1",
                 "name VARCHAR",
             ),
             "tracker_scopes" to listOf(

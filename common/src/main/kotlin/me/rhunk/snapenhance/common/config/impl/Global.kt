@@ -1,6 +1,7 @@
 package me.rhunk.snapenhance.common.config.impl
 
 import me.rhunk.snapenhance.common.config.ConfigContainer
+import me.rhunk.snapenhance.common.config.ConfigFlag
 import me.rhunk.snapenhance.common.config.FeatureNotice
 
 class Global : ConfigContainer() {
@@ -27,8 +28,16 @@ class Global : ConfigContainer() {
         val spoofBatteryLevel = string("spoof_battery_level") { requireRestart(); inputCheck = { it.isEmpty() || it.toIntOrNull() in 0..100 } }
         val spoofHeadphones = boolean("spoof_headphones") { requireRestart() }
     }
+
+    inner class MediaUploadQualityConfig : ConfigContainer() {
+        val forceVideoUploadSourceQuality = boolean("force_video_upload_source_quality") { requireRestart() }
+        val disableImageCompression = boolean("disable_image_compression") { requireRestart() }
+        val customUploadImageFormat = unique("custom_image_upload_format", "jpeg", "png", "webp") { requireRestart(); addFlags(ConfigFlag.NO_TRANSLATE) }
+    }
+
     val betterLocation = container("better_location", BetterLocation())
     val snapchatPlus = boolean("snapchat_plus") { requireRestart() }
+    val mediaUploadQualityConfig = container("media_upload_quality", MediaUploadQualityConfig())
     val disableConfirmationDialogs = multiple("disable_confirmation_dialogs", "erase_message", "remove_friend", "block_friend", "ignore_friend", "hide_friend", "hide_conversation", "clear_conversation") { requireRestart() }
     val disableMetrics = boolean("disable_metrics") { requireRestart() }
     val disableStorySections = multiple("disable_story_sections", "friends", "following", "discover") { requireRestart(); requireCleanCache() }
@@ -42,7 +51,6 @@ class Global : ConfigContainer() {
     val defaultVideoPlaybackRate = float("default_video_playback_rate", 1.0F) { requireRestart(); inputCheck = { (it.toFloatOrNull() ?: 1.0F) in 0.1F..4.0F} }
     val videoPlaybackRateSlider = boolean("video_playback_rate_slider") { requireRestart() }
     val disableGooglePlayDialogs = boolean("disable_google_play_dialogs") { requireRestart() }
-    val forceUploadSourceQuality = boolean("force_upload_source_quality") { requireRestart() }
     val defaultVolumeControls = boolean("default_volume_controls") { requireRestart() }
     val hideActiveMusic = boolean("hide_active_music") { requireRestart() }
     val disableSnapSplitting = boolean("disable_snap_splitting") { addNotices(FeatureNotice.INTERNAL_BEHAVIOR) }

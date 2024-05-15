@@ -80,7 +80,7 @@ class FeatureManager(
             SendOverride(),
             UnlimitedSnapViewTime(),
             BypassVideoLengthRestriction(),
-            MediaQualityLevelOverride(),
+            MediaUploadQualityOverride(),
             MeoPasscodeBypass(),
             AppLock(),
             CameraTweaks(),

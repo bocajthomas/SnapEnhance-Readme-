@@ -34,6 +34,7 @@
             "logger_history": "Logger History",
             "logged_stories": "Logged Stories",
             "friend_tracker": "Friend Tracker",
+            "edit_rule": "Edit Rule",
             "social": "Social",
             "manage_scope": "Manage Scope",
             "messaging_preview": "Preview",
@@ -687,6 +688,24 @@
                         "name": "Snapchat Plus",
                         "description": "Enables Snapchat Plus features\nSome Server-sided features may not work"
                     },
+                    "media_upload_quality": {
+                        "name": "Media Upload Quality",
+                        "description": "Overrides the media upload quality",
+                        "properties": {
+                            "force_video_upload_source_quality": {
+                                "name": "Force Video Upload Source Quality",
+                                "description": "Forces Snapchat to use the source quality when uploading videos\nPlease note that this may not remove metadata from media"
+                            },
+                            "disable_image_compression": {
+                                "name": "Disable Image Compression",
+                                "description": "Disables image compression when uploading media"
+                            },
+                            "custom_image_upload_format": {
+                                "name": "Custom Image Upload Format",
+                                "description": "Sets a custom image upload format\nSelect a lossless format (like PNG) for the best quality"
+                            }
+                        }
+                    },
                     "disable_confirmation_dialogs": {
                         "name": "Disable Confirmation Dialogs",
                         "description": "Automatically confirms selected actions"
@@ -738,10 +757,6 @@
                     "disable_google_play_dialogs": {
                         "name": "Disable Google Play Services Dialogs",
                         "description": "Prevent Google Play Services availability dialogs from being shown"
-                    },
-                    "force_upload_source_quality": {
-                        "name": "Force Upload Source Quality",
-                        "description": "Forces Snapchat to upload media in the original quality\nPlease note that this may not remove metadata from media"
                     },
                     "default_volume_controls": {
                         "name": "Default Volume Controls",

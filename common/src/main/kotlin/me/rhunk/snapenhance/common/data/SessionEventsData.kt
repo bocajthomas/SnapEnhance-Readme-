@@ -148,6 +148,7 @@ data class TrackerRuleActionParams(
 @Parcelize
 data class TrackerRule(
     val id: Int,
+    val enabled: Boolean,
     val name: String,
 ): Parcelable
 
