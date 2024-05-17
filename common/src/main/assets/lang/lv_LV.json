@@ -3,9 +3,7 @@
         "mappings": {
             "generate_failure_no_snapchat": "SnapEnhance nespēja atrast Snapchat, lūdzu, mēģiniet atkārtoti instalēt Snapchat.",
             "dialog": "Lai dinamiski atbalstītu plašu Snapchat versiju klāstu, lai SnapEnhance darbotos pareizi, ir nepieciešamas kartēšanas, un tas neaizņems vairāk par 5 sekundēm.",
-            "generate_button": "Ğenerēt",
-            "generate_failure": "Mēģinot ģenerēt kartēšanu, radās kļūda, lūdzu, mēģiniet vēlreiz.",
-            "generate_success": "Veiksmīgi ģenerēti kartējumi."
+            "generate_failure": "Mēģinot ģenerēt kartēšanu, radās kļūda, lūdzu, mēģiniet vēlreiz."
         },
         "dialogs": {
             "select_save_folder_button": "Atlasiet mapi",

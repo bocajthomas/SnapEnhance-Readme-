@@ -6,11 +6,9 @@
             "save_folder": "SnapEnhance requiert des autorisations de stockage pour télécharger et enregistrer des médias depuis Snapchat.\nVeuillez choisir l'emplacement où les médias doivent être téléchargés."
         },
         "mappings": {
-            "dialog": "Pour prendre en charge dynamiquement une large étendue de versions de Snapchat, les mappages sont nécessaires pour que SnapEnhance fonctionne correctement, cela ne devrait pas prendre plus de 5 secondes.",
-            "generate_button": "Générer",
+            "dialog": "Génération des mappings, cela peut prendre un certain temps...",
             "generate_failure_no_snapchat": "SnapEnhance n'a pas pu détecter Snapchat, essayez de réinstaller Snapchat.",
-            "generate_failure": "Une erreur s'est produite lors de la génération des mappings, veuillez réessayer.",
-            "generate_success": "Mappings générés avec succès."
+            "generate_failure": "Une erreur s'est produite lors de la génération des mappings, veuillez réessayer."
         },
         "permissions": {
             "dialog": "Pour continuer, vous devez remplir les conditions suivantes :",
@@ -22,7 +20,7 @@
     },
     "manager": {
         "routes": {
-            "features": "Options",
+            "features": "Fonctionnalités",
             "home": "Accueil",
             "home_settings": "Paramètres",
             "home_logs": "Logs",
@@ -319,10 +317,6 @@
                         "name": "Activer les paramètres d'apparence de l'appli",
                         "description": "Active le paramètre d’apparence caché de l’application\nPeut ne pas être nécessaire sur les nouvelles versions de Snapchat"
                     },
-                    "amoled_dark_mode": {
-                        "name": "Mode sombre AMOLED",
-                        "description": "Activer le mode sombre pour les écrans AMOLED\nAssurez-vous d'avoir bien activé le mode sombre de Snapchat"
-                    },
                     "friend_feed_message_preview": {
                         "name": "Aperçu du message du flux d'amis",
                         "description": "Affiche un aperçu des derniers messages du flux d'ami",
@@ -422,6 +416,62 @@
                     "message_indicators": {
                         "name": "Indicateur de messages",
                         "description": "Ajoute des icônes d'indicateurs spécifiques aux messages\nRemarque : les indicateurs peuvent ne pas être à 100% précis"
+                    },
+                    "customize_ui": {
+                        "name": "Couleurs",
+                        "description": "Personnaliser les couleurs de Snapchat",
+                        "properties": {
+                            "theme_picker": {
+                                "name": "Sélecteur de thème",
+                                "description": "Thèmes Snapchat prédéfinis"
+                            },
+                            "colors": {
+                                "name": "Couleurs personnalisées",
+                                "properties": {
+                                    "text_color": {
+                                        "name": "Couleur du texte principal",
+                                        "description": "Change la couleur du texte principal de Snapchat"
+                                    },
+                                    "chat_chat_text_color": {
+                                        "name": "Couleur du texte du flux d'amis principal",
+                                        "description": "Modifie la couleur du texte de (Nouveau chat / Nouveau Snap et chats / Saisie / Appel / Appel manqué / Parler / Nouvelle note vocale) sur le fil des amis"
+                                    },
+                                    "pending_sending_text_color": {
+                                        "name": "Couleur du texte du fil d’ami secondaire",
+                                        "description": "Modifie la couleur du texte de (Remis/Reçu/Envoi/Ouvert/Appuyez pour discuter/Maintenez pour revoir/Revu/Enregistré dans le chat/Appelé) sur le fil des amis."
+                                    },
+                                    "snap_with_sound_text_color": {
+                                        "name": "Snaps avec la couleur du texte du son",
+                                        "description": "Change la couleur du texte de (Nouveau Snap) sur le flux d'amis\nNote: Snaps vidéo uniquement"
+                                    },
+                                    "snap_without_sound_text_color": {
+                                        "name": "Snaps sans couleur de texte du son",
+                                        "description": "Change la couleur du texte de (Nouveau Snap) sur le flux d'amis\nNote: Snaps vidéo uniquement"
+                                    },
+                                    "background_color": {
+                                        "name": "Couleur de l'arrière plan",
+                                        "description": "Change la couleur d'arrière-plan de Snapchat"
+                                    },
+                                    "background_color_surface": {
+                                        "description": "Change la couleur de la surface d'arrière-plan de Snapchat",
+                                        "name": "Couleur de la surface d'arrière-plan"
+                                    },
+                                    "action_menu_background_color": {
+                                        "name": "Couleur d’arrière-plan du menu d’action",
+                                        "description": "Modifie la couleur d'arrière-plan du menu d'action du chat de Snapchat"
+                                    },
+                                    "action_menu_round_background_color": {
+                                        "description": "Change la couleur d'arrière-plan ronde du menu d'action du chat Snapchats",
+                                        "name": "Couleur d'arrière-plan ronde du menu d'action"
+                                    },
+                                    "camera_grid_lines": {
+                                        "name": "Couleur du quadrillage de la caméra",
+                                        "description": "Modifie la couleur du quadrillage de Snapchat sur l'aperçu de l'appareil photo\nRemarque : activez la grille dans les paramètres de ma caméra"
+                                    }
+                                },
+                                "description": "Personnaliser les couleurs individuelles\nNote: sélectionnez Couleurs personnalisées dans le sélecteur de thème à utiliser."
+                            }
+                        }
                     }
                 }
             },
@@ -548,6 +598,10 @@
                     "friend_mutation_notifier": {
                         "name": "Notificateur de mutation d'ami",
                         "description": "Vous avertit lorsque quelque chose change dans le profil d'un ami"
+                    },
+                    "unlimited_conversation_pinning": {
+                        "description": "Permet d'épingler localement un nombre illimité de conversations",
+                        "name": "Épinglage illimité des conversations"
                     }
                 }
             },
@@ -591,10 +645,6 @@
                         "name": "Nom d'utilisateur des commentaires Spotlight",
                         "description": "Affiche le nom d'utilisateur de l'auteur dans les commentaires Spotlight"
                     },
-                    "force_upload_source_quality": {
-                        "name": "Forcer l'upload de la qualité originale",
-                        "description": "Oblige Snapchat à envoyer les médias dans leur qualité d'origine\nVeuillez noter que cette opération ne supprime pas nécessairement les métadonnées des médias"
-                    },
                     "disable_story_sections": {
                         "name": "Désactiver les sections de story",
                         "description": "Supprime les sections de la page des stories\nUne actualisation peut être nécessaire pour fonctionner correctement"
@@ -637,6 +687,10 @@
                             "spoof_headphones": {
                                 "description": "Usurpe le statut d'écoute de musique sur la carte",
                                 "name": "Usurper les écouteurs"
+                            },
+                            "walk_radius": {
+                                "name": "Rayon de marche",
+                                "description": "Déplacer de manière aléatoire à l'intérieur de ce rayon (en pieds)"
                             }
                         },
                         "description": "Améliore la localisation sur Snapchat"
@@ -652,6 +706,10 @@
                     "hide_active_music": {
                         "description": "Empêche Snapchat de savoir que vous écoutez de la musique\nCela vous permettra de prendre des snaps en utilisant les boutons de volume de contrôle tout en écoutant de la musique",
                         "name": "Cache la musique active"
+                    },
+                    "disable_custom_tabs": {
+                        "name": "Désactiver les onglets personnalisés",
+                        "description": "Ouvre les liens dans les applications prises en charge plutôt que dans le navigateur Web"
                     }
                 }
             },
@@ -749,6 +807,10 @@
                                     "composer_logs": {
                                         "name": "Journaux de Composer",
                                         "description": "Redirige les journaux de console de Composer vers SnapEnhance"
+                                    },
+                                    "show_first_created_username": {
+                                        "description": "Affiche le premier nom d'utilisateur créé à côté du nom d'utilisateur actuel dans la page de profil",
+                                        "name": "Afficher le premier nom d'utilisateur créé"
                                     }
                                 }
                             }
@@ -883,7 +945,11 @@
                     },
                     "custom_streaks_expiration_format": {
                         "name": "Format personnalisé d'expiration des flammes",
-                        "description": "Personnalise le format d'expiration des séries\n\nVariables disponibles :\n- %c : Nombre de séries\n- %e : Emoji sablier\n- %d : Jours\n- %h : Heures\n- %m : Minutes\n- %s : Secondes\n- %w : Temps restant"
+                        "description": "Personnalise le format d'expiration des flammes\n\nVariables disponibles :\n- %c : Nombre de flammes\n- %e : Emoji sablier\n- %d : Jours\n- %h : Heures\n- %m : Minutes\n- %s : Secondes\n- %w : Temps restant"
+                    },
+                    "best_friend_pinning": {
+                        "name": "Épinglage du meilleur ami",
+                        "description": "Permet d'épingler un ami comme votre meilleur ami numéro un. Remarque : vous êtes le seul à pouvoir voir votre meilleur ami épinglé"
                     }
                 }
             },
@@ -975,13 +1041,15 @@
                 "initiate_audio": "Appel audio entrant",
                 "abandon_audio": "Appel audio manqué",
                 "initiate_video": "Appel vidéo entrant",
-                "abandon_video": "Appel vidéo manqué"
+                "abandon_video": "Appel vidéo manqué",
+                "speaking": "En train de parler"
             },
             "gallery_media_send_override": {
                 "ORIGINAL": "Originale",
                 "NOTE": "Vocal",
                 "SAVABLE_SNAP": "Snap Enregistrable",
-                "SNAP": "Snap"
+                "SNAP": "Snap",
+                "always_ask": "Demandez toujours"
             },
             "auto_reload": {
                 "snapchat_only": "Snapchat uniquement",
@@ -1094,6 +1162,19 @@
                 "bitmoji_avatar_changes": "Vous averti lorsque quelqu'un change son avatar Bitmoji",
                 "bitmoji_background_changes": "Vous averti lorsque quelqu'un modifie son arrière-plan Bitmoji",
                 "bitmoji_scene_changes": "Vous averti lorsque quelqu'un change sa scène Bitmoji"
+            },
+            "theme_picker": {
+                "amoled_dark_mode": "Mode sombre AMOLED",
+                "custom": "Couleurs personnalisées",
+                "light_blue": "Bleu clair",
+                "dark_blue": "Bleu foncé",
+                "earthy_autumn": "Automne terreux",
+                "mint_chocolate": "Chocolat à la menthe",
+                "ginger_snap": "Biscuit au gingembre",
+                "lemon_meringue": "Meringue au citron",
+                "lava_flow": "Coulée de lave",
+                "ocean_fog": "Brouillard océanique",
+                "alien_landscape": "Paysage extraterrestre"
             }
         }
     },
@@ -1193,7 +1274,7 @@
             "note": "Note",
             "original_story": "Storie originale"
         },
-        "select_attachments_title": "Choisir les pièces jointes à télécharger",
+        "select_attachments_title": "Sélectionnez les pièces jointes",
         "download_started_toast": "Téléchargement démarré",
         "unsupported_content_type_toast": "Type de contenu non supporté !",
         "failed_no_longer_available_toast": "Média plus disponible",

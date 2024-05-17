@@ -2,7 +2,10 @@ package me.rhunk.snapenhance.core.features.impl.ui
 
 import android.content.res.TypedArray
 import android.graphics.drawable.ColorDrawable
+import android.os.Build
 import android.util.TypedValue
+import androidx.compose.material3.dynamicDarkColorScheme
+import androidx.compose.ui.graphics.toArgb
 import me.rhunk.snapenhance.core.features.Feature
 import me.rhunk.snapenhance.core.features.FeatureLoadParams
 import me.rhunk.snapenhance.core.util.hook.HookStage
@@ -29,6 +32,7 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                 "sigColorChatSnapWithSound" to colorsConfig.snapWithSoundTextColor.getNullable(),
                 "sigColorChatSnapWithoutSound" to colorsConfig.snapWithoutSoundTextColor.getNullable(),
                 "sigColorBackgroundMain" to colorsConfig.backgroundColor.getNullable(),
+                "listDivider" to colorsConfig.friendFeedConversationsLineColor.getNullable(),
                 "sigColorBackgroundSurface" to colorsConfig.backgroundColorSurface.getNullable(),
                 "actionSheetBackgroundDrawable" to colorsConfig.actionMenuBackgroundColor.getNullable(),
                 "actionSheetRoundedBackgroundDrawable" to colorsConfig.actionMenuRoundBackgroundColor.getNullable(),
@@ -37,6 +41,28 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
             }.filterValues { it != null }.map { (key, value) ->
                 getAttribute(key) to value!!
             }.toMap()
+        } 
+        if (themePicker == "material_you") {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                val colorScheme = dynamicDarkColorScheme(context.androidContext)
+                themes.clear()
+                themes[themePicker] = mapOf(
+                    "sigColorTextPrimary" to colorScheme.onSurfaceVariant.toArgb(),
+                    "sigColorChatChat" to colorScheme.onSurfaceVariant.toArgb(),
+                    "sigColorChatPendingSending" to colorScheme.onSurfaceVariant.toArgb(),
+                    "sigColorChatSnapWithSound" to colorScheme.onSurfaceVariant.toArgb(),
+                    "sigColorChatSnapWithoutSound" to colorScheme.onSurfaceVariant.toArgb(),
+                    "sigColorBackgroundMain" to colorScheme.background.toArgb(),
+                    "sigColorBackgroundSurface" to colorScheme.background.toArgb(),
+                    "listDivider" to colorScheme.primary.copy(alpha = 0.12f).toArgb(),
+                    "actionSheetBackgroundDrawable" to colorScheme.background.toArgb(),
+                    "actionSheetRoundedBackgroundDrawable" to colorScheme.background.toArgb(),
+                    "sigExceptionColorCameraGridLines" to colorScheme.background.toArgb(),
+                ).apply {
+                }.filterValues { true }.map { (key, value) ->
+                    getAttribute(key) to value
+                }.toMap()
+            }
         }
 
         context.androidContext.theme.javaClass.getMethod("obtainStyledAttributes", IntArray::class.java).hook(
@@ -73,6 +99,7 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                "sigColorTextPrimary" to 0xFFFFFFFF,
                "sigColorBackgroundMain" to 0xFF000000,
                "sigColorBackgroundSurface" to 0xFF000000,
+               "listDivider" to 0xFF000000,
                "actionSheetBackgroundDrawable" to 0xFF000000,
                "actionSheetRoundedBackgroundDrawable" to 0xFF000000
            ),
@@ -80,8 +107,12 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                "sigColorTextPrimary" to 0xFF03BAFC,
                "sigColorBackgroundMain" to 0xFFBDE6FF,
                "sigColorBackgroundSurface" to 0xFF78DBFF,
+               "listDivider" to 0xFFBDE6FF,
                "actionSheetBackgroundDrawable" to 0xFF78DBFF,
                "sigColorChatChat" to 0xFF08D6FF,
+               "sigColorChatPendingSending" to 0xFF08D6FF,
+               "sigColorChatSnapWithSound" to 0xFF08D6FF,
+               "sigColorChatSnapWithoutSound" to 0xFF08D6FF,
                "sigExceptionColorCameraGridLines" to 0xFF08D6FF
            ),
            "dark_blue" to mapOf(
@@ -90,6 +121,9 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                "sigColorBackgroundSurface" to 0xFF192744,
                "actionSheetBackgroundDrawable" to 0xFF192744,
                "sigColorChatChat" to 0xFF98C2FD,
+               "sigColorChatPendingSending" to 0xFF98C2FD,
+               "sigColorChatSnapWithSound" to 0xFF98C2FD,
+               "sigColorChatSnapWithoutSound" to 0xFF98C2FD,
                "sigExceptionColorCameraGridLines" to 0xFF192744
            ),
            "earthy_autumn" to mapOf(
@@ -98,6 +132,9 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                "sigColorBackgroundSurface" to 0xFF800000,
                "actionSheetBackgroundDrawable" to 0xFF800000,
                "sigColorChatChat" to 0xFFF7CAC9,
+               "sigColorChatPendingSending" to 0xFFF7CAC9,
+               "sigColorChatSnapWithSound" to 0xFFF7CAC9,
+               "sigColorChatSnapWithoutSound" to 0xFFF7CAC9,
                "sigExceptionColorCameraGridLines" to 0xFF800000
            ),
            "mint_chocolate" to mapOf(

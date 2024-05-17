@@ -7,10 +7,8 @@
         },
         "mappings": {
             "dialog": "För att dynamiskt stödja ett brett utbud av Snapchat Versioner, mappningar är nödvändiga för att SnapEnhance ska fungera korrekt, detta bör inte ta mer än 5 sekunder.",
-            "generate_button": "Generera",
             "generate_failure_no_snapchat": "SnapEnhance kunde inte upptäcka Snapchat, försök att installera om Snapchat.",
-            "generate_failure": "Ett fel inträffade vid försök att generera mappningar, försök igen.",
-            "generate_success": "Mappningar har skapats."
+            "generate_failure": "Ett fel inträffade vid försök att generera mappningar, försök igen."
         },
         "permissions": {
             "dialog": "För att fortsätta måste du uppfylla följande krav:",
@@ -365,10 +363,6 @@
                         "description": "Inaktiverar Spotlight-sidan",
                         "name": "Inaktivera Spotlight"
                     },
-                    "amoled_dark_mode": {
-                        "description": "Aktiverar AMOLED mörkt läge\nSe till att Snapchats mörka läge är aktiverat",
-                        "name": "AMOLED Mörkt läge"
-                    },
                     "friend_feed_message_preview": {
                         "name": "Förhandsgranskning av meddelande från Vänflödet",
                         "description": "Visar en förhandsgranskning av de senaste meddelandena i vänflödet",
@@ -523,10 +517,6 @@
                     "disable_google_play_dialogs": {
                         "description": "Förhindra att tillgänglighetsdialoger för Google Play-tjänster visas",
                         "name": "Inaktivera dialogrutor för Google Play-tjänster"
-                    },
-                    "force_upload_source_quality": {
-                        "description": "Tvingar Snapchat att ladda upp media i originalkvalitet\nObservera att detta kanske inte tar bort metadata från media",
-                        "name": "Forcera uppladdningskällans kvalitet"
                     },
                     "disable_story_sections": {
                         "name": "Inaktivera berättelsesektioner",

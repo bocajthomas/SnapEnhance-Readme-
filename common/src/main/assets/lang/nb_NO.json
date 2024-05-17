@@ -56,11 +56,9 @@
     },
     "setup": {
         "mappings": {
-            "generate_button": "Generer",
             "dialog": "For å dynamisk støtte et bredt spekter av Snapchat versjoner, er kartlegginger nødvendig for at SnapEnhance skal fungere ordentlig, dette bør ikke ta mer enn 5 sekunder.",
             "generate_failure_no_snapchat": "SnapEnhance kunne ikke oppdage Snapchat, prøv å installere Snapchat på nytt.",
-            "generate_failure": "Det oppstod en feil under forsøk på å generere tilordninger. Prøv igjen.",
-            "generate_success": "Tilordninger ble generert."
+            "generate_failure": "Det oppstod en feil under forsøk på å generere tilordninger. Prøv igjen."
         },
         "dialogs": {
             "select_save_folder_button": "Velg mappe",

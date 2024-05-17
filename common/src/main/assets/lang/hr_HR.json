@@ -7,10 +7,8 @@
         },
         "mappings": {
             "dialog": "Kako bi dinamično podržavao širok raspon Snapchat verzija, \"mappings\"-i su potrebni kako bi SnapEnhance funkcionirao, ovo ne bi trebalo trajati duže od 5 sekundi.",
-            "generate_button": "Generiraj",
             "generate_failure_no_snapchat": "SnapEnhance nije uspio detektirati Snapchat, probajte ga ponovo instalirati.",
-            "generate_failure": "Greška prilikom generiranja \"mappings\"-a, molimo pokušajte ponovo.",
-            "generate_success": "\"Mappings\"-i uspješno generirani."
+            "generate_failure": "Greška prilikom generiranja \"mappings\"-a, molimo pokušajte ponovo."
         },
         "permissions": {
             "notification_access": "Pristup notifikacijama",

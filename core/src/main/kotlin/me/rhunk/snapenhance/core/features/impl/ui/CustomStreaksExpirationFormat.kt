@@ -15,10 +15,21 @@ class CustomStreaksExpirationFormat: Feature("CustomStreaksExpirationFormat", lo
 
     override fun onActivityCreate() {
         val expirationFormat by context.config.experimental.customStreaksExpirationFormat
+        if (expirationFormat.isNotEmpty() || context.config.userInterface.streakExpirationInfo.get()) {
+            context.mappings.useMapper(StreaksExpirationMapper::class) {
+                runCatching {
+                    simpleStreaksFormatterClass.getAsClass()?.hook(formatSimpleStreaksTextMethod.get() ?: return@useMapper, HookStage.BEFORE) { param ->
+                        param.setResult(null)
+                    }
+                }.onFailure {
+                    context.log.warn("Failed to hook simpleStreaksFormatterClass : " + it.message)
+                }
+            }
+        }
         if (expirationFormat.isEmpty()) return
 
         context.mappings.useMapper(StreaksExpirationMapper::class) {
-            findClass(streaksFormatterClass.get() ?: return@useMapper).hook(formatStreaksTextMethod.get() ?: return@useMapper, HookStage.AFTER) { param ->
+            streaksFormatterClass.getAsClass()?.hook(formatStreaksTextMethod.get() ?: return@useMapper, HookStage.AFTER) { param ->
                 val streaksCount = param.argNullable(2) ?: 0
                 val streaksExpiration = param.argNullable<Any>(3) ?: return@hook
 

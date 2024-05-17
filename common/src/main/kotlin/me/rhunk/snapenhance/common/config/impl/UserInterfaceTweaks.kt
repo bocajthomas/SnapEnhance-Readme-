@@ -27,6 +27,7 @@ class UserInterfaceTweaks : ConfigContainer() {
         val snapWithoutSoundTextColor = color("snap_without_sound_text_color")
         val backgroundColor = color("background_color")
         val backgroundColorSurface = color("background_color_surface")
+        val friendFeedConversationsLineColor = color("friend_feed_conversations_line_color")
         val actionMenuBackgroundColor = color("action_menu_background_color")
         val actionMenuRoundBackgroundColor = color("action_menu_round_background_color")
         val cameraGridLines = color("camera_grid_lines")
@@ -36,6 +37,7 @@ class UserInterfaceTweaks : ConfigContainer() {
         val themePicker = unique("theme_picker",
             "custom",
             "amoled_dark_mode",
+            "material_you",
             "light_blue",
             "dark_blue",
             "earthy_autumn",

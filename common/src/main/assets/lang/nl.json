@@ -6,11 +6,9 @@
             "select_save_folder_button": "Selecteer Map"
         },
         "mappings": {
-            "dialog": "Om een scala aan Snapchat-versies te ondersteunen, zijn er mappings nodig om SnapEnhance goed te laten werken. Dit zou niet meer dan 5 seconden mogen duren.",
-            "generate_button": "Genereren",
+            "dialog": "Mappings genereren, dit kan een tijdje duren ...",
             "generate_failure_no_snapchat": "SnapEnhance kon Snapchat niet detecteren, probeer alstublieft Snapchat opnieuw te installeren.",
-            "generate_failure": "Er is een fout opgetreden tijdens het genereren van mappings, probeer het opnieuw.",
-            "generate_success": "Mappings succesvol gegenereerd."
+            "generate_failure": "Er is een fout opgetreden tijdens het genereren van mappings, probeer het opnieuw."
         },
         "permissions": {
             "dialog": "Om door te gaan moet je voldoen aan de volgende vereisten:",
@@ -46,7 +44,9 @@
                 "saved_config_snackbar": "Config opgeslagen"
             },
             "social": {
-                "streaks_expiration_short": "{hours}u"
+                "streaks_expiration_short": "{hours}u",
+                "friends_tab": "Vrienden",
+                "groups_tab": "Groepen"
             },
             "tasks": {
                 "no_tasks": "Geen taken",
@@ -269,10 +269,6 @@
                     "enable_app_appearance": {
                         "name": "Activeer App Uiterlijk Instellingen",
                         "description": "Schakelt de verborgen App Uiterlijk Instelling in\nMogelijk niet nodig in nieuwere Snapchat versies"
-                    },
-                    "amoled_dark_mode": {
-                        "name": "AMOLED Donkere Modus",
-                        "description": "Schakelt AMOLED donkere modus in\nZorg ervoor dat Snapchats Donkere modus is ingeschakeld"
                     },
                     "friend_feed_message_preview": {
                         "name": "Voorbeeld Vrienden Feed Bericht",

@@ -7,10 +7,8 @@
         },
         "mappings": {
             "dialog": "Damit SnapEnhance eine Vielzahl von Snapchat-Versionen gleichzeitig unterstützen kann, sind Mappings notwendig. Dies sollte nicht länger als 5 Sekunden dauern.",
-            "generate_button": "Generieren",
             "generate_failure_no_snapchat": "SnapEnhance konnte Snapchat nicht finden, bitte versuchen Sie Snapchat neu zu installieren.",
-            "generate_failure": "Beim Generieren der Zuordnungen ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
-            "generate_success": "Die Zuordnungen wurden erfolgreich generiert."
+            "generate_failure": "Beim Generieren der Zuordnungen ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
         },
         "permissions": {
             "dialog": "Um fortfahren zu können, müssen Sie diese Anforderungen erfüllen:",
@@ -319,10 +317,6 @@
                         "name": "Aktiviert die App Darstellungseinstellungen",
                         "description": "Aktiviert die versteckte App-Erscheinungsbild Einstellung,\nbei neueren Snapchat-Versionen möglicherweise nicht erforderlich"
                     },
-                    "amoled_dark_mode": {
-                        "name": "AMOLED Dark Mode",
-                        "description": "Aktiviert den AMOLED Dark Mode\nStelle sicher, dass der Dunkelmodus von Snapchat aktiviert ist"
-                    },
                     "friend_feed_message_preview": {
                         "name": "Freund Feed Nachrichten Vorschau",
                         "description": "Zeigt eine Vorschau der letzten Nachrichten im Freundes-Feed",
@@ -590,10 +584,6 @@
                     "spotlight_comments_username": {
                         "name": "Spotlight Kommentare Benutzername",
                         "description": "Zeigt den Benutzernamen des Autors in Spotlight-Kommentaren an"
-                    },
-                    "force_upload_source_quality": {
-                        "name": "Upload-Qualität erzwingen",
-                        "description": "Zwingt Snapchat dazu, Medien in der Originalqualität hochzuladen\nBitte beachten Sie, dass dadurch möglicherweise keine Metadaten aus den Medien entfernt werden"
                     },
                     "disable_story_sections": {
                         "name": "Story Sektion deaktivieren",

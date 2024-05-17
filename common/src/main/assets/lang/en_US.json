@@ -380,7 +380,7 @@
                                     },
                                     "pending_sending_text_color": {
                                         "name": "Secondary Friend Feed Text Color",
-                                        "description": "Changes the text color of ( Delivered / Recevived / Sending / Opened / Tap To Chat / Hold To Replay / Replayed / Saved In Chat / Called ) on the friend feed"
+                                        "description": "Changes the text color of ( Delivered / Received / Sending / Opened / Tap To Chat / Hold To Replay / Replayed / Saved In Chat / Called ) on the friend feed"
                                     },
                                     "snap_with_sound_text_color": {
                                         "name": "Snaps With Sound Text Color",
@@ -397,6 +397,10 @@
                                     "background_color_surface": {
                                         "name": "Background Surface Color",
                                         "description": "Changes Snapchats background surface color"
+                                    },
+                                    "friend_feed_conversations_line_color": {
+                                        "name": "Conversations Line Color",
+                                        "description": "Changes the line divider color that splits Conversations on the friend feed "
                                     },
                                     "action_menu_background_color": {
                                         "name": "Action Menu Background Color",
@@ -1057,6 +1061,7 @@
             "theme_picker": {
                 "amoled_dark_mode": "AMOLED Dark Mode",
                 "custom": "Custom Colors",
+                "material_you": "Material You (Android 12+)",
                 "light_blue": "Light Blue",
                 "dark_blue": "Dark Blue",
                 "earthy_autumn": "Earthy Autumn",

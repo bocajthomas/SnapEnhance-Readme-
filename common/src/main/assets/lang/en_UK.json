@@ -6,11 +6,9 @@
             "save_folder": "SnapEnhance requires Storage permissions to download and Save Media from Snapchat.\nPlease choose the location where media should be downloaded to."
         },
         "mappings": {
-            "generate_button": "Generate",
-            "generate_success": "Mappings generated successfully.",
             "generate_failure_no_snapchat": "SnapEnhance was unable to detect Snapchat, please try reinstalling Snapchat.",
             "generate_failure": "An error occurred while trying to generate mappings, please try again.",
-            "dialog": "To dynamically support a wide range of Snapchat Versions, mappings are necessary for SnapEnhance to function properly, this should not take more than 5 seconds."
+            "dialog": "Generating Mappings, this may take a while, please be patient..."
         },
         "permissions": {
             "notification_access": "Notification Access",
@@ -401,7 +399,7 @@
                     },
                     "message_indicators": {
                         "name": "Message Indicators",
-                        "description": "Adds specific indicators icons to messages\nNote: indicators might not be 100% accurate"
+                        "description": "Adds specific indicators icons to messages\nNote: Indicators might not be 100% accurate"
                     },
                     "stealth_mode_indicator": {
                         "name": "Stealth Mode Indicator",
@@ -410,10 +408,6 @@
                     "enable_app_appearance": {
                         "name": "Enable App Appearance Settings",
                         "description": "Enables the hidden App Appearance Setting\nMay not be required on newer Snapchat versions"
-                    },
-                    "amoled_dark_mode": {
-                        "name": "AMOLED Dark Mode",
-                        "description": "Enables AMOLED dark mode\nMake sure Snapchat's Dark mode is enabled"
                     },
                     "hide_friend_feed_entry": {
                         "name": "Hide Friend Feed Entry",
@@ -454,6 +448,66 @@
                     "edit_text_override": {
                         "name": "Edit Text Override",
                         "description": "Overrides text field behavior"
+                    },
+                    "customize_ui": {
+                        "name": "Colours",
+                        "description": "Customise Snapchats Colours",
+                        "properties": {
+                            "colors": {
+                                "properties": {
+                                    "text_color": {
+                                        "name": "Main Text Colour",
+                                        "description": "Changes Snapchats main text colour"
+                                    },
+                                    "pending_sending_text_color": {
+                                        "name": "Secondary Friend Feed Text Colour",
+                                        "description": "Changes the text colour of ( Delivered / Received / Sending / Opened / Tap To Chat / Hold To Replay / Replayed / Saved In Chat / Called ) on the friend feed"
+                                    },
+                                    "chat_chat_text_color": {
+                                        "description": "Changes the text colour of ( New Chat / New Snap And Chats / Typing / Calling / Missed call / Speaking / New Voice Note ) on the friend feed",
+                                        "name": "Main Friend Feed Text Colour"
+                                    },
+                                    "background_color_surface": {
+                                        "name": "Background Surface Colour",
+                                        "description": "Changes Snapchats background surface colour"
+                                    },
+                                    "snap_without_sound_text_color": {
+                                        "name": "Snaps Without Sound Text Colour",
+                                        "description": "Changes the text colour of ( New Snap ) on the friend feed\nNote: Video Snaps Only"
+                                    },
+                                    "background_color": {
+                                        "name": "Background Colour",
+                                        "description": "Changes Snapchats background colour"
+                                    },
+                                    "snap_with_sound_text_color": {
+                                        "name": "Snaps With Sound Text Colour",
+                                        "description": "Changes the text colour of ( New Snap ) on the friend feed\nNote: Video Snaps Only"
+                                    },
+                                    "action_menu_background_color": {
+                                        "name": "Action Menu Background Colour",
+                                        "description": "Changes Snapchats chat action menu background colour"
+                                    },
+                                    "action_menu_round_background_color": {
+                                        "name": "Action Menu Round Background Colour",
+                                        "description": "Changes Snapchats chat action menu round background colour"
+                                    },
+                                    "camera_grid_lines": {
+                                        "name": "Camera Gridlines Colour",
+                                        "description": "Changes Snapchats Gridlines colour on the Camera Preview\nNote: Enable the grid on the my camera settings"
+                                    },
+                                    "friend_feed_conversations_line_color": {
+                                        "name": "Conversations Line Colour",
+                                        "description": "Changes the line divider colour that splits Conversations on the friend feed "
+                                    }
+                                },
+                                "name": "Custom Colours",
+                                "description": "Customise Individual colours\nNote: Select Custom Colours on Theme Picker to use"
+                            },
+                            "theme_picker": {
+                                "name": "Theme Picker",
+                                "description": "Preset Snapchat Themes"
+                            }
+                        }
                     }
                 },
                 "name": "User Interface",
@@ -581,6 +635,10 @@
                     "friend_mutation_notifier": {
                         "description": "Notifies you when something changes on a friend's profile",
                         "name": "Friend Mutation Notifier"
+                    },
+                    "unlimited_conversation_pinning": {
+                        "description": "Allows you to pin an unlimited amount of conversations locally",
+                        "name": "Unlimited Conversation Pinning"
                     }
                 },
                 "description": "Change how you interact with friends"
@@ -616,6 +674,10 @@
                             "spoof_headphones": {
                                 "name": "Spoof Headphones",
                                 "description": "Spoofs the status of listening to music on map"
+                            },
+                            "walk_radius": {
+                                "name": "Walk Radius",
+                                "description": "Randomly walk around within this radius (ft)"
                             }
                         }
                     },
@@ -638,10 +700,6 @@
                     "bypass_video_length_restriction": {
                         "name": "Bypass Video Length Restrictions",
                         "description": "Single: sends a single video\nSplit: split videos after editing"
-                    },
-                    "force_upload_source_quality": {
-                        "name": "Force Upload Source Quality",
-                        "description": "Forces Snapchat to upload media in the original quality\nPlease note that this may not remove metadata from media"
                     },
                     "default_volume_controls": {
                         "name": "Default Volume Controls",
@@ -690,6 +748,24 @@
                     "disable_custom_tabs": {
                         "name": "Disable Custom Tabs",
                         "description": "Opens links in supported applications rather than in the Web Browser"
+                    },
+                    "media_upload_quality": {
+                        "name": "Media Upload Quality",
+                        "description": "Overrides the media upload quality",
+                        "properties": {
+                            "force_video_upload_source_quality": {
+                                "name": "Force Video Upload Source Quality",
+                                "description": "Forces Snapchat to use the source quality when uploading videos\nPlease note that this may not remove metadata from media"
+                            },
+                            "disable_image_compression": {
+                                "name": "Disable Image Compression",
+                                "description": "Disables image compression when uploading media"
+                            },
+                            "custom_image_upload_format": {
+                                "name": "Custom Image Upload Format",
+                                "description": "Sets a custom image upload format\nSelect a lossless format (like PNG) for the best quality"
+                            }
+                        }
                     }
                 }
             },
@@ -922,6 +998,10 @@
                     "custom_streaks_expiration_format": {
                         "name": "Bespoke Streak Expiry Format",
                         "description": "Customises the Streaks Expiry format\n\nAvailable variables:\n- %c: Streaks Count\n- %e: Hourglass Emoji\n- %d: Days\n- %h: Hours\n- %m: Minutes\n- %s: Seconds\n- %w: Remaining Time"
+                    },
+                    "best_friend_pinning": {
+                        "name": "Best Friend Pinning",
+                        "description": "Allows you to pin a friend as you're number one best friend. Note: Only you can see you're pinned best friend"
                     }
                 }
             },
@@ -1043,13 +1123,15 @@
                 "initiate_audio": "Incoming Audio Call",
                 "abandon_audio": "Missed Audio Call",
                 "initiate_video": "Incoming Video Call",
-                "abandon_video": "Missed Video Call"
+                "abandon_video": "Missed Video Call",
+                "speaking": "Talking"
             },
             "gallery_media_send_override": {
                 "ORIGINAL": "Original",
                 "NOTE": "Audio Note",
                 "SNAP": "Snap",
-                "SAVABLE_SNAP": "Savable Snap"
+                "SAVABLE_SNAP": "Savable Snap",
+                "always_ask": "Always Ask"
             },
             "strip_media_metadata": {
                 "hide_caption_text": "Hide Caption Text",
@@ -1136,6 +1218,20 @@
                 "bitmoji_scene_changes": "Notify when someone changes their Bitmoji scene",
                 "bitmoji_avatar_changes": "Notify when someone changes their Bitmoji avatar",
                 "bitmoji_background_changes": "Notify when someone changes their Bitmoji background"
+            },
+            "theme_picker": {
+                "amoled_dark_mode": "AMOLED Dark Mode",
+                "custom": "Custom Colours",
+                "light_blue": "Light Blue",
+                "dark_blue": "Dark Blue",
+                "earthy_autumn": "Earthy Autumn",
+                "mint_chocolate": "Mint Chocolate",
+                "lava_flow": "Lava Flow",
+                "ocean_fog": "Ocean Fog",
+                "ginger_snap": "Ginger Snap",
+                "lemon_meringue": "Lemon Meringue",
+                "alien_landscape": "Alien Landscape",
+                "material_you": "Material You (Android 12+)"
             }
         }
     },
@@ -1194,14 +1290,15 @@
             "sticker": "Sticker",
             "external_media": "External Media",
             "note": "Note",
-            "original_story": "Original Story"
+            "original_story": "Original Story",
+            "gif": "GIF"
         },
         "processing_toast": "Processing {path}...",
         "failed_generic_toast": "Failed to download",
         "failed_to_create_preview_toast": "Failed to create preview",
         "failed_processing_toast": "Failed processing {error}",
         "failed_gallery_toast": "Failed saving to gallery {error}",
-        "select_attachments_title": "Select attachments to download",
+        "select_attachments_title": "Select attachments",
         "download_started_toast": "Download started",
         "unsupported_content_type_toast": "Unsupported content type!",
         "failed_no_longer_available_toast": "Media no longer available",

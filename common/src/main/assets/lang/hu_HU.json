@@ -6,11 +6,9 @@
             "select_save_folder_button": "Mappa kiválasztása"
         },
         "mappings": {
-            "dialog": "A Snapchat-verziók széles skálájának dinamikus támogatása érdekében a SnapEnhance megfelelő működéséhez leképezésekre van szükség, ez nem tarthat 5 másodpercnél tovább.",
-            "generate_button": "Generálás",
+            "dialog": "Hozzárendelések generálása, ez eltarthat egy darabig ...",
             "generate_failure_no_snapchat": "A SnapEnhance nem találja a Snapchatet, próbálja meg újra telepíteni a Snapchatet.",
-            "generate_failure": "Hiba történt a beállítások mentése során, kérjük próbálja meg újra.",
-            "generate_success": "A leképezések sikeresen legenerálódtak."
+            "generate_failure": "Hiba történt a beállítások mentése során, kérjük próbálja meg újra."
         },
         "permissions": {
             "dialog": "A folytatáshoz a következőkre van szükség:",
@@ -318,10 +316,6 @@
                         "name": "Az alkalmazás megjelenési beállításainak engedélyezése",
                         "description": "Engedélyezi a rejtett Megjelenés beállítást az alkalmazásban\nLehet, hogy az újabb Snapchat verziókban nincs szükség rá"
                     },
-                    "amoled_dark_mode": {
-                        "name": "AMOLED Sötét mód",
-                        "description": "Engedélyezi az AMOLED sötét üzemmódot\nGyőződj meg róla, hogy a Snapchat sötét módja engedélyezve van"
-                    },
                     "friend_feed_message_preview": {
                         "name": "Barát hírfolyam üzenet előnézet",
                         "description": "Megmutatja az előnézetét az utolsó üzeneteknek a barát hírfolyamban",
@@ -421,6 +415,41 @@
                     "message_indicators": {
                         "name": "Üzenetjelzők",
                         "description": "Speciális jelzőikonok hozzáadása az üzenetekhez\nMegjegyzés: a mutatók nem biztos, hogy 100%-ban pontosak"
+                    },
+                    "customize_ui": {
+                        "properties": {
+                            "theme_picker": {
+                                "name": "Téma választó",
+                                "description": "Előre beállított Snapchat témák"
+                            },
+                            "colors": {
+                                "name": "Egyéni színek",
+                                "description": "Egyedi színek testreszabása\nMegjegyzés: Válaszd ki az Egyéni színeket a Témaválasztón a használathoz.",
+                                "properties": {
+                                    "text_color": {
+                                        "name": "Fő szöveg színe",
+                                        "description": "Snapchats fő szövegszínének megváltoztatása"
+                                    },
+                                    "chat_chat_text_color": {
+                                        "name": "Fő Friend Feed szövegének színe",
+                                        "description": "Megváltoztatja a szöveg színét ( Új csevegés / Új Snap és csevegés / Gépelés / Hívás / Nem fogadott hívás / Beszélgetés / Új hangjegyzet ) a friend feed-en"
+                                    },
+                                    "pending_sending_text_color": {
+                                        "name": "Másodlagos Friend Feed szövegének színe",
+                                        "description": "Megváltoztatja a szöveg színét ( Elküldött / Fogadott / Küldés / Megnyitott / Csevegéshez megérintve / Visszajátszáshoz tartva / Visszajátszott / Csevegésben elmentve / Hívva ) a friend feeden"
+                                    },
+                                    "snap_with_sound_text_color": {
+                                        "name": "Snaps With Sound szöveg színe",
+                                        "description": "Megváltoztatja a ( Új Snap ) szöveg színét a friend feedben.\nMegjegyzés: Csak videós snapek"
+                                    },
+                                    "snap_without_sound_text_color": {
+                                        "name": "Snapek hang nélkül szöveg színe"
+                                    }
+                                }
+                            }
+                        },
+                        "name": "Színek",
+                        "description": "Snapchats színek testreszabása"
                     }
                 },
                 "description": "Módosítsd a Snapchat kinézetét"
@@ -631,10 +660,6 @@
                     "disable_memories_snap_feed": {
                         "name": "Emlékek Snap Feed letiltása",
                         "description": "Megakadályozza, hogy a Snapchat megjelenítse a legutóbbi emlékeket, amikor a kamerában felfelé húzza a lapot"
-                    },
-                    "force_upload_source_quality": {
-                        "name": "Forrásminőség feltöltésének kényszerítése",
-                        "description": "Kényszeríti a Snapchatet, hogy eredeti minőségben töltse fel a médiát\nVedd figyelembe, hogy ez nem távolítja el a metaadatokat a médiából"
                     },
                     "default_volume_controls": {
                         "name": "Alapértelmezett hangerőszabályozók",

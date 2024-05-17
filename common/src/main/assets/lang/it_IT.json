@@ -90,10 +90,8 @@
     "setup": {
         "mappings": {
             "dialog": "Per funzionare dinamicamente con un'ampia gamma di versioni di Snapchat, la mappatura è necessaria per far funzionare correttamente SnapEnhance, questo non dovrebbe durare più di 5 secondi.",
-            "generate_button": "Genera",
             "generate_failure_no_snapchat": "SnapEnhance non è in grado di rilevare Snapchat, per favore prova a reinstallare Snapchat.",
-            "generate_failure": "C'è stato un errore durante la generazione della mappatura, prova di nuovo.",
-            "generate_success": "Mappatura generata con successo."
+            "generate_failure": "C'è stato un errore durante la generazione della mappatura, prova di nuovo."
         },
         "dialogs": {
             "select_save_folder_button": "Seleziona cartella",

@@ -7,10 +7,8 @@
         },
         "mappings": {
             "dialog": "Useiden Snapchat -versioiden dynaaminen tuki edellyttää kartoituksia. Kartoitukset vaaditaan että SnapEnhance toimisi oikein. Tämän ei pitäisi kestää yli 5 sekuntia.",
-            "generate_button": "Luo",
             "generate_failure_no_snapchat": "SnapEnhance ei havainnut Snapchattia, yritä asentaa Snapchat uudelleen.",
-            "generate_failure": "Kartoituksien luomisessa tapahtui virhe. Yritä uudelleen.",
-            "generate_success": "Kartoitukset luotu onnistuneesti."
+            "generate_failure": "Kartoituksien luomisessa tapahtui virhe. Yritä uudelleen."
         },
         "permissions": {
             "dialog": "Jatkaaksesi sinun on täytettävä seuraavat vaatimukset:",
@@ -237,10 +235,6 @@
                     "enable_app_appearance": {
                         "name": "Ota käyttöön sovelluksen ulkoasuasetukset",
                         "description": "Ottaa käyttöön piilotetun sovelluksen ulkoasuasetuksen\nEi välttämättä vaadita uudemmissa Snapchat-versioissa"
-                    },
-                    "amoled_dark_mode": {
-                        "name": "AMOLED Tumma Tila",
-                        "description": "Ottaa käyttöön AMOLED tumman tilan\nVarmista että Snapchatin tumma tila on päällä"
                     },
                     "friend_feed_message_preview": {
                         "name": "Ystäväsyötteen Viestien Esikatselu",

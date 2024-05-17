@@ -6,11 +6,9 @@
             "select_save_folder_button": "Vælg Mappe"
         },
         "mappings": {
-            "dialog": "For dynamisk at støtte en bred vifte af Snapchat versioner, tilknytninger er nødvendige for SnapEnhance at fungere ordentligt, bør dette ikke tage mere end 5 sekunder.",
-            "generate_button": "Generer",
+            "dialog": "Generering af maps, dette kan tage et stykke tid, overvej at bruge tiden fornuftigt, drik noget eller lav en toast...",
             "generate_failure_no_snapchat": "SnapEnhance kunne ikke detektere Snapchat, prøv at geninstallere Snapchat.",
-            "generate_failure": "Der opstod en fejl under forsøget på at generere mappings, prøv venligst igen.",
-            "generate_success": "Tilpasninger genereret med succes."
+            "generate_failure": "Der opstod en fejl under forsøget på at generere mappings, prøv venligst igen."
         },
         "permissions": {
             "dialog": "For at fortsætte skal du passe til følgende krav:",
@@ -319,10 +317,6 @@
                         "name": "Aktiver App-udseende Indstillinger",
                         "description": "Aktiverer den skjulte App Udseende Indstilling\nKan ikke kræves i nyere Snapchat versioner"
                     },
-                    "amoled_dark_mode": {
-                        "name": "AMOLED Mørk Tilstand",
-                        "description": "Aktiverer AMOLED mørk tilstand\nSørg for at Snapchats Mørk tilstand er aktiveret"
-                    },
                     "friend_feed_message_preview": {
                         "name": "Forhåndsvisning Af Venne Feed Besked",
                         "description": "Viser en forhåndsvisning af de sidste beskeder i venskabsfeedet",
@@ -397,7 +391,7 @@
                     },
                     "message_indicators": {
                         "name": "Meddelelsesindikatorer",
-                        "description": "Tilføjer specifikke indikatorikoner til beskeder\nBemærk: indikatorer er muligvis ikke 100% nøjagtige"
+                        "description": "Tilføjer specifikke indikatorikoner til beskeder\nBemærk: indikatorer er muligvis ikke 110% nøjagtige"
                     },
                     "edit_text_override": {
                         "name": "Rediger tekst tilsidesættelse",
@@ -422,6 +416,62 @@
                     "opera_media_quick_info": {
                         "description": "Viser nyttig information om medier såsom oprettelsesdato i opera fremviser kontekstmenu",
                         "name": "Opera Media Hurtig info"
+                    },
+                    "customize_ui": {
+                        "name": "Farver",
+                        "description": "Tilpas Snapchats farver",
+                        "properties": {
+                            "theme_picker": {
+                                "name": "Tema vælger",
+                                "description": "Forudindstillede Snapchat temaer"
+                            },
+                            "colors": {
+                                "name": "Brugerdefinerede farver",
+                                "description": "Tilpas individuelle farver\nBemærk: Vælg brugerdefinerede farver på temavælgeren for at bruge",
+                                "properties": {
+                                    "text_color": {
+                                        "name": "Hovedtekst farve",
+                                        "description": "Ændrer Snapchats hovedtekst farve"
+                                    },
+                                    "chat_chat_text_color": {
+                                        "name": "Hoved vens feed tekstfarve",
+                                        "description": "Ændrer tekstfarven på (Ny chat / Nyt snap og chats / Indtastning / Opkald / Ubesvaret opkald / Taler / Ny stemmebesked) på vennefeedet"
+                                    },
+                                    "pending_sending_text_color": {
+                                        "name": "Sekundær Friend Feed Tekst farve",
+                                        "description": "Ændrer tekstfarven på ( Leveret / Modtaget / Sender / Åbnet / Tryk for at chatte / Hold for at afspille / Afspilles igen / Gemt i chat / Opkaldet) på vennefeedet"
+                                    },
+                                    "snap_with_sound_text_color": {
+                                        "name": "Snaps med lyd tekst farve",
+                                        "description": "Ændrer tekstfarven på ( Ny Snap ) på vennefeedet\nBemærk: Kun videosnaps"
+                                    },
+                                    "snap_without_sound_text_color": {
+                                        "name": "Snaps uden lyd Tekst farve",
+                                        "description": "Ændrer tekstfarven på ( Ny Snap ) på vennefeedet\nBemærk: Kun videosnaps"
+                                    },
+                                    "background_color": {
+                                        "name": "Baggrundsfarve",
+                                        "description": "Ændrer Snapchats baggrundsfarve"
+                                    },
+                                    "background_color_surface": {
+                                        "name": "Baggrunds overflade farve",
+                                        "description": "Ændrer Snapchats baggrunds overflade farve"
+                                    },
+                                    "action_menu_background_color": {
+                                        "name": "Handlingsmenu Baggrunds farve",
+                                        "description": "Ændrer baggrunds farve på Snapchats chat handlingsmenu"
+                                    },
+                                    "action_menu_round_background_color": {
+                                        "name": "Handlingsmenu Rund baggrunds farve",
+                                        "description": "Ændrer Snapchats chat handlingsmenu rundt om baggrunds farven"
+                                    },
+                                    "camera_grid_lines": {
+                                        "name": "Farve på kameragitter",
+                                        "description": "Ændrer farven på Snapchats-gitterlinjerne på forhåndsvisningen af kameraet\nBemærk: Aktiver gitteret på mine kamera-indstillinger"
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -548,6 +598,10 @@
                     "friend_mutation_notifier": {
                         "description": "Giver dig besked, når noget ændrer sig i en vens profil",
                         "name": "Ven Mutation Notifier"
+                    },
+                    "unlimited_conversation_pinning": {
+                        "description": "Giver dig mulighed for at fastgøre et ubegrænset antal samtaler lokalt",
+                        "name": "Ubegrænset samtale fastgørelse"
                     }
                 }
             },
@@ -610,6 +664,10 @@
                             "spoof_headphones": {
                                 "name": "Spoof hovedtelefoner",
                                 "description": "Spoof status for at lytte til musik på kortet"
+                            },
+                            "walk_radius": {
+                                "name": "Gå radius",
+                                "description": "Gå tilfældigt rundt inden for denne radius (ft)"
                             }
                         }
                     },
@@ -644,10 +702,6 @@
                     "disable_confirmation_dialogs": {
                         "name": "Deaktiver bekræftelsesdialoger",
                         "description": "Bekræfter automatisk valgte handlinger"
-                    },
-                    "force_upload_source_quality": {
-                        "name": "Tving upload kilde kvalitet",
-                        "description": "Tvinger Snapchat til at uploade medier i original kvalitet\nBemærk, at dette muligvis ikke fjerner metadata fra medier"
                     },
                     "hide_active_music": {
                         "name": "Skjul aktiv musik",
@@ -892,6 +946,10 @@
                     "custom_streaks_expiration_format": {
                         "name": "Tilpasset format til udløb af Streaks",
                         "description": "Tilpasser formatet for udløbet af Streaks\n\nTilgængelige variabler:\n- %c: Antal Streaks\n- %e: Timeglas Emoji\n- %d: Dage\n- %h: Timer\n- %m: Minutter\n- %s: Sekunder\n- %w: Resterende tid"
+                    },
+                    "best_friend_pinning": {
+                        "description": "Giver dig mulighed for at fastgøre en ven som din bedste ven nummer ét.\nBemærk: kun du kan se din fastgjorte bedste ven",
+                        "name": "Pinning af bedste ven"
                     }
                 }
             },
@@ -983,13 +1041,15 @@
                 "initiate_audio": "Indgående Lydopkald",
                 "abandon_audio": "Ubesvaret Lydopkald",
                 "initiate_video": "Indgående videoopkald",
-                "abandon_video": "Ubesvarede videoopkald"
+                "abandon_video": "Ubesvarede videoopkald",
+                "speaking": "Taler"
             },
             "gallery_media_send_override": {
                 "ORIGINAL": "Original",
                 "NOTE": "Lyd Note",
                 "SNAP": "Snap",
-                "SAVABLE_SNAP": "Gembar Klip"
+                "SAVABLE_SNAP": "Gembar Klip",
+                "always_ask": "Spørg altid for at være sikker"
             },
             "hide_ui_components": {
                 "hide_profile_call_buttons": "Fjern Profilopkaldsknapper",
@@ -1102,6 +1162,19 @@
                 "bitmoji_avatar_changes": "Giv besked, når nogen ændrer deres Bitmoji avatar",
                 "bitmoji_background_changes": "Giv besked, når nogen ændrer deres Bitmoji baggrund",
                 "bitmoji_scene_changes": "Giv besked, når nogen ændrer deres Bitmoji scene"
+            },
+            "theme_picker": {
+                "ginger_snap": "Ginger Snap",
+                "lemon_meringue": "Citron marengs",
+                "lava_flow": "Lava flow",
+                "ocean_fog": "Havtåge",
+                "alien_landscape": "Alien Landskab",
+                "amoled_dark_mode": "AMOLED mørk tilstand",
+                "custom": "Brugerdefinerede farver",
+                "light_blue": "Lyseblå",
+                "dark_blue": "Mørke blå",
+                "earthy_autumn": "Jordisk efterår",
+                "mint_chocolate": "Mint Chokolade"
             }
         }
     },
@@ -1199,9 +1272,10 @@
             "sticker": "Klistermærke",
             "external_media": "Eksterne medier",
             "note": "Note",
-            "original_story": "Oprindelig Historie"
+            "original_story": "Oprindelig Historie",
+            "gif": "GIF"
         },
-        "select_attachments_title": "Vælg vedhæftede filer at downloade",
+        "select_attachments_title": "Vælg vedhæftede filer",
         "download_started_toast": "Download startet",
         "unsupported_content_type_toast": "Ikke-understøttet indholdstype!",
         "failed_no_longer_available_toast": "Medier er ikke længere tilgængelige",

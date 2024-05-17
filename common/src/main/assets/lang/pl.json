@@ -7,10 +7,8 @@
         },
         "mappings": {
             "dialog": "Aby dynamicznie obsługiwać szeroki zakres wersji Snapchat, konieczne są mapowania, aby SnapEnhance działał poprawnie. To nie powinno zająć więcej niż 5 sekund.",
-            "generate_button": "Wygeneruj",
             "generate_failure_no_snapchat": "SnapEnhance nie było w stanie wykryć Snapchata, spróbuj ponownie zainstalować Snapchat.",
-            "generate_failure": "Wystąpił błąd podczas próby generowania mapowań, spróbuj ponownie.",
-            "generate_success": "Mapowania zostały pomyślnie wygenerowane."
+            "generate_failure": "Wystąpił błąd podczas próby generowania mapowań, spróbuj ponownie."
         },
         "permissions": {
             "dialog": "Aby kontynuować, musisz spełnić poniższe wymagania:",
@@ -39,6 +37,21 @@
                 "update_title": "Aktualizacja SnapEnchance",
                 "update_content": "Wersja {version} jest dostępna!",
                 "update_button": "Pobierz"
+            },
+            "home_logs": {
+                "no_logs_hint": "Brak Dostępnych Logów",
+                "clear_logs_button": "Wyczyść Logi",
+                "export_logs_button": "Eksportuj Logi",
+                "saved_logs_success_toast": "Logi Zapisane Pomyślnie",
+                "saved_logs_failure_toast": "Nie udało zapisać sie logów",
+                "saving_logs_toast": "Zapisywanie logów, To może chwile potrwać ..."
+            },
+            "home_settings": {
+                "message_logger_summary": "{messageCount} Wiadomości\n{storyCount} Story",
+                "success_toast": "Gotowe!",
+                "export_button": "Eksport",
+                "actions_title": "Akcja",
+                "clear_button": "Czysto"
             }
         }
     },

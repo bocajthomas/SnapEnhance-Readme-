@@ -1,8 +1,6 @@
 {
     "setup": {
         "mappings": {
-            "generate_button": "Generiraj",
-            "generate_success": "Preslikave uspešno generirane.",
             "generate_failure": "Pri ustvarjanju preslikav je prišlo do napake, prosimo poskusite znova.",
             "generate_failure_no_snapchat": "SnapEnhance ne zaznava Snapchata. Poizkusite ga znova naložiti.",
             "dialog": "Da bi dinamično podpiral širok razpon Snapchat verzij, so preslikave potrebne za pravilno delovanje Snapenhance-a; to ne bi smelo vzeti več kot 5 sekund."

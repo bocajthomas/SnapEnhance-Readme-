@@ -50,6 +50,7 @@ import me.rhunk.snapenhance.core.features.impl.experiments.AddFriendSourceSpoof
 import me.rhunk.snapenhance.core.features.impl.messaging.Messaging
 import me.rhunk.snapenhance.core.ui.ViewAppearanceHelper
 import me.rhunk.snapenhance.core.util.EvictingMap
+import me.rhunk.snapenhance.core.util.dataBuilder
 import me.rhunk.snapenhance.mapper.impl.FriendRelationshipChangerMapper
 import java.net.URL
 import java.text.DateFormat
@@ -561,16 +562,28 @@ class BulkMessagingAction : AbstractAction() {
     private fun removeFriend(userId: String) {
         context.mappings.useMapper(FriendRelationshipChangerMapper::class) {
             val friendRelationshipChangerInstance = context.feature(AddFriendSourceSpoof::class).friendRelationshipChangerInstance!!
-            val removeMethod = friendshipRelationshipChangerKtx.getAsClass()?.methods?.first {
-                it.name == removeFriendMethod.getAsString()
-            } ?: throw Exception("Failed to find removeFriend method")
+            val runFriendDurableJobMethod = classReference.getAsClass()?.methods?.first {
+                it.name == runFriendDurableJob.getAsString()
+            } ?: throw Exception("Failed to find runFriendDurableJobMethod method")
 
-            val completable = removeMethod.invoke(null,
+            val removeFriendDurableJob = context.androidContext.classLoader.loadClass("com.snap.identity.job.snapchatter.RemoveFriendDurableJob")
+                .constructors.firstOrNull {
+                it.parameterTypes.size == 1
+            }?.run {
+                newInstance(
+                    parameterTypes[0].dataBuilder {
+                        set("a", userId) // userId
+                        set("b", "DELETED_BY_MY_FRIENDS") // deleteSourceType
+                    }
+                )
+            } ?: throw Exception("Failed to create RemoveFriendDurableJob instance")
+
+            val completable = runFriendDurableJobMethod.invoke(null,
                 friendRelationshipChangerInstance,
                 userId, // userId
-                removeMethod.parameterTypes[2].enumConstants.first { it.toString() == "DELETED_BY_MY_FRIENDS" }, // source
-                null, // InteractionPlacementInfo
-                0
+                removeFriendDurableJob, // friend durable job
+                0x5, // action type
+                "DELETED_BY_MY_FRIENDS", // deleteSourceType
             )!!
             completable::class.java.methods.first {
                 it.name == "subscribe" && it.parameterTypes.isEmpty()
