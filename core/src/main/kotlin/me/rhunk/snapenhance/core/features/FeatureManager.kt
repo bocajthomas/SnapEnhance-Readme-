@@ -128,6 +128,7 @@ class FeatureManager(
             ComposerHooks(),
             DisableCustomTabs(),
             BestFriendPinning(),
+            UnlimitedMultiSnap(),
         )
         initializeFeatures()
     }
