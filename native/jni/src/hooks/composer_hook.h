@@ -121,6 +121,7 @@ namespace ComposerHook {
         global_instance = nullptr;
         global_ctx = nullptr;
         auto code_str = env->GetStringUTFChars(code, nullptr);
+        if (composer_loader != nullptr) delete composer_loader;
         composer_loader = new std::string(code_str, env->GetStringUTFLength(code));
         env->ReleaseStringUTFChars(code, code_str);
     }

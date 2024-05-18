@@ -1,6 +1,7 @@
 package me.rhunk.snapenhance.core.features.impl.experiments
 
 import android.os.ParcelFileDescriptor
+import android.view.View
 import android.widget.FrameLayout
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -41,7 +42,7 @@ import java.lang.reflect.Proxy
 import kotlin.math.absoluteValue
 import kotlin.random.Random
 
-class ComposerHooks: Feature("ComposerHooks", loadParams = FeatureLoadParams.ACTIVITY_CREATE_SYNC) {
+class ComposerHooks: Feature("ComposerHooks", loadParams = FeatureLoadParams.INIT_SYNC) {
     private val config by lazy { context.config.experimental.nativeHooks.composerHooks }
     private val exportedFunctionName = Random.nextInt().absoluteValue.toString(16)
 
@@ -99,9 +100,12 @@ class ComposerHooks: Feature("ComposerHooks", loadParams = FeatureLoadParams.ACT
         }
     }
 
+    private val composerConsoleTag = Random.nextLong().toString()
+
     private fun injectConsole() {
         val root = context.mainActivity!!.findViewById<FrameLayout>(android.R.id.content)
         root.post {
+            if (root.findViewWithTag<View>(composerConsoleTag) != null) return@post
             root.addView(createComposeView(root.context) {
                 AppMaterialTheme {
                     FilledIconButton(
@@ -114,6 +118,7 @@ class ComposerHooks: Feature("ComposerHooks", loadParams = FeatureLoadParams.ACT
                     }
                 }
             }.apply {
+                tag = composerConsoleTag
                 layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT).apply {
                     gravity = android.view.Gravity.TOP or android.view.Gravity.END
                 }
@@ -187,6 +192,10 @@ class ComposerHooks: Feature("ComposerHooks", loadParams = FeatureLoadParams.ACT
     }
 
     private fun loadHooks() {
+        if (!NativeLib.initialized) {
+            context.log.error("ComposerHooks cannot be loaded without NativeLib")
+            return
+        }
         val loaderScript = context.scriptRuntime.scripting.getScriptContent("composer/loader.js")?.let { pfd ->
             ParcelFileDescriptor.AutoCloseInputStream(pfd).use {
                 it.readBytes().toString(Charsets.UTF_8)
@@ -212,20 +221,20 @@ class ComposerHooks: Feature("ComposerHooks", loadParams = FeatureLoadParams.ACT
     }
 
     @Suppress("UNCHECKED_CAST")
-    override fun onActivityCreate() {
-        if (!NativeLib.initialized || config.globalState != true) return
-
-        findClass("com.snapchat.client.composer.NativeBridge").hook("registerNativeModuleFactory", HookStage.BEFORE) { param ->
-            val moduleFactory = param.argNullable<Any>(1) ?: return@hook
-            if (moduleFactory.javaClass.getMethod("getModulePath").invoke(moduleFactory)?.toString() != "DeviceBridge") return@hook
-            Hooker.ephemeralHookObjectMethod(moduleFactory.javaClass, moduleFactory, "loadModule", HookStage.AFTER) { methodParam ->
-                val functions = methodParam.getResult() as? MutableMap<String, Any> ?: return@ephemeralHookObjectMethod
-                functions[exportedFunctionName] = newComposerFunction {
-                    handleExportCall(it)
+    override fun init() {
+        if (config.globalState != true) return
+        findClass("com.snapchat.client.composer.NativeBridge").apply {
+            hook("createViewLoaderManager", HookStage.AFTER) { loadHooks() }
+            hook("registerNativeModuleFactory", HookStage.BEFORE) { param ->
+                val moduleFactory = param.argNullable<Any>(1) ?: return@hook
+                if (moduleFactory.javaClass.getMethod("getModulePath").invoke(moduleFactory)?.toString() != "DeviceBridge") return@hook
+                Hooker.ephemeralHookObjectMethod(moduleFactory.javaClass, moduleFactory, "loadModule", HookStage.AFTER) { methodParam ->
+                    val functions = methodParam.getResult() as? MutableMap<String, Any> ?: return@ephemeralHookObjectMethod
+                    functions[exportedFunctionName] = newComposerFunction {
+                        handleExportCall(it)
+                    }
                 }
             }
         }
-
-        loadHooks()
     }
 }
