@@ -160,6 +160,9 @@ class HomeSettings : Routes.Route() {
             RowAction(key = "change_language") {
                 context.checkForRequirements(Requirements.LANGUAGE)
             }
+            RowAction(key = "change_folder") {
+                context.checkForRequirements(Requirements.SAVE_FOLDER)
+            }
             RowTitle(title = translation["message_logger_title"])
             ShiftedRow {
                 Column(
