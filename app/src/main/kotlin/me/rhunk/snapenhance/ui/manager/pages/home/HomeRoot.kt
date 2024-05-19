@@ -299,7 +299,7 @@ class HomeRoot : Routes.Route() {
                 } }.forEach { (card, action) ->
                     ElevatedCard(
                         modifier = Modifier
-                            .size(130.dp)
+                            .size(65.dp)
                             .clickable { action() }
                             .padding(all = 5.dp),
                     ) {
