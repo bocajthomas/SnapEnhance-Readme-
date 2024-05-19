@@ -248,7 +248,7 @@
         },
         "change_folder": {
             "name": "Change Folder",
-            "description": "Change The folder were SnapEnhance should read and write too"
+            "description": "Change the folder were SnapEnhance can read & write too"
         }
     },
 
