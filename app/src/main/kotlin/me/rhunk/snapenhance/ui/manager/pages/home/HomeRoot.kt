@@ -299,7 +299,7 @@ class HomeRoot : Routes.Route() {
                 } }.forEach { (card, action) ->
                     ElevatedCard(
                         modifier = Modifier
-                            .size(130.dp)
+                            .size(105.dp)
                             .clickable { action() }
                             .padding(all = 5.dp),
                     ) {
@@ -316,7 +316,7 @@ class HomeRoot : Routes.Route() {
                                 modifier = Modifier.size(50.dp)
                             )
                             Text(
-                                lineHeight = 16.sp, text = card.first, fontSize = 14.sp,
+                                lineHeight = 16.sp, text = card.first, fontSize = 11.sp,
                                 textAlign = TextAlign.Center
                             )
                         }
