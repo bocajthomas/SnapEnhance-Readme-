@@ -245,6 +245,10 @@
         "change_language": {
             "name": "Change Language",
             "description": "Change the language of SnapEnhance"
+        },
+        "change_folder": {
+            "name": "Change Folder",
+            "description": "Change The folder were SnapEnhance should read and write too"
         }
     },
 
