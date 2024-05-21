@@ -5,6 +5,7 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Build
 import android.util.TypedValue
 import androidx.compose.material3.dynamicDarkColorScheme
+import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.ui.graphics.toArgb
 import me.rhunk.snapenhance.core.features.Feature
 import me.rhunk.snapenhance.core.features.FeatureLoadParams
@@ -42,7 +43,29 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                 getAttribute(key) to value!!
             }.toMap()
         } 
-        if (themePicker == "material_you") {
+        if (themePicker == "material_you_light") {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                val colorScheme = dynamicLightColorScheme(context.androidContext)
+                themes.clear()
+                themes[themePicker] = mapOf(
+                    "sigColorTextPrimary" to colorScheme.onSurfaceVariant.toArgb(),
+                    "sigColorChatChat" to colorScheme.onSurfaceVariant.toArgb(),
+                    "sigColorChatPendingSending" to colorScheme.onSurfaceVariant.toArgb(),
+                    "sigColorChatSnapWithSound" to colorScheme.onSurfaceVariant.toArgb(),
+                    "sigColorChatSnapWithoutSound" to colorScheme.onSurfaceVariant.toArgb(),
+                    "sigColorBackgroundMain" to colorScheme.background.toArgb(),
+                    "sigColorBackgroundSurface" to colorScheme.background.toArgb(),
+                    "listDivider" to colorScheme.primary.copy(alpha = 0.12f).toArgb(),
+                    "actionSheetBackgroundDrawable" to colorScheme.background.toArgb(),
+                    "actionSheetRoundedBackgroundDrawable" to colorScheme.background.toArgb(),
+                    "sigExceptionColorCameraGridLines" to colorScheme.background.toArgb(),
+                ).apply {
+                }.filterValues { true }.map { (key, value) ->
+                    getAttribute(key) to value
+                }.toMap()
+            }
+        }
+        if (themePicker == "material_you_dark") {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
                 val colorScheme = dynamicDarkColorScheme(context.androidContext)
                 themes.clear()
