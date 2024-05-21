@@ -1,5 +1,6 @@
 package me.rhunk.snapenhance.common.config
 
+import androidx.compose.ui.graphics.vector.ImageVector
 import me.rhunk.snapenhance.common.bridge.wrapper.LocaleWrapper
 import kotlin.reflect.KProperty
 
@@ -35,7 +36,7 @@ class ConfigParams(
     private var _flags: Int? = null,
     private var _notices: Int? = null,
 
-    var icon: String? = null,
+    var icon: ImageVector? = null,
     var disabledKey: String? = null,
     var customTranslationPath: String? = null,
     var customOptionTranslationPath: String? = null,

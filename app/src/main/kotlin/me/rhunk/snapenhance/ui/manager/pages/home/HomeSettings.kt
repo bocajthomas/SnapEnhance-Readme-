@@ -18,10 +18,12 @@ import androidx.compose.ui.window.Dialog
 import androidx.core.net.toUri
 import androidx.navigation.NavBackStackEntry
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import me.rhunk.snapenhance.common.Constants
 import me.rhunk.snapenhance.common.action.EnumAction
 import me.rhunk.snapenhance.common.bridge.types.BridgeFileType
+import me.rhunk.snapenhance.common.ui.rememberAsyncMutableState
 import me.rhunk.snapenhance.ui.manager.Routes
 import me.rhunk.snapenhance.ui.setup.Requirements
 import me.rhunk.snapenhance.ui.util.ActivityLauncherHelper
@@ -165,13 +167,11 @@ class HomeSettings : Routes.Route() {
                 Column(
                     verticalArrangement = Arrangement.spacedBy(4.dp),
                 ) {
-                    var storedMessagesCount by remember { mutableIntStateOf(0) }
-                    var storedStoriesCount by remember { mutableIntStateOf(0) }
-                    LaunchedEffect(Unit) {
-                        withContext(Dispatchers.IO) {
-                            storedMessagesCount = context.messageLogger.getStoredMessageCount()
-                            storedStoriesCount = context.messageLogger.getStoredStoriesCount()
-                        }
+                    var storedMessagesCount by rememberAsyncMutableState(defaultValue = 0) {
+                        context.messageLogger.getStoredMessageCount()
+                    }
+                    var storedStoriesCount by rememberAsyncMutableState(defaultValue = 0) {
+                        context.messageLogger.getStoredStoriesCount()
                     }
                     Row(
                         horizontalArrangement = Arrangement.spacedBy(10.dp),
@@ -273,7 +273,9 @@ class HomeSettings : Routes.Route() {
                 }
                 Button(onClick = {
                     runCatching {
-                        selectedFileType.resolve(context.androidContext).delete()
+                        context.coroutineScope.launch {
+                            selectedFileType.resolve(context.androidContext).delete()
+                        }
                     }.onFailure {
                         context.log.error("Failed to clear file", it)
                         context.longToast("Failed to clear file! ${it.localizedMessage}")

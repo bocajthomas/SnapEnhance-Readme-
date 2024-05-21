@@ -17,13 +17,19 @@ import androidx.navigation.NavBackStackEntry
 import androidx.navigation.compose.currentBackStackEntryAsState
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
+import me.rhunk.snapenhance.common.data.FriendStreaks
+import me.rhunk.snapenhance.common.data.MessagingFriendInfo
+import me.rhunk.snapenhance.common.data.MessagingGroupInfo
 import me.rhunk.snapenhance.common.data.MessagingRuleType
 import me.rhunk.snapenhance.common.data.SocialScope
+import me.rhunk.snapenhance.common.ui.rememberAsyncMutableState
+import me.rhunk.snapenhance.common.ui.rememberAsyncMutableStateList
 import me.rhunk.snapenhance.common.util.snap.BitmojiSelfie
+import me.rhunk.snapenhance.storage.*
 import me.rhunk.snapenhance.ui.manager.Routes
 import me.rhunk.snapenhance.ui.util.AlertDialogs
-import me.rhunk.snapenhance.ui.util.coil.BitmojiImage
 import me.rhunk.snapenhance.ui.util.Dialog
+import me.rhunk.snapenhance.ui.util.coil.BitmojiImage
 import kotlin.io.encoding.Base64
 import kotlin.io.encoding.ExperimentalEncodingApi
 
@@ -32,10 +38,10 @@ class ManageScope: Routes.Route() {
 
     private fun deleteScope(scope: SocialScope, id: String, coroutineScope: CoroutineScope) {
         when (scope) {
-            SocialScope.FRIEND -> context.modDatabase.deleteFriend(id)
-            SocialScope.GROUP -> context.modDatabase.deleteGroup(id)
+            SocialScope.FRIEND -> context.database.deleteFriend(id)
+            SocialScope.GROUP -> context.database.deleteGroup(id)
         }
-        context.modDatabase.executeAsync {
+        context.database.executeAsync {
             coroutineScope.launch {
                 routes.navController.popBackStack()
             }
@@ -79,47 +85,97 @@ class ManageScope: Routes.Route() {
         val id = navBackStackEntry.arguments?.getString("id")!!
 
         Column(
-            modifier = Modifier.verticalScroll(rememberScrollState())
+            modifier = Modifier
+                .verticalScroll(rememberScrollState())
+                .fillMaxSize()
         ) {
-            when (scope) {
-                SocialScope.FRIEND -> Friend(id)
-                SocialScope.GROUP -> Group(id)
+            var hasScope by remember {
+                mutableStateOf(null as Boolean?)
             }
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            val rules = context.modDatabase.getRules(id)
-
-            SectionTitle(translation["rules_title"])
-
-            ContentCard {
-                MessagingRuleType.entries.forEach { ruleType ->
-                    var ruleEnabled by remember {
-                        mutableStateOf(rules.any { it.key == ruleType.key })
+            when (scope) {
+                SocialScope.FRIEND -> {
+                    var streaks by remember { mutableStateOf(null as FriendStreaks?) }
+                    val friend by rememberAsyncMutableState(null) {
+                        context.database.getFriendInfo(id)?.also {
+                            streaks = context.database.getFriendStreaks(id)
+                        }.also {
+                            hasScope = it != null
+                        }
                     }
-
-                    val ruleState = context.config.root.rules.getRuleState(ruleType)
-
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.padding(all = 4.dp)
-                    ) {
-                        Text(
-                            text = if (ruleType.listMode && ruleState != null) {
-                                context.translation["rules.properties.${ruleType.key}.options.${ruleState.key}"]
-                            } else context.translation["rules.properties.${ruleType.key}.name"],
-                            modifier = Modifier
-                                .weight(1f)
-                                .padding(start = 5.dp, end = 5.dp)
-                        )
-                        Switch(checked = ruleEnabled,
-                            enabled = if (ruleType.listMode) ruleState != null else true,
-                            onCheckedChange = {
-                                context.modDatabase.setRule(id, ruleType.key, it)
-                                ruleEnabled = it
-                            }
-                        )
+                    friend?.let {
+                        Friend(id, it, streaks)
                     }
+                }
+                SocialScope.GROUP -> {
+                    val group by rememberAsyncMutableState(null) {
+                        context.database.getGroupInfo(id).also {
+                            hasScope = it != null
+                        }
+                    }
+                    group?.let {
+                        Group(it)
+                    }
+                }
+            }
+            if (hasScope == true) {
+                RulesCard(id)
+            }
+            if (hasScope == false) {
+                Column(
+                    modifier = Modifier.fillMaxSize(),
+                    verticalArrangement = Arrangement.Center,
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = translation["not_found"],
+                        fontSize = 20.sp,
+                        fontWeight = FontWeight.Bold
+                    )
+                }
+            }
+        }
+    }
+
+
+    @Composable
+    private fun RulesCard(
+        id: String
+    ) {
+        Spacer(modifier = Modifier.height(16.dp))
+
+        val rules = rememberAsyncMutableStateList(listOf()) {
+            context.database.getRules(id)
+        }
+
+        SectionTitle(translation["rules_title"])
+
+        ContentCard {
+            MessagingRuleType.entries.forEach { ruleType ->
+                var ruleEnabled by remember(rules.size) {
+                    mutableStateOf(rules.any { it.key == ruleType.key })
+                }
+
+                val ruleState = context.config.root.rules.getRuleState(ruleType)
+
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.padding(all = 4.dp)
+                ) {
+                    Text(
+                        text = if (ruleType.listMode && ruleState != null) {
+                            context.translation["rules.properties.${ruleType.key}.options.${ruleState.key}"]
+                        } else context.translation["rules.properties.${ruleType.key}.name"],
+                        modifier = Modifier
+                            .weight(1f)
+                            .padding(start = 5.dp, end = 5.dp)
+                    )
+                    Switch(checked = ruleEnabled,
+                        enabled = if (ruleType.listMode) ruleState != null else true,
+                        onCheckedChange = {
+                            context.database.setRule(id, ruleType.key, it)
+                            ruleEnabled = it
+                        }
+                    )
                 }
             }
         }
@@ -185,17 +241,11 @@ class ManageScope: Routes.Route() {
 
     @OptIn(ExperimentalEncodingApi::class)
     @Composable
-    private fun Friend(id: String) {
-        //fetch the friend from the database
-        val friend = remember { context.modDatabase.getFriendInfo(id) } ?: run {
-            Text(text = translation["not_found"])
-            return
-        }
-
-        val streaks = remember {
-            context.modDatabase.getFriendStreaks(id)
-        }
-
+    private fun Friend(
+        id: String,
+        friend: MessagingFriendInfo,
+        streaks: FriendStreaks?
+    ) {
         Column(
             modifier = Modifier
                 .padding(10.dp)
@@ -275,7 +325,7 @@ class ManageScope: Routes.Route() {
                                 modifier = Modifier.padding(end = 10.dp)
                             )
                             Switch(checked = shouldNotify, onCheckedChange = {
-                                context.modDatabase.setFriendStreaksNotify(id, it)
+                                context.database.setFriendStreaksNotify(id, it)
                                 shouldNotify = it
                             })
                         }
@@ -286,7 +336,9 @@ class ManageScope: Routes.Route() {
 
             if (context.config.root.experimental.e2eEncryption.globalState == true) {
                 SectionTitle(translation["e2ee_title"])
-                var hasSecretKey by remember { mutableStateOf(context.e2eeImplementation.friendKeyExists(friend.userId))}
+                var hasSecretKey by rememberAsyncMutableState(defaultValue = false) {
+                    context.e2eeImplementation.friendKeyExists(friend.userId)
+                }
                 var importDialog by remember { mutableStateOf(false) }
 
                 if (importDialog) {
@@ -302,8 +354,11 @@ class ManageScope: Routes.Route() {
                                     return@runCatching
                                 }
 
-                                context.e2eeImplementation.storeSharedSecretKey(friend.userId, key)
-                                context.longToast("Successfully imported key")
+                                context.coroutineScope.launch {
+                                    context.e2eeImplementation.storeSharedSecretKey(friend.userId, key)
+                                    context.longToast("Successfully imported key")
+                                }
+
                                 hasSecretKey = true
                             }.onFailure {
                                 context.longToast("Failed to import key: ${it.message}")
@@ -320,20 +375,22 @@ class ManageScope: Routes.Route() {
                     ) {
                         if (hasSecretKey) {
                             OutlinedButton(onClick = {
-                                val secretKey = Base64.encode(context.e2eeImplementation.getSharedSecretKey(friend.userId) ?: return@OutlinedButton)
-                                //TODO: fingerprint auth
-                                context.activity!!.startActivity(Intent.createChooser(Intent().apply {
-                                    action = Intent.ACTION_SEND
-                                    putExtra(Intent.EXTRA_TEXT, secretKey)
-                                    type = "text/plain"
-                                }, "").apply {
-                                    putExtra(Intent.EXTRA_INITIAL_INTENTS, arrayOf(
-                                        Intent().apply {
-                                            putExtra(Intent.EXTRA_TEXT, secretKey)
-                                            putExtra(Intent.EXTRA_SUBJECT, secretKey)
-                                        })
-                                    )
-                                })
+                                context.coroutineScope.launch {
+                                    val secretKey = Base64.encode(context.e2eeImplementation.getSharedSecretKey(friend.userId) ?: return@launch)
+                                    //TODO: fingerprint auth
+                                    context.activity!!.startActivity(Intent.createChooser(Intent().apply {
+                                        action = Intent.ACTION_SEND
+                                        putExtra(Intent.EXTRA_TEXT, secretKey)
+                                        type = "text/plain"
+                                    }, "").apply {
+                                        putExtra(Intent.EXTRA_INITIAL_INTENTS, arrayOf(
+                                            Intent().apply {
+                                                putExtra(Intent.EXTRA_TEXT, secretKey)
+                                                putExtra(Intent.EXTRA_SUBJECT, secretKey)
+                                            })
+                                        )
+                                    })
+                                }
                             }) {
                                 Text(
                                     text = "Export Base64",
@@ -355,13 +412,7 @@ class ManageScope: Routes.Route() {
     }
 
     @Composable
-    private fun Group(id: String) {
-        //fetch the group from the database
-        val group = remember { context.modDatabase.getGroupInfo(id) } ?: run {
-            Text(text = translation["not_found"])
-            return
-        }
-
+    private fun Group(group: MessagingGroupInfo) {
         Column(
             modifier = Modifier
                 .padding(10.dp)

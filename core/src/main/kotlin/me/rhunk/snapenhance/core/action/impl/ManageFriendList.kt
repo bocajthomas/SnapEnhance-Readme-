@@ -20,7 +20,6 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withTimeout
-import me.rhunk.snapenhance.common.action.EnumAction
 import me.rhunk.snapenhance.common.data.FriendLinkType
 import me.rhunk.snapenhance.common.ui.createComposeAlertDialog
 import me.rhunk.snapenhance.core.action.AbstractAction

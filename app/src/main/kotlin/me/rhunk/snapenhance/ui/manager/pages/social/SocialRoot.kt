@@ -22,14 +22,14 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavBackStackEntry
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import me.rhunk.snapenhance.R
 import me.rhunk.snapenhance.common.data.MessagingFriendInfo
 import me.rhunk.snapenhance.common.data.MessagingGroupInfo
 import me.rhunk.snapenhance.common.data.SocialScope
+import me.rhunk.snapenhance.common.ui.rememberAsyncMutableState
 import me.rhunk.snapenhance.common.util.snap.BitmojiSelfie
+import me.rhunk.snapenhance.storage.*
 import me.rhunk.snapenhance.ui.manager.Routes
 import me.rhunk.snapenhance.ui.util.coil.BitmojiImage
 import me.rhunk.snapenhance.ui.util.pagerTabIndicatorOffset
@@ -38,15 +38,32 @@ class SocialRoot : Routes.Route() {
     private var friendList: List<MessagingFriendInfo> by mutableStateOf(emptyList())
     private var groupList: List<MessagingGroupInfo> by mutableStateOf(emptyList())
 
-    fun updateScopeLists() {
-        context.coroutineScope.launch(Dispatchers.IO) {
-            friendList = context.modDatabase.getFriends(descOrder = true)
-            groupList = context.modDatabase.getGroups()
+    private fun updateScopeLists() {
+        context.coroutineScope.launch {
+            friendList = context.database.getFriends(descOrder = true)
+            groupList = context.database.getGroups()
         }
     }
 
     private val addFriendDialog by lazy {
-        AddFriendDialog(context, this)
+        AddFriendDialog(context, AddFriendDialog.Actions(
+            onFriendState = { friend, state ->
+                if (state) {
+                    context.bridgeService?.triggerScopeSync(SocialScope.FRIEND, friend.userId)
+                } else {
+                    context.database.deleteFriend(friend.userId)
+                }
+            },
+            onGroupState = { group, state ->
+                if (state) {
+                    context.bridgeService?.triggerScopeSync(SocialScope.GROUP, group.conversationId)
+                } else {
+                    context.database.deleteGroup(group.conversationId)
+                }
+            },
+            getFriendState = { friend -> context.database.getFriendInfo(friend.userId) != null },
+            getGroupState = { group -> context.database.getGroupInfo(group.conversationId) != null }
+        ))
     }
 
     @Composable
@@ -82,7 +99,7 @@ class SocialRoot : Routes.Route() {
                     SocialScope.FRIEND -> friendList[index].userId
                 }
 
-                Card(
+                ElevatedCard(
                     modifier = Modifier
                         .padding(10.dp)
                         .fillMaxWidth()
@@ -119,12 +136,8 @@ class SocialRoot : Routes.Route() {
 
                             SocialScope.FRIEND -> {
                                 val friend = friendList[index]
-                                var streaks by remember { mutableStateOf(friend.streaks) }
-
-                                LaunchedEffect(friend.userId) {
-                                    withContext(Dispatchers.IO) {
-                                        streaks = context.modDatabase.getFriendStreaks(friend.userId)
-                                    }
+                                val streaks by rememberAsyncMutableState(defaultValue = friend.streaks) {
+                                    context.database.getFriendStreaks(friend.userId)
                                 }
 
                                 BitmojiImage(
@@ -203,6 +216,11 @@ class SocialRoot : Routes.Route() {
         if (showAddFriendDialog) {
             addFriendDialog.Content {
                 showAddFriendDialog = false
+            }
+            DisposableEffect(Unit) {
+                onDispose {
+                    updateScopeLists()
+                }
             }
         }
 

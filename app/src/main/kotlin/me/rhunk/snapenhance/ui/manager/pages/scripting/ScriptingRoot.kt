@@ -6,17 +6,21 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.LibraryBooks
-import androidx.compose.material.icons.filled.FolderOpen
-import androidx.compose.material.icons.filled.Link
-import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.onGloballyPositioned
+import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.net.toUri
-import androidx.documentfile.provider.DocumentFile
 import androidx.navigation.NavBackStackEntry
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -26,8 +30,14 @@ import me.rhunk.snapenhance.common.scripting.type.ModuleInfo
 import me.rhunk.snapenhance.common.scripting.ui.EnumScriptInterface
 import me.rhunk.snapenhance.common.scripting.ui.InterfaceManager
 import me.rhunk.snapenhance.common.scripting.ui.ScriptInterface
+import me.rhunk.snapenhance.common.ui.AsyncUpdateDispatcher
+import me.rhunk.snapenhance.common.ui.rememberAsyncMutableState
+import me.rhunk.snapenhance.storage.getScripts
+import me.rhunk.snapenhance.storage.isScriptEnabled
+import me.rhunk.snapenhance.storage.setScriptEnabled
 import me.rhunk.snapenhance.ui.manager.Routes
 import me.rhunk.snapenhance.ui.util.ActivityLauncherHelper
+import me.rhunk.snapenhance.ui.util.Dialog
 import me.rhunk.snapenhance.ui.util.chooseFolder
 import me.rhunk.snapenhance.ui.util.pullrefresh.PullRefreshIndicator
 import me.rhunk.snapenhance.ui.util.pullrefresh.pullRefresh
@@ -35,17 +45,211 @@ import me.rhunk.snapenhance.ui.util.pullrefresh.rememberPullRefreshState
 
 class ScriptingRoot : Routes.Route() {
     private lateinit var activityLauncherHelper: ActivityLauncherHelper
+    private val reloadDispatcher = AsyncUpdateDispatcher(updateOnFirstComposition = false)
 
     override val init: () -> Unit = {
         activityLauncherHelper = ActivityLauncherHelper(context.activity!!)
     }
 
     @Composable
+    private fun ImportRemoteScript(
+        dismiss: () -> Unit
+    ) {
+        Dialog(onDismissRequest = dismiss) {
+            var url by remember { mutableStateOf("") }
+            val focusRequester = remember { FocusRequester() }
+            var isLoading by remember {
+                mutableStateOf(false)
+            }
+            ElevatedCard(
+                modifier = Modifier
+                    .fillMaxWidth(),
+            ) {
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = "Import Script from URL",
+                        fontSize = 22.sp,
+                        fontWeight = FontWeight.Bold,
+                        modifier = Modifier.padding(8.dp),
+                    )
+                    Text(
+                        text = "Warning: Imported scripts can be harmful to your device. Only import scripts from trusted sources.",
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Light,
+                        fontStyle = FontStyle.Italic,
+                        modifier = Modifier.padding(8.dp),
+                        textAlign = TextAlign.Center,
+                    )
+                    TextField(
+                        value = url,
+                        onValueChange = {
+                            url = it
+                        },
+                        label = {
+                            Text(text = "Enter URL here:")
+                        },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .focusRequester(focusRequester)
+                            .onGloballyPositioned {
+                                focusRequester.requestFocus()
+                            }
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Button(
+                        enabled = url.isNotBlank(),
+                        onClick = {
+                            isLoading = true
+                            context.coroutineScope.launch {
+                                runCatching {
+                                    val moduleInfo = context.scriptManager.importFromUrl(url)
+                                    context.shortToast("Script ${moduleInfo.name} imported!")
+                                    reloadDispatcher.dispatch()
+                                    withContext(Dispatchers.Main) {
+                                        dismiss()
+                                    }
+                                    return@launch
+                                }.onFailure {
+                                    context.log.error("Failed to import script", it)
+                                    context.shortToast("Failed to import script. ${it.message}. Check logs for more details")
+                                }
+                                isLoading = false
+                            }
+                        },
+                    ) {
+                        if (isLoading) {
+                            CircularProgressIndicator(
+                                modifier = Modifier
+                                    .size(30.dp),
+                                strokeWidth = 3.dp,
+                                color = MaterialTheme.colorScheme.onPrimary
+                            )
+                        } else {
+                            Text(text = "Import")
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+    @Composable
+    private fun ModuleActions(
+        script: ModuleInfo,
+        dismiss: () -> Unit
+    ) {
+        Dialog(
+            onDismissRequest = dismiss,
+        ) {
+            ElevatedCard(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(2.dp),
+            ) {
+                val actions = remember {
+                    mapOf<Pair<String, ImageVector>, suspend () -> Unit>(
+                        ("Edit Module" to Icons.Default.Edit) to {
+                            runCatching {
+                                val modulePath = context.scriptManager.getModulePath(script.name)!!
+                                context.androidContext.startActivity(
+                                    Intent(Intent.ACTION_VIEW).apply {
+                                        data = context.scriptManager.getScriptsFolder()!!
+                                            .findFile(modulePath)!!.uri
+                                        flags =
+                                            Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+                                    }
+                                )
+                                dismiss()
+                            }.onFailure {
+                                context.log.error("Failed to open module file", it)
+                                context.shortToast("Failed to open module file. Check logs for more details")
+                            }
+                        },
+                        ("Clear Module Data" to Icons.Default.Save) to {
+                            runCatching {
+                                context.scriptManager.getModuleDataFolder(script.name)
+                                    .deleteRecursively()
+                                context.shortToast("Module data cleared!")
+                                dismiss()
+                            }.onFailure {
+                                context.log.error("Failed to clear module data", it)
+                                context.shortToast("Failed to clear module data. Check logs for more details")
+                            }
+                        },
+                        ("Delete Module" to Icons.Default.DeleteOutline) to {
+                            context.scriptManager.apply {
+                                runCatching {
+                                    val modulePath = getModulePath(script.name)!!
+                                    unloadScript(modulePath)
+                                    getScriptsFolder()?.findFile(modulePath)?.delete()
+                                    reloadDispatcher.dispatch()
+                                    context.shortToast("Deleted script ${script.name}!")
+                                    dismiss()
+                                }.onFailure {
+                                    context.log.error("Failed to delete module", it)
+                                    context.shortToast("Failed to delete module. Check logs for more details")
+                                }
+                            }
+                        }
+                    )
+                }
+
+                LazyColumn(
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    item {
+                        Text(
+                            text = "Actions",
+                            fontSize = 22.sp,
+                            fontWeight = FontWeight.Bold,
+                            modifier = Modifier
+                                .padding(16.dp)
+                                .fillMaxWidth(),
+                            textAlign = TextAlign.Center,
+                        )
+                    }
+                    items(actions.size) { index ->
+                        val action = actions.entries.elementAt(index)
+                        ListItem(
+                            modifier = Modifier
+                                .clickable {
+                                    context.coroutineScope.launch {
+                                        action.value()
+                                        dismiss()
+                                    }
+                                }
+                                .fillMaxWidth(),
+                            leadingContent = {
+                                Icon(
+                                    imageVector = action.key.second,
+                                    contentDescription = action.key.first
+                                )
+                            },
+                            headlineContent = {
+                                Text(text = action.key.first)
+                            },
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+    @Composable
     fun ModuleItem(script: ModuleInfo) {
-        var enabled by remember {
-            mutableStateOf(context.modDatabase.isScriptEnabled(script.name))
+        var enabled by rememberAsyncMutableState(defaultValue = false) {
+            context.database.isScriptEnabled(script.name)
         }
         var openSettings by remember {
+            mutableStateOf(false)
+        }
+        var openActions by remember {
             mutableStateOf(false)
         }
 
@@ -59,43 +263,64 @@ class ScriptingRoot : Routes.Route() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .clickable {
+                        if (!enabled) return@clickable
                         openSettings = !openSettings
                     }
                     .padding(8.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
+                if (enabled) {
+                    Icon(
+                        imageVector = if (openSettings) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
+                        contentDescription = null,
+                        modifier = Modifier
+                            .padding(end = 8.dp)
+                            .size(32.dp),
+                    )
+                }
+
                 Column(
                     modifier = Modifier
                         .weight(1f)
                         .padding(end = 8.dp)
                 ) {
-                    Text(text = script.displayName ?: script.name, fontSize = 20.sp,)
-                    Text(text = script.description ?: "No description", fontSize = 14.sp,)
+                    Text(text = script.displayName ?: script.name, fontSize = 20.sp)
+                    Text(text = script.description ?: "No description", fontSize = 14.sp)
                 }
-                IconButton(onClick = { openSettings = !openSettings }) {
-                    Icon(imageVector = Icons.Default.Settings, contentDescription = "Settings",)
+                IconButton(onClick = {
+                    openActions = !openActions
+                }) {
+                    Icon(imageVector = Icons.Default.Build, contentDescription = "Actions")
                 }
                 Switch(
                     checked = enabled,
                     onCheckedChange = { isChecked ->
-                        context.modDatabase.setScriptEnabled(script.name, isChecked)
-                        enabled = isChecked
-                        runCatching {
-                            val modulePath = context.scriptManager.getModulePath(script.name)!!
-                            context.scriptManager.unloadScript(modulePath)
-                            if (isChecked) {
-                                context.scriptManager.loadScript(modulePath)
-                                context.scriptManager.runtime.getModuleByName(script.name)
-                                    ?.callFunction("module.onSnapEnhanceLoad")
-                                context.shortToast("Loaded script ${script.name}")
-                            } else {
-                                context.shortToast("Unloaded script ${script.name}")
-                            }
-                        }.onFailure { throwable ->
-                            enabled = !isChecked
-                            ("Failed to ${if (isChecked) "enable" else "disable"} script").let {
-                                context.log.error(it, throwable)
-                                context.shortToast(it)
+                        openSettings = false
+                        context.coroutineScope.launch(Dispatchers.IO) {
+                            runCatching {
+                                val modulePath = context.scriptManager.getModulePath(script.name)!!
+                                context.scriptManager.unloadScript(modulePath)
+                                if (isChecked) {
+                                    context.scriptManager.loadScript(modulePath)
+                                    context.scriptManager.runtime.getModuleByName(script.name)
+                                        ?.callFunction("module.onSnapEnhanceLoad")
+                                    context.shortToast("Loaded script ${script.name}")
+                                } else {
+                                    context.shortToast("Unloaded script ${script.name}")
+                                }
+
+                                context.database.setScriptEnabled(script.name, isChecked)
+                                withContext(Dispatchers.Main) {
+                                    enabled = isChecked
+                                }
+                            }.onFailure { throwable ->
+                                withContext(Dispatchers.Main) {
+                                    enabled = !isChecked
+                                }
+                                ("Failed to ${if (isChecked) "enable" else "disable"} script. Check logs for more details").also {
+                                    context.log.error(it, throwable)
+                                    context.shortToast(it)
+                                }
                             }
                         }
                     }
@@ -106,18 +331,31 @@ class ScriptingRoot : Routes.Route() {
                 ScriptSettings(script)
             }
         }
+
+        if (openActions) {
+            ModuleActions(script) { openActions = false }
+        }
     }
 
     override val floatingActionButton: @Composable () -> Unit = {
+        var showImportDialog by remember {
+            mutableStateOf(false)
+        }
+        if (showImportDialog) {
+            ImportRemoteScript {
+                showImportDialog = false
+            }
+        }
+
         Column(
             verticalArrangement = Arrangement.spacedBy(8.dp),
             horizontalAlignment = Alignment.End,
         ) {
             ExtendedFloatingActionButton(
                 onClick = {
-
+                    showImportDialog = true
                 },
-                icon= { Icon(imageVector = Icons.Default.Link, contentDescription = "Link") },
+                icon = { Icon(imageVector = Icons.Default.Link, contentDescription = "Link") },
                 text = {
                     Text(text = "Import from URL")
                 },
@@ -133,7 +371,12 @@ class ScriptingRoot : Routes.Route() {
                         )
                     }
                 },
-                icon= { Icon(imageVector = Icons.Default.FolderOpen, contentDescription = "Folder") },
+                icon = {
+                    Icon(
+                        imageVector = Icons.Default.FolderOpen,
+                        contentDescription = "Folder"
+                    )
+                },
                 text = {
                     Text(text = "Open Scripts Folder")
                 },
@@ -144,8 +387,9 @@ class ScriptingRoot : Routes.Route() {
 
     @Composable
     fun ScriptSettings(script: ModuleInfo) {
-       val settingsInterface = remember {
-            val module = context.scriptManager.runtime.getModuleByName(script.name) ?: return@remember null
+        val settingsInterface = remember {
+            val module =
+                context.scriptManager.runtime.getModuleByName(script.name) ?: return@remember null
             (module.getBinding(InterfaceManager::class))?.buildInterface(EnumScriptInterface.SETTINGS)
         }
 
@@ -155,43 +399,44 @@ class ScriptingRoot : Routes.Route() {
                 style = MaterialTheme.typography.bodySmall,
                 modifier = Modifier.padding(8.dp)
             )
-        } else  {
+        } else {
             ScriptInterface(interfaceBuilder = settingsInterface)
         }
     }
 
     override val content: @Composable (NavBackStackEntry) -> Unit = {
-        var scriptModules by remember { mutableStateOf(listOf<ModuleInfo>()) }
-        var scriptingFolder by remember { mutableStateOf(null as DocumentFile?) }
+        val scriptingFolder by rememberAsyncMutableState(
+            defaultValue = null,
+            updateDispatcher = reloadDispatcher
+        ) {
+            context.scriptManager.getScriptsFolder()
+        }
+        val scriptModules by rememberAsyncMutableState(
+            defaultValue = emptyList(),
+            updateDispatcher = reloadDispatcher
+        ) {
+            context.scriptManager.sync()
+            context.database.getScripts()
+        }
+
         val coroutineScope = rememberCoroutineScope()
 
         var refreshing by remember {
             mutableStateOf(false)
         }
 
-        fun syncScripts() {
-            runCatching {
-                scriptingFolder = context.scriptManager.getScriptsFolder()
-                context.scriptManager.sync()
-                scriptModules = context.modDatabase.getScripts()
-            }.onFailure {
-                context.log.error("Failed to sync scripts", it)
-            }
-        }
-
         LaunchedEffect(Unit) {
             refreshing = true
             withContext(Dispatchers.IO) {
-                syncScripts()
+                reloadDispatcher.dispatch()
                 refreshing = false
             }
         }
 
         val pullRefreshState = rememberPullRefreshState(refreshing, onRefresh = {
             refreshing = true
-            syncScripts()
-            coroutineScope.launch {
-                delay(300)
+            coroutineScope.launch(Dispatchers.IO) {
+                reloadDispatcher.dispatch()
                 refreshing = false
             }
         })
@@ -206,7 +451,7 @@ class ScriptingRoot : Routes.Route() {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 item {
-                    if (scriptingFolder == null) {
+                    if (scriptingFolder == null && !refreshing) {
                         Text(
                             text = "No scripts folder selected",
                             style = MaterialTheme.typography.bodySmall,
@@ -218,7 +463,7 @@ class ScriptingRoot : Routes.Route() {
                                 context.config.root.scripting.moduleFolder.set(it)
                                 context.config.writeConfig()
                                 coroutineScope.launch {
-                                    syncScripts()
+                                    reloadDispatcher.dispatch()
                                 }
                             }
                         }) {
@@ -295,7 +540,10 @@ class ScriptingRoot : Routes.Route() {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK
             })
         }) {
-            Icon(imageVector = Icons.AutoMirrored.Default.LibraryBooks, contentDescription = "Documentation")
+            Icon(
+                imageVector = Icons.AutoMirrored.Default.LibraryBooks,
+                contentDescription = "Documentation"
+            )
         }
     }
 }

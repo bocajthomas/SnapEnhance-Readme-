@@ -25,7 +25,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -45,7 +44,6 @@ import me.rhunk.snapenhance.ui.manager.MainActivity
 import me.rhunk.snapenhance.ui.manager.Routes
 import me.rhunk.snapenhance.ui.util.*
 
-@OptIn(ExperimentalMaterial3Api::class)
 class FeaturesRoot : Routes.Route() {
     private val alertDialogs by lazy { AlertDialogs(context.translation) }
 
@@ -313,7 +311,7 @@ class FeaturesRoot : Routes.Route() {
             FeatureNotice.REQUIRE_NATIVE_HOOKS.key to Color(0xFFFF5722),
         )
 
-        Card(
+        ElevatedCard(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(start = 10.dp, end = 10.dp, top = 5.dp, bottom = 5.dp)
@@ -327,24 +325,14 @@ class FeaturesRoot : Routes.Route() {
                     .padding(all = 4.dp),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                property.key.params.icon?.let { iconName ->
-                    //TODO: find a better way to load icons
-                    val icon: ImageVector? = remember(iconName) {
-                        runCatching {
-                            val cl = Class.forName("androidx.compose.material.icons.filled.${iconName}Kt")
-                            val method = cl.declaredMethods.first()
-                            method.invoke(null, Icons.Filled) as ImageVector
-                        }.getOrNull()
-                    }
-                    if (icon != null) {
-                        Icon(
-                            imageVector = icon,
-                            contentDescription = null,
-                            modifier = Modifier
-                                .align(Alignment.CenterVertically)
-                                .padding(start = 10.dp)
-                        )
-                    }
+                property.key.params.icon?.let { icon ->
+                    Icon(
+                        imageVector = icon,
+                        contentDescription = null,
+                        modifier = Modifier
+                            .align(Alignment.CenterVertically)
+                            .padding(start = 10.dp)
+                    )
                 }
 
                 Column(

@@ -119,8 +119,10 @@ class MessageLogger : Feature("MessageLogger",
 
             if (!isMessageDeleted) {
                 if (messageFilter.isNotEmpty() && !messageFilter.contains(messageContentType?.name)) return@subscribe
-                if (fetchedMessages.contains(uniqueMessageIdentifier)) return@subscribe
-                fetchedMessages.add(uniqueMessageIdentifier)
+                if (event.message.messageMetadata?.isEdited != true) {
+                    if (fetchedMessages.contains(uniqueMessageIdentifier)) return@subscribe
+                    fetchedMessages.add(uniqueMessageIdentifier)
+                }
 
                 threadPool.execute {
                     try {

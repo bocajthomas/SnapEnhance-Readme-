@@ -18,6 +18,7 @@ import me.rhunk.snapenhance.common.logger.LogLevel
 import me.rhunk.snapenhance.common.util.toParcelable
 import me.rhunk.snapenhance.download.DownloadProcessor
 import me.rhunk.snapenhance.download.FFMpegProcessor
+import me.rhunk.snapenhance.storage.*
 import me.rhunk.snapenhance.task.Task
 import me.rhunk.snapenhance.task.TaskType
 import java.io.File
@@ -47,7 +48,7 @@ class BridgeService : Service() {
 
     fun triggerScopeSync(scope: SocialScope, id: String, updateOnly: Boolean = false) {
         runCatching {
-            val modDatabase = remoteSideContext.modDatabase
+            val modDatabase = remoteSideContext.database
             val syncedObject = when (scope) {
                 SocialScope.FRIEND -> {
                     if (updateOnly && modDatabase.getFriendInfo(id) == null) return
@@ -194,24 +195,24 @@ class BridgeService : Service() {
         }
 
         override fun getRules(uuid: String): List<String> {
-            return remoteSideContext.modDatabase.getRules(uuid).map { it.key }
+            return remoteSideContext.database.getRules(uuid).map { it.key }
         }
 
         override fun getRuleIds(type: String): MutableList<String> {
-            return remoteSideContext.modDatabase.getRuleIds(type)
+            return remoteSideContext.database.getRuleIds(type)
         }
 
         override fun setRule(uuid: String, rule: String, state: Boolean) {
-            remoteSideContext.modDatabase.setRule(uuid, rule, state)
+            remoteSideContext.database.setRule(uuid, rule, state)
         }
 
         override fun sync(callback: SyncCallback) {
             syncCallback = callback
             measureTimeMillis {
-                remoteSideContext.modDatabase.getFriends().map { it.userId } .forEach { friendId ->
+                remoteSideContext.database.getFriends().map { it.userId } .forEach { friendId ->
                     triggerScopeSync(SocialScope.FRIEND, friendId, true)
                 }
-                remoteSideContext.modDatabase.getGroups().map { it.conversationId }.forEach { groupId ->
+                remoteSideContext.database.getGroups().map { it.conversationId }.forEach { groupId ->
                     triggerScopeSync(SocialScope.GROUP, groupId, true)
                 }
             }.also {
@@ -229,7 +230,7 @@ class BridgeService : Service() {
             friends: List<String>
         ) {
             remoteSideContext.log.verbose("Received ${groups.size} groups and ${friends.size} friends")
-            remoteSideContext.modDatabase.receiveMessagingDataCallback(
+            remoteSideContext.database.receiveMessagingDataCallback(
                 friends.mapNotNull { toParcelable<MessagingFriendInfo>(it) },
                 groups.mapNotNull { toParcelable<MessagingGroupInfo>(it) }
             )

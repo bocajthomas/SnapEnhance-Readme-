@@ -29,7 +29,7 @@ fun BitmojiImage(context: RemoteSideContext, modifier: Modifier = Modifier, size
             imageLoader = context.imageLoader
         ),
         contentDescription = null,
-        contentScale = ContentScale.Crop,
+        contentScale = ContentScale.Inside,
         modifier = Modifier
             .requiredWidthIn(min = 0.dp, max = size.dp)
             .height(size.dp)

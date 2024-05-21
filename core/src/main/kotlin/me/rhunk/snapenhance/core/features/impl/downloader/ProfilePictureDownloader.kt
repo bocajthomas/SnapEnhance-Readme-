@@ -9,9 +9,6 @@ import me.rhunk.snapenhance.core.event.events.impl.NetworkApiRequestEvent
 import me.rhunk.snapenhance.core.features.Feature
 import me.rhunk.snapenhance.core.features.FeatureLoadParams
 import me.rhunk.snapenhance.core.ui.ViewAppearanceHelper
-import me.rhunk.snapenhance.core.util.hook.HookStage
-import me.rhunk.snapenhance.core.util.hook.Hooker
-import java.nio.ByteBuffer
 
 class ProfilePictureDownloader : Feature("ProfilePictureDownloader", loadParams = FeatureLoadParams.ACTIVITY_CREATE_ASYNC) {
     @SuppressLint("SetTextI18n")

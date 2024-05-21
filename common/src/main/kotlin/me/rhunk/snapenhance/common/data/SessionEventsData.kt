@@ -35,6 +35,7 @@ enum class SessionEventType(
     MESSAGE_DELETED("message_deleted"),
     MESSAGE_SAVED("message_saved"),
     MESSAGE_UNSAVED("message_unsaved"),
+    MESSAGE_EDITED("message_edited"),
     MESSAGE_REACTION_ADD("message_reaction_add"),
     MESSAGE_REACTION_REMOVE("message_reaction_remove"),
     SNAP_OPENED("snap_opened"),
@@ -43,70 +44,6 @@ enum class SessionEventType(
     SNAP_SCREENSHOT("snap_screenshot"),
     SNAP_SCREEN_RECORD("snap_screen_record"),
 }
-
-object TrackerFlags {
-    const val TRACK = 1
-    const val LOG = 2
-    const val NOTIFY = 4
-    const val APP_IS_ACTIVE = 8
-    const val APP_IS_INACTIVE = 16
-    const val IS_IN_CONVERSATION = 32
-}
-
-@Parcelize
-class TrackerEventsResult(
-    private val rules: Map<TrackerRule, List<TrackerRuleEvent>>
-): Parcelable {
-    fun hasFlags(vararg flags: Int): Boolean {
-        return rules.any { (_, ruleEvents) ->
-            ruleEvents.any { flags.all { flag -> it.flags and flag != 0 } }
-        }
-    }
-
-    fun canTrackOn(conversationId: String?, userId: String?): Boolean {
-        return rules.any t@{ (rule, ruleEvents) ->
-            ruleEvents.any { event ->
-                if (event.flags and TrackerFlags.TRACK == 0) {
-                    return@any false
-                }
-
-                // global rule
-                if (rule.conversationId == null && rule.userId == null) {
-                    return@any true
-                }
-
-                // user rule
-                if (rule.conversationId == null && rule.userId == userId) {
-                    return@any true
-                }
-
-                // conversation rule
-                if (rule.conversationId == conversationId && rule.userId == null) {
-                    return@any true
-                }
-
-                // conversation and user rule
-                return@any rule.conversationId == conversationId && rule.userId == userId
-            }
-        }
-    }
-}
-
-
-@Parcelize
-data class TrackerRule(
-    val id: Int,
-    val flags: Int,
-    val conversationId: String?,
-    val userId: String?
-): Parcelable
-
-@Parcelize
-data class TrackerRuleEvent(
-    val id: Int,
-    val flags: Int,
-    val eventType: String,
-): Parcelable
 
 enum class TrackerEventType(
     val key: String
@@ -126,6 +63,7 @@ enum class TrackerEventType(
     MESSAGE_DELETED("message_deleted"),
     MESSAGE_SAVED("message_saved"),
     MESSAGE_UNSAVED("message_unsaved"),
+    MESSAGE_EDITED("message_edited"),
     MESSAGE_REACTION_ADD("message_reaction_add"),
     MESSAGE_REACTION_REMOVE("message_reaction_remove"),
     SNAP_OPENED("snap_opened"),
@@ -134,3 +72,104 @@ enum class TrackerEventType(
     SNAP_SCREENSHOT("snap_screenshot"),
     SNAP_SCREEN_RECORD("snap_screen_record"),
 }
+
+
+@Parcelize
+class TrackerEventsResult(
+    val rules: Map<ScopedTrackerRule, List<TrackerRuleEvent>>,
+): Parcelable {
+    fun getActions(): Map<TrackerRuleAction, TrackerRuleActionParams> {
+        return rules.flatMap {
+            it.value
+        }.fold(mutableMapOf()) { acc, ruleEvent ->
+            ruleEvent.actions.forEach { action ->
+                acc[action] = acc[action]?.merge(ruleEvent.params) ?: ruleEvent.params
+            }
+            acc
+        }
+    }
+
+    fun canTrackOn(conversationId: String?, userId: String?): Boolean {
+        return rules.any { (scopedRule, events) ->
+            if (!events.any { it.enabled }) return@any false
+            val scopes = scopedRule.scopes
+
+            when (scopes[userId]) {
+                TrackerScopeType.WHITELIST -> return@any true
+                TrackerScopeType.BLACKLIST -> return@any false
+                else -> {}
+            }
+
+            when (scopes[conversationId]) {
+                TrackerScopeType.WHITELIST -> return@any true
+                TrackerScopeType.BLACKLIST -> return@any false
+                else -> {}
+            }
+
+            return@any scopes.isEmpty() || scopes.any { it.value == TrackerScopeType.BLACKLIST }
+        }
+    }
+}
+
+enum class TrackerRuleAction(
+    val key: String
+) {
+    LOG("log"),
+    IN_APP_NOTIFICATION("in_app_notification"),
+    PUSH_NOTIFICATION("push_notification"),
+    CUSTOM("custom");
+
+    companion object {
+        fun fromString(value: String): TrackerRuleAction? {
+            return entries.find { it.key == value }
+        }
+    }
+}
+
+@Parcelize
+data class TrackerRuleActionParams(
+    var onlyInsideConversation: Boolean = false,
+    var onlyOutsideConversation: Boolean = false,
+    var onlyWhenAppActive: Boolean = false,
+    var onlyWhenAppInactive: Boolean = false,
+    var noPushNotificationWhenAppActive: Boolean = false,
+): Parcelable {
+    fun merge(other: TrackerRuleActionParams): TrackerRuleActionParams {
+        return TrackerRuleActionParams(
+            onlyInsideConversation = onlyInsideConversation || other.onlyInsideConversation,
+            onlyOutsideConversation = onlyOutsideConversation || other.onlyOutsideConversation,
+            onlyWhenAppActive = onlyWhenAppActive || other.onlyWhenAppActive,
+            onlyWhenAppInactive = onlyWhenAppInactive || other.onlyWhenAppInactive,
+            noPushNotificationWhenAppActive = noPushNotificationWhenAppActive || other.noPushNotificationWhenAppActive,
+        )
+    }
+}
+
+@Parcelize
+data class TrackerRule(
+    val id: Int,
+    val enabled: Boolean,
+    val name: String,
+): Parcelable
+
+@Parcelize
+data class ScopedTrackerRule(
+    val rule: TrackerRule,
+    val scopes: Map<String, TrackerScopeType>
+): Parcelable
+
+enum class TrackerScopeType(
+    val key: String
+) {
+    WHITELIST("whitelist"),
+    BLACKLIST("blacklist");
+}
+
+@Parcelize
+data class TrackerRuleEvent(
+    val id: Int,
+    val enabled: Boolean,
+    val eventType: String,
+    val params: TrackerRuleActionParams,
+    val actions: List<TrackerRuleAction>
+): Parcelable

@@ -1,10 +1,10 @@
 package me.rhunk.snapenhance.mapper.impl
 
+import com.android.tools.smali.dexlib2.iface.instruction.formats.ArrayPayload
 import me.rhunk.snapenhance.mapper.AbstractClassMapper
 import me.rhunk.snapenhance.mapper.ext.getClassName
 import me.rhunk.snapenhance.mapper.ext.getStaticConstructor
 import me.rhunk.snapenhance.mapper.ext.isFinal
-import com.android.tools.smali.dexlib2.iface.instruction.formats.ArrayPayload
 
 class BCryptClassMapper : AbstractClassMapper("BCryptClass") {
     val classReference = classReference("class")

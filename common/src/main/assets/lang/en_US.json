@@ -33,6 +33,8 @@
             "home_logs": "Logs",
             "logger_history": "Logger History",
             "logged_stories": "Logged Stories",
+            "friend_tracker": "Friend Tracker",
+            "edit_rule": "Edit Rule",
             "social": "Social",
             "manage_scope": "Manage Scope",
             "messaging_preview": "Preview",
@@ -878,20 +880,6 @@
                             }
                         }
                     },
-                    "session_events": {
-                        "name": "Session Events",
-                        "description": "Records session events",
-                        "properties": {
-                            "capture_duplex_events": {
-                                "name": "Capture Duplex Events",
-                                "description": "Capture presence and messaging events when a session is active"
-                            },
-                            "allow_running_in_background": {
-                                "name": "Allow Running in Background",
-                                "description": "Allows session to run in the background"
-                            }
-                        }
-                    },
                     "spoof": {
                         "name": "Spoof",
                         "description": "Spoof various information about you",
@@ -1037,6 +1025,20 @@
                     "disable_log_anonymization": {
                         "name": "Disable Log Anonymization",
                         "description": "Disables the anonymization of logs"
+                    }
+                }
+            },
+            "friend_tracker": {
+                "name": "Friend Tracker",
+                "description": "Records friend's activity on Snapchat",
+                "properties": {
+                    "record_messaging_events": {
+                        "name": "Record Messaging Events",
+                        "description": "Records messaging events such as opening a snap, reading a message, etc."
+                    },
+                    "allow_running_in_background": {
+                        "name": "Allow Running in Background",
+                        "description": "Allows the tracker to run in the background. Note: This will significantly drain your battery"
                     }
                 }
             }

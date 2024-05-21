@@ -15,7 +15,6 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavGraphBuilder
 import me.rhunk.snapenhance.RemoteSideContext
-import me.rhunk.snapenhance.ui.manager.pages.FriendTrackerManagerRoot
 import me.rhunk.snapenhance.ui.manager.pages.LoggerHistoryRoot
 import me.rhunk.snapenhance.ui.manager.pages.TasksRoot
 import me.rhunk.snapenhance.ui.manager.pages.features.FeaturesRoot
@@ -27,6 +26,8 @@ import me.rhunk.snapenhance.ui.manager.pages.social.LoggedStories
 import me.rhunk.snapenhance.ui.manager.pages.social.ManageScope
 import me.rhunk.snapenhance.ui.manager.pages.social.MessagingPreview
 import me.rhunk.snapenhance.ui.manager.pages.social.SocialRoot
+import me.rhunk.snapenhance.ui.manager.pages.tracker.EditRule
+import me.rhunk.snapenhance.ui.manager.pages.tracker.FriendTrackerManagerRoot
 
 
 data class RouteInfo(
@@ -55,6 +56,7 @@ class Routes(
     val homeLogs = route(RouteInfo("home_logs"), HomeLogs()).parent(home)
     val loggerHistory = route(RouteInfo("logger_history"), LoggerHistoryRoot()).parent(home)
     val friendTracker = route(RouteInfo("friend_tracker"), FriendTrackerManagerRoot()).parent(home)
+    val editRule = route(RouteInfo("edit_rule/?rule_id={rule_id}"), EditRule())
 
     val social = route(RouteInfo("social", icon = Icons.Default.Group, primary = true), SocialRoot())
     val manageScope = route(RouteInfo("manage_scope/?scope={scope}&id={id}"), ManageScope()).parent(social)

@@ -35,14 +35,18 @@ class Navigation(
     @Composable
     fun TopBar() {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
+        val currentRoute = remember(navBackStackEntry) { routes.getCurrentRoute(navBackStackEntry) }
 
-        val canGoBack = remember (navBackStackEntry) { routes.getCurrentRoute(navBackStackEntry)?.let {
+        val canGoBack = remember(navBackStackEntry) { currentRoute?.let {
             !it.routeInfo.primary || it.routeInfo.childIds.contains(routes.currentDestination)
         } == true }
 
         TopAppBar(title = {
-            val currentRoute = routes.getCurrentRoute(navBackStackEntry)
-            currentRoute?.title?.invoke() ?: Text(text = currentRoute?.routeInfo?.translatedKey?.value ?: "Unknown Page")
+            currentRoute?.apply {
+                title?.invoke() ?: routeInfo.translatedKey?.value?.let {
+                    Text(text = it)
+                }
+            }
         }, navigationIcon =  {
             val backButtonAnimation by animateFloatAsState(if (canGoBack) 1f else 0f,
                 label = "backButtonAnimation"
@@ -65,20 +69,20 @@ class Navigation(
                 }
             }
         }, actions = {
-            routes.getCurrentRoute(navBackStackEntry)?.topBarActions?.invoke(this)
+            currentRoute?.topBarActions?.invoke(this)
         })
     }
 
     @Composable
     fun BottomBar() {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
+        val currentRoute = remember(navBackStackEntry) { routes.getCurrentRoute(navBackStackEntry) }
         val primaryRoutes = remember { routes.getRoutes().filter { it.routeInfo.primary } }
 
         NavigationBar {
-            val currentRoute = routes.getCurrentRoute(navBackStackEntry)
             primaryRoutes.forEach { route ->
                 NavigationBarItem(
-                    alwaysShowLabel = false,
+                    alwaysShowLabel = true,
                     icon = {
                         Icon(imageVector = route.routeInfo.icon, contentDescription = null)
                     },
@@ -88,7 +92,7 @@ class Navigation(
                             softWrap = false,
                             fontSize = 12.sp,
                             modifier = Modifier.wrapContentWidth(unbounded = true),
-                            text = if (currentRoute == route) context.translation["manager.routes.${route.routeInfo.key.substringBefore("/")}"] else "",
+                            text = remember(context.translation.loadedLocale) { context.translation["manager.routes.${route.routeInfo.key.substringBefore("/")}"] },
                         )
                     },
                     selected = currentRoute == route,
@@ -103,7 +107,7 @@ class Navigation(
     @Composable
     fun FloatingActionButton() {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
-        routes.getCurrentRoute(navBackStackEntry)?.floatingActionButton?.invoke()
+        remember(navBackStackEntry) { routes.getCurrentRoute(navBackStackEntry) }?.floatingActionButton?.invoke()
     }
 
     @Composable

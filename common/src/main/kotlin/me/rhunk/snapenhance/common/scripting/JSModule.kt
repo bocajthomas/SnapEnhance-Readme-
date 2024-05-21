@@ -4,8 +4,8 @@ import android.os.Handler
 import android.widget.Toast
 import me.rhunk.snapenhance.common.scripting.bindings.AbstractBinding
 import me.rhunk.snapenhance.common.scripting.bindings.BindingsContext
-import me.rhunk.snapenhance.common.scripting.impl.Networking
 import me.rhunk.snapenhance.common.scripting.impl.JavaInterfaces
+import me.rhunk.snapenhance.common.scripting.impl.Networking
 import me.rhunk.snapenhance.common.scripting.ktx.contextScope
 import me.rhunk.snapenhance.common.scripting.ktx.putFunction
 import me.rhunk.snapenhance.common.scripting.ktx.scriptable
@@ -18,13 +18,14 @@ import org.mozilla.javascript.NativeJavaObject
 import org.mozilla.javascript.ScriptableObject
 import org.mozilla.javascript.Undefined
 import org.mozilla.javascript.Wrapper
+import java.io.Reader
 import java.lang.reflect.Modifier
 import kotlin.reflect.KClass
 
 class JSModule(
-    val scriptRuntime: ScriptRuntime,
+    private val scriptRuntime: ScriptRuntime,
     val moduleInfo: ModuleInfo,
-    val content: String,
+    private val reader: Reader,
 ) {
     private val moduleBindings = mutableMapOf<String, AbstractBinding>()
     private lateinit var moduleObject: ScriptableObject
@@ -52,6 +53,18 @@ class JSModule(
                     putConst("grantedPermissions", this, moduleInfo.grantedPermissions)
                 })
             })
+
+            scriptRuntime.logger.apply {
+                moduleObject.putConst("console", moduleObject, scriptableObject {
+                    putFunction("log") { info(argsToString(it)) }
+                    putFunction("warn") { warn(argsToString(it)) }
+                    putFunction("error") { error(argsToString(it)) }
+                    putFunction("debug") { debug(argsToString(it)) }
+                    putFunction("info") { info(argsToString(it)) }
+                    putFunction("trace") { verbose(argsToString(it)) }
+                    putFunction("verbose") { verbose(argsToString(it)) }
+                })
+            }
 
             registerBindings(
                 JavaInterfaces(),
@@ -186,7 +199,7 @@ class JSModule(
         }
 
         contextScope(shouldOptimize = true) {
-            evaluateString(moduleObject, content, moduleInfo.name, 1, null)
+            evaluateReader(moduleObject, reader, moduleInfo.name, 1, null)
         }
     }
 
@@ -233,7 +246,10 @@ class JSModule(
     private fun argsToString(args: Array<out Any?>?): String {
         return args?.joinToString(" ") {
             when (it) {
-                is Wrapper -> it.unwrap().toString()
+                is Wrapper -> it.unwrap().let { value ->
+                    if (value is Throwable) value.message + "\n" + value.stackTraceToString()
+                    else value.toString()
+                }
                 else -> it.toString()
             }
         } ?: "null"

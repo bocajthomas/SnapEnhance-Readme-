@@ -65,7 +65,7 @@
             android:excludeFromRecents="true"
             android:exported="true" />
 
-        <receiver android:name=".messaging.StreaksReminder" />
+        <receiver android:name=".StreaksReminder" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

@@ -17,9 +17,11 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavBackStackEntry
 import com.google.gson.JsonParser
 import kotlinx.coroutines.Dispatchers
@@ -33,14 +35,19 @@ import me.rhunk.snapenhance.common.data.download.DownloadMetadata
 import me.rhunk.snapenhance.common.data.download.DownloadRequest
 import me.rhunk.snapenhance.common.data.download.MediaDownloadSource
 import me.rhunk.snapenhance.common.data.download.createNewFilePath
+import me.rhunk.snapenhance.common.ui.rememberAsyncMutableState
 import me.rhunk.snapenhance.common.util.ktx.copyToClipboard
 import me.rhunk.snapenhance.common.util.ktx.longHashCode
 import me.rhunk.snapenhance.common.util.protobuf.ProtoReader
 import me.rhunk.snapenhance.core.features.impl.downloader.decoder.DecodedAttachment
 import me.rhunk.snapenhance.core.features.impl.downloader.decoder.MessageDecoder
 import me.rhunk.snapenhance.download.DownloadProcessor
+import me.rhunk.snapenhance.storage.findFriend
+import me.rhunk.snapenhance.storage.getFriendInfo
+import me.rhunk.snapenhance.storage.getGroupInfo
 import me.rhunk.snapenhance.ui.manager.Routes
 import java.nio.ByteBuffer
+import java.text.DateFormat
 import java.util.UUID
 import kotlin.math.absoluteValue
 
@@ -114,7 +121,7 @@ class LoggerHistoryRoot : Routes.Route() {
         ) {
             Row(
                 modifier = Modifier
-                    .padding(4.dp)
+                    .padding(8.dp)
                     .fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
             ) {
@@ -123,7 +130,7 @@ class LoggerHistoryRoot : Routes.Route() {
                 LaunchedEffect(Unit, message) {
                     runCatching {
                         decodeMessage(message) { senderId, contentType, messageReader, attachments ->
-                            val senderUsername = senderId?.let { context.modDatabase.getFriendInfo(it)?.mutableUsername } ?: translation["unknown_sender"]
+                            val senderUsername = senderId?.let { context.database.getFriendInfo(it)?.mutableUsername } ?: translation["unknown_sender"]
 
                             @Composable
                             fun ContentHeader() {
@@ -141,6 +148,26 @@ class LoggerHistoryRoot : Routes.Route() {
                                                     context.androidContext.copyToClipboard(content)
                                                 })
                                             })
+
+                                        val edits by rememberAsyncMutableState(defaultValue = emptyList()) {
+                                            loggerWrapper.getMessageEdits(selectedConversation!!, message.messageId)
+                                        }
+                                        edits.forEach { messageEdit ->
+                                            val date = remember {
+                                                DateFormat.getDateTimeInstance().format(messageEdit.timestamp)
+                                            }
+                                            Text(
+                                                modifier = Modifier.pointerInput(Unit) {
+                                                    detectTapGestures(onLongPress = {
+                                                        context.androidContext.copyToClipboard(messageEdit.messageText)
+                                                    })
+                                                }.fillMaxWidth().padding(start = 4.dp),
+                                                text = messageEdit.messageText + " (edited at $date)",
+                                                fontWeight = FontWeight.Light,
+                                                fontStyle = FontStyle.Italic,
+                                                fontSize = 12.sp
+                                            )
+                                        }
                                         ContentHeader()
                                     }
                                 }
@@ -209,9 +236,9 @@ class LoggerHistoryRoot : Routes.Route() {
             ) {
                 fun formatConversationId(conversationId: String?): String? {
                     if (conversationId == null) return null
-                    return context.modDatabase.getGroupInfo(conversationId)?.name?.let {
+                    return context.database.getGroupInfo(conversationId)?.name?.let {
                         translation.format("list_group_format", "name" to it)
-                    } ?: context.modDatabase.findFriend(conversationId)?.let {
+                    } ?: context.database.findFriend(conversationId)?.let {
                         translation.format("list_friend_format", "name" to (it.displayName?.let { name -> "$name (${it.mutableUsername})" } ?: it.mutableUsername))
                     } ?: conversationId
                 }
@@ -225,13 +252,8 @@ class LoggerHistoryRoot : Routes.Route() {
                         .fillMaxWidth()
                 )
 
-                val conversations = remember { mutableStateListOf<String>() }
-
-                LaunchedEffect(Unit) {
-                    conversations.clear()
-                    withContext(Dispatchers.IO) {
-                        conversations.addAll(loggerWrapper.getAllConversations())
-                    }
+                val conversations by rememberAsyncMutableState(defaultValue = emptyList()) {
+                    loggerWrapper.getAllConversations().toMutableList()
                 }
 
                 ExposedDropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {

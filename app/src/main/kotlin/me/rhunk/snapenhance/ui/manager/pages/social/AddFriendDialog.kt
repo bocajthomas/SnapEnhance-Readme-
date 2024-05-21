@@ -10,7 +10,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -27,45 +26,74 @@ import me.rhunk.snapenhance.RemoteSideContext
 import me.rhunk.snapenhance.common.ReceiversConfig
 import me.rhunk.snapenhance.common.data.MessagingFriendInfo
 import me.rhunk.snapenhance.common.data.MessagingGroupInfo
-import me.rhunk.snapenhance.common.data.SocialScope
+import me.rhunk.snapenhance.common.ui.rememberAsyncMutableState
+import me.rhunk.snapenhance.common.util.snap.BitmojiSelfie
 import me.rhunk.snapenhance.common.util.snap.SnapWidgetBroadcastReceiverHelper
+import me.rhunk.snapenhance.ui.util.coil.BitmojiImage
 
 class AddFriendDialog(
     private val context: RemoteSideContext,
-    private val socialRoot: SocialRoot,
+    private val actionHandler: Actions,
 ) {
+    class Actions(
+        val onFriendState: (friend: MessagingFriendInfo, state: Boolean) -> Unit,
+        val onGroupState: (group: MessagingGroupInfo, state: Boolean) -> Unit,
+        val getFriendState: (friend: MessagingFriendInfo) -> Boolean,
+        val getGroupState: (group: MessagingGroupInfo) -> Boolean,
+    )
 
+    private val stateCache = mutableMapOf<String, Boolean>()
     private val translation by lazy { context.translation.getCategory("manager.dialogs.add_friend")}
 
     @Composable
-    private fun ListCardEntry(name: String, getCurrentState: () -> Boolean, onState: (Boolean) -> Unit = {}) {
-        var currentState by remember { mutableStateOf(getCurrentState()) }
+    private fun ListCardEntry(
+        id: String,
+        bitmoji: String? = null,
+        name: String,
+        getCurrentState: () -> Boolean,
+        onState: (Boolean) -> Unit = {},
+    ) {
+        var currentState by rememberAsyncMutableState(defaultValue = stateCache[id] ?: false) {
+            getCurrentState().also { stateCache[id] = it }
+        }
+        val coroutineScope = rememberCoroutineScope()
 
         Row(
             modifier = Modifier
                 .fillMaxWidth()
                 .clickable {
                     currentState = !currentState
-                    onState(currentState)
+                    stateCache[id] = currentState
+                    coroutineScope.launch(Dispatchers.IO) {
+                        onState(currentState)
+                    }
                 }
                 .padding(4.dp),
+            horizontalArrangement = Arrangement.spacedBy(4.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
+            BitmojiImage(
+                context = this@AddFriendDialog.context,
+                url = bitmoji,
+                modifier = Modifier.padding(end = 2.dp),
+                size = 32,
+            )
+
             Text(
                 text = name,
                 fontSize = 15.sp,
                 modifier = Modifier
                     .weight(1f)
-                    .onGloballyPositioned {
-                        currentState = getCurrentState()
-                    }
             )
 
             Checkbox(
                 checked = currentState,
                 onCheckedChange = {
                     currentState = it
-                    onState(currentState)
+                    stateCache[id] = currentState
+                    coroutineScope.launch(Dispatchers.IO) {
+                        onState(currentState)
+                    }
                 }
             )
         }
@@ -122,7 +150,7 @@ class AddFriendDialog(
         var hasFetchError by remember { mutableStateOf(false) }
 
         LaunchedEffect(Unit) {
-            context.modDatabase.receiveMessagingDataCallback = { friends, groups ->
+            context.database.receiveMessagingDataCallback = { friends, groups ->
                 cachedFriends = friends
                 cachedGroups = groups
                 timeoutJob?.cancel()
@@ -138,7 +166,7 @@ class AddFriendDialog(
             }
             timeoutJob = coroutineScope.launch {
                 withContext(Dispatchers.IO) {
-                    delay(10000)
+                    delay(20000)
                     hasFetchError = true
                 }
             }
@@ -216,15 +244,11 @@ class AddFriendDialog(
                     items(filteredGroups.size) {
                         val group = filteredGroups[it]
                         ListCardEntry(
+                            id = group.conversationId,
                             name = group.name,
-                            getCurrentState = { context.modDatabase.getGroupInfo(group.conversationId) != null }
+                            getCurrentState = { actionHandler.getGroupState(group) }
                         ) { state ->
-                            if (state) {
-                                context.bridgeService?.triggerScopeSync(SocialScope.GROUP, group.conversationId)
-                            } else {
-                                context.modDatabase.deleteGroup(group.conversationId)
-                            }
-                            socialRoot.updateScopeLists()
+                            actionHandler.onGroupState(group, state)
                         }
                     }
 
@@ -237,19 +261,18 @@ class AddFriendDialog(
                         )
                     }
 
-                    items(filteredFriends.size) {
-                        val friend = filteredFriends[it]
+                    items(filteredFriends.size) { index ->
+                        val friend = filteredFriends[index]
 
                         ListCardEntry(
+                            id = friend.userId,
+                            bitmoji = friend.takeIf { it.bitmojiId != null }?.let {
+                                BitmojiSelfie.getBitmojiSelfie(it.selfieId, it.bitmojiId, BitmojiSelfie.BitmojiSelfieType.NEW_THREE_D)
+                            },
                             name = friend.displayName?.takeIf { name -> name.isNotBlank() } ?: friend.mutableUsername,
-                            getCurrentState = { context.modDatabase.getFriendInfo(friend.userId) != null }
+                            getCurrentState = { actionHandler.getFriendState(friend) }
                         ) { state ->
-                            if (state) {
-                                context.bridgeService?.triggerScopeSync(SocialScope.FRIEND, friend.userId)
-                            } else {
-                                context.modDatabase.deleteFriend(friend.userId)
-                            }
-                            socialRoot.updateScopeLists()
+                            actionHandler.onFriendState(friend, state)
                         }
                     }
                 }

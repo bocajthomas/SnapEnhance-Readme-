@@ -1,4 +1,4 @@
-package me.rhunk.snapenhance.messaging
+package me.rhunk.snapenhance
 
 import android.app.AlarmManager
 import android.app.NotificationChannel
@@ -10,11 +10,10 @@ import android.content.Intent
 import androidx.core.app.NotificationCompat
 import androidx.core.graphics.drawable.toBitmap
 import kotlinx.coroutines.launch
-import me.rhunk.snapenhance.R
-import me.rhunk.snapenhance.RemoteSideContext
-import me.rhunk.snapenhance.SharedContextHolder
 import me.rhunk.snapenhance.bridge.ForceStartActivity
 import me.rhunk.snapenhance.common.util.snap.BitmojiSelfie
+import me.rhunk.snapenhance.storage.getFriendStreaks
+import me.rhunk.snapenhance.storage.getFriends
 import me.rhunk.snapenhance.ui.util.coil.ImageRequestHelper
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.milliseconds
@@ -56,8 +55,8 @@ class StreaksReminder(
                 PendingIntent.FLAG_IMMUTABLE)
         )
 
-        val notifyFriendList = remoteSideContext.modDatabase.getFriends()
-            .associateBy { remoteSideContext.modDatabase.getFriendStreaks(it.userId) }
+        val notifyFriendList = remoteSideContext.database.getFriends()
+            .associateBy { remoteSideContext.database.getFriendStreaks(it.userId) }
             .filter { (streaks, _) -> streaks != null && streaks.notify && streaks.isAboutToExpire(remainingHours) }
 
         val notificationManager = getNotificationManager(ctx)
