@@ -104,7 +104,7 @@ if (config.operaDownloadButton) {
                     marginLeft: 8,
                     marginRight: 12,
                     objectFit: "contain",
-                    tint: colors.SemanticColor.Icon.PRIMARY
+                    tint: "white"
                 }))
                 jsx.setAttribute("src", downloadIcon)
                 jsx.setAttributeFunction("onTap", () => callExport("downloadLastOperaMedia", false))
