@@ -292,16 +292,16 @@ class HomeRoot : Routes.Route() {
                     .padding(all = cardMargin)
                     .fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceEvenly,
-                verticalArrangement = Arrangement.spacedBy(3.dp),
             ) {
                 remember(selectedTiles.size, context.translation.loadedLocale) { selectedTiles.mapNotNull {
                     cards.entries.find { entry -> entry.key.first == it }
                 } }.forEach { (card, action) ->
                     ElevatedCard(
                         modifier = Modifier
-                            .size(130.dp)
+                            .size(105.dp)
+                            .weight(1f)
                             .clickable { action() }
-                            .padding(all = 5.dp),
+                            .padding(all = 6.dp),
                     ) {
                         Column(
                             modifier = Modifier
@@ -316,7 +316,7 @@ class HomeRoot : Routes.Route() {
                                 modifier = Modifier.size(50.dp)
                             )
                             Text(
-                                lineHeight = 16.sp, text = card.first, fontSize = 14.sp,
+                                lineHeight = 16.sp, text = card.first, fontSize = 11.sp,
                                 textAlign = TextAlign.Center
                             )
                         }
