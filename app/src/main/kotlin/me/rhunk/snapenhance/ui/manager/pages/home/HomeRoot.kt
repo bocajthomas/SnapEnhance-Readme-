@@ -301,7 +301,7 @@ class HomeRoot : Routes.Route() {
                             .size(105.dp)
                             .weight(1f)
                             .clickable { action() }
-                            .padding(all = 6.dp),
+                            .padding(all = 6.dp),                     
                     ) {
                         Column(
                             modifier = Modifier
