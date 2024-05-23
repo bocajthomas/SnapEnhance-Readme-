@@ -6,6 +6,12 @@ plugins {
 android {
     namespace = rootProject.ext["applicationId"].toString() + ".composer"
     compileSdk = 34
+
+    sourceSets {
+        getByName("main") {
+            assets.srcDirs("build/assets")
+        }
+    }
 }
 
 task("compileTypeScript") {
@@ -16,11 +22,9 @@ task("compileTypeScript") {
         project.exec {
             commandLine("npx", "--yes", "rollup", "--config", "rollup.config.js", "--bundleConfigAsCjs")
         }
-        for (buildType in listOf("debug", "release")) {
-            project.copy {
-                from("build/loader.js")
-                into("build/intermediates/library_assets/$buildType/out/composer")
-            }
+        project.copy {
+            from("build/loader.js")
+            into("build/assets/composer")
         }
     }
 }
