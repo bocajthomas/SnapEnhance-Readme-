@@ -30,7 +30,9 @@
             "logger_history": "Kaydedici Geçmişi",
             "logged_stories": "Kaydedilen Hikayeler",
             "manage_scope": "Kapsamı Yönet",
-            "messaging_preview": "Önizleme"
+            "messaging_preview": "Önizleme",
+            "friend_tracker": "Arkadaş Takibi",
+            "edit_rule": "Kuralı Düzenle"
         },
         "sections": {
             "features": {
@@ -915,20 +917,6 @@
                         "description": "Arkadaş hikayelerinin bir tarihçesini sunar",
                         "name": "Hikaye Kaydedici"
                     },
-                    "session_events": {
-                        "name": "Oturum Etkinlikleri",
-                        "description": "Oturum olaylarını kaydeder",
-                        "properties": {
-                            "capture_duplex_events": {
-                                "name": "Çift Yönlü Olayları Yakalama",
-                                "description": "Bir oturum aktifken varlık ve mesajlaşma olaylarını yakalama"
-                            },
-                            "allow_running_in_background": {
-                                "name": "Arka Planda Çalışmaya İzin Ver",
-                                "description": "Oturumun arka planda çalışmasına izin verir"
-                            }
-                        }
-                    },
                     "new_chat_action_menu": {
                         "description": "Yeni sohbet eylem menüsü çekmecesini kullanın",
                         "name": "Yeni Sohbet Eylem Menüsü"
@@ -1000,22 +988,26 @@
                         "name": "Otomatik Yeniden Yükleme"
                     }
                 }
+            },
+            "friend_tracker": {
+                "name": "Arkadaş Takibi",
+                "description": "Arkadaşınızın Snapchat'teki etkinliğini kaydeder",
+                "properties": {
+                    "allow_running_in_background": {
+                        "name": "Arka Planda Çalışmaya İzin Ver",
+                        "description": "İzleyicinin arka planda çalışmasına izin verir. Not: Bu, pilinizi önemli ölçüde tüketecektir"
+                    },
+                    "record_messaging_events": {
+                        "name": "Mesajlaşma Olaylarını Kaydetme",
+                        "description": "Snap açma, mesaj okuma gibi mesajlaşma olaylarını kaydeder."
+                    }
+                }
             }
         },
         "options": {
             "app_appearance": {
                 "always_light": "Daima Aydınlık",
                 "always_dark": "Daima Koyu"
-            },
-            "better_notifications": {
-                "reply_button": "Yanıtla düğmesi ekle",
-                "download_button": "İndirme düğmesi ekle",
-                "group": "Bildirimleri gruplandır",
-                "mark_as_read_and_save_in_chat": "Okundu olarak işaretlendiğinde Sohbet'e kaydet (Otomatik Kaydet'e bağlıdır)",
-                "mark_as_read_button": "Okundu olarak işaretle düğmesi",
-                "media_preview": "Medyanın önizlemesini göster",
-                "chat_preview": "Sohbetin önizlemesini göster",
-                "friend_add_source": "Arkadaş ekleme kaynağını göster"
             },
             "friend_feed_menu_buttons": {
                 "auto_download": "⬇️ Otomatik İndirme",
@@ -1197,7 +1189,8 @@
                 "alien_landscape": "Uzaylı Manzarası",
                 "amoled_dark_mode": "AMOLED Karanlık Mod",
                 "dark_blue": "Koyu Mavi",
-                "material_you": "Material You (Android 12+)"
+                "material_you_light": "Material You Aydınlık (Android 12+)",
+                "material_you_dark": "Material You Karanlık (Android 12+)"
             }
         }
     },
@@ -1354,8 +1347,7 @@
             "download": "İndir",
             "reply": "Yanıtla",
             "mark_as_read": "Okundu olarak işaretle"
-        },
-        "stealth_mode_notice": "Gizli modda okundu olarak işaretlenemiyor"
+        }
     },
     "half_swipe_notifier": {
         "notification_content_group": "{friend} {duration} saniye boyunca {group}'a yarım kaydırma yaptı",

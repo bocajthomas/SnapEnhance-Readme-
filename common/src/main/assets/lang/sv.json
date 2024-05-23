@@ -626,20 +626,6 @@
                         "description": "Använd den nya chattåtgärdsmenylådan",
                         "name": "Ny chattåtgärdsmeny"
                     },
-                    "session_events": {
-                        "properties": {
-                            "allow_running_in_background": {
-                                "description": "Tillåter sessionen att köras i bakgrunden",
-                                "name": "Tillåt körning i bakgrunden"
-                            },
-                            "capture_duplex_events": {
-                                "name": "Fånga duplexhändelser",
-                                "description": "Fånga närvaro- och meddelandehändelser när en session är aktiv"
-                            }
-                        },
-                        "name": "Sessionshändelser",
-                        "description": "Spelar in sessionshändelser"
-                    },
                     "native_hooks": {
                         "name": "Native Hooks",
                         "description": "Osäkra funktioner som kopplas in i Snapchats inbyggda kod",
@@ -834,15 +820,6 @@
             "app_appearance": {
                 "always_light": "Alltid ljus",
                 "always_dark": "Alltid mörkt"
-            },
-            "better_notifications": {
-                "media_preview": "Visa en förhandsvisning av media",
-                "reply_button": "Knappen Lägg till svar",
-                "group": "Gruppaviseringar",
-                "mark_as_read_button": "Knappen Markera som läst",
-                "chat_preview": "Visa en förhandsvisning av chatten",
-                "download_button": "Lägg till nedladdningsknapp",
-                "mark_as_read_and_save_in_chat": "Spara i chatt när du markerar som läst (beror på Autospara)"
             },
             "auto_download_sources": {
                 "friend_snaps": "Vän Snaps",

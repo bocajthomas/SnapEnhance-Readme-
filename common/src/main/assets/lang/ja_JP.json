@@ -7,5 +7,38 @@
         "mappings": {
             "dialog": "スナップチャットのさまざまなバージョンを動的にサポートするためには、SnapEnhanceが正常に機能するためには、マッピングが必要です。これには5秒以上かかりません。"
         }
+    },
+    "manager": {
+        "dialogs": {
+            "scripting_warning": {
+                "content": "SnapEnhance にはスクリプト ツールが含まれており、デバイス上でユーザー定義のコードを実行できます。 細心の注意を払い、既知の信頼できるソースからのみモジュールをインストールしてください。 未承認または未検証のモジュールは、システムにセキュリティ上のリスクをもたらす可能性があります。"
+            }
+        }
+    },
+    "features": {
+        "properties": {
+            "experimental": {
+                "properties": {
+                    "account_switcher": {
+                        "description": "ログアウトせずにアカウントを切り替えることができます\nBitmoji プロフィールの横にある検索アイコンを長押ししてメニューを開きます\n注: この機能は実験的なものであり、将来変更される可能性があります。"
+                    }
+                }
+            },
+            "user_interface": {
+                "properties": {
+                    "customize_ui": {
+                        "properties": {
+                            "colors": {
+                                "properties": {
+                                    "pending_sending_text_color": {
+                                        "description": "友達フィード上の ( 配信済み / 受信済み / 送信中 / 開封済み / タップしてチャット / 長押しして再生 / 再生済み / チャットに保存 / 通話中 ) のテキストの色を変更します。"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 }

@@ -4,6 +4,18 @@
             "select_language": "选择语言",
             "save_folder": "SnapEnhance 需要存储权限才能从 Snapchat 下载和保存媒体。\n请选择媒体下载的位置。",
             "select_save_folder_button": "选择文件夹"
+        },
+        "mappings": {
+            "dialog": "生成映射，这可能需要一段时间......",
+            "generate_failure_no_snapchat": "SnapEnhance 无法检测到 Snapchat，请尝试重新安装 Snapchat",
+            "generate_failure": "尝试生成映射时出错，请重试。"
+        },
+        "permissions": {
+            "dialog": "要继续，您需要满足以下要求:",
+            "notification_access": "通知访问",
+            "battery_optimization": "电池优化",
+            "display_over_other_apps": "显示在其他应用程序之上",
+            "request_button": "要求"
         }
     },
     "friend_menu_option": {
@@ -53,5 +65,8 @@
         "negative": "否",
         "cancel": "取消",
         "open": "打开"
+    },
+    "scopes": {
+        "friend": "朋友"
     }
 }

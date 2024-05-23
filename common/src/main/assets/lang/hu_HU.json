@@ -443,7 +443,32 @@
                                         "description": "Megváltoztatja a ( Új Snap ) szöveg színét a friend feedben.\nMegjegyzés: Csak videós snapek"
                                     },
                                     "snap_without_sound_text_color": {
-                                        "name": "Snapek hang nélkül szöveg színe"
+                                        "name": "Snapek hang nélkül szöveg színe",
+                                        "description": "Megváltoztatja a ( New Snap ) szöveg színét a Friend feedben.\nMegjegyzés: Csak videó snapek"
+                                    },
+                                    "friend_feed_conversations_line_color": {
+                                        "name": "Beszélgetések vonal színe",
+                                        "description": "Megváltoztatja a elválasztó vonal színét, amely felosztja a beszélgetéseket a baráti feedben "
+                                    },
+                                    "action_menu_background_color": {
+                                        "name": "Művelet menü háttérszín",
+                                        "description": "Snapchats csevegés műveleti menü háttérszínének módosítása"
+                                    },
+                                    "action_menu_round_background_color": {
+                                        "name": "Művelet menü kerek háttérszín",
+                                        "description": "Változások Snapchatek csevegés műveleti menü kerek háttérszínében"
+                                    },
+                                    "camera_grid_lines": {
+                                        "name": "Kamera rácsvonalak színe",
+                                        "description": "Megváltoztatja a Snapchats rácsvonalak színét a kamera előnézetben\nMegjegyzés: Engedélyezd a rácsot a Saját kamera beállításoknál"
+                                    },
+                                    "background_color": {
+                                        "name": "Háttérszín",
+                                        "description": "Megváltoztatja a Snapchatek háttérszínét"
+                                    },
+                                    "background_color_surface": {
+                                        "name": "Háttér felület színe",
+                                        "description": "Snapchats háttérfelület színének megváltoztatása"
                                     }
                                 }
                             }
@@ -576,6 +601,10 @@
                     "friend_mutation_notifier": {
                         "name": "Barát Módosítás Értesítő",
                         "description": "Értesít, amikor valami változik egy barát profiljában"
+                    },
+                    "unlimited_conversation_pinning": {
+                        "description": "Engedélyezi, hogy végtelen mennyiségű beszélgetést kitűzz helyileg",
+                        "name": "Korlátlan beszélgetés kitűzés"
                     }
                 },
                 "description": "Változtasd meg a barátaiddal való kapcsolattartásodat"
@@ -646,6 +675,10 @@
                             "spoof_headphones": {
                                 "name": "Hamisított fejhallgató",
                                 "description": "Hazudik a zenehallgatás státuszáról a térképen"
+                            },
+                            "walk_radius": {
+                                "description": "Random ezen a területen belül fogsz sétálni (láb/ft)",
+                                "name": "Séta körzet"
                             }
                         }
                     },
@@ -676,6 +709,28 @@
                     "hide_active_music": {
                         "name": "Aktív zene elrejtése",
                         "description": "Megakadályozza, hogy a Snapchat megtudja, hogy éppen zenét hallgatsz\nEz lehetővé teszi, hogy zenehallgatás közben is készíthess pillanatképeket a vezérlő hangerőgombok segítségével"
+                    },
+                    "media_upload_quality": {
+                        "properties": {
+                            "disable_image_compression": {
+                                "description": "Letiltja a kép tömörítést, amikor feltöltesz egy fájlt",
+                                "name": "Kép tömörítés letiltása"
+                            },
+                            "force_video_upload_source_quality": {
+                                "name": "Eredeti videóminőség feltöltésének kényszerítése",
+                                "description": "A Snapchatet kényszeríti, hogy a forrással megegyező minőségben töltse fel\nTartsd észben, hogy ezzel az opcióval nem törlődnek a metaadatok a fájból"
+                            },
+                            "custom_image_upload_format": {
+                                "name": "Egyedi kép feltöltési formátum",
+                                "description": "Egyedi kép kiterjesztést használ feltöltéshez\nVálassz egy veszteségmentes formátumot (pl PNG) a legjobb minőségért"
+                            }
+                        },
+                        "description": "Felülírja a média feltöltés minőségét",
+                        "name": "Feltöltési minőség"
+                    },
+                    "disable_custom_tabs": {
+                        "name": "Egyedi lapok letiltása",
+                        "description": "A linkeket inkább az appokban nyitja meg, mint a böngészőben"
                     }
                 },
                 "description": "Globális Snapchat beállítások módosítása"
@@ -765,16 +820,20 @@
                                         "description": "Növeli a kameragörgőről küldhető média maximális mennyiségét"
                                     },
                                     "composer_console": {
-                                        "description": "Lehetővé teszi JavaScript kód végrehajtását a Composerben",
+                                        "description": "Lehetővé teszi JavaScript kód végrehajtását a Composerben (csak arm64)",
                                         "name": "Összetevő Konzol"
                                     },
                                     "composer_logs": {
                                         "name": "Összetevő Naplók",
                                         "description": "A Composer konzolnaplóit átirányítja a SnapEnhance felé"
+                                    },
+                                    "show_first_created_username": {
+                                        "name": "Első felhasználónév megjelenítése",
+                                        "description": "Megjeleníti, hogy milyen felhasználónévvel regisztrált a profilján"
                                     }
                                 },
                                 "name": "Összetevő Horgok",
-                                "description": "Kód befecskendezése a Composer keresztplatformú UI keretrendszerbe (csak arm64)"
+                                "description": "Kód befecskendezése a Composer keresztplatformú UI keretrendszerbe"
                             }
                         },
                         "name": "Natív hookok",
@@ -844,20 +903,6 @@
                         "name": "Nincs Friend Score késleltetés",
                         "description": "Eltávolítja a késleltetést a Friends Score megtekintésekor"
                     },
-                    "session_events": {
-                        "name": "Munkamenet események",
-                        "properties": {
-                            "capture_duplex_events": {
-                                "description": "Jelenléti és üzenetküldési események rögzítése aktív munkamenet esetén",
-                                "name": "Duplex események rögzítése"
-                            },
-                            "allow_running_in_background": {
-                                "name": "Háttérben futás engedélyezése",
-                                "description": "Lehetővé teszi a munkamenet futását a háttérben"
-                            }
-                        },
-                        "description": "Rögzíti a munkamenet eseményeit"
-                    },
                     "call_recorder": {
                         "name": "Hívásrögzítő",
                         "description": "Automatikusan rögzíti a hanghívásokat"
@@ -909,6 +954,10 @@
                     "custom_streaks_expiration_format": {
                         "name": "Egyedi sorozat lejárati formátum",
                         "description": "Egyedi sorozat lejárati formátum\n\nElérhető változók:\n- %c: Sorozatok Száma\n- %e: Homokóra Emoji\n- %d: Napok\n- %h: Órák\n- %m: Perc\n- %s: Másodperc\n- %w: Hátralévő Idő"
+                    },
+                    "best_friend_pinning": {
+                        "name": "Legjobb barát kitűzés",
+                        "description": "Engedi, hogy megjelöld legeslegjobb barátodként. Fontos: Csak te látod"
                     }
                 }
             },
@@ -943,16 +992,6 @@
             "app_appearance": {
                 "always_light": "Mindig világos",
                 "always_dark": "Mindig sötét"
-            },
-            "better_notifications": {
-                "reply_button": "Válasz gomb hozzáadása",
-                "download_button": "Letöltés gomb hozzáadása",
-                "group": "Csoportos Értesítések",
-                "media_preview": "A média előnézetének megjelenítése",
-                "mark_as_read_button": "Olvasottként jelölés gomb",
-                "chat_preview": "A chat előnézetének megjelenítése",
-                "mark_as_read_and_save_in_chat": "Mentés a Chatben, amikor olvasottként jelöli (az automatikus mentéstől függ)",
-                "friend_add_source": "Mutassa a barát hozzáadás forrását"
             },
             "friend_feed_menu_buttons": {
                 "auto_download": "⬇️ Automatikus letöltés",
@@ -992,13 +1031,15 @@
                 "abandon_video": "Nem fogadott videóhívás",
                 "chat_reaction": "DM reakció",
                 "group_chat_reaction": "Csoportos reakció",
-                "camera_roll_save": "Kamera tekercs mentése"
+                "camera_roll_save": "Kamera tekercs mentése",
+                "speaking": "Beszél"
             },
             "gallery_media_send_override": {
                 "ORIGINAL": "Eredeti",
                 "SNAP": "Snap",
                 "NOTE": "Hangüzenet",
-                "SAVABLE_SNAP": "Lementhető Snap"
+                "SAVABLE_SNAP": "Lementhető Snap",
+                "always_ask": "Mindig kérdezze meg"
             },
             "hide_ui_components": {
                 "hide_chat_call_buttons": "Hívás gombok eltávolítása",
@@ -1119,6 +1160,19 @@
                 "remove_friend": "Értesítés, ha valaki eltávolít téged barátként",
                 "bitmoji_selfie_changes": "Értesítés, ha valaki megváltoztatja a Bitmoji önarcképét",
                 "bitmoji_background_changes": "Értesítés, ha valaki megváltoztatja a Bitmoji háttérképét"
+            },
+            "theme_picker": {
+                "lemon_meringue": "Citromos habcsók",
+                "ginger_snap": "Mézeskalács",
+                "earthy_autumn": "Földes ősz",
+                "mint_chocolate": "Mentás csokoládé",
+                "ocean_fog": "Ködös óceán",
+                "alien_landscape": "Idegen táj",
+                "amoled_dark_mode": "AMOLED Sötét mód",
+                "custom": "Egyedi színek",
+                "light_blue": "Világos kék",
+                "dark_blue": "Sötét kék",
+                "lava_flow": "Lávafolyam"
             }
         }
     },
@@ -1216,9 +1270,10 @@
             "sticker": "Matrica",
             "external_media": "Külső média",
             "note": "Megjegyzés",
-            "original_story": "Eredeti történet"
+            "original_story": "Eredeti történet",
+            "gif": "GIF"
         },
-        "select_attachments_title": "Válaszd ki a letöltendő csatolmányokat",
+        "select_attachments_title": "Válaszd ki a csatolmányokat",
         "download_started_toast": "A letöltés megkezdődött",
         "unsupported_content_type_toast": "A tartalom típusa nem támogatott!",
         "failed_no_longer_available_toast": "A média már nem érhető el",
@@ -1329,8 +1384,7 @@
             "download": "Letöltés",
             "mark_as_read": "Megjelölés olvasottként",
             "reply": "Válasz"
-        },
-        "stealth_mode_notice": "Nem tudod olvasottként jelölni rejtett módban"
+        }
     },
     "half_swipe_notifier": {
         "notification_content_group": "{friend} épp most ugrott be félig a {group}, {duration} másodpercre",

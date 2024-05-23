@@ -27,10 +27,12 @@
             "social": "Sociaal",
             "scripts": "Scripts",
             "manage_scope": "Scope beheren",
-            "messaging_preview": "Preview",
-            "tasks": "Assignments",
-            "logger_history": "Logger geschiedenis",
-            "logged_stories": "Gelogde Stories"
+            "messaging_preview": "Voorbeeld",
+            "tasks": "Taken",
+            "logger_history": "Log geschiedenis",
+            "logged_stories": "Gelogde Stories",
+            "friend_tracker": "Vriendentracker",
+            "edit_rule": "Regel bewerken"
         },
         "sections": {
             "features": {
@@ -46,7 +48,8 @@
             "social": {
                 "streaks_expiration_short": "{hours}u",
                 "friends_tab": "Vrienden",
-                "groups_tab": "Groepen"
+                "groups_tab": "Groepen",
+                "empty_hint": "(leeg)"
             },
             "tasks": {
                 "no_tasks": "Geen taken",
@@ -55,7 +58,7 @@
                 "remove_all_tasks_title": "Weet je zeker dat je alle taken wilt verwijderen?",
                 "merge_files_toast": "{count} bestand(en) samenvoegen",
                 "remove_selected_tasks_confirm": "{count} taken verwijderen?",
-                "delete_files_option": "Ook bestanden verwijderen"
+                "delete_files_option": "Verwijderen ook bestanden"
             },
             "home": {
                 "update_title": "SnapEnhance Update",
@@ -134,7 +137,7 @@
             },
             "scripting_warning": {
                 "title": "Waarschuwing",
-                "content": "SnapEnhance bevat een scripttool waarmee door de gebruiker gedefinieerde code op uw apparaat kan worden uitgevoerd. Wees uiterst voorzichtig en installeer alleen modules van bekende, betrouwbare bronnen. Niet-geautoriseerde of niet-geverifieerde modules kunnen veiligheidsrisico's voor uw systeem opleveren."
+                "content": "SnapEnhance bevat een scripting-tool, waarmee door de gebruiker gedefinieerde code op uw apparaat kan worden uitgevoerd. Wees uiterst voorzichtig en installeer alleen modules van bekende, betrouwbare bronnen. Niet-geautoriseerde of niet-geverifieerde modules kunnen beveiligingsrisico's voor uw systeem opleveren."
             },
             "reset_config": {
                 "title": "Configuratie resetten",
@@ -187,11 +190,19 @@
                 "name": "Gesprek vastzetten"
             },
             "unsaveable_messages": {
-                "name": "Onopslaanbare berichten",
-                "description": "Voorkomt dat berichten opgeslagen worden in chat door andere personen",
+                "name": "Berichten die niet kunnen worden opgeslagen",
+                "description": "Voorkomt dat berichten door andere mensen in de chat worden opgeslagen",
                 "options": {
                     "blacklist": "Sluit uit van onopslaanbare berichten",
-                    "whitelist": "Onopslaanbare berichten"
+                    "whitelist": "Berichten die niet kunnen worden opgeslagen"
+                }
+            },
+            "auto_open_snaps": {
+                "name": "Snaps Automatisch Openen",
+                "description": "Opent Snaps automatisch bij ontvangst",
+                "options": {
+                    "blacklist": "Uitsluiten van Automatisch Openen van Snaps",
+                    "whitelist": "Snaps Automatisch Openen"
                 }
             }
         },
@@ -258,10 +269,47 @@
                             "preset": {
                                 "name": "Voorinstelling",
                                 "description": "Stel de snelheid van de conversie in"
+                            },
+                            "video_bitrate": {
+                                "name": "Video-bitsnelheid",
+                                "description": "Stel de videobitsnelheid (kbps) in"
+                            },
+                            "audio_bitrate": {
+                                "description": "Stel de audiobitsnelheid (kbps) in",
+                                "name": "Audio-bitsnelheid"
+                            },
+                            "custom_video_codec": {
+                                "name": "Aangepaste videocodec",
+                                "description": "Stel een aangepaste videocodec in (bijvoorbeeld libx264)"
+                            },
+                            "constant_rate_factor": {
+                                "description": "Stel de constante snelheidsfactor voor de video-encoder in\nVan 0 tot 51 voor libx264",
+                                "name": "Constante tarieffactor"
+                            },
+                            "custom_audio_codec": {
+                                "name": "Aangepaste audiocodec",
+                                "description": "Stel een aangepaste audiocodec in (bijvoorbeeld AAC)"
                             }
                         }
+                    },
+                    "download_context_menu": {
+                        "description": "Hiermee kunt u berichten uit een gesprek of een verhaal downloaden/bekijken via het contextmenu.\nAls u lang op de knoppen drukt, wordt het downloaden geforceerd",
+                        "name": "Contextmenu downloaden"
+                    },
+                    "custom_path_format": {
+                        "description": "Geef een aangepast padformaat op voor gedownloade media\n\nBeschikbare variabelen:\n - %username%\n - %source%\n - %hash%\n - %date_time%",
+                        "name": "Aangepaste padindeling"
+                    },
+                    "logging": {
+                        "description": "Toont toast wanneer media worden gedownload",
+                        "name": "Loggen"
+                    },
+                    "opera_download_button": {
+                        "name": "Opera-downloadknop",
+                        "description": "Voegt een downloadknop toe in de rechterbovenhoek wanneer je een Snap bekijkt.\nAls u lang op de knoppen drukt, wordt het downloaden geforceerd"
                     }
-                }
+                },
+                "description": "Snapchat-media downloaden"
             },
             "user_interface": {
                 "description": "Verander het uiterlijk en gevoel van Snapchat",
@@ -317,8 +365,33 @@
                     "disable_spotlight": {
                         "name": "Spotlight uitschakelen",
                         "description": "Schakelt de Spotlight pagina uit"
+                    },
+                    "customize_ui": {
+                        "properties": {
+                            "theme_picker": {
+                                "name": "vThemakiezer",
+                                "description": "Vooraf ingestelde Snapchat-thema's"
+                            },
+                            "colors": {
+                                "properties": {
+                                    "text_color": {
+                                        "name": "Kleur hoofdtekst",
+                                        "description": "Verandert de hoofdtekstkleur van Snapchat"
+                                    },
+                                    "chat_chat_text_color": {
+                                        "name": "Tekstkleur hoofdvriendfeed",
+                                        "description": "Verandert de tekstkleur van (Nieuwe chat / Nieuwe snap en chats / Typen / Bellen / Gemiste oproep / Spreken / Nieuwe spraaknotitie) in de vriendenfeed"
+                                    }
+                                },
+                                "name": "Aangepaste kleuren",
+                                "description": "Pas individuele kleuren aan\nOpmerking: Selecteer Aangepaste kleuren in de Themakiezer om te gebruiken"
+                            }
+                        },
+                        "name": "Kleuren",
+                        "description": "Pas Snapchats-kleuren aan"
                     }
-                }
+                },
+                "name": "Gebruikersomgeving"
             }
         }
     },
@@ -332,11 +405,28 @@
             "description": "Schoont de Snapchat-cache op"
         },
         "export_chat_messages": {
-            "name": "Chatberichten exporteren"
+            "name": "Chatberichten exporteren",
+            "description": "Exporteert gespreksberichten naar een JSON/HTML/TXT-bestand"
         },
         "manage_friend_list": {
             "description": "Importeer/exporteer uw vriendenlijst bij het maken van een back-up",
             "name": "Vriendenlijst beheren"
+        },
+        "bulk_messaging_action": {
+            "name": "Bulkberichtactie",
+            "description": "Voert handelingen uit zoals het verwijderen van vrienden of het massaal verwijderen van gesprekken"
+        },
+        "export_memories": {
+            "description": "Exporteert herinneringen naar een ZIP-bestand",
+            "name": "Herinneringen Exporteren"
+        },
+        "change_language": {
+            "description": "Wijzig de taal van SnapEnhance",
+            "name": "Taal Wijzigen"
+        },
+        "regen_mappings": {
+            "name": "Mappings Regenereren",
+            "description": "Mappings Handmatig Regenereren"
         }
     }
 }

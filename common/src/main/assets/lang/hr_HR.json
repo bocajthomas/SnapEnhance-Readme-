@@ -6,7 +6,7 @@
             "save_folder": "SnapEnhance-u je potrebno omogućiti pristup datotekama kako bi mogao skidati i spremati medije sa Snapchat-a.\nMolimo odaberite lokaciju gdje želite da se mediji spremaju."
         },
         "mappings": {
-            "dialog": "Kako bi dinamično podržavao širok raspon Snapchat verzija, \"mappings\"-i su potrebni kako bi SnapEnhance funkcionirao, ovo ne bi trebalo trajati duže od 5 sekundi.",
+            "dialog": "Generiranje mapiranja, ovo može potrajati..",
             "generate_failure_no_snapchat": "SnapEnhance nije uspio detektirati Snapchat, probajte ga ponovo instalirati.",
             "generate_failure": "Greška prilikom generiranja \"mappings\"-a, molimo pokušajte ponovo."
         },
@@ -32,7 +32,9 @@
             "social": "Social",
             "messaging_preview": "Pretpregled",
             "scripts": "Skripte",
-            "home_settings": "Postavke"
+            "home_settings": "Postavke",
+            "logged_stories": "Zabilježene priče",
+            "manage_scope": "Upravljanje opsegom"
         },
         "sections": {
             "home": {
@@ -59,7 +61,10 @@
                 "export_button": "Izvoz"
             },
             "tasks": {
-                "no_tasks": "Nema zadataka"
+                "no_tasks": "Nema zadataka",
+                "merge_files_toast": "Spajanje {count} datoteka",
+                "remove_selected_tasks_title": "Jeste li sigurni da želite ukloniti odabrane zadatke?",
+                "remove_all_tasks_title": "Jeste li sigurni da ste uklonili sve zadatke?"
             }
         }
     }

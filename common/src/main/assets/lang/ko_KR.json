@@ -1,0 +1,17 @@
+{
+    "setup": {
+        "dialogs": {
+            "select_save_folder_button": "폴더 선택",
+            "select_language": "언어 선택",
+            "save_folder": "SnapEnhance에는 Snapchat에서 미디어를 다운로드하고 저장하려면 저장소 권한이 필요합니다.\n미디어를 다운로드할 위치를 선택하세요."
+        },
+        "mappings": {
+            "dialog": "매핑을 생성하는 중입니다. 다소 시간이 걸릴 수 있습니다...",
+            "generate_failure_no_snapchat": "SnapEnhance가 Snapchat을 감지할 수 없습니다. Snapchat을 다시 설치해 보십시오.",
+            "generate_failure": "매핑을 생성하는 중에 오류가 발생했습니다. 다시 시도해 주세요."
+        },
+        "permissions": {
+            "dialog": "계속하려면 다음 요구 사항을 충족해야 합니다."
+        }
+    }
+}

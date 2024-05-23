@@ -30,7 +30,9 @@
             "logger_history": "Historique des logs",
             "logged_stories": "Stories enregistrées",
             "manage_scope": "Gérer le champ d'application",
-            "messaging_preview": "Aperçu"
+            "messaging_preview": "Aperçu",
+            "edit_rule": "Modifier la règle",
+            "friend_tracker": "Traqueur d'amis"
         },
         "sections": {
             "features": {
@@ -467,6 +469,10 @@
                                     "camera_grid_lines": {
                                         "name": "Couleur du quadrillage de la caméra",
                                         "description": "Modifie la couleur du quadrillage de Snapchat sur l'aperçu de l'appareil photo\nRemarque : activez la grille dans les paramètres de ma caméra"
+                                    },
+                                    "friend_feed_conversations_line_color": {
+                                        "name": "Couleur de la ligne de conversation",
+                                        "description": "Modifie la couleur du séparateur de ligne qui divise les conversations sur le fil des amis. "
                                     }
                                 },
                                 "description": "Personnaliser les couleurs individuelles\nNote: sélectionnez Couleurs personnalisées dans le sélecteur de thème à utiliser."
@@ -710,6 +716,24 @@
                     "disable_custom_tabs": {
                         "name": "Désactiver les onglets personnalisés",
                         "description": "Ouvre les liens dans les applications prises en charge plutôt que dans le navigateur Web"
+                    },
+                    "media_upload_quality": {
+                        "properties": {
+                            "force_video_upload_source_quality": {
+                                "name": "Forcer la qualité source de l'importation vidéo",
+                                "description": "Force Snapchat à utiliser la qualité source lors de l'importation de vidéos\nVeuillez noter que cela ne supprimera peut-être pas les métadonnées du média."
+                            },
+                            "disable_image_compression": {
+                                "name": "Désactiver la compression d'image",
+                                "description": "Désactive la compression d'image lors de l'importation de médias"
+                            },
+                            "custom_image_upload_format": {
+                                "name": "Format d'importation d'image personnalisé",
+                                "description": "Définit un format d'importation d'image personnalisé\nSélectionnez un format sans perte (comme PNG) pour la meilleure qualité"
+                            }
+                        },
+                        "name": "Qualité d'importation des médias",
+                        "description": "Remplace la qualité d'importation multimédia"
                     }
                 }
             },
@@ -893,20 +917,6 @@
                         "description": "Fournit un historique des Stories d'amis",
                         "name": "Journal des Stories"
                     },
-                    "session_events": {
-                        "description": "Enregistre les événements de la session",
-                        "properties": {
-                            "capture_duplex_events": {
-                                "name": "Capturer les événements duplex",
-                                "description": "Capturez les événements de présence et de messagerie lorsqu'une session est active"
-                            },
-                            "allow_running_in_background": {
-                                "name": "Autoriser l'exécution en arrière-plan",
-                                "description": "Permet à la session de s'exécuter en arrière-plan"
-                            }
-                        },
-                        "name": "Événements de session"
-                    },
                     "new_chat_action_menu": {
                         "name": "Nouveau menu d'actions de discussion",
                         "description": "Utilisez le nouveau tiroir du menu d'action de chat"
@@ -978,22 +988,26 @@
                         "name": "Rechargement automatique"
                     }
                 }
+            },
+            "friend_tracker": {
+                "properties": {
+                    "record_messaging_events": {
+                        "name": "Enregistrer les événements de messagerie",
+                        "description": "Enregistre les événements de messagerie tels que l'ouverture d'un snap, la lecture d'un message, etc."
+                    },
+                    "allow_running_in_background": {
+                        "name": "Autoriser l'exécution en arrière-plan",
+                        "description": "Permet au traqueur de fonctionner en arrière-plan. Remarque : cette fonction entraînera une consommation importante de la batterie"
+                    }
+                },
+                "name": "Traqueur d'amis",
+                "description": "Enregistre l'activité d'un ami sur Snapchat"
             }
         },
         "options": {
             "app_appearance": {
                 "always_light": "Toujours Clair",
                 "always_dark": "Toujours Sombre"
-            },
-            "better_notifications": {
-                "reply_button": "Ajouter un bouton de réponse",
-                "download_button": "Ajouter un boutton téléchargement",
-                "group": "Notifications de groupe",
-                "mark_as_read_and_save_in_chat": "Sauvegarde dans le Chat lors du marquage comme lu (en fonction de la sauvegarde automatique)",
-                "mark_as_read_button": "Bouton \"Marquer comme lu\"",
-                "media_preview": "Afficher un aperçu des média",
-                "chat_preview": "Afficher un aperçu des messages textuels",
-                "friend_add_source": "Afficher la source d'ajout d'ami"
             },
             "friend_feed_menu_buttons": {
                 "auto_download": "⬇️ Téléchargement automatique",
@@ -1272,7 +1286,8 @@
             "sticker": "Autocollant",
             "external_media": "Média externe",
             "note": "Note",
-            "original_story": "Storie originale"
+            "original_story": "Storie originale",
+            "gif": "GIF"
         },
         "select_attachments_title": "Sélectionnez les pièces jointes",
         "download_started_toast": "Téléchargement démarré",
@@ -1358,8 +1373,7 @@
             "download": "Télécharger",
             "reply": "Répondre",
             "mark_as_read": "Marquer comme lu"
-        },
-        "stealth_mode_notice": "Impossible de marquer comme lu en mode furtif"
+        }
     },
     "half_swipe_notifier": {
         "notification_content_group": "{friend} a entrouvert dans {group} pendant {duration} seconde(s)",

@@ -468,6 +468,10 @@
                                     "camera_grid_lines": {
                                         "name": "Farve på kameragitter",
                                         "description": "Ændrer farven på Snapchats-gitterlinjerne på forhåndsvisningen af kameraet\nBemærk: Aktiver gitteret på mine kamera-indstillinger"
+                                    },
+                                    "friend_feed_conversations_line_color": {
+                                        "description": "Ændrer linje deler farven, der opdeler samtaler på vennefeedet ",
+                                        "name": "Samtaler linje farve"
                                     }
                                 }
                             }
@@ -710,6 +714,24 @@
                     "disable_custom_tabs": {
                         "name": "Deaktiver bruger tilpassede faner",
                         "description": "Åbner links i understøttede programmer i stedet for i webbrowseren"
+                    },
+                    "media_upload_quality": {
+                        "properties": {
+                            "force_video_upload_source_quality": {
+                                "name": "Tving video upload kilde kvalitet",
+                                "description": "Tvinger Snapchat til at bruge kilde kvaliteten, når du uploader videoer\nBemærk, at dette muligvis ikke fjerner metadata fra medier"
+                            },
+                            "custom_image_upload_format": {
+                                "description": "Indstiller et brugerdefineret billedoverførselsformat\nVælg et tabsfrit format (som PNG) for den bedste kvalitet",
+                                "name": "Brugerdefineret billed overførsels format"
+                            },
+                            "disable_image_compression": {
+                                "name": "Deaktiver billed komprimering",
+                                "description": "Deaktiverer billed komprimering ved upload af medier"
+                            }
+                        },
+                        "name": "Medie upload kvalitet",
+                        "description": "Tilsidesætter medie overførsel kvaliteten"
                     }
                 }
             },
@@ -885,20 +907,6 @@
                         "name": "Historie logger",
                         "description": "Giver en historie med venners historier"
                     },
-                    "session_events": {
-                        "name": "Session begivenheder",
-                        "description": "Registrerer sessions hændelser",
-                        "properties": {
-                            "capture_duplex_events": {
-                                "name": "Optag dupleks begivenheder",
-                                "description": "Fang tilstedeværelse og meddelelses begivenheder, når en session er aktiv"
-                            },
-                            "allow_running_in_background": {
-                                "name": "Tillad kørsel i baggrunden",
-                                "description": "Tillader session at køre i baggrunden"
-                            }
-                        }
-                    },
                     "convert_message_locally": {
                         "name": "Konverter besked lokalt",
                         "description": "Konverterer snaps til at chatte eksterne medier lokalt. Dette vises i chat download kontekstmenu"
@@ -984,16 +992,6 @@
             "app_appearance": {
                 "always_light": "Altid Lys",
                 "always_dark": "Altid Mørk"
-            },
-            "better_notifications": {
-                "reply_button": "Tilføj svar-knap",
-                "download_button": "Tilføj download-knap",
-                "group": "Gruppenotifikationer",
-                "mark_as_read_and_save_in_chat": "Gem i chat, når du markerer som læst (afhænger af automatisk lagring)",
-                "mark_as_read_button": "Knappen Marker som læst",
-                "chat_preview": "Vis en forhåndsvisning af chat",
-                "media_preview": "Vis en forhåndsvisning af medier",
-                "friend_add_source": "Vis venne-tilføjelseskilde"
             },
             "friend_feed_menu_buttons": {
                 "auto_download": "⬇️ Auto-download",
@@ -1414,8 +1412,7 @@
             "reply": "Svar",
             "mark_as_read": "Marker som læst",
             "download": "Hent"
-        },
-        "stealth_mode_notice": "Kan ikke markere som læst i stealth tilstand"
+        }
     },
     "suspend_location_updates": {
         "switch_text": "Suspender placerings opdateringer"

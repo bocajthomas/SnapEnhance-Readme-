@@ -1,0 +1,429 @@
+{
+    "features": {
+        "properties": {
+            "user_interface": {
+                "properties": {
+                    "customize_ui": {
+                        "properties": {
+                            "colors": {
+                                "properties": {
+                                    "snap_with_sound_text_color": {
+                                        "description": "Änderet d Textfarb vo ( New Snap ) im Fründ-Feed\nHiwiis: Nume Video Snaps"
+                                    },
+                                    "snap_without_sound_text_color": {
+                                        "description": "Änderet d Textfarb vo ( New Snap ) im Fründ-Feed\nHiwiis: Nume Video Snaps"
+                                    },
+                                    "pending_sending_text_color": {
+                                        "description": "Änderet d Textfarb vo ( Glieferet / Empfange / Sende / Göffnet / Uf Chat tippe / Widergebe / Gspicheret im Chat / Ufgruefe ) im Fründ-Feed"
+                                    },
+                                    "chat_chat_text_color": {
+                                        "description": "Änderet d Textfarb vo ( Neuer Chat / Neuer Snap And Chats / Tippe / Aarüef verpasst / Spreche / Neui Voice Note ) im Fründ-Feed"
+                                    },
+                                    "camera_grid_lines": {
+                                        "description": "Ändert Snapchats Gitterliniefarb ir Kamera-Vorschau\nHiwiis: Aktivier ds Raster i de my-Kamera-Iistelligen"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "opera_media_quick_info": {
+                        "description": "Zeigt nützlechi Informatione zu Medie wi Erschtelligsdatum im Opernbetrachter-Kontextmenü"
+                    },
+                    "friend_feed_message_preview": {
+                        "description": "Zeigt e Vorschou vo de letschte Nachrichte im Friend Feed"
+                    }
+                }
+            },
+            "messaging": {
+                "properties": {
+                    "bypass_message_action_restrictions": {
+                        "description": "Ermöglichts nechs ufne Snap z reagiere ohni ne göffnet zha, oder e nid speicherbari Nachricht z speichere"
+                    },
+                    "auto_mark_as_read": {
+                        "description": "Markiert automatisch Nachrichte/Snaps aus gläse, o we dr Steauth-Modus aktiviert isch"
+                    }
+                }
+            },
+            "global": {
+                "properties": {
+                    "media_upload_quality": {
+                        "properties": {
+                            "force_video_upload_source_quality": {
+                                "description": "Zwingt Snapchat, d Quellqualität bim Hochlade vo Videos z verwände\nBitte beachte, dass debi kei Metadate us Medie dörfe entfernt wärde."
+                            }
+                        }
+                    },
+                    "disable_custom_tabs": {
+                        "description": "Öffnet Links i unterstützte Awändige statt im Webrowser"
+                    },
+                    "hide_active_music": {
+                        "description": "Verhinderet, dass Snapchat merkt, dassd Musig losisch\nDas ermöglichts dir, Schnappschüss mit Lutstärcheregler-Taschte z'näh, während du Musig lose"
+                    },
+                    "video_playback_rate_slider": {
+                        "description": "Fügt e Schieberegler im Opera-Kontextmenü hinzue zum d Video-Wiedergabegschwindigkeit z ändere\nHiwiis: Änderige gälte nume für nachfolgende Videos"
+                    }
+                }
+            },
+            "experimental": {
+                "properties": {
+                    "best_friend_pinning": {
+                        "description": "Ermöglicht's Nech, e Fründ aus dine beschte Fründ Nummere eins anzheften. Hiwiis: Nume chasch din agheftete besti Fründ gseh."
+                    },
+                    "e2ee": {
+                        "properties": {
+                            "force_message_encryption": {
+                                "description": "Verhinderet ds Sände verschlüsselter Nachrichte a Persone wo d E2E Verschlüsselig nid aktiviert isch, nume we mehreri Ungerhautige usgwählt si"
+                            }
+                        },
+                        "description": "Verschlüsslet dini Nachrichte mit AES unger Verwändig vomene freigegebene gheime Schlüssel\nAchte druf, dass din Schlüssel amene sichere Ort ufbewahre!"
+                    },
+                    "native_hooks": {
+                        "properties": {
+                            "composer_hooks": {
+                                "properties": {
+                                    "show_first_created_username": {
+                                        "description": "Zeigt dr erschtellti Benutzername näbem aktuelle Benutzername ir Profilsiite a"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "convert_message_locally": {
+                        "description": "Konvertiert Snaps um externi Medie lokal z'chatte. Das wird im Kontextmenü zum Abelade vom Chat azeigt."
+                    },
+                    "account_switcher": {
+                        "description": "Ermöglichts ne zwüsche kontene z wechsle ohni sech abzmelde\nLang drücke uf ds Suchsymbol näb dim Bitmoji Profil zum ds Menü z öffne\nHiwiis: Die Funktion isch experimentell und wird sech wahrschinlech ir Zuekunft ändere."
+                    },
+                    "custom_streaks_expiration_format": {
+                        "description": "Passet ds Streaks Ablouf-Format a\n\nVerfüegbari Variable:\n – %c: Azahl der Streife\n – %e: Sanduhr-Emoji\n – %d: Tage\n – %h: Stunde\n – %m: Protokoll\n – %s: Sekunde\n – %w: Verbleibendi Zyt"
+                    },
+                    "meo_passcode_bypass": {
+                        "description": "Umghig vom My Eyes Only Passcode\nDas funktioniert nume we dr Passcode vor"
+                    }
+                }
+            },
+            "downloader": {
+                "properties": {
+                    "opera_download_button": {
+                        "description": "Fügt bim Betrachte vomene Snap e Download-Button obe rächts hinzue.\nLanges Drück uf Taschte wird ds Abelade erzwinge"
+                    },
+                    "save_folder": {
+                        "description": "Wähle s Verzeichnis wo alli Medie selled abeglade werde"
+                    },
+                    "download_context_menu": {
+                        "description": "Ermöglicht ds abeelade/Vorluege vo Nachrichte usere Ungerhautig oder ere Gschicht über ds Kontextmenü.\nLanges Drück uf Taschte wird ds Abelade erzwinge"
+                    },
+                    "custom_path_format": {
+                        "description": "Setzt e benutzzerdefinierti Kamerauflösig, Breiti x Höchi (z.B. 1920x1080).\nDi benutzzerdefinierti Uflösig mues unterstützt werde Geef e aapascht padformat op voor downloade media\n\nBeschikbari variable:\n – %username%\n – %source%\n – %hash%\n - %date_time% vo dim Gerät"
+                    }
+                }
+            },
+            "camera": {
+                "properties": {
+                    "black_photos": {
+                        "description": "Ersetzt ufgnommi Fötteli mit schwarzem Hintergrund\nVideos sy nid betroffe"
+                    },
+                    "custom_resolution": {
+                        "description": "Setzt e benutzzerdefinierti Kamerauflösig, Breiti x Höchi (z.B. 1920x1080).\nDi benutzzerdefinierti Uflösig mues vo dim Grät unterstützt werde"
+                    }
+                }
+            },
+            "streaks_reminder": {
+                "properties": {
+                    "remaining_hours": {
+                        "description": "Di verblybendi Zyt bis zur Azeig vor Benachrichtigung (Stund)"
+                    }
+                }
+            }
+        },
+        "options": {
+            "message_indicators": {
+                "director_mode_indicator": "Fügt es ✏️-Symbol zu Snaps hinzue, we si im Diräctor-Modus gsändet worde si, mit em Galerie-Bilder aus Snaps chöi gsändet wärde",
+                "encryption_indicator": "Fügt es 🔒-Symbol näb Nachrichte derzue, wo nume ah du gsesch worde si",
+                "platform_indicator": "Fügt ds Plattform-Symbol hinzue wo es Medium gsendet worde isch (z.B. Android, iOS, Web)",
+                "location_indicator": "Fügt es 📍-Symbol zu Snaps hinzue, we si mit aktiviertem Speicherort gsendet worde si"
+            }
+        }
+    },
+    "biometric_auth": {
+        "title": "Snapchat entsperre",
+        "subtitle": "Bitte authentifiziere zum d Snapchat entsperre",
+        "unlock_button": "Entsperre"
+    },
+    "end_to_end_encryption": {
+        "confirmation_dialogs": {
+            "title": "Ende-zu-End-Verschlüsselig",
+            "confirmation_1": "WARNIG: Durch wird dis vorhandene Schlüssel überschribe. Si verliere dr Zuegriff uf alli verschlüsslete Nachrichte vo däm Fründ. Bisch sicher, dass du witermache wotsch?",
+            "confirmation_2": "Bisch WÜRKLI sicher dass du witermache wotsch? Das isch dini letschti Chance es Rückzieher z mache."
+        },
+        "native_hooks_send_failure_toast": "Versände fehlgschlage! Bitte aktiviered Sie nativi Hooks i de Ihstellige.",
+        "no_participants_to_encrypt_toast": "Du hesch kei Fründe i dere Unterhaltig wod Nachrichte chasch verschlüssle!",
+        "accept_public_key_success_toast": "Public Key erfolgrich akzeptiert!",
+        "accept_public_key_failure_toast": "Öffentliche Schlüssel het nid chönne akzeptiert wärde",
+        "accept_secret_button": "Akzeptiere gheim",
+        "toolbox": {
+            "initiate_exchange_button": "Schlüsseluusstuusch initiiere",
+            "no_shared_key": "Du hesch no kes Gheimnis mit däm Fründ teilt. Klick dunne um es neus z initiiere.",
+            "shared_key_fingerprint": "Dir Fingerabdruck isch:\n\n{fingerprint}\n\nÜberprüef, öb är mit em Fingerabdruck vo dim Fründ überiistimmt!"
+        },
+        "incoming_pk_message": "Du hesch grad e Public-Key-Afrag übercho. Klick unde zum sie akzeptiere.",
+        "incoming_secret_message": "Din Fründ het grad dine öffentliche Schlüssel akzeptiert. Klick unde zums Gheimnis akzeptiere.",
+        "unencrypted_conversation_send_failure_toast": "Chasch ke verschlüsslete Inhaut sowou a verschlüssleti Inhaut, aus o a unverschlüssleti Ungerhautige schicke!",
+        "encryption_failed_toast": "D Verschlüsselig vo de Nachricht isch fählgschlage! Überprüefe Si logcat für wyteri Details.",
+        "accept_secret_key_success_toast": "Fertig! Dir chöi jetz verschlüssleti Nachrichte mit däm Fründ schicke und empfange.",
+        "accept_secret_key_failure_toast": "Dä gheimi Schlüssel isch nid akzeptiert worde"
+    },
+    "friend_mutation_observer": {
+        "bitmoji_background_changed": "{username} het de Bitmoji hintergrund gänderet",
+        "bitmoji_scene_changed": "{username} het ihri Bitmoji szene gänderet"
+    },
+    "material3_strings": {
+        "date_range_picker_end_headline": "Zu",
+        "date_picker_switch_to_input_mode": "Iihgab",
+        "date_range_picker_start_headline": "Vo",
+        "date_range_picker_title": "Datumsbereich uswähle",
+        "date_picker_switch_to_calendar_mode": "Kalender"
+    },
+    "setup": {
+        "dialogs": {
+            "select_language": "Sprach uswähle",
+            "save_folder": "SnapEnhance benötigt Speicherberächtigunge zum Abelade und Speicher vo Medie vo Snapchat.\nBitte wähled Sie de Ort us wo d Medie sölled abeglade werde.",
+            "select_save_folder_button": "Ordner uswähle"
+        },
+        "mappings": {
+            "dialog": "S generiere vo mappings chan es wiili duure ...",
+            "generate_failure_no_snapchat": "SnapEnhance hät Snapchat nöd chöne erkenne, bitte versueched Sie Snapchat neu z installiere.",
+            "generate_failure": "Bim Versuech mappings generiere isch en fehler ufträtte, bitte versueched Sies erneut."
+        },
+        "permissions": {
+            "dialog": "Zum wiitermache müend Sie folgendi Aforderige erfülle:",
+            "notification_access": "Benachrichtigung Zugang",
+            "battery_optimization": "Batterieoptimierig",
+            "display_over_other_apps": "Ahzeig über anderi Apps",
+            "request_button": "Anfrage"
+        }
+    },
+    "manager": {
+        "sections": {
+            "home_logs": {
+                "no_logs_hint": "Kei Protokoll verfüegbar",
+                "saving_logs_toast": "Logs speichere, das chan es wiili duure ...",
+                "clear_logs_button": "Protokoll lösche",
+                "export_logs_button": "Logs exportiere",
+                "saved_logs_success_toast": "Erfolgriich gspichereti Protokoll",
+                "saved_logs_failure_toast": "Speichere vo Protokoll fählgschlage"
+            },
+            "tasks": {
+                "remove_selected_tasks_confirm": "{count}-Ufgabe entferne?",
+                "no_tasks": "Kei Ufgabe",
+                "merge_files_toast": "Zämeführe vo {count}-Dateien",
+                "remove_selected_tasks_title": "Sind Sie sicher, dass Sie usegwählti Ufgabe lösche wönd?",
+                "remove_all_tasks_title": "Sind Sie sicher, dass Sie alli ufgabe möchted lösche?",
+                "delete_files_option": "Au Dateiä löschä",
+                "remove_all_tasks_confirm": "Alli ufgabe lösche?"
+            },
+            "features": {
+                "disabled": "Behinderti",
+                "export_option": "Export",
+                "import_option": "Iifuhr",
+                "reset_option": "Zrücksetze",
+                "config_export_success_toast": "Config erfolgrich exportiert",
+                "config_import_success_toast": "Config erfolgrich importiert",
+                "config_import_failure_toast": "Importiere vo config {error} fehlgschlage",
+                "saved_config_snackbar": "Konfiguration gspeicheret"
+            },
+            "manage_scope": {
+                "streaks_expiration_text_expired": "abglaufe",
+                "reminder_button": "Erinnerig istelle",
+                "delete_scope_confirm_dialog_title": "Sind Sie sicher, dass Sie {scope} lösche wönd?",
+                "logged_stories_button": "Logged Stories azeige",
+                "e2ee_title": "Ende-zu-End-Verschlüsselig",
+                "rules_title": "Vorschrifte",
+                "participants_text": "{count}-Teilnehmer",
+                "not_found": "Nöd gfunde",
+                "streaks_title": "Streife",
+                "streaks_length_text": "Längi: {length}",
+                "streaks_expiration_text": "Lauft in {eta} ab"
+            },
+            "logged_stories": {
+                "story_failed_to_load": "Fehler bim Lade",
+                "no_stories": "Kei Gschichte gfunde",
+                "save_from_cache_button": "Speichere vo Cache"
+            },
+            "messaging_preview": {
+                "save_selection_option": "Uswahl speichere",
+                "bridge_connection_failed": "Verbindig zu Snapchat über de Bridge-Dienst fehlgschlage",
+                "bridge_init_failed": "Initialisierig vo de Messaging-Brugg fehlgschlage",
+                "message_fetch_failed": "Fehler bim Abruefe vo Nachrichte",
+                "no_message_hint": "Kei Meldig",
+                "mark_all_as_seen_option": "Markiered Sie alli Schnappschüss als gseh",
+                "save_all_option": "Alli speichere",
+                "unsave_selection_option": "Uswahl rückgängig mache",
+                "unsave_all_option": "Uswahl rückgängig mache",
+                "mark_selection_as_seen_option": "Markiered Sie usgwählt Snap wie gseh",
+                "delete_selection_option": "Uswahl lösche",
+                "delete_all_option": "Alli lösche"
+            },
+            "home": {
+                "update_title": "SnapEnhance Update",
+                "update_content": "Version {version} isch verfüegbar!",
+                "update_button": "Abelade"
+            },
+            "home_settings": {
+                "actions_title": "Massnahme",
+                "message_logger_title": "Nachrichtelogger",
+                "debug_title": "Debugge",
+                "success_toast": "Abgmacht!",
+                "message_logger_summary": "{messageCount} messages\n{storyCount} Stories",
+                "export_button": "Exporte",
+                "clear_button": "Klar",
+                "view_logger_history_button": "Logger-Verlauf azeige"
+            },
+            "social": {
+                "friends_tab": "Fründe",
+                "groups_tab": "Gruppe",
+                "empty_hint": "(leer)",
+                "streaks_expiration_short": "{hours} Stündli"
+            },
+            "logger_history": {
+                "unknown_sender": "Unbekannte Absender",
+                "download_attachment_failed_toast": "De Ahang het nöd chöne abeglade werde",
+                "list_friend_format": "Fründ {Name}",
+                "list_group_format": "Gruppe {Name}",
+                "no_more_messages": "Kei Meldige meh",
+                "reverse_order_checkbox": "Umgekehrti Reihefolg",
+                "empty_message": "Lääri Chat-Nachricht",
+                "chat_attachment": "Ahang {index}",
+                "message_parse_failed": "Fehler bim Parse vo de Nachricht"
+            }
+        },
+        "routes": {
+            "tasks": "Aufgaben",
+            "features": "Merkmale",
+            "home": "Heimat",
+            "home_settings": "Settigs",
+            "home_logs": "Baumstämme",
+            "logger_history": "Logger-Verlauf",
+            "logged_stories": "Protokollierti Storys",
+            "friend_tracker": "Friend erkenni",
+            "edit_rule": "Edit Rulewe",
+            "social": "Soziales",
+            "manage_scope": "Rahme verwalte",
+            "messaging_preview": "Vorschau",
+            "scripts": "Skripte"
+        },
+        "dialogs": {
+            "add_friend": {
+                "title": "Fründ oder Gruppe hinzuefüege",
+                "search_hint": "Düresueche",
+                "fetch_error": "Fehler bim Abruefe vo Date",
+                "category_groups": "Gruppe",
+                "category_friends": "Fründe"
+            },
+            "scripting_warning": {
+                "title": "Warnig",
+                "content": "SnapEnhance enthaltet es Skripting-Tool, wo d Usfüerig vo benutzzerdefiniertem Code uf dim Grät ermöglicht. Si si vorsichtig u installiere Si nume Modul us bekannt, zuverlässige Quelle. Nid autorisierti oder nid verifizierti Modul chöi Sicherheitsrisike für dis System darstelle."
+            },
+            "reset_config": {
+                "content": "Bisch sicher, dass du d Konfiguration wotsch zruggsetze?",
+                "success_toast": "Config erfolgrich zrüggsetze",
+                "title": "Konfiguration zrüggsetze"
+            },
+            "messaging_action": {
+                "title": "Zu verarbeitende Inhaltstype uswähle",
+                "select_all_button": "Aui uswähle"
+            }
+        }
+    },
+    "scopes": {
+        "friend": "Freund",
+        "group": "Gruppe"
+    },
+    "rules": {
+        "properties": {
+            "stealth": {
+                "description": "Verhinderet, dass öpper erfahre das sini Snaps/Chats und Unterhaltige göffnet hesch",
+                "name": "Stealth-Modus",
+                "options": {
+                    "blacklist": "Us em Schtealth-Modus usschlüsse",
+                    "whitelist": "Stealth-Modus"
+                }
+            },
+            "auto_save": {
+                "description": "Speicheret Chat-Nachrichte bim Betrachte",
+                "options": {
+                    "blacklist": "Vom Auto speichere usschlüsse",
+                    "whitelist": "Outo spichere"
+                },
+                "name": "Outo spichere"
+            },
+            "auto_download": {
+                "name": "Automatisches Abewähli",
+                "description": "Snaps outomatisch abelade we si azeigt wärde",
+                "options": {
+                    "blacklist": "Vom Auto-Download usschlüsse",
+                    "whitelist": "Automatisches Abewähli"
+                }
+            },
+            "unsaveable_messages": {
+                "options": {
+                    "whitelist": "Nid speicherbari Nachrichte",
+                    "blacklist": "Vo nid speicherbare Nachrichte usschlüsse"
+                },
+                "name": "Nid speicherbari Nachrichte",
+                "description": "Verhinderet, dass Nachrichte vo anderne Persone im Chat gspicheret wärde"
+            },
+            "auto_open_snaps": {
+                "description": "Öffnet automatisch snaps we si empfange wärde",
+                "options": {
+                    "blacklist": "Vum Auto Open Snaps usschlüsse",
+                    "whitelist": "Automatischs Öffne vo Schnappschüss"
+                },
+                "name": "Automatischs Öffne vo Schnappschüss"
+            },
+            "hide_friend_feed": {
+                "name": "Usblende vo Fründ-Feed"
+            },
+            "e2e_encryption": {
+                "name": "E2E-Verschlüsselig verwände"
+            },
+            "pin_conversation": {
+                "name": "Konversation anpinnen"
+            }
+        },
+        "toasts": {
+            "enabled": "{ruleName} aktiviert",
+            "disabled": "{ruleName} deaktiviert"
+        },
+        "modes": {
+            "blacklist": "Blacklist-Modus",
+            "whitelist": "Wisslischte-Modus"
+        }
+    },
+    "actions": {
+        "bulk_messaging_action": {
+            "description": "Füehrt Vorgäng wi ds Lösche vo Fründe oder ds Masselösche vo Ungerhautige us"
+        },
+        "clean_snapchat_cache": {
+            "name": "Snapchat-Cache bereinige",
+            "description": "Reinigt der Snapchat-Cache"
+        },
+        "export_memories": {
+            "name": "Speicher exportiere"
+        },
+        "manage_friend_list": {
+            "name": "Fründesliste verwalte",
+            "description": "Importiere/Exportiere dini Fründeslischte bim Backup"
+        },
+        "export_chat_messages": {
+            "name": "Chat-Nachrichte exportiere",
+            "description": "Exportiert Konversationsnachrichte i ne JSON/HTML/TXT-Datei"
+        }
+    },
+    "suspend_location_updates": {
+        "switch_text": "Standort-Aktualisierige ussetze"
+    },
+    "streaks_reminder": {
+        "notification_text": "Du verliersch dy streak mit {friend} in {hoursLeft} Stunde"
+    }
+}

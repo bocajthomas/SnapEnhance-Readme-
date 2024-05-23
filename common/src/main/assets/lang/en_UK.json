@@ -30,7 +30,9 @@
             "manage_scope": "Manage Scope",
             "scripts": "Scripts",
             "logger_history": "Logger History",
-            "messaging_preview": "Preview"
+            "messaging_preview": "Preview",
+            "friend_tracker": "Friend Tracker",
+            "edit_rule": "Edit Rule"
         },
         "sections": {
             "features": {
@@ -588,7 +590,49 @@
                     },
                     "better_notifications": {
                         "name": "Better Notifications",
-                        "description": "Adds more information in received notifications"
+                        "description": "Adds more information in received notifications",
+                        "properties": {
+                            "media_preview": {
+                                "name": "Media Preview",
+                                "description": "Shows a preview of the selected media types in the notification"
+                            },
+                            "media_caption": {
+                                "name": "Media Caption",
+                                "description": "Shows the attached caption of media in the notification"
+                            },
+                            "stacked_media_messages": {
+                                "name": "Stacked Media Messages",
+                                "description": "Combines multiple media messages into one text notification when they cannot be previewed. Use in combination with Chat Preview"
+                            },
+                            "friend_add_source": {
+                                "name": "Friend Add Source",
+                                "description": "Shows the source of a friend request in the notification"
+                            },
+                            "reply_button": {
+                                "name": "Reply Button",
+                                "description": "Adds a reply button to the notification"
+                            },
+                            "download_button": {
+                                "name": "Download Button",
+                                "description": "Allows you to download media from the notification"
+                            },
+                            "mark_as_read_button": {
+                                "name": "Mark as Read Button",
+                                "description": "Allows you to mark a message as read from the notification"
+                            },
+                            "group_notifications": {
+                                "name": "Group Notifications",
+                                "description": "Group notifications into a single one"
+                            },
+                            "chat_preview": {
+                                "name": "Chat Preview",
+                                "description": "Shows a preview of received messages in the notification"
+                            },
+                            "mark_as_read_and_save_in_chat": {
+                                "name": "Mark as Read and Save in Chat",
+                                "description": "Adds a mark as read and save in chat button to the notification"
+                            }
+                        }
                     },
                     "notification_blacklist": {
                         "name": "Notification Blacklist",
@@ -921,20 +965,6 @@
                         "name": "Call Recorder",
                         "description": "Automatically records audio calls"
                     },
-                    "session_events": {
-                        "name": "Session Events",
-                        "description": "Records session events",
-                        "properties": {
-                            "capture_duplex_events": {
-                                "name": "Capture Duplex Events",
-                                "description": "Capture presence and messaging events when a session is active"
-                            },
-                            "allow_running_in_background": {
-                                "name": "Allow Running in Background",
-                                "description": "Allows session to run in the background"
-                            }
-                        }
-                    },
                     "convert_message_locally": {
                         "name": "Convert Message Locally",
                         "description": "Converts snaps to chat external media locally. This appears in chat download context menu"
@@ -1034,6 +1064,20 @@
                         "description": "Automatically reloads scripts when they change"
                     }
                 }
+            },
+            "friend_tracker": {
+                "description": "Records friend's activity on Snapchat",
+                "properties": {
+                    "allow_running_in_background": {
+                        "name": "Allow Running in Background",
+                        "description": "Allows the tracker to run in the background. Note: This will significantly drain your battery"
+                    },
+                    "record_messaging_events": {
+                        "description": "Records messaging events such as opening a snap, reading a message, etc.",
+                        "name": "Record Messaging Events"
+                    }
+                },
+                "name": "Friend Tracker"
             }
         },
         "options": {
@@ -1066,16 +1110,6 @@
             "app_appearance": {
                 "always_light": "Always Light",
                 "always_dark": "Always Dark"
-            },
-            "better_notifications": {
-                "chat_preview": "Show a preview of chat",
-                "media_preview": "Show a preview of media",
-                "reply_button": "Add reply button",
-                "download_button": "Add download button",
-                "mark_as_read_button": "Mark as Read button",
-                "mark_as_read_and_save_in_chat": "Save in Chat when marking as read (depends on Auto Save)",
-                "group": "Group notifications",
-                "friend_add_source": "Show friend add source"
             },
             "friend_feed_menu_buttons": {
                 "auto_download": "⬇️ Auto Download",
@@ -1231,7 +1265,8 @@
                 "ginger_snap": "Ginger Snap",
                 "lemon_meringue": "Lemon Meringue",
                 "alien_landscape": "Alien Landscape",
-                "material_you": "Material You (Android 12+)"
+                "material_you_dark": "Material You Dark (Android 12+)",
+                "material_you_light": "Material You Light (Android 12+)"
             }
         }
     },
@@ -1264,15 +1299,15 @@
         "EXTERNAL_MEDIA": "External Media",
         "NOTE": "Audio Note",
         "STICKER": "Sticker",
-        "STATUS": "Status"
+        "STATUS": "Status",
+        "SHARE": "Share"
     },
     "better_notifications": {
         "button": {
             "reply": "Reply",
             "download": "Download",
             "mark_as_read": "Mark as Read"
-        },
-        "stealth_mode_notice": "Can't mark as read in stealth mode"
+        }
     },
     "profile_picture_downloader": {
         "button": "Download Profile Picture",

@@ -1,0 +1,262 @@
+{
+    "manager": {
+        "routes": {
+            "edit_rule": "Rulus scribere",
+            "features": "Posse",
+            "tasks": "Scribere",
+            "home": "Villa",
+            "home_settings": "Deus maximae",
+            "home_logs": "Papyrus",
+            "social": "Socius",
+            "logger_history": "Logger History",
+            "logged_stories": "Initium Stories",
+            "friend_tracker": "Amicus Tracker",
+            "messaging_preview": "Praevius",
+            "scripts": "Scriptores",
+            "manage_scope": "Curo Scope"
+        },
+        "sections": {
+            "home": {
+                "update_title": "SnapEnhance Update",
+                "update_content": "Versione {version} praesto est!",
+                "update_button": "Download"
+            },
+            "home_logs": {
+                "clear_logs_button": "Patet Acta publica omnia",
+                "export_logs_button": "Acta publica exportare",
+                "saved_logs_success_toast": "Acta servata feliciter",
+                "saved_logs_failure_toast": "Non servare omnia",
+                "no_logs_hint": "Nulla omnia praesto",
+                "saving_logs_toast": "Salvis lignis, hoc potest capere aliquantulum..."
+            },
+            "home_settings": {
+                "actions_title": "Actiones",
+                "message_logger_title": "Nuntius Logger",
+                "debug_title": "Debugere",
+                "success_toast": "Finis!",
+                "message_logger_summary": "{messageCount} nuntia\n{storyCount} fabulas",
+                "export_button": "Exportare",
+                "clear_button": "Patet",
+                "view_logger_history_button": "View Logger History"
+            },
+            "tasks": {
+                "no_tasks": "Non opus",
+                "merge_files_toast": "Bus {numerare} imagini",
+                "remove_selected_tasks_title": "Certus esne munus electum tollere?",
+                "delete_files_option": "Etiam delete lima",
+                "remove_selected_tasks_confirm": "Aufer opera {numerare}?",
+                "remove_all_tasks_confirm": "Omnia opera amove?",
+                "remove_all_tasks_title": "Certus esne munus electum tollere?"
+            },
+            "features": {
+                "disabled": "debilitatum",
+                "export_option": "Exportare",
+                "import_option": "Importare",
+                "reset_option": "Reset",
+                "config_export_success_toast": "Mando emitur feliciter",
+                "saved_config_snackbar": "Mando salvus",
+                "config_import_success_toast": "Mando importari feliciter",
+                "config_import_failure_toast": "Deficio ad config {errorem} importare"
+            },
+            "social": {
+                "friends_tab": "amici",
+                "groups_tab": "Groups",
+                "empty_hint": "(vacuus)",
+                "streaks_expiration_short": "{horas} h"
+            },
+            "manage_scope": {
+                "e2ee_title": "Finis-ad-finem Encryption",
+                "rules_title": "Rulese",
+                "logged_stories_button": "Show Logged Storiese",
+                "participants_text": "{numerare} participantium",
+                "not_found": "Non inveni",
+                "streaks_title": "Striae",
+                "streaks_length_text": "Longitudo: {length}",
+                "streaks_expiration_text": "Expirat in {eta}",
+                "streaks_expiration_text_expired": "Expiratus",
+                "reminder_button": "Set Lorem",
+                "delete_scope_confirm_dialog_title": "Visne delere a {scope}?"
+            },
+            "logged_stories": {
+                "story_failed_to_load": "Deficio ad onus",
+                "no_stories": "Non fabulas invenerunt",
+                "save_from_cache_button": "Nisi ex Cache"
+            },
+            "messaging_preview": {
+                "bridge_connection_failed": "Defecit coniungere ad Snapchat per pontem ministerium",
+                "bridge_init_failed": "Non initialize quantitatem pontis",
+                "message_fetch_failed": "Deficio arcessere",
+                "no_message_hint": "Nulla nuntius",
+                "save_selection_option": "Salvum Electio",
+                "unsave_selection_option": "Electio unsave",
+                "unsave_all_option": "Invidere All",
+                "mark_selection_as_seen_option": "Mark lectus Snap ut videtur",
+                "mark_all_as_seen_option": "Nota omnia Snaps ut videtur",
+                "save_all_option": "Servare All"
+            }
+        },
+        "dialogs": {
+            "scripting_warning": {
+                "content": "SnapEnhance instrumentum scriptionis includit, supplicium usoris definiti codicis in fabrica permittens. Summa cautione utere et tantum modulos ex notis, certis auctoribus institue. Moduli non legitimi vel non probati possunt pericula securitatis in ratiocinatione tua ponere."
+            }
+        }
+    },
+    "setup": {
+        "dialogs": {
+            "select_language": "Lingua cupere",
+            "select_save_folder_button": "Ordnerus cupere",
+            "save_folder": "SnapEnhance requirit PRAECLUSIO permissiones ut download et salvum Media ex Snapchat.\nElige locum ubi instrumentorum communicationis socialis debet esse recepta."
+        },
+        "permissions": {
+            "notification_access": "Nervus alloware",
+            "battery_optimization": "Akkutis perfectio",
+            "display_over_other_apps": "Druber cuper",
+            "request_button": "Voluntas",
+            "dialog": "Pergere debes aptare sequentia requisita:"
+        },
+        "mappings": {
+            "dialog": "Generating Mappings, hoc modicum tempus capere potest.",
+            "generate_failure_no_snapchat": "SnapEnhance Snapchat deprehendere potuit, Aliquam Snapchat reinstalling.",
+            "generate_failure": "Error occurrit dum mappings generare conatur, iterum conare."
+        }
+    },
+    "scopes": {
+        "friend": "Amicus",
+        "group": "Magnas"
+    },
+    "features": {
+        "properties": {
+            "downloader": {
+                "properties": {
+                    "custom_path_format": {
+                        "description": "Denota est consuetudo semita forma pro media downloaded\n\nPraesto variabiles:\n - %username%\n - %source%\n - %hash%\n - %date_time%"
+                    },
+                    "download_context_menu": {
+                        "description": "Permittit te ut nuntia ex colloquio vel historia utens tabulas contexta notas extrahere/praevisum.\nLong torcular in bullarum et opprimere download"
+                    },
+                    "opera_download_button": {
+                        "description": "Bullam download in summo angulo dextro addit cum Snap spectabat.\nLong torcular in bullarum et opprimere download"
+                    }
+                }
+            },
+            "user_interface": {
+                "properties": {
+                    "customize_ui": {
+                        "properties": {
+                            "colors": {
+                                "properties": {
+                                    "snap_with_sound_text_color": {
+                                        "description": "Mutat textum colorem (New Snap) in amico feed\nNota: Video snaps Tantum"
+                                    },
+                                    "snap_without_sound_text_color": {
+                                        "description": "Mutat textum colorem (New Snap) in amico feed\nNota: Video snaps Tantum"
+                                    },
+                                    "pending_sending_text_color": {
+                                        "description": "Mutat textum colorem (Tradidit / Accepit / Mittens / Patefecit / Tap Ad Chat / Habe replay / Replayed / Servatum in Chat / Vocatur) in amico feed"
+                                    },
+                                    "chat_chat_text_color": {
+                                        "description": "Mutat textum colorem (Novum Chat/Novum Snap Et Sermones / Typing / Vocans / Missed call / Loquens / Novae Voice Nota) in amico feed"
+                                    },
+                                    "camera_grid_lines": {
+                                        "description": "Mutationes Snapchats Gridlines color in Camera Praevius\nNota: Potestatem eget in mea camera occasus\nNota: Video snaps Tantum"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "hide_friend_feed_entry": {
+                        "description": "Amicus certus in amicum ab amico Feed\nUtere socialis tab administrare haec factura"
+                    }
+                }
+            },
+            "experimental": {
+                "properties": {
+                    "e2ee": {
+                        "description": "Encryptas epistulas tuas cum AES clavis secreto communi utens\nFac ut clavem tuam alicubi incolumem serves!",
+                        "properties": {
+                            "force_message_encryption": {
+                                "description": "Prohibet mittens nuntios encrypted ad eos qui non habent E2E Encryption solum cum multiplex colloquia eliguntur"
+                            }
+                        }
+                    },
+                    "account_switcher": {
+                        "description": "Permittit ut commutandum inter rationes sine colligationem e\nLongum premunt in icone investigationis proximam ad profile Bitmoji ut tabulam aperiant\nNota: Haec factura experimentalis est et in futuro verisimile mutatio est"
+                    },
+                    "custom_streaks_expiration_format": {
+                        "description": "Virgae Expiration forma customizes\n\nPraesto variabiles:\n - %c: Virgae Comitis\n - %e: Hourglass Emoji\n - %d: Diebus\n - % h: Horae\n - %m: Minutes\n - %s: Secundi\n -% w: Reliquis Tempus"
+                    },
+                    "best_friend_pinning": {
+                        "description": "Permittit tibi amicum suspendere, ut numero unus amicus. Nota: Tantum potes videre te amicissimo confixi"
+                    },
+                    "meo_passcode_bypass": {
+                        "description": "Bypass in oculis meis tantum passcode\nHoc modo operatur, si passcode ante recte ingressus est"
+                    }
+                }
+            },
+            "global": {
+                "properties": {
+                    "hide_active_music": {
+                        "description": "Prohibet Snapchat scire cupis musicam audire\nHoc tibi permittet ut globuli volumen imperium adhibeas snaps ut musicam audias"
+                    },
+                    "media_upload_quality": {
+                        "properties": {
+                            "force_video_upload_source_quality": {
+                                "description": "Copiae Snapchat utendi fons qualis est cum uploading videos\nNota quaeso quod hoc metadata ex instrumentis non removeat"
+                            },
+                            "custom_image_upload_format": {
+                                "description": "Morem imaginis onerationis forma ponit\nEligere lossless forma (sicut PNG) pro optima species"
+                            }
+                        }
+                    },
+                    "video_playback_rate_slider": {
+                        "description": "Lapsus lapsus addit in menu contextus operae ut ratem video playback mutare\nNota: Mutationes tantum applicare ad subsequent videos"
+                    },
+                    "better_location": {
+                        "properties": {
+                            "spoof_battery_level": {
+                                "description": "Spoofs pila gradu tuom in tabula\nValorem debet esse inter 0 et 100"
+                            }
+                        }
+                    }
+                }
+            },
+            "camera": {
+                "properties": {
+                    "custom_resolution": {
+                        "description": "Consuetudo constituit cameram solutionis, latitudinis x altitudinis (v.g. 1920x1080).\nConsuetudo resolutio tuom sustentari debet"
+                    },
+                    "immersive_camera_preview": {
+                        "description": "Prohibet Snapchat ex tondentes Camerae preview\nHoc faciat cameram flammis quibusdam machinis"
+                    }
+                }
+            },
+            "messaging": {
+                "properties": {
+                    "better_notifications": {
+                        "properties": {
+                            "stacked_media_messages": {
+                                "description": "Multa media nuntia in unum textum notificatio coniungit cum praevideri non possunt. Utere respectu Chat Praevius"
+                            }
+                        }
+                    },
+                    "bypass_message_action_restrictions": {
+                        "description": "Permittit te agere cum frangeretur sine aperto aut nuntio inexplicabili salvare"
+                    }
+                }
+            }
+        },
+        "options": {
+            "message_indicators": {
+                "director_mode_indicator": "Iconem addit ad tortum cum missis utens Modus Directoris, qui adhiberi potest imagines gallery mittere ut tortum."
+            }
+        }
+    },
+    "end_to_end_encryption": {
+        "confirmation_dialogs": {
+            "confirmation_1": "MONITUM: Haec rescribere clavem tuam existentem. Accessum solves ad omnes epistulas encryptas ab hoc amico. Certus esne vis permanere?"
+        },
+        "toolbox": {
+            "no_shared_key": "Secretum communi cum amico nondum habes. Preme infra novam inchoare."
+        }
+    }
+}

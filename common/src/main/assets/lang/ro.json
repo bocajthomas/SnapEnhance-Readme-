@@ -900,20 +900,6 @@
                         "name": "Hook-uri Native(Un set de funcții încorporate care permit dezvoltatorilor să adauge funcționalități la componente)",
                         "description": "Caracteristici nesigure care se leagă de codul nativ al Snapchat-ului"
                     },
-                    "session_events": {
-                        "name": "Evenimente de sesiune",
-                        "description": "Înregistrează evenimentele sesiunii",
-                        "properties": {
-                            "capture_duplex_events": {
-                                "name": "Capturați evenimente duplex",
-                                "description": "Capturați prezența și evenimentele de mesagerie atunci când o sesiune este activă"
-                            },
-                            "allow_running_in_background": {
-                                "name": "Permite rularea în fundal",
-                                "description": "Permite sesiunii să ruleze în fundal"
-                            }
-                        }
-                    },
                     "media_file_picker": {
                         "name": "Selector de Fișiere Media",
                         "description": "Vă permite să alegeți orice fișier video/audio din galerie"
@@ -1020,16 +1006,6 @@
             "unstable": "⚠ Instabil"
         },
         "options": {
-            "better_notifications": {
-                "chat_preview": "Afișează o previzualizare a chatului",
-                "mark_as_read_and_save_in_chat": "Salvați în Chat când marcați ca citit (depinde de Salvarea automată)",
-                "reply_button": "Adăugați butonul de răspuns",
-                "download_button": "Adăugați butonul de descărcare",
-                "mark_as_read_button": "Butonul Marcare ca Citit",
-                "media_preview": "Afișați o previzualizare a conținutului media",
-                "group": "Notificări de Grup",
-                "friend_add_source": "Afișează sursa adăugării prietenului"
-            },
             "friend_feed_menu_buttons": {
                 "mark_stories_as_seen_locally": "👀 Marchează Poveștile ca fiind văzute local",
                 "auto_download": "⬇️ Descărcare automată",
@@ -1365,8 +1341,7 @@
             "reply": "Răspundeți",
             "download": "Descărcați",
             "mark_as_read": "Marcați ca citit"
-        },
-        "stealth_mode_notice": "Nu se poate marca ca citit în modul ascuns"
+        }
     },
     "streaks_reminder": {
         "notification_title": "Linie fierbinte",

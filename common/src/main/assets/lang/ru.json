@@ -515,20 +515,6 @@
                         "name": "Native Hooks",
                         "description": "Небезопасные функции, которые встраиваются в нативный код Snapchat"
                     },
-                    "session_events": {
-                        "properties": {
-                            "allow_running_in_background": {
-                                "name": "Разрешить работу в фоне",
-                                "description": "Позволяет сессии работать в фоновом режиме"
-                            },
-                            "capture_duplex_events": {
-                                "name": "Захват событий дуплекса",
-                                "description": "Захват событий присутствия и обмена сообщениями при активной сессии"
-                            }
-                        },
-                        "name": "События сессии",
-                        "description": "Записывает события сессии"
-                    },
                     "spoof": {
                         "description": "Подделывает различную информацию о вас",
                         "properties": {
@@ -1075,16 +1061,6 @@
                 "always_light": "Всегда светлый",
                 "always_dark": "Всегда темный"
             },
-            "better_notifications": {
-                "chat_preview": "Показать предварительный просмотр чата",
-                "download_button": "Добавить кнопку загрузки",
-                "mark_as_read_button": "Добавить кнопку отметки как прочитанное",
-                "mark_as_read_and_save_in_chat": "Сохранить в чате при отметке как прочитанное (зависит от автосохранения)",
-                "group": "Уведомления в группе",
-                "media_preview": "Показать предварительный просмотр медиафайлов",
-                "reply_button": "Добавить кнопку ответа",
-                "friend_add_source": "Показать источник добавления друга"
-            },
             "auto_download_sources": {
                 "friend_stories": "Истории друзей",
                 "public_stories": "Публичные истории",
@@ -1279,8 +1255,7 @@
             "download": "Скачать",
             "reply": "Ответить",
             "mark_as_read": "Пометить, как прочитанное"
-        },
-        "stealth_mode_notice": "Нельзя отметить как прочитанное в скрытом режиме"
+        }
     },
     "profile_picture_downloader": {
         "button": "Загрузить изображение профиля",
