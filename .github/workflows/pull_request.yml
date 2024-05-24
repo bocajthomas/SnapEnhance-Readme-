@@ -22,6 +22,9 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
+      - name: Setup NPM Dependencies
+        run: npm install typescript -g
+
       - name: Build
         run: ./gradlew assembleArmv8Debug
 
@@ -65,6 +68,9 @@ jobs:
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
+
+      - name: Setup NPM Dependencies
+        run: npm install typescript -g
 
       - name: Build
         run: ./gradlew assembleArmv7Debug
@@ -110,6 +116,9 @@ jobs:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
+      - name: Setup NPM Dependencies
+        run: npm install typescript -g
+        
       - name: Build
         run: ./gradlew assembleAllDebug
 
