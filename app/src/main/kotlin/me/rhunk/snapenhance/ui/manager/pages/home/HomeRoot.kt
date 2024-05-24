@@ -147,7 +147,7 @@ class HomeRoot : Routes.Route() {
             )
 
             Text(
-                text = "v" + BuildConfig.VERSION_NAME + " \u00b7  Forked By Jacob",
+                text = "v" + BuildConfig.VERSION_NAME + " \u00b7 Forked By Jacob",
                 fontSize = 12.sp,
                 fontFamily = avenirNextFontFamily,
                 modifier = Modifier.align(Alignment.CenterHorizontally),
