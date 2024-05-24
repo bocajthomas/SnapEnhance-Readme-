@@ -44,7 +44,7 @@ import kotlin.random.Random
 
 class ComposerHooks: Feature("ComposerHooks", loadParams = FeatureLoadParams.INIT_SYNC) {
     private val config by lazy { context.config.experimental.nativeHooks.composerHooks }
-    private val exportedFunctionName = Random.nextInt().absoluteValue.toString(16)
+    private val getImportsFunctionName = Random.nextLong().absoluteValue.toString(16)
 
     private val composerConsole by lazy {
         createComposeAlertDialog(context.mainActivity!!) {
@@ -126,7 +126,7 @@ class ComposerHooks: Feature("ComposerHooks", loadParams = FeatureLoadParams.INI
         }
     }
 
-    private fun newComposerFunction(block: (composerMarshaller: ComposerMarshaller) -> Boolean): Any {
+    private fun newComposerFunction(block: ComposerMarshaller.() -> Boolean): Any? {
         val composerFunctionClass = findClass("com.snap.composer.callable.ComposerFunction")
         return Proxy.newProxyInstance(
             composerFunctionClass.classLoader,
@@ -137,101 +137,97 @@ class ComposerHooks: Feature("ComposerHooks", loadParams = FeatureLoadParams.INI
         }
     }
 
-    private fun getConfig(): Map<String, Any> {
-        return mapOf<String, Any>(
-            "operaDownloadButton" to context.config.downloader.operaDownloadButton.get(),
-            "bypassCameraRollLimit" to config.bypassCameraRollLimit.get(),
-            "showFirstCreatedUsername" to config.showFirstCreatedUsername.get(),
-            "composerConsole" to config.composerConsole.get(),
-            "composerLogs" to config.composerLogs.get()
-        )
-    }
-
-    private fun handleExportCall(composerMarshaller: ComposerMarshaller): Boolean {
-        val argc = composerMarshaller.getSize()
-        if (argc < 1) return false
-        val action = composerMarshaller.getUntyped(0) as? String ?: return false
-
-        when (action) {
-            "getConfig" -> composerMarshaller.pushUntyped(getConfig())
-            "showToast" -> {
-                if (argc < 2) return false
-                context.shortToast(composerMarshaller.getUntyped(1) as? String ?: return false)
-            }
-            "downloadLastOperaMedia" -> context.feature(MediaDownloader::class).downloadLastOperaMediaAsync(composerMarshaller.getUntyped(1) == true)
-            "getFriendInfoByUsername" -> {
-                if (argc < 2) return false
-                val username = composerMarshaller.getUntyped(1) as? String ?: return false
-                runCatching {
-                    composerMarshaller.pushUntyped(context.database.getFriendInfoByUsername(username)?.let {
-                        context.gson.toJson(it)
-                    })
-                }.onFailure {
-                    composerMarshaller.pushUntyped(null)
-                }
-            }
-            "log" -> {
-                if (argc < 3) return false
-                val logLevel = composerMarshaller.getUntyped(1) as? String ?: return false
-                val message = composerMarshaller.getUntyped(2) as? String ?: return false
-
-                val tag = "ComposerLogs"
-
-                when (logLevel) {
-                    "log" -> context.log.verbose(message, tag)
-                    "debug" -> context.log.debug(message, tag)
-                    "info" -> context.log.info(message, tag)
-                    "warn" -> context.log.warn(message, tag)
-                    "error" -> context.log.error(message, tag)
-                }
-            }
-            else -> context.log.warn("Unknown action: $action", "Composer")
-        }
-
-        return true
-    }
-
-    private fun loadHooks() {
-        if (!NativeLib.initialized) {
-            context.log.error("ComposerHooks cannot be loaded without NativeLib")
-            return
-        }
-        val loaderScript = context.scriptRuntime.scripting.getScriptContent("composer/loader.js")?.let { pfd ->
-            ParcelFileDescriptor.AutoCloseInputStream(pfd).use {
-                it.readBytes().toString(Charsets.UTF_8)
-            }
-        } ?: run {
-            context.log.error("Failed to load composer loader script")
-            return
-        }
-
-        context.native.setComposerLoader("""
-            (() => { const callExport = require('composer_core/src/DeviceBridge')["$exportedFunctionName"]; try { $loaderScript
-                } catch (e) {
-                    try {
-                        callExport("log", "error", e.toString() + "\n" + e.stack);
-                    } catch (t) {}
-                }
-            })();
-        """.trimIndent().trim())
-
-        if (config.composerConsole.get()) {
-            injectConsole()
-        }
-    }
-
     @Suppress("UNCHECKED_CAST")
     override fun init() {
         if (config.globalState != true) return
+
+        val importedFunctions = mutableMapOf<String, Any?>()
+
+        fun composerFunction(name: String, block: ComposerMarshaller.() -> Unit) {
+            importedFunctions[name] = newComposerFunction {
+                block(this)
+                true
+            }
+        }
+
+        composerFunction("getConfig") {
+            pushUntyped(mapOf<String, Any>(
+                "operaDownloadButton" to context.config.downloader.operaDownloadButton.get(),
+                "bypassCameraRollLimit" to config.bypassCameraRollLimit.get(),
+                "showFirstCreatedUsername" to config.showFirstCreatedUsername.get(),
+                "composerLogs" to config.composerLogs.get()
+            ))
+        }
+
+        composerFunction("showToast") {
+            if (getSize() < 1) return@composerFunction
+            context.shortToast(getUntyped(0) as? String ?: return@composerFunction)
+        }
+
+        composerFunction("downloadLastOperaMedia") {
+            context.feature(MediaDownloader::class).downloadLastOperaMediaAsync(getUntyped(0) == true)
+        }
+
+        composerFunction("getFriendInfoByUsername") {
+            if (getSize() < 1) return@composerFunction
+            val username = getUntyped(0) as? String ?: return@composerFunction
+            runCatching {
+                pushUntyped(context.database.getFriendInfoByUsername(username)?.let {
+                    context.gson.toJson(it)
+                })
+            }.onFailure {
+                pushUntyped(null)
+            }
+        }
+
+        composerFunction("log") {
+            if (getSize() < 2) return@composerFunction
+            val logLevel = getUntyped(0) as? String ?: return@composerFunction
+            val message = getUntyped(1) as? String ?: return@composerFunction
+
+            val tag = "ComposerLogs"
+
+            when (logLevel) {
+                "log" -> context.log.verbose(message, tag)
+                "debug" -> context.log.debug(message, tag)
+                "info" -> context.log.info(message, tag)
+                "warn" -> context.log.warn(message, tag)
+                "error" -> context.log.error(message, tag)
+            }
+        }
+
+        fun loadHooks() {
+            if (!NativeLib.initialized) {
+                context.log.error("ComposerHooks cannot be loaded without NativeLib")
+                return
+            }
+            val loaderScript = context.scriptRuntime.scripting.getScriptContent("composer/loader.js")?.let { pfd ->
+                ParcelFileDescriptor.AutoCloseInputStream(pfd).use {
+                    it.readBytes().toString(Charsets.UTF_8)
+                }
+            } ?: run {
+                context.log.error("Failed to load composer loader script")
+                return
+            }
+            context.native.setComposerLoader("""
+                (() => { const _getImportsFunctionName = "$getImportsFunctionName"; $loaderScript })();
+            """.trimIndent().trim())
+
+            if (config.composerConsole.get()) {
+                injectConsole()
+            }
+        }
+
         findClass("com.snapchat.client.composer.NativeBridge").apply {
             hook("createViewLoaderManager", HookStage.AFTER) { loadHooks() }
             hook("registerNativeModuleFactory", HookStage.BEFORE) { param ->
                 val moduleFactory = param.argNullable<Any>(1) ?: return@hook
                 if (moduleFactory.javaClass.getMethod("getModulePath").invoke(moduleFactory)?.toString() != "DeviceBridge") return@hook
                 Hooker.ephemeralHookObjectMethod(moduleFactory.javaClass, moduleFactory, "loadModule", HookStage.AFTER) { methodParam ->
-                    val functions = methodParam.getResult() as? MutableMap<String, Any> ?: return@ephemeralHookObjectMethod
-                    functions[exportedFunctionName] = newComposerFunction {
-                        handleExportCall(it)
+                    val result = methodParam.getResult() as? MutableMap<String, Any?> ?: return@ephemeralHookObjectMethod
+                    result[getImportsFunctionName] = newComposerFunction {
+                        pushUntyped(importedFunctions)
+                        true
                     }
                 }
             }
