@@ -38,7 +38,25 @@ class TrackerLog(
     val userId: String,
     val eventType: String,
     val data: String
-)
+) {
+    fun toJson(): JsonObject {
+        return JsonObject().apply {
+            addProperty("id", id)
+            addProperty("timestamp", timestamp)
+            addProperty("conversationId", conversationId)
+            addProperty("conversationTitle", conversationTitle)
+            addProperty("isGroup", isGroup)
+            addProperty("username", username)
+            addProperty("userId", userId)
+            addProperty("eventType", eventType)
+            addProperty("data", data)
+        }
+    }
+
+    fun toCsv(): String {
+        return "$id,$timestamp,$conversationId,$conversationTitle,$isGroup,$username,$userId,$eventType,$data"
+    }
+}
 
 class LoggerWrapper(
     val databaseFile: File
@@ -283,12 +301,18 @@ class LoggerWrapper(
     }
 
     fun getLogs(
-        lastTimestamp: Long,
+        pageIndex: Int,
+        pageSize: Int,
+        reverseOrder: Boolean = true,
+        timestamp: Long? = null,
         filter: ((TrackerLog) -> Boolean)? = null
     ): List<TrackerLog> {
-        return database.rawQuery("SELECT * FROM tracker_events WHERE timestamp < ? ORDER BY timestamp DESC", arrayOf(lastTimestamp.toString())).use {
+        return database.rawQuery("SELECT * FROM tracker_events " +
+                "WHERE timestamp ${if (reverseOrder) "<" else ">"} ? " +
+                "ORDER BY timestamp ${if (reverseOrder) "DESC" else ""} " +
+                "LIMIT $pageSize OFFSET ${pageIndex * pageSize}", arrayOf((timestamp ?: if (reverseOrder) Long.MAX_VALUE else 0).toString())).use {
             val logs = mutableListOf<TrackerLog>()
-            while (it.moveToNext() && logs.size < 50) {
+            while (it.moveToNext()) {
                 val log = TrackerLog(
                     id = it.getIntOrNull("id") ?: continue,
                     timestamp = it.getLongOrNull("timestamp") ?: continue,
@@ -304,6 +328,13 @@ class LoggerWrapper(
                 logs.add(log)
             }
             logs
+        }
+    }
+
+    fun purgeTrackerLogs(maxAge: Long) {
+        coroutineScope.launch {
+            val maxTime = System.currentTimeMillis() - maxAge
+            database.execSQL("DELETE FROM tracker_events WHERE timestamp < ?", arrayOf(maxTime.toString()))
         }
     }
 

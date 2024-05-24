@@ -4,6 +4,9 @@ import me.rhunk.snapenhance.common.config.ConfigContainer
 import me.rhunk.snapenhance.common.config.FeatureNotice
 import me.rhunk.snapenhance.common.config.PropertyValue
 import me.rhunk.snapenhance.common.data.NotificationType
+import me.rhunk.snapenhance.common.util.PURGE_DISABLED_KEY
+import me.rhunk.snapenhance.common.util.PURGE_TRANSLATION_KEY
+import me.rhunk.snapenhance.common.util.PURGE_VALUES
 
 class MessagingTweaks : ConfigContainer() {
     inner class HalfSwipeNotifierConfig : ConfigContainer(hasGlobalState = true) {
@@ -17,26 +20,10 @@ class MessagingTweaks : ConfigContainer() {
 
     inner class MessageLoggerConfig : ConfigContainer(hasGlobalState = true) {
         val keepMyOwnMessages = boolean("keep_my_own_messages")
-        private val autoPurge = unique("auto_purge", "1_hour", "3_hours", "6_hours", "12_hours", "1_day", "3_days", "1_week", "2_weeks", "1_month", "3_months", "6_months") {
-            disabledKey = "features.options.auto_purge.never"
+        val autoPurge = unique("auto_purge", *PURGE_VALUES) {
+            customOptionTranslationPath = PURGE_TRANSLATION_KEY
+            disabledKey = PURGE_DISABLED_KEY
         }.apply { set("3_days") }
-
-        fun getAutoPurgeTime(): Long? {
-            return when (autoPurge.getNullable()) {
-                "1_hour" -> 3600000L
-                "3_hours" -> 10800000L
-                "6_hours" -> 21600000L
-                "12_hours" -> 43200000L
-                "1_day" -> 86400000L
-                "3_days" -> 259200000L
-                "1_week" -> 604800000L
-                "2_weeks" -> 1209600000L
-                "1_month" -> 2592000000L
-                "3_months" -> 7776000000L
-                "6_months" -> 15552000000L
-                else -> null
-            }
-        }
 
         val messageFilter = multiple("message_filter", "CHAT",
             "SNAP",

@@ -1081,6 +1081,10 @@
                     "allow_running_in_background": {
                         "name": "Allow Running in Background",
                         "description": "Allows the tracker to run in the background. Note: This will significantly drain your battery"
+                    },
+                    "auto_purge": {
+                        "name": "Auto Purge",
+                        "description": "Automatically deletes cached events that are older than the specified amount of time"
                     }
                 }
             }

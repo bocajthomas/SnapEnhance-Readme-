@@ -14,10 +14,14 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.DeleteOutline
+import androidx.compose.material.icons.filled.SaveAlt
 import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -27,25 +31,17 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.window.PopupProperties
 import androidx.navigation.NavBackStackEntry
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import me.rhunk.snapenhance.common.bridge.wrapper.TrackerLog
-import me.rhunk.snapenhance.common.data.MessagingFriendInfo
-import me.rhunk.snapenhance.common.data.TrackerEventType
 import me.rhunk.snapenhance.common.ui.rememberAsyncMutableState
 import me.rhunk.snapenhance.common.ui.rememberAsyncMutableStateList
 import me.rhunk.snapenhance.common.ui.rememberAsyncUpdateDispatcher
 import me.rhunk.snapenhance.common.util.snap.BitmojiSelfie
 import me.rhunk.snapenhance.storage.*
 import me.rhunk.snapenhance.ui.manager.Routes
+import me.rhunk.snapenhance.ui.util.ActivityLauncherHelper
 import me.rhunk.snapenhance.ui.util.coil.BitmojiImage
 import me.rhunk.snapenhance.ui.util.pagerTabIndicatorOffset
-import java.text.DateFormat
 
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -56,242 +52,48 @@ class FriendTrackerManagerRoot : Routes.Route() {
 
     private val titles = listOf("Logs", "Rules")
     private var currentPage by mutableIntStateOf(0)
+    private lateinit var logDeleteAction : () -> Unit
+    private lateinit var exportAction : () -> Unit
 
-    override val floatingActionButton: @Composable () -> Unit = {
-        if (currentPage == 1) {
-            ExtendedFloatingActionButton(
-                icon = { Icon(Icons.Default.Add, contentDescription = "Add Rule") },
-                expanded = true,
-                text = { Text("Add Rule") },
-                onClick = { routes.editRule.navigate() }
-            )
-        }
+    private lateinit var activityLauncherHelper: ActivityLauncherHelper
+
+    override val init: () -> Unit = {
+        activityLauncherHelper = ActivityLauncherHelper(context.activity!!)
     }
 
-    @OptIn(ExperimentalMaterial3Api::class)
-    @Composable
-    private fun LogsTab() {
-        val coroutineScope = rememberCoroutineScope()
-
-        val logs = remember { mutableStateListOf<TrackerLog>() }
-        var lastTimestamp by remember { mutableLongStateOf(Long.MAX_VALUE) }
-        var filterType by remember { mutableStateOf(FilterType.USERNAME) }
-
-        var filter by remember { mutableStateOf("") }
-        var searchTimeoutJob by remember { mutableStateOf<Job?>(null) }
-
-        suspend fun loadNewLogs() {
-            withContext(Dispatchers.IO) {
-                logs.addAll(context.messageLogger.getLogs(lastTimestamp, filter = {
-                    when (filterType) {
-                        FilterType.USERNAME -> it.username.contains(filter, ignoreCase = true)
-                        FilterType.CONVERSATION -> it.conversationTitle?.contains(filter, ignoreCase = true) == true || (it.username == filter && !it.isGroup)
-                        FilterType.EVENT -> it.eventType.contains(filter, ignoreCase = true)
-                    }
-                }).apply {
-                    lastTimestamp = minOfOrNull { it.timestamp } ?: lastTimestamp
-                })
-            }
-        }
-
-        suspend fun resetAndLoadLogs() {
-            logs.clear()
-            lastTimestamp = Long.MAX_VALUE
-            loadNewLogs()
-        }
-
-        Column(
-            modifier = Modifier.fillMaxSize()
-        ) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-            ) {
-                var showAutoComplete by remember { mutableStateOf(false) }
-                var dropDownExpanded by remember { mutableStateOf(false) }
-
-                ExposedDropdownMenuBox(
-                    expanded = showAutoComplete,
-                    onExpandedChange = { showAutoComplete = it },
+    override val floatingActionButton: @Composable () -> Unit = {
+        when (currentPage) {
+            0 -> {
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(6.dp),
                 ) {
-                    TextField(
-                        value = filter,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .menuAnchor()
-                            .padding(8.dp),
-                        onValueChange = {
-                            filter = it
-                            coroutineScope.launch {
-                                searchTimeoutJob?.cancel()
-                                searchTimeoutJob = coroutineScope.launch {
-                                    delay(200)
-                                    showAutoComplete = true
-                                    resetAndLoadLogs()
-                                }
-                            }
-                        },
-                        placeholder = { Text("Search") },
-                        colors = TextFieldDefaults.colors(
-                            focusedContainerColor = Color.Transparent,
-                            unfocusedContainerColor = Color.Transparent
-                        ),
-                        maxLines = 1,
-                        leadingIcon = {
-                            ExposedDropdownMenuBox(
-                                expanded = dropDownExpanded,
-                                onExpandedChange = { dropDownExpanded = it },
-                            ) {
-                                ElevatedCard(
-                                    modifier = Modifier
-                                        .menuAnchor()
-                                        .padding(2.dp)
-                                ) {
-                                    Text(filterType.name, modifier = Modifier.padding(8.dp))
-                                }
-                                DropdownMenu(expanded = dropDownExpanded, onDismissRequest = {
-                                    dropDownExpanded = false
-                                }) {
-                                    FilterType.entries.forEach { type ->
-                                        DropdownMenuItem(onClick = {
-                                            filter = ""
-                                            filterType = type
-                                            dropDownExpanded = false
-                                            coroutineScope.launch {
-                                                resetAndLoadLogs()
-                                            }
-                                        }, text = {
-                                            Text(type.name)
-                                        })
-                                    }
-                                }
-                            }
-                        },
-                        trailingIcon = {
-                            if (filter != "") {
-                                IconButton(onClick = {
-                                    filter = ""
-                                    coroutineScope.launch {
-                                        resetAndLoadLogs()
-                                    }
-                                }) {
-                                    Icon(Icons.Default.Clear, contentDescription = "Clear")
-                                }
-                            }
-
-                            DropdownMenu(
-                                expanded = showAutoComplete,
-                                onDismissRequest = {
-                                    showAutoComplete = false
-                                },
-                                properties = PopupProperties(focusable = false),
-                            ) {
-                                val suggestedEntries = remember(filter) {
-                                    mutableStateListOf<String>()
-                                }
-
-                                LaunchedEffect(filter) {
-                                    launch(Dispatchers.IO) {
-                                        suggestedEntries.addAll(when (filterType) {
-                                            FilterType.USERNAME -> context.messageLogger.findUsername(filter)
-                                            FilterType.CONVERSATION -> context.messageLogger.findConversation(filter) + context.messageLogger.findUsername(filter)
-                                            FilterType.EVENT -> TrackerEventType.entries.filter { it.name.contains(filter, ignoreCase = true) }.map { it.key }
-                                        }.take(5))
-                                    }
-                                }
-
-                                suggestedEntries.forEach { entry ->
-                                    DropdownMenuItem(onClick = {
-                                        filter = entry
-                                        coroutineScope.launch {
-                                            resetAndLoadLogs()
-                                        }
-                                        showAutoComplete = false
-                                    }, text = {
-                                        Text(entry)
-                                    })
-                                }
-                            }
-                        },
+                    ExtendedFloatingActionButton(
+                        icon = { Icon(Icons.Default.SaveAlt, contentDescription = "Export") },
+                        expanded = true,
+                        text = { Text("Export") },
+                        onClick = {
+                            context.coroutineScope.launch { exportAction() }
+                        }
+                    )
+                    ExtendedFloatingActionButton(
+                        icon = { Icon(Icons.Default.DeleteOutline, contentDescription = "Delete") },
+                        expanded = true,
+                        text = { Text("Delete") },
+                        onClick = {
+                            context.coroutineScope.launch { logDeleteAction() }
+                        }
                     )
                 }
             }
-
-            LazyColumn(
-                modifier = Modifier.weight(1f)
-            ) {
-                item {
-                    if (logs.isEmpty()) {
-                        Text("No logs found", modifier = Modifier
-                            .padding(16.dp)
-                            .fillMaxWidth(), textAlign = TextAlign.Center, fontWeight = FontWeight.Light)
-                    }
-                }
-                items(logs, key = { it.userId + it.id }) { log ->
-                    ElevatedCard(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(5.dp)
-                    ) {
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(4.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            var databaseFriend by remember { mutableStateOf<MessagingFriendInfo?>(null) }
-
-                            LaunchedEffect(Unit) {
-                                launch(Dispatchers.IO) {
-                                    databaseFriend = context.database.getFriendInfo(log.userId)
-                                }
-                            }
-                            BitmojiImage(
-                                modifier = Modifier.padding(10.dp),
-                                size = 70,
-                                context = context,
-                                url = databaseFriend?.takeIf { it.bitmojiId != null }?.let {
-                                    BitmojiSelfie.getBitmojiSelfie(it.selfieId, it.bitmojiId, BitmojiSelfie.BitmojiSelfieType.NEW_THREE_D)
-                                },
-                            )
-
-                            Column(
-                                modifier = Modifier
-                                    .weight(1f),
-                            ) {
-                                Text(databaseFriend?.displayName?.let {
-                                    "$it (${log.username})"
-                                } ?: log.username, lineHeight = 20.sp, fontWeight = FontWeight.Bold, maxLines = 1, overflow = TextOverflow.Ellipsis)
-                                Text("${log.eventType} in ${log.conversationTitle}", fontSize = 15.sp, fontWeight = FontWeight.Light, lineHeight = 20.sp, maxLines = 1, overflow = TextOverflow.Ellipsis)
-                                Text(
-                                    DateFormat.getDateTimeInstance().format(log.timestamp),
-                                    fontSize = 10.sp,
-                                    fontWeight = FontWeight.Light,
-                                    lineHeight = 15.sp,
-                                )
-                            }
-
-                            OutlinedIconButton(
-                                onClick = {
-                                    context.messageLogger.deleteTrackerLog(log.id)
-                                    logs.remove(log)
-                                }
-                            ) {
-                                Icon(Icons.Default.DeleteOutline, contentDescription = "Delete")
-                            }
-                        }
-                    }
-                }
-                item {
-                    Spacer(modifier = Modifier.height(16.dp))
-
-                    LaunchedEffect(lastTimestamp) {
-                        loadNewLogs()
-                    }
-                }
+            1 -> {
+                ExtendedFloatingActionButton(
+                    icon = { Icon(Icons.Default.Add, contentDescription = "Add Rule") },
+                    expanded = true,
+                    text = { Text("Add Rule") },
+                    onClick = { routes.editRule.navigate() }
+                )
             }
         }
-
     }
 
     @Composable
@@ -461,7 +263,12 @@ class FriendTrackerManagerRoot : Routes.Route() {
                 state = pagerState
             ) { page ->
                 when (page) {
-                    0 -> LogsTab()
+                    0 -> LogsTab(
+                        context = context,
+                        activityLauncherHelper = activityLauncherHelper,
+                        deleteAction = { logDeleteAction = it },
+                        exportAction = { exportAction = it }
+                    )
                     1 -> ConfigRulesTab()
                 }
             }

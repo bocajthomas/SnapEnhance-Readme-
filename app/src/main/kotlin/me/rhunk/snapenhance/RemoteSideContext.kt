@@ -28,6 +28,7 @@ import me.rhunk.snapenhance.common.bridge.wrapper.LocaleWrapper
 import me.rhunk.snapenhance.common.bridge.wrapper.LoggerWrapper
 import me.rhunk.snapenhance.common.bridge.wrapper.MappingsWrapper
 import me.rhunk.snapenhance.common.config.ModConfig
+import me.rhunk.snapenhance.common.util.getPurgeTime
 import me.rhunk.snapenhance.e2ee.E2EEImplementation
 import me.rhunk.snapenhance.scripting.RemoteScriptManager
 import me.rhunk.snapenhance.storage.AppDatabase
@@ -44,7 +45,6 @@ import java.io.ByteArrayInputStream
 import java.lang.ref.WeakReference
 import java.security.cert.CertificateFactory
 import java.security.cert.X509Certificate
-import kotlin.time.Duration.Companion.days
 
 
 class RemoteSideContext(
@@ -117,8 +117,14 @@ class RemoteSideContext(
                     taskManager.init()
                     config.root.messaging.messageLogger.takeIf {
                         it.globalState == true
-                    }?.getAutoPurgeTime()?.let {
+                    }?.autoPurge?.let { getPurgeTime(it.getNullable()) }?.let {
                         messageLogger.purgeAll(it)
+                    }
+
+                    config.root.friendTracker.takeIf {
+                        it.globalState == true
+                    }?.autoPurge?.let { getPurgeTime(it.getNullable()) }?.let {
+                        messageLogger.purgeTrackerLogs(it)
                     }
                 }
             }
