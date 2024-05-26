@@ -57,7 +57,7 @@ class FriendFeedMessagePreview : Feature("FriendFeedMessagePreview", loadParams 
                     ?: return@mapNotNull null
 
             val contentType = ContentType.fromMessageContainer(messageContainer) ?: ContentType.fromId(message.contentType)
-            val messageString = messageContainer.getBuffer().getMessageText(contentType) ?: contentType.name
+            val messageString = messageContainer.getBuffer().getMessageText(contentType) ?: "[${context.translation.getCategory("content_type")[contentType.name]}]"
 
             val friendName = friendNameCache.getOrPut(message.senderId ?: return@mapNotNull null) {
                 context.database.getFriendInfo(message.senderId ?: return@mapNotNull null)?.let { it.displayName?: it.mutableUsername } ?: "Unknown"

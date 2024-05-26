@@ -315,6 +315,7 @@ class Notifications : Feature("Notifications", loadParams = FeatureLoadParams.IN
         val contentType = message.messageContent!!.contentType!!.let { contentType ->
             when {
                 notificationType.contains("screenshot") -> ContentType.STATUS_CONVERSATION_CAPTURE_SCREENSHOT
+                notificationType.contains("save_camera_roll") -> ContentType.STATUS_SAVE_TO_CAMERA_ROLL
                 else -> contentType
             }
         }
