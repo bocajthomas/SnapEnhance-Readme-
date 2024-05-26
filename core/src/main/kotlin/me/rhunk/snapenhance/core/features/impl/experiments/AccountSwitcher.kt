@@ -48,12 +48,11 @@ import java.util.zip.ZipOutputStream
 import kotlin.random.Random
 
 class AccountSwitcher: Feature("Account Switcher", loadParams = FeatureLoadParams.INIT_SYNC or FeatureLoadParams.ACTIVITY_CREATE_SYNC) {
-    private var activity: Activity? = null
     private var exportCallback: Pair<Int, String>? = null // requestCode -> userId
     private var importRequestCode: Int? = null
 
     private val accounts = mutableStateListOf<Pair<String, String>>()
-    private val isLoginActivity get() = activity?.javaClass?.name?.endsWith("LoginSignupActivity") == true
+    private val isLoginActivity get() = context.mainActivity?.javaClass?.name?.endsWith("LoginSignupActivity") == true
 
     private fun updateUsers() {
         accounts.clear()
@@ -139,7 +138,7 @@ class AccountSwitcher: Feature("Account Switcher", loadParams = FeatureLoadParam
                                     val requestCode = Random.nextInt(100, 65535)
                                     exportCallback = requestCode to user.first
 
-                                    activity?.startActivityForResult(
+                                    context.mainActivity?.startActivityForResult(
                                         Intent.createChooser(
                                             Intent(Intent.ACTION_CREATE_DOCUMENT).apply {
                                                 addCategory(Intent.CATEGORY_OPENABLE)
@@ -197,7 +196,7 @@ class AccountSwitcher: Feature("Account Switcher", loadParams = FeatureLoadParam
                 Button(
                     modifier = Modifier.fillMaxWidth(),
                     onClick = {
-                        activity?.startActivityForResult(
+                        context.mainActivity?.startActivityForResult(
                             Intent.createChooser(
                                 Intent(Intent.ACTION_OPEN_DOCUMENT).apply {
                                     addCategory(Intent.CATEGORY_OPENABLE)
@@ -245,7 +244,7 @@ class AccountSwitcher: Feature("Account Switcher", loadParams = FeatureLoadParam
 
     private fun showManagementPopup() {
         context.runOnUiThread {
-            createComposeAlertDialog(activity!!) {
+            createComposeAlertDialog(context.mainActivity!!) {
                 AppMaterialTheme(isDarkTheme = true) {
                     Surface(
                         modifier = Modifier.fillMaxWidth(),
@@ -352,7 +351,7 @@ class AccountSwitcher: Feature("Account Switcher", loadParams = FeatureLoadParam
 
         runCatching {
             // copy zip file
-            activity!!.contentResolver.openInputStream(fileUri)?.use { input ->
+            context.mainActivity!!.contentResolver.openInputStream(fileUri)?.use { input ->
                 val bufferedInputStream = input.buffered()
                 val fileType = MediaDownloaderHelper.getFileType(bufferedInputStream)
 
@@ -429,14 +428,13 @@ class AccountSwitcher: Feature("Account Switcher", loadParams = FeatureLoadParam
     override fun onActivityCreate() {
         if (context.config.experimental.accountSwitcher.globalState != true) return
 
-        activity = context.mainActivity!!
-        val hovaHeaderSearchIcon = activity!!.resources.getId("hova_header_search_icon")
+        val hovaHeaderSearchIcon = context.mainActivity!!.resources.getId("hova_header_search_icon")
 
         context.event.subscribe(AddViewEvent::class) { event ->
             if (event.view.id != hovaHeaderSearchIcon) return@subscribe
 
             event.view.setOnLongClickListener {
-                activity!!.vibrateLongPress()
+                context.mainActivity!!.vibrateLongPress()
                 showManagementPopup()
                 false
             }
@@ -504,8 +502,7 @@ class AccountSwitcher: Feature("Account Switcher", loadParams = FeatureLoadParam
 
         findClass("com.snap.identity.loginsignup.ui.LoginSignupActivity").apply {
             hook("onPostCreate", HookStage.AFTER) { param ->
-                activity = param.thisObject()
-                activity!!.findViewById<FrameLayout>(android.R.id.content).addView(createComposeView(activity!!) {
+                context.mainActivity!!.findViewById<FrameLayout>(android.R.id.content).addView(createComposeView(context.mainActivity!!) {
                     Row(
                         modifier = Modifier.fillMaxWidth(),
                     ) {
