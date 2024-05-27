@@ -42,7 +42,11 @@ fun ScriptableObject.putFunction(name: String, proxy: Scriptable.(Array<out Any?
             thisObj: Scriptable,
             args: Array<out Any>?
         ): Any? {
-            return thisObj.proxy(args)
+            return thisObj.proxy(args?.map {
+                if (it is Wrapper) {
+                    it.unwrap()
+                } else it
+            }?.toTypedArray())
         }
     })
 }

@@ -14,7 +14,6 @@ import me.rhunk.snapenhance.common.scripting.type.ModuleInfo
 import me.rhunk.snapenhance.common.scripting.type.Permissions
 import me.rhunk.snapenhance.common.scripting.ui.InterfaceManager
 import org.mozilla.javascript.Function
-import org.mozilla.javascript.NativeJavaObject
 import org.mozilla.javascript.ScriptableObject
 import org.mozilla.javascript.Undefined
 import org.mozilla.javascript.Wrapper
@@ -73,26 +72,21 @@ class JSModule(
             )
 
             moduleObject.putFunction("setField") { args ->
-                val obj = args?.get(0) as? NativeJavaObject ?: return@putFunction Undefined.instance
+                val obj = args?.get(0) ?: return@putFunction Undefined.instance
                 val name = args[1].toString()
-                val value = args[2].let {
-                    when (it) {
-                        is Wrapper -> it.unwrap()
-                        else -> it
-                    }
-                }
-                val field = obj.unwrap().javaClass.declaredFields.find { it.name == name } ?: return@putFunction Undefined.instance
+                val value = args[2]
+                val field = obj.javaClass.declaredFields.find { it.name == name } ?: return@putFunction Undefined.instance
                 field.isAccessible = true
-                field.set(obj.unwrap(), value.toPrimitiveValue(lazy { field.type.name }))
+                field.set(obj, value.toPrimitiveValue(lazy { field.type.name }))
                 Undefined.instance
             }
 
             moduleObject.putFunction("getField") { args ->
-                val obj = args?.get(0) as? NativeJavaObject ?: return@putFunction Undefined.instance
+                val obj = args?.get(0) ?: return@putFunction Undefined.instance
                 val name = args[1].toString()
-                val field = obj.unwrap().javaClass.declaredFields.find { it.name == name } ?: return@putFunction Undefined.instance
+                val field = obj.javaClass.declaredFields.find { it.name == name } ?: return@putFunction Undefined.instance
                 field.isAccessible = true
-                field.get(obj.unwrap())
+                field.get(obj)
             }
 
             moduleObject.putFunction("sleep") { args ->
@@ -124,26 +118,25 @@ class JSModule(
                 }.getOrNull() ?: return@putFunction Undefined.instance
 
                 scriptableObject("JavaClassWrapper") {
-                    putFunction("newInstance") newInstance@{ args ->
+                    putFunction("__new__") { args ->
                         val constructor = clazz.declaredConstructors.find {
-                            it.parameterCount == (args?.size ?: 0)
-                        } ?: return@newInstance Undefined.instance
+                            (args ?: emptyArray()).isSameParameters(it.parameterTypes)
+                        }?.also { it.isAccessible = true } ?: throw IllegalArgumentException("Constructor not found with args ${argsToString(args)}")
                         constructor.newInstance(*args ?: emptyArray())
                     }
 
                     clazz.declaredMethods.filter { Modifier.isStatic(it.modifiers) }.forEach { method ->
                         putFunction(method.name) { args ->
-                            clazz.declaredMethods.find {
-                                it.name == method.name && it.parameterTypes.zip(args ?: emptyArray()).all { (type, arg) ->
-                                    type.isAssignableFrom(arg?.javaClass ?: return@all false)
-                                }
-                            }?.also { it.isAccessible = true }?.invoke(null, *args ?: emptyArray())
+                            val declaredMethod = clazz.declaredMethods.find {
+                                it.name == method.name && (args ?: emptyArray()).isSameParameters(it.parameterTypes)
+                            }?.also { it.isAccessible = true } ?: throw IllegalArgumentException("Method ${method.name} not found with args ${argsToString(args)}")
+                            declaredMethod.invoke(null, *args ?: emptyArray())
                         }
                     }
 
                     clazz.declaredFields.filter { Modifier.isStatic(it.modifiers) }.forEach { field ->
                         field.isAccessible = true
-                        defineProperty(field.name, { field.get(null)}, { value -> field.set(null, value) }, 0)
+                        defineProperty(field.name, { field.get(null) }, { value -> field.set(null, value) }, 0)
                     }
                 }
             }

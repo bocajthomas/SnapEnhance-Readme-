@@ -33,13 +33,16 @@ class Networking : AbstractBinding("networking", BindingSide.COMMON) {
         fun removeHeader(name: String) = requestBuilder.removeHeader(name).let { this }
 
         @JSFunction
-        fun method(method: String, body: String) = requestBuilder.method(method, body.toRequestBody(null)).let { this }
+        fun method(method: String) = requestBuilder.method(method.uppercase(), null).let { this }
 
         @JSFunction
-        fun method(method: String, body: java.io.InputStream) = requestBuilder.method(method, body.readBytes().toRequestBody(null)).let { this }
+        fun method(method: String, body: String) = requestBuilder.method(method.uppercase(), body.toRequestBody(null)).let { this }
 
         @JSFunction
-        fun method(method: String, body: ByteArray) = requestBuilder.method(method, body.toRequestBody(null)).let { this }
+        fun method(method: String, body: java.io.InputStream) = requestBuilder.method(method.uppercase(), body.readBytes().toRequestBody(null)).let { this }
+
+        @JSFunction
+        fun method(method: String, body: ByteArray) = requestBuilder.method(method.uppercase(), body.toRequestBody(null)).let { this }
     }
 
     inner class ResponseWrapper(
