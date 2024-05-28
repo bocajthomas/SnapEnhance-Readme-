@@ -1,10 +1,14 @@
 package me.rhunk.snapenhance.common.bridge.wrapper
 
 import android.content.Context
+import android.os.ParcelFileDescriptor.AutoCloseInputStream
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import me.rhunk.snapenhance.common.bridge.types.LocalePair
 import me.rhunk.snapenhance.common.logger.AbstractLogger
+import me.rhunk.snapenhance.common.util.ktx.toParcelFileDescriptor
 import java.util.Locale
 
 
@@ -13,17 +17,21 @@ class LocaleWrapper {
         const val DEFAULT_LOCALE = "en_US"
 
         fun fetchLocales(context: Context, locale: String = DEFAULT_LOCALE): List<LocalePair> {
+            val coroutineScope = CoroutineScope(Dispatchers.IO)
             val locales = mutableListOf<LocalePair>().apply {
-                add(LocalePair(DEFAULT_LOCALE, context.resources.assets.open("lang/$DEFAULT_LOCALE.json").bufferedReader().use { it.readText() }))
+                add(LocalePair(DEFAULT_LOCALE, context.resources.assets.open("lang/$DEFAULT_LOCALE.json").toParcelFileDescriptor(coroutineScope)))
             }
 
             if (locale == DEFAULT_LOCALE) return locales
 
             val compatibleLocale = context.resources.assets.list("lang")?.firstOrNull { it.startsWith(locale) }?.substringBefore(".") ?: return locales
 
-            context.resources.assets.open("lang/$compatibleLocale.json").use { inputStream ->
-                locales.add(LocalePair(compatibleLocale, inputStream.bufferedReader().use { it.readText() }))
-            }
+            locales.add(
+                LocalePair(
+                    compatibleLocale,
+                    context.resources.assets.open("lang/$compatibleLocale.json").toParcelFileDescriptor(coroutineScope)
+                )
+            )
 
             return locales
         }
@@ -42,7 +50,9 @@ class LocaleWrapper {
     private fun load(localePair: LocalePair) {
         loadedLocale = localePair.getLocale()
 
-        val translations = JsonParser.parseString(localePair.content).asJsonObject
+        val translations = AutoCloseInputStream(localePair.content).use {
+            JsonParser.parseReader(it.reader()).asJsonObject
+        }
         if (translations == null || translations.isJsonNull) {
             return
         }

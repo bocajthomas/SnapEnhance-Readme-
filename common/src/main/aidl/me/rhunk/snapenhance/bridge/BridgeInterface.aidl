@@ -33,7 +33,7 @@ interface BridgeInterface {
      *
      * @return the map of locales (key: locale short name, value: locale data as json)
      */
-    Map<String, String> fetchLocales(String userLocale);
+    Map<String, ParcelFileDescriptor> fetchLocales(String userLocale);
 
     /**
      * Enqueue a download

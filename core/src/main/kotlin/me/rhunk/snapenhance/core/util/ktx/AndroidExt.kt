@@ -6,15 +6,10 @@ import android.content.res.Resources
 import android.content.res.Resources.Theme
 import android.content.res.TypedArray
 import android.graphics.drawable.Drawable
-import android.os.ParcelFileDescriptor
 import android.os.VibrationEffect
 import android.os.Vibrator
 import androidx.core.graphics.ColorUtils
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import me.rhunk.snapenhance.common.Constants
-import java.io.InputStream
 
 
 @SuppressLint("DiscouragedApi")
@@ -60,21 +55,4 @@ fun Context.isDarkTheme(): Boolean {
     ).getColor(0, 0).let {
         ColorUtils.calculateLuminance(it) > 0.5
     }
-}
-
-fun InputStream.toParcelFileDescriptor(coroutineScope: CoroutineScope): ParcelFileDescriptor {
-    val pfd = ParcelFileDescriptor.createPipe()
-    val fos = ParcelFileDescriptor.AutoCloseOutputStream(pfd[1])
-
-    coroutineScope.launch(Dispatchers.IO) {
-        try {
-            copyTo(fos)
-        } finally {
-            close()
-            fos.flush()
-            fos.close()
-        }
-    }
-
-    return pfd[0]
 }

@@ -15,7 +15,7 @@ import me.rhunk.snapenhance.common.scripting.impl.ConfigTransactionType
 import me.rhunk.snapenhance.common.scripting.type.ModuleInfo
 import me.rhunk.snapenhance.common.scripting.type.readModuleInfo
 import me.rhunk.snapenhance.common.util.ktx.await
-import me.rhunk.snapenhance.core.util.ktx.toParcelFileDescriptor
+import me.rhunk.snapenhance.common.util.ktx.toParcelFileDescriptor
 import me.rhunk.snapenhance.scripting.impl.IPCListeners
 import me.rhunk.snapenhance.scripting.impl.ManagerIPC
 import me.rhunk.snapenhance.scripting.impl.ManagerScriptConfig

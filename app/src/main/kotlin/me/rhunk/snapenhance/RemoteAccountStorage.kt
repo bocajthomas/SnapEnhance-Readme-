@@ -2,7 +2,7 @@ package me.rhunk.snapenhance
 
 import android.os.ParcelFileDescriptor
 import me.rhunk.snapenhance.bridge.AccountStorage
-import me.rhunk.snapenhance.core.util.ktx.toParcelFileDescriptor
+import me.rhunk.snapenhance.common.util.ktx.toParcelFileDescriptor
 
 class RemoteAccountStorage(
     private val context: RemoteSideContext

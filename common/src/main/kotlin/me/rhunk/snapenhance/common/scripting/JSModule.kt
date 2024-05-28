@@ -118,12 +118,13 @@ class JSModule(
                 }.getOrNull() ?: return@putFunction Undefined.instance
 
                 scriptableObject("JavaClassWrapper") {
-                    putFunction("__new__") { args ->
+                    val newInstance: (Array<out Any?>?) -> Any? = { args ->
                         val constructor = clazz.declaredConstructors.find {
                             (args ?: emptyArray()).isSameParameters(it.parameterTypes)
                         }?.also { it.isAccessible = true } ?: throw IllegalArgumentException("Constructor not found with args ${argsToString(args)}")
                         constructor.newInstance(*args ?: emptyArray())
                     }
+                    putFunction("__new__") { newInstance(it) }
 
                     clazz.declaredMethods.filter { Modifier.isStatic(it.modifiers) }.forEach { method ->
                         putFunction(method.name) { args ->
@@ -137,6 +138,10 @@ class JSModule(
                     clazz.declaredFields.filter { Modifier.isStatic(it.modifiers) }.forEach { field ->
                         field.isAccessible = true
                         defineProperty(field.name, { field.get(null) }, { value -> field.set(null, value) }, 0)
+                    }
+
+                    if (get("newInstance") == null) {
+                        putFunction("newInstance") { newInstance(it) }
                     }
                 }
             }

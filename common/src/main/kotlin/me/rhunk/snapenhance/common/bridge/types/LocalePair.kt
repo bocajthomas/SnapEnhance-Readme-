@@ -1,10 +1,11 @@
 package me.rhunk.snapenhance.common.bridge.types
 
+import android.os.ParcelFileDescriptor
 import java.util.Locale
 
 data class LocalePair(
     val locale: String,
-    val content: String
+    val content: ParcelFileDescriptor
 ) {
     fun getLocale(): Locale {
         if (locale.contains("_")) {

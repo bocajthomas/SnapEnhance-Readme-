@@ -11,6 +11,7 @@
 #include "hooks/sqlite_mutex.h"
 #include "hooks/duplex_hook.h"
 #include "hooks/composer_hook.h"
+#include "hooks/custom_emoji_font.h"
 
 bool JNICALL init(JNIEnv *env, jobject clazz) {
     LOGD("Initializing native");
@@ -38,6 +39,9 @@ bool JNICALL init(JNIEnv *env, jobject clazz) {
     RUN(FstatHook::init());
     RUN(SqliteMutexHook::init());
     RUN(DuplexHook::init(env));
+    if (common::native_config->custom_emoji_font_path[0] != 0) {
+        RUN(CustomEmojiFont::init());
+    }
     if (common::native_config->composer_hooks) {
         RUN(ComposerHook::init());
     }
@@ -58,6 +62,14 @@ void JNICALL load_config(JNIEnv *env, jobject, jobject config_object) {
     native_config->disable_bitmoji = GET_CONFIG_BOOL("disableBitmoji");
     native_config->disable_metrics = GET_CONFIG_BOOL("disableMetrics");
     native_config->composer_hooks = GET_CONFIG_BOOL("composerHooks");
+
+    memset(native_config->custom_emoji_font_path, 0, sizeof(native_config->custom_emoji_font_path));
+    auto custom_emoji_font_path = env->GetObjectField(config_object, env->GetFieldID(native_config_clazz, "customEmojiFontPath", "Ljava/lang/String;"));
+    if (custom_emoji_font_path != nullptr) {
+        auto custom_emoji_font_path_str = env->GetStringUTFChars((jstring) custom_emoji_font_path, nullptr);
+        strncpy(native_config->custom_emoji_font_path, custom_emoji_font_path_str, sizeof(native_config->custom_emoji_font_path));
+        env->ReleaseStringUTFChars((jstring) custom_emoji_font_path, custom_emoji_font_path_str);
+    }
 }
 
 void JNICALL lock_database(JNIEnv *env, jobject, jstring database_name, jobject runnable) {

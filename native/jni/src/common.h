@@ -13,6 +13,7 @@ typedef struct {
     bool disable_bitmoji;
     bool disable_metrics;
     bool composer_hooks;
+    char custom_emoji_font_path[256];
 } native_config_t;
 
 namespace common {
