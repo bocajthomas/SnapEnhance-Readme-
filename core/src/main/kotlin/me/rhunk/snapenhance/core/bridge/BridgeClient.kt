@@ -18,11 +18,8 @@ import me.rhunk.snapenhance.bridge.logger.LoggerInterface
 import me.rhunk.snapenhance.bridge.logger.TrackerInterface
 import me.rhunk.snapenhance.bridge.scripting.IScripting
 import me.rhunk.snapenhance.bridge.snapclient.MessagingBridge
+import me.rhunk.snapenhance.bridge.storage.FileHandleManager
 import me.rhunk.snapenhance.common.Constants
-import me.rhunk.snapenhance.common.bridge.FileLoaderWrapper
-import me.rhunk.snapenhance.common.bridge.types.BridgeFileType
-import me.rhunk.snapenhance.common.bridge.types.FileActionType
-import me.rhunk.snapenhance.common.bridge.types.LocalePair
 import me.rhunk.snapenhance.common.data.MessagingFriendInfo
 import me.rhunk.snapenhance.common.data.MessagingGroupInfo
 import me.rhunk.snapenhance.common.data.MessagingRuleType
@@ -33,14 +30,6 @@ import java.util.concurrent.CompletableFuture
 import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 import kotlin.system.exitProcess
-
-fun FileLoaderWrapper.loadFromBridge(bridgeClient: BridgeClient) {
-    isFileExists = { bridgeClient.isFileExists(fileType) }
-    read = { bridgeClient.createAndReadFile(fileType, defaultContent) }
-    write = { bridgeClient.writeFile(fileType, it) }
-    delete = { bridgeClient.deleteFile(fileType) }
-}
-
 
 class BridgeClient(
     private val context: ModContext
@@ -125,39 +114,6 @@ class BridgeClient(
         }
     }
 
-    //TODO: use interfaces instead of direct file access
-    fun createAndReadFile(
-        fileType: BridgeFileType,
-        defaultContent: ByteArray
-    ): ByteArray = safeServiceCall {
-        service.fileOperation(FileActionType.CREATE_AND_READ.ordinal, fileType.value, defaultContent)
-    }
-
-    fun readFile(fileType: BridgeFileType): ByteArray = safeServiceCall { service.fileOperation(FileActionType.READ.ordinal, fileType.value, null) }
-
-    fun writeFile(
-        fileType: BridgeFileType,
-        content: ByteArray?
-    ): ByteArray = safeServiceCall {
-        service.fileOperation(FileActionType.WRITE.ordinal, fileType.value, content)
-    }
-
-    fun deleteFile(fileType: BridgeFileType) {
-        safeServiceCall {
-            service.fileOperation(FileActionType.DELETE.ordinal, fileType.value, null)
-        }
-    }
-
-    fun isFileExists(fileType: BridgeFileType) = safeServiceCall {
-        service.fileOperation(FileActionType.EXISTS.ordinal, fileType.value, null).isNotEmpty()
-    }
-
-    fun fetchLocales(userLocale: String) = safeServiceCall {
-        service.fetchLocales(userLocale).map {
-            LocalePair(it.key, it.value)
-        }
-    }
-
     fun getApplicationApkPath(): String = safeServiceCall { service.applicationApkPath }
 
     fun enqueueDownload(intent: Intent, callback: DownloadCallback) = safeServiceCall {
@@ -214,6 +170,8 @@ class BridgeClient(
     fun getTracker(): TrackerInterface = safeServiceCall { service.tracker }
 
     fun getAccountStorage(): AccountStorage = safeServiceCall { service.accountStorage }
+
+    fun getFileHandlerManager(): FileHandleManager = safeServiceCall { service.fileHandleManager }
 
     fun registerMessagingBridge(bridge: MessagingBridge) = safeServiceCall { service.registerMessagingBridge(bridge) }
 

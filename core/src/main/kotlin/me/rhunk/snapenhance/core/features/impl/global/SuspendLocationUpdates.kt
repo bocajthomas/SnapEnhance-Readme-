@@ -2,7 +2,7 @@ package me.rhunk.snapenhance.core.features.impl.global
 
 import android.view.ViewGroup
 import android.widget.Switch
-import me.rhunk.snapenhance.common.bridge.types.BridgeFileType
+import me.rhunk.snapenhance.common.bridge.InternalFileHandleType
 import me.rhunk.snapenhance.core.event.events.impl.LayoutInflateEvent
 import me.rhunk.snapenhance.core.features.BridgeFileFeature
 import me.rhunk.snapenhance.core.features.FeatureLoadParams
@@ -12,7 +12,7 @@ import me.rhunk.snapenhance.core.util.ktx.getLayoutId
 
 class SuspendLocationUpdates : BridgeFileFeature(
     "Suspend Location Updates",
-    loadParams = FeatureLoadParams.ACTIVITY_CREATE_SYNC, bridgeFileType = BridgeFileType.SUSPEND_LOCATION_STATE) {
+    loadParams = FeatureLoadParams.ACTIVITY_CREATE_SYNC, bridgeFileType = InternalFileHandleType.SUSPEND_LOCATION_STATE) {
     fun isSuspended() = exists("true")
     private fun setSuspended(suspended: Boolean) = setState("true", suspended)
 

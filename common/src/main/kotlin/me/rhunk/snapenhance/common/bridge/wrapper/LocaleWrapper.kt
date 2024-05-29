@@ -1,40 +1,21 @@
 package me.rhunk.snapenhance.common.bridge.wrapper
 
 import android.content.Context
+import android.os.ParcelFileDescriptor
 import android.os.ParcelFileDescriptor.AutoCloseInputStream
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import me.rhunk.snapenhance.common.bridge.types.LocalePair
+import me.rhunk.snapenhance.bridge.storage.FileHandleManager
+import me.rhunk.snapenhance.common.bridge.FileHandleScope
 import me.rhunk.snapenhance.common.logger.AbstractLogger
-import me.rhunk.snapenhance.common.util.ktx.toParcelFileDescriptor
 import java.util.Locale
 
 
-class LocaleWrapper {
+class LocaleWrapper(
+    private val fileHandleManager: FileHandleManager
+) {
     companion object {
         const val DEFAULT_LOCALE = "en_US"
-
-        fun fetchLocales(context: Context, locale: String = DEFAULT_LOCALE): List<LocalePair> {
-            val coroutineScope = CoroutineScope(Dispatchers.IO)
-            val locales = mutableListOf<LocalePair>().apply {
-                add(LocalePair(DEFAULT_LOCALE, context.resources.assets.open("lang/$DEFAULT_LOCALE.json").toParcelFileDescriptor(coroutineScope)))
-            }
-
-            if (locale == DEFAULT_LOCALE) return locales
-
-            val compatibleLocale = context.resources.assets.list("lang")?.firstOrNull { it.startsWith(locale) }?.substringBefore(".") ?: return locales
-
-            locales.add(
-                LocalePair(
-                    compatibleLocale,
-                    context.resources.assets.open("lang/$compatibleLocale.json").toParcelFileDescriptor(coroutineScope)
-                )
-            )
-
-            return locales
-        }
 
         fun fetchAvailableLocales(context: Context): List<String> {
             return context.resources.assets.list("lang")?.map { it.substringBefore(".") }?.sorted() ?: listOf(DEFAULT_LOCALE)
@@ -47,14 +28,23 @@ class LocaleWrapper {
 
     lateinit var loadedLocale: Locale
 
-    private fun load(localePair: LocalePair) {
-        loadedLocale = localePair.getLocale()
+    private fun load(locale: String, pfd: ParcelFileDescriptor) {
+        loadedLocale = if (locale.contains("_")) {
+            val split = locale.split("_")
+            Locale(split[0], split[1])
+        } else {
+            Locale(locale)
+        }
 
-        val translations = AutoCloseInputStream(localePair.content).use {
-            JsonParser.parseReader(it.reader()).asJsonObject
+        val translations = AutoCloseInputStream(pfd).use {
+            runCatching {
+                JsonParser.parseReader(it.reader()).asJsonObject
+            }.onFailure {
+                AbstractLogger.directError("Failed to parse locale file: ${it.message}", it)
+            }.getOrNull()
         }
         if (translations == null || translations.isJsonNull) {
-            return
+            throw IllegalStateException("Failed to parse $locale.json")
         }
 
         fun scanObject(jsonObject: JsonObject, prefix: String = "") {
@@ -71,22 +61,25 @@ class LocaleWrapper {
         scanObject(translations)
     }
 
-    fun loadFromCallback(callback: (String) -> List<LocalePair>) {
-        callback(userLocale).forEach {
-            load(it)
+    fun load() {
+        load(
+            DEFAULT_LOCALE,
+            fileHandleManager.getFileHandle(FileHandleScope.LOCALE.key, "$DEFAULT_LOCALE.json")?.open(ParcelFileDescriptor.MODE_READ_ONLY) ?: run {
+                throw IllegalStateException("Failed to load default locale")
+            }
+        )
+
+        if (userLocale != DEFAULT_LOCALE) {
+            fileHandleManager.getFileHandle(FileHandleScope.LOCALE.key, "$userLocale.json")?.open(ParcelFileDescriptor.MODE_READ_ONLY)?.let {
+                load(userLocale, it)
+            }
         }
     }
 
-    fun loadFromContext(context: Context) {
-        fetchLocales(context, userLocale).forEach {
-            load(it)
-        }
-    }
-
-    fun reloadFromContext(context: Context, locale: String) {
+    fun reload(locale: String) {
         userLocale = locale
         translationMap.clear()
-        loadFromContext(context)
+        load()
     }
 
     operator fun get(key: String) = translationMap[key] ?: key.also { AbstractLogger.directDebug("Missing translation for $key") }
@@ -99,7 +92,7 @@ class LocaleWrapper {
     }
 
     fun getCategory(key: String): LocaleWrapper {
-        return LocaleWrapper().apply {
+        return LocaleWrapper(fileHandleManager).apply {
             translationMap.putAll(
                 this@LocaleWrapper.translationMap
                     .filterKeys { it.startsWith("$key.") }

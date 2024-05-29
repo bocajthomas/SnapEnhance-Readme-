@@ -222,9 +222,7 @@ class LoggerHistoryRoot : Routes.Route() {
     @OptIn(ExperimentalMaterial3Api::class)
     override val content: @Composable (NavBackStackEntry) -> Unit = {
         LaunchedEffect(Unit) {
-            loggerWrapper = LoggerWrapper(
-                context.androidContext.getDatabasePath("message_logger.db")
-            )
+            loggerWrapper = LoggerWrapper(context.androidContext)
         }
 
         Column {

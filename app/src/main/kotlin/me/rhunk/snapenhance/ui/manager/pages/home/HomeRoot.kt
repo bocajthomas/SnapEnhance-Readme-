@@ -8,11 +8,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Help
-import androidx.compose.material.icons.filled.BugReport
-import androidx.compose.material.icons.filled.History
-import androidx.compose.material.icons.filled.MoreVert
-import androidx.compose.material.icons.filled.PersonSearch
-import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -61,6 +57,9 @@ class HomeRoot : Routes.Route() {
 
     private val cards by lazy {
         mapOf(
+            ("File Imports" to Icons.Default.FolderOpen) to {
+                routes.fileImports.navigateReset()
+            },
             ("Friend Tracker" to Icons.Default.PersonSearch) to {
                 routes.friendTracker.navigateReset()
             },

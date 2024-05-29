@@ -19,12 +19,12 @@ import me.rhunk.snapenhance.common.bridge.wrapper.MappingsWrapper
 import me.rhunk.snapenhance.common.config.ModConfig
 import me.rhunk.snapenhance.core.action.ActionManager
 import me.rhunk.snapenhance.core.bridge.BridgeClient
-import me.rhunk.snapenhance.core.bridge.loadFromBridge
 import me.rhunk.snapenhance.core.database.DatabaseAccess
 import me.rhunk.snapenhance.core.event.EventBus
 import me.rhunk.snapenhance.core.event.EventDispatcher
 import me.rhunk.snapenhance.core.features.Feature
 import me.rhunk.snapenhance.core.features.FeatureManager
+import me.rhunk.snapenhance.core.features.impl.experiments.getCustomEmojiFontPath
 import me.rhunk.snapenhance.core.logger.CoreLogger
 import me.rhunk.snapenhance.core.messaging.CoreMessagingBridge
 import me.rhunk.snapenhance.core.messaging.MessageSender
@@ -48,15 +48,15 @@ class ModContext(
     val resources: Resources get() = androidContext.resources
     val gson: Gson = GsonBuilder().create()
 
-    private val _config = ModConfig(androidContext)
-    val config by _config::root
+    private val _config by lazy { ModConfig(androidContext, bridgeClient.getFileHandlerManager()) }
+    val config get() = _config.root
     val log by lazy { CoreLogger(this.bridgeClient) }
-    val translation = LocaleWrapper()
+    val translation by lazy { LocaleWrapper(bridgeClient.getFileHandlerManager()) }
     val httpServer = HttpServer()
     val messageSender = MessageSender(this)
 
     val features = FeatureManager(this)
-    val mappings = MappingsWrapper()
+    val mappings by lazy { MappingsWrapper(bridgeClient.getFileHandlerManager()) }
     val actionManager = ActionManager(this)
     val database = DatabaseAccess(this)
     val event = EventBus(this)
@@ -144,18 +144,18 @@ class ModContext(
 
     fun reloadConfig() {
         log.verbose("reloading config")
-        _config.loadFromCallback { file ->
-            file.loadFromBridge(bridgeClient)
-        }
+        _config.load()
         reloadNativeConfig()
     }
 
     fun reloadNativeConfig() {
+        if (config.experimental.nativeHooks.globalState != true) return
         native.loadNativeConfig(
             NativeConfig(
                 disableBitmoji = config.experimental.nativeHooks.disableBitmoji.get(),
                 disableMetrics = config.global.disableMetrics.get(),
                 composerHooks = config.experimental.nativeHooks.composerHooks.globalState == true,
+                customEmojiFontPath = getCustomEmojiFontPath(this)
             )
         )
     }

@@ -46,14 +46,13 @@ class PickLanguageScreen : SetupScreen(){
     }
 
     private fun reloadTranslation(selectedLocale: String) {
-        context.translation.reloadFromContext(context.androidContext, selectedLocale)
+        context.translation.reload(selectedLocale)
     }
 
     private fun setLocale(locale: String) {
         with(context) {
             config.locale = locale
             config.writeConfig()
-            translation.reloadFromContext(androidContext, locale)
             reloadTranslation(locale)
         }
     }

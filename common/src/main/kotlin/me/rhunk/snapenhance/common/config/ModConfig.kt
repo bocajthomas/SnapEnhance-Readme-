@@ -5,20 +5,22 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonObject
 import me.rhunk.snapenhance.bridge.ConfigStateListener
-import me.rhunk.snapenhance.common.bridge.FileLoaderWrapper
-import me.rhunk.snapenhance.common.bridge.types.BridgeFileType
+import me.rhunk.snapenhance.bridge.storage.FileHandleManager
+import me.rhunk.snapenhance.common.bridge.InternalFileHandleType
+import me.rhunk.snapenhance.common.bridge.InternalFileWrapper
 import me.rhunk.snapenhance.common.bridge.wrapper.LocaleWrapper
 import me.rhunk.snapenhance.common.config.impl.RootConfig
 import me.rhunk.snapenhance.common.logger.AbstractLogger
 import kotlin.properties.Delegates
 
 class ModConfig(
-    private val context: Context
+    private val context: Context,
+    fileHandleManager: FileHandleManager
 ) {
+    private val fileWrapper = InternalFileWrapper(fileHandleManager, InternalFileHandleType.CONFIG, "{}")
     var locale: String = LocaleWrapper.DEFAULT_LOCALE
 
     private val gson: Gson = GsonBuilder().setPrettyPrinting().create()
-    private val file = FileLoaderWrapper(BridgeFileType.CONFIG, "{}".toByteArray(Charsets.UTF_8))
     var wasPresent by Delegates.notNull<Boolean>()
 
     /* Used to notify the bridge client about config changes */
@@ -30,9 +32,9 @@ class ModConfig(
 
     private fun createRootConfig() = RootConfig().apply { lateInit(context) }
 
-    private fun load() {
+    fun load() {
         root = createRootConfig()
-        wasPresent = file.isFileExists()
+        wasPresent = fileWrapper.exists()
         if (!wasPresent) {
             writeConfig()
             return
@@ -46,7 +48,7 @@ class ModConfig(
     }
 
     private fun loadConfig() {
-        val configFileContent = file.read()
+        val configFileContent = fileWrapper.readBytes()
         val configObject = gson.fromJson(configFileContent.toString(Charsets.UTF_8), JsonObject::class.java)
         locale = configObject.get("_locale")?.asString ?: LocaleWrapper.DEFAULT_LOCALE
         root.fromJson(configObject)
@@ -99,8 +101,8 @@ class ModConfig(
             }
         }
 
-        val oldConfig = runCatching { file.read().toString(Charsets.UTF_8) }.getOrNull()
-        file.write(exportToString().toByteArray(Charsets.UTF_8))
+        val oldConfig = runCatching { fileWrapper.readBytes().toString(Charsets.UTF_8) }.getOrNull()
+        fileWrapper.writeBytes(exportToString().toByteArray(Charsets.UTF_8))
 
         configStateListener?.also {
             runCatching {
@@ -124,15 +126,5 @@ class ModConfig(
         locale = configObject.get("_locale")?.asString ?: LocaleWrapper.DEFAULT_LOCALE
         root.fromJson(configObject)
         writeConfig()
-    }
-
-    fun loadFromContext(context: Context) {
-        file.loadFromContext(context)
-        load()
-    }
-
-    fun loadFromCallback(callback: (FileLoaderWrapper) -> Unit) {
-        callback(file)
-        load()
     }
 }

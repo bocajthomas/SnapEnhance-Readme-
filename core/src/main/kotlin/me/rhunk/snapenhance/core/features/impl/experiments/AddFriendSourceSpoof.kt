@@ -58,6 +58,10 @@ class AddFriendSourceSpoof : Feature("AddFriendSourceSpoof", loadParams = Featur
                                 setPage("profile")
                                 setSource(FriendAddSource.COMMUNITY)
                             }
+                            "added_by_quick_add" -> {
+                                setPage("add_friends_button_on_top_bar_on_friends_feed")
+                                setSource(FriendAddSource.SUGGESTED)
+                            }
                         }
                     }
                 }

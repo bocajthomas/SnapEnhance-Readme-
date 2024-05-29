@@ -17,12 +17,10 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.core.net.toUri
 import androidx.navigation.NavBackStackEntry
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import me.rhunk.snapenhance.common.Constants
 import me.rhunk.snapenhance.common.action.EnumAction
-import me.rhunk.snapenhance.common.bridge.types.BridgeFileType
+import me.rhunk.snapenhance.common.bridge.InternalFileHandleType
 import me.rhunk.snapenhance.common.ui.rememberAsyncMutableState
 import me.rhunk.snapenhance.ui.manager.Routes
 import me.rhunk.snapenhance.ui.setup.Requirements
@@ -239,7 +237,7 @@ class HomeSettings : Routes.Route() {
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically,
             ) {
-                var selectedFileType by remember { mutableStateOf(BridgeFileType.entries.first()) }
+                var selectedFileType by remember { mutableStateOf(InternalFileHandleType.entries.first()) }
                 Box(
                     modifier = Modifier
                         .weight(1f)
@@ -253,19 +251,19 @@ class HomeSettings : Routes.Route() {
                         modifier = Modifier.fillMaxWidth(0.7f)
                     ) {
                         TextField(
-                            value = selectedFileType.displayName,
+                            value = selectedFileType.fileName,
                             onValueChange = {},
                             readOnly = true,
                             modifier = Modifier.menuAnchor()
                         )
 
                         ExposedDropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
-                            BridgeFileType.entries.forEach { fileType ->
+                            InternalFileHandleType.entries.forEach { fileType ->
                                 DropdownMenuItem(onClick = {
                                     expanded = false
                                     selectedFileType = fileType
                                 }, text = {
-                                    Text(text = fileType.displayName)
+                                    Text(text = fileType.fileName)
                                 })
                             }
                         }

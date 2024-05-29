@@ -4,6 +4,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Fingerprint
 import androidx.compose.material.icons.filled.Memory
 import me.rhunk.snapenhance.common.config.ConfigContainer
+import me.rhunk.snapenhance.common.config.ConfigFlag
 import me.rhunk.snapenhance.common.config.FeatureNotice
 
 class Experimental : ConfigContainer() {
@@ -17,6 +18,12 @@ class Experimental : ConfigContainer() {
     class NativeHooks : ConfigContainer(hasGlobalState = true) {
         val composerHooks = container("composer_hooks", ComposerHooksConfig()) { requireRestart() }
         val disableBitmoji = boolean("disable_bitmoji")
+        val customEmojiFont = string("custom_emoji_font") {
+            requireRestart()
+            addNotices(FeatureNotice.UNSTABLE)
+            addFlags(ConfigFlag.USER_IMPORT)
+            filenameFilter = { it.endsWith(".ttf") }
+        }
     }
 
     class E2EEConfig : ConfigContainer(hasGlobalState = true) {
@@ -58,6 +65,7 @@ class Experimental : ConfigContainer() {
         "added_by_group_chat",
         "added_by_qr_code",
         "added_by_community",
+        "added_by_quick_add",
     ) { addNotices(FeatureNotice.BAN_RISK) }
     val preventForcedLogout = boolean("prevent_forced_logout") { requireRestart(); addNotices(FeatureNotice.BAN_RISK, FeatureNotice.INTERNAL_BEHAVIOR); }
 }

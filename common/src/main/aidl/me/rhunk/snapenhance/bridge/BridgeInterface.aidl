@@ -10,30 +10,18 @@ import me.rhunk.snapenhance.bridge.logger.TrackerInterface;
 import me.rhunk.snapenhance.bridge.ConfigStateListener;
 import me.rhunk.snapenhance.bridge.snapclient.MessagingBridge;
 import me.rhunk.snapenhance.bridge.AccountStorage;
+import me.rhunk.snapenhance.bridge.storage.FileHandleManager;
 
 interface BridgeInterface {
-    /**
-    * broadcast a log message
-    */
-    oneway void broadcastLog(String tag, String level, String message);
-
-    /**
-    * Execute a file operation
-    * @param fileType the corresponding file type (see BridgeFileType)
-    */
-    byte[] fileOperation(int action, int fileType, in @nullable byte[] content);
-
     /**
     * Get the application APK path (assets for the conversation exporter)
     */
     String getApplicationApkPath();
 
     /**
-     * Fetch the locales
-     *
-     * @return the map of locales (key: locale short name, value: locale data as json)
-     */
-    Map<String, ParcelFileDescriptor> fetchLocales(String userLocale);
+    * broadcast a log message
+    */
+    oneway void broadcastLog(String tag, String level, String message);
 
     /**
      * Enqueue a download
@@ -91,6 +79,8 @@ interface BridgeInterface {
     TrackerInterface getTracker();
 
     AccountStorage getAccountStorage();
+
+    FileHandleManager getFileHandleManager();
 
     oneway void registerMessagingBridge(MessagingBridge bridge);
 

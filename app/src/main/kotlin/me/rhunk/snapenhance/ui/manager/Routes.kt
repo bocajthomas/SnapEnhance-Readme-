@@ -15,6 +15,7 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavGraphBuilder
 import me.rhunk.snapenhance.RemoteSideContext
+import me.rhunk.snapenhance.ui.manager.pages.FileImportsRoot
 import me.rhunk.snapenhance.ui.manager.pages.LoggerHistoryRoot
 import me.rhunk.snapenhance.ui.manager.pages.TasksRoot
 import me.rhunk.snapenhance.ui.manager.pages.features.FeaturesRoot
@@ -58,6 +59,7 @@ class Routes(
     val friendTracker = route(RouteInfo("friend_tracker"), FriendTrackerManagerRoot()).parent(home)
     val editRule = route(RouteInfo("edit_rule/?rule_id={rule_id}"), EditRule())
 
+    val fileImports = route(RouteInfo("file_imports"), FileImportsRoot()).parent(home)
     val social = route(RouteInfo("social", icon = Icons.Default.Group, primary = true), SocialRoot())
     val manageScope = route(RouteInfo("manage_scope/?scope={scope}&id={id}"), ManageScope()).parent(social)
     val messagingPreview = route(RouteInfo("messaging_preview/?scope={scope}&id={id}"), MessagingPreview()).parent(social)

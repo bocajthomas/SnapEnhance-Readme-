@@ -3,16 +3,19 @@ package me.rhunk.snapenhance.common.bridge.wrapper
 import android.content.Context
 import com.google.gson.JsonParser
 import kotlinx.coroutines.runBlocking
+import me.rhunk.snapenhance.bridge.storage.FileHandleManager
 import me.rhunk.snapenhance.common.BuildConfig
 import me.rhunk.snapenhance.common.Constants
-import me.rhunk.snapenhance.common.bridge.FileLoaderWrapper
-import me.rhunk.snapenhance.common.bridge.types.BridgeFileType
+import me.rhunk.snapenhance.common.bridge.InternalFileHandleType
+import me.rhunk.snapenhance.common.bridge.InternalFileWrapper
 import me.rhunk.snapenhance.common.logger.AbstractLogger
 import me.rhunk.snapenhance.mapper.AbstractClassMapper
 import me.rhunk.snapenhance.mapper.ClassMapper
 import kotlin.reflect.KClass
 
-class MappingsWrapper : FileLoaderWrapper(BridgeFileType.MAPPINGS, "{}".toByteArray(Charsets.UTF_8)) {
+class MappingsWrapper(
+    fileHandleManager: FileHandleManager
+): InternalFileWrapper(fileHandleManager, InternalFileHandleType.MAPPINGS, defaultValue = "{}") {
     private lateinit var context: Context
     private var mappingUniqueHash: Long = 0
     var isMappingsLoaded = false
@@ -26,7 +29,7 @@ class MappingsWrapper : FileLoaderWrapper(BridgeFileType.MAPPINGS, "{}".toByteAr
         this.context = context
         mappingUniqueHash = getUniqueBuildId()
 
-        if (isFileExists()) {
+        if (exists()) {
             runCatching {
                 loadCached()
             }.onFailure {
@@ -46,10 +49,10 @@ class MappingsWrapper : FileLoaderWrapper(BridgeFileType.MAPPINGS, "{}".toByteAr
     fun isMappingsOutdated() = mappingUniqueHash != getUniqueBuildId() || isMappingsLoaded.not()
 
     private fun loadCached() {
-        if (!isFileExists()) {
+        if (!exists()) {
             throw Exception("Mappings file does not exist")
         }
-        val mappingsObject = JsonParser.parseString(read().toString(Charsets.UTF_8)).asJsonObject.also {
+        val mappingsObject = JsonParser.parseString(readBytes().toString(Charsets.UTF_8)).asJsonObject.also {
             mappingUniqueHash = it["unique_hash"].asLong
         }
 
@@ -76,7 +79,7 @@ class MappingsWrapper : FileLoaderWrapper(BridgeFileType.MAPPINGS, "{}".toByteAr
             val result = classMapper.run().apply {
                 addProperty("unique_hash", mappingUniqueHash)
             }
-            write(result.toString().toByteArray())
+            writeBytes(result.toString().toByteArray())
         }
     }
 

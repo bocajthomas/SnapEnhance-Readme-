@@ -574,6 +574,7 @@ class BulkMessagingAction : AbstractAction() {
                     parameterTypes[0].dataBuilder {
                         set("a", userId) // userId
                         set("b", "DELETED_BY_MY_FRIENDS") // deleteSourceType
+                        set("f", "")
                     }
                 )
             } ?: throw Exception("Failed to create RemoveFriendDurableJob instance")

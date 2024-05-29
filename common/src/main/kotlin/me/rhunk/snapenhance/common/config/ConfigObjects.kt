@@ -12,24 +12,26 @@ data class PropertyPair<T>(
 }
 
 enum class FeatureNotice(
-    val id: Int,
     val key: String
 ) {
-    UNSTABLE(0b0001, "unstable"),
-    BAN_RISK(0b0010, "ban_risk"),
-    INTERNAL_BEHAVIOR(0b0100, "internal_behavior"),
-    REQUIRE_NATIVE_HOOKS(0b1000, "require_native_hooks"),
+    UNSTABLE("unstable"),
+    BAN_RISK("ban_risk"),
+    INTERNAL_BEHAVIOR("internal_behavior"),
+    REQUIRE_NATIVE_HOOKS("require_native_hooks");
+
+    val id get() = 1 shl ordinal
 }
 
-enum class ConfigFlag(
-    val id: Int
-) {
-    NO_TRANSLATE(0b000001),
-    HIDDEN(0b000010),
-    FOLDER(0b000100),
-    NO_DISABLE_KEY(0b001000),
-    REQUIRE_RESTART(0b010000),
-    REQUIRE_CLEAN_CACHE(0b100000)
+enum class ConfigFlag {
+    NO_TRANSLATE,
+    HIDDEN,
+    FOLDER,
+    USER_IMPORT,
+    NO_DISABLE_KEY,
+    REQUIRE_RESTART,
+    REQUIRE_CLEAN_CACHE;
+
+    val id = 1 shl ordinal
 }
 
 class ConfigParams(
@@ -41,6 +43,7 @@ class ConfigParams(
     var customTranslationPath: String? = null,
     var customOptionTranslationPath: String? = null,
     var inputCheck: ((String) -> Boolean)? = { true },
+    var filenameFilter: ((String) -> Boolean)? = null,
 ) {
     val notices get() = _notices?.let { FeatureNotice.entries.filter { flag -> it and flag.id != 0 } } ?: emptyList()
     val flags get() = _flags?.let { ConfigFlag.entries.filter { flag -> it and flag.id != 0 } } ?: emptyList()

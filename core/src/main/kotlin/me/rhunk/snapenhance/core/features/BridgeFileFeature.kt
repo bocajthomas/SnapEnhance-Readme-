@@ -1,32 +1,38 @@
 package me.rhunk.snapenhance.core.features
 
-import me.rhunk.snapenhance.common.bridge.types.BridgeFileType
+import me.rhunk.snapenhance.common.bridge.FileHandleScope
+import me.rhunk.snapenhance.common.bridge.InternalFileHandleType
+import me.rhunk.snapenhance.common.bridge.toWrapper
 import java.io.BufferedReader
-import java.io.ByteArrayInputStream
 import java.io.InputStreamReader
 import java.nio.charset.StandardCharsets
 
-abstract class BridgeFileFeature(name: String, private val bridgeFileType: BridgeFileType, loadParams: Int) : Feature(name, loadParams) {
+abstract class BridgeFileFeature(name: String, private val bridgeFileType: InternalFileHandleType, loadParams: Int) : Feature(name, loadParams) {
     private val fileLines = mutableListOf<String>()
+    private val fileWrapper by lazy { context.bridgeClient.getFileHandlerManager().getFileHandle(FileHandleScope.INTERNAL.key, bridgeFileType.key)!!.toWrapper() }
 
     protected fun readFile() {
         val temporaryLines = mutableListOf<String>()
-        val fileData: ByteArray = context.bridgeClient.createAndReadFile(bridgeFileType, ByteArray(0))
-        with(BufferedReader(InputStreamReader(ByteArrayInputStream(fileData), StandardCharsets.UTF_8))) {
-            var line = ""
-            while (readLine()?.also { line = it } != null) temporaryLines.add(line)
-            close()
+        fileWrapper.inputStream { stream ->
+            with(BufferedReader(InputStreamReader(stream, StandardCharsets.UTF_8))) {
+                var line = ""
+                while (readLine()?.also { line = it } != null) temporaryLines.add(line)
+                close()
+            }
         }
+
         fileLines.clear()
         fileLines.addAll(temporaryLines)
     }
 
     private fun updateFile() {
-        val sb = StringBuilder()
-        fileLines.forEach {
-            sb.append(it).append("\n")
+        fileWrapper.outputStream { stream ->
+            fileLines.forEach {
+                stream.write(it.toByteArray())
+                stream.write("\n".toByteArray())
+                stream.flush()
+            }
         }
-        context.bridgeClient.writeFile(bridgeFileType, sb.toString().toByteArray(Charsets.UTF_8))
     }
 
     protected fun exists(line: String) = fileLines.contains(line)

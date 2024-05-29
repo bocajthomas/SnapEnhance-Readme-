@@ -8,9 +8,6 @@ import kotlinx.coroutines.runBlocking
 import me.rhunk.snapenhance.RemoteSideContext
 import me.rhunk.snapenhance.SharedContextHolder
 import me.rhunk.snapenhance.bridge.snapclient.MessagingBridge
-import me.rhunk.snapenhance.common.bridge.types.BridgeFileType
-import me.rhunk.snapenhance.common.bridge.types.FileActionType
-import me.rhunk.snapenhance.common.bridge.wrapper.LocaleWrapper
 import me.rhunk.snapenhance.common.data.MessagingFriendInfo
 import me.rhunk.snapenhance.common.data.MessagingGroupInfo
 import me.rhunk.snapenhance.common.data.SocialScope
@@ -84,54 +81,11 @@ class BridgeService : Service() {
     }
 
     inner class BridgeBinder : BridgeInterface.Stub() {
+        override fun getApplicationApkPath(): String = applicationInfo.publicSourceDir
+
         override fun broadcastLog(tag: String, level: String, message: String) {
             remoteSideContext.log.internalLog(tag, LogLevel.fromShortName(level) ?: LogLevel.INFO, message)
         }
-
-        override fun fileOperation(action: Int, fileType: Int, content: ByteArray?): ByteArray {
-            val resolvedFile = BridgeFileType.fromValue(fileType)?.resolve(this@BridgeService)
-
-            return when (FileActionType.entries[action]) {
-                FileActionType.CREATE_AND_READ -> {
-                    resolvedFile?.let {
-                        if (!it.exists()) {
-                            return content?.also { content -> it.writeBytes(content) } ?: ByteArray(
-                                0
-                            )
-                        }
-
-                        it.readBytes()
-                    } ?: ByteArray(0)
-                }
-
-                FileActionType.READ -> {
-                    resolvedFile?.takeIf { it.exists() }?.readBytes() ?: ByteArray(0)
-                }
-
-                FileActionType.WRITE -> {
-                    content?.also { resolvedFile?.writeBytes(content) } ?: ByteArray(0)
-                }
-
-                FileActionType.DELETE -> {
-                    resolvedFile?.takeIf { it.exists() }?.delete()
-                    ByteArray(0)
-                }
-
-                FileActionType.EXISTS -> {
-                    if (resolvedFile?.exists() == true)
-                        ByteArray(1)
-                    else ByteArray(0)
-                }
-            }
-        }
-
-        override fun getApplicationApkPath(): String = applicationInfo.publicSourceDir
-
-        override fun fetchLocales(userLocale: String) =
-            LocaleWrapper.fetchLocales(context = this@BridgeService, userLocale).associate {
-                it.locale to it.content
-            }
-
         override fun enqueueDownload(intent: Intent, callback: DownloadCallback) {
             DownloadProcessor(
                 remoteSideContext = remoteSideContext,
@@ -242,6 +196,8 @@ class BridgeService : Service() {
         override fun getLogger() = remoteSideContext.messageLogger
         override fun getTracker() = remoteSideContext.tracker
         override fun getAccountStorage() = remoteSideContext.accountStorage
+        override fun getFileHandleManager() = remoteSideContext.fileHandleManager
+
         override fun registerMessagingBridge(bridge: MessagingBridge) {
             messagingBridge = bridge
         }

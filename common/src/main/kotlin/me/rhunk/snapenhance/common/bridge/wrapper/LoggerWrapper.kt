@@ -1,11 +1,13 @@
 package me.rhunk.snapenhance.common.bridge.wrapper
 
 import android.content.ContentValues
+import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonObject
 import kotlinx.coroutines.*
 import me.rhunk.snapenhance.bridge.logger.LoggerInterface
+import me.rhunk.snapenhance.common.bridge.InternalFileHandleType
 import me.rhunk.snapenhance.common.data.StoryData
 import me.rhunk.snapenhance.common.logger.AbstractLogger
 import me.rhunk.snapenhance.common.util.SQLiteDatabaseHelper
@@ -61,6 +63,8 @@ class TrackerLog(
 class LoggerWrapper(
     val databaseFile: File
 ): LoggerInterface.Stub() {
+    constructor(context: Context): this(File(context.getDatabasePath(InternalFileHandleType.MESSAGE_LOGGER.fileName).absolutePath))
+
     private var _database: SQLiteDatabase? = null
     @OptIn(ExperimentalCoroutinesApi::class)
     private val coroutineScope = CoroutineScope(Dispatchers.IO.limitedParallelism(1))

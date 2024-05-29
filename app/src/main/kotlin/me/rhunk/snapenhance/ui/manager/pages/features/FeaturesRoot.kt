@@ -14,10 +14,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.OpenInNew
-import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.FolderOpen
-import androidx.compose.material.icons.filled.MoreVert
-import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -40,6 +37,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import me.rhunk.snapenhance.common.config.*
+import me.rhunk.snapenhance.common.ui.rememberAsyncMutableStateList
 import me.rhunk.snapenhance.ui.manager.MainActivity
 import me.rhunk.snapenhance.ui.manager.Routes
 import me.rhunk.snapenhance.ui.util.*
@@ -152,6 +150,81 @@ class FeaturesRoot : Routes.Route() {
         }
 
         val propertyValue = property.value
+
+        if (property.key.params.flags.contains(ConfigFlag.USER_IMPORT)) {
+            registerDialogOnClickCallback()
+            dialogComposable = {
+                var isEmpty by remember { mutableStateOf(false) }
+                val files = rememberAsyncMutableStateList(defaultValue = listOf()) {
+                    context.fileHandleManager.getStoredFiles {
+                        property.key.params.filenameFilter?.invoke(it.name) == true
+                    }.also {
+                        isEmpty = it.isEmpty()
+                        if (isEmpty) {
+                            propertyValue.setAny(null)
+                        }
+                    }
+                }
+                var selectedFile by remember(files.size) { mutableStateOf(files.firstOrNull { it.name == propertyValue.getNullable() }.also {
+                    if (files.isNotEmpty() && it == null) propertyValue.setAny(null)
+                }?.name) }
+
+                Card(
+                    shape = MaterialTheme.shapes.large,
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                ) {
+                    LazyColumn(
+                        modifier = Modifier.fillMaxWidth().padding(4.dp),
+                    ) {
+                        item {
+                            Column(
+                                modifier = Modifier.fillMaxWidth().padding(16.dp),
+                                horizontalAlignment = Alignment.CenterHorizontally
+                            ) {
+                                Text(
+                                    text = context.translation["manager.dialogs.file_imports.settings_select_file_hint"],
+                                    fontSize = 18.sp,
+                                    fontWeight = FontWeight.Bold,
+                                )
+                                if (isEmpty) {
+                                    Text(
+                                        text = context.translation["manager.dialogs.file_imports.no_files_settings_hint"],
+                                        fontSize = 16.sp,
+                                        modifier = Modifier.padding(top = 10.dp),
+                                    )
+                                }
+                            }
+                        }
+                        items(files, key = { it.name }) { file ->
+                            Row(
+                                modifier = Modifier.clickable {
+                                    selectedFile = if (selectedFile == file.name) null else file.name
+                                    propertyValue.setAny(selectedFile)
+                                }.padding(5.dp),
+                                verticalAlignment = Alignment.CenterVertically
+                            ) {
+                                Icon(Icons.Filled.AttachFile, contentDescription = null, modifier = Modifier.padding(5.dp))
+                                Text(
+                                    text = file.name,
+                                    modifier = Modifier
+                                        .padding(3.dp)
+                                        .weight(1f),
+                                    fontSize = 14.sp,
+                                    lineHeight = 16.sp
+                                )
+                                if (selectedFile == file.name) {
+                                    Icon(Icons.Filled.Check, contentDescription = null, modifier = Modifier.padding(5.dp))
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            Icon(Icons.Filled.AttachFile, contentDescription = null)
+            return
+        }
 
         if (property.key.params.flags.contains(ConfigFlag.FOLDER)) {
             IconButton(onClick = registerClickCallback {

@@ -35,6 +35,7 @@
             "logged_stories": "Logged Stories",
             "friend_tracker": "Friend Tracker",
             "edit_rule": "Edit Rule",
+            "file_imports": "File Imports",
             "social": "Social",
             "manage_scope": "Manage Scope",
             "messaging_preview": "Preview",
@@ -131,6 +132,14 @@
                 "message_parse_failed": "Failed to parse message",
                 "unknown_sender": "Unknown Sender",
                 "download_attachment_failed_toast": "Failed to download attachment"
+            },
+            "file_imports": {
+                "import_file_button": "Import File",
+                "file_not_found": "File not found",
+                "file_import_failed": "Failed to import file: {error}",
+                "file_imported": "File imported successfully",
+                "file_delete_failed": "Failed to delete file",
+                "no_files_hint": "Here you can import files for use in Snapchat. Press the button below to import a file."
             }
         },
         "dialogs": {
@@ -153,6 +162,10 @@
             "messaging_action": {
                 "title": "Choose content types to process",
                 "select_all_button": "Select All"
+            },
+            "file_imports": {
+                "no_files_settings_hint": "No files found. Make sure you have imported the required files in the File Imports section",
+                "settings_select_file_hint": "Select an imported file"
             }
         }
     },
@@ -919,6 +932,10 @@
                             "disable_bitmoji": {
                                 "name": "Disable Bitmoji",
                                 "description": "Disables Friends Profile Bitmoji"
+                            },
+                            "custom_emoji_font": {
+                                "name": "Custom Emoji Font",
+                                "description": "Allows you to use a custom emoji font. Only works with .ttf fonts"
                             }
                         }
                     },
@@ -1197,7 +1214,8 @@
                 "added_by_mention": "By Mention",
                 "added_by_group_chat": "By Group Chat",
                 "added_by_qr_code": "By QR Code",
-                "added_by_community": "By Community"
+                "added_by_community": "By Community",
+                "added_by_quick_add": "By Quick Add (high risk of being banned)"
             },
             "bypass_video_length_restriction": {
                 "single": "Single media",

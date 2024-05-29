@@ -7,7 +7,7 @@ import com.google.gson.JsonObject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import me.rhunk.snapenhance.common.bridge.types.BridgeFileType
+import me.rhunk.snapenhance.common.bridge.InternalFileHandleType
 import me.rhunk.snapenhance.common.util.protobuf.ProtoReader
 import me.rhunk.snapenhance.core.event.events.impl.NetworkApiRequestEvent
 import me.rhunk.snapenhance.core.event.events.impl.UnaryCallEvent
@@ -18,7 +18,7 @@ import java.io.InputStreamReader
 import java.nio.ByteBuffer
 import java.util.UUID
 
-class BestFriendPinning: BridgeFileFeature("Best Friend Pinning", BridgeFileType.PINNED_BEST_FRIEND, loadParams = FeatureLoadParams.INIT_SYNC) {
+class BestFriendPinning: BridgeFileFeature("Best Friend Pinning", InternalFileHandleType.PINNED_BEST_FRIEND, loadParams = FeatureLoadParams.INIT_SYNC) {
     private fun updatePinnedBestFriendStatus() {
         lines().firstOrNull()?.trim()?.let {
             context.database.updatePinnedBestFriendStatus(it.substring(0, 36), "number_one_bf_for_two_months")
