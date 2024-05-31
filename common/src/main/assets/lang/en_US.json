@@ -973,10 +973,6 @@
                         "name": "Convert Message Locally",
                         "description": "Converts snaps to chat external media locally. This appears in chat download context menu"
                     },
-                    "new_chat_action_menu": {
-                        "name": "New Chat Action Menu",
-                        "description": "Use the new chat action menu drawer"
-                    },
                     "media_file_picker": {
                         "name": "Media File Picker",
                         "description": "Allows you to pick any video/audio file from the gallery"
@@ -998,6 +994,10 @@
                                 "description": "Automatically backs up the current account when logging out or switching accounts"
                             }
                         }
+                    },
+                    "cof_experiments": {
+                        "name": "COF Experiments",
+                        "description": "Enables unreleased/beta Snapchat features"
                     },
                     "edit_message": {
                         "name": "Edit Messages",

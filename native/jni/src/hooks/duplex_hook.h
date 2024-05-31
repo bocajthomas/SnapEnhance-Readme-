@@ -21,6 +21,6 @@ namespace DuplexHook {
     }
 
     void init(JNIEnv* env) {
-        DobbyHook((void *)env->functions->IsSameObject, (void *)IsSameObject, (void **)&IsSameObject_original);
+        SafeHook((void *)env->functions->IsSameObject, (void *)IsSameObject, (void **)&IsSameObject_original);
     }
 }

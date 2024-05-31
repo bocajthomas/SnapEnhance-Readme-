@@ -16,7 +16,9 @@ fun FileHandleManager.getFileHandleLocalPath(
     fileUniqueIdentifier: String,
 ): String? {
     return getFileHandle(scope.key, name)?.open(ParcelFileDescriptor.MODE_READ_ONLY)?.use { pfd ->
-        val cacheFile = context.androidContext.cacheDir.resolve((fileUniqueIdentifier + Build.FINGERPRINT).longHashCode().absoluteValue.toString(16))
+        val cacheFile = context.androidContext.cacheDir.also {
+            it.mkdirs()
+        }.resolve((fileUniqueIdentifier + Build.FINGERPRINT).longHashCode().absoluteValue.toString(16))
         if (!cacheFile.exists() || pfd.statSize != cacheFile.length()) {
             FileOutputStream(cacheFile).use { output ->
                 ParcelFileDescriptor.AutoCloseInputStream(pfd).use { input ->

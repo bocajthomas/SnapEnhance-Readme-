@@ -79,7 +79,7 @@ namespace UnaryCallHook {
         native_lib_on_unary_call_method = env->GetMethodID(env->GetObjectClass(common::native_lib_object), "onNativeUnaryCall", "(Ljava/lang/String;[B)L" BUILD_NAMESPACE "/NativeRequestData;");
 
         if (unaryCall_func != 0) {
-            DobbyHook((void *)unaryCall_func, (void *)unaryCall_hook, (void **)&unaryCall_hook_original);
+            SafeHook((void *)unaryCall_func, (void *)unaryCall_hook, (void **)&unaryCall_hook_original);
         } else {
             LOGE("Can't find unaryCall signature");
         }

@@ -36,6 +36,7 @@ class ClassMapper(
             OperaViewerParamsMapper(),
             MemoriesPresenterMapper(),
             StreaksExpirationMapper(),
+            COFObservableMapper(),
         )
     }
 

@@ -10,6 +10,7 @@ import android.widget.ScrollView
 import me.rhunk.snapenhance.core.event.events.impl.AddViewEvent
 import me.rhunk.snapenhance.core.features.Feature
 import me.rhunk.snapenhance.core.features.FeatureLoadParams
+import me.rhunk.snapenhance.core.features.impl.COFOverride
 import me.rhunk.snapenhance.core.features.impl.messaging.Messaging
 import me.rhunk.snapenhance.core.ui.findParent
 import me.rhunk.snapenhance.core.ui.menu.impl.*
@@ -51,6 +52,8 @@ class MenuViewInjector : Feature("MenuViewInjector", loadParams = FeatureLoadPar
         val feedNewChat = context.resources.getIdentifier("feed_new_chat", "id")
         val contextMenuButtonIconView = context.resources.getIdentifier("context_menu_button_icon_view", "id")
         val chatActionMenu = context.resources.getIdentifier("chat_action_menu", "id")
+
+        val hasV2ActionMenu = { context.feature(COFOverride::class).hasActionMenuV2 }
 
         context.event.subscribe(AddViewEvent::class) { event ->
             val originalAddView: (View) -> Unit = {
@@ -99,12 +102,12 @@ class MenuViewInjector : Feature("MenuViewInjector", loadParams = FeatureLoadPar
                 }
             }
 
-            if (childView.javaClass.name.endsWith("ChatActionMenuComponent") && context.config.experimental.newChatActionMenu.get()) {
+            if (childView.javaClass.name.endsWith("ChatActionMenuComponent") && hasV2ActionMenu()) {
                 (menuMap[NewChatActionMenu::class]!! as NewChatActionMenu).handle(event)
                 return@subscribe
             }
 
-            if (viewGroup.javaClass.name.endsWith("ActionMenuChatItemContainer") && !context.config.experimental.newChatActionMenu.get()) {
+            if (viewGroup.javaClass.name.endsWith("ActionMenuChatItemContainer") && !hasV2ActionMenu()) {
                 if (viewGroup.parent == null || viewGroup.parent.parent == null) return@subscribe
                 menuMap[ChatActionMenu::class]!!.inject(viewGroup, childView, originalAddView)
                 return@subscribe
