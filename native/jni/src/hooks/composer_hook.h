@@ -184,6 +184,6 @@ namespace ComposerHook {
             LOGE("js_eval_ptr signature not found");
             return;
         }
-        DobbyHook((void*) js_eval_ptr, (void *) js_eval, (void **) &js_eval_original);
+        SafeHook((void*) js_eval_ptr, (void *) js_eval, (void **) &js_eval_original);
     }
 }

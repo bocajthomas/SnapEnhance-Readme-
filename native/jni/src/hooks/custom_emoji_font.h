@@ -15,6 +15,6 @@ namespace CustomEmojiFont {
     }
 
     void init() {
-        DobbyHook((void *) DobbySymbolResolver("libc.so", "open"), (void *)open_hook, (void **)&open_hook_original);
+        SafeHook((void *) DobbySymbolResolver("libc.so", "open"), (void *)open_hook, (void **)&open_hook_original);
     }
 }

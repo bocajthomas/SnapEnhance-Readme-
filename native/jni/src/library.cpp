@@ -4,6 +4,7 @@
 #include <vector>
 #include <thread>
 
+#include "dobby_helper.h"
 #include "logger.h"
 #include "common.h"
 #include "hooks/unary_call.h"

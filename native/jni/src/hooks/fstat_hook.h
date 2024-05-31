@@ -22,6 +22,6 @@ namespace FstatHook {
     }
 
     void init() {
-        DobbyHook((void *)DobbySymbolResolver("libc.so", "fstat"), (void *)fstat_hook, (void **)&fstat_hook_original);
+        SafeHook((void *)DobbySymbolResolver("libc.so", "fstat"), (void *)fstat_hook, (void **)&fstat_hook_original);
     }
 }

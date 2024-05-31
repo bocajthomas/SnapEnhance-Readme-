@@ -41,6 +41,6 @@ namespace SqliteMutexHook {
             LOGE("sqlite3 openDatabase sig not found");
             return;
         }
-        DobbyHook((void *) open_database_sig, (void *) sqlite3_open_hook, (void **) &sqlite3_open_hook_original);
+        SafeHook((void *) open_database_sig, (void *) sqlite3_open_hook, (void **) &sqlite3_open_hook_original);
     }
 }
