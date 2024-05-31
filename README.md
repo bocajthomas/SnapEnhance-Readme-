@@ -148,6 +148,9 @@ We no longer offer official `LSPatch` binaries for obvious reasons. However, you
 ## FAQ
 You can view the FAQ [here](https://github.com/bocajthomas/SE-Extended/wiki/FAQ)
 
+# Donate
+PayPal:
+
 ## Privacy
 We do not collect any user information. However, please be aware that third-party libraries may collect data as described in their respective privacy policies.
 <details>
@@ -160,8 +163,8 @@ We do not collect any user information. However, please be aware that third-part
   - [android.permission.USE_BIOMETRIC](https://developer.android.com/reference/android/Manifest.permission#USE_BIOMETRIC)
 </details>
 
-<details>
-  <summary>Third-party libraries used</summary>
+## Credits 
+SE Extended Uses Some Third-party libraries, These Include 
   
   - [libxposed](https://github.com/libxposed/api)
   - [ffmpeg-kit-full-gpl](https://github.com/arthenica/ffmpeg-kit)
@@ -172,7 +175,3 @@ We do not collect any user information. However, please be aware that third-part
   - [rhino-android](https://github.com/F43nd1r/rhino-android)
   - [libsu](https://github.com/topjohnwu/libsu)
   - [colorpicker-compose](https://github.com/skydoves/colorpicker-compose)
-</details>
-
-# Donate
-PayPal: 
