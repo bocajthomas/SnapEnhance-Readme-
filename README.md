@@ -155,6 +155,7 @@ We no longer offer official `LSPatch` binaries for obvious reasons. However, you
 </details>
 
 ## FAQ
+You can view the FAQ [here](https://github.com/bocajthomas/SE-Extended/wiki/FAQ)
 
 ## Privacy
 We do not collect any user information. However, please be aware that third-party libraries may collect data as described in their respective privacy policies.
