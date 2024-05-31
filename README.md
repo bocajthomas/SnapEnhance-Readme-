@@ -1,27 +1,12 @@
 <div align="center">
   <img src="https://raw.githubusercontent.com/bocajthomas/SnapEnhance/v2.1.0/app/src/main/res/mipmap-xxxhdpi/launcher_icon_foreground.png" height="250" />
 
-# SnapEnhance
-SnapEnhance is an Xposed mod that enhances your Snapchat experience.<br/><br/>
-Please note that this project is currently in development, so bugs and crashes may occur. If you encounter any issues, we encourage you to report them. To do this simply visit our [issues](https://github.com/rhunk/SnapEnhance/issues) page and create an issue, make sure to follow the guidelines.
+# SE Extended 
+SE Extended is a fork from the [SnapEnhance app](https://github.com/rhunk/SnapEnhance) that uses the Xposed Framework to enhance your Snapchat experience.<br/><br/>
+Please note that this project is currently in development, so bugs and crashes may occur. If you encounter any issues, we encourage you to report them. To do this simply visit our [issues](https://github.com/bocajthomas/SE-Extended/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml&title=...) page and create an issue, make sure to follow the guidelines.
 </div>
 
-## Quick Start
-Requirements:
-- Rooted using `Magisk` or `KernelSU`
-- `LSPosed` installed and fully functional
-
-Although using this in an unrooted enviroment using something like `LSPatch` should be working fine, it is not recommended to do so, use at your own risk!
-
-1. Install the module APK from either this [Github repo](https://github.com/rhunk/SnapEnhance/releases) or the [LSPosed repo](https://modules.lsposed.org/module/me.rhunk.snapenhance)
-2. Turn on the module in `LSPosed` and make sure Snapchat is in scope
-3. Force Stop Snapchat
-4. Open the menu by clicking the [Settings Gear Icon](https://i.imgur.com/2grm8li.png)
-
-## Download 
-To Download the latest stable release, please visit the [Releases](https://github.com/rhunk/SnapEnhance/releases) page.<br/>
-You can also download the latest debug build from the [Actions](https://github.com/rhunk/SnapEnhance/actions) section.<br/>
-We no longer offer official `LSPatch` binaries for obvious reasons. However, you're welcome to patch them yourself, as they should theoretically work without any issues.
+## Screenshots
 
 ## Main Features
 <details closed>
@@ -152,19 +137,16 @@ We no longer offer official `LSPatch` binaries for obvious reasons. However, you
   - `Prevent Forced Logout`
 </details>
 
+## Download 
+To Download the latest stable release, please visit the [Releases](https://github.com/bocajthomas/SE-Extended/releases) page.<br/>
+You can also download the latest debug build from the [Actions](https://github.com/bocajthomas/SE-Extended/actions/workflows/debug.yml) section.<br/>
+We no longer offer official `LSPatch` binaries for obvious reasons. However, you're welcome to patch them yourself, as they should theoretically work without any issues.
+
 ## FAQ
-<details>
-  <summary>Can I get banned with this?</summary>
-  
-  - Obviously, however, the risk is very low, and we have no reported cases of anyone ever getting banned while using the mod.
-</details>
+You can view the FAQ [here](https://github.com/bocajthomas/SE-Extended/wiki/FAQ)
 
-
-<details>
-  <summary>Can I use HideMyApplist with this?</summary>
-  
-  - No, this will cause some severe issues, and the mod will not be able to inject.
-</details>
+# Donate
+PayPal:
 
 ## Privacy
 We do not collect any user information. However, please be aware that third-party libraries may collect data as described in their respective privacy policies.
@@ -178,8 +160,8 @@ We do not collect any user information. However, please be aware that third-part
   - [android.permission.USE_BIOMETRIC](https://developer.android.com/reference/android/Manifest.permission#USE_BIOMETRIC)
 </details>
 
-<details>
-  <summary>Third-party libraries used</summary>
+## Credits 
+SE Extended Uses Some Third-party libraries, These Include 
   
   - [libxposed](https://github.com/libxposed/api)
   - [ffmpeg-kit-full-gpl](https://github.com/arthenica/ffmpeg-kit)
@@ -190,7 +172,3 @@ We do not collect any user information. However, please be aware that third-part
   - [rhino-android](https://github.com/F43nd1r/rhino-android)
   - [libsu](https://github.com/topjohnwu/libsu)
   - [colorpicker-compose](https://github.com/skydoves/colorpicker-compose)
-</details>
-
-## Donate
-Paypal: bocajthomas274@gmail.com 
