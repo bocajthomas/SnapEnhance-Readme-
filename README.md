@@ -8,22 +8,7 @@ SE-Extended is a fork from the [SnapEnhance app](https://github.com/rhunk/SnapEn
 Please note that this project is currently in development, so bugs and crashes may occur. If you encounter any issues, we encourage you to report them. To do this simply visit our [issues](https://github.com/bocajthomas/SE-Extended/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml&title=...) page and create an issue, make sure to follow the guidelines.
 </div>
 
-## Quick Start
-Requirements:
-- Rooted using `Magisk` or `KernelSU`
-- `LSPosed` installed and fully functional
-
-Although using this in an unrooted enviroment using something like `LSPatch` should be working fine, it is not recommended to do so, use at your own risk!
-
-1. Install the module APK from this [Github repo](https://github.com/bocajthomas/SE-Extended/releases)
-2. Turn on the module in `LSPosed` and make sure Snapchat is in scope
-3. Force Stop Snapchat
-4. Open the menu by clicking the [Settings Gear Icon](https://i.imgur.com/2grm8li.png)
-
-## Download 
-To Download the latest stable release, please visit the [Releases](https://github.com/bocajthomas/SE-Extended/releases) page.<br/>
-You can also download the latest debug build from the [Actions](https://github.com/bocajthomas/SE-Extended/actions/workflows/debug.yml) section.<br/>
-We no longer offer official `LSPatch` binaries for obvious reasons. However, you're welcome to patch them yourself, as they should theoretically work without any issues.
+## Screenshots
 
 ## Main Features
 <details closed>
@@ -153,6 +138,12 @@ We no longer offer official `LSPatch` binaries for obvious reasons. However, you
   - `Add Friend Source Spoof`
   - `Prevent Forced Logout`
 </details>
+
+## Download 
+To Download the latest stable release, please visit the [Releases](https://github.com/bocajthomas/SE-Extended/releases) page.<br/>
+You can also download the latest debug build from the [Actions](https://github.com/bocajthomas/SE-Extended/actions/workflows/debug.yml) section.<br/>
+We no longer offer official `LSPatch` binaries for obvious reasons. However, you're welcome to patch them yourself, as they should theoretically work without any issues.
+
 
 ## FAQ
 You can view the FAQ [here](https://github.com/bocajthomas/SE-Extended/wiki/FAQ)
