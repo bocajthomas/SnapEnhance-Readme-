@@ -5,7 +5,7 @@
   
 # SE-Extended 
 SE-Extended is a fork from the [SnapEnhance app](https://github.com/rhunk/SnapEnhance) that uses the Xposed Framework to enhance your Snapchat experience.<br/><br/>
-Please note that this project is currently in development, so bugs and crashes may occur. If you encounter any issues, we encourage you to report them. To do this simply visit our [issues](https://github.com/rhunk/SnapEnhance/issues) page and create an issue, make sure to follow the guidelines.
+Please note that this project is currently in development, so bugs and crashes may occur. If you encounter any issues, we encourage you to report them. To do this simply visit our [issues](https://github.com/bocajthomas/SE-Extended/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml&title=...) page and create an issue, make sure to follow the guidelines.
 </div>
 
 ## Quick Start
@@ -15,14 +15,14 @@ Requirements:
 
 Although using this in an unrooted enviroment using something like `LSPatch` should be working fine, it is not recommended to do so, use at your own risk!
 
-1. Install the module APK from either this [Github repo](https://github.com/rhunk/SnapEnhance/releases) or the [LSPosed repo](https://modules.lsposed.org/module/me.rhunk.snapenhance)
+1. Install the module APK from this [Github repo](https://github.com/bocajthomas/SE-Extended/releases)
 2. Turn on the module in `LSPosed` and make sure Snapchat is in scope
 3. Force Stop Snapchat
 4. Open the menu by clicking the [Settings Gear Icon](https://i.imgur.com/2grm8li.png)
 
 ## Download 
-To Download the latest stable release, please visit the [Releases](https://github.com/rhunk/SnapEnhance/releases) page.<br/>
-You can also download the latest debug build from the [Actions](https://github.com/rhunk/SnapEnhance/actions) section.<br/>
+To Download the latest stable release, please visit the [Releases](https://github.com/bocajthomas/SE-Extended/releases) page.<br/>
+You can also download the latest debug build from the [Actions](https://github.com/bocajthomas/SE-Extended/actions/workflows/debug.yml) section.<br/>
 We no longer offer official `LSPatch` binaries for obvious reasons. However, you're welcome to patch them yourself, as they should theoretically work without any issues.
 
 ## Main Features
@@ -155,65 +155,6 @@ We no longer offer official `LSPatch` binaries for obvious reasons. However, you
 </details>
 
 ## FAQ
-<details>
-  <summary>AI wallpapers and the Snapchat+ badge aren't working!</summary>
-  
-  - Yeah, they're server-sided and will probably never work.
-</details>
-
-<details>
-  <summary>Can you add this feature, please?</summary>
-  
-  - Open an issue on our Github repo.
-</details>
-
-<details>
-  <summary>When will this feature become available or finish?</summary>
-  
-  - At some point.
-</details>
-
-<details>
-  <summary>Can I get banned with this?</summary>
-  
-  - Obviously, however, the risk is very low, and we have no reported cases of anyone ever getting banned while using the mod.
-</details>
-
-<details>
-  <summary>Can I PM the developers?</summary>
-  
-  - No.
-</details>
-
-<details>
-  <summary>This doesn't work!</summary>
-  
-  - Open an issue.
-</details>
-
-<details>
-  <summary>My phone isn't rooted; how do I use this?</summary>
-  
-  - You can use `LSPatch` in combination with `SnapEnhance` to run this on an unrooted device, however this is unrecommended and not considered safe.
-</details>
-
-<details>
-  <summary>Where can I download the latest stable build?</summary>
-  
-  - https://github.com/rhunk/snapenhance/releases
-</details>
-
-<details>
-  <summary>Can I use HideMyApplist with this?</summary>
-  
-  - No, this will cause some severe issues, and the mod will not be able to inject.
-</details>
-
-<details>
-  <summary>How can I translate SnapEnhance into my language?</summary>
-  
-  - We have a [Weblate](https://hosted.weblate.org/projects/snapenhance/app/) hosted repo, feel free to submit your translations there.
-</details>
 
 ## Privacy
 We do not collect any user information. However, please be aware that third-party libraries may collect data as described in their respective privacy policies.
@@ -241,26 +182,5 @@ We do not collect any user information. However, please be aware that third-part
   - [colorpicker-compose](https://github.com/skydoves/colorpicker-compose)
 </details>
 
-## Contributors
-Thanks to everyone involved including the [third-party libraries](https://github.com/rhunk/SnapEnhance?tab=readme-ov-file#privacy) used!
-- [rathmerdominik](https://github.com/rathmerdominik)
-- [Flole998](https://github.com/Flole998)
-- [authorisation](https://github.com/authorisation/)
-- [RevealedSoulEven](https://github.com/revealedsouleven)
-- [iBasim](https://github.com/ibasim)
-- [xerta555](https://github.com/xerta555)
-- [TheVisual](https://github.com/TheVisual)
-- [CanerKaraca23](https://github.com/CanerKaraca23)
-- [bocajthomas](https://github.com/bocajthomas)
-- [w451](https://github.com/w451)
-
-## Donate
-**@rhunk**
-- LTC: LbBnT9GxgnFhwy891EdDKqGmpn7XtduBdE
-- BCH: qpu57a05kqljjadvpgjc6t894apprvth9slvlj4vpj
-- BTC: bc1qaqnfn6mauzhmx0e6kkenh2wh4r6js0vh5vel92
-- ETH: 0x0760987491e9de53A73fd87F092Bd432a227Ee92
-- XMR: 49W4Xp7QKdUdVw4otEctWZDC8gnW9nnhoiqMJzY6sKuZBD9xrh9BG4sjdE3r1Jt78j27R6x7522YUA9JVvh892CAJLeKaMu
-
-**@authorisation**
-- XMR: 82kPkAgG2zxQYnSdoFSWzvbSEtEP63NBDh9hgLqp6LgBhPNhZ4dDGv8gVFUEuUhDoi1U14ZgE71teJXo2eBe8iERRRmhcUW
+# Donate
+PayPal: 
