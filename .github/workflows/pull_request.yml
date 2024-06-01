@@ -1,5 +1,5 @@
-name: Pull Request CI
-on:
+//name: Pull Request CI
+//on:
   pull_request:
     branches: ["dev"]
 
