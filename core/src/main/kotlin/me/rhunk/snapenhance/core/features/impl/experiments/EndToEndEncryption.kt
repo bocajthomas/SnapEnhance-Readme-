@@ -25,6 +25,7 @@ import me.rhunk.snapenhance.common.data.MessagingRuleType
 import me.rhunk.snapenhance.common.data.RuleState
 import me.rhunk.snapenhance.common.database.impl.ConversationMessage
 import me.rhunk.snapenhance.common.ui.createComposeView
+import me.rhunk.snapenhance.common.util.lazyBridge
 import me.rhunk.snapenhance.common.util.protobuf.ProtoEditor
 import me.rhunk.snapenhance.common.util.protobuf.ProtoReader
 import me.rhunk.snapenhance.common.util.protobuf.ProtoWriter
@@ -58,7 +59,7 @@ class EndToEndEncryption : MessagingRuleFeature(
     loadParams = FeatureLoadParams.ACTIVITY_CREATE_SYNC or FeatureLoadParams.INIT_SYNC or FeatureLoadParams.INIT_ASYNC
 ) {
     val isEnabled get() = context.config.experimental.e2eEncryption.globalState == true
-    private val e2eeInterface by lazy { context.bridgeClient.getE2eeInterface() }
+    private val e2eeInterface by lazyBridge { context.bridgeClient.getE2eeInterface() }
 
     private val translation by lazy { context.translation.getCategory("end_to_end_encryption") }
 

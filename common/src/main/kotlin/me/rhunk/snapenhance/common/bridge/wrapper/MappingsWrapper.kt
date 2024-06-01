@@ -9,12 +9,13 @@ import me.rhunk.snapenhance.common.Constants
 import me.rhunk.snapenhance.common.bridge.InternalFileHandleType
 import me.rhunk.snapenhance.common.bridge.InternalFileWrapper
 import me.rhunk.snapenhance.common.logger.AbstractLogger
+import me.rhunk.snapenhance.common.util.LazyBridgeValue
 import me.rhunk.snapenhance.mapper.AbstractClassMapper
 import me.rhunk.snapenhance.mapper.ClassMapper
 import kotlin.reflect.KClass
 
 class MappingsWrapper(
-    fileHandleManager: FileHandleManager
+    fileHandleManager: LazyBridgeValue<FileHandleManager>
 ): InternalFileWrapper(fileHandleManager, InternalFileHandleType.MAPPINGS, defaultValue = "{}") {
     private lateinit var context: Context
     private var mappingUniqueHash: Long = 0

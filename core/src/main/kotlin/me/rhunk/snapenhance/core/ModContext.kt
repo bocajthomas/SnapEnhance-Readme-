@@ -17,6 +17,7 @@ import me.rhunk.snapenhance.common.Constants
 import me.rhunk.snapenhance.common.bridge.wrapper.LocaleWrapper
 import me.rhunk.snapenhance.common.bridge.wrapper.MappingsWrapper
 import me.rhunk.snapenhance.common.config.ModConfig
+import me.rhunk.snapenhance.common.util.lazyBridge
 import me.rhunk.snapenhance.core.action.ActionManager
 import me.rhunk.snapenhance.core.bridge.BridgeClient
 import me.rhunk.snapenhance.core.database.DatabaseAccess
@@ -48,15 +49,18 @@ class ModContext(
     val resources: Resources get() = androidContext.resources
     val gson: Gson = GsonBuilder().create()
 
-    private val _config by lazy { ModConfig(androidContext, bridgeClient.getFileHandlerManager()) }
+    private val lazyFileHandlerManager = lazyBridge { bridgeClient.getFileHandlerManager() }
+    val fileHandlerManager by lazyFileHandlerManager
+
+    private val _config by lazy { ModConfig(androidContext, lazyFileHandlerManager) }
     val config get() = _config.root
     val log by lazy { CoreLogger(this.bridgeClient) }
-    val translation by lazy { LocaleWrapper(bridgeClient.getFileHandlerManager()) }
+    val translation by lazy { LocaleWrapper(lazyFileHandlerManager) }
     val httpServer = HttpServer()
     val messageSender = MessageSender(this)
 
     val features = FeatureManager(this)
-    val mappings by lazy { MappingsWrapper(bridgeClient.getFileHandlerManager()) }
+    val mappings by lazy { MappingsWrapper(lazyFileHandlerManager) }
     val actionManager = ActionManager(this)
     val database = DatabaseAccess(this)
     val event = EventBus(this)

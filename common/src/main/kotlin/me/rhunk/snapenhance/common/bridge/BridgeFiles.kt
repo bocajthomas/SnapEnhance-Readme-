@@ -5,6 +5,8 @@ import android.os.ParcelFileDescriptor
 import android.os.ParcelFileDescriptor.AutoCloseInputStream
 import android.os.ParcelFileDescriptor.AutoCloseOutputStream
 import me.rhunk.snapenhance.bridge.storage.FileHandle
+import me.rhunk.snapenhance.common.util.LazyBridgeValue
+import me.rhunk.snapenhance.common.util.lazyBridge
 import java.io.File
 
 
@@ -43,10 +45,10 @@ enum class InternalFileHandleType(
     }
 }
 
-fun FileHandle.toWrapper() = FileHandleWrapper(lazy { this })
+fun FileHandle.toWrapper() = FileHandleWrapper(lazyBridge { this })
 
 open class FileHandleWrapper(
-    private val fileHandle: Lazy<FileHandle>
+    private val fileHandle: LazyBridgeValue<FileHandle>
 ) {
     fun exists() = fileHandle.value.exists()
     fun create() = fileHandle.value.create()
@@ -54,8 +56,8 @@ open class FileHandleWrapper(
 
     fun writeBytes(data: ByteArray) = fileHandle.value.open(
         ParcelFileDescriptor.MODE_WRITE_ONLY or
-                ParcelFileDescriptor.MODE_CREATE or
-                ParcelFileDescriptor.MODE_TRUNCATE
+        ParcelFileDescriptor.MODE_CREATE or
+        ParcelFileDescriptor.MODE_TRUNCATE
     ).use { pfd ->
         AutoCloseOutputStream(pfd).use {
             it.write(data)
@@ -64,7 +66,7 @@ open class FileHandleWrapper(
 
     open fun readBytes(): ByteArray = fileHandle.value.open(
         ParcelFileDescriptor.MODE_READ_ONLY or
-                ParcelFileDescriptor.MODE_CREATE
+        ParcelFileDescriptor.MODE_CREATE
     ).use { pfd ->
         AutoCloseInputStream(pfd).use {
             it.readBytes()
@@ -73,7 +75,7 @@ open class FileHandleWrapper(
 
     fun inputStream(block: (AutoCloseInputStream) -> Unit) = fileHandle.value.open(
         ParcelFileDescriptor.MODE_READ_ONLY or
-                ParcelFileDescriptor.MODE_CREATE
+        ParcelFileDescriptor.MODE_CREATE
     ).use { pfd ->
         AutoCloseInputStream(pfd).use {
             block(it)
@@ -82,8 +84,8 @@ open class FileHandleWrapper(
 
     fun outputStream(block: (AutoCloseOutputStream) -> Unit) = fileHandle.value.open(
         ParcelFileDescriptor.MODE_WRITE_ONLY or
-                ParcelFileDescriptor.MODE_CREATE or
-                ParcelFileDescriptor.MODE_TRUNCATE
+        ParcelFileDescriptor.MODE_CREATE or
+        ParcelFileDescriptor.MODE_TRUNCATE
     ).use { pfd ->
         AutoCloseOutputStream(pfd).use {
             block(it)

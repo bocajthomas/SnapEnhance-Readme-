@@ -11,11 +11,12 @@ import me.rhunk.snapenhance.common.bridge.InternalFileWrapper
 import me.rhunk.snapenhance.common.bridge.wrapper.LocaleWrapper
 import me.rhunk.snapenhance.common.config.impl.RootConfig
 import me.rhunk.snapenhance.common.logger.AbstractLogger
+import me.rhunk.snapenhance.common.util.LazyBridgeValue
 import kotlin.properties.Delegates
 
 class ModConfig(
     private val context: Context,
-    fileHandleManager: FileHandleManager
+    fileHandleManager: LazyBridgeValue<FileHandleManager>
 ) {
     private val fileWrapper = InternalFileWrapper(fileHandleManager, InternalFileHandleType.CONFIG, "{}")
     var locale: String = LocaleWrapper.DEFAULT_LOCALE

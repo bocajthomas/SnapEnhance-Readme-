@@ -3,15 +3,17 @@ package me.rhunk.snapenhance.core.features
 import me.rhunk.snapenhance.common.bridge.FileHandleScope
 import me.rhunk.snapenhance.common.bridge.InternalFileHandleType
 import me.rhunk.snapenhance.common.bridge.toWrapper
+import me.rhunk.snapenhance.common.util.LazyBridgeValue
+import me.rhunk.snapenhance.common.util.mappedLazyBridge
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.nio.charset.StandardCharsets
 
 abstract class BridgeFileFeature(name: String, private val bridgeFileType: InternalFileHandleType, loadParams: Int) : Feature(name, loadParams) {
     private val fileLines = mutableListOf<String>()
-    private val fileWrapper by lazy { context.bridgeClient.getFileHandlerManager().getFileHandle(FileHandleScope.INTERNAL.key, bridgeFileType.key)!!.toWrapper() }
+    private val fileWrapper by mappedLazyBridge(LazyBridgeValue({ context.fileHandlerManager.getFileHandle(FileHandleScope.INTERNAL.key, bridgeFileType.key)!! }), map = { it.toWrapper() })
 
-    protected fun readFile() {
+    private fun readFile() {
         val temporaryLines = mutableListOf<String>()
         fileWrapper.inputStream { stream ->
             with(BufferedReader(InputStreamReader(stream, StandardCharsets.UTF_8))) {

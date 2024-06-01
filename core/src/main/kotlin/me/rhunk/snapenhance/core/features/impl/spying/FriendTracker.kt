@@ -8,6 +8,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Info
 import me.rhunk.snapenhance.common.Constants
 import me.rhunk.snapenhance.common.data.*
+import me.rhunk.snapenhance.common.util.lazyBridge
 import me.rhunk.snapenhance.common.util.protobuf.ProtoReader
 import me.rhunk.snapenhance.common.util.toParcelable
 import me.rhunk.snapenhance.core.features.Feature
@@ -24,7 +25,7 @@ import java.nio.ByteBuffer
 
 class FriendTracker : Feature("Friend Tracker", loadParams = FeatureLoadParams.INIT_SYNC) {
     private val conversationPresenceState = mutableMapOf<String, MutableMap<String, FriendPresenceState?>>() // conversationId -> (userId -> state)
-    private val tracker by lazy { context.bridgeClient.getTracker() }
+    private val tracker by lazyBridge { context.bridgeClient.getTracker() }
     private val notificationManager by lazy { context.androidContext.getSystemService(NotificationManager::class.java).apply {
         createNotificationChannel(NotificationChannel(
             "friend_tracker",

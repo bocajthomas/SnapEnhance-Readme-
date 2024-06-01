@@ -66,8 +66,8 @@ class RemoteScriptManager(
         getScriptFileNames().forEach { name ->
             runCatching {
                 getScriptInputStream(name) { stream ->
-                    stream?.bufferedReader()?.readModuleInfo()?.also {
-                        cachedModuleInfo[name] = it
+                    stream?.use {
+                        cachedModuleInfo[name] = it.bufferedReader().readModuleInfo()
                     }
                 }
             }.onFailure {

@@ -28,6 +28,7 @@ import me.rhunk.snapenhance.common.bridge.wrapper.LoggerWrapper
 import me.rhunk.snapenhance.common.bridge.wrapper.MappingsWrapper
 import me.rhunk.snapenhance.common.config.ModConfig
 import me.rhunk.snapenhance.common.logger.fatalCrash
+import me.rhunk.snapenhance.common.util.constantLazyBridge
 import me.rhunk.snapenhance.common.util.getPurgeTime
 import me.rhunk.snapenhance.e2ee.E2EEImplementation
 import me.rhunk.snapenhance.scripting.RemoteScriptManager
@@ -61,9 +62,9 @@ class RemoteSideContext(
 
     val sharedPreferences: SharedPreferences get() = androidContext.getSharedPreferences("prefs", 0)
     val fileHandleManager = RemoteFileHandleManager(this)
-    val config = ModConfig(androidContext, fileHandleManager)
-    val translation = LocaleWrapper(fileHandleManager)
-    val mappings = MappingsWrapper(fileHandleManager)
+    val config = ModConfig(androidContext, constantLazyBridge { fileHandleManager })
+    val translation = LocaleWrapper(constantLazyBridge { fileHandleManager })
+    val mappings = MappingsWrapper(constantLazyBridge { fileHandleManager })
     val taskManager = TaskManager(this)
     val database = AppDatabase(this)
     val streaksReminder = StreaksReminder(this)

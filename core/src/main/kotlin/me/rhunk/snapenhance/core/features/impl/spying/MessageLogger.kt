@@ -11,6 +11,7 @@ import me.rhunk.snapenhance.common.data.ContentType
 import me.rhunk.snapenhance.common.data.MessageState
 import me.rhunk.snapenhance.common.data.QuotedMessageContentStatus
 import me.rhunk.snapenhance.common.util.ktx.longHashCode
+import me.rhunk.snapenhance.common.util.lazyBridge
 import me.rhunk.snapenhance.common.util.protobuf.ProtoReader
 import me.rhunk.snapenhance.core.event.events.impl.BindViewEvent
 import me.rhunk.snapenhance.core.event.events.impl.BuildMessageEvent
@@ -33,7 +34,7 @@ class MessageLogger : Feature("MessageLogger",
         const val DELETED_MESSAGE_COLOR = 0x6Eb71c1c
     }
 
-    private val loggerInterface by lazy { context.bridgeClient.getMessageLogger() }
+    private val loggerInterface by lazyBridge { context.bridgeClient.getMessageLogger() }
 
     val isEnabled get() = context.config.messaging.messageLogger.globalState == true
 

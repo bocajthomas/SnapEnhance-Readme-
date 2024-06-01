@@ -125,9 +125,7 @@ class DatabaseAccess(
                     if (!query.moveToFirst() || query.getString(0).lowercase() != "ok") {
                         context.log.error("Failed to perform integrity check on ${type.fileName}")
                         context.androidContext.deleteDatabase(type.fileName)
-                        return@apply
                     }
-                    context.log.verbose("database ${type.fileName} integrity check passed")
                 }
             }?.close()
         }
@@ -135,7 +133,6 @@ class DatabaseAccess(
 
     fun finalize() {
         openedDatabases.values.forEach { it.close() }
-        context.log.verbose("Database closed")
     }
 
     private fun <T : DatabaseObject> SQLiteDatabase.readDatabaseObject(

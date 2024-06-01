@@ -13,7 +13,7 @@ fun getCustomEmojiFontPath(
     val customFileName = context.config.experimental.nativeHooks.customEmojiFont.getNullable()?.takeIf { it.isNotBlank() } ?: return null
     if (cacheFontPath == null) {
         cacheFontPath = runCatching {
-             context.bridgeClient.getFileHandlerManager().getFileHandleLocalPath(
+             context.fileHandlerManager.getFileHandleLocalPath(
                 context,
                 FileHandleScope.USER_IMPORT,
                 customFileName,

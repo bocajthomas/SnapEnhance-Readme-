@@ -8,11 +8,12 @@ import com.google.gson.JsonParser
 import me.rhunk.snapenhance.bridge.storage.FileHandleManager
 import me.rhunk.snapenhance.common.bridge.FileHandleScope
 import me.rhunk.snapenhance.common.logger.AbstractLogger
+import me.rhunk.snapenhance.common.util.LazyBridgeValue
 import java.util.Locale
 
 
 class LocaleWrapper(
-    private val fileHandleManager: FileHandleManager
+    private val fileHandleManager: LazyBridgeValue<FileHandleManager>
 ) {
     companion object {
         const val DEFAULT_LOCALE = "en_US"
@@ -62,15 +63,14 @@ class LocaleWrapper(
     }
 
     fun load() {
-        load(
-            DEFAULT_LOCALE,
-            fileHandleManager.getFileHandle(FileHandleScope.LOCALE.key, "$DEFAULT_LOCALE.json")?.open(ParcelFileDescriptor.MODE_READ_ONLY) ?: run {
-                throw IllegalStateException("Failed to load default locale")
-            }
-        )
+        fileHandleManager.value.getFileHandle(FileHandleScope.LOCALE.key, "$DEFAULT_LOCALE.json")?.open(ParcelFileDescriptor.MODE_READ_ONLY)?.use {
+            load(DEFAULT_LOCALE, it)
+        } ?: run {
+            throw IllegalStateException("Failed to load default locale")
+        }
 
         if (userLocale != DEFAULT_LOCALE) {
-            fileHandleManager.getFileHandle(FileHandleScope.LOCALE.key, "$userLocale.json")?.open(ParcelFileDescriptor.MODE_READ_ONLY)?.let {
+            fileHandleManager.value.getFileHandle(FileHandleScope.LOCALE.key, "$userLocale.json")?.open(ParcelFileDescriptor.MODE_READ_ONLY)?.use {
                 load(userLocale, it)
             }
         }
