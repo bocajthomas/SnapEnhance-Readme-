@@ -94,6 +94,12 @@ class Routes(
             routes.navController.navigate(replaceArguments(routeInfo.id, HashMap<String, String>().apply { args() }))
         }
 
+        fun navigateReload() {
+            routes.navController.navigate(routeInfo.id) {
+                popUpTo(routeInfo.id) { inclusive = true }
+            }
+        }
+
         fun navigateReset(args: MutableMap<String, String>.() -> Unit = {}) {
             routes.navController.navigate(replaceArguments(routeInfo.id, HashMap<String, String>().apply { args() })) {
                 popUpTo(routes.navController.graph.findStartDestination().id) {

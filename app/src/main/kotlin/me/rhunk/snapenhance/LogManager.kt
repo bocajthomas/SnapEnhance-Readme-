@@ -191,7 +191,21 @@ class LogManager(
     }
 
     fun exportLogsToZip(outputStream: OutputStream) {
-        val zipOutputStream = ZipOutputStream(outputStream)
+        val zipOutputStream = ZipOutputStream(outputStream).apply {
+            setMethod(ZipOutputStream.DEFLATED)
+        }
+
+        // add device info to zip
+        zipOutputStream.putNextEntry(ZipEntry("device_info.json"))
+        val gson = GsonBuilder().setPrettyPrinting().create()
+        zipOutputStream.write(gson.toJson(remoteSideContext.installationSummary).toByteArray())
+        zipOutputStream.closeEntry()
+
+        // add config
+        zipOutputStream.putNextEntry(ZipEntry("config.json"))
+        zipOutputStream.write(remoteSideContext.config.exportToString(exportSensitiveData = false).toByteArray())
+        zipOutputStream.closeEntry()
+
         //add logFolder to zip
         logFolder.walk().forEach {
             if (it.isFile) {
@@ -200,12 +214,6 @@ class LogManager(
                 zipOutputStream.closeEntry()
             }
         }
-
-        //add device info to zip
-        zipOutputStream.putNextEntry(ZipEntry("device_info.json"))
-        val gson = GsonBuilder().setPrettyPrinting().create()
-        zipOutputStream.write(gson.toJson(remoteSideContext.installationSummary).toByteArray())
-        zipOutputStream.closeEntry()
 
         zipOutputStream.close()
     }

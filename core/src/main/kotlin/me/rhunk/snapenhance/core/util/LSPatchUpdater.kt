@@ -2,7 +2,6 @@ package me.rhunk.snapenhance.core.util
 
 import me.rhunk.snapenhance.common.Constants
 import me.rhunk.snapenhance.core.ModContext
-import me.rhunk.snapenhance.core.bridge.BridgeClient
 import java.io.File
 import java.util.zip.ZipFile
 
@@ -20,7 +19,7 @@ object LSPatchUpdater {
             .toString(16)
     }
 
-    fun onBridgeConnected(context: ModContext, bridgeClient: BridgeClient) {
+    fun onBridgeConnected(context: ModContext) {
         val obfuscatedModulePath by lazy {
             (runCatching {
                 context::class.java.classLoader?.loadClass("org.lsposed.lspatch.share.Constants")
@@ -44,7 +43,7 @@ object LSPatchUpdater {
         HAS_LSPATCH = true
         context.log.verbose("Found embedded SE at ${embeddedModule.absolutePath}", TAG)
 
-        val seAppApk = File(bridgeClient.getApplicationApkPath()).also {
+        val seAppApk = File(context.bridgeClient.getApplicationApkPath()).also {
             if (!it.canRead()) {
                 throw IllegalStateException("Cannot read SnapEnhance apk")
             }

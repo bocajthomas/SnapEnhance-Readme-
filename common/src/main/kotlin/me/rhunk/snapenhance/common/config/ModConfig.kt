@@ -54,10 +54,12 @@ class ModConfig(
         root.fromJson(configObject)
     }
 
-    fun exportToString(): String {
-        val configObject = root.toJson()
+    fun exportToString(
+        exportSensitiveData: Boolean = true
+    ): String {
+        val configObject = root.toJson(exportSensitiveData)
         configObject.addProperty("_locale", locale)
-        return configObject.toString()
+        return gson.toJson(configObject)
     }
 
     fun reset() {

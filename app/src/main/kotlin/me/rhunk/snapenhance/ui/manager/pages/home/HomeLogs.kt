@@ -68,9 +68,7 @@ class HomeLogs : Routes.Route() {
                 context.coroutineScope.launch {
                     context.log.clearLogs()
                 }
-                routes.navController.navigate(routeInfo.id) {
-                    popUpTo(routeInfo.id) { inclusive = true }
-                }
+                navigateReload()
                 showDropDown = false
             }, text = {
                 Text(translation["clear_logs_button"])

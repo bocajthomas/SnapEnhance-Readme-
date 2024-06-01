@@ -5,7 +5,16 @@ import android.view.MotionEvent
 import android.widget.Toast
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
@@ -13,8 +22,23 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.DeleteOutline
 import androidx.compose.material.icons.filled.Edit
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.Button
+import androidx.compose.material3.Card
+import androidx.compose.material3.FilledIconButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.RadioButton
+import androidx.compose.material3.Switch
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -34,8 +58,8 @@ import androidx.compose.ui.viewinterop.AndroidView
 import com.github.skydoves.colorpicker.compose.AlphaSlider
 import com.github.skydoves.colorpicker.compose.AlphaTile
 import com.github.skydoves.colorpicker.compose.BrightnessSlider
+import com.github.skydoves.colorpicker.compose.ColorPickerController
 import com.github.skydoves.colorpicker.compose.HsvColorPicker
-import com.github.skydoves.colorpicker.compose.rememberColorPickerController
 import me.rhunk.snapenhance.common.bridge.wrapper.LocaleWrapper
 import me.rhunk.snapenhance.common.config.DataProcessors
 import me.rhunk.snapenhance.common.config.PropertyPair
@@ -347,7 +371,12 @@ class AlertDialogs(
         }
 
         DefaultDialogCard {
-            val controller = rememberColorPickerController()
+            val controller = remember { ColorPickerController().apply {
+                if (currentColor == null) {
+                    setWheelAlpha(1f)
+                    setBrightness(1f, false)
+                }
+            } }
             var colorHexValue by remember {
                 mutableStateOf(currentColor?.toArgb()?.let { Integer.toHexString(it) } ?: "")
             }
@@ -399,6 +428,7 @@ class AlertDialogs(
                     .fillMaxWidth()
                     .padding(10.dp)
                     .height(35.dp),
+                initialColor = remember { currentColor },
                 controller = controller,
             )
             BrightnessSlider(
@@ -406,6 +436,7 @@ class AlertDialogs(
                     .fillMaxWidth()
                     .padding(10.dp)
                     .height(35.dp),
+                initialColor = remember { currentColor },
                 controller = controller,
             )
             Row(

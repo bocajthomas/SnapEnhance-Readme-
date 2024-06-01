@@ -27,6 +27,7 @@ import me.rhunk.snapenhance.core.util.LSPatchUpdater
 import me.rhunk.snapenhance.core.util.hook.HookAdapter
 import me.rhunk.snapenhance.core.util.hook.HookStage
 import me.rhunk.snapenhance.core.util.hook.hook
+import kotlin.system.exitProcess
 import kotlin.system.measureTimeMillis
 
 
@@ -56,42 +57,53 @@ class SnapEnhance {
             )
             appContext.apply {
                 bridgeClient = BridgeClient(this)
-                bridgeClient.apply {
-                    connect(
-                        onFailure = {
-                            InAppOverlay.showCrashOverlay(
-                                "Snapchat can't connect to the SnapEnhance app. Make sure you have the latest version installed on your device. You can download the latest stable version on github.com/rhunk/SnapEnhance",
-                                throwable = it
-                            )
-                        }
-                    ) { bridgeResult ->
-                        if (!bridgeResult) {
-                            InAppOverlay.showCrashOverlay(
-                                "Snapchat timed out while trying to connect to the SnapEnhance app. Make sure you have disabled any battery optimizations for SnapEnhance."
-                            )
-                            logCritical("Cannot connect to the SnapEnhance app")
-                            return@connect
-                        }
+                initConfigListener()
+                bridgeClient.addOnConnectedCallback {
+                    bridgeClient.registerMessagingBridge(messagingBridge)
+                    coroutineScope.launch {
                         runCatching {
-                            LSPatchUpdater.onBridgeConnected(appContext, bridgeClient)
+                            syncRemote()
                         }.onFailure {
-                            log.error("Failed to init LSPatchUpdater", it)
-                        }
-                        runCatching {
-                            measureTimeMillis {
-                                runBlocking {
-                                    init(this)
-                                }
-                            }.also {
-                                appContext.log.verbose("init took ${it}ms")
-                            }
-                        }.onSuccess {
-                            isBridgeInitialized = true
-                        }.onFailure {
-                            logCritical("Failed to initialize bridge", it)
-                            InAppOverlay.showCrashOverlay("SnapEnhance failed to initialize. Please check logs for more details.", it)
+                            log.error("Failed to sync remote", it)
                         }
                     }
+                }
+            }
+
+            runBlocking {
+                var throwable: Throwable? = null
+                val canLoad = appContext.bridgeClient.connect { throwable = it }
+                if (canLoad == null) {
+                    InAppOverlay.showCrashOverlay(
+                        buildString {
+                            append("Snapchat timed out while trying to connect to SnapEnhance\n\n")
+                            append("Make sure you:\n")
+                            append(" - Have installed the latest SnapEnhance version (https://github.com/rhunk/SnapEnhance)\n")
+                            append(" - Disabled battery optimizations\n")
+                            append(" - Excluded SnapEnhance and Snapchat in HideMyApplist")
+                        },
+                        throwable
+                    )
+                    appContext.logCritical("Cannot connect to the SnapEnhance app")
+                    return@runBlocking
+                }
+                if (!canLoad) exitProcess(1)
+                runCatching {
+                    LSPatchUpdater.onBridgeConnected(appContext)
+                }.onFailure {
+                    appContext.log.error("Failed to init LSPatchUpdater", it)
+                }
+                runCatching {
+                    measureTimeMillis {
+                        init(this)
+                    }.also {
+                        appContext.log.verbose("init took ${it}ms")
+                    }
+                }.onSuccess {
+                    isBridgeInitialized = true
+                }.onFailure {
+                    appContext.logCritical("Failed to initialize bridge", it)
+                    InAppOverlay.showCrashOverlay("SnapEnhance failed to initialize. Please check logs for more details.", it)
                 }
             }
         }
@@ -137,15 +149,9 @@ class SnapEnhance {
             }
 
             reloadConfig()
-            initConfigListener()
             initWidgetListener()
             initNative()
             scope.launch(Dispatchers.IO) {
-                runCatching {
-                    syncRemote()
-                }.onFailure {
-                    log.error("Failed to sync remote", it)
-                }
                 translation.userLocale = getConfigLocale()
                 translation.load()
             }
@@ -155,7 +161,6 @@ class SnapEnhance {
             eventDispatcher.init()
             //if mappings aren't loaded, we can't initialize features
             if (!mappings.isMappingsLoaded) return
-            bridgeClient.registerMessagingBridge(messagingBridge)
             features.init()
             scriptRuntime.connect(bridgeClient.getScriptingInterface())
             scriptRuntime.eachModule { callFunction("module.onSnapApplicationLoad", androidContext) }
@@ -178,7 +183,7 @@ class SnapEnhance {
     private fun initNative() {
         // don't initialize native when not logged in
         if (
-            appContext.androidContext.getSharedPreferences("user_session_shared_pref", 0).getString("key_user_id", null) == null &&
+            !appContext.isLoggedIn() &&
             appContext.bridgeClient.getDebugProp("force_native_load", null) != "true"
         ) return
         if (appContext.config.experimental.nativeHooks.globalState != true) return
@@ -219,27 +224,27 @@ class SnapEnhance {
             }
         }
 
-        appContext.executeAsync {
-            bridgeClient.registerConfigStateListener(object: ConfigStateListener.Stub() {
+        appContext.bridgeClient.addOnConnectedCallback {
+            appContext.bridgeClient.registerConfigStateListener(object: ConfigStateListener.Stub() {
                 override fun onConfigChanged() {
-                    log.verbose("onConfigChanged")
-                    reloadConfig()
+                    appContext.log.verbose("onConfigChanged")
+                    appContext.reloadConfig()
                 }
 
                 override fun onRestartRequired() {
-                    log.verbose("onRestartRequired")
+                    appContext.log.verbose("onRestartRequired")
                     runLater {
-                        log.verbose("softRestart")
-                        softRestartApp(saveSettings = false)
+                        appContext.log.verbose("softRestart")
+                        appContext.softRestartApp(saveSettings = false)
                     }
                 }
 
                 override fun onCleanCacheRequired() {
-                    log.verbose("onCleanCacheRequired")
+                    appContext.log.verbose("onCleanCacheRequired")
                     tasks.clear()
                     runLater {
-                        log.verbose("cleanCache")
-                        actionManager.execute(EnumAction.CLEAN_CACHE)
+                        appContext.log.verbose("cleanCache")
+                        appContext.actionManager.execute(EnumAction.CLEAN_CACHE)
                     }
                 }
             })

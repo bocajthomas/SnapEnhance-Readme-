@@ -44,10 +44,10 @@ import me.rhunk.snapenhance.ui.util.Dialog
 
 class MessagingPreview: Routes.Route() {
     private lateinit var coroutineScope: CoroutineScope
-    private lateinit var messagingBridge: MessagingBridge
     private lateinit var previewScrollState: LazyListState
 
     private val contentTypeTranslation by lazy { context.translation.getCategory("content_type") }
+    private val messagingBridge: MessagingBridge? get() = context.bridgeService?.messagingBridge
 
     private var messages = mutableStateListOf<Message>()
     private var conversationId by mutableStateOf<String?>(null)
@@ -194,10 +194,14 @@ class MessagingPreview: Routes.Route() {
         }
 
         fun launchMessagingTask(taskType: MessagingTaskType, constraints: List<MessagingTaskConstraint> = listOf(), onSuccess: (Message) -> Unit = {}) {
+            if (messagingBridge == null) {
+                context.longToast(translation["bridge_connection_failed"])
+                return
+            }
             taskSelectionDropdown = false
             processMessageCount.intValue = 0
             activeTask = MessagingTask(
-                messagingBridge, conversationId!!, taskType, constraints,
+                messagingBridge!!, conversationId!!, taskType, constraints,
                 overrideClientMessageIds = selectedMessages.takeIf { it.isNotEmpty() }?.toList(),
                 processedMessageCount = processMessageCount,
                 onSuccess = onSuccess,
@@ -299,15 +303,23 @@ class MessagingPreview: Routes.Route() {
                     else selectConstraintsDialog = true
                 }
                 ActionButton(text = translation[if (hasSelection) "mark_selection_as_seen_option" else "mark_all_as_seen_option"], icon = Icons.Rounded.RemoveRedEye) {
+                    if (messagingBridge == null) {
+                        context.longToast(translation["bridge_connection_failed"])
+                        return@ActionButton
+                    }
                     launchMessagingTask(
                         MessagingTaskType.READ, listOf(
-                        MessagingConstraints.NO_USER_ID(messagingBridge.myUserId),
+                        MessagingConstraints.NO_USER_ID(messagingBridge!!.myUserId),
                         MessagingConstraints.CONTENT_TYPE(arrayOf(ContentType.SNAP))
                     ))
                     runCurrentTask()
                 }
                 ActionButton(text = translation[if (hasSelection) "delete_selection_option" else "delete_all_option"], icon = Icons.Rounded.DeleteForever) {
-                    launchMessagingTask(MessagingTaskType.DELETE, listOf(MessagingConstraints.USER_ID(messagingBridge.myUserId), {
+                    if (messagingBridge == null) {
+                        context.longToast(translation["bridge_connection_failed"])
+                        return@ActionButton
+                    }
+                    launchMessagingTask(MessagingTaskType.DELETE, listOf(MessagingConstraints.USER_ID(messagingBridge!!.myUserId), {
                         contentType != ContentType.STATUS.id
                     })) { message ->
                         coroutineScope.launch {
@@ -426,7 +438,7 @@ class MessagingPreview: Routes.Route() {
         fun fetchNewMessages() {
             coroutineScope.launch(Dispatchers.IO) cs@{
                 runCatching {
-                    val queriedMessages = messagingBridge.fetchConversationWithMessagesPaginated(
+                    val queriedMessages = messagingBridge!!.fetchConversationWithMessagesPaginated(
                         conversationId!!,
                         20,
                         lastMessageId
@@ -447,18 +459,18 @@ class MessagingPreview: Routes.Route() {
             context.log.verbose("onMessagingBridgeReady: $scope $scopeId")
 
             runCatching {
-                messagingBridge = context.bridgeService!!.messagingBridge!!
-                conversationId = (if (scope == SocialScope.FRIEND) messagingBridge.getOneToOneConversationId(scopeId) else scopeId) ?: throw IllegalStateException("Failed to get conversation id")
-                if (runCatching { !messagingBridge.isSessionStarted }.getOrDefault(true)) {
+                conversationId = (if (scope == SocialScope.FRIEND) messagingBridge!!.getOneToOneConversationId(scopeId) else scopeId) ?: throw IllegalStateException("Failed to get conversation id")
+                if (runCatching { !messagingBridge!!.isSessionStarted }.getOrDefault(true)) {
                     context.androidContext.packageManager.getLaunchIntentForPackage(
                         Constants.SNAPCHAT_PACKAGE_NAME
                     )?.let {
-                        val mainIntent = Intent.makeRestartActivityTask(it.component).apply {
+                        val mainIntent = Intent.makeMainActivity(it.component).apply {
                             putExtra(ReceiversConfig.MESSAGING_PREVIEW_EXTRA, true)
+                            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                         }
                         context.androidContext.startActivity(mainIntent)
                     }
-                    messagingBridge.registerSessionStartListener(object: SessionStartListener.Stub() {
+                    messagingBridge!!.registerSessionStartListener(object: SessionStartListener.Stub() {
                         override fun onConnected() {
                             fetchNewMessages()
                         }

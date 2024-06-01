@@ -163,4 +163,6 @@ class ModContext(
     fun getConfigLocale(): String {
         return _config.locale
     }
+
+    fun isLoggedIn() = androidContext.getSharedPreferences("user_session_shared_pref", 0).getString("key_user_id", null) != null
 }

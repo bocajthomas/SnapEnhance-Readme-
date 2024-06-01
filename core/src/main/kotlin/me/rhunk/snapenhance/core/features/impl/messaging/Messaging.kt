@@ -1,5 +1,8 @@
 package me.rhunk.snapenhance.core.features.impl.messaging
 
+import android.content.ComponentName
+import android.content.Intent
+import me.rhunk.snapenhance.common.Constants
 import me.rhunk.snapenhance.common.ReceiversConfig
 import me.rhunk.snapenhance.core.event.events.impl.ConversationUpdateEvent
 import me.rhunk.snapenhance.core.event.events.impl.OnSnapInteractionEvent
@@ -48,8 +51,11 @@ class Messaging : Feature("Messaging", loadParams = FeatureLoadParams.ACTIVITY_C
         context.classCache.conversationManager.hookConstructor(HookStage.BEFORE) { param ->
             conversationManager = ConversationManager(context, param.thisObject())
             context.messagingBridge.triggerSessionStart()
-            context.mainActivity?.takeIf { it.intent.getBooleanExtra(ReceiversConfig.MESSAGING_PREVIEW_EXTRA,false) }?.run {
-                finishAndRemoveTask()
+            context.mainActivity?.takeIf { it.intent.getBooleanExtra(ReceiversConfig.MESSAGING_PREVIEW_EXTRA, false) }?.run {
+                startActivity(Intent().apply {
+                    setComponent(ComponentName(Constants.SE_PACKAGE_NAME, "me.rhunk.snapenhance.ui.manager.MainActivity"))
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                })
             }
         }
 

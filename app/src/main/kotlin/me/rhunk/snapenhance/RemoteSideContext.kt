@@ -160,6 +160,7 @@ class RemoteSideContext(
                         val cert = certFactory.generateCertificate(ByteArrayInputStream(it.toByteArray())) as X509Certificate
                         cert.issuerDN.toString()
                     } ?: throw Exception("Failed to get certificate info"),
+                gitHash = BuildConfig.GIT_HASH,
                 isDebugBuild = BuildConfig.DEBUG,
                 mappingVersion = mappings.getGeneratedBuildNumber(),
                 mappingsOutdated = mappings.isMappingsOutdated()
@@ -186,7 +187,7 @@ class RemoteSideContext(
         log.debug(message.toString())
     }
 
-    fun hasMessagingBridge() = bridgeService != null && bridgeService?.messagingBridge != null
+    fun hasMessagingBridge() = bridgeService != null && bridgeService?.messagingBridge != null && bridgeService?.messagingBridge?.asBinder()?.pingBinder() == true
 
     fun checkForRequirements(overrideRequirements: Int? = null): Boolean {
         var requirements = overrideRequirements ?: 0

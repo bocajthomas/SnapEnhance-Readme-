@@ -5,26 +5,26 @@ import android.net.Uri
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Help
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -41,6 +41,7 @@ import me.rhunk.snapenhance.storage.setQuickTiles
 import me.rhunk.snapenhance.ui.manager.Routes
 import me.rhunk.snapenhance.ui.manager.data.Updater
 import me.rhunk.snapenhance.ui.util.ActivityLauncherHelper
+import java.text.DateFormat
 
 class HomeRoot : Routes.Route() {
     companion object {
@@ -120,6 +121,29 @@ class HomeRoot : Routes.Route() {
         )
     }
 
+    @Composable
+    private fun InfoCard(
+        content: @Composable ColumnScope.() -> Unit,
+    ) {
+        OutlinedCard(
+            modifier = Modifier
+                .padding(all = cardMargin)
+                .fillMaxWidth(),
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.surfaceVariant,
+                contentColor = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(all = 15.dp)
+            ) {
+                content()
+            }
+        }
+    }
+
 
     @OptIn(ExperimentalLayoutApi::class, ExperimentalMaterial3Api::class)
     override val content: @Composable (NavBackStackEntry) -> Unit = {
@@ -197,21 +221,12 @@ class HomeRoot : Routes.Route() {
             }
 
             if (latestUpdate != null) {
-                Spacer(modifier = Modifier.height(20.dp))
-                OutlinedCard(
-                    modifier = Modifier
-                        .padding(all = cardMargin)
-                        .fillMaxWidth(),
-                    colors = CardDefaults.cardColors(
-                        containerColor = MaterialTheme.colorScheme.surfaceVariant,
-                        contentColor = MaterialTheme.colorScheme.onSurfaceVariant
-                    )
-                ) {
+                Spacer(modifier = Modifier.height(10.dp))
+                InfoCard {
                     Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(all = 15.dp),
-                        horizontalArrangement = Arrangement.SpaceBetween
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
                         Column {
                             Text(
@@ -234,6 +249,53 @@ class HomeRoot : Routes.Route() {
                             Text(text = translation["update_button"])
                         }
                     }
+                }
+            }
+
+            if (BuildConfig.DEBUG) {
+                Spacer(modifier = Modifier.height(10.dp))
+                InfoCard {
+                    Text(
+                        text = "You are running a debug build of SnapEnhance",
+                        fontSize = 14.sp,
+                        fontWeight = FontWeight.Bold,
+                    )
+                    val buildSummary = buildAnnotatedString {
+                        withStyle(style = SpanStyle(fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurfaceVariant, fontWeight = FontWeight.Light)) {
+                            append("Version ")
+                            append(BuildConfig.VERSION_NAME)
+                            append(" (")
+                            append(BuildConfig.VERSION_CODE.toString())
+                            append(") - ")
+                        }
+                        pushStringAnnotation(
+                            tag = "git_hash",
+                            annotation = BuildConfig.GIT_HASH
+                        )
+                        withStyle(style = SpanStyle(fontSize = 13.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary)) {
+                            append(BuildConfig.GIT_HASH.substring(0, 7))
+                        }
+                        pop()
+                    }
+                    ClickableText(
+                        text = buildSummary,
+                        onClick = { offset ->
+                            buildSummary.getStringAnnotations(tag = "git_hash", start = offset, end = offset)
+                                .firstOrNull()?.let {
+                                    context.activity?.startActivity(Intent(Intent.ACTION_VIEW).apply {
+                                        data = Uri.parse("https://github.com/rhunk/SnapEnhance/commit/${it.item}")
+                                    })
+                                }
+                        }
+                    )
+                    Text(
+                        fontSize = 12.sp,
+                        text = remember {
+                            "Build date: " + DateFormat.getDateTimeInstance().format(BuildConfig.BUILD_TIMESTAMP) + " (${((System.currentTimeMillis() - BuildConfig.BUILD_TIMESTAMP) / 86400000).toInt()} days ago)"
+                        },
+                        lineHeight = 20.sp,
+                        fontWeight = FontWeight.Light
+                    )
                 }
             }
 

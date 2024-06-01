@@ -15,6 +15,7 @@ data class ModInfo(
     val buildVersion: String,
     val buildVersionCode: Long,
     val buildIssuer: String,
+    val gitHash: String,
     val isDebugBuild: Boolean,
     val mappingVersion: Long?,
     val mappingsOutdated: Boolean?,

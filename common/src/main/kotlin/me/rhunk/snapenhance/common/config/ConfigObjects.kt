@@ -29,7 +29,8 @@ enum class ConfigFlag {
     USER_IMPORT,
     NO_DISABLE_KEY,
     REQUIRE_RESTART,
-    REQUIRE_CLEAN_CACHE;
+    REQUIRE_CLEAN_CACHE,
+    SENSITIVE;
 
     val id = 1 shl ordinal
 }

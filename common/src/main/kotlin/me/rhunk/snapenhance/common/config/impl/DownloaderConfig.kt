@@ -17,7 +17,7 @@ class DownloaderConfig : ConfigContainer() {
         val customAudioCodec = string("custom_audio_codec") { addFlags(ConfigFlag.NO_TRANSLATE) }
     }
 
-    val saveFolder = string("save_folder") { addFlags(ConfigFlag.FOLDER); requireRestart() }
+    val saveFolder = string("save_folder") { addFlags(ConfigFlag.FOLDER, ConfigFlag.SENSITIVE); requireRestart() }
     val autoDownloadSources = multiple("auto_download_sources",
         "friend_snaps",
         "friend_stories",

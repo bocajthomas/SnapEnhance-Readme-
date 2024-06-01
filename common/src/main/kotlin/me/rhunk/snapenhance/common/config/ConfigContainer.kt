@@ -74,10 +74,11 @@ open class ConfigContainer(
         params: ConfigParamsBuilder = {}
     ) = registerProperty(key, DataProcessors.INT_COLOR, PropertyValue(defaultValue), params)
 
-    fun toJson(): JsonObject {
+    fun toJson(exportSensitiveData: Boolean = true): JsonObject {
         val json = JsonObject()
         properties.forEach { (propertyKey, propertyValue) ->
-            val serializedValue = propertyValue.getNullable()?.let { propertyKey.dataType.serializeAny(it) }
+            if (!exportSensitiveData && propertyKey.params.flags.contains(ConfigFlag.SENSITIVE)) return@forEach
+            val serializedValue = propertyValue.getNullable()?.let { propertyKey.dataType.serializeAny(it, exportSensitiveData) }
             json.add(propertyKey.name, serializedValue)
         }
         return json

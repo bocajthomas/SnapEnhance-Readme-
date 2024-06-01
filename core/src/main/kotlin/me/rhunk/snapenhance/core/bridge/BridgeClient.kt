@@ -5,9 +5,18 @@ import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
 import android.content.ServiceConnection
-import android.os.*
+import android.os.Build
+import android.os.DeadObjectException
+import android.os.Handler
+import android.os.HandlerThread
+import android.os.IBinder
+import android.os.ParcelFileDescriptor
+import android.os.Process
 import android.util.Log
 import de.robv.android.xposed.XposedHelpers
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.suspendCancellableCoroutine
+import kotlinx.coroutines.withTimeoutOrNull
 import me.rhunk.snapenhance.bridge.AccountStorage
 import me.rhunk.snapenhance.bridge.BridgeInterface
 import me.rhunk.snapenhance.bridge.ConfigStateListener
@@ -26,83 +35,135 @@ import me.rhunk.snapenhance.common.data.MessagingRuleType
 import me.rhunk.snapenhance.common.data.SocialScope
 import me.rhunk.snapenhance.common.util.toSerialized
 import me.rhunk.snapenhance.core.ModContext
-import java.util.concurrent.CompletableFuture
 import java.util.concurrent.Executors
-import java.util.concurrent.TimeUnit
-import kotlin.system.exitProcess
+import kotlin.coroutines.Continuation
+import kotlin.coroutines.resume
 
 class BridgeClient(
     private val context: ModContext
 ):  ServiceConnection {
-    private lateinit var future: CompletableFuture<Boolean>
+    private var continuation: Continuation<Boolean>? = null
     private lateinit var service: BridgeInterface
 
-    fun connect(onFailure: (Throwable) -> Unit, onResult: (Boolean) -> Unit) {
-        this.future = CompletableFuture()
+    private val onConnectedCallbacks = mutableListOf<suspend () -> Unit>()
 
-        with(context.androidContext) {
-            runCatching {
-                startActivity(Intent()
-                    .setClassName(Constants.SE_PACKAGE_NAME, "me.rhunk.snapenhance.bridge.ForceStartActivity")
-                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
-                )
-            }
+    fun addOnConnectedCallback(callback: suspend () -> Unit) {
+        synchronized(onConnectedCallbacks) {
+            onConnectedCallbacks.add(callback)
+        }
+    }
 
-            //ensure the remote process is running
-            runCatching {
-                val intent = Intent()
-                    .setClassName(Constants.SE_PACKAGE_NAME,"me.rhunk.snapenhance.bridge.BridgeService")
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                    bindService(
-                        intent,
-                        Context.BIND_AUTO_CREATE,
-                        Executors.newSingleThreadExecutor(),
-                        this@BridgeClient
-                    )
-                } else {
-                    XposedHelpers.callMethod(
-                        this,
-                        "bindServiceAsUser",
-                        intent,
-                        this@BridgeClient,
-                        Context.BIND_AUTO_CREATE,
-                        Handler(HandlerThread("BridgeClient").apply {
-                            start()
-                        }.looper),
-                        android.os.Process.myUserHandle()
-                    )
+    suspend fun connect(onFailure: (Throwable) -> Unit): Boolean? {
+        if (this::service.isInitialized && service.asBinder().pingBinder()) {
+            return true
+        }
+
+        return withTimeoutOrNull(5000L) {
+            suspendCancellableCoroutine { cancellableContinuation ->
+                continuation = cancellableContinuation
+                with(context.androidContext) {
+                    //ensure the remote process is running
+                    runCatching {
+                        startActivity(Intent()
+                            .setClassName(Constants.SE_PACKAGE_NAME, "me.rhunk.snapenhance.bridge.ForceStartActivity")
+                            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
+                        )
+                    }
+
+                    runCatching {
+                        val intent = Intent()
+                            .setClassName(Constants.SE_PACKAGE_NAME, "me.rhunk.snapenhance.bridge.BridgeService")
+                        runCatching {
+                            if (this@BridgeClient::service.isInitialized) {
+                                unbindService(this@BridgeClient)
+                            }
+                        }
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                            bindService(
+                                intent,
+                                Context.BIND_AUTO_CREATE,
+                                Executors.newSingleThreadExecutor(),
+                                this@BridgeClient
+                            )
+                        } else {
+                            XposedHelpers.callMethod(
+                                this,
+                                "bindServiceAsUser",
+                                intent,
+                                this@BridgeClient,
+                                Context.BIND_AUTO_CREATE,
+                                Handler(HandlerThread("BridgeClient").apply {
+                                    start()
+                                }.looper),
+                                Process.myUserHandle()
+                            )
+                        }
+                    }.onFailure {
+                        onFailure(it)
+                        continuation = null
+                        cancellableContinuation.resume(false)
+                    }
                 }
-                onResult(future.get(15, TimeUnit.SECONDS))
-            }.onFailure {
-                onFailure(it)
             }
         }
     }
 
-
     override fun onServiceConnected(name: ComponentName, service: IBinder) {
         this.service = BridgeInterface.Stub.asInterface(service)
-        future.complete(true)
+        runBlocking {
+            onConnectedCallbacks.forEach {
+                runCatching {
+                    it()
+                }.onFailure {
+                    context.log.error("Failed to run onConnectedCallback", it)
+                }
+            }
+        }
+        continuation?.resume(true)
+        continuation = null
     }
 
     override fun onNullBinding(name: ComponentName) {
-        context.log.error("BridgeClient", "failed to connect to bridge service")
-        exitProcess(1)
+        Log.d("BridgeClient", "bridge null binding")
+        continuation?.resume(false)
+        continuation = null
     }
 
     override fun onServiceDisconnected(name: ComponentName) {
-        exitProcess(0)
+        continuation = null
+    }
+
+    private fun tryReconnect() {
+        runBlocking {
+            Log.d("BridgeClient", "service is dead, restarting")
+            val canLoad = connect {
+                Log.e("BridgeClient", "connection failed", it)
+                context.softRestartApp()
+            }
+            if (canLoad != true) {
+                Log.e("BridgeClient", "failed to reconnect to service", Throwable())
+                context.softRestartApp()
+            }
+        }
     }
 
     private fun <T> safeServiceCall(block: () -> T): T {
         return runCatching {
             block()
-        }.getOrElse {
-            Log.e("SnapEnhance", "service call failed", it)
-            if (it is DeadObjectException) {
-                context.softRestartApp()
+        }.getOrElse { throwable ->
+            if (throwable is DeadObjectException) {
+                tryReconnect()
+                return@getOrElse runCatching {
+                    block()
+                }.getOrElse {
+                    Log.e("BridgeClient", "service call failed", it)
+                    if (it is DeadObjectException) {
+                        context.softRestartApp()
+                    }
+                    throw it
+                }
             }
-            throw it
+            throw throwable
         }
     }
 
@@ -180,5 +241,5 @@ class BridgeClient(
 
     fun registerConfigStateListener(listener: ConfigStateListener) = safeServiceCall { service.registerConfigStateListener(listener) }
 
-    fun getDebugProp(name: String, defaultValue: String? = null) = safeServiceCall { service.getDebugProp(name, defaultValue) }
+    fun getDebugProp(name: String, defaultValue: String? = null): String? = safeServiceCall { service.getDebugProp(name, defaultValue) }
 }

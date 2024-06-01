@@ -19,9 +19,9 @@ class Global : ConfigContainer() {
         )
     }
 
-    inner class BetterLocation : ConfigContainer(hasGlobalState = true) {
+    inner class BetterLocationConfig : ConfigContainer(hasGlobalState = true) {
         val spoofLocation = boolean("spoof_location") { requireRestart() }
-        val coordinates = mapCoordinates("coordinates", 0.0 to 0.0) // lat, long
+        val coordinates = mapCoordinates("coordinates", 0.0 to 0.0) { addFlags(ConfigFlag.SENSITIVE) } // lat, long
         val walkRadius = string("walk_radius") { requireRestart(); inputCheck = { it.toDoubleOrNull()?.isFinite() == true && it.toDouble() >= 0.0 } }
         val alwaysUpdateLocation = boolean("always_update_location") { requireRestart() }
         val suspendLocationUpdates = boolean("suspend_location_updates") { requireRestart() }
@@ -35,7 +35,7 @@ class Global : ConfigContainer() {
         val customUploadImageFormat = unique("custom_image_upload_format", "jpeg", "png", "webp") { requireRestart(); addFlags(ConfigFlag.NO_TRANSLATE) }
     }
 
-    val betterLocation = container("better_location", BetterLocation())
+    val betterLocation = container("better_location", BetterLocationConfig())
     val snapchatPlus = boolean("snapchat_plus") { requireRestart() }
     val mediaUploadQualityConfig = container("media_upload_quality", MediaUploadQualityConfig())
     val disableConfirmationDialogs = multiple("disable_confirmation_dialogs", "erase_message", "remove_friend", "block_friend", "ignore_friend", "hide_friend", "hide_conversation", "clear_conversation") { requireRestart() }

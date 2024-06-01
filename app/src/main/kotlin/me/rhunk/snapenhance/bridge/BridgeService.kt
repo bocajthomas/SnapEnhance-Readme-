@@ -45,6 +45,10 @@ class BridgeService : Service() {
 
     fun triggerScopeSync(scope: SocialScope, id: String, updateOnly: Boolean = false) {
         runCatching {
+            if (!syncCallback.asBinder().pingBinder()) {
+                remoteSideContext.log.warn("Failed to sync $scope $id: Callback is dead")
+                return
+            }
             val modDatabase = remoteSideContext.database
             val syncedObject = when (scope) {
                 SocialScope.FRIEND -> {

@@ -19,6 +19,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
@@ -32,6 +33,7 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
+import com.github.skydoves.colorpicker.compose.AlphaTile
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -325,14 +327,16 @@ class FeaturesRoot : Routes.Route() {
                 }
 
                 registerDialogOnClickCallback().let { { it.invoke(true) } }.also {
-                    Box(
+                    val selectedColor = (propertyValue.getNullable() as? Int)?.let { Color(it) }
+                    AlphaTile(
                         modifier = Modifier
                             .size(30.dp)
                             .border(2.dp, Color.White, shape = RoundedCornerShape(15.dp))
-                            .background(
-                                color = (propertyValue.getNullable() as? Int)?.let { Color(it) } ?: Color.Transparent,
-                                shape = RoundedCornerShape(15.dp)
-                            )
+                            .clip(RoundedCornerShape(15.dp)),
+                        selectedColor = selectedColor ?: Color.Transparent,
+                        tileEvenColor = selectedColor?.let { Color(0xFFCBCBCB) } ?: Color.Transparent,
+                        tileOddColor = selectedColor?.let { Color.White } ?: Color.Transparent,
+                        tileSize = 8.dp,
                     )
                 }
             }
@@ -525,6 +529,7 @@ class FeaturesRoot : Routes.Route() {
 
         var showExportDropdownMenu by remember { mutableStateOf(false) }
         var showResetConfirmationDialog by remember { mutableStateOf(false) }
+        var showExportDialog by remember { mutableStateOf(false) }
 
         if (showResetConfirmationDialog) {
             AlertDialog(
@@ -554,19 +559,50 @@ class FeaturesRoot : Routes.Route() {
             )
         }
 
-        val actions = remember {
-            mapOf(
-                translation["export_option"] to {
-                    activityLauncher {
-                        saveFile("config.json", "application/json") { uri ->
+        if (showExportDialog) {
+            fun exportConfig(
+                exportSensitiveData: Boolean
+            ) {
+                showExportDialog = false
+                activityLauncher {
+                    saveFile("config.json", "application/json") { uri ->
+                        runCatching {
                             context.androidContext.contentResolver.openOutputStream(Uri.parse(uri))?.use {
                                 context.config.writeConfig()
-                                context.config.exportToString().byteInputStream().copyTo(it)
+                                context.config.exportToString(exportSensitiveData).byteInputStream().copyTo(it)
                                 context.shortToast(translation["config_export_success_toast"])
                             }
+                        }.onFailure {
+                            context.longToast(translation.format("config_export_failure_toast", "error" to it.message.toString()))
                         }
                     }
+                }
+            }
+
+            AlertDialog(
+                title = { Text(text = context.translation["manager.dialogs.export_config.title"]) },
+                text = { Text(text = context.translation["manager.dialogs.export_config.content"]) },
+                onDismissRequest = { showExportDialog = false },
+                confirmButton = {
+                    Button(
+                        onClick = { exportConfig(true) }
+                    ) {
+                        Text(text = context.translation["button.positive"])
+                    }
                 },
+                dismissButton = {
+                    Button(
+                        onClick = { exportConfig(false) }
+                    ) {
+                        Text(text = context.translation["button.negative"])
+                    }
+                }
+            )
+        }
+
+        val actions = remember {
+            mapOf(
+                translation["export_option"] to { showExportDialog = true },
                 translation["import_option"] to {
                     activityLauncher {
                         openFile("application/json") { uri ->
@@ -578,6 +614,9 @@ class FeaturesRoot : Routes.Route() {
                                     return@use
                                 }
                                 context.shortToast(translation["config_import_success_toast"])
+                                context.coroutineScope.launch(Dispatchers.Main) {
+                                    navigateReload()
+                                }
                             }
                         }
                     }
