@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/bocajthomas/SnapEnhance/v2.1.0/app/src/main/res/mipmap-xxxhdpi/launcher_icon_foreground.png" height="250" />
+  <img src="https://raw.githubusercontent.com/bocajthomas/SE-Extended/dev/app/src/main/res/mipmap-xxxhdpi/launcher_icon_foreground.png" height="250" />
 
 # SE Extended 
 SE Extended is a fork from the [SnapEnhance app](https://github.com/rhunk/SnapEnhance) that uses the Xposed Framework to enhance your Snapchat experience.<br/><br/>
