@@ -256,7 +256,7 @@ class HomeRoot : Routes.Route() {
                 Spacer(modifier = Modifier.height(10.dp))
                 InfoCard {
                     Text(
-                        text = "You are running a debug build of SnapEnhance",
+                        text = "You are running a debug build of SE Extended",
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Bold,
                     )
@@ -283,7 +283,7 @@ class HomeRoot : Routes.Route() {
                             buildSummary.getStringAnnotations(tag = "git_hash", start = offset, end = offset)
                                 .firstOrNull()?.let {
                                     context.activity?.startActivity(Intent(Intent.ACTION_VIEW).apply {
-                                        data = Uri.parse("https://github.com/rhunk/SnapEnhance/commit/${it.item}")
+                                        data = Uri.parse("https://github.com/bocajthomas/SE-Extended/commit/${it.item}")
                                     })
                                 }
                         }
