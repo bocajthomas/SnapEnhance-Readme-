@@ -4,85 +4,55 @@ import android.location.Location
 import android.location.LocationManager
 import me.rhunk.snapenhance.common.util.protobuf.EditorContext
 import me.rhunk.snapenhance.common.util.protobuf.ProtoEditor
+import me.rhunk.snapenhance.common.util.protobuf.ProtoReader
 import me.rhunk.snapenhance.core.event.events.impl.UnaryCallEvent
 import me.rhunk.snapenhance.core.features.Feature
 import me.rhunk.snapenhance.core.features.FeatureLoadParams
 import me.rhunk.snapenhance.core.features.impl.global.SuspendLocationUpdates
+import me.rhunk.snapenhance.core.util.RandomWalking
 import me.rhunk.snapenhance.core.util.hook.HookStage
 import me.rhunk.snapenhance.core.util.hook.hook
+import me.rhunk.snapenhance.mapper.impl.CallbackMapper
 import java.nio.ByteBuffer
-import kotlin.math.cos
-import kotlin.math.hypot
-import kotlin.math.pow
-import kotlin.math.sin
-import kotlin.math.sqrt
+import java.util.UUID
 import kotlin.time.Duration.Companion.days
 
+data class FriendLocation(
+    val userId: String,
+    val latitude: Float,
+    val longitude: Float,
+    val lastUpdated: Long,
+    val locality: String?,
+    val localityPieces: List<String>
+)
+
 class BetterLocation : Feature("Better Location", loadParams = FeatureLoadParams.INIT_SYNC) {
-    //Latitude ft / deg /Longitude ft /deg = 1.26301179736
-    // 4ft/s * 1 degree/364000ft (latitude) * 1s/1000ms = .000000010989011 degrees/ms
-    val max_speed = 4.0 / 364000.0 / 1000.0
-    val pause_chance = .0023 // .23% chance to pause every second = after 5 minutes 50% chance of pause
-    val pause_duration = 60000L //ms
-    val pause_random = 30000L //ms
+    private val locationHistory = mutableMapOf<String, FriendLocation>()
 
-    var pause_expire = 0L
-    var current_x = 0.0
-    var current_y = 0.0
-    var target_x = 0.0
-    var target_y = 0.0
-    var last_update_time = 0L
-    private fun updatePosition(){
-        val now = System.currentTimeMillis()
+    private val walkRadius by lazy {
+        context.config.global.betterLocation.walkRadius.getNullable()
+    }
 
-        if(current_x == target_x && current_y == target_y) {
-            val config = context.config.global.betterLocation
-            val walk_rad = if (config.walkRadius.get()
-                    .toDoubleOrNull() == null
-            ) 0.0 else (config.walkRadius.get().toDouble() / 364000.0) //Lat deg
-
-            if(last_update_time == 0L){ //Start at random position
-                val radius1 = sqrt(Math.random()) * walk_rad
-                val theta1 = Math.PI * 2.0 * Math.random()
-                current_x = cos(theta1) * radius1 * 1.26301179736
-                current_y = sin(theta1) * radius1
-            }
-
-            val radius2 = sqrt(Math.random()) * walk_rad
-            val theta2 = Math.PI * 2.0 * Math.random()
-            target_x = cos(theta2) * radius2 * 1.26301179736
-            target_y = sin(theta2) * radius2
-        } else if (pause_expire < now) {
-            val deltat = now - last_update_time
-            if(Math.random() > (1.0 - pause_chance).pow(deltat / 1000.0)){
-                pause_expire = now + pause_duration + (pause_random * Math.random()).toLong()
-            } else {
-                val max_dist = max_speed * deltat
-                val dist = hypot(target_x - current_x, target_y - current_y)
-
-                if (dist <= max_dist) {
-                    current_x = target_x
-                    current_y = target_y
-                } else {
-                    val norm_x = (target_x - current_x) / dist * max_dist
-                    val norm_y = (target_y - current_y) / dist * max_dist
-                    current_x += norm_x
-                    current_y += norm_y
-                }
-            }
-        }
-        last_update_time = now
+    private val randomWalking by lazy {
+        RandomWalking(walkRadius?.toDoubleOrNull())
     }
 
     private fun getLat() : Double {
-        updatePosition()
-        return (context.config.global.betterLocation.coordinates.get().first + current_x)
+        var spoofedLatitude = context.config.global.betterLocation.coordinates.get().first
+        walkRadius?.let {
+            spoofedLatitude += randomWalking.current_x
+        }
+        return spoofedLatitude
     }
 
     private fun getLong() : Double {
-        updatePosition()
-        return (context.config.global.betterLocation.coordinates.get().second + current_y)
+        var spoofedLongitude = context.config.global.betterLocation.coordinates.get().second
+        walkRadius?.let {
+            spoofedLongitude += randomWalking.current_y
+        }
+        return spoofedLongitude
     }
+
     private fun editClientUpdate(editor: EditorContext) {
         val config = context.config.global.betterLocation
 
@@ -90,6 +60,7 @@ class BetterLocation : Feature("Better Location", loadParams = FeatureLoadParams
             // SCVSLocationUpdate
             edit(1) {
                 if (config.spoofLocation.get()) {
+                    randomWalking.updatePosition()
                     remove(1)
                     remove(2)
                     addFixed32(1, getLat().toFloat()) // lat
@@ -136,6 +107,29 @@ class BetterLocation : Feature("Better Location", loadParams = FeatureLoadParams
         }
     }
 
+    private fun onLocationEvent(protoReader: ProtoReader) {
+        protoReader.eachBuffer(3, 1) {
+            val userId = UUID(getFixed64(1, 1) ?: return@eachBuffer, getFixed64(1, 2) ?: return@eachBuffer).toString()
+            val friendCluster = FriendLocation(
+                userId = userId,
+                latitude = Float.fromBits(getFixed32(4)),
+                longitude = Float.fromBits(getFixed32(5)),
+                lastUpdated = getVarInt(7, 2) ?: -1L,
+                locality = getString(10),
+                localityPieces = mutableListOf<String>().also {
+                    forEach { index, wire ->
+                        if (index != 11) return@forEach
+                        it.add((wire.value as ByteArray).toString(Charsets.UTF_8) )
+                    }
+                }
+            )
+
+            locationHistory[userId]?.let { }
+
+            locationHistory[userId] = friendCluster
+        }
+    }
+
     override fun init() {
         if (context.config.global.betterLocation.globalState != true) return
 
@@ -145,11 +139,8 @@ class BetterLocation : Feature("Better Location", loadParams = FeatureLoadParams
                 hook("isProviderEnabledForUser", HookStage.BEFORE) { it.setResult(true) }
             }
             Location::class.java.apply {
-                hook("getLatitude", HookStage.BEFORE) {
-                    it.setResult(getLat()) }
-                hook("getLongitude", HookStage.BEFORE) {
-                    it.setResult(getLong())
-                }
+                hook("getLatitude", HookStage.BEFORE) { it.setResult(getLat()) }
+                hook("getLongitude", HookStage.BEFORE) { it.setResult(getLong()) }
             }
         }
 
@@ -162,6 +153,16 @@ class BetterLocation : Feature("Better Location", loadParams = FeatureLoadParams
                         }
                     }
                 }.toByteArray()
+            }
+        }
+
+        context.mappings.useMapper(CallbackMapper::class) {
+            callbacks.getClass("ServerStreamingEventHandler")?.hook("onEvent", HookStage.BEFORE) { param ->
+                val buffer = param.arg<ByteBuffer>(1).let {
+                    it.position(0)
+                    ByteArray(it.capacity()).also { buffer -> it.get(buffer); it.position(0) }
+                }
+                onLocationEvent(ProtoReader(buffer))
             }
         }
 
