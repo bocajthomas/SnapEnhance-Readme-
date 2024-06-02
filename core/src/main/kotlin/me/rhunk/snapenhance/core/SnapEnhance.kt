@@ -76,15 +76,15 @@ class SnapEnhance {
                 if (canLoad == null) {
                     InAppOverlay.showCrashOverlay(
                         buildString {
-                            append("Snapchat timed out while trying to connect to SnapEnhance\n\n")
+                            append("Snapchat timed out while trying to connect to SE Extended\n\n")
                             append("Make sure you:\n")
-                            append(" - Have installed the latest SnapEnhance version (https://github.com/rhunk/SnapEnhance)\n")
+                            append(" - Have installed the latest SE Extended version (https://github.com/bocajthomas/SE-Extended)\n")
                             append(" - Disabled battery optimizations\n")
-                            append(" - Excluded SnapEnhance and Snapchat in HideMyApplist")
+                            append(" - Excluded SE Extended & Snapchat in HideMyApplist")
                         },
                         throwable
                     )
-                    appContext.logCritical("Cannot connect to the SnapEnhance app")
+                    appContext.logCritical("Cannot connect to the SE Extended app")
                     return@runBlocking
                 }
                 if (!canLoad) exitProcess(1)
@@ -103,7 +103,7 @@ class SnapEnhance {
                     isBridgeInitialized = true
                 }.onFailure {
                     appContext.logCritical("Failed to initialize bridge", it)
-                    InAppOverlay.showCrashOverlay("SnapEnhance failed to initialize. Please check logs for more details.", it)
+                    InAppOverlay.showCrashOverlay("SE Extended failed to initialize. Please check logs for more details.", it)
                 }
             }
         }
