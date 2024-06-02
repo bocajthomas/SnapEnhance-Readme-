@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonObject
 import kotlinx.coroutines.*
+import me.rhunk.snapenhance.bridge.logger.BridgeLoggedMessage
 import me.rhunk.snapenhance.bridge.logger.LoggerInterface
 import me.rhunk.snapenhance.common.bridge.InternalFileHandleType
 import me.rhunk.snapenhance.common.data.StoryData
@@ -26,8 +27,20 @@ class LoggedMessageEdit(
 
 class LoggedMessage(
     val messageId: Long,
-    val timestamp: Long,
+    val conversationId: String,
+    val userId: String,
+    val username: String,
+    val sendTimestamp: Long,
+    val addedTimestamp: Long,
+    val groupTitle: String?,
     val messageData: ByteArray,
+)
+
+class ConversationInfo(
+    val conversationId: String,
+    val participantSize: Int,
+    val groupTitle: String?,
+    val usernames: List<String>
 )
 
 class TrackerLog(
@@ -77,9 +90,13 @@ class LoggerWrapper(
             SQLiteDatabaseHelper.createTablesFromSchema(openedDatabase, mapOf(
                 "messages" to listOf(
                     "id INTEGER PRIMARY KEY",
-                    "added_timestamp BIGINT",
-                    "conversation_id VARCHAR",
                     "message_id BIGINT",
+                    "conversation_id VARCHAR",
+                    "user_id CHAR(36)",
+                    "username VARCHAR",
+                    "send_timestamp BIGINT",
+                    "added_timestamp BIGINT",
+                    "group_title VARCHAR",
                     "message_data BLOB"
                 ),
                 "chat_edits" to listOf(
@@ -150,67 +167,67 @@ class LoggerWrapper(
         }
     }
 
-    override fun addMessage(conversationId: String, messageId: Long, serializedMessage: ByteArray) {
-        val hasMessage = database.rawQuery("SELECT message_id FROM messages WHERE conversation_id = ? AND message_id = ?", arrayOf(conversationId, messageId.toString())).use {
+    override fun addMessage(bridgeLoggedMessage: BridgeLoggedMessage) {
+        val hasMessage = database.rawQuery("SELECT message_id FROM messages WHERE conversation_id = ? AND message_id = ?", arrayOf(bridgeLoggedMessage.conversationId, bridgeLoggedMessage.messageId.toString())).use {
             it.moveToFirst()
             it.count > 0
         }
 
         if (!hasMessage) {
-            runBlocking {
-                withContext(coroutineScope.coroutineContext) {
-                    database.insert("messages", null, ContentValues().apply {
-                        put("added_timestamp", System.currentTimeMillis())
-                        put("conversation_id", conversationId)
-                        put("message_id", messageId)
-                        put("message_data", serializedMessage)
-                    })
-                }
+            runBlocking(coroutineScope.coroutineContext) {
+                database.insert("messages", null, ContentValues().apply {
+                    put("message_id", bridgeLoggedMessage.messageId)
+                    put("conversation_id", bridgeLoggedMessage.conversationId)
+                    put("user_id", bridgeLoggedMessage.userId)
+                    put("username", bridgeLoggedMessage.username)
+                    put("send_timestamp", bridgeLoggedMessage.sendTimestamp)
+                    put("added_timestamp", System.currentTimeMillis())
+                    put("group_title", bridgeLoggedMessage.groupTitle)
+                    put("message_data", bridgeLoggedMessage.messageData)
+                })
             }
         }
 
         // handle message edits
-        runBlocking {
-            withContext(coroutineScope.coroutineContext) {
-                runCatching {
-                    val messageObject = gson.fromJson(
-                        serializedMessage.toString(Charsets.UTF_8),
-                        JsonObject::class.java
-                    )
-                    if (messageObject.getAsJsonObject("mMessageContent")
-                            ?.getAsJsonPrimitive("mContentType")?.asString != "CHAT"
-                    ) return@withContext
+        runBlocking(coroutineScope.coroutineContext) {
+            runCatching {
+                val messageObject = gson.fromJson(
+                    bridgeLoggedMessage.messageData.toString(Charsets.UTF_8),
+                    JsonObject::class.java
+                )
+                if (messageObject.getAsJsonObject("mMessageContent")
+                        ?.getAsJsonPrimitive("mContentType")?.asString != "CHAT"
+                ) return@runBlocking
 
-                    val metadata = messageObject.getAsJsonObject("mMetadata")
-                    if (metadata.get("mIsEdited")?.asBoolean != true) return@withContext
+                val metadata = messageObject.getAsJsonObject("mMetadata")
+                if (metadata.get("mIsEdited")?.asBoolean != true) return@runBlocking
 
-                    val messageTextContent =
-                        messageObject.getAsJsonObject("mMessageContent")?.getAsJsonArray("mContent")
-                            ?.map { it.asByte }?.toByteArray()?.let {
-                                ProtoReader(it).getString(2, 1)
-                            } ?: return@withContext
+                val messageTextContent =
+                    messageObject.getAsJsonObject("mMessageContent")?.getAsJsonArray("mContent")
+                        ?.map { it.asByte }?.toByteArray()?.let {
+                            ProtoReader(it).getString(2, 1)
+                        } ?: return@runBlocking
 
-                    database.rawQuery(
-                        "SELECT MAX(edit_number), message_text FROM chat_edits WHERE conversation_id = ? AND message_id = ?",
-                        arrayOf(conversationId, messageId.toString())
-                    ).use {
-                        it.moveToFirst()
-                        val editNumber = it.getInt(0)
-                        val lastEditedMessage = it.getString(1)
+                database.rawQuery(
+                    "SELECT MAX(edit_number), message_text FROM chat_edits WHERE conversation_id = ? AND message_id = ?",
+                    arrayOf(bridgeLoggedMessage.conversationId, bridgeLoggedMessage.messageId.toString())
+                ).use {
+                    it.moveToFirst()
+                    val editNumber = it.getInt(0)
+                    val lastEditedMessage = it.getString(1)
 
-                        if (lastEditedMessage == messageTextContent) return@withContext
+                    if (lastEditedMessage == messageTextContent) return@runBlocking
 
-                        database.insert("chat_edits", null, ContentValues().apply {
-                            put("edit_number", editNumber + 1)
-                            put("added_timestamp", System.currentTimeMillis())
-                            put("conversation_id", conversationId)
-                            put("message_id", messageId)
-                            put("message_text", messageTextContent)
-                        })
-                    }
-                }.onFailure {
-                    AbstractLogger.directDebug("Failed to handle message edit: ${it.message}")
+                    database.insert("chat_edits", null, ContentValues().apply {
+                        put("edit_number", editNumber + 1)
+                        put("added_timestamp", System.currentTimeMillis())
+                        put("conversation_id", bridgeLoggedMessage.conversationId)
+                        put("message_id", bridgeLoggedMessage.messageId)
+                        put("message_text", messageTextContent)
+                    })
                 }
+            }.onFailure {
+                AbstractLogger.directDebug("Failed to handle message edit: ${it.message}")
             }
         }
     }
@@ -257,18 +274,16 @@ class LoggerWrapper(
         }) {
             return false
         }
-        runBlocking {
-            withContext(coroutineScope.coroutineContext) {
-                database.insert("stories", null, ContentValues().apply {
-                    put("user_id", userId)
-                    put("added_timestamp", System.currentTimeMillis())
-                    put("url", url)
-                    put("posted_timestamp", postedAt)
-                    put("created_timestamp", createdAt)
-                    put("encryption_key", key)
-                    put("encryption_iv", iv)
-                })
-            }
+        runBlocking(coroutineScope.coroutineContext) {
+            database.insert("stories", null, ContentValues().apply {
+                put("user_id", userId)
+                put("added_timestamp", System.currentTimeMillis())
+                put("url", url)
+                put("posted_timestamp", postedAt)
+                put("created_timestamp", createdAt)
+                put("encryption_key", key)
+                put("encryption_iv", iv)
+            })
         }
         return true
     }
@@ -282,19 +297,17 @@ class LoggerWrapper(
         eventType: String,
         data: String
     ) {
-        runBlocking {
-            withContext(coroutineScope.coroutineContext) {
-                database.insert("tracker_events", null, ContentValues().apply {
-                    put("timestamp", System.currentTimeMillis())
-                    put("conversation_id", conversationId)
-                    put("conversation_title", conversationTitle)
-                    put("is_group", isGroup)
-                    put("username", username)
-                    put("user_id", userId)
-                    put("event_type", eventType)
-                    put("data", data)
-                })
-            }
+        runBlocking(coroutineScope.coroutineContext) {
+            database.insert("tracker_events", null, ContentValues().apply {
+                put("timestamp", System.currentTimeMillis())
+                put("conversation_id", conversationId)
+                put("conversation_title", conversationTitle)
+                put("is_group", isGroup)
+                put("username", username)
+                put("user_id", userId)
+                put("event_type", eventType)
+                put("data", data)
+            })
         }
     }
 
@@ -389,6 +402,26 @@ class LoggerWrapper(
         }
     }
 
+    fun getConversationInfo(conversationId: String): ConversationInfo? {
+        val participantSize = database.rawQuery("SELECT COUNT(DISTINCT user_id) FROM messages WHERE conversation_id = ?", arrayOf(conversationId)).use {
+            if (!it.moveToFirst()) return null
+            it.getInt(0)
+        }
+        val groupTitle = if (participantSize > 2) database.rawQuery("SELECT group_title FROM messages WHERE conversation_id = ? AND group_title IS NOT NULL LIMIT 1", arrayOf(conversationId)).use {
+            if (!it.moveToFirst()) return@use null
+            it.getStringOrNull("group_title")
+        } else null
+        val usernames = database.rawQuery("SELECT DISTINCT username FROM messages WHERE conversation_id = ?", arrayOf(conversationId)).use {
+            val usernames = mutableListOf<String>()
+            while (it.moveToNext()) {
+                usernames.add(it.getString(0))
+            }
+            usernames
+        }
+
+        return ConversationInfo(conversationId, participantSize, groupTitle, usernames)
+    }
+
     fun getMessageEdits(conversationId: String, messageId: Long): List<LoggedMessageEdit> {
         val edits = mutableListOf<LoggedMessageEdit>()
         database.rawQuery(
@@ -414,13 +447,18 @@ class LoggerWrapper(
     ): List<LoggedMessage> {
         val messages = mutableListOf<LoggedMessage>()
         database.rawQuery(
-            "SELECT * FROM messages WHERE conversation_id = ? AND added_timestamp ${if (reverseOrder) "<" else ">"} ? ORDER BY added_timestamp ${if (reverseOrder) "DESC" else "ASC"}",
+            "SELECT * FROM messages WHERE conversation_id = ? AND send_timestamp ${if (reverseOrder) "<" else ">"} ? ORDER BY send_timestamp ${if (reverseOrder) "DESC" else "ASC"}",
             arrayOf(conversationId, fromTimestamp.toString())
         ).use {
             while (it.moveToNext() && messages.size < limit) {
                 val message = LoggedMessage(
                     messageId = it.getLongOrNull("message_id") ?: continue,
-                    timestamp = it.getLongOrNull("added_timestamp") ?: continue,
+                    conversationId = it.getStringOrNull("conversation_id") ?: continue,
+                    userId = it.getStringOrNull("user_id") ?: continue,
+                    username = it.getStringOrNull("username") ?: continue,
+                    sendTimestamp = it.getLongOrNull("send_timestamp") ?: continue,
+                    addedTimestamp = it.getLongOrNull("added_timestamp") ?: continue,
+                    groupTitle = it.getStringOrNull("group_title"),
                     messageData = it.getBlobOrNull("message_data") ?: continue
                 )
                 if (filter != null && !filter(message)) continue

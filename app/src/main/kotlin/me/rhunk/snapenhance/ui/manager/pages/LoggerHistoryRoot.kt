@@ -20,6 +20,7 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavBackStackEntry
@@ -28,6 +29,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import me.rhunk.snapenhance.bridge.DownloadCallback
+import me.rhunk.snapenhance.common.bridge.wrapper.ConversationInfo
 import me.rhunk.snapenhance.common.bridge.wrapper.LoggedMessage
 import me.rhunk.snapenhance.common.bridge.wrapper.LoggerWrapper
 import me.rhunk.snapenhance.common.data.ContentType
@@ -43,12 +45,8 @@ import me.rhunk.snapenhance.core.features.impl.downloader.decoder.DecodedAttachm
 import me.rhunk.snapenhance.core.features.impl.downloader.decoder.MessageDecoder
 import me.rhunk.snapenhance.download.DownloadProcessor
 import me.rhunk.snapenhance.storage.findFriend
-import me.rhunk.snapenhance.storage.getFriendInfo
-import me.rhunk.snapenhance.storage.getGroupInfo
 import me.rhunk.snapenhance.ui.manager.Routes
-import java.nio.ByteBuffer
 import java.text.DateFormat
-import java.util.UUID
 import kotlin.math.absoluteValue
 
 
@@ -58,15 +56,12 @@ class LoggerHistoryRoot : Routes.Route() {
     private var stringFilter by mutableStateOf("")
     private var reverseOrder by mutableStateOf(true)
 
-    private inline fun decodeMessage(message: LoggedMessage, result: (senderId: String?, contentType: ContentType, messageReader: ProtoReader, attachments: List<DecodedAttachment>) -> Unit) {
+    private inline fun decodeMessage(message: LoggedMessage, result: (contentType: ContentType, messageReader: ProtoReader, attachments: List<DecodedAttachment>) -> Unit) {
         runCatching {
             val messageObject = JsonParser.parseString(String(message.messageData, Charsets.UTF_8)).asJsonObject
-            val senderId = messageObject.getAsJsonObject("mSenderId")?.getAsJsonArray("mId")?.map { it.asByte }?.toByteArray()?.let {
-                ByteBuffer.wrap(it).run { UUID(long, long) }.toString()
-            }
             val messageContent = messageObject.getAsJsonObject("mMessageContent")
             val messageReader = messageContent.getAsJsonArray("mContent").map { it.asByte }.toByteArray().let { ProtoReader(it) }
-            result(senderId, ContentType.fromMessageContainer(messageReader) ?: ContentType.UNKNOWN, messageReader, MessageDecoder.decode(messageContent))
+            result(ContentType.fromMessageContainer(messageReader) ?: ContentType.UNKNOWN, messageReader, MessageDecoder.decode(messageContent))
         }.onFailure {
             context.log.error("Failed to decode message", it)
         }
@@ -129,12 +124,10 @@ class LoggerHistoryRoot : Routes.Route() {
 
                 LaunchedEffect(Unit, message) {
                     runCatching {
-                        decodeMessage(message) { senderId, contentType, messageReader, attachments ->
-                            val senderUsername = senderId?.let { context.database.getFriendInfo(it)?.mutableUsername } ?: translation["unknown_sender"]
-
+                        decodeMessage(message) { contentType, messageReader, attachments ->
                             @Composable
                             fun ContentHeader() {
-                                Text("$senderUsername (${contentType.toString().lowercase()})", modifier = Modifier.padding(end = 4.dp), fontWeight = FontWeight.ExtraLight)
+                                Text("${message.username} (${contentType.toString().lowercase()}) - ${DateFormat.getDateTimeInstance().format(message.sendTimestamp)}", modifier = Modifier.padding(end = 4.dp), fontWeight = FontWeight.ExtraLight)
                             }
 
                             if (contentType == ContentType.CHAT) {
@@ -187,7 +180,7 @@ class LoggerHistoryRoot : Routes.Route() {
                                             ElevatedButton(onClick = {
                                                 context.coroutineScope.launch {
                                                     runCatching {
-                                                        downloadAttachment(message.timestamp, attachment)
+                                                        downloadAttachment(message.sendTimestamp, attachment)
                                                     }.onFailure {
                                                         context.log.error("Failed to download attachment", it)
                                                         context.shortToast(translation["download_attachment_failed_toast"])
@@ -232,17 +225,26 @@ class LoggerHistoryRoot : Routes.Route() {
                 expanded = expanded,
                 onExpandedChange = { expanded = it },
             ) {
-                fun formatConversationId(conversationId: String?): String? {
-                    if (conversationId == null) return null
-                    return context.database.getGroupInfo(conversationId)?.name?.let {
+                fun formatConversationInfo(conversationInfo: ConversationInfo?): String? {
+                    if (conversationInfo == null) return null
+
+                    return conversationInfo.groupTitle?.let {
                         translation.format("list_group_format", "name" to it)
-                    } ?: context.database.findFriend(conversationId)?.let {
-                        translation.format("list_friend_format", "name" to (it.displayName?.let { name -> "$name (${it.mutableUsername})" } ?: it.mutableUsername))
-                    } ?: conversationId
+                    } ?: conversationInfo.usernames.takeIf { it.size > 1 }?.let {
+                        translation.format("list_friend_format", "name" to ("(" + it.joinToString(", ") + ")"))
+                    } ?: context.database.findFriend(conversationInfo.conversationId)?.let {
+                        translation.format("list_friend_format", "name" to "(" + (conversationInfo.usernames + listOf(it.mutableUsername)).toSet().joinToString(", ") + ")")
+                    } ?: conversationInfo.usernames.firstOrNull()?.let {
+                        translation.format("list_friend_format", "name" to "($it)")
+                    }
+                }
+
+                val selectedConversationInfo by rememberAsyncMutableState(defaultValue = null, keys = arrayOf(selectedConversation)) {
+                    selectedConversation?.let { loggerWrapper.getConversationInfo(it) }
                 }
 
                 OutlinedTextField(
-                    value = remember(selectedConversation) { formatConversationId(selectedConversation) ?: "Select a conversation" },
+                    value = remember(selectedConversationInfo) { formatConversationInfo(selectedConversationInfo) ?: "Select a conversation" },
                     onValueChange = {},
                     readOnly = true,
                     modifier = Modifier
@@ -260,7 +262,15 @@ class LoggerHistoryRoot : Routes.Route() {
                             selectedConversation = conversationId
                             expanded = false
                         }, text = {
-                            Text(remember(conversationId) { formatConversationId(conversationId) ?: "Unknown conversation" })
+                            val conversationInfo by rememberAsyncMutableState(defaultValue = null, keys = arrayOf(conversationId)) {
+                                formatConversationInfo(loggerWrapper.getConversationInfo(conversationId))
+                            }
+
+                            Text(
+                                text = remember(conversationInfo) { conversationInfo ?: conversationId },
+                                fontWeight = if (conversationId == selectedConversation) FontWeight.Bold else FontWeight.Normal,
+                                overflow = TextOverflow.Ellipsis
+                            )
                         })
                     }
                 }
@@ -320,7 +330,7 @@ class LoggerHistoryRoot : Routes.Route() {
                             ) { messageData ->
                                 if (stringFilter.isEmpty()) return@fetchMessages true
                                 var isMatch = false
-                                decodeMessage(messageData) { _,  contentType, messageReader, _ ->
+                                decodeMessage(messageData) { contentType, messageReader, _ ->
                                     if (contentType == ContentType.CHAT) {
                                         val content = messageReader.getString(2, 1) ?: return@decodeMessage
                                         isMatch = content.contains(stringFilter, ignoreCase = true)
@@ -332,7 +342,7 @@ class LoggerHistoryRoot : Routes.Route() {
                                 hasReachedEnd = true
                                 return@withContext
                             }
-                            lastFetchMessageTimestamp = newMessages.lastOrNull()?.timestamp ?: return@withContext
+                            lastFetchMessageTimestamp = newMessages.lastOrNull()?.sendTimestamp ?: return@withContext
                             withContext(Dispatchers.Main) {
                                 messages.addAll(newMessages)
                             }

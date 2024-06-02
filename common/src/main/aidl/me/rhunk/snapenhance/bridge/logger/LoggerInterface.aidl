@@ -1,5 +1,7 @@
 package me.rhunk.snapenhance.bridge.logger;
 
+import me.rhunk.snapenhance.bridge.logger.BridgeLoggedMessage;
+
 interface LoggerInterface {
     /**
      * Get the ids of the messages that are logged
@@ -15,7 +17,7 @@ interface LoggerInterface {
     /**
      * Add a message to the message logger database if it is not already there
      */
-    oneway void addMessage(String conversationId, long id, in byte[] message);
+    oneway void addMessage(in BridgeLoggedMessage message);
 
     /**
      * Delete a message from the message logger database
