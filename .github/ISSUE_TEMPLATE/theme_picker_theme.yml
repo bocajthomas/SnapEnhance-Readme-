@@ -1,0 +1,28 @@
+name: "Theme Picker Theme"
+description: Summit a Theme For the Theme Picker
+title: "Name of theme"
+labels: [
+  "enhancement"
+]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: "Description"
+      description: Please input your theme, Include the hex color code, An example is below
+      placeholder: Name: Magical Green 
+      placeholder: Main Text Color: #ff17ff00
+      placeholder: Secondary Friend Feed Text Color: #ff17ff00
+      placeholder: Snaps With Sound Text Color: #ff17ff00
+      placeholder: Snaps Without Sound Text Color: #ff17ff00
+      placeholder: Background Color: #ff17ff00
+    validations:
+      required: true
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Agreement
+      description: Have you submitted this theme correctly?
+      options:
+        - label: 
+          required: true
