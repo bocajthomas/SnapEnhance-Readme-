@@ -53,7 +53,7 @@ Please note that this project is currently in development, so bugs and crashes m
   - `Hide Streak Restore`
   - `Hide Quick Add In Friend Feed`
   - `Hide Story Section` 
-  - `Hide UI Components` (Voice Record button, Call Buttons, ...)
+  - `Hide UI Components` (Voice Record button, Call Buttons, Etc)
   - `Opera Media Quick Info`
   - `Old Bitmoji Selfie` 
   - `Disable Spotlight` 
@@ -78,8 +78,9 @@ Please note that this project is currently in development, so bugs and crashes m
   - `Loop Media PlayBack`
   - `Disable Replay In FF`
   - `Half Swipe Notifier`
-  - `Message Preview`
+  - `Message Preview Length`
   - `Call Start Confirmation`
+  - `Unlimited Conversation Pinning`
   - `Auto Save Messages` 
   - `Prevent Message Sending`
   - `Friend Mutation Notifier`
@@ -97,12 +98,13 @@ Please note that this project is currently in development, so bugs and crashes m
   <summary>Global</summary>
  
   - `Better Location`
-  - `Suspend Location Updates`
-  - `Snapchat Plus` 
+  - `Snapchat Plus`
+  - `Media Upload Quality` 
   - `Disable Confirmation Dialogs`
   - `Disable Metrics`
   - `Disable Story Sections`
   - `Block Ads`
+  - `Disable Custom Tabs`
   - `Disable Permission Request`
   - `Disable Memories Snap Feed`
   - `Spotlight Comments Username` 
@@ -110,10 +112,19 @@ Please note that this project is currently in development, so bugs and crashes m
   - `Default Video Playback Rate`
   - `Video Playback Rate Slider`
   - `Disable Google Play Services Dialogs`
-  - `Force Upload Source Quality`
   - `Default Volume Controls`
   - `Hide Active Music`
   - `Disable Snap Splitting`
+</details>
+
+<details closed>
+  <summary>Rules</summary>
+
+  - `Stealth Mode`
+  - `Auto Download`
+  - `Auto Save`
+  - `Auto Open Snaps`
+  - `Unsaveable Messages`
 </details>
 
 <details closed>
@@ -125,30 +136,58 @@ Please note that this project is currently in development, so bugs and crashes m
   - `Custom Frame Rate` (Front & Back)
   - `HEVC Recording`
   - `Force Camera Source Encoding`
+  - `Custom Resolution`
   - `Override Resolution` (Front & Back)
-</details> 
+</details>
+
+<details closed>
+<summary>Streaks Reminder</summary>
+  
+  - `Interval`
+  - `Remaining Time`
+  - `Group Notifications`
+</details>
 
 <details closed>
   <summary>Experimental</summary>
   
-  - `Session Events`
+  - `Native Hooks` (Custom Emoji Fonts, etc) 
   - `Device Spoof`
   - `Convert Message Locally`
-  - `New Chat Action Menu`
   - `Media File Picker`
   - `Story Logger`
   - `Call Recorder`
   - `Account Switcher`
-  - `Edit Messages` 
-  - `App Passcode`
+  - `Edit Messages`
+  - `COF Experiments`
+  - `App Lock`
   - `Infinite Story Boost`
   - `My Eyes Only Passcode Bypass`
   - `No Friend Score Delay`
+  - `Best Friend Pinning`
   - `End-to-End Encryption`
-  - `Enable Hidden Snapchat Plus Features`
+  - `Hidden Snapchat Plus Features`
   - `Custom Streaks Expiration Format`
   - `Add Friend Source Spoof`
   - `Prevent Forced Logout`
+</details>
+
+<details closed>
+<summary>Scripting</summary>
+
+  - `Developer Mode`
+  - `Module Folder`
+  - `Auto Reload`
+  - `Integated UI`
+  - `Disable Log Anonymization`
+</details>
+
+<details closed>
+<summary>Friend Tracker</summary>
+
+  - `Record Messaging Events`
+  - `Allow Running In Background`
+  - `Auto Purge`
 </details>
 
 ## Download 
@@ -158,9 +197,9 @@ We no longer offer official `LSPatch` binaries for obvious reasons. However, you
 
 ## FAQ
 You can view the FAQ [here](https://github.com/bocajthomas/SE-Extended/wiki/FAQ)
+
 ## Contact 
 Join our [Telegram Channel](https://t.me/SE_Extended) for Discussions, announcements, and releases!
-
 
 ## Donate
 SE Extended will always be free and open source for everyone, If you like it consider [Donating](https://www.paypal.me/Jhuddz00)
