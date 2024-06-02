@@ -4,7 +4,7 @@ import androidx.compose.runtime.MutableState
 
 class ObservableMutableState<T>(
     defaultValue: T,
-    inline val onChange: (T, T) -> Unit = { _, _ -> },
+    val onChange: (T, T) -> Unit = { _, _ -> },
 ) : MutableState<T> {
     private var mutableValue: T = defaultValue
     override var value: T

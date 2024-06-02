@@ -1,9 +1,9 @@
 package me.rhunk.snapenhance.ui.manager.pages.home
 
 import android.content.SharedPreferences
-import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.OpenInNew
@@ -146,7 +146,7 @@ class HomeSettings : Routes.Route() {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .verticalScroll(ScrollState(0))
+                .verticalScroll(rememberScrollState())
         ) {
             RowTitle(title = translation["actions_title"])
             EnumAction.entries.forEach { enumAction ->

@@ -34,7 +34,6 @@ import kotlin.time.Duration.Companion.days
 
 data class FriendLocation(
     val userId: String,
-
     val latitude: Double,
     val longitude: Double,
     val lastUpdated: Long,
@@ -164,6 +163,7 @@ class BetterLocation : Feature("Better Location", loadParams = FeatureLoadParams
         )
         context.bridgeClient.openOverlay(OverlayType.BETTER_LOCATION)
     }
+
     override fun init() {
         if (context.config.global.betterLocation.globalState != true) return
 
