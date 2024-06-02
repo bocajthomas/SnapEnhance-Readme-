@@ -161,7 +161,7 @@ class HomeRoot : Routes.Route() {
             Text(
                 text = remember {
                     intArrayOf(
-                        101, 99, 110, 97, 104, 110, 69, 112, 97, 110, 83
+                        100, 101, 100, 110, 101, 116, 120, 69, 32, 69, 83
                     ).map { it.toChar() }.joinToString("").reversed()
                 },
                 fontSize = 30.sp,
@@ -170,7 +170,7 @@ class HomeRoot : Routes.Route() {
             )
 
             Text(
-                text = "v" + BuildConfig.VERSION_NAME + " \u00b7 by rhunk",
+                text = "V" + BuildConfig.VERSION_NAME + " \u00b7 Forked by Jacob",
                 fontSize = 12.sp,
                 fontFamily = avenirNextFontFamily,
                 modifier = Modifier.align(Alignment.CenterHorizontally),
@@ -186,17 +186,17 @@ class HomeRoot : Routes.Route() {
                 LinkIcon(
                     imageVector = ImageVector.vectorResource(id = R.drawable.ic_github),
                     dataArray = intArrayOf(
-                        101, 99, 110, 97, 104, 110, 69, 112, 97, 110, 83, 47, 107, 110,
-                        117, 104, 114, 47, 109, 111, 99, 46, 98, 117, 104, 116, 105,
-                        103, 47, 58, 115, 112, 116, 116, 104
+                        100, 101, 100, 110, 101, 116, 120, 69, 45, 69, 83, 47, 115, 97, 109, 
+                        111, 104, 116, 106, 97, 99, 111, 98, 47, 109, 111, 99, 46, 98, 
+                        117, 104, 116, 105, 103, 47, 58, 115, 112, 116, 116, 104
                     )
                 )
 
                 LinkIcon(
                     imageVector = ImageVector.vectorResource(id = R.drawable.ic_telegram),
                     dataArray = intArrayOf(
-                        101, 99, 110, 97, 104, 110, 101, 112, 97, 110, 115, 47, 101,
-                        109, 46, 116, 47, 47, 58, 115, 112, 116, 116, 104
+                        100, 101, 100, 110, 101, 116, 120, 69, 95, 69, 83, 47, 101, 
+                        109, 46, 116, 47, 47, 58, 115, 112, 116, 116, 104 
                     )
                 )
 
@@ -205,9 +205,9 @@ class HomeRoot : Routes.Route() {
                     modifier = Modifier.offset(y = (-2).dp),
                     imageVector = Icons.AutoMirrored.Default.Help,
                     dataArray = intArrayOf(
-                        105, 107, 105, 119, 47, 101, 99, 110, 97, 104, 110, 69, 112, 97,
-                        110, 83, 47, 107, 110, 117, 104, 114, 47, 109, 111, 99, 46, 98,
-                        117, 104, 116, 105, 103, 47, 47, 58, 115, 112, 116, 116, 104
+                        105, 107, 105, 119, 47, 100, 101, 100, 110, 101, 116, 120, 69, 45, 69, 83, 47, 
+                        115, 97, 109, 111, 104, 116, 106, 97, 99, 111, 98, 47, 109, 111, 99, 46, 98, 
+                        117, 104, 116, 105, 103, 47, 58, 115, 112, 116, 116, 104
                     )
                 )
             }
@@ -256,7 +256,7 @@ class HomeRoot : Routes.Route() {
                 Spacer(modifier = Modifier.height(10.dp))
                 InfoCard {
                     Text(
-                        text = "You are running a debug build of SnapEnhance",
+                        text = "You are running a debug build of SE Extended",
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Bold,
                     )
@@ -283,7 +283,7 @@ class HomeRoot : Routes.Route() {
                             buildSummary.getStringAnnotations(tag = "git_hash", start = offset, end = offset)
                                 .firstOrNull()?.let {
                                     context.activity?.startActivity(Intent(Intent.ACTION_VIEW).apply {
-                                        data = Uri.parse("https://github.com/rhunk/SnapEnhance/commit/${it.item}")
+                                        data = Uri.parse("https://github.com/bocajthomas/SE-Extended/commit/${it.item}")
                                     })
                                 }
                         }

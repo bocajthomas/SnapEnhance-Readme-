@@ -47,12 +47,12 @@ jobs:
 
       - name: Rename APK file
         run: |
-          mv app/build/outputs/apk/armv8/debug/*.apk app/build/outputs/apk/armv8/debug/snapenhance-${{ env.version }}-armv8-${{ steps.version-env.outputs.sha_short }}.apk
+          mv app/build/outputs/apk/armv8/debug/*.apk app/build/outputs/apk/armv8/debug/SE-Extended-${{ env.version }}-ARMV8-${{ steps.version-env.outputs.sha_short }}.apk
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: snapenhance-armv8-debug
+          name: SE-Extended-ARMV8-Debug
           path: app/build/outputs/apk/armv8/debug/*.apk
           
   job_armv7:
@@ -94,12 +94,12 @@ jobs:
 
       - name: Rename APK file
         run: |
-          mv app/build/outputs/apk/armv7/debug/*.apk app/build/outputs/apk/armv7/debug/snapenhance-${{ env.version }}-armv7-${{ steps.version-env.outputs.sha_short }}.apk
+          mv app/build/outputs/apk/armv7/debug/*.apk app/build/outputs/apk/armv7/debug/SE-Extended-${{ env.version }}-ARMV7-${{ steps.version-env.outputs.sha_short }}.apk
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: snapenhance-armv7-debug
+          name: SE-Extended-ARMV7-Debug
           path: app/build/outputs/apk/armv7/debug/*.apk
 
   job_universal:
@@ -141,12 +141,12 @@ jobs:
 
       - name: Rename APK files
         run: |
-          mv app/build/outputs/apk/all/debug/*.apk app/build/outputs/apk/all/debug/snapenhance-${{ env.version }}-universal-${{ steps.version-env.outputs.sha_short }}.apk
+          mv app/build/outputs/apk/all/debug/*.apk app/build/outputs/apk/all/debug/SE-Extended-${{ env.version }}-UNIVERSAL-${{ steps.version-env.outputs.sha_short }}.apk
 
       - name: Upload universal
         uses: actions/upload-artifact@v4
         with:
-          name: snapenhance-universal-debug
+          name: SE-Extended-UNIVERSAL-Debug
           path: app/build/outputs/apk/all/debug/*.apk
 
   job_manager:
@@ -173,7 +173,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: manager
+          name: Manager
           path: manager/build/outputs/apk/debug/*.apk
 
   job_core:
@@ -200,5 +200,5 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: core
+          name: Core
           path: app/build/outputs/apk/core/debug/*.apk
