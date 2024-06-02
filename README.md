@@ -7,6 +7,16 @@ Please note that this project is currently in development, so bugs and crashes m
 </div>
 
 ## Screenshots
+<div align="center">
+<div>
+<img src="images/screenshots/Screenshot-1.jpg" width="30%" />
+<img src="images/screenshots/Screenshot-2.jpg" width="30%" />
+<img src="images/screenshots/Screenshot-3.jpg" width="30%" />
+<img src="images/screenshots/Screenshot-4.jpg" width="30%" />
+<img src="images/screenshots/Screenshot-6.jpg" width="30%" />
+<img src="images/screenshots/Screenshot-7.jpg" width="30%" />
+</div>
+</div>
 
 ## Main Features
 <details closed>
@@ -144,9 +154,12 @@ We no longer offer official `LSPatch` binaries for obvious reasons. However, you
 
 ## FAQ
 You can view the FAQ [here](https://github.com/bocajthomas/SE-Extended/wiki/FAQ)
+## Contact 
+Join our [Telegram Channel](https://t.me/SE_Extended) for Discussions, announcements, and releases!
 
-# Donate
-PayPal:
+
+## Donate
+SE Extended will always be free and open source for everyone, If you like it consider [donating](https://www.paypal.me/Jhuddz00)
 
 ## Privacy
 We do not collect any user information. However, please be aware that third-party libraries may collect data as described in their respective privacy policies.
