@@ -10,12 +10,12 @@ body:
     attributes:
       label: "Description"
       description: Please input your theme, Include the hex color code, An example is below
-      placeholder: Name: Magical Green 
-      placeholder: Main Text Color: #ff17ff00
-      placeholder: Secondary Friend Feed Text Color: #ff17ff00
-      placeholder: Snaps With Sound Text Color: #ff17ff00
-      placeholder: Snaps Without Sound Text Color: #ff17ff00
-      placeholder: Background Color: #ff17ff00
+      placeholder: Name -  Magical Green 
+      placeholder: Main Text Color -  #ff17ff00
+      placeholder: Secondary Friend Feed Text Color - #ff17ff00
+      placeholder: Snaps With Sound Text Color -  #ff17ff00
+      placeholder: Snaps Without Sound Text Color - #ff17ff00
+      placeholder: Background Color - #ff17ff00
     validations:
       required: true
   - type: checkboxes
