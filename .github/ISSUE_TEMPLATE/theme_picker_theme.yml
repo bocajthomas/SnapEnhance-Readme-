@@ -22,7 +22,7 @@ body:
     id: terms
     attributes:
       label: Agreement
-      description: Have you submitted this theme correctly?
+      description: Please Tick 
       options:
-        - label: 
+        - label: Have you submitted This Theme correctly?
           required: true
