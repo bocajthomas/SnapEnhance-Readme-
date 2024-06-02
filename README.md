@@ -159,7 +159,7 @@ Join our [Telegram Channel](https://t.me/SE_Extended) for Discussions, announcem
 
 
 ## Donate
-SE Extended will always be free and open source for everyone, If you like it consider [donating](https://www.paypal.me/Jhuddz00)
+SE Extended will always be free and open source for everyone, If you like it consider [Donating](https://www.paypal.me/Jhuddz00)
 
 ## Privacy
 We do not collect any user information. However, please be aware that third-party libraries may collect data as described in their respective privacy policies.
