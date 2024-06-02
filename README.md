@@ -21,15 +21,19 @@ Please note that this project is currently in development, so bugs and crashes m
 ## Main Features
 <details closed>
   <summary>Media Downloader</summary>
-   
-  - `Auto Download`
+  
+  - `Save Folder`
+  - `Auto Download Sources`
   - `Prevent Self Auto Download`
+  - `Path Format`
+  - `Allow Duplicate`
   - `Merge Overlays`
   - `Force Image Format`
   - `Force Voice Note Format`
   - `Download Profile Pictures`
   - `Opera Download Button`
-  - `Chat Download Context Menu`
+  - `Download Context Menu`
+  - `FFmpeg Options`
   - `Logging`
   - `Custom Path Format` 
 </details>
@@ -38,7 +42,7 @@ Please note that this project is currently in development, so bugs and crashes m
   <summary>User Interface</summary>
   
   - `Friend Feed Menu Buttons` 
-  - `AMOLED Dark Mode`
+  - `Colors` (Theme Picker & Custom Colors)
   - `Friend Feed Message Preview` 
   - `Snap Preview`
   - `Bootstrap Override` (Default Home Tab & Persistent App Appearance)
