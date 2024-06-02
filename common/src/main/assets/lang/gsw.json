@@ -108,15 +108,38 @@
                         "description": "Fügt bim Betrachte vomene Snap e Download-Button obe rächts hinzue.\nLanges Drück uf Taschte wird ds Abelade erzwinge"
                     },
                     "save_folder": {
-                        "description": "Wähle s Verzeichnis wo alli Medie selled abeglade werde"
+                        "description": "Wähle s Verzeichnis wo alli Medie selled abeglade werde",
+                        "name": "Speicherverzeichnis"
                     },
                     "download_context_menu": {
                         "description": "Ermöglicht ds abeelade/Vorluege vo Nachrichte usere Ungerhautig oder ere Gschicht über ds Kontextmenü.\nLanges Drück uf Taschte wird ds Abelade erzwinge"
                     },
                     "custom_path_format": {
                         "description": "Setzt e benutzzerdefinierti Kamerauflösig, Breiti x Höchi (z.B. 1920x1080).\nDi benutzzerdefinierti Uflösig mues unterstützt werde Geef e aapascht padformat op voor downloade media\n\nBeschikbari variable:\n – %username%\n – %source%\n – %hash%\n - %date_time% vo dim Gerät"
+                    },
+                    "auto_download_sources": {
+                        "description": "Wähl d'Quellä, vo dene automatisch abäzladä isch",
+                        "name": "Quellä automatisch abäladä"
+                    },
+                    "prevent_self_auto_download": {
+                        "name": "Selbscht-Auto-Download verhinderä",
+                        "description": "Verhinderät, dass dini eigenä Snaps automatisch abägladä wirdet"
+                    },
+                    "allow_duplicate": {
+                        "description": "Ermöglichts, dass diäselben Medien mehrmals abägladä wirdet",
+                        "name": "Druplikat erlaubä"
+                    },
+                    "merge_overlays": {
+                        "name": "Overlays zsämmäfüährä",
+                        "description": "Kombiniert dä Text und d'Mediä vo einem Snap i ei Datei"
+                    },
+                    "path_format": {
+                        "name": "Pfadformat",
+                        "description": "Gibs Dateiformat a"
                     }
-                }
+                },
+                "name": "Downloader",
+                "description": "Snapchat Mediä abäladä"
             },
             "camera": {
                 "properties": {
@@ -143,6 +166,12 @@
                 "platform_indicator": "Fügt ds Plattform-Symbol hinzue wo es Medium gsendet worde isch (z.B. Android, iOS, Web)",
                 "location_indicator": "Fügt es 📍-Symbol zu Snaps hinzue, we si mit aktiviertem Speicherort gsendet worde si"
             }
+        },
+        "notices": {
+            "unstable": "⚠ Instabil",
+            "ban_risk": "⚠ Dieses Feature chan zu Bans führä",
+            "internal_behavior": "⚠ Das chan s internä Verhaltä vo Snapchat störä",
+            "require_native_hooks": "⚠ Um korrekt z'funktionierä erfordäret dieses Feature experimentelli Native Hooks"
         }
     },
     "biometric_auth": {
@@ -187,7 +216,7 @@
     "setup": {
         "dialogs": {
             "select_language": "Sprach uswähle",
-            "save_folder": "SnapEnhance benötigt Speicherberächtigunge zum Abelade und Speicher vo Medie vo Snapchat.\nBitte wähled Sie de Ort us wo d Medie sölled abeglade werde.",
+            "save_folder": "SnapEnhance benötigt Speicherberächtigunge zum Abelade und Speichere vo Medie vo Snapchat.\nBitte wähl de Ort us wo d Medie sölled abeglade werde.",
             "select_save_folder_button": "Ordner uswähle"
         },
         "mappings": {
@@ -210,7 +239,7 @@
                 "saving_logs_toast": "Logs speichere, das chan es wiili duure ...",
                 "clear_logs_button": "Protokoll lösche",
                 "export_logs_button": "Logs exportiere",
-                "saved_logs_success_toast": "Erfolgriich gspichereti Protokoll",
+                "saved_logs_success_toast": "Protokoll erfolgriich gspicheret",
                 "saved_logs_failure_toast": "Speichere vo Protokoll fählgschlage"
             },
             "tasks": {
@@ -218,49 +247,49 @@
                 "no_tasks": "Kei Ufgabe",
                 "merge_files_toast": "Zämeführe vo {count}-Dateien",
                 "remove_selected_tasks_title": "Sind Sie sicher, dass Sie usegwählti Ufgabe lösche wönd?",
-                "remove_all_tasks_title": "Sind Sie sicher, dass Sie alli ufgabe möchted lösche?",
+                "remove_all_tasks_title": "Sind Sie sicher, dass Sie alli Ufgabe möchted lösche?",
                 "delete_files_option": "Au Dateiä löschä",
-                "remove_all_tasks_confirm": "Alli ufgabe lösche?"
+                "remove_all_tasks_confirm": "Alli Ufgabe lösche?"
             },
             "features": {
-                "disabled": "Behinderti",
-                "export_option": "Export",
+                "disabled": "Deaktiviert",
+                "export_option": "Exportierä",
                 "import_option": "Iifuhr",
                 "reset_option": "Zrücksetze",
-                "config_export_success_toast": "Config erfolgrich exportiert",
-                "config_import_success_toast": "Config erfolgrich importiert",
-                "config_import_failure_toast": "Importiere vo config {error} fehlgschlage",
+                "config_export_success_toast": "Istelligä erfolgrich exportiert",
+                "config_import_success_toast": "Istelligä erfolgrich importiert",
+                "config_import_failure_toast": "Istelligä chönd nid importiert werdä {error}",
                 "saved_config_snackbar": "Konfiguration gspeicheret"
             },
             "manage_scope": {
-                "streaks_expiration_text_expired": "abglaufe",
+                "streaks_expiration_text_expired": "Abglaufe",
                 "reminder_button": "Erinnerig istelle",
                 "delete_scope_confirm_dialog_title": "Sind Sie sicher, dass Sie {scope} lösche wönd?",
-                "logged_stories_button": "Logged Stories azeige",
-                "e2ee_title": "Ende-zu-End-Verschlüsselig",
-                "rules_title": "Vorschrifte",
+                "logged_stories_button": "g'loggdi Stories azeige",
+                "e2ee_title": "Änd-zu-Änd-Verschlüsselig",
+                "rules_title": "Reglä",
                 "participants_text": "{count}-Teilnehmer",
                 "not_found": "Nöd gfunde",
-                "streaks_title": "Streife",
+                "streaks_title": "Flämmli",
                 "streaks_length_text": "Längi: {length}",
-                "streaks_expiration_text": "Lauft in {eta} ab"
+                "streaks_expiration_text": "Lauft ab i {eta}"
             },
             "logged_stories": {
                 "story_failed_to_load": "Fehler bim Lade",
-                "no_stories": "Kei Gschichte gfunde",
-                "save_from_cache_button": "Speichere vo Cache"
+                "no_stories": "Kei Stories gfunde",
+                "save_from_cache_button": "Vom Zwischäspiecher speicherä"
             },
             "messaging_preview": {
                 "save_selection_option": "Uswahl speichere",
-                "bridge_connection_failed": "Verbindig zu Snapchat über de Bridge-Dienst fehlgschlage",
+                "bridge_connection_failed": "Verbindig zu Snapchat über de Bruggä-Dienst fehlgschlage",
                 "bridge_init_failed": "Initialisierig vo de Messaging-Brugg fehlgschlage",
                 "message_fetch_failed": "Fehler bim Abruefe vo Nachrichte",
-                "no_message_hint": "Kei Meldig",
-                "mark_all_as_seen_option": "Markiered Sie alli Schnappschüss als gseh",
+                "no_message_hint": "Kei Nachricht",
+                "mark_all_as_seen_option": "Alli Snaps als gseh merkierä",
                 "save_all_option": "Alli speichere",
                 "unsave_selection_option": "Uswahl rückgängig mache",
                 "unsave_all_option": "Uswahl rückgängig mache",
-                "mark_selection_as_seen_option": "Markiered Sie usgwählt Snap wie gseh",
+                "mark_selection_as_seen_option": "Usgwähltä Snap als g'seh markierä",
                 "delete_selection_option": "Uswahl lösche",
                 "delete_all_option": "Alli lösche"
             },
@@ -273,10 +302,10 @@
                 "actions_title": "Massnahme",
                 "message_logger_title": "Nachrichtelogger",
                 "debug_title": "Debugge",
-                "success_toast": "Abgmacht!",
-                "message_logger_summary": "{messageCount} messages\n{storyCount} Stories",
-                "export_button": "Exporte",
-                "clear_button": "Klar",
+                "success_toast": "Fertig!",
+                "message_logger_summary": "{messageCount} Nachrichtä\n{storyCount} Stories",
+                "export_button": "Exportierä",
+                "clear_button": "Löschä",
                 "view_logger_history_button": "Logger-Verlauf azeige"
             },
             "social": {
@@ -299,12 +328,12 @@
         },
         "routes": {
             "tasks": "Aufgaben",
-            "features": "Merkmale",
+            "features": "Merkmal",
             "home": "Heimat",
             "home_settings": "Settigs",
-            "home_logs": "Baumstämme",
+            "home_logs": "Logs",
             "logger_history": "Logger-Verlauf",
-            "logged_stories": "Protokollierti Storys",
+            "logged_stories": "Protokollierti Stories",
             "friend_tracker": "Friend erkenni",
             "edit_rule": "Edit Rulewe",
             "social": "Soziales",
@@ -402,14 +431,16 @@
     },
     "actions": {
         "bulk_messaging_action": {
-            "description": "Füehrt Vorgäng wi ds Lösche vo Fründe oder ds Masselösche vo Ungerhautige us"
+            "description": "Füehrt Vorgäng wi ds Lösche vo Fründe oder ds Masselösche vo Ungerhautige us",
+            "name": "Massä Nachrichtä Aktion"
         },
         "clean_snapchat_cache": {
             "name": "Snapchat-Cache bereinige",
             "description": "Reinigt der Snapchat-Cache"
         },
         "export_memories": {
-            "name": "Speicher exportiere"
+            "name": "Speicher exportiere",
+            "description": "Exportiert d'Memories in än ZIP-Datei"
         },
         "manage_friend_list": {
             "name": "Fründesliste verwalte",
@@ -418,6 +449,14 @@
         "export_chat_messages": {
             "name": "Chat-Nachrichte exportiere",
             "description": "Exportiert Konversationsnachrichte i ne JSON/HTML/TXT-Datei"
+        },
+        "regen_mappings": {
+            "name": "Ernüer d'Mappings",
+            "description": "Ernüer d'Mappings manuell"
+        },
+        "change_language": {
+            "name": "Sproch änderä",
+            "description": "Ändert d'Sproch vo SnapEnhance"
         }
     },
     "suspend_location_updates": {

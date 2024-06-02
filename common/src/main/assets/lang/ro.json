@@ -948,10 +948,6 @@
                             }
                         }
                     },
-                    "new_chat_action_menu": {
-                        "name": "Noul meniu de acțiune de chat",
-                        "description": "Utilizați noul sertar de meniu de acțiuni de chat"
-                    },
                     "prevent_forced_logout": {
                         "name": "Preveniți deconectarea forțată",
                         "description": "Împiedică Snapchat să vă deconecteze atunci când vă conectați pe alt dispozitiv"

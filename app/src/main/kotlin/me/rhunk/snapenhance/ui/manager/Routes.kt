@@ -15,6 +15,7 @@ import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavGraphBuilder
 import me.rhunk.snapenhance.RemoteSideContext
+import me.rhunk.snapenhance.ui.manager.pages.BetterLocationRoot
 import me.rhunk.snapenhance.ui.manager.pages.FileImportsRoot
 import me.rhunk.snapenhance.ui.manager.pages.LoggerHistoryRoot
 import me.rhunk.snapenhance.ui.manager.pages.TasksRoot
@@ -36,6 +37,7 @@ data class RouteInfo(
     val key: String = id,
     val icon: ImageVector = Icons.Default.Home,
     val primary: Boolean = false,
+    val showInNavBar: Boolean = primary,
 ) {
     var translatedKey: Lazy<String?>? = null
     val childIds = mutableListOf<String>()
@@ -66,6 +68,8 @@ class Routes(
     val loggedStories = route(RouteInfo("logged_stories/?id={id}"), LoggedStories()).parent(social)
 
     val scripting = route(RouteInfo("scripts", icon = Icons.Filled.DataObject, primary = true), ScriptingRoot())
+
+    val betterLocation = route(RouteInfo("better_location", showInNavBar = false, primary = true), BetterLocationRoot())
 
     open class Route {
         open val init: () -> Unit = { }

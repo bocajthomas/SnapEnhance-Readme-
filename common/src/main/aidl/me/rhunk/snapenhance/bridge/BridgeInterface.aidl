@@ -11,6 +11,7 @@ import me.rhunk.snapenhance.bridge.ConfigStateListener;
 import me.rhunk.snapenhance.bridge.snapclient.MessagingBridge;
 import me.rhunk.snapenhance.bridge.AccountStorage;
 import me.rhunk.snapenhance.bridge.storage.FileHandleManager;
+import me.rhunk.snapenhance.bridge.location.LocationManager;
 
 interface BridgeInterface {
     /**
@@ -82,11 +83,13 @@ interface BridgeInterface {
 
     FileHandleManager getFileHandleManager();
 
+    LocationManager getLocationManager();
+
     oneway void registerMessagingBridge(MessagingBridge bridge);
 
-    oneway void openSettingsOverlay();
+    oneway void openOverlay(String type);
 
-    oneway void closeSettingsOverlay();
+    oneway void closeOverlay();
 
     oneway void registerConfigStateListener(in ConfigStateListener listener);
 

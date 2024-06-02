@@ -101,6 +101,12 @@ open class ConfigContainer(
         }
     }
 
+    fun getPropertyPair(key: String): PropertyPair<*> {
+        val propertyKey = properties.keys.firstOrNull { it.name == key }
+            ?: throw IllegalArgumentException("Property $key not found")
+        return PropertyPair(propertyKey, properties[propertyKey]!!)
+    }
+
     operator fun getValue(t: Any?, property: KProperty<*>) = this.globalState
     operator fun setValue(t: Any?, property: KProperty<*>, t1: Boolean?) { this.globalState = t1 }
 }

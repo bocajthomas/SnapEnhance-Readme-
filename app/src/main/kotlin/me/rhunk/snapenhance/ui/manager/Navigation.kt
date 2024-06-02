@@ -77,7 +77,7 @@ class Navigation(
     fun BottomBar() {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = remember(navBackStackEntry) { routes.getCurrentRoute(navBackStackEntry) }
-        val primaryRoutes = remember { routes.getRoutes().filter { it.routeInfo.primary } }
+        val primaryRoutes = remember { routes.getRoutes().filter { it.routeInfo.showInNavBar } }
 
         NavigationBar {
             primaryRoutes.forEach { route ->

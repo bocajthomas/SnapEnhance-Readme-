@@ -30,7 +30,9 @@
             "logger_history": "Log historik",
             "logged_stories": "Loggede historier",
             "manage_scope": "Administrer omfang",
-            "messaging_preview": "Forhåndsvisning"
+            "messaging_preview": "Forhåndsvisning",
+            "friend_tracker": "Ven Tracker",
+            "edit_rule": "Rediger regel"
         },
         "sections": {
             "features": {
@@ -513,7 +515,49 @@
                     },
                     "better_notifications": {
                         "name": "Bedre Notifikationer",
-                        "description": "Tilføjer mere information i modtagne notifikationer"
+                        "description": "Tilføjer mere information i modtagne notifikationer",
+                        "properties": {
+                            "media_preview": {
+                                "name": "Medie forhåndsvisning",
+                                "description": "Viser en forhåndsvisning af de valgte medietyper i notifikationen"
+                            },
+                            "friend_add_source": {
+                                "name": "Ven tilføjnings kilde",
+                                "description": "Viser kilden til en venneanmodning i notifikationer"
+                            },
+                            "reply_button": {
+                                "name": "Svar knap",
+                                "description": "Tilføjer en svarknap til notifikationen"
+                            },
+                            "download_button": {
+                                "name": "Hent knap",
+                                "description": "Giver dig mulighed for at hente medier fra notifikationer"
+                            },
+                            "mark_as_read_button": {
+                                "name": "Markér som læst knap",
+                                "description": "Giver dig mulighed for at markere en besked som læst fra notifikationen"
+                            },
+                            "mark_as_read_and_save_in_chat": {
+                                "description": "Tilføjer et mærke som læst og gem i chat-knap til notifikationen",
+                                "name": "Markér som læst og gem i chat"
+                            },
+                            "group_notifications": {
+                                "name": "Gruppe notifikationer",
+                                "description": "Gruppér notifikationer i en enkelt"
+                            },
+                            "chat_preview": {
+                                "name": "Chat forhåndsvisning",
+                                "description": "Viser en forhåndsvisning af modtagne beskeder i notifikationen"
+                            },
+                            "media_caption": {
+                                "name": "Medie tekst",
+                                "description": "Viser den vedhæftede billedtekst af medier i notifikationen"
+                            },
+                            "stacked_media_messages": {
+                                "name": "Stablede medie beskeder",
+                                "description": "Kombinerer flere mediebeskeder i én tekstmeddelelse, når de ikke kan forhåndsvises. Brug i kombination med Chat forhåndsvisning"
+                            }
+                        }
                     },
                     "notification_blacklist": {
                         "name": "Notifikation Sortliste",
@@ -911,10 +955,6 @@
                         "name": "Konverter besked lokalt",
                         "description": "Konverterer snaps til at chatte eksterne medier lokalt. Dette vises i chat download kontekstmenu"
                     },
-                    "new_chat_action_menu": {
-                        "name": "Ny chat handlingsmenu",
-                        "description": "Brug den nye chat handlingsmenu skuffe"
-                    },
                     "call_recorder": {
                         "name": "Opkaldsoptager",
                         "description": "Optager automatisk lydopkald"
@@ -956,7 +996,7 @@
                         "description": "Tilpasser formatet for udløbet af Streaks\n\nTilgængelige variabler:\n- %c: Antal Streaks\n- %e: Timeglas Emoji\n- %d: Dage\n- %h: Timer\n- %m: Minutter\n- %s: Sekunder\n- %w: Resterende tid"
                     },
                     "best_friend_pinning": {
-                        "description": "Giver dig mulighed for at fastgøre en ven som din bedste ven nummer ét.\nBemærk: kun du kan se din fastgjorte bedste ven",
+                        "description": "Tillader dig at fastgøre en ven som din bedste ven nummer ét. Bemærk: Kun du kan se din fastgjorte bedste ven",
                         "name": "Pinning af bedste ven"
                     }
                 }
@@ -986,6 +1026,24 @@
                         "description": "Deaktiverer anonymisering af logfiler"
                     }
                 }
+            },
+            "friend_tracker": {
+                "properties": {
+                    "allow_running_in_background": {
+                        "name": "Tillad kørsel i baggrunden",
+                        "description": "Tillader trackeren at køre i baggrunden. Bemærk: Dette vil dræne dit batteri betydeligt, det anbefales ikke at se porno i mens"
+                    },
+                    "record_messaging_events": {
+                        "description": "Registrerer besked begivenheder såsom åbning af et snap, læsning af en besked osv.",
+                        "name": "Optag meddelelses begivenheder"
+                    },
+                    "auto_purge": {
+                        "name": "Automatisk udrensning",
+                        "description": "Sletter automatisk cachelagrede hændelser, der er ældre end det angivne tidsrum"
+                    }
+                },
+                "name": "Ven Tracker",
+                "description": "Registrerer venners aktivitet på Snapchat"
             }
         },
         "options": {
@@ -1162,7 +1220,7 @@
                 "bitmoji_scene_changes": "Giv besked, når nogen ændrer deres Bitmoji scene"
             },
             "theme_picker": {
-                "ginger_snap": "Ginger Snap",
+                "ginger_snap": "Ingefær Snap",
                 "lemon_meringue": "Citron marengs",
                 "lava_flow": "Lava flow",
                 "ocean_fog": "Havtåge",
@@ -1172,7 +1230,9 @@
                 "light_blue": "Lyseblå",
                 "dark_blue": "Mørke blå",
                 "earthy_autumn": "Jordisk efterår",
-                "mint_chocolate": "Mint Chokolade"
+                "mint_chocolate": "Mint Chokolade",
+                "material_you_light": "Material You Light (Android 12+)",
+                "material_you_dark": "Material You Dark (Android 12+)"
             }
         }
     },
@@ -1374,7 +1434,8 @@
         "STATUS_CALL_MISSED_VIDEO": "Ubesvaret videoopkald",
         "LOCATION": "Placering",
         "STATUS_SAVE_TO_CAMERA_ROLL": "Gemt i kamerarulle",
-        "STATUS_CONVERSATION_CAPTURE_SCREENSHOT": "Skærmbillede"
+        "STATUS_CONVERSATION_CAPTURE_SCREENSHOT": "Skærmbillede",
+        "SHARE": "Del"
     },
     "media_download_source": {
         "none": "Ingen",

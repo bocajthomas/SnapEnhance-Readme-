@@ -12,6 +12,7 @@ import me.rhunk.snapenhance.common.data.MessagingFriendInfo
 import me.rhunk.snapenhance.common.data.MessagingGroupInfo
 import me.rhunk.snapenhance.common.data.SocialScope
 import me.rhunk.snapenhance.common.logger.LogLevel
+import me.rhunk.snapenhance.common.ui.OverlayType
 import me.rhunk.snapenhance.common.util.toParcelable
 import me.rhunk.snapenhance.download.DownloadProcessor
 import me.rhunk.snapenhance.download.FFMpegProcessor
@@ -201,24 +202,31 @@ class BridgeService : Service() {
         override fun getTracker() = remoteSideContext.tracker
         override fun getAccountStorage() = remoteSideContext.accountStorage
         override fun getFileHandleManager() = remoteSideContext.fileHandleManager
+        override fun getLocationManager() = remoteSideContext.locationManager
 
         override fun registerMessagingBridge(bridge: MessagingBridge) {
             messagingBridge = bridge
         }
 
-        override fun openSettingsOverlay() {
+        override fun openOverlay(type: String) {
             runCatching {
-                remoteSideContext.settingsOverlay.show()
+                val overlayType = OverlayType.fromKey(type) ?: throw IllegalArgumentException("Unknown overlay type: $type")
+                remoteSideContext.remoteOverlay.show { routes ->
+                    when (overlayType) {
+                        OverlayType.SETTINGS -> routes.features
+                        OverlayType.BETTER_LOCATION -> routes.betterLocation
+                    }
+                }
             }.onFailure {
-                remoteSideContext.log.error("Failed to open settings overlay", it)
+                remoteSideContext.log.error("Failed to open $type overlay", it)
             }
         }
 
-        override fun closeSettingsOverlay() {
+        override fun closeOverlay() {
             runCatching {
-                remoteSideContext.settingsOverlay.close()
+                remoteSideContext.remoteOverlay.close()
             }.onFailure {
-                remoteSideContext.log.error("Failed to close settings overlay", it)
+                remoteSideContext.log.error("Failed to close overlay", it)
             }
         }
 

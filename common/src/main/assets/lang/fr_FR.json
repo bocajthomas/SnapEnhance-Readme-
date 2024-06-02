@@ -32,7 +32,8 @@
             "manage_scope": "Gérer le champ d'application",
             "messaging_preview": "Aperçu",
             "edit_rule": "Modifier la règle",
-            "friend_tracker": "Traqueur d'amis"
+            "friend_tracker": "Traqueur d'amis",
+            "file_imports": "Importations de fichiers"
         },
         "sections": {
             "features": {
@@ -43,7 +44,8 @@
                 "config_export_success_toast": "Configuration exportée avec succès",
                 "config_import_success_toast": "Configuration importée avec succès",
                 "config_import_failure_toast": "Échec de l'importation de la configuration {error}",
-                "saved_config_snackbar": "Configuration enregistrée"
+                "saved_config_snackbar": "Configuration enregistrée",
+                "config_export_failure_toast": "Échec de l'exportation de la configuration {error}"
             },
             "social": {
                 "streaks_expiration_short": "{hours}h",
@@ -102,8 +104,8 @@
                 "save_from_cache_button": "Enregistrer depuis le cache"
             },
             "messaging_preview": {
-                "bridge_connection_failed": "Échec de la connexion à Snapchat via le service de pont",
-                "bridge_init_failed": "Échec de l'initialisation du pont de messagerie",
+                "bridge_connection_failed": "Échec de la connexion au pont. Assurez-vous que Snapchat s'exécute en arrière-plan",
+                "bridge_init_failed": "Échec de l'initialisation du pont de messagerie. Assurez-vous que Snapchat s'exécute en arrière-plan",
                 "message_fetch_failed": "Échec de la récupération des messages",
                 "no_message_hint": "Pas de message",
                 "save_selection_option": "Enregistrer la sélection",
@@ -125,6 +127,14 @@
                 "message_parse_failed": "Échec de l'analyse du message",
                 "unknown_sender": "Expéditeur inconnu",
                 "download_attachment_failed_toast": "Échec du téléchargement de la pièce jointe"
+            },
+            "file_imports": {
+                "no_files_hint": "Ici, vous pouvez importer des fichiers à utiliser dans Snapchat. Appuyez sur le bouton ci-dessous pour importer un fichier.",
+                "import_file_button": "Importer le fichier",
+                "file_not_found": "Fichier introuvable",
+                "file_import_failed": "Échec de l'importation du fichier : {error}",
+                "file_imported": "Fichier importé avec succès",
+                "file_delete_failed": "Échec de la suppression du fichier"
             }
         },
         "dialogs": {
@@ -147,6 +157,14 @@
                 "title": "Réinitialiser la configuration",
                 "content": "Êtes-vous sûr de vouloir réinitialiser la configuration ?",
                 "success_toast": "La configuration a été réinitialisée avec succès"
+            },
+            "file_imports": {
+                "no_files_settings_hint": "Aucun fichier trouvé. Assurez-vous d'avoir importé les fichiers requis dans la section Importations de fichiers.",
+                "settings_select_file_hint": "Sélectionnez un fichier importé"
+            },
+            "export_config": {
+                "title": "Exporter des données sensibles ?",
+                "content": "Voulez-vous exporter la configuration avec des données sensibles ? (Comme les coordonnées de localisation, etc.)"
             }
         }
     },
@@ -515,7 +533,49 @@
                     },
                     "better_notifications": {
                         "name": "Notifications améliorées",
-                        "description": "Ajouter plus d'informations dans les notifications reçues"
+                        "description": "Ajouter plus d'informations dans les notifications reçues",
+                        "properties": {
+                            "reply_button": {
+                                "description": "Ajoute un bouton de réponse à la notification",
+                                "name": "Bouton Répondre"
+                            },
+                            "download_button": {
+                                "name": "Bouton de téléchargement",
+                                "description": "Vous permet de télécharger des médias à partir de la notification"
+                            },
+                            "mark_as_read_and_save_in_chat": {
+                                "name": "Marquer comme lu et enregistrer dans le chat",
+                                "description": "Ajoute une marque comme lu et enregistre le bouton de discussion à la notification"
+                            },
+                            "group_notifications": {
+                                "name": "Notifications de groupe",
+                                "description": "Regrouper les notifications en une seule"
+                            },
+                            "chat_preview": {
+                                "name": "Aperçu du chat",
+                                "description": "Affiche un aperçu des messages reçus dans la notification"
+                            },
+                            "media_preview": {
+                                "name": "Aperçu des médias",
+                                "description": "Affiche un aperçu des types de médias sélectionnés dans la notification"
+                            },
+                            "media_caption": {
+                                "name": "Légende du média",
+                                "description": "Affiche la légende jointe du média dans la notification"
+                            },
+                            "stacked_media_messages": {
+                                "name": "Messages multimédias empilés",
+                                "description": "Combine plusieurs messages multimédias en une seule notification texte lorsqu'ils ne peuvent pas être prévisualisés. Utiliser en combinaison avec Aperçu du Chat"
+                            },
+                            "friend_add_source": {
+                                "name": "Source d'ajout d'ami",
+                                "description": "Affiche la source d'une demande d'ami dans la notification"
+                            },
+                            "mark_as_read_button": {
+                                "name": "Bouton Marquer comme lu",
+                                "description": "Vous permet de marquer un message comme lu à partir de la notification"
+                            }
+                        }
                     },
                     "notification_blacklist": {
                         "name": "Liste noire des notifications",
@@ -837,6 +897,10 @@
                                         "name": "Afficher le premier nom d'utilisateur créé"
                                     }
                                 }
+                            },
+                            "custom_emoji_font": {
+                                "name": "Police Emoji personnalisée",
+                                "description": "Vous permet d'utiliser une police emoji personnalisée. Fonctionne uniquement avec les polices .ttf"
                             }
                         },
                         "description": "Fonctionnalités non fiables qui se greffent au code natif de Snapchat"
@@ -917,10 +981,6 @@
                         "description": "Fournit un historique des Stories d'amis",
                         "name": "Journal des Stories"
                     },
-                    "new_chat_action_menu": {
-                        "name": "Nouveau menu d'actions de discussion",
-                        "description": "Utilisez le nouveau tiroir du menu d'action de chat"
-                    },
                     "media_file_picker": {
                         "name": "Sélecteur de fichiers multimédias",
                         "description": "Vous permet de choisir n'importe quel fichier vidéo/audio dans la galerie"
@@ -960,6 +1020,10 @@
                     "best_friend_pinning": {
                         "name": "Épinglage du meilleur ami",
                         "description": "Permet d'épingler un ami comme votre meilleur ami numéro un. Remarque : vous êtes le seul à pouvoir voir votre meilleur ami épinglé"
+                    },
+                    "cof_experiments": {
+                        "name": "Expériences COF",
+                        "description": "Active les fonctionnalités Snapchat inédites/bêta"
                     }
                 }
             },
@@ -998,6 +1062,10 @@
                     "allow_running_in_background": {
                         "name": "Autoriser l'exécution en arrière-plan",
                         "description": "Permet au traqueur de fonctionner en arrière-plan. Remarque : cette fonction entraînera une consommation importante de la batterie"
+                    },
+                    "auto_purge": {
+                        "name": "Purge automatique",
+                        "description": "Supprime automatiquement les événements mis en cache qui sont plus anciens que la durée spécifiée"
                     }
                 },
                 "name": "Traqueur d'amis",
@@ -1106,7 +1174,8 @@
                 "added_by_mention": "Par mention",
                 "added_by_group_chat": "Par groupe de discussion",
                 "added_by_username": "Par nom d'utilisateur",
-                "added_by_qr_code": "Par QR Code"
+                "added_by_qr_code": "Par QR Code",
+                "added_by_quick_add": "Par ajout rapide (risque élevé d'être banni)"
             },
             "disable_confirmation_dialogs": {
                 "hide_conversation": "Cacher la conversation",
@@ -1188,7 +1257,9 @@
                 "lemon_meringue": "Meringue au citron",
                 "lava_flow": "Coulée de lave",
                 "ocean_fog": "Brouillard océanique",
-                "alien_landscape": "Paysage extraterrestre"
+                "alien_landscape": "Paysage extraterrestre",
+                "material_you_light": "Material U Claire (Android 12+)",
+                "material_you_dark": "Material U Sombre (Android 12+)"
             }
         }
     },
@@ -1335,7 +1406,8 @@
         "FAMILY_CENTER_LEAVE": "A quitté Family Center",
         "STATUS_CALL_MISSED_AUDIO": "Appel audio manqué",
         "NOTE": "Vocal",
-        "MAP_REACTION": "Réaction de la carte"
+        "MAP_REACTION": "Réaction de la carte",
+        "SHARE": "Partager"
     },
     "media_download_source": {
         "public_story": "Story Publique",

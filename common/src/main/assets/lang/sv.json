@@ -622,10 +622,6 @@
             },
             "experimental": {
                 "properties": {
-                    "new_chat_action_menu": {
-                        "description": "Använd den nya chattåtgärdsmenylådan",
-                        "name": "Ny chattåtgärdsmeny"
-                    },
                     "native_hooks": {
                         "name": "Native Hooks",
                         "description": "Osäkra funktioner som kopplas in i Snapchats inbyggda kod",

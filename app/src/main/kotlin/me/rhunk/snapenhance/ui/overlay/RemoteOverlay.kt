@@ -26,9 +26,10 @@ import me.rhunk.snapenhance.R
 import me.rhunk.snapenhance.RemoteSideContext
 import me.rhunk.snapenhance.common.ui.createComposeView
 import me.rhunk.snapenhance.ui.manager.Navigation
+import me.rhunk.snapenhance.ui.manager.Routes
 
 
-class SettingsOverlay(
+class RemoteOverlay(
     private val context: RemoteSideContext
 ) {
     private lateinit var dialog: Dialog
@@ -46,7 +47,7 @@ class SettingsOverlay(
     }
 
     @Composable
-    private fun OverlayContent() {
+    private fun OverlayContent(startRoute: (Routes) -> Routes.Route) {
         val navHostController = rememberNavController()
 
         LaunchedEffect(Unit) {
@@ -61,7 +62,7 @@ class SettingsOverlay(
         ) { innerPadding ->
             navigation.Content(
                 innerPadding,
-                startDestination = navigation.routes.features.routeInfo.id
+                startDestination = remember { startRoute(navigation.routes).routeInfo.id }
             )
         }
     }
@@ -74,7 +75,7 @@ class SettingsOverlay(
         }
     }
 
-    fun show() {
+    fun show(route: (Routes) -> Routes.Route) {
         if (!checkForPermissions()) {
             return
         }
@@ -90,7 +91,7 @@ class SettingsOverlay(
                         if (it()) return
                     }
                     super.dismiss()
-                    this@SettingsOverlay.context.config.writeConfig()
+                    this@RemoteOverlay.context.config.writeConfig()
                 }
             }
             dialog.window?.apply {
@@ -113,7 +114,7 @@ class SettingsOverlay(
                         horizontalAlignment = Alignment.CenterHorizontally,
                         verticalArrangement = Arrangement.Center
                     ) {
-                        OverlayContent()
+                        OverlayContent(route)
                     }
                 }
             )

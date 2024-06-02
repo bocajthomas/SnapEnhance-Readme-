@@ -15,6 +15,7 @@ import kotlinx.coroutines.sync.withPermit
 import kotlinx.coroutines.withTimeoutOrNull
 import me.rhunk.snapenhance.bridge.*
 import me.rhunk.snapenhance.bridge.e2ee.E2eeInterface
+import me.rhunk.snapenhance.bridge.location.LocationManager
 import me.rhunk.snapenhance.bridge.logger.LoggerInterface
 import me.rhunk.snapenhance.bridge.logger.TrackerInterface
 import me.rhunk.snapenhance.bridge.scripting.IScripting
@@ -25,6 +26,7 @@ import me.rhunk.snapenhance.common.data.MessagingFriendInfo
 import me.rhunk.snapenhance.common.data.MessagingGroupInfo
 import me.rhunk.snapenhance.common.data.MessagingRuleType
 import me.rhunk.snapenhance.common.data.SocialScope
+import me.rhunk.snapenhance.common.ui.OverlayType
 import me.rhunk.snapenhance.common.util.toSerialized
 import me.rhunk.snapenhance.core.ModContext
 import java.util.concurrent.Executors
@@ -236,10 +238,12 @@ class BridgeClient(
 
     fun getFileHandlerManager(): FileHandleManager = safeServiceCall { service.fileHandleManager }
 
+    fun getLocationManager(): LocationManager = safeServiceCall { service.locationManager }
+
     fun registerMessagingBridge(bridge: MessagingBridge) = safeServiceCall { service.registerMessagingBridge(bridge) }
 
-    fun openSettingsOverlay() = safeServiceCall { service.openSettingsOverlay() }
-    fun closeSettingsOverlay() = safeServiceCall { service.closeSettingsOverlay() }
+    fun openOverlay(type: OverlayType) = safeServiceCall { service.openOverlay(type.key) }
+    fun closeOverlay() = safeServiceCall { service.closeOverlay() }
 
     fun registerConfigStateListener(listener: ConfigStateListener) = safeServiceCall { service.registerConfigStateListener(listener) }
 

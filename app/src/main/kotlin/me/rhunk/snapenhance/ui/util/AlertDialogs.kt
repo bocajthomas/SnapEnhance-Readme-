@@ -22,6 +22,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.DeleteOutline
 import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.filled.Save
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.FilledIconButton
@@ -33,15 +34,11 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
@@ -467,7 +464,13 @@ class AlertDialogs(
     }
 
     @Composable
-    fun ChooseLocationDialog(property: PropertyPair<*>, dismiss: () -> Unit = {}) {
+    fun ChooseLocationDialog(
+        property: PropertyPair<*>,
+        marker: MutableState<Marker?> = remember { mutableStateOf(null) },
+        mapView: MutableState<MapView?> = remember { mutableStateOf(null) },
+        saveCoordinates: (() -> Unit)? = null,
+        dismiss: () -> Unit = {}
+    ) {
         val coordinates = remember {
             (property.value.get() as Pair<*, *>).let {
                 it.first.toString().toDouble() to it.second.toString().toDouble()
@@ -475,8 +478,7 @@ class AlertDialogs(
         }
         val context = LocalContext.current
 
-        var marker by remember { mutableStateOf<Marker?>(null) }
-        val mapView = remember {
+        mapView.value = remember {
             Configuration.getInstance().apply {
                 osmdroidBasePath = File(context.cacheDir, "osmdroid")
                 load(context, context.getSharedPreferences("osmdroid", Context.MODE_PRIVATE))
@@ -490,7 +492,7 @@ class AlertDialogs(
                 controller.setZoom(10.0)
                 controller.setCenter(startPoint)
 
-                marker = Marker(this).apply {
+                marker.value = Marker(this).apply {
                     isDraggable = true
                     position = startPoint
                     setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
@@ -498,29 +500,32 @@ class AlertDialogs(
 
                 overlays.add(object: Overlay() {
                     override fun onSingleTapConfirmed(e: MotionEvent, mapView: MapView): Boolean {
-                        marker?.position = mapView.projection.fromPixels(e.x.toInt(), e.y.toInt()) as GeoPoint
+                        marker.value?.position = mapView.projection.fromPixels(e.x.toInt(), e.y.toInt()) as GeoPoint
                         mapView.invalidate()
                         return true
                     }
                 })
 
-                overlays.add(marker)
+                overlays.add(marker.value)
             }
         }
 
         DisposableEffect(Unit) {
             onDispose {
-                mapView.onDetach()
+                mapView.value?.onDetach()
             }
         }
 
         var customCoordinatesDialog by remember { mutableStateOf(false) }
 
         Box(
-            modifier = Modifier.fillMaxWidth().fillMaxHeight(fraction = 0.9f),
+            modifier = Modifier
+                .fillMaxWidth()
+                .clipToBounds()
+                .fillMaxHeight(fraction = 0.9f),
         ) {
             AndroidView(
-                factory = { mapView }
+                factory = { mapView.value!! },
             )
             Row(
                 modifier = Modifier
@@ -530,8 +535,8 @@ class AlertDialogs(
             ) {
                 FilledIconButton(
                     onClick = {
-                        val lat = marker?.position?.latitude ?: coordinates.first
-                        val lon = marker?.position?.longitude ?: coordinates.second
+                        val lat = marker.value?.position?.latitude ?: coordinates.first
+                        val lon = marker.value?.position?.longitude ?: coordinates.second
                         property.value.setAny(lat to lon)
                         dismiss()
                     }) {
@@ -542,6 +547,18 @@ class AlertDialogs(
                         imageVector = Icons.Filled.Check,
                         contentDescription = null
                     )
+                }
+                saveCoordinates?.let {
+                    FilledIconButton(
+                        onClick = { it() }) {
+                        Icon(
+                            modifier = Modifier
+                                .size(60.dp)
+                                .padding(5.dp),
+                            imageVector = Icons.Filled.Save,
+                            contentDescription = null
+                        )
+                    }
                 }
 
                 FilledIconButton(
@@ -562,44 +579,48 @@ class AlertDialogs(
                 val lat = remember { mutableStateOf(coordinates.first.toString()) }
                 val lon = remember { mutableStateOf(coordinates.second.toString()) }
 
-                DefaultDialogCard(
-                    modifier = Modifier.align(Alignment.Center)
-                ) {
-                    TextField(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(all = 10.dp),
-                        value = lat.value,
-                        onValueChange = { lat.value = it },
-                        label = { Text(text = "Latitude") },
-                        singleLine = true
-                    )
-                    TextField(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(all = 10.dp),
-                        value = lon.value,
-                        onValueChange = { lon.value = it },
-                        label = { Text(text = "Longitude") },
-                        singleLine = true
-                    )
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceEvenly,
+                Dialog(onDismissRequest = {
+                    customCoordinatesDialog = false
+                }) {
+                    DefaultDialogCard(
+                        modifier = Modifier.align(Alignment.Center)
                     ) {
-                        Button(onClick = {
-                            customCoordinatesDialog = false
-                        }) {
-                            Text(text = translation["button.cancel"])
-                        }
+                        TextField(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(all = 10.dp),
+                            value = lat.value,
+                            onValueChange = { lat.value = it },
+                            label = { Text(text = "Latitude") },
+                            singleLine = true
+                        )
+                        TextField(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(all = 10.dp),
+                            value = lon.value,
+                            onValueChange = { lon.value = it },
+                            label = { Text(text = "Longitude") },
+                            singleLine = true
+                        )
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceEvenly,
+                        ) {
+                            Button(onClick = {
+                                customCoordinatesDialog = false
+                            }) {
+                                Text(text = translation["button.cancel"])
+                            }
 
-                        Button(onClick = {
-                            marker?.position = GeoPoint(lat.value.toDouble(), lon.value.toDouble())
-                            mapView.controller.setCenter(marker?.position)
-                            mapView.invalidate()
-                            customCoordinatesDialog = false
-                        }) {
-                            Text(text = translation["button.ok"])
+                            Button(onClick = {
+                                marker.value?.position = GeoPoint(lat.value.toDouble(), lon.value.toDouble())
+                                mapView.value?.controller?.setCenter(marker.value?.position)
+                                mapView.value?.invalidate()
+                                customCoordinatesDialog = false
+                            }) {
+                                Text(text = translation["button.ok"])
+                            }
                         }
                     }
                 }

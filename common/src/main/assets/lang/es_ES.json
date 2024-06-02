@@ -32,7 +32,8 @@
             "home_logs": "Registros",
             "home_settings": "Ajustes",
             "friend_tracker": "Rastreador de amigos",
-            "edit_rule": "Editar regla"
+            "edit_rule": "Editar regla",
+            "file_imports": "Importación de archivos"
         },
         "sections": {
             "home": {
@@ -75,7 +76,8 @@
                 "config_export_success_toast": "Configuración exportada con éxito",
                 "config_import_success_toast": "Configuración importada con éxito",
                 "config_import_failure_toast": "Error al importar la configuración {error}",
-                "saved_config_snackbar": "Configuración guardada"
+                "saved_config_snackbar": "Configuración guardada",
+                "config_export_failure_toast": "No se pudo exportar la configuración {error}"
             },
             "social": {
                 "friends_tab": "Amigxs",
@@ -102,8 +104,8 @@
                 "save_from_cache_button": "Guardar desde el cache"
             },
             "messaging_preview": {
-                "bridge_connection_failed": "Error al conectar a Snapchat mediante el servicio de puente",
-                "bridge_init_failed": "Error al iniciar el puente de mensajería",
+                "bridge_connection_failed": "No se pudo conectar al puente. Asegúrate de que Snapchat se esté ejecutando en segundo plano",
+                "bridge_init_failed": "No se pudo inicializar el puente de mensajería. Asegúrate de que Snapchat se esté ejecutando en segundo plano",
                 "message_fetch_failed": "Error al recuperar mensajes",
                 "no_message_hint": "Sin mensaje",
                 "save_selection_option": "Guardar selección",
@@ -125,6 +127,14 @@
                 "download_attachment_failed_toast": "Error al descargar atajo",
                 "list_group_format": "Grupo {name}",
                 "message_parse_failed": "Error al analizar mensaje"
+            },
+            "file_imports": {
+                "file_import_failed": "No se pudo importar el archivo: {error}",
+                "file_delete_failed": "No se pudo eliminar el archivo",
+                "import_file_button": "Importar archivo",
+                "file_not_found": "Archivo no encontrado",
+                "file_imported": "Archivo importado exitosamente",
+                "no_files_hint": "Aquí puedes importar los archivos para usarlos en Snapchat. Presiona el botón a continuación para importar un archivo."
             }
         },
         "dialogs": {
@@ -147,6 +157,14 @@
             "messaging_action": {
                 "select_all_button": "Seleccionar todo",
                 "title": "Elige el tipo de contenido para procesarlo"
+            },
+            "file_imports": {
+                "no_files_settings_hint": "No se encontraron archivos. Asegúrate de haber importado los archivos requeridos en la sección Importaciones de archivos",
+                "settings_select_file_hint": "Selecciona un archivo importado"
+            },
+            "export_config": {
+                "title": "¿Exportar datos confidenciales?",
+                "content": "¿Quieres exportar la configuración con tus datos privados? (Como coordenadas de la ubicación, etc.)"
             }
         }
     },
@@ -644,8 +662,8 @@
                                 "description": "Agrupa notificaciones en una sola notificación"
                             },
                             "friend_add_source": {
-                                "description": "Muestra una solicitud de amistad en la notificación",
-                                "name": "Solicitud de amistad"
+                                "description": "Muestra la fuente de una solicitud de amistad en la notificación",
+                                "name": "Fuente de solicitud de amistad"
                             },
                             "reply_button": {
                                 "name": "Botón responder",
@@ -653,7 +671,7 @@
                             },
                             "mark_as_read_and_save_in_chat": {
                                 "name": "Marcar como leído y guardar en el chat",
-                                "description": "Agrega un botón marcar como leído y guardar el chat en la notificación"
+                                "description": "Agrega un botón marcar como leído y guardar en el chat a la notificación"
                             }
                         }
                     },
@@ -906,6 +924,10 @@
                             "disable_bitmoji": {
                                 "name": "Deshabilitar Bitmoji",
                                 "description": "Deshabilita Bitmoji en perfiles de amigxs"
+                            },
+                            "custom_emoji_font": {
+                                "name": "Fuente de los emoji personalizada",
+                                "description": "Te permite utilizar una fuente para los emoji personalizada. Sólo funciona con fuentes .ttf"
                             }
                         },
                         "description": "Funciones inseguras que se integran al código nativo de Snapchat"
@@ -947,10 +969,6 @@
                     "convert_message_locally": {
                         "name": "Convertir mensaje localmente",
                         "description": "Convierte Snaps a chat multimedia externas localmente. Esto aparece en el menú de contexto de las descargas"
-                    },
-                    "new_chat_action_menu": {
-                        "name": "Nuevo menú de acciones para conversaciones",
-                        "description": "Usa la nueva bandeja del menú de acciones para conversaciones"
                     },
                     "story_logger": {
                         "name": "Registro de historias",
@@ -1029,6 +1047,10 @@
                     "prevent_forced_logout": {
                         "name": "Impedir el cierre de sesión forzado",
                         "description": "Impide que Snapchat pueda cerrar la sesión cuando inicies sesión en otro dispositivo"
+                    },
+                    "cof_experiments": {
+                        "name": "Experimentos COF",
+                        "description": "Habilita funciones inéditas/beta de Snapchat"
                     }
                 },
                 "name": "Experimental"
@@ -1069,6 +1091,10 @@
                     "allow_running_in_background": {
                         "name": "Permitir la ejecución en segundo plano",
                         "description": "Permite que el rastreador se ejecute en segundo plano. Nota: Esto agotará significativamente la batería"
+                    },
+                    "auto_purge": {
+                        "name": "Purga automática",
+                        "description": "Elimina automáticamente los eventos almacenados en caché que son más antiguos que la cantidad de tiempo especificada"
                     }
                 },
                 "description": "Registra la actividad de un amigo en Snapchat"
@@ -1121,7 +1147,8 @@
                 "added_by_mention": "Por mención",
                 "added_by_community": "Por comunidad",
                 "added_by_group_chat": "Por Grupo",
-                "added_by_qr_code": "Por Código QR"
+                "added_by_qr_code": "Por Código QR",
+                "added_by_quick_add": "Por Quick Add (alto riesgo de ser baneado)"
             },
             "edit_text_override": {
                 "multi_line_chat_input": "Entrada de chat multilínea",

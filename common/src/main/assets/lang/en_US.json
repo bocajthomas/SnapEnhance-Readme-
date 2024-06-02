@@ -39,7 +39,8 @@
             "social": "Social",
             "manage_scope": "Manage Scope",
             "messaging_preview": "Preview",
-            "scripts": "Scripts"
+            "scripts": "Scripts",
+            "better_location": "Better Location"
         },
         "sections": {
             "home": {
@@ -141,6 +142,23 @@
                 "file_imported": "File imported successfully",
                 "file_delete_failed": "Failed to delete file",
                 "no_files_hint": "Here you can import files for use in Snapchat. Press the button below to import a file."
+            },
+            "better_location": {
+                "spoofed_coordinates_title": "Spoofed Coordinates\nLat {latitude}, Lng {longitude}",
+                "save_coordinates_dialog_title": "Save Coordinates",
+                "saved_name_dialog_hint": "Saved Name",
+                "save_dialog_button": "Save",
+                "choose_location_button": "Choose Location",
+                "teleport_to_friend_button": "Teleport to Friend",
+                "spoof_location_toggle": "Spoof Location",
+                "saved_coordinates_title": "Saved Coordinates",
+                "no_saved_coordinates_hint": "No saved coordinates",
+                "delete_dialog_title": "Delete Saved Coordinate",
+                "delete_dialog_message": "Are you sure you want to delete this saved coordinate?",
+                "teleport_to_friend_title": "Teleport to Friend",
+                "search_bar": "Search",
+                "no_friends_map": "No friends on the map",
+                "no_friends_found": "No friends found"
             }
         },
         "dialogs": {

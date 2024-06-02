@@ -2,9 +2,23 @@ package me.rhunk.snapenhance.core.features.impl.experiments
 
 import android.location.Location
 import android.location.LocationManager
+import android.view.View
+import android.view.ViewGroup
+import android.widget.RelativeLayout
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.EditLocation
+import androidx.compose.material3.FilledIconButton
+import androidx.compose.material3.Icon
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import me.rhunk.snapenhance.common.ui.OverlayType
+import me.rhunk.snapenhance.common.ui.createComposeView
 import me.rhunk.snapenhance.common.util.protobuf.EditorContext
 import me.rhunk.snapenhance.common.util.protobuf.ProtoEditor
 import me.rhunk.snapenhance.common.util.protobuf.ProtoReader
+import me.rhunk.snapenhance.core.event.events.impl.AddViewEvent
 import me.rhunk.snapenhance.core.event.events.impl.UnaryCallEvent
 import me.rhunk.snapenhance.core.features.Feature
 import me.rhunk.snapenhance.core.features.FeatureLoadParams
@@ -12,6 +26,7 @@ import me.rhunk.snapenhance.core.features.impl.global.SuspendLocationUpdates
 import me.rhunk.snapenhance.core.util.RandomWalking
 import me.rhunk.snapenhance.core.util.hook.HookStage
 import me.rhunk.snapenhance.core.util.hook.hook
+import me.rhunk.snapenhance.core.util.ktx.getId
 import me.rhunk.snapenhance.mapper.impl.CallbackMapper
 import java.nio.ByteBuffer
 import java.util.UUID
@@ -19,8 +34,9 @@ import kotlin.time.Duration.Companion.days
 
 data class FriendLocation(
     val userId: String,
-    val latitude: Float,
-    val longitude: Float,
+
+    val latitude: Double,
+    val longitude: Double,
     val lastUpdated: Long,
     val locality: String?,
     val localityPieces: List<String>
@@ -112,8 +128,8 @@ class BetterLocation : Feature("Better Location", loadParams = FeatureLoadParams
             val userId = UUID(getFixed64(1, 1) ?: return@eachBuffer, getFixed64(1, 2) ?: return@eachBuffer).toString()
             val friendCluster = FriendLocation(
                 userId = userId,
-                latitude = Float.fromBits(getFixed32(4)),
-                longitude = Float.fromBits(getFixed32(5)),
+                latitude = Float.fromBits(getFixed32(4)).toDouble(),
+                longitude = Float.fromBits(getFixed32(5)).toDouble(),
                 lastUpdated = getVarInt(7, 2) ?: -1L,
                 locality = getString(10),
                 localityPieces = mutableListOf<String>().also {
@@ -124,12 +140,30 @@ class BetterLocation : Feature("Better Location", loadParams = FeatureLoadParams
                 }
             )
 
-            locationHistory[userId]?.let { }
-
             locationHistory[userId] = friendCluster
         }
     }
 
+    private fun openManagementOverlay() {
+        context.bridgeClient.getLocationManager().provideFriendsLocation(
+            locationHistory.values.toList().mapNotNull { locationHistory ->
+                val friendInfo = context.database.getFriendInfo(locationHistory.userId) ?: return@mapNotNull null
+
+                me.rhunk.snapenhance.bridge.location.FriendLocation().also {
+                    it.username = friendInfo.mutableUsername ?: return@mapNotNull null
+                    it.displayName = friendInfo.displayName
+                    it.bitmojiId = friendInfo.bitmojiAvatarId
+                    it.bitmojiSelfieId = friendInfo.bitmojiSelfieId
+                    it.latitude = locationHistory.latitude
+                    it.longitude = locationHistory.longitude
+                    it.lastUpdated = locationHistory.lastUpdated
+                    it.locality = locationHistory.locality
+                    it.localityPieces = locationHistory.localityPieces
+                }
+            }
+        )
+        context.bridgeClient.openOverlay(OverlayType.BETTER_LOCATION)
+    }
     override fun init() {
         if (context.config.global.betterLocation.globalState != true) return
 
@@ -142,6 +176,34 @@ class BetterLocation : Feature("Better Location", loadParams = FeatureLoadParams
                 hook("getLatitude", HookStage.BEFORE) { it.setResult(getLat()) }
                 hook("getLongitude", HookStage.BEFORE) { it.setResult(getLong()) }
             }
+        }
+
+        val mapFeaturesRootId = context.resources.getId("map_features_root")
+        val mapLayerSelectorId = context.resources.getId("map_layer_selector")
+
+        context.event.subscribe(AddViewEvent::class) { event ->
+            if (event.view.id != mapFeaturesRootId) return@subscribe
+            val view = event.view as RelativeLayout
+
+            view.addOnAttachStateChangeListener(object: View.OnAttachStateChangeListener {
+                override fun onViewAttachedToWindow(v: View) {
+                    view.addView(createComposeView(view.context) {
+                        FilledIconButton(
+                            modifier = Modifier.size(54.dp).padding(8.dp),
+                            onClick = { openManagementOverlay() }
+                        ) {
+                            Icon(Icons.Default.EditLocation, contentDescription = null)
+                        }
+                    }.apply {
+                        layoutParams = RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT).apply {
+                            addRule(RelativeLayout.BELOW, mapLayerSelectorId)
+                            addRule(RelativeLayout.ALIGN_PARENT_END)
+                        }
+                    })
+                }
+
+                override fun onViewDetachedFromWindow(v: View) {}
+            })
         }
 
         context.event.subscribe(UnaryCallEvent::class) { event ->

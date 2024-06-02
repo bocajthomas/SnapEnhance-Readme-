@@ -39,7 +39,7 @@ import me.rhunk.snapenhance.ui.manager.data.InstallationSummary
 import me.rhunk.snapenhance.ui.manager.data.ModInfo
 import me.rhunk.snapenhance.ui.manager.data.PlatformInfo
 import me.rhunk.snapenhance.ui.manager.data.SnapchatAppInfo
-import me.rhunk.snapenhance.ui.overlay.SettingsOverlay
+import me.rhunk.snapenhance.ui.overlay.RemoteOverlay
 import me.rhunk.snapenhance.ui.setup.Requirements
 import me.rhunk.snapenhance.ui.setup.SetupActivity
 import java.io.ByteArrayInputStream
@@ -70,11 +70,12 @@ class RemoteSideContext(
     val streaksReminder = StreaksReminder(this)
     val log = LogManager(this)
     val scriptManager = RemoteScriptManager(this)
-    val settingsOverlay = SettingsOverlay(this)
+    val remoteOverlay = RemoteOverlay(this)
     val e2eeImplementation = E2EEImplementation(this)
     val messageLogger by lazy { LoggerWrapper(androidContext) }
     val tracker = RemoteTracker(this)
     val accountStorage = RemoteAccountStorage(this)
+    val locationManager = RemoteLocationManager(this)
 
     //used to load bitmoji selfies and download previews
     val imageLoader by lazy {

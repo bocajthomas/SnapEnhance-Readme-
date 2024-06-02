@@ -3,18 +3,18 @@
         "dialogs": {
             "select_language": "Sprache auswählen",
             "save_folder": "SnapEnhance benötigt Zugriff auf den Gerätespeicher, um Medien von Snapchat herunterzuladen und zu sichern.\nBitte wähle einen Ziel-Ordner für die Downloads aus.",
-            "select_save_folder_button": "Ordner wählen"
+            "select_save_folder_button": "Ordner auswählen"
         },
         "mappings": {
-            "dialog": "Mappings werden generiert, dies könnte ein bisschen dauern ...",
-            "generate_failure_no_snapchat": "SnapEnhance konnte Snapchat nicht finden, bitte versuchen Sie Snapchat neu zu installieren.",
-            "generate_failure": "Beim Generieren der Zuordnungen ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
+            "dialog": "Mappings werden generiert, dies könnte eine Weile dauern ...",
+            "generate_failure_no_snapchat": "SnapEnhance konnte Snapchat nicht finden, bitte versuche Snapchat neu zu installieren.",
+            "generate_failure": "Beim Generieren der Zuordnungen ist ein Fehler aufgetreten. Bitte versuche es erneut."
         },
         "permissions": {
-            "dialog": "Um fortfahren zu können, müssen Sie diese Anforderungen erfüllen:",
-            "notification_access": "Zugriff auf Benachrichtigungen",
+            "dialog": "Um fortfahren zu können, musst du diese Anforderungen erfüllen:",
+            "notification_access": "Benachrichtigungszugriff",
             "battery_optimization": "Batterieoptimierung",
-            "display_over_other_apps": "Über anderen Apps einblenden",
+            "display_over_other_apps": "Über anderen Apps anzeigen",
             "request_button": "Anfordern"
         }
     },
@@ -31,7 +31,7 @@
             "logged_stories": "Geloggte Storys",
             "messaging_preview": "Vorschau",
             "manage_scope": "Verwalte Scope",
-            "friend_tracker": "Freundtracker:in",
+            "friend_tracker": "Freund:in-tracker",
             "edit_rule": "Regel bearbeiten"
         },
         "sections": {
@@ -42,7 +42,7 @@
                 "reset_option": "Zurücksetzen",
                 "config_export_success_toast": "Einstellungen erfolgreich exportiert",
                 "config_import_success_toast": "Einstellungen erfolgreich importiert",
-                "config_import_failure_toast": "Einstellungen konnten nicht importiert werden. {error}",
+                "config_import_failure_toast": "Einstellungen konnten nicht importiert werden {error}",
                 "saved_config_snackbar": "Einstellungen gespeichert"
             },
             "social": {
@@ -727,7 +727,7 @@
                             },
                             "walk_radius": {
                                 "name": "Radius",
-                                "description": "Laufe zufälligerweise in diesem Radium (ft) herum"
+                                "description": "Laufe zufälligerweise in diesem Radius (ft) herum"
                             }
                         }
                     },
@@ -767,7 +767,7 @@
                             },
                             "force_video_upload_source_quality": {
                                 "name": "Erzwingen Sie die Qualität der Video-Upload-Quelle",
-                                "description": "Erzwing Snapchat die Quellenqualität zu nutzen, wenn Videos hochgelden werden\nBitte merkte, dass dies eventuell die Metadaten von Medien nicht entfernt"
+                                "description": "Erzwing Snapchat die Quellenqualität zu nutzen, wenn Videos hochgelden werden\nBitte merke, dass dies eventuell die Metadaten von Medien nicht entfernt"
                             }
                         },
                         "name": "Qualität",
@@ -959,10 +959,6 @@
                         "description": "Liefert eine Historie der Stories von Freund:innen",
                         "name": "Geschichtenprotokollierer"
                     },
-                    "new_chat_action_menu": {
-                        "name": "Neues Chat-Aktionsmenü",
-                        "description": "Verwende die neue Chat-Aktionsmenüleiste"
-                    },
                     "call_recorder": {
                         "name": "Anrufaufzeichner",
                         "description": "Zeichnet automatisch Audioanrufe auf"
@@ -1040,6 +1036,10 @@
                     "record_messaging_events": {
                         "name": "Nachrichtenevents aufzeichnen",
                         "description": "Zeichnet Nachrichtenereignisse wie das Öffnen eines Snaps, das Lesen einer Nachricht usw. auf."
+                    },
+                    "auto_purge": {
+                        "description": "Löscht zwischengespeicherte Ereignisse automatisch, wenn sie älter als die spezifizierte Dauer sind",
+                        "name": "Automatisch Löschen"
                     }
                 },
                 "name": "Freundestracker",
@@ -1127,7 +1127,8 @@
                 "added_by_mention": "Durch Erwähnung",
                 "added_by_group_chat": "Per Gruppenchat",
                 "added_by_qr_code": "Per QR-Code",
-                "added_by_community": "Per Community"
+                "added_by_community": "Per Community",
+                "added_by_quick_add": "Von Schnell Hinzufügen ->!!HOHES RISIKO, GEBANNT ZU WERDEN!!<-"
             },
             "bypass_video_length_restriction": {
                 "single": "Einzelnes Medium",
@@ -1529,7 +1530,7 @@
         "notification_content": "{count} Snaps geöffnet"
     },
     "friend_mutation_observer": {
-        "birthday_removed": "{username} hat sein/ ihr Geburtsdatum ({birthday}) entfernt.",
+        "birthday_removed": "{username} hat sein/ ihr Geburtsdatum ({birthday}) entfernt",
         "birthday_changed": "{username} hat sein/ ihr Geburtsdatum von {oldBirthday} auf {newBirthday} geändert",
         "bitmoji_background_changed": "{username} hat den Hintergrund seines/ ihres Bitmojis geändert",
         "birthday_added": "{username} hat sein/ ihr Geburtsdatum ({birthday}) hinzugefügt",

@@ -950,10 +950,6 @@
             },
             "experimental": {
                 "properties": {
-                    "new_chat_action_menu": {
-                        "name": "Neues Chat-Aktionsmenü",
-                        "description": "Verwende die neue Chat-Aktionsmenüleiste"
-                    },
                     "account_switcher": {
                         "description": "Ermöglicht es Ihnen, zwischen Konten zu wechseln, ohne sich auszuloggen\nHalten Sie lange auf das Suchsymbol neben Ihrem Bitmoji-Profil, um das Menü zu öffnen\nHinweis: Diese Funktion ist experimentell und wird wahrscheinlich in Zukunft geändert",
                         "name": "­Accountwechsler",

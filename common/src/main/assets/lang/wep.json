@@ -830,10 +830,6 @@
                             }
                         }
                     },
-                    "new_chat_action_menu": {
-                        "name": "Neues Chat-Aktionsmenü",
-                        "description": "Verwende die neue Chat-Aktionsmenüleiste"
-                    },
                     "convert_message_locally": {
                         "name": "Nachricht lokal umwandeln",
                         "description": "Konvertiert Snaps lokal in externe Chat-Medien. Dies erscheint im Kontextmenü für den Chat-Download"

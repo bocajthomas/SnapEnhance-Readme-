@@ -969,10 +969,6 @@
                         "name": "Convert Message Locally",
                         "description": "Converts snaps to chat external media locally. This appears in chat download context menu"
                     },
-                    "new_chat_action_menu": {
-                        "name": "New Chat Action Menu",
-                        "description": "Use the new chat action menu drawer"
-                    },
                     "edit_message": {
                         "name": "Edit Messages",
                         "description": "Allows you to edit messages in conversations"
@@ -1075,6 +1071,10 @@
                     "record_messaging_events": {
                         "description": "Records messaging events such as opening a snap, reading a message, etc.",
                         "name": "Record Messaging Events"
+                    },
+                    "auto_purge": {
+                        "name": "Auto Purge",
+                        "description": "Automatically deletes cached events that are older than the specified amount of time"
                     }
                 },
                 "name": "Friend Tracker"

@@ -81,7 +81,14 @@ class AppDatabase(
             "quick_tiles" to listOf(
                 "key VARCHAR PRIMARY KEY",
                 "position INTEGER",
-            )
+            ),
+            "location_coordinates" to listOf(
+                "id INTEGER PRIMARY KEY AUTOINCREMENT",
+                "name VARCHAR",
+                "latitude DOUBLE",
+                "longitude DOUBLE",
+                "radius DOUBLE",
+            ),
         ))
     }
 }

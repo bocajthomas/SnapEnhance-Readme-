@@ -32,7 +32,8 @@
             "manage_scope": "Kapsamı Yönet",
             "messaging_preview": "Önizleme",
             "friend_tracker": "Arkadaş Takibi",
-            "edit_rule": "Kuralı Düzenle"
+            "edit_rule": "Kuralı Düzenle",
+            "file_imports": "Dosya İçe Aktarımları"
         },
         "sections": {
             "features": {
@@ -43,7 +44,8 @@
                 "config_import_success_toast": "Konfigürasyon başarıyla içe aktarıldı",
                 "config_import_failure_toast": "Konfigürasyon içe aktarılamadı {error}",
                 "saved_config_snackbar": "Konfigürasyon kaydedildi",
-                "config_export_success_toast": "Konfigürasyon başarıyla dışa aktarıldı"
+                "config_export_success_toast": "Konfigürasyon başarıyla dışa aktarıldı",
+                "config_export_failure_toast": "Konfigürasyon dışa aktarılamadı {error}"
             },
             "social": {
                 "streaks_expiration_short": "{hours} saat",
@@ -102,12 +104,12 @@
                 "save_from_cache_button": "Önbellekten Kaydet"
             },
             "messaging_preview": {
-                "bridge_connection_failed": "Köprü hizmeti aracılığıyla Snapchat'e bağlanılamadı",
+                "bridge_connection_failed": "Köprüye bağlanılamadı. Snapchat'in arka planda çalıştığından emin olun",
                 "message_fetch_failed": "Mesajlar alınamadı",
                 "save_all_option": "Tümünü Kaydet",
                 "unsave_selection_option": "Seçimi Kaydetmeyi Kaldır",
                 "unsave_all_option": "Tümünü Kaydet'i Kaldır",
-                "bridge_init_failed": "Mesajlaşma köprüsü başlatılamadı",
+                "bridge_init_failed": "Mesajlaşma köprüsü başlatılamadı. Snapchat'in arka planda çalıştığından emin olun",
                 "no_message_hint": "Mesaj yok",
                 "save_selection_option": "Seçimi Kaydet",
                 "mark_selection_as_seen_option": "Seçilen Snap'i görüldü olarak işaretle",
@@ -125,6 +127,14 @@
                 "message_parse_failed": "Mesaj ayrıştırılamadı",
                 "unknown_sender": "Bilinmeyen Gönderen",
                 "download_attachment_failed_toast": "Ek indirilemedi"
+            },
+            "file_imports": {
+                "import_file_button": "Dosya İçe Aktar",
+                "file_not_found": "Dosya bulunamadı",
+                "file_import_failed": "Dosya içe aktarılamadı: {error}",
+                "file_imported": "Dosya başarıyla içe aktarıldı",
+                "file_delete_failed": "Dosya silinemedi",
+                "no_files_hint": "Burada Snapchat'te kullanmak için dosyaları içe aktarabilirsiniz. Bir dosyayı içe aktarmak için aşağıdaki düğmeye basın."
             }
         },
         "dialogs": {
@@ -147,6 +157,14 @@
             "messaging_action": {
                 "title": "İşlenecek içerik türlerini seçin",
                 "select_all_button": "Tümünü Seç"
+            },
+            "file_imports": {
+                "no_files_settings_hint": "Dosya bulunamadı. Dosya İçe Aktarma bölümünde gerekli dosyaları içe aktardığınızdan emin olun",
+                "settings_select_file_hint": "İçe aktarılan bir dosya seçin"
+            },
+            "export_config": {
+                "title": "Hassas Verileri Dışa Aktar?",
+                "content": "Konfigürasyonu hassas verilerle dışa aktarmak istiyor musunuz? (Konum koordinatları vb. gibi)"
             }
         }
     },
@@ -515,7 +533,49 @@
                     },
                     "better_notifications": {
                         "name": "Daha İyi Bildirimler",
-                        "description": "Alınan bildirimlere daha fazla bilgi ekler"
+                        "description": "Alınan bildirimlere daha fazla bilgi ekler",
+                        "properties": {
+                            "group_notifications": {
+                                "name": "Grup Bildirimleri",
+                                "description": "Bildirimleri tek bir bildirimde grupla"
+                            },
+                            "media_preview": {
+                                "description": "Bildirimde seçilen medya türlerinin önizlemesini gösterir",
+                                "name": "Medya Önizlemesi"
+                            },
+                            "friend_add_source": {
+                                "name": "Arkadaş Ekleme Kaynağı",
+                                "description": "Bildirimde bir arkadaşlık isteğinin kaynağını gösterir"
+                            },
+                            "download_button": {
+                                "name": "İndirme Düğmesi",
+                                "description": "Bildirimden medya indirmenize izin verir"
+                            },
+                            "chat_preview": {
+                                "name": "Sohbet Önizlemesi",
+                                "description": "Bildirimde alınan mesajların önizlemesini gösterir"
+                            },
+                            "media_caption": {
+                                "name": "Medya Başlığı",
+                                "description": "Bildirimdeki ekli medya başlığını gösterir"
+                            },
+                            "stacked_media_messages": {
+                                "name": "Yığılmış Medya Mesajları",
+                                "description": "Önizleme yapılamadığında birden fazla medya mesajını tek bir metin bildiriminde birleştirir. Sohbet Önizleme ile birlikte kullanın"
+                            },
+                            "reply_button": {
+                                "name": "Yanıt Düğmesi",
+                                "description": "Bildirime bir yanıt düğmesi ekler"
+                            },
+                            "mark_as_read_button": {
+                                "name": "Okundu Olarak İşaretle Düğmesi",
+                                "description": "Bir mesajı bildirimden okundu olarak işaretlemenizi sağlar"
+                            },
+                            "mark_as_read_and_save_in_chat": {
+                                "name": "Okundu Olarak İşaretle ve Sohbete Kaydet",
+                                "description": "Bildirime okundu olarak işaretle ve sohbete kaydet düğmesi ekler"
+                            }
+                        }
                     },
                     "notification_blacklist": {
                         "name": "Bildirim Kara Listesi",
@@ -838,6 +898,10 @@
                                 },
                                 "name": "Composer Kancaları",
                                 "description": "Composer çapraz platform UI çerçevesine kod enjekte eder"
+                            },
+                            "custom_emoji_font": {
+                                "name": "Özel Emoji Fontu",
+                                "description": "Özel bir emoji yazı tipi kullanmanızı sağlar. Yalnızca .ttf yazı tipleriyle çalışır"
                             }
                         }
                     },
@@ -917,10 +981,6 @@
                         "description": "Arkadaş hikayelerinin bir tarihçesini sunar",
                         "name": "Hikaye Kaydedici"
                     },
-                    "new_chat_action_menu": {
-                        "description": "Yeni sohbet eylem menüsü çekmecesini kullanın",
-                        "name": "Yeni Sohbet Eylem Menüsü"
-                    },
                     "media_file_picker": {
                         "name": "Medya Dosyası Seçici",
                         "description": "Galeriden herhangi bir video/ses dosyası seçmenizi sağlar"
@@ -960,6 +1020,10 @@
                     "best_friend_pinning": {
                         "description": "Bir arkadaşınızı bir numaralı en iyi arkadaşınız olarak sabitlemenizi sağlar. Not: Sabitlediğiniz en iyi arkadaşınızı sadece siz görebilirsiniz",
                         "name": "En İyi Arkadaş Sabitleme"
+                    },
+                    "cof_experiments": {
+                        "name": "COF Deneyleri",
+                        "description": "Yayınlanmamış/beta Snapchat özelliklerini etkinleştirir"
                     }
                 }
             },
@@ -1000,6 +1064,10 @@
                     "record_messaging_events": {
                         "name": "Mesajlaşma Olaylarını Kaydetme",
                         "description": "Snap açma, mesaj okuma gibi mesajlaşma olaylarını kaydeder."
+                    },
+                    "auto_purge": {
+                        "name": "Otomatik Temizleme",
+                        "description": "Belirtilen süreden daha eski olan önbelleğe alınmış olayları otomatik olarak siler"
                     }
                 }
             }
@@ -1085,7 +1153,8 @@
                 "added_by_mention": "Bahsetmeye Göre",
                 "added_by_group_chat": "Grup Sohbetine Göre",
                 "added_by_qr_code": "QR Kodu'na Göre",
-                "added_by_community": "Topluluğa Göre"
+                "added_by_community": "Topluluğa Göre",
+                "added_by_quick_add": "Hızlı Ekleme ile (yüksek yasaklanma riski)"
             },
             "bypass_video_length_restriction": {
                 "single": "Tek medya",
@@ -1337,7 +1406,8 @@
         "FAMILY_CENTER_LEAVE": "Aile Merkezi Ayrıl",
         "STATUS_CALL_MISSED_AUDIO": "Cevapsız Sesli Arama",
         "NOTE": "Sesli Not",
-        "MAP_REACTION": "Harita Tepkisi"
+        "MAP_REACTION": "Harita Tepkisi",
+        "SHARE": "Paylaş"
     },
     "suspend_location_updates": {
         "switch_text": "Konum Güncellemelerini Askıya Al"

@@ -30,7 +30,9 @@
             "logger_history": "Naplózó előzménye",
             "logged_stories": "Naplózott sztorik",
             "manage_scope": "Terület kezelése",
-            "messaging_preview": "Előnézet"
+            "messaging_preview": "Előnézet",
+            "edit_rule": "Szabály szerkesztése",
+            "friend_tracker": "Barát figyelő"
         },
         "sections": {
             "features": {
@@ -504,7 +506,49 @@
                     },
                     "better_notifications": {
                         "name": "Jobb Értesítések",
-                        "description": "Több információt mutat az értesítésekben"
+                        "description": "Több információt mutat az értesítésekben",
+                        "properties": {
+                            "group_notifications": {
+                                "description": "Egy értesítésbe csoportosítja az értesítéseket",
+                                "name": "Csoportosított értesítés"
+                            },
+                            "chat_preview": {
+                                "name": "Beszélgetés előnézet",
+                                "description": "Megjeleníti a kapott üzenetek előnézetét az értesítésben"
+                            },
+                            "media_preview": {
+                                "description": "Megjeleníti a kapott média típusok előnézetét az értesítésben",
+                                "name": "Média előnézet"
+                            },
+                            "stacked_media_messages": {
+                                "name": "Csoportosított média üzenetek",
+                                "description": "Több médiaüzenet egyetlen szöveges értesítésben történő egyesítése, ha azok nem tekinthetők meg előnézetben. A Beszélgetés előnézet funkcióval együtt használható"
+                            },
+                            "friend_add_source": {
+                                "name": "Barát hozzáadásának forrása",
+                                "description": "Megjeleníti a barát kérelem forrását az értesítésben"
+                            },
+                            "media_caption": {
+                                "name": "Média felirat",
+                                "description": "Megjeleníti a csatolt feliratokat a média értesítésben"
+                            },
+                            "reply_button": {
+                                "name": "Válasz gomb",
+                                "description": "Hozzáad egy válasz gombot az értesítéshez"
+                            },
+                            "download_button": {
+                                "name": "Letöltés gomb",
+                                "description": "Engedi, hogy letöltse a médiát az értesítésből"
+                            },
+                            "mark_as_read_button": {
+                                "name": "Megjelölés olvasottként gomb",
+                                "description": "Engedi, hogy megjelöld az üzenetet olvasottként az értesítésből"
+                            },
+                            "mark_as_read_and_save_in_chat": {
+                                "name": "Megjelölés olvasottként és mentés",
+                                "description": "Megjelöli olvasottként és elmenti a beszélgetésben az értesítésből"
+                            }
+                        }
                     },
                     "notification_blacklist": {
                         "name": "Értesítési Tiltólista",
@@ -911,10 +955,6 @@
                         "description": "Lehetővé teszi az üzenetek szerkesztését a beszélgetésekben",
                         "name": "Üzenetek szerkesztése"
                     },
-                    "new_chat_action_menu": {
-                        "name": "Új csevegési művelet menü",
-                        "description": "Használd az új csevegési művelet menü fiókot"
-                    },
                     "media_file_picker": {
                         "name": "Média fájlválasztó",
                         "description": "Lehetővé teszi, hogy bármelyik videó/hangfájlt kiválaszd a galériából"
@@ -986,6 +1026,24 @@
                 },
                 "description": "Egyéni szkriptek futtatása a SnapEnhance bővítéséhez",
                 "name": "Szkriptelés"
+            },
+            "friend_tracker": {
+                "name": "Barát figyelő",
+                "properties": {
+                    "allow_running_in_background": {
+                        "name": "Futás a háttérben engedélyezése",
+                        "description": "Engedi, hogy a követő fusson a háttérben. Megjegyzés: Ez jelentősen meríti az akkumulátorodat"
+                    },
+                    "record_messaging_events": {
+                        "description": "Feljegyzi az üzenet eventeket, mint snapchat megnyitása, üzenet elolvasása, stb.",
+                        "name": "Figyeli az üzenet eventeket"
+                    },
+                    "auto_purge": {
+                        "name": "Automatikus tisztítás",
+                        "description": "Automatikusan törli a gyorsítótárazott eseményeket és régebbi egy adott időnél"
+                    }
+                },
+                "description": "Figyeli a barátaid tevékenységét Snapchaten"
             }
         },
         "options": {
@@ -1172,7 +1230,9 @@
                 "custom": "Egyedi színek",
                 "light_blue": "Világos kék",
                 "dark_blue": "Sötét kék",
-                "lava_flow": "Lávafolyam"
+                "lava_flow": "Lávafolyam",
+                "material_you_light": "Material You Világos (Android 12+)",
+                "material_you_dark": "Material You Sötét (Android 12+)"
             }
         }
     },
@@ -1377,7 +1437,8 @@
         "FAMILY_CENTER_INVITE": "Családi központ meghívó",
         "FAMILY_CENTER_LEAVE": "Családi központ elhagyás",
         "STATUS_SAVE_TO_CAMERA_ROLL": "Mentve a képeid közé",
-        "LIVE_LOCATION_SHARE": "Élő helymegosztás"
+        "LIVE_LOCATION_SHARE": "Élő helymegosztás",
+        "SHARE": "Megosztás"
     },
     "better_notifications": {
         "button": {

@@ -119,7 +119,7 @@ class SnapEnhance {
         }
 
         hookMainActivity("onPause") {
-            appContext.bridgeClient.closeSettingsOverlay()
+            appContext.bridgeClient.closeOverlay()
             appContext.isMainActivityPaused = true
         }
 

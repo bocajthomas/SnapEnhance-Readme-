@@ -204,7 +204,7 @@
                                 "description": "Copiae Snapchat utendi fons qualis est cum uploading videos\nNota quaeso quod hoc metadata ex instrumentis non removeat"
                             },
                             "custom_image_upload_format": {
-                                "description": "Morem imaginis onerationis forma ponit\nEligere lossless forma (sicut PNG) pro optima species"
+                                "description": "Morem imaginis onerationis\nformat\nSelect a lossless format (sicut PNG)\npro optima qualitate"
                             }
                         }
                     },

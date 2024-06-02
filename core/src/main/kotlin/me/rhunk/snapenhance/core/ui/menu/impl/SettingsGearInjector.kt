@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
+import me.rhunk.snapenhance.common.ui.OverlayType
 import me.rhunk.snapenhance.core.ui.menu.AbstractMenu
 import me.rhunk.snapenhance.core.util.ktx.getDimens
 import me.rhunk.snapenhance.core.util.ktx.getDrawable
@@ -38,7 +39,7 @@ class SettingsGearInjector : AbstractMenu() {
             isClickable = true
 
             setOnClickListener {
-                this@SettingsGearInjector.context.bridgeClient.openSettingsOverlay()
+                this@SettingsGearInjector.context.bridgeClient.openOverlay(OverlayType.SETTINGS)
             }
 
             parent.setOnTouchListener { _, event ->
