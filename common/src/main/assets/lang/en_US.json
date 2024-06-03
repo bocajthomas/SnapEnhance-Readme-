@@ -2,12 +2,12 @@
     "setup": {
         "dialogs": {
             "select_language": "Select Language",
-            "save_folder": "SnapEnhance requires Storage permissions to download and Save Media from Snapchat.\nPlease choose the location where media should be downloaded to.",
+            "save_folder": "SE Extended requires Storage permissions to download and Save Media from Snapchat.\nPlease choose the location where media should be downloaded to.",
             "select_save_folder_button": "Select Folder"
         },
         "mappings": {
             "dialog": "Generating Mappings, this may take a while ...",
-            "generate_failure_no_snapchat": "SnapEnhance was unable to detect Snapchat, please try reinstalling Snapchat.",
+            "generate_failure_no_snapchat": "SE Extended was unable to detect Snapchat, please try reinstalling Snapchat.",
             "generate_failure": "An error occurred while trying to generate mappings, please try again."
         },
         "permissions": {
@@ -44,11 +44,11 @@
         },
         "sections": {
             "home": {
-                "version_title": "v{versionName} · by rhunk",
-                "update_title": "SnapEnhance Update",
+                "version_title": "V{versionName} · Forked by Jacob",
+                "update_title": "SE Extended Update",
                 "update_content": "Version {version} is available!",
                 "update_button": "Download",
-                "debug_build_summary_title": "You are running a debug build of SnapEnhance",
+                "debug_build_summary_title": "You are running a debug build of SE Extended",
                 "debug_build_summary_content": "Version {versionName} ({versionCode})",
                 "debug_build_summary_date": "Build date: {date} ({days} days ago)",
                 "quick_actions_title": "Quick Actions"
@@ -176,7 +176,7 @@
             },
             "scripting_warning": {
                 "title": "Warning",
-                "content": "SnapEnhance includes a scripting tool, allowing the execution of user-defined code on your device. Use extreme caution and only install modules from known, reliable sources. Unauthorized or unverified modules may pose security risks to your system."
+                "content": "SE Extended includes a scripting tool, allowing the execution of user-defined code on your device. Use extreme caution and only install modules from known, reliable sources. Unauthorized or unverified modules may pose security risks to your system."
             },
             "reset_config": {
                 "title": "Reset config",
@@ -287,7 +287,7 @@
         },
         "change_language": {
             "name": "Change Language",
-            "description": "Change the language of SnapEnhance"
+            "description": "Change the language of SE Extended"
         },
         "file_imports": {
             "name": "File Imports",
@@ -961,11 +961,11 @@
                                     },
                                     "composer_console": {
                                         "name": "Composer Console",
-                                        "description": "Allows you to execute JavaScript code in Composer (arm64 only)"
+                                        "description": "Allows you to execute JavaScript code in Composer (ARM64 only)"
                                     },
                                     "composer_logs": {
                                         "name": "Composer Logs",
-                                        "description": "Redirects console logs of Composer to SnapEnhance"
+                                        "description": "Redirects console logs of Composer to SE Extended"
                                     }
                                 }
                             },
@@ -1103,7 +1103,7 @@
             },
             "scripting": {
                 "name": "Scripting",
-                "description": "Run custom scripts to extend SnapEnhance",
+                "description": "Run custom scripts to extend SE Extended",
                 "properties": {
                     "developer_mode": {
                         "name": "Developer Mode",
@@ -1276,7 +1276,7 @@
             },
             "auto_reload": {
                 "snapchat_only": "Snapchat Only",
-                "all": "All (Snapchat + SnapEnhance)"
+                "all": "All (Snapchat + SE Extended)"
             },
             "edit_text_override": {
                 "multi_line_chat_input": "Multi Line Chat Input",
