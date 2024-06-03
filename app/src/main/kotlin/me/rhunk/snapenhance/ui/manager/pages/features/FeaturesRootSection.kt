@@ -44,7 +44,7 @@ import me.rhunk.snapenhance.ui.manager.MainActivity
 import me.rhunk.snapenhance.ui.manager.Routes
 import me.rhunk.snapenhance.ui.util.*
 
-class FeaturesRoot : Routes.Route() {
+class FeaturesRootSection : Routes.Route() {
     private val alertDialogs by lazy { AlertDialogs(context.translation) }
 
     companion object {

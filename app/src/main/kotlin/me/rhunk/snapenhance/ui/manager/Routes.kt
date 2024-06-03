@@ -2,11 +2,7 @@ package me.rhunk.snapenhance.ui.manager
 
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.DataObject
-import androidx.compose.material.icons.filled.Group
-import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Stars
-import androidx.compose.material.icons.filled.TaskAlt
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavBackStackEntry
@@ -18,16 +14,16 @@ import me.rhunk.snapenhance.RemoteSideContext
 import me.rhunk.snapenhance.ui.manager.pages.BetterLocationRoot
 import me.rhunk.snapenhance.ui.manager.pages.FileImportsRoot
 import me.rhunk.snapenhance.ui.manager.pages.LoggerHistoryRoot
-import me.rhunk.snapenhance.ui.manager.pages.TasksRoot
-import me.rhunk.snapenhance.ui.manager.pages.features.FeaturesRoot
+import me.rhunk.snapenhance.ui.manager.pages.TasksRootSection
+import me.rhunk.snapenhance.ui.manager.pages.features.FeaturesRootSection
 import me.rhunk.snapenhance.ui.manager.pages.home.HomeLogs
-import me.rhunk.snapenhance.ui.manager.pages.home.HomeRoot
+import me.rhunk.snapenhance.ui.manager.pages.home.HomeRootSection
 import me.rhunk.snapenhance.ui.manager.pages.home.HomeSettings
-import me.rhunk.snapenhance.ui.manager.pages.scripting.ScriptingRoot
+import me.rhunk.snapenhance.ui.manager.pages.scripting.ScriptingRootSection
 import me.rhunk.snapenhance.ui.manager.pages.social.LoggedStories
 import me.rhunk.snapenhance.ui.manager.pages.social.ManageScope
 import me.rhunk.snapenhance.ui.manager.pages.social.MessagingPreview
-import me.rhunk.snapenhance.ui.manager.pages.social.SocialRoot
+import me.rhunk.snapenhance.ui.manager.pages.social.SocialRootSection
 import me.rhunk.snapenhance.ui.manager.pages.tracker.EditRule
 import me.rhunk.snapenhance.ui.manager.pages.tracker.FriendTrackerManagerRoot
 
@@ -50,11 +46,11 @@ class Routes(
     lateinit var navController: NavController
     private val routes = mutableListOf<Route>()
 
-    val tasks = route(RouteInfo("tasks", icon = Icons.Default.TaskAlt, primary = true), TasksRoot())
+    val tasks = route(RouteInfo("tasks", icon = Icons.Default.TaskAlt, primary = true), TasksRootSection())
 
-    val features = route(RouteInfo("features", icon = Icons.Default.Stars, primary = true), FeaturesRoot())
+    val features = route(RouteInfo("features", icon = Icons.Default.Stars, primary = true), FeaturesRootSection())
 
-    val home = route(RouteInfo("home", icon = Icons.Default.Home, primary = true), HomeRoot())
+    val home = route(RouteInfo("home", icon = Icons.Default.Home, primary = true), HomeRootSection())
     val settings = route(RouteInfo("home_settings"), HomeSettings()).parent(home)
     val homeLogs = route(RouteInfo("home_logs"), HomeLogs()).parent(home)
     val loggerHistory = route(RouteInfo("logger_history"), LoggerHistoryRoot()).parent(home)
@@ -62,12 +58,14 @@ class Routes(
     val editRule = route(RouteInfo("edit_rule/?rule_id={rule_id}"), EditRule())
 
     val fileImports = route(RouteInfo("file_imports"), FileImportsRoot()).parent(home)
-    val social = route(RouteInfo("social", icon = Icons.Default.Group, primary = true), SocialRoot())
+    val social = route(RouteInfo("social", icon = Icons.Default.Group, primary = true), SocialRootSection())
     val manageScope = route(RouteInfo("manage_scope/?scope={scope}&id={id}"), ManageScope()).parent(social)
     val messagingPreview = route(RouteInfo("messaging_preview/?scope={scope}&id={id}"), MessagingPreview()).parent(social)
     val loggedStories = route(RouteInfo("logged_stories/?id={id}"), LoggedStories()).parent(social)
 
-    val scripting = route(RouteInfo("scripts", icon = Icons.Filled.DataObject, primary = true), ScriptingRoot())
+    val scripting = route(RouteInfo("scripts", icon = Icons.Filled.DataObject, primary = true), ScriptingRootSection())
+
+    val betterLocation = route(RouteInfo("better_location", showInNavBar = false, primary = true), BetterLocationRoot())
 
     val betterLocation = route(RouteInfo("better_location", showInNavBar = false, primary = true), BetterLocationRoot())
 

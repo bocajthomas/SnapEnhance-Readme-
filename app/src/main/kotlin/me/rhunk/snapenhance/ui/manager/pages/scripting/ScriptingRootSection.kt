@@ -44,7 +44,7 @@ import me.rhunk.snapenhance.ui.util.pullrefresh.PullRefreshIndicator
 import me.rhunk.snapenhance.ui.util.pullrefresh.pullRefresh
 import me.rhunk.snapenhance.ui.util.pullrefresh.rememberPullRefreshState
 
-class ScriptingRoot : Routes.Route() {
+class ScriptingRootSection : Routes.Route() {
     private lateinit var activityLauncherHelper: ActivityLauncherHelper
     private val reloadDispatcher = AsyncUpdateDispatcher(updateOnFirstComposition = false)
 

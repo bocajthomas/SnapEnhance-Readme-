@@ -43,7 +43,7 @@ import java.io.File
 import java.util.UUID
 import kotlin.math.absoluteValue
 
-class TasksRoot : Routes.Route() {
+class TasksRootSection : Routes.Route() {
     private var activeTasks by mutableStateOf(listOf<PendingTask>())
     private lateinit var recentTasks: MutableList<Task>
     private val taskSelection = mutableStateListOf<Pair<Task, DocumentFile?>>()

@@ -34,7 +34,7 @@ import me.rhunk.snapenhance.ui.manager.Routes
 import me.rhunk.snapenhance.ui.util.coil.BitmojiImage
 import me.rhunk.snapenhance.ui.util.pagerTabIndicatorOffset
 
-class SocialRoot : Routes.Route() {
+class SocialRootSection : Routes.Route() {
     private var friendList: List<MessagingFriendInfo> by mutableStateOf(emptyList())
     private var groupList: List<MessagingGroupInfo> by mutableStateOf(emptyList())
 
