@@ -39,7 +39,7 @@ import me.rhunk.snapenhance.common.Constants
 import me.rhunk.snapenhance.common.action.EnumAction
 import me.rhunk.snapenhance.common.ui.rememberAsyncMutableState
 import me.rhunk.snapenhance.common.ui.rememberAsyncMutableStateList
-import me.rhunk.snapenhance.core.ui.Snapenhance
+import me.rhunk.snapenhance.core.ui.Seextended
 import me.rhunk.snapenhance.storage.getQuickTiles
 import me.rhunk.snapenhance.storage.setQuickTiles
 import me.rhunk.snapenhance.ui.manager.Routes
@@ -116,14 +116,16 @@ class HomeRootSection : Routes.Route() {
                 .clickable {
                     context.activity?.startActivity(Intent(Intent.ACTION_VIEW).apply {
                         data = Uri.parse(
-                            dataArray.reversed().map { (-it xor BuildConfig.APPLICATION_ID.hashCode()).toChar() }.joinToString("")
+                            dataArray
+                                .map { it.toChar() }
+                                .joinToString("")
+                                .reversed()
                         )
                         flags = Intent.FLAG_ACTIVITY_NEW_TASK
                     })
                 }
         )
     }
-
 
     override val init: () -> Unit = {
         activityLauncherHelper = ActivityLauncherHelper(context.activity!!)
@@ -151,7 +153,7 @@ class HomeRootSection : Routes.Route() {
                 .verticalScroll(rememberScrollState())
         ) {
             Icon(
-                imageVector = Snapenhance, contentDescription = null,
+                imageVector = Seextended, contentDescription = null,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(all = 8.dp)
@@ -182,25 +184,20 @@ class HomeRootSection : Routes.Route() {
             ) {
                 ExternalLinkIcon(
                     imageVector = ImageVector.vectorResource(id = R.drawable.ic_telegram),
-                    // https://t.me/snapenhance
+                    // https://t.me/SE_Extended
                     dataArray = intArrayOf(
-                        0xe4f8b47, 0xe4f8b41, 0xe4f8b4e, 0xe4f8b43, 0xe4f8b4c, 0xe4f8b4e, 0xe4f8b47,
-                        0xe4f8b54, 0xe4f8b43, 0xe4f8b4e, 0xe4f8b51, 0xe4f8b0d, 0xe4f8b47, 0xe4f8b4f,
-                        0xe4f8b0e, 0xe4f8b58, 0xe4f8b0d, 0xe4f8b0d, 0xe4f8b1a, 0xe4f8b51, 0xe4f8b54,
-                        0xe4f8b58, 0xe4f8b58, 0xe4f8b4c
+                        100, 101, 100, 110, 101, 116, 120, 69, 95, 69, 83, 47, 101, 
+                        109, 46, 116, 47, 47, 58, 115, 112, 116, 116, 104
                     )
                 )
 
                 ExternalLinkIcon(
                     imageVector = ImageVector.vectorResource(id = R.drawable.ic_github),
-                    // https://github.com/rhunk/SnapEnhance
+                    // https://github.com/bocajthomas/SE-Extended
                     dataArray = intArrayOf(
-                        0xe4f8b47, 0xe4f8b41, 0xe4f8b4e, 0xe4f8b43, 0xe4f8b4c, 0xe4f8b4e, 0xe4f8b67,
-                        0xe4f8b54, 0xe4f8b43, 0xe4f8b4e, 0xe4f8b71, 0xe4f8b0d, 0xe4f8b49, 0xe4f8b4e,
-                        0xe4f8b57, 0xe4f8b4c, 0xe4f8b52, 0xe4f8b0d, 0xe4f8b4f, 0xe4f8b4d, 0xe4f8b41,
-                        0xe4f8b0e, 0xe4f8b42, 0xe4f8b57, 0xe4f8b4c, 0xe4f8b58, 0xe4f8b4b, 0xe4f8b45,
-                        0xe4f8b0d, 0xe4f8b0d, 0xe4f8b1a, 0xe4f8b51, 0xe4f8b54, 0xe4f8b58, 0xe4f8b58,
-                        0xe4f8b4c
+                        100, 101, 100, 110, 101, 116, 120, 69, 45, 69, 83, 47, 115, 97, 109, 
+                        111, 104, 116, 106, 97, 99, 111, 98, 47, 109, 111, 99, 46, 98, 
+                        117, 104, 116, 105, 103, 47, 58, 115, 112, 116, 116, 104
                     )
                 )
 
@@ -208,14 +205,11 @@ class HomeRootSection : Routes.Route() {
                     size = 36.dp,
                     modifier = Modifier.offset(y = (-2).dp),
                     imageVector = Icons.AutoMirrored.Default.Help,
-                    // https://github.com/rhunk/SnapEnhance/wiki
+                    // https://github.com/bocajthomas/SE-Extended/wiki
                     dataArray = intArrayOf(
-                        0xe4f8b4b, 0xe4f8b49, 0xe4f8b4b, 0xe4f8b55, 0xe4f8b0d, 0xe4f8b47, 0xe4f8b41,
-                        0xe4f8b4e, 0xe4f8b43, 0xe4f8b4c, 0xe4f8b4e, 0xe4f8b67, 0xe4f8b54, 0xe4f8b43,
-                        0xe4f8b4e, 0xe4f8b71, 0xe4f8b0d, 0xe4f8b49, 0xe4f8b4e, 0xe4f8b57, 0xe4f8b4c,
-                        0xe4f8b52, 0xe4f8b0d, 0xe4f8b4f, 0xe4f8b4d, 0xe4f8b41, 0xe4f8b0e, 0xe4f8b42,
-                        0xe4f8b57, 0xe4f8b4c, 0xe4f8b58, 0xe4f8b4b, 0xe4f8b45, 0xe4f8b0d, 0xe4f8b0d,
-                        0xe4f8b1a, 0xe4f8b51, 0xe4f8b54, 0xe4f8b58, 0xe4f8b58, 0xe4f8b4c
+                        105, 107, 105, 119, 47, 100, 101, 100, 110, 101, 116, 120, 69, 45, 69, 83, 47, 
+                        115, 97, 109, 111, 104, 116, 106, 97, 99, 111, 98, 47, 109, 111, 99, 46, 98, 
+                        117, 104, 116, 105, 103, 47, 58, 115, 112, 116, 116, 104   
                     )
                 )
             }
@@ -311,7 +305,7 @@ class HomeRootSection : Routes.Route() {
                                     context.activity?.startActivity(
                                         Intent(Intent.ACTION_VIEW).apply {
                                             data = Uri.parse(
-                                                "https://github.com/rhunk/SnapEnhance/commit/${it.item}"
+                                                "https://github.com/bocajthomas/SE-Extended/commit/${it.item}"
                                             )
                                         })
                                 }
