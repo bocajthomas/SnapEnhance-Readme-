@@ -6,8 +6,8 @@ plugins {
     alias(libs.plugins.compose.compiler) apply false
 }
 
-var versionName = "2.1.0"
-var versionCode = 210
+var versionName = "1.0.0"
+var versionCode = 100
 
 rootProject.ext.set("appVersionName", versionName)
 rootProject.ext.set("appVersionCode", versionCode)

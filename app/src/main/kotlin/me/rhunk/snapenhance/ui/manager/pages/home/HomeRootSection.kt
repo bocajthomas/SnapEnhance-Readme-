@@ -98,6 +98,7 @@ class HomeRootSection : Routes.Route() {
         }
     }
 
+
      private fun openLink(link: String) {
         kotlin.runCatching {
             context.activity?.startActivity(Intent(Intent.ACTION_VIEW).apply {
@@ -149,9 +150,9 @@ class HomeRootSection : Routes.Route() {
     @OptIn(ExperimentalLayoutApi::class)
     override val content: @Composable (NavBackStackEntry) -> Unit = {
          val avenirNextFontFamily = remember {
-            FontFamily(
+             FontFamily(
                 Font(R.font.avenir_next_medium, FontWeight.Medium)
-            )
+             )
         }
          
         Column(
