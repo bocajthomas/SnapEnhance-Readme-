@@ -9,7 +9,7 @@ body:
     id: description
     attributes:
       label: "Description"
-      description: Please input your theme, Include the hex color code, Change the Info above. 
+      description: Please input your theme, Include the hex color code, Change the Info below. 
       value: |
         Name: Magical Green
         Main Text Color: #FF17FF00 
