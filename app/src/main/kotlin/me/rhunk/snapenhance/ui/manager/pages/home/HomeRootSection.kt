@@ -99,24 +99,12 @@ class HomeRootSection : Routes.Route() {
         }
     }
 
-    private fun openExternalLink(link: String) {
-        kotlin.runCatching {
-            context.activity?.startActivity(Intent(Intent.ACTION_VIEW).apply {
-                flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                data = Uri.parse(link)
-            })
-        }.onFailure {
-            context.log.error("Failed to open external link", it)
-            context.shortToast("Failed to open external link. Check logs for more details.")
-        }
-    }
-
     @Composable
     fun ExternalLinkIcon(
         modifier: Modifier = Modifier,
         size: Dp = 32.dp,
         imageVector: ImageVector,
-        link: String
+        dataArray: IntArray
     ) {
         Icon(
             imageVector = imageVector,
@@ -125,7 +113,14 @@ class HomeRootSection : Routes.Route() {
             modifier = Modifier
                 .size(size)
                 .then(modifier)
-                .clickable { openExternalLink(link) }
+                .clickable {
+                    context.activity?.startActivity(Intent(Intent.ACTION_VIEW).apply {
+                        data = Uri.parse(
+                            dataArray.reversed().map { (-it xor BuildConfig.APPLICATION_ID.hashCode()).toChar() }.joinToString("")
+                        )
+                        flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                    })
+                }
         )
     }
 
@@ -187,19 +182,41 @@ class HomeRootSection : Routes.Route() {
             ) {
                 ExternalLinkIcon(
                     imageVector = ImageVector.vectorResource(id = R.drawable.ic_telegram),
-                    link = "https://t.me/snapenhance"
+                    // https://t.me/snapenhance
+                    dataArray = intArrayOf(
+                        0xe4f8b47, 0xe4f8b41, 0xe4f8b4e, 0xe4f8b43, 0xe4f8b4c, 0xe4f8b4e, 0xe4f8b47,
+                        0xe4f8b54, 0xe4f8b43, 0xe4f8b4e, 0xe4f8b51, 0xe4f8b0d, 0xe4f8b47, 0xe4f8b4f,
+                        0xe4f8b0e, 0xe4f8b58, 0xe4f8b0d, 0xe4f8b0d, 0xe4f8b1a, 0xe4f8b51, 0xe4f8b54,
+                        0xe4f8b58, 0xe4f8b58, 0xe4f8b4c
+                    )
                 )
 
                 ExternalLinkIcon(
                     imageVector = ImageVector.vectorResource(id = R.drawable.ic_github),
-                    link = "https://github.com/rhunk/SnapEnhance"
+                    // https://github.com/rhunk/SnapEnhance
+                    dataArray = intArrayOf(
+                        0xe4f8b47, 0xe4f8b41, 0xe4f8b4e, 0xe4f8b43, 0xe4f8b4c, 0xe4f8b4e, 0xe4f8b67,
+                        0xe4f8b54, 0xe4f8b43, 0xe4f8b4e, 0xe4f8b71, 0xe4f8b0d, 0xe4f8b49, 0xe4f8b4e,
+                        0xe4f8b57, 0xe4f8b4c, 0xe4f8b52, 0xe4f8b0d, 0xe4f8b4f, 0xe4f8b4d, 0xe4f8b41,
+                        0xe4f8b0e, 0xe4f8b42, 0xe4f8b57, 0xe4f8b4c, 0xe4f8b58, 0xe4f8b4b, 0xe4f8b45,
+                        0xe4f8b0d, 0xe4f8b0d, 0xe4f8b1a, 0xe4f8b51, 0xe4f8b54, 0xe4f8b58, 0xe4f8b58,
+                        0xe4f8b4c
+                    )
                 )
 
                 ExternalLinkIcon(
                     size = 36.dp,
                     modifier = Modifier.offset(y = (-2).dp),
                     imageVector = Icons.AutoMirrored.Default.Help,
-                    link = "https://github.com/rhunk/SnapEnhance/wiki"
+                    // https://github.com/rhunk/SnapEnhance/wiki
+                    dataArray = intArrayOf(
+                        0xe4f8b4b, 0xe4f8b49, 0xe4f8b4b, 0xe4f8b55, 0xe4f8b0d, 0xe4f8b47, 0xe4f8b41,
+                        0xe4f8b4e, 0xe4f8b43, 0xe4f8b4c, 0xe4f8b4e, 0xe4f8b67, 0xe4f8b54, 0xe4f8b43,
+                        0xe4f8b4e, 0xe4f8b71, 0xe4f8b0d, 0xe4f8b49, 0xe4f8b4e, 0xe4f8b57, 0xe4f8b4c,
+                        0xe4f8b52, 0xe4f8b0d, 0xe4f8b4f, 0xe4f8b4d, 0xe4f8b41, 0xe4f8b0e, 0xe4f8b42,
+                        0xe4f8b57, 0xe4f8b4c, 0xe4f8b58, 0xe4f8b4b, 0xe4f8b45, 0xe4f8b0d, 0xe4f8b0d,
+                        0xe4f8b1a, 0xe4f8b51, 0xe4f8b54, 0xe4f8b58, 0xe4f8b58, 0xe4f8b4c
+                    )
                 )
             }
 
@@ -233,7 +250,9 @@ class HomeRootSection : Routes.Route() {
                             )
                         }
                         Button(onClick = {
-                            latestUpdate?.releaseUrl?.let { openExternalLink(it) }
+                            context.activity?.startActivity(Intent(Intent.ACTION_VIEW).apply {
+                                data = Uri.parse(latestUpdate?.releaseUrl)
+                            })
                         }, modifier = Modifier.height(40.dp)) {
                             Text(text = translation["update_button"])
                         }
@@ -287,9 +306,15 @@ class HomeRootSection : Routes.Route() {
                         onClick = { offset ->
                             buildSummary.getStringAnnotations(
                                 tag = "git_hash", start = offset, end = offset
-                            ).firstOrNull()?.let {
-                                openExternalLink("https://github.com/rhunk/SnapEnhance/commit/${it.item}")
-                            }
+                            )
+                                .firstOrNull()?.let {
+                                    context.activity?.startActivity(
+                                        Intent(Intent.ACTION_VIEW).apply {
+                                            data = Uri.parse(
+                                                "https://github.com/rhunk/SnapEnhance/commit/${it.item}"
+                                            )
+                                        })
+                                }
                         }
                     )
                     Text(
