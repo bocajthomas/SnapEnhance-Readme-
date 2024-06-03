@@ -39,7 +39,6 @@ import me.rhunk.snapenhance.common.Constants
 import me.rhunk.snapenhance.common.action.EnumAction
 import me.rhunk.snapenhance.common.ui.rememberAsyncMutableState
 import me.rhunk.snapenhance.common.ui.rememberAsyncMutableStateList
-import me.rhunk.snapenhance.core.ui.Snapenhance
 import me.rhunk.snapenhance.storage.getQuickTiles
 import me.rhunk.snapenhance.storage.setQuickTiles
 import me.rhunk.snapenhance.ui.manager.Routes
@@ -99,12 +98,24 @@ class HomeRootSection : Routes.Route() {
         }
     }
 
+     private fun openLink(link: String) {
+        kotlin.runCatching {
+            context.activity?.startActivity(Intent(Intent.ACTION_VIEW).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                data = Uri.parse(link)
+            })
+        }.onFailure {
+            context.log.error("Couldn't open link", it)
+            context.shortToast("Couldn't open link. Check SE Extended logs for more details.")
+        }
+    }
+
     @Composable
     fun ExternalLinkIcon(
         modifier: Modifier = Modifier,
         size: Dp = 32.dp,
         imageVector: ImageVector,
-        dataArray: IntArray
+        link: String
     ) {
         Icon(
             imageVector = imageVector,
@@ -113,17 +124,9 @@ class HomeRootSection : Routes.Route() {
             modifier = Modifier
                 .size(size)
                 .then(modifier)
-                .clickable {
-                    context.activity?.startActivity(Intent(Intent.ACTION_VIEW).apply {
-                        data = Uri.parse(
-                            dataArray.reversed().map { (-it xor BuildConfig.APPLICATION_ID.hashCode()).toChar() }.joinToString("")
-                        )
-                        flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                    })
-                }
+                .clickable { openLink(link) }
         )
     }
-
 
     override val init: () -> Unit = {
         activityLauncherHelper = ActivityLauncherHelper(context.activity!!)
@@ -148,17 +151,19 @@ class HomeRootSection : Routes.Route() {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .verticalScroll(rememberScrollState())
+                .verticalScroll(ScrollState(0))
         ) {
-            Icon(
-                imageVector = Snapenhance, contentDescription = null,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(all = 8.dp)
-                    .align(Alignment.CenterHorizontally),
-                tint = MaterialTheme.colorScheme.onSurfaceVariant,
+            Text(
+                text = remember {
+                    intArrayOf(
+                        100, 101, 100, 110, 101, 116, 120, 69, 32, 69, 83
+                    ).map { it.toChar() }.joinToString("").reversed()
+                },
+                fontSize = 30.sp,
+                fontFamily = avenirNextFontFamily,
+                modifier = Modifier.align(Alignment.CenterHorizontally),
             )
-
+           
             Text(
                 text = translation.format(
                     "version_title",
@@ -182,41 +187,19 @@ class HomeRootSection : Routes.Route() {
             ) {
                 ExternalLinkIcon(
                     imageVector = ImageVector.vectorResource(id = R.drawable.ic_telegram),
-                    // https://t.me/snapenhance
-                    dataArray = intArrayOf(
-                        0xe4f8b47, 0xe4f8b41, 0xe4f8b4e, 0xe4f8b43, 0xe4f8b4c, 0xe4f8b4e, 0xe4f8b47,
-                        0xe4f8b54, 0xe4f8b43, 0xe4f8b4e, 0xe4f8b51, 0xe4f8b0d, 0xe4f8b47, 0xe4f8b4f,
-                        0xe4f8b0e, 0xe4f8b58, 0xe4f8b0d, 0xe4f8b0d, 0xe4f8b1a, 0xe4f8b51, 0xe4f8b54,
-                        0xe4f8b58, 0xe4f8b58, 0xe4f8b4c
-                    )
+                    link = "https://t.me/SE_Extended"
                 )
 
                 ExternalLinkIcon(
                     imageVector = ImageVector.vectorResource(id = R.drawable.ic_github),
-                    // https://github.com/rhunk/SnapEnhance
-                    dataArray = intArrayOf(
-                        0xe4f8b47, 0xe4f8b41, 0xe4f8b4e, 0xe4f8b43, 0xe4f8b4c, 0xe4f8b4e, 0xe4f8b67,
-                        0xe4f8b54, 0xe4f8b43, 0xe4f8b4e, 0xe4f8b71, 0xe4f8b0d, 0xe4f8b49, 0xe4f8b4e,
-                        0xe4f8b57, 0xe4f8b4c, 0xe4f8b52, 0xe4f8b0d, 0xe4f8b4f, 0xe4f8b4d, 0xe4f8b41,
-                        0xe4f8b0e, 0xe4f8b42, 0xe4f8b57, 0xe4f8b4c, 0xe4f8b58, 0xe4f8b4b, 0xe4f8b45,
-                        0xe4f8b0d, 0xe4f8b0d, 0xe4f8b1a, 0xe4f8b51, 0xe4f8b54, 0xe4f8b58, 0xe4f8b58,
-                        0xe4f8b4c
-                    )
+                    link = "https://github.com/bocajthomas/SE-Extended"
                 )
 
                 ExternalLinkIcon(
                     size = 36.dp,
                     modifier = Modifier.offset(y = (-2).dp),
                     imageVector = Icons.AutoMirrored.Default.Help,
-                    // https://github.com/rhunk/SnapEnhance/wiki
-                    dataArray = intArrayOf(
-                        0xe4f8b4b, 0xe4f8b49, 0xe4f8b4b, 0xe4f8b55, 0xe4f8b0d, 0xe4f8b47, 0xe4f8b41,
-                        0xe4f8b4e, 0xe4f8b43, 0xe4f8b4c, 0xe4f8b4e, 0xe4f8b67, 0xe4f8b54, 0xe4f8b43,
-                        0xe4f8b4e, 0xe4f8b71, 0xe4f8b0d, 0xe4f8b49, 0xe4f8b4e, 0xe4f8b57, 0xe4f8b4c,
-                        0xe4f8b52, 0xe4f8b0d, 0xe4f8b4f, 0xe4f8b4d, 0xe4f8b41, 0xe4f8b0e, 0xe4f8b42,
-                        0xe4f8b57, 0xe4f8b4c, 0xe4f8b58, 0xe4f8b4b, 0xe4f8b45, 0xe4f8b0d, 0xe4f8b0d,
-                        0xe4f8b1a, 0xe4f8b51, 0xe4f8b54, 0xe4f8b58, 0xe4f8b58, 0xe4f8b4c
-                    )
+                    link = "https://github.com/bocajthomas/SE-Extended/wiki"
                 )
             }
 
@@ -311,7 +294,7 @@ class HomeRootSection : Routes.Route() {
                                     context.activity?.startActivity(
                                         Intent(Intent.ACTION_VIEW).apply {
                                             data = Uri.parse(
-                                                "https://github.com/rhunk/SnapEnhance/commit/${it.item}"
+                                                "https://github.com/bocajthomas/SE-Extended/commit/${it.item}"
                                             )
                                         })
                                 }
