@@ -2,7 +2,7 @@ name: "Theme Picker Theme"
 description: Summit a Theme For the Theme Picker
 title: "Name of theme"
 labels: [
-  "enhancement"
+  "Theme"
 ]
 body:
   - type: textarea
