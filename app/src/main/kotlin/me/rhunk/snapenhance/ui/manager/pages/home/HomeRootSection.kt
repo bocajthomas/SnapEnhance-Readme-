@@ -39,7 +39,6 @@ import me.rhunk.snapenhance.common.Constants
 import me.rhunk.snapenhance.common.action.EnumAction
 import me.rhunk.snapenhance.common.ui.rememberAsyncMutableState
 import me.rhunk.snapenhance.common.ui.rememberAsyncMutableStateList
-import me.rhunk.snapenhance.core.ui.Seextended
 import me.rhunk.snapenhance.storage.getQuickTiles
 import me.rhunk.snapenhance.storage.setQuickTiles
 import me.rhunk.snapenhance.ui.manager.Routes
@@ -99,12 +98,24 @@ class HomeRootSection : Routes.Route() {
         }
     }
 
+     private fun openLink(link: String) {
+        kotlin.runCatching {
+            context.activity?.startActivity(Intent(Intent.ACTION_VIEW).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                data = Uri.parse(link)
+            })
+        }.onFailure {
+            context.log.error("Couldn't open link", it)
+            context.shortToast("Couldn't open link. Check SE Extended logs for more details.")
+        }
+    }
+
     @Composable
     fun ExternalLinkIcon(
         modifier: Modifier = Modifier,
         size: Dp = 32.dp,
         imageVector: ImageVector,
-        dataArray: IntArray
+        link: String
     ) {
         Icon(
             imageVector = imageVector,
@@ -113,17 +124,7 @@ class HomeRootSection : Routes.Route() {
             modifier = Modifier
                 .size(size)
                 .then(modifier)
-                .clickable {
-                    context.activity?.startActivity(Intent(Intent.ACTION_VIEW).apply {
-                        data = Uri.parse(
-                            dataArray
-                                .map { it.toChar() }
-                                .joinToString("")
-                                .reversed()
-                        )
-                        flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                    })
-                }
+                .clickable { openLink(link) }
         )
     }
 
@@ -150,17 +151,19 @@ class HomeRootSection : Routes.Route() {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .verticalScroll(rememberScrollState())
+                .verticalScroll(ScrollState(0))
         ) {
-            Icon(
-                imageVector = Seextended, contentDescription = null,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(all = 8.dp)
-                    .align(Alignment.CenterHorizontally),
-                tint = MaterialTheme.colorScheme.onSurfaceVariant,
+            Text(
+                text = remember {
+                    intArrayOf(
+                        100, 101, 100, 110, 101, 116, 120, 69, 32, 69, 83
+                    ).map { it.toChar() }.joinToString("").reversed()
+                },
+                fontSize = 30.sp,
+                fontFamily = avenirNextFontFamily,
+                modifier = Modifier.align(Alignment.CenterHorizontally),
             )
-
+           
             Text(
                 text = translation.format(
                     "version_title",
@@ -184,33 +187,19 @@ class HomeRootSection : Routes.Route() {
             ) {
                 ExternalLinkIcon(
                     imageVector = ImageVector.vectorResource(id = R.drawable.ic_telegram),
-                    // https://t.me/SE_Extended
-                    dataArray = intArrayOf(
-                        100, 101, 100, 110, 101, 116, 120, 69, 95, 69, 83, 47, 101, 
-                        109, 46, 116, 47, 47, 58, 115, 112, 116, 116, 104
-                    )
+                    link = "https://t.me/SE_Extended"
                 )
 
                 ExternalLinkIcon(
                     imageVector = ImageVector.vectorResource(id = R.drawable.ic_github),
-                    // https://github.com/bocajthomas/SE-Extended
-                    dataArray = intArrayOf(
-                        100, 101, 100, 110, 101, 116, 120, 69, 45, 69, 83, 47, 115, 97, 109, 
-                        111, 104, 116, 106, 97, 99, 111, 98, 47, 109, 111, 99, 46, 98, 
-                        117, 104, 116, 105, 103, 47, 58, 115, 112, 116, 116, 104
-                    )
+                    link = "https://github.com/bocajthomas/SE-Extended"
                 )
 
                 ExternalLinkIcon(
                     size = 36.dp,
                     modifier = Modifier.offset(y = (-2).dp),
                     imageVector = Icons.AutoMirrored.Default.Help,
-                    // https://github.com/bocajthomas/SE-Extended/wiki
-                    dataArray = intArrayOf(
-                        105, 107, 105, 119, 47, 100, 101, 100, 110, 101, 116, 120, 69, 45, 69, 83, 47, 
-                        115, 97, 109, 111, 104, 116, 106, 97, 99, 111, 98, 47, 109, 111, 99, 46, 98, 
-                        117, 104, 116, 105, 103, 47, 58, 115, 112, 116, 116, 104   
-                    )
+                    link = "https://github.com/bocajthomas/SE-Extended/wiki"
                 )
             }
 
