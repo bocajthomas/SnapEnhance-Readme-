@@ -6,7 +6,7 @@ SE Extended is a fork from the [SnapEnhance app](https://github.com/rhunk/SnapEn
 Please note that this project is currently in development, so bugs and crashes may occur. If you encounter any issues, we encourage you to report them. To do this simply visit our [issues](https://github.com/bocajthomas/SE-Extended/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml&title=...) page and create an issue, make sure to follow the guidelines.
 </div>
 
-## 📱Screenshots
+## 📱 Screenshots
 <div align="center">
 <div>
 <img src="images/screenshots/Screenshot-1.jpg" width="30%" />
@@ -18,9 +18,9 @@ Please note that this project is currently in development, so bugs and crashes m
 </div>
 </div>
 
-## 📖Main Features
+## 📖 Main Features
 <details closed>
-  <summary>⬇️Media Downloader</summary>
+  <summary>⬇️ Media Downloader</summary>
   
   - `Save Folder`
   - `Auto Download Sources`
@@ -39,7 +39,7 @@ Please note that this project is currently in development, so bugs and crashes m
 </details>
 
 <details closed>
-  <summary>📲User Interface</summary>
+  <summary>📲 User Interface</summary>
   
   - `Friend Feed Menu Buttons` 
   - `Colors` (Theme Picker & Custom Colors)
@@ -65,7 +65,7 @@ Please note that this project is currently in development, so bugs and crashes m
 </details>  
 
 <details closed>
-  <summary>💬Messaging</summary>
+  <summary>💬 Messaging</summary>
   
   - `Bypass Screenshot Detection` 
   - `Anonymous Story Viewing`
@@ -95,7 +95,7 @@ Please note that this project is currently in development, so bugs and crashes m
  </details>
 
 <details closed>
-  <summary>🌎Global</summary>
+  <summary>🌎 Global</summary>
  
   - `Better Location`
   - `Snapchat Plus`
@@ -118,7 +118,7 @@ Please note that this project is currently in development, so bugs and crashes m
 </details>
 
 <details closed>
-  <summary>📜Rules</summary>
+  <summary>📜 Rules</summary>
 
   - `Stealth Mode`
   - `Auto Download`
@@ -128,7 +128,7 @@ Please note that this project is currently in development, so bugs and crashes m
 </details>
 
 <details closed>
-  <summary>📷Camera</summary>
+  <summary>📷 Camera</summary>
   
   - `Disable Camera`
   - `Immersive Preview`
@@ -141,7 +141,7 @@ Please note that this project is currently in development, so bugs and crashes m
 </details>
 
 <details closed>
-<summary>⌛Streaks Reminder</summary>
+<summary>⌛ Streaks Reminder</summary>
   
   - `Interval`
   - `Remaining Time`
@@ -149,7 +149,7 @@ Please note that this project is currently in development, so bugs and crashes m
 </details>
 
 <details closed>
-  <summary>🧪Experimental</summary>
+  <summary>🧪 Experimental</summary>
   
   - `Native Hooks` (Custom Emoji Fonts, etc) 
   - `Device Spoof`
@@ -173,7 +173,7 @@ Please note that this project is currently in development, so bugs and crashes m
 </details>
 
 <details closed>
-<summary>📄Scripting</summary>
+<summary>📄 Scripting</summary>
 
   - `Developer Mode`
   - `Module Folder`
@@ -183,7 +183,7 @@ Please note that this project is currently in development, so bugs and crashes m
 </details>
 
 <details closed>
-<summary>👥Friend Tracker</summary>
+<summary>👥 Friend Tracker</summary>
 
   - `Record Messaging Events`
   - `Allow Running In Background`
@@ -194,19 +194,19 @@ Please note that this project is currently in development, so bugs and crashes m
 To Download the latest stable release, please visit the [Releases](https://github.com/bocajthomas/SE-Extended/releases) page.<br/>
 You can also download the latest debug build from the [Actions](https://github.com/bocajthomas/SE-Extended/actions/workflows/debug.yml) section.<br/>
 
-## ❓FAQ
+## ❓️FAQ
 You can view the FAQ [here](https://github.com/bocajthomas/SE-Extended/wiki/FAQ)
 
-## 💬Contact 
+## 💬 Contact 
 Join our [Telegram Channel](https://t.me/SE_Extended) for Discussions, announcements, and releases!
 
-## 💵Donate
+## 💵 Donate
 SE Extended will always be free and open source for everyone, If you like it consider [Donating](https://www.paypal.me/Jhuddz00)
 
-## 🤝Contributing 
+## 🤝 Contributing 
 Contribuions are welcome!
 
-## ⭐Star History
+## ⭐ Star History
 <a href="https://star-history.com/#bocajthomas/SE-Extended&Date">
  <picture>
    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=bocajthomas/SE-Extended&type=Date&theme=dark" />
@@ -215,7 +215,7 @@ Contribuions are welcome!
  </picture>
 </a>
 
-## 🔒Privacy
+## 🔒 Privacy
 We do not collect any user information. However, Please be aware that third-party libraries may collect data as described in their respective privacy policies.
 <details>
   <summary>Permissions</summary>
@@ -227,7 +227,7 @@ We do not collect any user information. However, Please be aware that third-part
   - [android.permission.USE_BIOMETRIC](https://developer.android.com/reference/android/Manifest.permission#USE_BIOMETRIC)
 </details>
 
-## 🙏Credits 
+## 🙏 Credits 
 SE Extended Uses Some Third-party libraries, These Include 
   
   - [libxposed](https://github.com/libxposed/api)
@@ -240,5 +240,5 @@ SE Extended Uses Some Third-party libraries, These Include
   - [libsu](https://github.com/topjohnwu/libsu)
   - [colorpicker-compose](https://github.com/skydoves/colorpicker-compose)
 
-## 📃License
+## 📃 License
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-black.svg)](https://www.gnu.org/licenses/gpl-3.0) [![License](https://img.shields.io/badge/License-Apache_2.0-black.svg)](https://opensource.org/licenses/Apache-2.0) 
