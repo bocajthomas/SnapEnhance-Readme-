@@ -44,9 +44,14 @@
         },
         "sections": {
             "home": {
+                "version_title": "V{versionName} · Forked by Jacob",
                 "update_title": "SE Extended Update",
                 "update_content": "Version {version} is available!",
-                "update_button": "Download"
+                "update_button": "Download",
+                "debug_build_summary_title": "You are running a debug build of SE Extended",
+                "debug_build_summary_content": "Version {versionName} ({versionCode})",
+                "debug_build_summary_date": "Build date: {date} ({days} days ago)",
+                "quick_actions_title": "Quick Actions"
             },
             "home_logs": {
                 "no_logs_hint": "No logs available",
@@ -283,6 +288,18 @@
         "change_language": {
             "name": "Change Language",
             "description": "Change the language of SE Extended"
+        },
+        "file_imports": {
+            "name": "File Imports",
+            "description": "Import files for use in Snapchat"
+        },
+        "friend_tracker": {
+            "name": "Friend Tracker",
+            "description": "Track your friends on Snapchat"
+        },
+        "logger_history": {
+            "name": "Logger History",
+            "description": "View the history of logged messages"
         }
     },
 
@@ -528,7 +545,7 @@
                     },
                     "hide_settings_gear": {
                         "name": "Hide Settings Gear",
-                        "description": "Hides the SE Extended Settings Gear in friend feed"
+                        "description": "Hides the SnapEnhance Settings Gear in friend feed"
                     },
                     "friend_feed_menu_buttons": {
                         "name": "Friend Feed Menu Buttons",
@@ -822,7 +839,7 @@
                     },
                     "spotlight_comments_username": {
                         "name": "Spotlight Comments Username",
-                        "description": "Shows authors username in Spotlight comments"
+                        "description": "Shows author username in Spotlight comments"
                     },
                     "bypass_video_length_restriction": {
                         "name": "Bypass Video Length Restrictions",
@@ -944,11 +961,11 @@
                                     },
                                     "composer_console": {
                                         "name": "Composer Console",
-                                        "description": "Allows you to execute JavaScript code in Composer (arm64 only)"
+                                        "description": "Allows you to execute JavaScript code in Composer (ARM64 only)"
                                     },
                                     "composer_logs": {
                                         "name": "Composer Logs",
-                                        "description": "Redirects console logs of Composer to SnapEnhance"
+                                        "description": "Redirects console logs of Composer to SE Extended"
                                     }
                                 }
                             },

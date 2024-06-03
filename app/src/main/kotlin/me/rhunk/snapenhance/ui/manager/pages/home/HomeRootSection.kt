@@ -9,7 +9,9 @@ import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Help
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.filled.BugReport
+import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -31,6 +33,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavBackStackEntry
 import kotlinx.coroutines.launch
 import me.rhunk.snapenhance.R
+import me.rhunk.snapenhance.action.EnumQuickActions
 import me.rhunk.snapenhance.common.BuildConfig
 import me.rhunk.snapenhance.common.Constants
 import me.rhunk.snapenhance.common.action.EnumAction
@@ -43,7 +46,7 @@ import me.rhunk.snapenhance.ui.manager.data.Updater
 import me.rhunk.snapenhance.ui.util.ActivityLauncherHelper
 import java.text.DateFormat
 
-class HomeRoot : Routes.Route() {
+class HomeRootSection : Routes.Route() {
     companion object {
         val cardMargin = 10.dp
     }
@@ -51,74 +54,25 @@ class HomeRoot : Routes.Route() {
     private lateinit var activityLauncherHelper: ActivityLauncherHelper
 
     private fun launchActionIntent(action: EnumAction) {
-        val intent = context.androidContext.packageManager.getLaunchIntentForPackage(Constants.SNAPCHAT_PACKAGE_NAME)
+        val intent = context.androidContext.packageManager.getLaunchIntentForPackage(
+            Constants.SNAPCHAT_PACKAGE_NAME
+        )
         intent?.putExtra(EnumAction.ACTION_PARAMETER, action.key)
         context.androidContext.startActivity(intent)
     }
 
     private val cards by lazy {
-        mapOf(
-            ("File Imports" to Icons.Default.FolderOpen) to {
-                routes.fileImports.navigateReset()
-            },
-            ("Friend Tracker" to Icons.Default.PersonSearch) to {
-                routes.friendTracker.navigateReset()
-            },
-            ("Logger History" to Icons.Default.History) to {
-                routes.loggerHistory.navigateReset()
-            },
-        ).toMutableMap().apply {
+        EnumQuickActions.entries.map {
+            (context.translation["actions.${it.key}.name"] to it.icon) to it.action
+        }.associate {
+            it.first to it.second
+        }.toMutableMap().apply {
             EnumAction.entries.forEach { action ->
                 this[context.translation["actions.${action.key}.name"] to action.icon] = {
                     launchActionIntent(action)
                 }
             }
         }
-    }
-
-    override val init: () -> Unit = {
-        activityLauncherHelper = ActivityLauncherHelper(context.activity !!)
-    }
-
-    override val topBarActions: @Composable (RowScope.() -> Unit) = {
-        IconButton(onClick = {
-            routes.homeLogs.navigate()
-        }) {
-            Icon(Icons.Filled.BugReport, contentDescription = null)
-        }
-        IconButton(onClick = {
-            routes.settings.navigate()
-        }) {
-            Icon(Icons.Filled.Settings, contentDescription = null)
-        }
-    }
-
-    @Composable
-    fun LinkIcon(
-        modifier: Modifier = Modifier,
-        size: Dp = 32.dp,
-        imageVector: ImageVector,
-        dataArray: IntArray
-    ) {
-        Icon(
-            imageVector = imageVector,
-            contentDescription = null,
-            tint = MaterialTheme.colorScheme.onSurfaceVariant,
-            modifier = Modifier
-                .size(size)
-                .then(modifier)
-                .clickable {
-                    context.activity?.startActivity(Intent(Intent.ACTION_VIEW).apply {
-                        data = Uri.parse(
-                            dataArray
-                                .map { it.toChar() }
-                                .joinToString("")
-                                .reversed()
-                        )
-                        flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                    })
-                }
-        )
     }
 
     @Composable
@@ -144,8 +98,55 @@ class HomeRoot : Routes.Route() {
         }
     }
 
+    private fun openLink(link: String) {
+        kotlin.runCatching {
+            context.activity?.startActivity(Intent(Intent.ACTION_VIEW).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                data = Uri.parse(link)
+            })
+        }.onFailure {
+            context.log.error("Couldn't open link", it)
+            context.shortToast("Couldn't open link. Check SE Extended logs for more details.")
+        }
+    }
 
-    @OptIn(ExperimentalLayoutApi::class, ExperimentalMaterial3Api::class)
+    @Composable
+    fun ExternalLinkIcon(
+        modifier: Modifier = Modifier,
+        size: Dp = 32.dp,
+        imageVector: ImageVector,
+        link: String
+    ) {
+        Icon(
+            imageVector = imageVector,
+            contentDescription = null,
+            tint = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier
+                .size(size)
+                .then(modifier)
+                .clickable { openLink(link) }
+        )
+    }
+
+    override val init: () -> Unit = {
+        activityLauncherHelper = ActivityLauncherHelper(context.activity!!)
+    }
+
+    override val topBarActions: @Composable (RowScope.() -> Unit) = {
+        IconButton(onClick = {
+            routes.homeLogs.navigate()
+        }) {
+            Icon(Icons.Filled.BugReport, contentDescription = null)
+        }
+        IconButton(onClick = {
+            routes.settings.navigate()
+        }) {
+            Icon(Icons.Filled.Settings, contentDescription = null)
+        }
+    }
+
+
+    @OptIn(ExperimentalLayoutApi::class)
     override val content: @Composable (NavBackStackEntry) -> Unit = {
         val avenirNextFontFamily = remember {
             FontFamily(
@@ -161,7 +162,7 @@ class HomeRoot : Routes.Route() {
             Text(
                 text = remember {
                     intArrayOf(
-                        101, 99, 110, 97, 104, 110, 69, 112, 97, 110, 83
+                        100, 101, 100, 110, 101, 116, 120, 69, 32, 69, 83
                     ).map { it.toChar() }.joinToString("").reversed()
                 },
                 fontSize = 30.sp,
@@ -170,9 +171,16 @@ class HomeRoot : Routes.Route() {
             )
 
             Text(
-                text = "v" + BuildConfig.VERSION_NAME + " \u00b7 by rhunk",
+                text = translation.format(
+                    "version_title",
+                    "versionName" to BuildConfig.VERSION_NAME
+                ),
                 fontSize = 12.sp,
-                fontFamily = avenirNextFontFamily,
+                fontFamily = remember {
+                    FontFamily(
+                        Font(R.font.avenir_next_medium, FontWeight.Medium)
+                    )
+                },
                 modifier = Modifier.align(Alignment.CenterHorizontally),
             )
 
@@ -183,32 +191,21 @@ class HomeRoot : Routes.Route() {
                     .fillMaxWidth()
                     .padding(all = 10.dp)
             ) {
-                LinkIcon(
-                    imageVector = ImageVector.vectorResource(id = R.drawable.ic_github),
-                    dataArray = intArrayOf(
-                        101, 99, 110, 97, 104, 110, 69, 112, 97, 110, 83, 47, 107, 110,
-                        117, 104, 114, 47, 109, 111, 99, 46, 98, 117, 104, 116, 105,
-                        103, 47, 58, 115, 112, 116, 116, 104
-                    )
-                )
-
-                LinkIcon(
+                ExternalLinkIcon(
                     imageVector = ImageVector.vectorResource(id = R.drawable.ic_telegram),
-                    dataArray = intArrayOf(
-                        101, 99, 110, 97, 104, 110, 101, 112, 97, 110, 115, 47, 101,
-                        109, 46, 116, 47, 47, 58, 115, 112, 116, 116, 104
-                    )
+                    link = "https://t.me/SE_Extended"
                 )
 
-                LinkIcon(
+                ExternalLinkIcon(
+                    imageVector = ImageVector.vectorResource(id = R.drawable.ic_github),
+                    link = "https://github.com/bocajthomas/SE-Extended"
+                )
+
+                ExternalLinkIcon(
                     size = 36.dp,
                     modifier = Modifier.offset(y = (-2).dp),
                     imageVector = Icons.AutoMirrored.Default.Help,
-                    dataArray = intArrayOf(
-                        105, 107, 105, 119, 47, 101, 99, 110, 97, 104, 110, 69, 112, 97,
-                        110, 83, 47, 107, 110, 117, 104, 114, 47, 109, 111, 99, 46, 98,
-                        117, 104, 116, 105, 103, 47, 47, 58, 115, 112, 116, 116, 104
-                    )
+                    link = "https://github.com/bocajthomas/SE-Extended/wiki"
                 )
             }
 
@@ -256,23 +253,39 @@ class HomeRoot : Routes.Route() {
                 Spacer(modifier = Modifier.height(10.dp))
                 InfoCard {
                     Text(
-                        text = "You are running a debug build of SnapEnhance",
+                        text = translation["debug_build_summary_title"],
                         fontSize = 14.sp,
                         fontWeight = FontWeight.Bold,
                     )
                     val buildSummary = buildAnnotatedString {
-                        withStyle(style = SpanStyle(fontSize = 13.sp, color = MaterialTheme.colorScheme.onSurfaceVariant, fontWeight = FontWeight.Light)) {
-                            append("Version ")
-                            append(BuildConfig.VERSION_NAME)
-                            append(" (")
-                            append(BuildConfig.VERSION_CODE.toString())
-                            append(") - ")
+                        withStyle(
+                            style = SpanStyle(
+                                fontSize = 13.sp,
+                                color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                fontWeight = FontWeight.Light
+                            )
+                        ) {
+                            append(
+                                remember {
+                                    translation.format(
+                                        "debug_build_summary_content",
+                                        "versionName" to BuildConfig.VERSION_NAME,
+                                        "versionCode" to BuildConfig.VERSION_CODE.toString(),
+                                    )
+                                }
+                            )
+                            append(" - ")
                         }
                         pushStringAnnotation(
                             tag = "git_hash",
                             annotation = BuildConfig.GIT_HASH
                         )
-                        withStyle(style = SpanStyle(fontSize = 13.sp, fontWeight = FontWeight.Bold, color = MaterialTheme.colorScheme.primary)) {
+                        withStyle(
+                            style = SpanStyle(
+                                fontSize = 13.sp, fontWeight = FontWeight.Bold,
+                                color = MaterialTheme.colorScheme.primary
+                            )
+                        ) {
                             append(BuildConfig.GIT_HASH.substring(0, 7))
                         }
                         pop()
@@ -280,18 +293,29 @@ class HomeRoot : Routes.Route() {
                     ClickableText(
                         text = buildSummary,
                         onClick = { offset ->
-                            buildSummary.getStringAnnotations(tag = "git_hash", start = offset, end = offset)
+                            buildSummary.getStringAnnotations(
+                                tag = "git_hash", start = offset, end = offset
+                            )
                                 .firstOrNull()?.let {
-                                    context.activity?.startActivity(Intent(Intent.ACTION_VIEW).apply {
-                                        data = Uri.parse("https://github.com/rhunk/SnapEnhance/commit/${it.item}")
-                                    })
+                                    context.activity?.startActivity(
+                                        Intent(Intent.ACTION_VIEW).apply {
+                                            data = Uri.parse(
+                                                "https://github.com/bocajthomas/SE-Extended/commit/${it.item}"
+                                            )
+                                        })
                                 }
                         }
                     )
                     Text(
                         fontSize = 12.sp,
                         text = remember {
-                            "Build date: " + DateFormat.getDateTimeInstance().format(BuildConfig.BUILD_TIMESTAMP) + " (${((System.currentTimeMillis() - BuildConfig.BUILD_TIMESTAMP) / 86400000).toInt()} days ago)"
+                            translation.format(
+                                "debug_build_summary_date",
+                                "date" to DateFormat.getDateTimeInstance()
+                                    .format(BuildConfig.BUILD_TIMESTAMP),
+                                "days" to ((System.currentTimeMillis() - BuildConfig.BUILD_TIMESTAMP) / 86400000).toInt()
+                                    .toString()
+                            )
                         },
                         lineHeight = 20.sp,
                         fontWeight = FontWeight.Light
@@ -307,7 +331,10 @@ class HomeRoot : Routes.Route() {
                     .padding(start = 20.dp, end = 10.dp, top = 20.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                Text("Quick Actions", fontSize = 20.sp, modifier = Modifier.weight(1f))
+                Text(
+                    translation["quick_actions_title"], fontSize = 20.sp,
+                    modifier = Modifier.weight(1f)
+                )
                 Box {
                     IconButton(
                         onClick = { showQuickActionsMenu = !showQuickActionsMenu },
@@ -360,14 +387,16 @@ class HomeRoot : Routes.Route() {
                     remember { (context.androidContext.resources.displayMetrics.widthPixels / 3).toDp() - cardMargin / 2 }
                 }
 
-                remember(selectedTiles.size, context.translation.loadedLocale) { selectedTiles.mapNotNull {
-                    cards.entries.find { entry -> entry.key.first == it }
-                } }.forEach { (card, action) ->
+                remember(selectedTiles.size, context.translation.loadedLocale) {
+                    selectedTiles.mapNotNull {
+                        cards.entries.find { entry -> entry.key.first == it }
+                    }
+                }.forEach { (card, action) ->
                     ElevatedCard(
                         modifier = Modifier
                             .height(tileHeight)
                             .weight(1f)
-                            .clickable { action() }
+                            .clickable { action(routes) }
                             .padding(all = 6.dp),
                     ) {
                         Column(
@@ -385,7 +414,7 @@ class HomeRoot : Routes.Route() {
                             Text(
                                 text = card.first,
                                 lineHeight = 16.sp,
-                                fontSize = 11.sp,
+                                fontSize = 14.sp,
                                 fontWeight = FontWeight.Bold,
                                 textAlign = TextAlign.Center,
                                 overflow = TextOverflow.Ellipsis,
