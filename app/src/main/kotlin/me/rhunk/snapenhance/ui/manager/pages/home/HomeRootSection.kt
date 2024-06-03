@@ -2,9 +2,9 @@ package me.rhunk.snapenhance.ui.manager.pages.home
 
 import android.content.Intent
 import android.net.Uri
+import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -148,6 +148,12 @@ class HomeRootSection : Routes.Route() {
 
     @OptIn(ExperimentalLayoutApi::class)
     override val content: @Composable (NavBackStackEntry) -> Unit = {
+         val avenirNextFontFamily = remember {
+            FontFamily(
+                Font(R.font.avenir_next_medium, FontWeight.Medium)
+            )
+        }
+         
         Column(
             modifier = Modifier
                 .fillMaxSize()
