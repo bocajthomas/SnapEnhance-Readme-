@@ -201,7 +201,7 @@ You can view the FAQ [here](https://github.com/bocajthomas/SE-Extended/wiki/FAQ)
 Join our [Telegram Channel](https://t.me/SE_Extended) for Discussions, announcements, and releases!
 
 ## 💵 Donate
-SE Extended will always be free and open source for everyone, If you like it consider [Donating](https://www.paypal.me/Jhuddz00)
+SE Extended will always be free and open source for everyone, If you like it, Consider [Donating](https://www.paypal.me/Jhuddz00)
 
 ## 🤝 Contributing 
 Contribuions are welcome!
