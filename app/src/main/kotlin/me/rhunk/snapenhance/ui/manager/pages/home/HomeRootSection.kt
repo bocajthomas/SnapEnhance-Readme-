@@ -98,7 +98,8 @@ class HomeRootSection : Routes.Route() {
         }
     }
 
-    private fun openLink(link: String) {
+
+     private fun openLink(link: String) {
         kotlin.runCatching {
             context.activity?.startActivity(Intent(Intent.ACTION_VIEW).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK
@@ -148,12 +149,12 @@ class HomeRootSection : Routes.Route() {
 
     @OptIn(ExperimentalLayoutApi::class)
     override val content: @Composable (NavBackStackEntry) -> Unit = {
-        val avenirNextFontFamily = remember {
-            FontFamily(
+         val avenirNextFontFamily = remember {
+             FontFamily(
                 Font(R.font.avenir_next_medium, FontWeight.Medium)
-            )
+             )
         }
-
+         
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -169,7 +170,7 @@ class HomeRootSection : Routes.Route() {
                 fontFamily = avenirNextFontFamily,
                 modifier = Modifier.align(Alignment.CenterHorizontally),
             )
-
+           
             Text(
                 text = translation.format(
                     "version_title",
