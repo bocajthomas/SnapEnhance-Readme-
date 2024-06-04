@@ -49,7 +49,9 @@ class Experimental : ConfigContainer() {
     }
 
     class ExperimentalColors: ConfigContainer(hasGlobalState = true) {
-        val listbackgrounddrawable = color("list_background_drawable")
+        val listBackgroundDrawable = color("list_background_drawable")
+        val sigColorIconPrimary = color("sig_color_icon_primary")
+        val actionSheetDescriptionTextColor = color("action_sheet_description_text_color")
     }
 
     val nativeHooks = container("native_hooks", NativeHooks()) { icon = Icons.Default.Memory; requireRestart() }

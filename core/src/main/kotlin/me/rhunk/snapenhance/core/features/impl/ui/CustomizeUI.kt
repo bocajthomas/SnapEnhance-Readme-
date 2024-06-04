@@ -27,7 +27,9 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
         if (experimentalColors.globalState == true) {
             themes.clear()
             themes[themePicker] = mapOf(
-                "listbackgrounddrawable" to experimentalColors.listbackgrounddrawable.getNullable(),
+                "listBackgroundDrawable" to experimentalColors.listBackgroundDrawable.getNullable(),
+                "sigColorIconPrimary" to experimentalColors.sigColorIconPrimary.getNullable(),
+                "actionSheetDescriptionTextColor" to experimentalColors.actionSheetDescriptionTextColor.getNullable(),
             ).filterValues { it != null }.map { (key, value) ->
                 getAttribute(key) to value!!
             }.toMap()
