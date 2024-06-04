@@ -30,12 +30,15 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                 "sigColorIconPrimary" to experimentalColors.sigColorIconPrimary.getNullable(),
                 "actionSheetDescriptionTextColor" to experimentalColors.actionSheetDescriptionTextColor.getNullable(),
                 )
-            themes.forEach { (themeName,_) ->
-                themes[themeName] = themes[themeName]?.plus(
+            themes.forEach { (themeName, existingThemeValues) ->
+                val updatedThemeValues = existingThemeValues?.plus(
                     experimentalColorOptions.filterValues { it != null }
-                )?.filterValues { it != null }.map { (key, value) ->
+                )?.filterValues { it != null }?.map { (key, value) ->
                     getAttribute(key) to value!!
                 }.toMap()
+                if (updatedThemeValues != null) {
+                    themes[themeName] = updatedThemeValues
+                }
             }
         }
             
