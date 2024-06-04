@@ -67,8 +67,6 @@ class Routes(
 
     val betterLocation = route(RouteInfo("better_location", showInNavBar = false, primary = true), BetterLocationRoot())
 
-    val betterLocation = route(RouteInfo("better_location", showInNavBar = false, primary = true), BetterLocationRoot())
-
     open class Route {
         open val init: () -> Unit = { }
         open val title: @Composable (() -> Unit)? = null
