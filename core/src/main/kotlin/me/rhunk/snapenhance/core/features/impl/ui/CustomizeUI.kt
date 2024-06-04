@@ -22,7 +22,16 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
         val customizeUIConfig = context.config.userInterface.customizeUi
         val themePicker = customizeUIConfig.themePicker.getNullable() ?: return
         val colorsConfig = context.config.userInterface.customizeUi.colors
+        val experimentalColors = context.config.experimental.experimentalColors
 
+        if (experimentalColors.globalState == true) {
+            themes.clear()
+            themes[themePicker] = mapOf(
+                "listbackgrounddrawable" to experimentalColors.listbackgrounddrawable.getNullable(),
+            ).filterValues { it != null }.map { (key, value) ->
+                getAttribute(key) to value!!
+            }.toMap()
+        }
         if (themePicker == "custom") {
             themes.clear()
             themes[themePicker] = mapOf(
