@@ -1011,7 +1011,7 @@
                     },
                     "experimental_colors": {
                         "name": "Experimental Color Options",
-                        "description": "Note: These color features are Experimental and therefore may cause your snapchat to look strange\nSelect `Custom Colors` on theme picker to use",
+                        "description": "Note: These color features are Experimental and therefore may cause your snapchat to look strange,\n\u26A0 Select `Custom Colors` on Theme picker to use",
                         "properties": {
                             "list_background_drawable": {
                                 "name": "List Background Drawable",
@@ -1024,6 +1024,18 @@
                             "action_sheet_description_text_color": {
                                 "name": "Action Sheet Description Text Color",
                                 "description": "Changes the text color of the description on the action sheet"
+                            },
+                            "ring_color": {
+                                "name": "Ring Color",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "sig_color_icon_secondary": {
+                                "name": "Sig Color Icon Secondary",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "item_shape_fill_color": {
+                                "name": "Item Shape Fill Color",
+                                "description": "Does something to the color of something ;)"
                             }
                         }
                     },

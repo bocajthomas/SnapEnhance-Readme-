@@ -41,6 +41,9 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                 "listBackgroundDrawable" to experimentalColors.listBackgroundDrawable.getNullable(),
                 "sigColorIconPrimary" to experimentalColors.sigColorIconPrimary.getNullable(),
                 "actionSheetDescriptionTextColor" to experimentalColors.actionSheetDescriptionTextColor.getNullable(),
+                "ringColor" to experimentalColors.ringColor.getNullable(),
+                "sigColorIconSecondary" to experimentalColors.sigColorIconSecondary.getNullable(),
+                "itemShapeFillColor" to experimentalColors.itemShapeFillColor.getNullable(),
             ).filterValues { it != null }.map { (key, value) ->
                 getAttribute(key) to value!!
             }.toMap()
