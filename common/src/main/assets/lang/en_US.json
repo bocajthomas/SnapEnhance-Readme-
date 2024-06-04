@@ -421,7 +421,7 @@
                             },
                             "colors": {
                                 "name": "Custom Colors",
-                                "description": "Customize Individual colors\nNote: Select Custom Colors on Theme Picker to use",
+                                "description": "Customize Individual colors\nNote: Select `Custom Colors` on Theme Picker to use",
                                 "properties": {
                                     "text_color": {
                                         "name": "Main Text Color",
@@ -1011,7 +1011,7 @@
                     },
                     "experimental_colors": {
                         "name": "Experimental Color Options",
-                        "description": "Note: These color features are Experimental and therefore may cause your snapchat to look strange",
+                        "description": "Note: These color features are Experimental and therefore may cause your snapchat to look strange\nSelect `Custom Colors` on theme picker to use",
                         "properties": {
                             "list_background_drawable": {
                                 "name": "List Background Drawable",
