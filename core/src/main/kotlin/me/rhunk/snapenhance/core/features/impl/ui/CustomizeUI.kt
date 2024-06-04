@@ -22,7 +22,8 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
         val customizeUIConfig = context.config.userInterface.customizeUi
         val themePicker = customizeUIConfig.themePicker.getNullable() ?: return
         val colorsConfig = context.config.userInterface.customizeUi.colors
-
+        val experimentalColors = context.config.experimental.experimentalColors
+        
         if (themePicker == "custom") {
             themes.clear()
             themes[themePicker] = mapOf(
@@ -37,6 +38,12 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                 "actionSheetBackgroundDrawable" to colorsConfig.actionMenuBackgroundColor.getNullable(),
                 "actionSheetRoundedBackgroundDrawable" to colorsConfig.actionMenuRoundBackgroundColor.getNullable(),
                 "sigExceptionColorCameraGridLines" to colorsConfig.cameraGridLines.getNullable(),
+                "listBackgroundDrawable" to experimentalColors.listBackgroundDrawable.getNullable(),
+                "sigColorIconPrimary" to experimentalColors.sigColorIconPrimary.getNullable(),
+                "actionSheetDescriptionTextColor" to experimentalColors.actionSheetDescriptionTextColor.getNullable(),
+                "ringColor" to experimentalColors.ringColor.getNullable(),
+                "sigColorIconSecondary" to experimentalColors.sigColorIconSecondary.getNullable(),
+                "itemShapeFillColor" to experimentalColors.itemShapeFillColor.getNullable(),
             ).filterValues { it != null }.map { (key, value) ->
                 getAttribute(key) to value!!
             }.toMap()

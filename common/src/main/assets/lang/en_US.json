@@ -421,7 +421,7 @@
                             },
                             "colors": {
                                 "name": "Custom Colors",
-                                "description": "Customize Individual colors\nNote: Select Custom Colors on Theme Picker to use",
+                                "description": "Customize Individual colors\nNote: Select `Custom Colors` on Theme Picker to use",
                                 "properties": {
                                     "text_color": {
                                         "name": "Main Text Color",
@@ -1006,6 +1006,36 @@
                             "randomize_persistent_device_token": {
                                 "name": "Randomize Persistent Device Token",
                                 "description": "Generates a random device token after each login"
+                            }
+                        }
+                    },
+                    "experimental_colors": {
+                        "name": "Experimental Color Options",
+                        "description": "Note: These color features are Experimental and therefore may cause your snapchat to look strange,\n\u26A0 Select `Custom Colors` on Theme picker to use",
+                        "properties": {
+                            "list_background_drawable": {
+                                "name": "List Background Drawable",
+                                "description": "Changes the background color of the conversation tile"
+                            },
+                            "sig_color_icon_primary": {
+                                "name": "Sig Color Icon Primary",
+                                "description": "Changes the color of icons on action chat menu"
+                            },
+                            "action_sheet_description_text_color": {
+                                "name": "Action Sheet Description Text Color",
+                                "description": "Changes the text color of the description on the action sheet"
+                            },
+                            "ring_color": {
+                                "name": "Ring Color",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "sig_color_icon_secondary": {
+                                "name": "Sig Color Icon Secondary",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "item_shape_fill_color": {
+                                "name": "Item Shape Fill Color",
+                                "description": "Does something to the color of something ;)"
                             }
                         }
                     },

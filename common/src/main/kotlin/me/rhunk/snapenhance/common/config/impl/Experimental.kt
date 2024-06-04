@@ -48,8 +48,18 @@ class Experimental : ConfigContainer() {
         val lockOnResume = boolean("lock_on_resume", defaultValue = true)
     }
 
+    class ExperimentalColors: ConfigContainer() {
+        val listBackgroundDrawable = color("list_background_drawable")
+        val sigColorIconPrimary = color("sig_color_icon_primary")
+        val actionSheetDescriptionTextColor = color("action_sheet_description_text_color")
+        val ringColor = color("ring_color")
+        val sigColorIconSecondary = color("sig_color_icon_secondary")
+        val itemShapeFillColor = color("item_shape_fill_color")
+    }
+
     val nativeHooks = container("native_hooks", NativeHooks()) { icon = Icons.Default.Memory; requireRestart() }
     val spoof = container("spoof", Spoof()) { icon = Icons.Default.Fingerprint ; addNotices(FeatureNotice.BAN_RISK); requireRestart() }
+    val experimentalColors = container("experimental_colors", ExperimentalColors()) { addNotices(FeatureNotice.UNSTABLE); requireRestart() }
     val convertMessageLocally = boolean("convert_message_locally") { requireRestart() }
     val mediaFilePicker = boolean("media_file_picker") { requireRestart(); addNotices(FeatureNotice.UNSTABLE) }
     val storyLogger = boolean("story_logger") { requireRestart(); addNotices(FeatureNotice.UNSTABLE); }
