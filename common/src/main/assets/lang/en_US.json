@@ -1009,6 +1009,16 @@
                             }
                         }
                     },
+                    "experimental_colors": {
+                        "name": "Experimental Color Options",
+                        "description": "Note: These color features are Experimental and therefore may cause your snapchat to look strange",
+                        "properties": {
+                            "list_background_drawable":{
+                                "name": "List Background Drawable",
+                                "description": "Changes the background color of the conversation tile"
+                            }
+                        }
+                    },
                     "convert_message_locally": {
                         "name": "Convert Message Locally",
                         "description": "Converts snaps to chat external media locally. This appears in chat download context menu"
