@@ -27,7 +27,10 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                 "listBackgroundDrawable" to experimentalColors.listBackgroundDrawable.getNullable(),
                 "sigColorIconPrimary" to experimentalColors.sigColorIconPrimary.getNullable(),
                 "actionSheetDescriptionTextColor" to experimentalColors.actionSheetDescriptionTextColor.getNullable(),
-            )
+        ).filterValues { it != null }.map { (key, value) ->
+            getAttribute(key) to value!!
+        }.toMap()
+        
           
         if (themePicker == "custom") {
             themes.clear()
@@ -43,7 +46,7 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                 "actionSheetBackgroundDrawable" to colorsConfig.actionMenuBackgroundColor.getNullable(),
                 "actionSheetRoundedBackgroundDrawable" to colorsConfig.actionMenuRoundBackgroundColor.getNullable(),
                 "sigExceptionColorCameraGridLines" to colorsConfig.cameraGridLines.getNullable(),
-                **experimentalColorOptions**
+                *(experimentalColorOptions?.toMap() ?: emptyMap())
             ).filterValues { it != null }.map { (key, value) ->
                 getAttribute(key) to value!!
             }.toMap()
@@ -68,7 +71,7 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                     "actionSheetBackgroundDrawable" to background,
                     "actionSheetRoundedBackgroundDrawable" to background,
                     "sigExceptionColorCameraGridLines" to background,
-                    **experimentalColorOptions.filterValues { it != null }**
+                    *(experimentalColorOptions?.toMap() ?: emptyMap())
                 ).map { getAttribute(it.key) to it.value }.toMap()
             }
         }
@@ -110,7 +113,7 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                "listDivider" to 0xFF000000,
                "actionSheetBackgroundDrawable" to 0xFF000000,
                "actionSheetRoundedBackgroundDrawable" to 0xFF000000
-               **experimentalColorOptions.filterValues { it != null }**
+               *(experimentalColorOptions?.toMap() ?: emptyMap())
            ),
            "light_blue" to mapOf(
                "sigColorTextPrimary" to 0xFF03BAFC,
@@ -123,7 +126,7 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                "sigColorChatSnapWithSound" to 0xFF08D6FF,
                "sigColorChatSnapWithoutSound" to 0xFF08D6FF,
                "sigExceptionColorCameraGridLines" to 0xFF08D6FF
-               **experimentalColorOptions.filterValues { it != null }**
+               *(experimentalColorOptions?.toMap() ?: emptyMap())
            ),
            "dark_blue" to mapOf(
                "sigColorTextPrimary" to 0xFF98C2FD,
@@ -135,7 +138,7 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                "sigColorChatSnapWithSound" to 0xFF98C2FD,
                "sigColorChatSnapWithoutSound" to 0xFF98C2FD,
                "sigExceptionColorCameraGridLines" to 0xFF192744
-               **experimentalColorOptions.filterValues { it != null }**
+               *(experimentalColorOptions?.toMap() ?: emptyMap())
            ),
            "earthy_autumn" to mapOf(
                "sigColorTextPrimary" to 0xFFF7CAC9,
@@ -147,7 +150,7 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                "sigColorChatSnapWithSound" to 0xFFF7CAC9,
                "sigColorChatSnapWithoutSound" to 0xFFF7CAC9,
                "sigExceptionColorCameraGridLines" to 0xFF800000
-               **experimentalColorOptions.filterValues { it != null }**
+               *(experimentalColorOptions?.toMap() ?: emptyMap())
            ),
            "mint_chocolate" to mapOf(
                "sigColorTextPrimary" to 0xFFFFFFFF,
@@ -159,7 +162,7 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                "sigColorChatSnapWithSound" to 0xFFFFFFFF,
                "sigColorChatSnapWithoutSound" to 0xFFFFFFFF,
                "sigExceptionColorCameraGridLines" to 0xFF98FF98
-               **experimentalColorOptions.filterValues { it != null }**
+               *(experimentalColorOptions?.toMap() ?: emptyMap())
            ),
            "ginger_snap" to mapOf(
                "sigColorTextPrimary" to 0xFFFFFFFF,
@@ -171,7 +174,7 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                "sigColorChatSnapWithSound" to 0xFFFFFFFF,
                "sigColorChatSnapWithoutSound" to 0xFFFFFFFF,
                "sigExceptionColorCameraGridLines" to 0xFFC6893A
-               **experimentalColorOptions.filterValues { it != null }**
+               *(experimentalColorOptions?.toMap() ?: emptyMap())
            ),
            "lemon_meringue" to mapOf(
                "sigColorTextPrimary" to 0xFF000000,
@@ -183,7 +186,7 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                "sigColorChatSnapWithSound" to 0xFF000000,
                "sigColorChatSnapWithoutSound" to 0xFF000000,
                "sigExceptionColorCameraGridLines" to 0xFFFCFFE7
-               **experimentalColorOptions.filterValues { it != null }**
+               *(experimentalColorOptions?.toMap() ?: emptyMap())
            ),
            "lava_flow" to mapOf(
                "sigColorTextPrimary" to 0xFFFFCC00,
@@ -195,7 +198,7 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                "sigColorChatSnapWithSound" to 0xFFFFCC00,
                "sigColorChatSnapWithoutSound" to 0xFFFFCC00,
                "sigExceptionColorCameraGridLines" to 0xFFC70039
-               **experimentalColorOptions.filterValues { it != null }**
+               *(experimentalColorOptions?.toMap() ?: emptyMap())
            ),
            "ocean_fog" to mapOf(
                "sigColorTextPrimary" to 0xFF333333,
@@ -207,7 +210,7 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                "sigColorChatSnapWithSound" to 0xFF333333,
                "sigColorChatSnapWithoutSound" to 0xFF333333,
                "sigExceptionColorCameraGridLines" to 0xFFB0C4DE
-               **experimentalColorOptions.filterValues { it != null }**
+               *(experimentalColorOptions?.toMap() ?: emptyMap())
            ),
            "alien_landscape" to mapOf(
                "sigColorTextPrimary" to 0xFFFFFFFF,
@@ -219,7 +222,7 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                "sigColorChatSnapWithSound" to 0xFFFFFFFF,
                "sigColorChatSnapWithoutSound" to 0xFFFFFFFF,
                "sigExceptionColorCameraGridLines" to 0xFF9B59B6
-               **experimentalColorOptions.filterValues { it != null }**
+               *(experimentalColorOptions?.toMap() ?: emptyMap())
            )
        ).mapValues { (_, attributes) ->
             attributes.map { (key, value) ->
