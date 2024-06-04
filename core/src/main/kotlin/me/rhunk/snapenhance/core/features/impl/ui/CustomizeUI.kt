@@ -25,14 +25,16 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
         val experimentalColors = context.config.experimental.experimentalColors
 
         if (experimentalColors.globalState == true) {
-            themes.clear()
-            themes[themePicker] = mapOf(
-                "listBackgroundDrawable" to experimentalColors.listBackgroundDrawable.getNullable(),
-                "sigColorIconPrimary" to experimentalColors.sigColorIconPrimary.getNullable(),
-                "actionSheetDescriptionTextColor" to experimentalColors.actionSheetDescriptionTextColor.getNullable(),
-            ).filterValues { it != null }.map { (key, value) ->
-                getAttribute(key) to value!!
-            }.toMap()
+            if (themePicker == "custom" || themePicker == "material_you_light" || themePicker == "material_you_dark" || themePicker == "amoled_dark_mode" || themePicker == "light_blue" || themePicker == "dark_blue" || themePicker == "earthy_autumn" || themePicker == "mint_chocolate" || themePicker == "ginger_snap" || themePicker == "lemon_meringue" || themePicker == "lava_flow" || themePicker == "ocean_fog" || themePicker == "alien_landscape") {
+                themes.clear()
+                themes[themePicker] = mapOf(
+                    "listBackgroundDrawable" to experimentalColors.listBackgroundDrawable.getNullable(),
+                    "sigColorIconPrimary" to experimentalColors.sigColorIconPrimary.getNullable(),
+                    "actionSheetDescriptionTextColor" to experimentalColors.actionSheetDescriptionTextColor.getNullable(),
+                ).filterValues { it != null }.map { (key, value) ->
+                    getAttribute(key) to value!!
+                }.toMap()
+            }
         }
         if (themePicker == "custom") {
             themes.clear()
