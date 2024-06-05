@@ -685,6 +685,10 @@
                                 "name": "Reply Button",
                                 "description": "Adds a reply button to the notification"
                             },
+                            "smart_replies": {
+                                "name": "Smart Replies",
+                                "description": "Adds suggested replies to notifications (Android 10+). Use in combination with Reply Button"
+                            },
                             "download_button": {
                                 "name": "Download Button",
                                 "description": "Allows you to download media from the notification"
