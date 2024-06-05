@@ -129,6 +129,7 @@ class FeatureManager(
             ComposerHooks(),
             DisableCustomTabs(),
             BestFriendPinning(),
+            ContextMenuFix(),
         )
         initializeFeatures()
     }
