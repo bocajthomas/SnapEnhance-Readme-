@@ -107,7 +107,6 @@ class FeatureManager(
             MessageIndicators(),
             EditTextOverride(),
             PreventForcedLogout(),
-            SuspendLocationUpdates(),
             ConversationToolbox(),
             SpotlightCommentsUsername(),
             OperaViewerParamsOverride(),

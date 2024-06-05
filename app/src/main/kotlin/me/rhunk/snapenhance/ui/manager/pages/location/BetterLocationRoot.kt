@@ -255,6 +255,42 @@ class BetterLocationRoot : Routes.Route() {
                     .fillMaxSize()
                     .clipToBounds()
             ) {
+
+                item {
+                    @Composable
+                    fun ConfigToggle(
+                        text: String,
+                        state: MutableState<Boolean>,
+                        onCheckedChange: (Boolean) -> Unit
+                    ) {
+                        Row(
+                            modifier = Modifier.padding(start = 16.dp, end = 16.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(text = text)
+                            Spacer(modifier = Modifier.weight(1f))
+                            Switch(
+                                checked = state.value,
+                                onCheckedChange = {
+                                    state.value = it
+                                    onCheckedChange(it)
+                                }
+                            )
+                        }
+                    }
+                    ConfigToggle(
+                        translation["spoof_location_toggle"],
+                        remember { mutableStateOf(context.config.root.global.betterLocation.spoofLocation.get()) }
+                    ) {
+                        context.config.root.global.betterLocation.spoofLocation.set(it)
+                    }
+                    ConfigToggle(
+                        translation["suspend_location_updates"],
+                        remember { mutableStateOf(context.config.root.global.betterLocation.suspendLocationUpdates.get()) }
+                    ) {
+                        context.config.root.global.betterLocation.suspendLocationUpdates.set(it)
+                    }
+                }
                 item {
                     Row(
                         modifier = Modifier
@@ -269,23 +305,6 @@ class BetterLocationRoot : Routes.Route() {
                         Button(onClick = { showTeleportDialog = true }) {
                             Text(translation["teleport_to_friend_button"])
                         }
-                    }
-                }
-                item {
-                    Row(
-                        modifier = Modifier.padding(start = 16.dp, end = 16.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Text(text = translation["spoof_location_toggle"])
-                        Spacer(modifier = Modifier.weight(1f))
-                        var isSpoofing by remember { mutableStateOf(context.config.root.global.betterLocation.spoofLocation.get()) }
-                        Switch(
-                            checked = isSpoofing,
-                            onCheckedChange = {
-                                isSpoofing = it
-                                context.config.root.global.betterLocation.spoofLocation.set(it)
-                            }
-                        )
                     }
                 }
                 item {
