@@ -1044,6 +1044,82 @@
                             "item_shape_fill_color": {
                                 "name": "Item Shape Fill Color",
                                 "description": "Does something to the color of something ;)"
+                            },
+                            "ring_start_color": {
+                                "name": "Ring Start Color",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "sig_color_layout_place_holder": {
+                                "name": "Sig Color Layout Place Holder",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "sc_button_color": {
+                                "name": "Sc Button Color",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "recipient_pill_background_drawable": {
+                                "name": "Recipient Pill Background Drawable",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "box_background_color": {
+                                "name": "Box Background Color",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "edit_text_color": {
+                                "name": "Edit Text Color",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "chip_background_color": {
+                                "name": "Chip Background Color",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "recipient_input_style": {
+                                "name": "Recipient Input Style",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "range_fill_color": {
+                                "name": "Range Fill Color",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "psts_indicator_color": {
+                                "name": "Psts Indicator Color",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "psts_tab_background": {
+                                "name": "Psts Tab Background",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "psts_divider_color": {
+                                "name": "Psts Divider Color",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "tab_text_color": {
+                                "name": "Tab Text Color",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "status_bar_foreground": {
+                                "name": "Status Bar Foreground",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "status_bar_background": {
+                                "name": "Status Bar Background",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "stroke_color": {
+                                "name": "Stroke Color",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "story_replay_view_ring_color": {
+                                "name": "Story Replay View Ring Color",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "sig_color_button_primary": {
+                                "name": "Sig Color Button Primary",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "sig_color_base_app_yellow": {
+                                "name": "Sig Color Base App Yellow",
+                                "description": "Does something to the color of something ;)"
                             }
                         }
                     },
