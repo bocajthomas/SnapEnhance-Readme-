@@ -410,12 +410,12 @@ class HomeRootSection : Routes.Route() {
                             Icon(
                                 imageVector = card.second, contentDescription = null,
                                 tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                                modifier = Modifier.size(50.dp)
+                                modifier = Modifier.size(45.dp)
                             )
                             Text(
                                 text = card.first,
                                 lineHeight = 16.sp,
-                                fontSize = 14.sp,
+                                fontSize = 11.sp,
                                 fontWeight = FontWeight.Bold,
                                 textAlign = TextAlign.Center,
                                 overflow = TextOverflow.Ellipsis,
