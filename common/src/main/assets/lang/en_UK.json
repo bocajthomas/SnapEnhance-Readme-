@@ -32,7 +32,9 @@
             "logger_history": "Logger History",
             "messaging_preview": "Preview",
             "friend_tracker": "Friend Tracker",
-            "edit_rule": "Edit Rule"
+            "edit_rule": "Edit Rule",
+            "file_imports": "File Imports",
+            "better_location": "Better Location"
         },
         "sections": {
             "features": {
@@ -43,7 +45,8 @@
                 "config_import_failure_toast": "Failed to import Config {error}",
                 "reset_option": "Reset",
                 "config_export_success_toast": "Config exported Successfully",
-                "saved_config_snackbar": "Config saved"
+                "saved_config_snackbar": "Config saved",
+                "config_export_failure_toast": "Failed to export config {error}"
             },
             "tasks": {
                 "no_tasks": "No Tasks",
@@ -52,7 +55,8 @@
                 "remove_all_tasks_title": "Are you sure you want to remove all tasks?",
                 "delete_files_option": "Also Delete Files",
                 "remove_selected_tasks_confirm": "Remove {count} Tasks?",
-                "remove_all_tasks_confirm": "Remove All Tasks?"
+                "remove_all_tasks_confirm": "Remove All Tasks?",
+                "failed_to_open_file": "Failed to open file"
             },
             "social": {
                 "streaks_expiration_short": "{hours}h",
@@ -63,7 +67,12 @@
             "home": {
                 "update_title": "SnapEnhance Update",
                 "update_button": "Download",
-                "update_content": "Version {version} is Available!"
+                "update_content": "Version {version} is Available!",
+                "version_title": "V{versionName} · Forked by Jacob",
+                "debug_build_summary_title": "You are running a debug build of SE Extended",
+                "debug_build_summary_content": "Version {versionName} ({versionCode})",
+                "debug_build_summary_date": "Build date: {date} ({days} days ago)",
+                "quick_actions_title": "Quick Actions"
             },
             "home_logs": {
                 "no_logs_hint": "No Logs Available",
@@ -125,6 +134,10 @@
                 "message_parse_failed": "Failed to Parse Message",
                 "unknown_sender": "Unknown Sender",
                 "download_attachment_failed_toast": "Failed to Download Attachment"
+            },
+            "file_imports": {
+                "file_not_found": "File not found",
+                "import_file_button": "Import File"
             }
         },
         "dialogs": {
