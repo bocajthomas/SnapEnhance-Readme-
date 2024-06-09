@@ -25,11 +25,14 @@ class UserInterfaceTweaks : ConfigContainer() {
         val pendingSendingTextColor = color("pending_sending_text_color")
         val snapWithSoundTextColor = color("snap_with_sound_text_color")
         val snapWithoutSoundTextColor = color("snap_without_sound_text_color")
+        val actionSheetDescriptionTextColor = color("action_sheet_description_text_color")
         val backgroundColor = color("background_color")
         val backgroundColorSurface = color("background_color_surface")
+        val listBackgroundDrawable = color("list_background_drawable")
         val friendFeedConversationsLineColor = color("friend_feed_conversations_line_color")
         val actionMenuBackgroundColor = color("action_menu_background_color")
         val actionMenuRoundBackgroundColor = color("action_menu_round_background_color")
+        val sigColorIconPrimary = color("sig_color_icon_primary")
         val cameraGridLines = color("camera_grid_lines")
     }
 

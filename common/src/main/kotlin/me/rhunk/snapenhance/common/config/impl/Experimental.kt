@@ -49,9 +49,6 @@ class Experimental : ConfigContainer() {
     }
 
     class ExperimentalColors: ConfigContainer() {
-        val listBackgroundDrawable = color("list_background_drawable")
-        val sigColorIconPrimary = color("sig_color_icon_primary")
-        val actionSheetDescriptionTextColor = color("action_sheet_description_text_color")
         val ringColor = color("ring_color")
         val sigColorIconSecondary = color("sig_color_icon_secondary")
         val itemShapeFillColor = color("item_shape_fill_color")
