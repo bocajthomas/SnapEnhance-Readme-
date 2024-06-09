@@ -447,6 +447,10 @@
                                         "name": "Snaps Without Sound Text Color",
                                         "description": "Changes the text color of ( New Snap ) on the friend feed\nNote: Video Snaps Only"
                                     },
+                                    "action_sheet_description_text_color": {
+                                        "name": "Action Menu Description Text Color",
+                                        "description": "Changes the text color of the description on the action menu"
+                                    },
                                     "background_color": {
                                         "name": "Background Color",
                                         "description": "Changes Snapchats background color"
@@ -455,9 +459,13 @@
                                         "name": "Background Surface Color",
                                         "description": "Changes Snapchats background surface color"
                                     },
+                                    "list_background_drawable": {
+                                        "name": "Conversation list Background ",
+                                        "description": "Changes the background color of the conversation list\n This might break the friend feeds look"
+                                    },
                                     "friend_feed_conversations_line_color": {
                                         "name": "Conversations Line Color",
-                                        "description": "Changes the line divider color that splits Conversations on the friend feed "
+                                        "description": "Changes the line divider color that splits Conversations on the friend feed"
                                     },
                                     "action_menu_background_color": {
                                         "name": "Action Menu Background Color",
@@ -466,6 +474,10 @@
                                     "action_menu_round_background_color": {
                                         "name": "Action Menu Round Background Color",
                                         "description": "Changes Snapchats chat action menu round background color"
+                                    },
+                                    "sig_color_icon_primary": {
+                                        "name": "Action Menu Icon Color",
+                                        "description": "Changes the color of icons on chat action menu/friend feed menu"
                                     },
                                     "camera_grid_lines": {
                                         "name": "Camera Gridlines Color",
@@ -1023,20 +1035,8 @@
                     },
                     "experimental_colors": {
                         "name": "Experimental Color Options",
-                        "description": "Note: These color features are Experimental and therefore may cause your snapchat to look strange,\n\u26A0 Select `Custom Colors` on Theme picker to use",
+                        "description": "Note: These color features are Experimental and therefore may cause your snapchat to look strange,\nSelect `Custom Colors` on Theme picker to use",
                         "properties": {
-                            "list_background_drawable": {
-                                "name": "List Background Drawable",
-                                "description": "Changes the background color of the conversation tile"
-                            },
-                            "sig_color_icon_primary": {
-                                "name": "Sig Color Icon Primary",
-                                "description": "Changes the color of icons on action chat menu"
-                            },
-                            "action_sheet_description_text_color": {
-                                "name": "Action Sheet Description Text Color",
-                                "description": "Changes the text color of the description on the action sheet"
-                            },
                             "ring_color": {
                                 "name": "Ring Color",
                                 "description": "Does something to the color of something ;)"
@@ -1513,6 +1513,7 @@
         "preview_button": "Preview",
         "download_button": "Download",
         "delete_logged_message_button": "Delete Logged Message",
+        "show_chat_edit_history": "Show Chat Edit History",
         "convert_message": "Convert Message",
         "edit_message": "Edit Message"
     },
