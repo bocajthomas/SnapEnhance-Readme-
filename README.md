@@ -1,5 +1,7 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/bocajthomas/SE-Extended/dev/images/logo/SE%20Extended%20Logo.png" height="250" />
+  <img src="https://raw.githubusercontent.com/bocajthomas/SE-Extended/dev/images/logo/SE%20Extended%20Logo.png" height="150" />
+  
+[![Debug CI](https://github.com/bocajthomas/SE-Extended/actions/workflows/debug.yml/badge.svg)](https://github.com/bocajthomas/SE-Extended/actions/workflows/debug.yml) [![Translation status](https://hosted.weblate.org/widget/SE-Extended/se-extended/svg-badge.svg)](https://hosted.weblate.org/engage/SE-Extended/)
 
 # SE Extended 
 SE Extended is a fork from the [SnapEnhance app](https://github.com/rhunk/SnapEnhance) that uses the Xposed Framework to enhance your Snapchat experience.<br/><br/>
@@ -204,7 +206,8 @@ Join our [Telegram Channel](https://t.me/SE_Extended) for Discussions, announcem
 SE Extended will always be free and open source for everyone, If you like it, Consider [Donating](https://www.paypal.me/Jhuddz00)
 
 ## 🤝 Contributing 
-Contribuions are welcome!
+Contribuions are welcome!<br/>
+You can help translate SE Extended on [Hosted Weblate](https://hosted.weblate.org/projects/SE-Extended/se-extended/).
 
 ## ⭐ Star History
 <a href="https://star-history.com/#bocajthomas/SE-Extended&Date">
