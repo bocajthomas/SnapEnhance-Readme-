@@ -556,7 +556,19 @@
                                     },
                                     "friend_feed_conversations_line_color": {
                                         "name": "Conversations Line Colour",
-                                        "description": "Changes the line divider colour that splits Conversations on the friend feed "
+                                        "description": "Changes the line divider colour that splits Conversations on the friend feed"
+                                    },
+                                    "sig_color_icon_primary": {
+                                        "name": "Action Menu Icon Colour",
+                                        "description": "Changes the colour of icons on chat action menu/friend feed menu"
+                                    },
+                                    "action_sheet_description_text_color": {
+                                        "name": "Action Menu Description Text Colour",
+                                        "description": "Changes the text colour of the description on the action menu"
+                                    },
+                                    "list_background_drawable": {
+                                        "name": "Conversation list Background ",
+                                        "description": "Changes the background colour of the conversation list\nThis might break the friend feeds look"
                                     }
                                 },
                                 "name": "Custom Colours",
@@ -1202,7 +1214,7 @@
                             }
                         },
                         "name": "Experimental Colour Options",
-                        "description": "Note: These colour features are Experimental and therefore may cause your snapchat to look strange,\n⚠ Select `Custom Colours` on Theme picker to use"
+                        "description": "Note: These colour features are Experimental and therefore may cause your snapchat to look strange,\nSelect `Custom Colours` on Theme picker to use"
                     },
                     "cof_experiments": {
                         "name": "COF Experiments",
@@ -1571,7 +1583,8 @@
         "download_button": "Download",
         "delete_logged_message_button": "Delete Logged Message",
         "convert_message": "Convert Message",
-        "edit_message": "Edit Message"
+        "edit_message": "Edit Message",
+        "show_chat_edit_history": "Show Chat Edit History"
     },
     "opera_context_menu": {
         "download": "Download Media",
