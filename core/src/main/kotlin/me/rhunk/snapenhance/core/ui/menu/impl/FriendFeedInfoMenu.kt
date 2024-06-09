@@ -227,10 +227,7 @@ class FriendFeedInfoMenu : AbstractMenu() {
         if (friendFeedMenuOptions.isEmpty()) return
 
         val messaging = context.feature(Messaging::class)
-        val conversationId = messaging.lastFocusedConversationId ?: run {
-            context.shortToast("No conversation focused!")
-            return
-        }
+        val conversationId = messaging.lastFocusedConversationId ?: return
         val targetUser = context.database.getDMOtherParticipant(conversationId)
         messaging.resetLastFocusedConversation()
 
