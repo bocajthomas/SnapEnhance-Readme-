@@ -209,6 +209,8 @@ SE Extended will always be free and open source for everyone, If you like it, Co
 Contribuions are welcome!<br/>
 You can help translate SE Extended on [Hosted Weblate](https://hosted.weblate.org/projects/SE-Extended/se-extended/).
 
+[![Translation status](https://hosted.weblate.org/widget/SE-Extended/se-extended/multi-auto.svg)](https://hosted.weblate.org/engage/SE-Extended/)
+
 ## ⭐ Star History
 <a href="https://star-history.com/#bocajthomas/SE-Extended&Date">
  <picture>
