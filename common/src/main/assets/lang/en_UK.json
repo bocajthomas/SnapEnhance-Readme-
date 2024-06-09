@@ -1121,7 +1121,8 @@
                                 "description": "Does something to the colour of something ;)"
                             },
                             "stroke_color": {
-                                "name": "Stroke Colour"
+                                "name": "Stroke Colour",
+                                "description": "Does something to the colour of something ;)"
                             },
                             "psts_tab_background": {
                                 "description": "Does something to the colour of something ;)",
@@ -1186,10 +1187,30 @@
                             "tab_text_color": {
                                 "name": "Tab Text Colour",
                                 "description": "Does something to the colour of something ;)"
+                            },
+                            "sig_color_base_app_yellow": {
+                                "description": "Does something to the colour of something ;)",
+                                "name": "Sig Colour Base App Yellow"
+                            },
+                            "story_replay_view_ring_color": {
+                                "name": "Story Replay View Ring Colour",
+                                "description": "Does something to the colour of something ;)"
+                            },
+                            "sig_color_button_primary": {
+                                "name": "Sig Colour Button Primary",
+                                "description": "Does something to the colour of something ;)"
                             }
                         },
                         "name": "Experimental Colour Options",
                         "description": "Note: These colour features are Experimental and therefore may cause your snapchat to look strange,\n⚠ Select `Custom Colours` on Theme picker to use"
+                    },
+                    "cof_experiments": {
+                        "name": "COF Experiments",
+                        "description": "Enables unreleased/beta Snapchat features"
+                    },
+                    "context_menu_fix": {
+                        "description": "Attempt to repair the Friend Feed Menu as when the device is offline it cannot be displayed correctly",
+                        "name": "Context Menu Fix"
                     }
                 }
             },
@@ -1248,7 +1269,8 @@
                 "added_by_qr_code": "By QR Code",
                 "added_by_community": "By Community",
                 "added_by_username": "By Username",
-                "added_by_mention": "By Mention"
+                "added_by_mention": "By Mention",
+                "added_by_quick_add": "By Quick Add (high risk of being banned)"
             },
             "bypass_video_length_restriction": {
                 "single": "Single media",
@@ -1342,7 +1364,8 @@
                 "hide_live_location_share_button": "Remove Live Location Share Button",
                 "hide_stickers_button": "Remove Stickers Button",
                 "hide_voice_record_button": "Remove Voice Record Button",
-                "hide_unread_chat_hint": "Remove Unread Chat Hint"
+                "hide_unread_chat_hint": "Remove Unread Chat Hint",
+                "hide_post_to_story_buttons": "Remove Post to Story buttons before sending a Snap"
             },
             "hide_story_suggestions": {
                 "hide_friend_suggestions": "Hide friend suggestions",
