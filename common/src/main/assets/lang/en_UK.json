@@ -137,7 +137,31 @@
             },
             "file_imports": {
                 "file_not_found": "File not found",
-                "import_file_button": "Import File"
+                "import_file_button": "Import File",
+                "file_import_failed": "Failed to import file: {error}",
+                "file_imported": "File imported successfully",
+                "file_delete_failed": "Failed to delete file",
+                "no_files_hint": "Here you can import files for use in Snapchat. Press the button below to import a file."
+            },
+            "better_location": {
+                "save_dialog_button": "Save",
+                "spoof_location_toggle": "Spoof Location",
+                "no_friends_found": "No friends found",
+                "spoofed_coordinates_title": "Lat {latitude}, Long {longitude}",
+                "save_coordinates_dialog_title": "Save Coordinates",
+                "choose_location_button": "Choose Location",
+                "saved_name_dialog_hint": "Saved Name",
+                "teleport_to_friend_button": "Teleport to Friend",
+                "delete_dialog_title": "Delete Saved Coordinate",
+                "search_bar": "Search",
+                "latitude_dialog_hint": "Latitude",
+                "suspend_location_updates": "Suspend Location Updates",
+                "longitude_dialog_hint": "Longitude",
+                "saved_coordinates_title": "Saved Coordinates",
+                "no_saved_coordinates_hint": "No saved coordinates",
+                "no_friends_map": "No friends on the map",
+                "delete_dialog_message": "Are you sure you want to delete this saved coordinate?",
+                "teleport_to_friend_title": "Teleport to Friend"
             }
         },
         "dialogs": {
@@ -160,6 +184,14 @@
             "messaging_action": {
                 "title": "Choose content types to process",
                 "select_all_button": "Select All"
+            },
+            "file_imports": {
+                "no_files_settings_hint": "No files found. Make sure you have imported the required files in the File Imports section",
+                "settings_select_file_hint": "Select an imported file"
+            },
+            "export_config": {
+                "title": "Export Sensitive Data?",
+                "content": "Do you want to export the config with sensitive data? (Such as location coordinates, etc.)"
             }
         }
     },
@@ -256,6 +288,18 @@
         "change_language": {
             "name": "Change Language",
             "description": "Change the Language of SnapEnhance"
+        },
+        "file_imports": {
+            "name": "File Imports",
+            "description": "Import files for use in Snapchat"
+        },
+        "friend_tracker": {
+            "name": "Friend Tracker",
+            "description": "Track your friends on Snapchat"
+        },
+        "logger_history": {
+            "description": "View the history of logged messages",
+            "name": "Logger History"
         }
     },
     "features": {
@@ -644,6 +688,10 @@
                             "mark_as_read_and_save_in_chat": {
                                 "name": "Mark as Read and Save in Chat",
                                 "description": "Adds a mark as read and save in chat button to the notification"
+                            },
+                            "smart_replies": {
+                                "description": "Adds suggested replies to notifications (Android 10+). Use in combination with Reply Button",
+                                "name": "Smart Replies"
                             }
                         }
                     },
@@ -823,6 +871,10 @@
                                 "description": "Sets a custom image upload format\nSelect a lossless format (like PNG) for the best quality"
                             }
                         }
+                    },
+                    "disable_telecom_framework": {
+                        "description": "Prevents Snapchat from using the Android Telecom framework\nThis allows you to listen to music while on a call",
+                        "name": "Disable Telecom Framework"
                     }
                 }
             },
@@ -923,6 +975,10 @@
                                 },
                                 "name": "Composer Hooks",
                                 "description": "Injects code into the Composer cross-platform UI framework"
+                            },
+                            "custom_emoji_font": {
+                                "description": "Allows you to use a custom emoji font. Only works with .ttf fonts",
+                                "name": "Custom Emoji Font"
                             }
                         }
                     },
@@ -1041,6 +1097,99 @@
                     "best_friend_pinning": {
                         "name": "Best Friend Pinning",
                         "description": "Allows you to pin a friend as you're number one best friend. Note: Only you can see you're pinned best friend"
+                    },
+                    "experimental_colors": {
+                        "properties": {
+                            "list_background_drawable": {
+                                "name": "List Background Drawable",
+                                "description": "Changes the background colour of the conversation tile"
+                            },
+                            "sig_color_icon_primary": {
+                                "name": "Sig Colour Icon Primary",
+                                "description": "Changes the colour of icons on action chat menu"
+                            },
+                            "sig_color_icon_secondary": {
+                                "name": "Sig Colour Icon Secondary",
+                                "description": "Does something to the colour of something ;)"
+                            },
+                            "sc_button_color": {
+                                "name": "Sc Button Colour",
+                                "description": "Does something to the colour of something ;)"
+                            },
+                            "psts_divider_color": {
+                                "name": "Psts Divider Colour",
+                                "description": "Does something to the colour of something ;)"
+                            },
+                            "stroke_color": {
+                                "name": "Stroke Colour"
+                            },
+                            "psts_tab_background": {
+                                "description": "Does something to the colour of something ;)",
+                                "name": "Psts Tab Background"
+                            },
+                            "chip_background_color": {
+                                "description": "Does something to the colour of something ;)",
+                                "name": "Chip Background Colour"
+                            },
+                            "ring_start_color": {
+                                "name": "Ring Start Colour",
+                                "description": "Does something to the colour of something ;)"
+                            },
+                            "sig_color_layout_place_holder": {
+                                "name": "Sig Colour Layout Place Holder",
+                                "description": "Does something to the colour of something ;)"
+                            },
+                            "status_bar_background": {
+                                "name": "Status Bar Background",
+                                "description": "Does something to the colour of something ;)"
+                            },
+                            "ring_color": {
+                                "name": "Ring Colour",
+                                "description": "Does something to the colour of something ;)"
+                            },
+                            "recipient_pill_background_drawable": {
+                                "name": "Recipient Pill Background Drawable",
+                                "description": "Does something to the colour of something ;)"
+                            },
+                            "box_background_color": {
+                                "name": "Box Background Colour",
+                                "description": "Does something to the colour of something ;)"
+                            },
+                            "edit_text_color": {
+                                "description": "Does something to the colour of something ;)",
+                                "name": "Edit Text Colour"
+                            },
+                            "recipient_input_style": {
+                                "name": "Recipient Input Style",
+                                "description": "Does something to the colour of something ;)"
+                            },
+                            "action_sheet_description_text_color": {
+                                "name": "Action Sheet Description Text Colour",
+                                "description": "Changes the text colour of the description on the action sheet"
+                            },
+                            "item_shape_fill_color": {
+                                "description": "Does something to the colour of something ;)",
+                                "name": "Item Shape Fill Colour"
+                            },
+                            "range_fill_color": {
+                                "description": "Does something to the colour of something ;)",
+                                "name": "Range Fill Colour"
+                            },
+                            "psts_indicator_color": {
+                                "name": "Psts Indicator Colour",
+                                "description": "Does something to the colour of something ;)"
+                            },
+                            "status_bar_foreground": {
+                                "description": "Does something to the colour of something ;)",
+                                "name": "Status Bar Foreground"
+                            },
+                            "tab_text_color": {
+                                "name": "Tab Text Colour",
+                                "description": "Does something to the colour of something ;)"
+                            }
+                        },
+                        "name": "Experimental Colour Options",
+                        "description": "Note: These colour features are Experimental and therefore may cause your snapchat to look strange,\n⚠ Select `Custom Colours` on Theme picker to use"
                     }
                 }
             },
