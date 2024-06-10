@@ -1,11 +1,11 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/bocajthomas/SE-Extended/dev/images/logo/SE%20Extended%20Logo.png" height="150" />
+  <img src="https://raw.githubusercontent.com/bocajthomas/SE-Extended/dev/images/logo/SE%20Extended%20Logo.png" height="240" />
   
 [![Debug CI](https://github.com/bocajthomas/SE-Extended/actions/workflows/debug.yml/badge.svg)](https://github.com/bocajthomas/SE-Extended/actions/workflows/debug.yml) [![Translation status](https://hosted.weblate.org/widget/SE-Extended/se-extended/svg-badge.svg)](https://hosted.weblate.org/engage/SE-Extended/)
 
 # SE Extended 
 SE Extended is a fork from the [SnapEnhance app](https://github.com/rhunk/SnapEnhance) that uses the Xposed Framework to enhance your Snapchat experience.<br/><br/>
-Please note that this project is currently in development, so bugs and crashes may occur. If you encounter any issues, we encourage you to report them. To do this simply visit our [issues](https://github.com/bocajthomas/SE-Extended/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml&title=...) page and create an issue, make sure to follow the guidelines.
+Please note that this project is currently in development, So bugs and crashes may occur. If you encounter any issues, we encourage you to report them. To do this simply visit our [issues](https://github.com/bocajthomas/SE-Extended/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml&title=...) page and create an issue, make sure to follow the guidelines.
 </div>
 
 ## 📱 Screenshots
@@ -115,6 +115,7 @@ Please note that this project is currently in development, so bugs and crashes m
   - `Video Playback Rate Slider`
   - `Disable Google Play Services Dialogs`
   - `Default Volume Controls`
+  - `Disable Telecom Framework`
   - `Hide Active Music`
   - `Disable Snap Splitting`
 </details>
@@ -155,12 +156,14 @@ Please note that this project is currently in development, so bugs and crashes m
   
   - `Native Hooks` (Custom Emoji Fonts, etc) 
   - `Device Spoof`
+  - `Experimental Color Options`
   - `Convert Message Locally`
   - `Media File Picker`
   - `Story Logger`
   - `Call Recorder`
   - `Account Switcher`
   - `Edit Messages`
+  - `Context Menu Fix`
   - `COF Experiments`
   - `App Lock`
   - `Infinite Story Boost`
