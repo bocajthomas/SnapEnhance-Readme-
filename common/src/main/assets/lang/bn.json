@@ -230,7 +230,17 @@
                 "saved_name_dialog_hint": "সংরক্ষিত নাম",
                 "save_coordinates_dialog_title": "স্থানাঙ্ক সংরক্ষণ করুন",
                 "longitude_dialog_hint": "দ্রাঘিমাংশ",
-                "save_dialog_button": "সংরক্ষণ করুন"
+                "save_dialog_button": "সংরক্ষণ করুন",
+                "choose_location_button": "অবস্থান নির্বাচন করুন",
+                "teleport_to_friend_button": "বন্ধুর কাছে টেলিপোর্ট করুন",
+                "spoof_location_toggle": "নকল অবস্থান",
+                "suspend_location_updates": "অবস্থান আপডেট স্থগিত করুন",
+                "saved_coordinates_title": "সংরক্ষিত স্থানাঙ্ক",
+                "search_bar": "অনুসন্ধান",
+                "no_saved_coordinates_hint": "কোনো সংরক্ষিত স্থানাঙ্ক নেই",
+                "delete_dialog_message": "আপনি কি নিশ্চিত এই সংরক্ষিত স্থানাঙ্ক মুছে ফেলতে চান?",
+                "delete_dialog_title": "সংরক্ষিত স্থানাঙ্ক মুছে ফেলুন",
+                "teleport_to_friend_title": "বন্ধুর কাছে টেলিপোর্ট করুন"
             }
         },
         "dialogs": {
