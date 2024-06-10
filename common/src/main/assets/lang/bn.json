@@ -114,7 +114,8 @@
             "logger_history": "লগার ইতিহাস",
             "friend_tracker": "বন্ধু ট্র্যাকার",
             "edit_rule": "সম্পাদনার নিয়ম",
-            "file_imports": "ফাইল আমদানি"
+            "file_imports": "ফাইল আমদানি",
+            "better_location": "বেটার অবস্থান"
         },
         "sections": {
             "features": {
@@ -141,7 +142,8 @@
                 "remove_selected_tasks_title": "নিশ্চিত আপনি নির্বাচিত কাজগুলি সরাতে চান?",
                 "remove_all_tasks_title": "নিশ্চিত আপনি সব কাজ অপসারণ করতে চান?",
                 "remove_all_tasks_confirm": "সমস্ত কাজ মুছে ফেলুন?",
-                "merge_files_toast": "{count} ফাইল মিশ্রণ"
+                "merge_files_toast": "{count} ফাইল মিশ্রণ",
+                "failed_to_open_file": "ফাইল খুলতে ব্যর্থ"
             },
             "home_settings": {
                 "export_button": "রপ্তানি",
@@ -169,7 +171,12 @@
             "home": {
                 "update_content": "সংস্করণ {version} উপলব্ধ!",
                 "update_title": "স্ন্যাপএনহ্যান্স আপডেট",
-                "update_button": "ডাউনলোড"
+                "update_button": "ডাউনলোড",
+                "debug_build_summary_title": "আপনি এসই এক্সটেন্ডেড-এর একটি ডিবাগ বিল্ড চালাচ্ছেন",
+                "version_title": "V{versionName} · জ্যাকব দ্বারা ফর্কড",
+                "debug_build_summary_content": "সংস্করণ {versionName} ({versionCode})",
+                "debug_build_summary_date": "বিল্ডের তারিখ: {date} ({days} দিন আগে)",
+                "quick_actions_title": "দ্রুত ক্রিয়াকলাপ"
             },
             "home_logs": {
                 "no_logs_hint": "কোনও লগ উপলব্ধ নেই",
@@ -216,6 +223,13 @@
                 "file_not_found": "ফাইল পাওয়া যায়নি",
                 "file_import_failed": "ফাইল আমদানি ব্যর্থ হয়েছে: {error}",
                 "file_delete_failed": "ফাইল মুছে ফেলতে ব্যর্থ হয়েছে"
+            },
+            "better_location": {
+                "latitude_dialog_hint": "অক্ষাংশ",
+                "spoofed_coordinates_title": "অক্ষাংশ {latitude}, দ্রাঘিমাংশ {longitude}",
+                "saved_name_dialog_hint": "সংরক্ষিত নাম",
+                "save_coordinates_dialog_title": "স্থানাঙ্ক সংরক্ষণ করুন",
+                "longitude_dialog_hint": "দ্রাঘিমাংশ"
             }
         },
         "dialogs": {
