@@ -115,6 +115,7 @@ Please note that this project is currently in development, So bugs and crashes m
   - `Video Playback Rate Slider`
   - `Disable Google Play Services Dialogs`
   - `Default Volume Controls`
+  - `Disable Telecom Framework`
   - `Hide Active Music`
   - `Disable Snap Splitting`
 </details>
@@ -155,12 +156,14 @@ Please note that this project is currently in development, So bugs and crashes m
   
   - `Native Hooks` (Custom Emoji Fonts, etc) 
   - `Device Spoof`
+  - `Experimental Color Options`
   - `Convert Message Locally`
   - `Media File Picker`
   - `Story Logger`
   - `Call Recorder`
   - `Account Switcher`
   - `Edit Messages`
+  - `Context Menu Fix`
   - `COF Experiments`
   - `App Lock`
   - `Infinite Story Boost`
