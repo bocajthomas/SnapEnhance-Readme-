@@ -647,10 +647,6 @@
                             }
                         }
                     },
-                    "message_preview_length": {
-                        "name": "Message Preview Length",
-                        "description": "Specify the amount of messages to get previewed"
-                    },
                     "call_start_confirmation": {
                         "name": "Call Start Confirmation",
                         "description": "Shows a confirmation dialog when starting a call"
@@ -1549,7 +1545,8 @@
         "streak_expiration": "expires in {day} days {hour} hours {minute} minutes",
         "total_messages": "Total sent/received messages: {count}",
         "title": "Preview",
-        "unknown_user": "Unknown User"
+        "unknown_user": "Unknown User",
+        "no_messages": "No messages found!"
     },
 
     "profile_info": {

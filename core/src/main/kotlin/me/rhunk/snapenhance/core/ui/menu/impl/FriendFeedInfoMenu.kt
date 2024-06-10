@@ -11,12 +11,14 @@ import android.widget.LinearLayout
 import androidx.compose.foundation.background
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.outlined.Message
 import androidx.compose.material.icons.filled.CheckCircleOutline
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.NotInterested
-import androidx.compose.material.icons.outlined.EditNote
-import androidx.compose.material.icons.outlined.RemoveRedEye
+import androidx.compose.material.icons.outlined.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -28,8 +30,12 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import me.rhunk.snapenhance.common.data.ContentType
 import me.rhunk.snapenhance.common.data.FriendLinkType
 import me.rhunk.snapenhance.common.database.impl.ConversationMessage
@@ -37,6 +43,7 @@ import me.rhunk.snapenhance.common.database.impl.FriendInfo
 import me.rhunk.snapenhance.common.scripting.ui.EnumScriptInterface
 import me.rhunk.snapenhance.common.scripting.ui.InterfaceManager
 import me.rhunk.snapenhance.common.scripting.ui.ScriptInterface
+import me.rhunk.snapenhance.common.ui.createComposeAlertDialog
 import me.rhunk.snapenhance.common.ui.createComposeView
 import me.rhunk.snapenhance.common.util.protobuf.ProtoReader
 import me.rhunk.snapenhance.common.util.snap.BitmojiSelfie
@@ -148,92 +155,170 @@ class FriendFeedInfoMenu : AbstractMenu() {
         }
     }
 
-    private fun showPreview(userId: String?, conversationId: String) {
-        //query message
-        val messageLogger = context.feature(MessageLogger::class)
-        val endToEndEncryption = context.feature(EndToEndEncryption::class)
-        val messages: List<ConversationMessage> = context.database.getMessagesFromConversationId(
-            conversationId,
-            context.config.messaging.messagePreviewLength.get()
-        )?.reversed() ?: emptyList()
+    private suspend fun showConversationPreview(
+        targetUser: String?,
+        conversationId: String
+    ) {
+        val friendInfo = targetUser?.let { context.database.getFriendInfo(it) }
+        val conversationInfo = conversationId.takeIf { targetUser == null }?.let { context.database.getFeedEntryByConversationId(it) }
+        val participants by lazy {
+            context.database.getConversationParticipants(conversationId)!!
+                .map { context.database.getFriendInfo(it)!! }
+                .associateBy { it.userId!! }
+        }
 
-        val participants: Map<String, FriendInfo> = context.database.getConversationParticipants(conversationId)!!
-            .map { context.database.getFriendInfo(it)!! }
-            .associateBy { it.userId!! }
-        
-        val messageBuilder = StringBuilder()
-        val translation = context.translation.getCategory("content_type")
+        withContext(Dispatchers.Main) {
+            createComposeAlertDialog(
+                context.mainActivity!!,
+            ) {
+                var pageIndex by remember { mutableStateOf(0) }
+                val messages = remember { mutableStateListOf<@Composable () -> Unit>() }
+                var totalMessages by remember { mutableIntStateOf(-1) }
+                val coroutineScope = rememberCoroutineScope()
 
-        messages.forEach { message ->
-            val sender = participants[message.senderId]
-            val messageProtoReader =
-                (
-                    messageLogger.takeIf { it.isEnabled && message.contentType == ContentType.STATUS.id }?.getMessageProto(conversationId, message.clientMessageId.toLong()) // process deleted messages if message logger is enabled
-                    ?: ProtoReader(message.messageContent!!).followPath(4, 4) // database message
-                )?.let {
-                    if (endToEndEncryption.isEnabled) endToEndEncryption.decryptDatabaseMessage(message) else it // try to decrypt message if e2ee is enabled
-                } ?: return@forEach
+                suspend fun loadMore() {
+                    val conversationMessages = context.database.getMessagesFromConversationId(
+                        conversationId,
+                        50,
+                        page = pageIndex++
+                    ) ?: emptyList()
 
-            val contentType = ContentType.fromMessageContainer(messageProtoReader) ?: ContentType.fromId(message.contentType)
-            var messageString = if (contentType == ContentType.CHAT) {
-                messageProtoReader.getString(2, 1) ?: return@forEach
-            } else translation.getOrNull(contentType.name) ?: contentType.name
+                    if (totalMessages == -1) {
+                        totalMessages = conversationMessages.firstOrNull()?.serverMessageId ?: 0
+                    }
 
-            if (contentType == ContentType.SNAP) {
-                messageString = "\uD83D\uDFE5" //red square
-                if (message.readTimestamp > 0) {
-                    messageString += " \uD83D\uDC40 " //eyes
-                    messageString += DateFormat.getDateTimeInstance(
-                        DateFormat.SHORT,
-                        DateFormat.SHORT
-                    ).format(Date(message.readTimestamp))
+                    val messageLogger = context.feature(MessageLogger::class)
+                    val endToEndEncryption = context.feature(EndToEndEncryption::class)
+
+                    val parsedMessages = conversationMessages.mapNotNull<ConversationMessage, @Composable () -> Unit> { message ->
+                        val sender = participants[message.senderId]
+                        val messageProtoReader =
+                            (messageLogger.takeIf { it.isEnabled && message.contentType == ContentType.STATUS.id }?.getMessageProto(conversationId, message.clientMessageId.toLong()) // process deleted messages if message logger is enabled
+                                ?: ProtoReader(message.messageContent!!).followPath(4, 4) // database message
+                            )?.let {
+                            if (endToEndEncryption.isEnabled) endToEndEncryption.decryptDatabaseMessage(message) else it // try to decrypt message if e2ee is enabled
+                        } ?: return@mapNotNull null
+
+                        val contentType = ContentType.fromMessageContainer(messageProtoReader) ?: ContentType.fromId(message.contentType)
+                        var messageString = if (contentType == ContentType.CHAT) {
+                            messageProtoReader.getString(2, 1) ?: return@mapNotNull null
+                        } else "[${context.translation.getOrNull("content_type.${contentType.name}") ?: contentType.name}]"
+
+                        if (contentType == ContentType.SNAP) {
+                            messageString = "\uD83D\uDFE5" //red square
+                            if (message.readTimestamp > 0) {
+                                messageString += " \uD83D\uDC40 " //eyes
+                                messageString += DateFormat.getDateTimeInstance(
+                                    DateFormat.SHORT,
+                                    DateFormat.SHORT
+                                ).format(Date(message.readTimestamp))
+                            }
+                        }
+
+                        var displayUsername = sender?.displayName ?: sender?.usernameForSorting?: context.translation["conversation_preview.unknown_user"]
+
+                        if (displayUsername.length > 12) {
+                            displayUsername = displayUsername.substring(0, 13) + "... "
+                        }
+
+                        {
+                            Text(
+                                text = "$displayUsername: $messageString",
+                                modifier = Modifier.padding(4.dp)
+                            )
+                        }
+                    }
+
+                    withContext(Dispatchers.Main) {
+                        messages.addAll(parsedMessages)
+                    }
                 }
-            }
 
-            var displayUsername = sender?.displayName ?: sender?.usernameForSorting?: context.translation["conversation_preview.unknown_user"]
+                Column(
+                    modifier = Modifier.fillMaxHeight(fraction = 0.85f)
+                ) {
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(10.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                    ) {
+                        @Composable
+                        fun Entry(icon: ImageVector, text: String?, title: Boolean) {
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.spacedBy(3.dp)
+                            ) {
+                                Icon(icon, contentDescription = null)
+                                Text(
+                                    text = text ?: "",
+                                    fontWeight = if (title) FontWeight.Bold else FontWeight.Light,
+                                    fontSize = if (title) 16.sp else 14.sp
+                                )
+                            }
+                        }
 
-            if (displayUsername.length > 12) {
-                displayUsername = displayUsername.substring(0, 13) + "... "
-            }
-
-            messageBuilder.append(displayUsername).append(": ").append(messageString).append("\n")
+                        Column(
+                            modifier = Modifier.weight(1f),
+                        ) {
+                            friendInfo?.let { friendInfo ->
+                                Entry(Icons.Outlined.Person, friendInfo.displayName?.let { "$it (${friendInfo.usernameForSorting})" } ?: friendInfo.usernameForSorting, true)
+                                friendInfo.streakExpirationTimestamp.takeIf { it > 0L && friendInfo.streakLength > 0 && System.currentTimeMillis() < it }?.let { timestamp ->
+                                    Entry(Icons.Outlined.LocalFireDepartment, context.translation.format("conversation_preview.streak_expiration",
+                                        "day" to ((timestamp - System.currentTimeMillis()) / 1000 / 60 / 60 / 24).toString(),
+                                        "hour" to ((timestamp - System.currentTimeMillis()) / 1000 / 60 / 60 % 24).toString(),
+                                        "minute" to ((timestamp - System.currentTimeMillis()) / 1000 / 60 % 60).toString()
+                                    ), false)
+                                }
+                            }
+                            conversationInfo?.let {
+                                Entry(Icons.Outlined.Group, (it.feedDisplayName ?: it.key).toString(), true)
+                            }
+                            Entry(Icons.AutoMirrored.Outlined.Message, context.translation.format("conversation_preview.total_messages", "count" to totalMessages.toString()), false)
+                        }
+                        friendInfo?.let {
+                            IconButton(
+                                onClick = {
+                                    coroutineScope.launch(Dispatchers.IO) { showProfileInfo(it) }
+                                }
+                            ) {
+                                Icon(Icons.Outlined.MoreVert, contentDescription = null)
+                            }
+                        }
+                    }
+                    Spacer(modifier = Modifier.height(1.dp).fillMaxWidth().background(MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f)))
+                    LazyColumn(
+                        contentPadding = PaddingValues(8.dp),
+                        reverseLayout = true
+                    ) {
+                        items(messages) { message ->
+                            Row(
+                                modifier = Modifier.fillMaxWidth(),
+                            ) {
+                                message()
+                            }
+                        }
+                        item {
+                            Spacer(modifier = Modifier.height(10.dp))
+                            LaunchedEffect(Unit) {
+                                withContext(Dispatchers.IO) {
+                                    loadMore()
+                                }
+                            }
+                            if (messages.isEmpty()) {
+                                Text(
+                                    text = context.translation["conversation_preview.no_messages"],
+                                    modifier = Modifier
+                                        .padding(4.dp)
+                                        .fillMaxWidth(),
+                                    textAlign = TextAlign.Center
+                                )
+                            }
+                        }
+                    }
+                }
+            }.show()
         }
-
-        val targetPerson = if (userId == null) null else participants[userId]
-
-        targetPerson?.streakExpirationTimestamp?.takeIf { it > 0 }?.let {
-            val timeSecondDiff = ((it - System.currentTimeMillis()) / 1000 / 60).toInt()
-            if (timeSecondDiff <= 0) return@let
-            messageBuilder.append("\n")
-                .append("\uD83D\uDD25 ") //fire emoji
-                .append(
-                    context.translation.format("conversation_preview.streak_expiration",
-                    "day" to (timeSecondDiff / 60 / 24).toString(),
-                    "hour" to (timeSecondDiff / 60 % 24).toString(),
-                    "minute" to (timeSecondDiff % 60).toString()
-                ))
-        }
-
-        messages.lastOrNull()?.let {
-            messageBuilder
-                .append("\n\n")
-                .append(context.translation.format("conversation_preview.total_messages", "count" to it.serverMessageId.toString()))
-                .append("\n")
-        }
-
-        //alert dialog
-        val builder = ViewAppearanceHelper.newAlertDialogBuilder(context.mainActivity)
-        builder.setTitle(context.translation["conversation_preview.title"])
-        builder.setMessage(messageBuilder.toString())
-        builder.setPositiveButton(
-            "OK"
-        ) { dialog: DialogInterface, _: Int -> dialog.dismiss() }
-        targetPerson?.let {
-            builder.setNegativeButton(context.translation["modal_option.profile_info"]) { _, _ ->
-                context.executeAsync { showProfileInfo(it) }
-            }
-        }
-        builder.show()
     }
 
     @Composable
@@ -312,7 +397,9 @@ class FriendFeedInfoMenu : AbstractMenu() {
                         Icons.Outlined.RemoveRedEye,
                         translation["preview"],
                         onClick = {
-                            showPreview(targetUser, conversationId)
+                            context.coroutineScope.launch {
+                                showConversationPreview(targetUser, conversationId)
+                            }
                         }
                     )
                 }
