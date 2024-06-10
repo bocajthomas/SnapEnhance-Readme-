@@ -240,7 +240,9 @@
                 "no_saved_coordinates_hint": "কোনো সংরক্ষিত স্থানাঙ্ক নেই",
                 "delete_dialog_message": "আপনি কি নিশ্চিত এই সংরক্ষিত স্থানাঙ্ক মুছে ফেলতে চান?",
                 "delete_dialog_title": "সংরক্ষিত স্থানাঙ্ক মুছে ফেলুন",
-                "teleport_to_friend_title": "বন্ধুর কাছে টেলিপোর্ট করুন"
+                "teleport_to_friend_title": "বন্ধুর কাছে টেলিপোর্ট করুন",
+                "no_friends_map": "মানচিত্রে কোনো বন্ধু নেই",
+                "no_friends_found": "কোনো বন্ধু পাওয়া যায়নি"
             }
         },
         "dialogs": {
@@ -371,6 +373,9 @@
         "change_language": {
             "name": "ভাষা পরিবর্তন করুন",
             "description": "স্ন্যাপএনহ্যান্সের ভাষা পরিবর্তন করুন"
+        },
+        "file_imports": {
+            "name": "ফাইল আমদানি"
         }
     },
     "features": {
