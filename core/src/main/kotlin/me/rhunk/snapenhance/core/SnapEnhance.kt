@@ -5,6 +5,7 @@ import android.app.Application
 import android.content.Context
 import android.content.res.Resources
 import android.os.Build
+import dalvik.system.BaseDexClassLoader
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -27,6 +28,7 @@ import me.rhunk.snapenhance.core.util.LSPatchUpdater
 import me.rhunk.snapenhance.core.util.hook.HookAdapter
 import me.rhunk.snapenhance.core.util.hook.HookStage
 import me.rhunk.snapenhance.core.util.hook.hook
+import me.rhunk.snapenhance.core.util.hook.hookConstructor
 import kotlin.system.exitProcess
 import kotlin.system.measureTimeMillis
 
@@ -204,6 +206,9 @@ class SnapEnhance {
                         request.buffer = buffer
                         request.canceled = canceled
                     }
+                }
+                BaseDexClassLoader::class.java.hookConstructor(HookStage.AFTER) {
+                    appContext.native.hideAnonymousDexFiles()
                 }
                 appContext.reloadNativeConfig()
             }
