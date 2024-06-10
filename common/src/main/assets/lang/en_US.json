@@ -461,7 +461,7 @@
                                     },
                                     "list_background_drawable": {
                                         "name": "Conversation list Background ",
-                                        "description": "Changes the background color of the conversation list\n This might break the friend feeds look"
+                                        "description": "Changes the background color of the conversation list on the friend feed\nThis might break the friend feeds look"
                                     },
                                     "friend_feed_conversations_line_color": {
                                         "name": "Conversations Line Color",
