@@ -538,7 +538,7 @@
                                         "description": "স্ন্যাপচ্যাটের পটভূমির রঙ পরিবর্তন করে"
                                     },
                                     "friend_feed_conversations_line_color": {
-                                        "description": "বন্ধু ফিডে কথোপকথন ভাগ করে দেওয়া লাইনের রঙ পরিবর্তন করে ",
+                                        "description": "বন্ধু ফিডে কথোপকথন বিভাজক রেখার রঙ পরিবর্তন করে",
                                         "name": "কথোপকথনের লাইনের রঙ"
                                     },
                                     "action_menu_round_background_color": {
