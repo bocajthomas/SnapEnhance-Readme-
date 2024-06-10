@@ -568,7 +568,7 @@
                                     },
                                     "list_background_drawable": {
                                         "name": "Conversation list Background ",
-                                        "description": "Changes the background colour of the conversation list\nThis might break the friend feeds look"
+                                        "description": "Changes the background colour of the conversation list on the friend feed\nThis might break the friend feeds look"
                                     }
                                 },
                                 "name": "Custom Colours",
@@ -1613,7 +1613,8 @@
         "streak_expiration": "expires in {day} days {hour} hours {minute} minutes",
         "total_messages": "Total sent/received messages: {count}",
         "title": "Preview",
-        "unknown_user": "Unknown User"
+        "unknown_user": "Unknown User",
+        "no_messages": "No messages found!"
     },
     "profile_info": {
         "title": "Profile Info",
