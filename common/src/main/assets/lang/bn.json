@@ -229,7 +229,8 @@
                 "spoofed_coordinates_title": "অক্ষাংশ {latitude}, দ্রাঘিমাংশ {longitude}",
                 "saved_name_dialog_hint": "সংরক্ষিত নাম",
                 "save_coordinates_dialog_title": "স্থানাঙ্ক সংরক্ষণ করুন",
-                "longitude_dialog_hint": "দ্রাঘিমাংশ"
+                "longitude_dialog_hint": "দ্রাঘিমাংশ",
+                "save_dialog_button": "সংরক্ষণ করুন"
             }
         },
         "dialogs": {
