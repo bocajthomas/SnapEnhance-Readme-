@@ -179,7 +179,7 @@ class LogManager(
 
     private fun newLogFile() {
         val currentTime = System.currentTimeMillis()
-        logFile = File(logFolder, "SE Extended-${getCurrentDateTime(pathSafe = true)}.txt").also {
+        logFile = File(logFolder, "snapenhance_${getCurrentDateTime(pathSafe = true)}.log").also {
             it.createNewFile()
             remoteSideContext.sharedPreferences.edit().putString("log_file", it.absolutePath).putLong("last_created", currentTime).apply()
         }
