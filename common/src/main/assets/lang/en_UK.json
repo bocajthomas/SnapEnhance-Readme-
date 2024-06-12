@@ -577,6 +577,10 @@
                             "theme_picker": {
                                 "name": "Theme Picker",
                                 "description": "Preset Snapchat Themes"
+                            },
+                            "colors_debug": {
+                                "name": "Colours Debug",
+                                "description": "Logs The obtainStyledAttributes, That are being used when Snapchat is loaded\nNote: This will significantly increase the size of your logs"
                             }
                         }
                     }
@@ -1211,6 +1215,18 @@
                             "sig_color_button_primary": {
                                 "name": "Sig Colour Button Primary",
                                 "description": "Does something to the colour of something ;)"
+                            },
+                            "sig_color_background_surface_translucent": {
+                                "description": "Does something to the colour of something ;)",
+                                "name": "sigColourBackgroundSurfaceTranslucent"
+                            },
+                            "sig_color_story_ring_friends_feed_story_ring": {
+                                "name": "sigColourStoryRingFriendsFeedStoryRing",
+                                "description": "Does something to the colour of something ;)"
+                            },
+                            "sig_color_story_ring_discover_tab_thumbnail_story_ring": {
+                                "name": "sigColourStoryRingDiscoverTabThumbnailStoryRing",
+                                "description": "Does something to the colour of something ;)"
                             }
                         },
                         "name": "Experimental Colour Options",
@@ -1223,6 +1239,24 @@
                     "context_menu_fix": {
                         "description": "Attempt to repair the Friend Feed Menu as when the device is offline it cannot be displayed correctly",
                         "name": "Context Menu Fix"
+                    },
+                    "better_transcript": {
+                        "description": "Improves the voice note transcript",
+                        "properties": {
+                            "preferred_transcription_lang": {
+                                "name": "Preferred Transcription Language",
+                                "description": "The preferred language for the voice note transcript (e.g. EN, ES, FR)"
+                            },
+                            "enhanced_transcript": {
+                                "name": "Enhanced Transcript",
+                                "description": "Improves the voice note transcript using DeepL.\nBefore using this feature, please ensure that you have read their privacy policy."
+                            },
+                            "force_transcription": {
+                                "name": "Force Voice Note Transcription",
+                                "description": "Allows all voice notes to be transcribed"
+                            }
+                        },
+                        "name": "Better Transcript"
                     }
                 }
             },
