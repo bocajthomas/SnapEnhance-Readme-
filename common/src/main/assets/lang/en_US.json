@@ -486,7 +486,7 @@
                                 }
                             },
                             "colors_debug": {
-                                "name": "Colors debug",
+                                "name": "Colors Debug",
                                 "description": "Logs The obtainStyledAttributes, That are being used when Snapchat is loaded\nNote: This will significantly increase the size of your logs"
                             }
                         }
