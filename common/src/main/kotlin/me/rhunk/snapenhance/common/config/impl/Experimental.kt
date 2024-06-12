@@ -77,6 +77,9 @@ class Experimental : ConfigContainer() {
         val storyReplayViewRingColor = color("story_replay_view_ring_color")
         val sigColorButtonPrimary = color("sig_color_button_primary")
         val sigColorBaseAppYellow = color("sig_color_base_app_yellow")
+        val sigColorBackgroundSurfaceTranslucent = color("sig_color_background_surface_translucent")
+        val sigColorStoryRingFriendsFeedStoryRing = color("sig_color_story_ring_friends_feed_story_ring")
+        val sigColorStoryRingDiscoverTabThumbnailStoryRing = color("sig_color_story_ring_discover_tab_thumbnail_story_ring")
     }
 
     val nativeHooks = container("native_hooks", NativeHooks()) { icon = Icons.Default.Memory; requireRestart() }
