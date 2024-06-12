@@ -486,8 +486,8 @@
                                 }
                             },
                             "colors_debug": {
-                                "name": "Colors debug",
-                                "description": "Logs The `attr` that are being used when you load snapchat\nNote: This will significantly increase the size of your logs"
+                                "name": "Colors Debug",
+                                "description": "Logs the `attr` that are being used when you load Snapchat\nNote: This will significantly increase the size of your logs"
                             }
                         }
                     },
