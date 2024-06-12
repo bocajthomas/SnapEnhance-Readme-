@@ -210,10 +210,16 @@ SE Extended will always be free and open source for everyone, If you like it, Co
 
 ## 🤝 Contributing 
 Contribuions are welcome!<br/>
+Many Thanks to the people who have contributed so far
+<div align="left">
+  <img src="https://images.weserv.nl/?url=avatars.githubusercontent.com/u/137927782?v=4&h=300&w=300&fit=cover&mask=circle&maxage=7d" height="95" />
+
+  [suryadip2008](https://github.com/suryadip2008)
+
+
 You can help translate SE Extended on [Hosted Weblate](https://hosted.weblate.org/projects/SE-Extended/se-extended/).
 
 [![Translation status](https://hosted.weblate.org/widget/SE-Extended/se-extended/multi-auto.svg)](https://hosted.weblate.org/engage/SE-Extended/)
-
 ## ⭐ Star History
 <a href="https://star-history.com/#bocajthomas/SE-Extended&Date">
  <picture>

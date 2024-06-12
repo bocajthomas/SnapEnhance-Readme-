@@ -196,7 +196,7 @@ class LogManager(
         }
 
         // add device info to zip
-        zipOutputStream.putNextEntry(ZipEntry("device_info.json"))
+        zipOutputStream.putNextEntry(ZipEntry("device-info.json"))
         val gson = GsonBuilder().setPrettyPrinting().create()
         zipOutputStream.write(gson.toJson(remoteSideContext.installationSummary).toByteArray())
         zipOutputStream.closeEntry()

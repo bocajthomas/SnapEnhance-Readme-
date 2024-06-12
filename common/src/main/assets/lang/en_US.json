@@ -484,6 +484,10 @@
                                         "description": "Changes Snapchats Gridlines color on the Camera Preview\nNote: Enable the grid on the my camera settings"
                                     }
                                 }
+                            },
+                            "colors_debug": {
+                                "name": "Colors debug",
+                                "description": "Logs The `attr` that are being used when you load snapchat\nNote: This will significantly increase the size of your logs"
                             }
                         }
                     },
@@ -1146,6 +1150,24 @@
                             "auto_backup_current_account": {
                                 "name": "Auto Backup Current Account",
                                 "description": "Automatically backs up the current account when logging out or switching accounts"
+                            }
+                        }
+                    },
+                    "better_transcript": {
+                        "name": "Better Transcript",
+                        "description": "Improves the voice note transcript",
+                        "properties": {
+                            "force_transcription": {
+                                "name": "Force Voice Note Transcription",
+                                "description": "Allows all voice notes to be transcribed"
+                            },
+                            "preferred_transcription_lang": {
+                                "name": "Preferred Transcription Language",
+                                "description": "The preferred language for the voice note transcript (e.g. EN, ES, FR)"
+                            },
+                            "enhanced_transcript": {
+                                "name": "Enhanced Transcript",
+                                "description": "Improves the voice note transcript using DeepL.\nBefore using this feature, please ensure that you have read their privacy policy."
                             }
                         }
                     },
