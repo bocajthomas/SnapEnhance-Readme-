@@ -53,6 +53,7 @@ class UserInterfaceTweaks : ConfigContainer() {
             "alien_landscape",
         )
         val colors = container("colors", ColorsConfig()) { requireRestart() }
+        val colorsDebug = boolean("colors_debug") { requireRestart() }
     }
 
     val friendFeedMenuButtons = multiple(

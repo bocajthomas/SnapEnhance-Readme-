@@ -23,6 +23,7 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
         val themePicker = customizeUIConfig.themePicker.getNullable() ?: return
         val colorsConfig = context.config.userInterface.customizeUi.colors
         val experimentalColors = context.config.experimental.experimentalColors
+        val isColorDebug = customizeUIConfig.colorsDebug.get()
         
         if (themePicker == "custom") {
             themes.clear()
@@ -95,6 +96,9 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
             HookStage.AFTER) { param ->
             val array = param.arg<IntArray>(0)
             val result = param.getResult() as TypedArray
+            if(isColorDebug) {
+                context.log.verbose(context.resources.getResourceName(array[0]))
+            }
 
             fun ephemeralHook(methodName: String, content: Any) {
                 Hooker.ephemeralHookObjectMethod(result::class.java, result, methodName, HookStage.BEFORE) {
