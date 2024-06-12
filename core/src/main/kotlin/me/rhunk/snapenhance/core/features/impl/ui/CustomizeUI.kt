@@ -64,6 +64,9 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                 "storyReplayViewRingColor" to experimentalColors.storyReplayViewRingColor.getNullable(),
                 "sigColorButtonPrimary" to experimentalColors.sigColorButtonPrimary.getNullable(),
                 "sigColorBaseAppYellow" to experimentalColors.sigColorBaseAppYellow.getNullable(),
+                "sigColorBackgroundSurfaceTranslucent" to experimentalColors.sigColorBackgroundSurfaceTranslucent.getNullable(),
+                "sigColorStoryRingFriendsFeedStoryRing" to experimentalColors.sigColorStoryRingFriendsFeedStoryRing.getNullable(),
+                "sigColorStoryRingDiscoverTabThumbnailStoryRing" to experimentalColors.sigColorStoryRingDiscoverTabThumbnailStoryRing.getNullable(),
             ).filterValues { it != null }.map { (key, value) ->
                 getAttribute(key) to value!!
             }.toMap()
