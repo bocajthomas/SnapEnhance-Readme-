@@ -44,7 +44,7 @@ Please note that this project is currently in development, So bugs and crashes m
   <summary>📲 User Interface</summary>
   
   - `Friend Feed Menu Buttons` 
-  - `Colors` (Theme Picker & Custom Colors)
+  - `Colors` (Theme Picker, Custom Colors, Etc)
   - `Friend Feed Message Preview` 
   - `Snap Preview`
   - `Bootstrap Override` (Default Home Tab & Persistent App Appearance)
@@ -54,7 +54,7 @@ Please note that this project is currently in development, So bugs and crashes m
   - `Hide Friend Feed Entry`
   - `Hide Streak Restore`
   - `Hide Quick Add In Friend Feed`
-  - `Hide Story Section` 
+  - `Hide Story Suggestions` 
   - `Hide UI Components` (Voice Record button, Call Buttons, Etc)
   - `Opera Media Quick Info`
   - `Old Bitmoji Selfie` 
@@ -80,7 +80,6 @@ Please note that this project is currently in development, So bugs and crashes m
   - `Loop Media PlayBack`
   - `Disable Replay In FF`
   - `Half Swipe Notifier`
-  - `Message Preview Length`
   - `Call Start Confirmation`
   - `Unlimited Conversation Pinning`
   - `Auto Save Messages` 
@@ -136,11 +135,13 @@ Please note that this project is currently in development, So bugs and crashes m
   - `Disable Camera`
   - `Immersive Preview`
   - `Black Photos` 
-  - `Custom Frame Rate` (Front & Back)
+  - `Front Custom Frame Rate`
+  - `Back Custom Frame Rate`  
   - `HEVC Recording`
   - `Force Camera Source Encoding`
   - `Custom Resolution`
-  - `Override Resolution` (Front & Back)
+  - `Override Front Resolution`
+  - `Override Back Resolution`
 </details>
 
 <details closed>
@@ -155,13 +156,14 @@ Please note that this project is currently in development, So bugs and crashes m
   <summary>🧪 Experimental</summary>
   
   - `Native Hooks` (Custom Emoji Fonts, etc) 
-  - `Device Spoof`
+  - `Spoof`
   - `Experimental Color Options`
   - `Convert Message Locally`
   - `Media File Picker`
   - `Story Logger`
   - `Call Recorder`
   - `Account Switcher`
+  - `Better Transcript`
   - `Edit Messages`
   - `Context Menu Fix`
   - `COF Experiments`
@@ -210,11 +212,8 @@ SE Extended will always be free and open source for everyone, If you like it, Co
 
 ## 🤝 Contributing 
 Contribuions are welcome!<br/>
-Many Thanks to the people who have contributed so far
-<div align="left">
-  <img src="https://images.weserv.nl/?url=avatars.githubusercontent.com/u/137927782?v=4&h=300&w=300&fit=cover&mask=circle&maxage=7d" height="95" />
-
-  [suryadip2008](https://github.com/suryadip2008)
+Thanks to everyone involved
+- [suryadip2008](https://github.com/suryadip2008) (Translated Bengali)
 
 
 You can help translate SE Extended on [Hosted Weblate](https://hosted.weblate.org/projects/SE-Extended/se-extended/).
