@@ -487,7 +487,7 @@
                             },
                             "colors_debug": {
                                 "name": "Colors debug",
-                                "description": "Logs The obtainStyledAttributes (attr) that are being used when you load snapchat\nNote: This will significantly increase the size of your logs"
+                                "description": "Logs The `attr` that are being used when you load snapchat\nNote: This will significantly increase the size of your logs"
                             }
                         }
                     },
@@ -1124,20 +1124,7 @@
                             "sig_color_base_app_yellow": {
                                 "name": "Sig Color Base App Yellow",
                                 "description": "Does something to the color of something ;)"
-                            },
-                            "sig_color_background_surface_translucent": {
-                                "name": "sigColorBackgroundSurfaceTranslucent",
-                                "description": "Does something to the color of something ;)"
-                            },
-                            "sig_color_story_ring_friends_feed_story_ring": {
-                                "name": "sigColorStoryRingFriendsFeedStoryRing",
-                                "description": "Does something to the color of something ;)"
-                            },
-                            "sig_color_story_ring_discover_tab_thumbnail_story_ring": {
-                                "name": "sigColorStoryRingDiscoverTabThumbnailStoryRing",
-                                "description": "Does something to the color of something ;)"
                             }
-
                         }
                     },
                     "convert_message_locally": {
