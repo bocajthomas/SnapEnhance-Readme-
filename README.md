@@ -211,7 +211,7 @@ Join our [Telegram Channel](https://t.me/SE_Extended) for Discussions, announcem
 SE Extended will always be free and open source for everyone, If you like it, Consider [Donating](https://www.paypal.me/Jhuddz00)
 
 ## 🤝 Contributing 
-Contribuions are welcome!<br/>
+Contributions are welcome!<br/>
 Thanks to everyone involved
 - [suryadip2008](https://github.com/suryadip2008) (Translated Bengali)
 
