@@ -760,6 +760,14 @@
                     "unlimited_conversation_pinning": {
                         "description": "Allows you to pin an unlimited amount of conversations locally",
                         "name": "Unlimited Conversation Pinning"
+                    },
+                    "skip_when_marking_as_seen": {
+                        "description": "Automatically skips to the next Snap when marking a Snap as seen.\nUse in combination with Mark Snap as Seen Button",
+                        "name": "Skip When Marking as Seen"
+                    },
+                    "mark_snap_as_seen_button": {
+                        "description": "Adds a button to mark a Snap as seen when viewing it.\nThis will work even when Stealth Mode is enabled",
+                        "name": "Mark Snap as Seen Button"
                     }
                 },
                 "description": "Change how you interact with friends"
@@ -995,6 +1003,10 @@
                             "custom_emoji_font": {
                                 "description": "Allows you to use a custom emoji font. Only works with .ttf fonts",
                                 "name": "Custom Emoji Font"
+                            },
+                            "remap_executable": {
+                                "name": "Remap Executable",
+                                "description": "Remaps executable regions in memory"
                             }
                         }
                     },
