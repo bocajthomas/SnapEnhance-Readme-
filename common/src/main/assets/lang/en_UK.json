@@ -617,6 +617,10 @@
                         "name": "Disable Replay in FF",
                         "description": "Disables the ability to replay with a long press from the Friend Feed"
                     },
+                    "message_preview_length": {
+                        "name": "Message Preview Length",
+                        "description": "Specify the amount of messages to get previewed"
+                    },
                     "call_start_confirmation": {
                         "name": "Call Start Confirmation",
                         "description": "Shows a confirmation dialog when starting a call"

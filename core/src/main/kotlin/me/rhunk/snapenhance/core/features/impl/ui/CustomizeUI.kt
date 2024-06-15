@@ -22,7 +22,9 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
         val customizeUIConfig = context.config.userInterface.customizeUi
         val themePicker = customizeUIConfig.themePicker.getNullable() ?: return
         val colorsConfig = context.config.userInterface.customizeUi.colors
-
+        val experimentalColors = context.config.experimental.experimentalColors
+        val isColorDebug = customizeUIConfig.colorsDebug.get()
+        
         if (themePicker == "custom") {
             themes.clear()
             themes[themePicker] = mapOf(
@@ -37,6 +39,34 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                 "actionSheetBackgroundDrawable" to colorsConfig.actionMenuBackgroundColor.getNullable(),
                 "actionSheetRoundedBackgroundDrawable" to colorsConfig.actionMenuRoundBackgroundColor.getNullable(),
                 "sigExceptionColorCameraGridLines" to colorsConfig.cameraGridLines.getNullable(),
+                "listBackgroundDrawable" to colorsConfig.listBackgroundDrawable.getNullable(),
+                "sigColorIconPrimary" to colorsConfig.sigColorIconPrimary.getNullable(),
+                "actionSheetDescriptionTextColor" to colorsConfig.actionSheetDescriptionTextColor.getNullable(),
+                "ringColor" to experimentalColors.ringColor.getNullable(),
+                "sigColorIconSecondary" to experimentalColors.sigColorIconSecondary.getNullable(),
+                "itemShapeFillColor" to experimentalColors.itemShapeFillColor.getNullable(),
+                "ringStartColor" to experimentalColors.ringStartColor.getNullable(),
+                "sigColorLayoutPlaceholder" to experimentalColors.sigColorLayoutPlaceholder.getNullable(),
+                "scButtonColor" to experimentalColors.scButtonColor.getNullable(),
+                "recipientPillBackgroundDrawable" to experimentalColors.recipientPillBackgroundDrawable.getNullable(),
+                "boxBackgroundColor" to experimentalColors.boxBackgroundColor.getNullable(),
+                "editTextColor" to experimentalColors.editTextColor.getNullable(),
+                "chipBackgroundColor" to experimentalColors.chipBackgroundColor.getNullable(),
+                "recipientInputStyle" to experimentalColors.recipientInputStyle.getNullable(),
+                "rangeFillColor" to experimentalColors.rangeFillColor.getNullable(),
+                "pstsIndicatorColor" to experimentalColors.pstsIndicatorColor.getNullable(),
+                "pstsTabBackground" to experimentalColors.pstsTabBackground.getNullable(),
+                "pstsDividerColor" to experimentalColors.pstsDividerColor.getNullable(),
+                "tabTextColor" to experimentalColors.tabTextColor.getNullable(),
+                "statusBarForeground" to experimentalColors.statusBarForeground.getNullable(),
+                "statusBarBackground" to experimentalColors.statusBarBackground.getNullable(),
+                "strokeColor" to experimentalColors.strokeColor.getNullable(),
+                "storyReplayViewRingColor" to experimentalColors.storyReplayViewRingColor.getNullable(),
+                "sigColorButtonPrimary" to experimentalColors.sigColorButtonPrimary.getNullable(),
+                "sigColorBaseAppYellow" to experimentalColors.sigColorBaseAppYellow.getNullable(),
+                "sigColorBackgroundSurfaceTranslucent" to experimentalColors.sigColorBackgroundSurfaceTranslucent.getNullable(),
+                "sigColorStoryRingFriendsFeedStoryRing" to experimentalColors.sigColorStoryRingFriendsFeedStoryRing.getNullable(),
+                "sigColorStoryRingDiscoverTabThumbnailStoryRing" to experimentalColors.sigColorStoryRingDiscoverTabThumbnailStoryRing.getNullable(),
             ).filterValues { it != null }.map { (key, value) ->
                 getAttribute(key) to value!!
             }.toMap()
@@ -69,6 +99,9 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
             HookStage.AFTER) { param ->
             val array = param.arg<IntArray>(0)
             val result = param.getResult() as TypedArray
+            if(isColorDebug) {
+                context.log.verbose(context.resources.getResourceName(array[0]))
+            }
 
             fun ephemeralHook(methodName: String, content: Any) {
                 Hooker.ephemeralHookObjectMethod(result::class.java, result, methodName, HookStage.BEFORE) {

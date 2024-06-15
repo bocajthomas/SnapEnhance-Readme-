@@ -13,7 +13,7 @@ object Updater {
     )
 
     fun checkForLatestRelease(): LatestRelease? {
-        val endpoint = Request.Builder().url("https://api.github.com/repos/rhunk/SnapEnhance/releases").build()
+        val endpoint = Request.Builder().url("https://api.github.com/repos/bocajthomas/SE-Extended/releases").build()
         val response = OkHttpClient().newCall(endpoint).execute()
 
         if (!response.isSuccessful) throw Throwable("Failed to fetch releases: ${response.code}")
