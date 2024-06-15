@@ -557,6 +557,18 @@
                                     "friend_feed_conversations_line_color": {
                                         "name": "Conversations Line Colour",
                                         "description": "Changes the line divider colour that splits Conversations on the friend feed "
+                                    },
+                                    "sig_color_icon_primary": {
+                                        "name": "Action Menu Icon Colour",
+                                        "description": "Changes the colour of icons on chat action menu/friend feed menu"
+                                    },
+                                    "action_sheet_description_text_color": {
+                                        "name": "Action Menu Description Text Colour",
+                                        "description": "Changes the text colour of the description on the action menu"
+                                    },
+                                    "list_background_drawable": {
+                                        "name": "Conversation list Background ",
+                                        "description": "Changes the background colour of the conversation list on the friend feed\nThis might break the friend feeds look"
                                     }
                                 },
                                 "name": "Custom Colours",
@@ -565,6 +577,10 @@
                             "theme_picker": {
                                 "name": "Theme Picker",
                                 "description": "Preset Snapchat Themes"
+                            },
+                            "colors_debug": {
+                                "name": "Colours Debug",
+                                "description": "Logs The obtainStyledAttributes, That are being used when Snapchat is loaded\nNote: This will significantly increase the size of your logs"
                             }
                         }
                     }
@@ -744,6 +760,14 @@
                     "unlimited_conversation_pinning": {
                         "description": "Allows you to pin an unlimited amount of conversations locally",
                         "name": "Unlimited Conversation Pinning"
+                    },
+                    "skip_when_marking_as_seen": {
+                        "description": "Automatically skips to the next Snap when marking a Snap as seen.\nUse in combination with Mark Snap as Seen Button",
+                        "name": "Skip When Marking as Seen"
+                    },
+                    "mark_snap_as_seen_button": {
+                        "description": "Adds a button to mark a Snap as seen when viewing it.\nThis will work even when Stealth Mode is enabled",
+                        "name": "Mark Snap as Seen Button"
                     }
                 },
                 "description": "Change how you interact with friends"
@@ -871,6 +895,10 @@
                                 "description": "Sets a custom image upload format\nSelect a lossless format (like PNG) for the best quality"
                             }
                         }
+                    },
+                    "disable_telecom_framework": {
+                        "description": "Prevents Snapchat from using the Android Telecom framework\nThis allows you to listen to music while on a call",
+                        "name": "Disable Telecom Framework"
                     }
                 }
             },
@@ -975,6 +1003,10 @@
                             "custom_emoji_font": {
                                 "description": "Allows you to use a custom emoji font. Only works with .ttf fonts",
                                 "name": "Custom Emoji Font"
+                            },
+                            "remap_executable": {
+                                "name": "Remap Executable",
+                                "description": "Remaps executable regions in memory"
                             }
                         }
                     },
@@ -1101,6 +1133,20 @@
                     "context_menu_fix": {
                         "name": "Context Menu Fix",
                         "description": "Attempts to repair the Friend Feed Menu when the device is offline, it cannot be displayed correctly"
+                    },
+                    "experimental_colors": {
+                        "properties": {
+                            "sig_color_icon_secondary": {
+                                "name": "Sig Colour Icon Secondary",
+                                "description": "Does something to the colour of something ;)"
+                            },
+                            "ring_color": {
+                                "description": "Does something to the colour of something ;)",
+                                "name": "Ring Colour"
+                            }
+                        },
+                        "description": "Note: These colour features are Experimental and therefore may cause your snapchat to look strange,\nSelect `Custom Colours` on Theme picker to use",
+                        "name": "Experimental Colour Options"
                     }
                 }
             },
