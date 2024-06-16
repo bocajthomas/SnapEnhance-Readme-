@@ -51,6 +51,7 @@ class UserInterfaceTweaks : ConfigContainer() {
             "lava_flow",
             "ocean_fog",
             "alien_landscape",
+            "watercolor_wash",
         )
         val colors = container("colors", ColorsConfig()) { requireRestart() }
         val colorsDebug = boolean("colors_debug") { requireRestart() }

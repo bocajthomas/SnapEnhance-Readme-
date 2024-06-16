@@ -1328,7 +1328,8 @@
                 "lemon_meringue": "Lemon Meringue",
                 "lava_flow": "Lava Flow",
                 "ocean_fog": "Ocean Fog",
-                "alien_landscape": "Alien Landscape"
+                "alien_landscape": "Alien Landscape",
+                "watercolor_wash": "Watercolor Wash"
             },
             "friend_feed_menu_buttons": {
                 "auto_download": "\u2B07\uFE0F Auto Download",
