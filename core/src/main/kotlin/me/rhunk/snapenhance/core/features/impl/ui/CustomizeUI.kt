@@ -235,6 +235,17 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                "sigColorChatSnapWithSound" to 0xFFFFFFFF,
                "sigColorChatSnapWithoutSound" to 0xFFFFFFFF,
                "sigExceptionColorCameraGridLines" to 0xFF9B59B6
+           ),
+           "watercolor_wash" to mapOf(
+               "sigColorTextPrimary" to 0xFF3F51B5,
+               "sigColorBackgroundMain" to 0xFFFFF5F3,
+               "sigColorBackgroundSurface" to 0xFFFFF5F3,
+               "actionSheetBackgroundDrawable" to 0xFFFFF5F3,
+               "sigColorChatChat" to 0xFF3F51B5,
+               "sigColorChatPendingSending" to 0xFF3F51B5,
+               "sigColorChatSnapWithSound" to 0xFF3F51B5,
+               "sigColorChatSnapWithoutSound" to 0xFF3F51B5,
+               "sigExceptionColorCameraGridLines" to 0xFFFFF5F3
            )
        ).mapValues { (_, attributes) ->
             attributes.map { (key, value) ->

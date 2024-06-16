@@ -213,7 +213,9 @@ SE Extended will always be free and open source for everyone, If you like it, Co
 ## 🤝 Contributing 
 Contributions are welcome!<br/>
 Thanks to everyone involved
-- [suryadip2008](https://github.com/suryadip2008) (Translated Bengali)
+- [suryadip2008](https://github.com/suryadip2008) (Translated: Bengali)
+- [BogusMosquito77](https://github.com/BogusMosquito7)
+(Translated: Dutch)
 
 
 You can help translate SE Extended on [Hosted Weblate](https://hosted.weblate.org/projects/SE-Extended/se-extended/).
