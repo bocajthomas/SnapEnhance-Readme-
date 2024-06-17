@@ -410,12 +410,210 @@
                         "name": "FFmpeg 选项",
                         "properties": {
                             "threads": {
-                                "name": "线程数"
+                                "name": "线程数",
+                                "description": "使用的线程数量"
+                            },
+                            "preset": {
+                                "name": "预设",
+                                "description": "设置转换速度"
+                            },
+                            "custom_video_codec": {
+                                "description": "设置自定义视频编解码器（例如 libx264）",
+                                "name": "自定义视频编解码器"
+                            },
+                            "constant_rate_factor": {
+                                "name": "恒定速率因子",
+                                "description": "设置视频编码器的恒定速率因子\nlibx264 从 0 到 51"
+                            },
+                            "video_bitrate": {
+                                "name": "视频比特率",
+                                "description": "设置视频比特率（kbps）"
+                            },
+                            "audio_bitrate": {
+                                "name": "音频比特率",
+                                "description": "设置音频比特率（kbps）"
+                            },
+                            "custom_audio_codec": {
+                                "name": "自定义音频编解码器",
+                                "description": "设置自定义音频编解码器（例如 AAC）"
                             }
                         }
+                    },
+                    "custom_path_format": {
+                        "description": "为下载的媒体指定自定义路径格式\n\n可用变量:\n- ％用户名％\n- ％来源％\n- %哈希%\n- ％约会时间％",
+                        "name": "自定义路径格式"
+                    },
+                    "logging": {
+                        "description": "下载媒体时显示 toast",
+                        "name": "记录"
                     }
                 },
                 "description": "下载 Snapchat 媒体"
+            },
+            "user_interface": {
+                "properties": {
+                    "customize_ui": {
+                        "properties": {
+                            "colors": {
+                                "properties": {
+                                    "text_color": {
+                                        "name": "主要文字颜色",
+                                        "description": "更改 Snapchat 主要文本颜色"
+                                    },
+                                    "friend_feed_conversations_line_color": {
+                                        "name": "对话线条颜色",
+                                        "description": "更改分隔朋友提要上的对话的分隔线颜色"
+                                    },
+                                    "pending_sending_text_color": {
+                                        "name": "次要好友提要文本颜色",
+                                        "description": "更改好友源上的（已发送/已接收/正在发送/已打开/点击聊天/按住重播/已重播/已保存在聊天中/已呼叫）的文本颜色"
+                                    },
+                                    "chat_chat_text_color": {
+                                        "name": "主要好友提要文本颜色",
+                                        "description": "更改朋友源上的（新聊天/新快照和聊天/打字/呼叫/未接来电/讲话/新语音注释）的文本颜色"
+                                    },
+                                    "snap_with_sound_text_color": {
+                                        "name": "带有声音文本颜色的快照",
+                                        "description": "更改朋友提要上（新快照）的文本颜色\n注意：仅限视频快照"
+                                    },
+                                    "snap_without_sound_text_color": {
+                                        "name": "没有声音的快照文本颜色",
+                                        "description": "更改朋友提要上（新快照）的文本颜色\n注意：仅限视频快照"
+                                    },
+                                    "action_sheet_description_text_color": {
+                                        "description": "更改操作菜单上描述的文本颜色",
+                                        "name": "操作菜单说明文本颜色"
+                                    },
+                                    "camera_grid_lines": {
+                                        "description": "更改相机预览上的 Snapchat 网格线颜色\n注意：在我的相机设置中启用网格",
+                                        "name": "相机网格线颜色"
+                                    },
+                                    "background_color": {
+                                        "name": "背景颜色",
+                                        "description": "更改 Snapchat 背景颜色"
+                                    },
+                                    "background_color_surface": {
+                                        "name": "背景表面颜色",
+                                        "description": "更改 Snapchat 背景表面颜色"
+                                    },
+                                    "action_menu_round_background_color": {
+                                        "name": "操作菜单圆形背景颜色",
+                                        "description": "更改 Snapchat 聊天操作菜单圆形背景颜色"
+                                    },
+                                    "sig_color_icon_primary": {
+                                        "name": "操作菜单图标颜色",
+                                        "description": "更改聊天操作菜单/好友提要菜单上图标的颜色"
+                                    },
+                                    "list_background_drawable": {
+                                        "name": "对话列表背景 ",
+                                        "description": "更改好友动态中对话列表的背景颜色\n这可能会破坏好友动态的外观"
+                                    },
+                                    "action_menu_background_color": {
+                                        "name": "操作菜单背景颜色",
+                                        "description": "更改 Snapchat 聊天操作菜单背景颜色"
+                                    }
+                                },
+                                "name": "定制颜色",
+                                "description": "定制个性化颜色\n注意：在主题选择器上选择“自定义颜色”即可使用"
+                            },
+                            "colors_debug": {
+                                "name": "颜色调试",
+                                "description": "日志 acquireStyledAttributes，加载 Snapchat 时正在使用\n注意：这将显着增加日志的大小"
+                            },
+                            "theme_picker": {
+                                "name": "主题选择器",
+                                "description": "预设 Snapchat 主题"
+                            }
+                        },
+                        "name": "颜色",
+                        "description": "自定义 Snapchat 颜色"
+                    },
+                    "friend_feed_message_preview": {
+                        "name": "好友动态消息预览",
+                        "description": "显示好友动态中最新消息的预览",
+                        "properties": {
+                            "amount": {
+                                "description": "要预览的消息数量",
+                                "name": "数量"
+                            }
+                        }
+                    },
+                    "hide_streak_restore": {
+                        "description": "隐藏好友源中的“恢复”按钮",
+                        "name": "隐藏连胜恢复"
+                    },
+                    "hide_story_suggestions": {
+                        "name": "隐藏故事建议",
+                        "description": "从“故事”页面删除建议"
+                    },
+                    "hide_ui_components": {
+                        "name": "隐藏 UI 组件",
+                        "description": "选择要隐藏的 UI 组件"
+                    },
+                    "enable_app_appearance": {
+                        "name": "启用应用程序外观设置",
+                        "description": "启用隐藏的应用程序外观设置\n较新的 Snapchat 版本可能不需要"
+                    },
+                    "bootstrap_override": {
+                        "properties": {
+                            "home_tab": {
+                                "description": "打开 Snapchat 时覆盖启动选项卡",
+                                "name": "主页选项卡"
+                            },
+                            "app_appearance": {
+                                "name": "应用程序外观",
+                                "description": "设置持久的应用程序外观"
+                            }
+                        },
+                        "name": "引导程序覆盖",
+                        "description": "覆盖用户界面引导程序设置"
+                    },
+                    "streak_expiration_info": {
+                        "name": "显示连续到期信息",
+                        "description": "在 Streaks 计数器旁边显示 Streak Expiration 计时器"
+                    },
+                    "hide_friend_feed_entry": {
+                        "description": "从好友动态中隐藏特定好友\n使用社交选项卡来管理此功能",
+                        "name": "隐藏好友动态条目"
+                    },
+                    "opera_media_quick_info": {
+                        "name": "Opera 媒体快速信息",
+                        "description": "在 Opera 查看器上下文菜单中显示媒体的有用信息，例如创建日期"
+                    },
+                    "snap_preview": {
+                        "name": "快照预览",
+                        "description": "在聊天中看不见的快照旁边显示一个小预览"
+                    },
+                    "hide_quick_add_friend_feed": {
+                        "description": "隐藏好友动态中的“快速添加”部分",
+                        "name": "隐藏好友动态中的快速添加"
+                    },
+                    "prevent_message_list_auto_scroll": {
+                        "description": "发送/接收消息时防止消息列表滚动到底部",
+                        "name": "防止消息列表自动滚动"
+                    },
+                    "old_bitmoji_selfie": {
+                        "description": "从旧 Snapchat 版本中恢复 Bitmoji 自拍照",
+                        "name": "老 Bitmoji 自拍照"
+                    },
+                    "map_friend_nametags": {
+                        "name": "增强的朋友地图名称标签",
+                        "description": "改进了 Snapmap 上朋友的姓名标签"
+                    },
+                    "disable_spotlight": {
+                        "name": "禁用聚光灯",
+                        "description": "禁用 Spotlight 页面"
+                    },
+                    "hide_settings_gear": {
+                        "name": "隐藏设置齿轮",
+                        "description": "在好友动态中隐藏 SnapEnhance 设置装备"
+                    },
+                    "friend_feed_menu_buttons": {
+                        "name": "好友动态菜单按钮"
+                    }
+                },
+                "description": "更改 Snapchat 的外观和风格",
+                "name": "用户界面"
             }
         }
     }
