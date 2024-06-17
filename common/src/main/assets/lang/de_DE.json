@@ -32,7 +32,9 @@
             "messaging_preview": "Vorschau",
             "manage_scope": "Verwalte Scope",
             "friend_tracker": "Freund:in-tracker",
-            "edit_rule": "Regel bearbeiten"
+            "edit_rule": "Regel bearbeiten",
+            "file_imports": "Dateiimporte",
+            "better_location": "Bessere Lage"
         },
         "sections": {
             "features": {
@@ -43,7 +45,8 @@
                 "config_export_success_toast": "Einstellungen erfolgreich exportiert",
                 "config_import_success_toast": "Einstellungen erfolgreich importiert",
                 "config_import_failure_toast": "Einstellungen konnten nicht importiert werden {error}",
-                "saved_config_snackbar": "Einstellungen gespeichert"
+                "saved_config_snackbar": "Einstellungen gespeichert",
+                "config_export_failure_toast": "Konfiguration konnte nicht exportiert werden {error}"
             },
             "social": {
                 "streaks_expiration_short": "{hours}h",
@@ -58,12 +61,18 @@
                 "remove_all_tasks_title": "Sind Sie sicher, dass Sie alle Aufgaben entfernen möchten?",
                 "delete_files_option": "Auch Dateien löschen",
                 "remove_selected_tasks_confirm": "{count} Aufgaben entfernen?",
-                "remove_all_tasks_confirm": "Alle Aufgaben entfernen?"
+                "remove_all_tasks_confirm": "Alle Aufgaben entfernen?",
+                "failed_to_open_file": "Datei konnte nicht geöffnet werden"
             },
             "home": {
                 "update_title": "SnapEnhance Update",
                 "update_content": "Version {version} ist verfügbar!",
-                "update_button": "Herunterladen"
+                "update_button": "Herunterladen",
+                "version_title": "V{versionName} · Gegabelt von Jacob",
+                "quick_actions_title": "Schnelle Aktionen",
+                "debug_build_summary_title": "Sie führen einen debug build von SE Extended",
+                "debug_build_summary_content": "Ausführung {versionName} ({versionCode})",
+                "debug_build_summary_date": "Baudatum: {date} ({days} Vor Tagen)"
             },
             "home_logs": {
                 "saving_logs_toast": "Speichern von Protokollen, das kann eine Weile dauern ...",
@@ -125,6 +134,17 @@
                 "streaks_expiration_text": "Läuft ab in {eta}",
                 "streaks_expiration_text_expired": "Abgelaufen",
                 "reminder_button": "Erinnerung erstellen"
+            },
+            "file_imports": {
+                "import_file_button": "Datei importieren",
+                "file_not_found": "Datei nicht gefunden",
+                "file_import_failed": "Datei konnte nicht importiert werden: {error}",
+                "file_imported": "Datei erfolgreich importiert",
+                "file_delete_failed": "Datei konnte nicht gelöscht werden",
+                "no_files_hint": "Hier können Sie Dateien zur Verwendung in Snapchat importieren. Klicken Sie auf die Schaltfläche unten, um eine Datei zu importieren."
+            },
+            "better_location": {
+                "spoofed_coordinates_title": "Lat {latitude}, Lng {longitude}"
             }
         },
         "dialogs": {
