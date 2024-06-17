@@ -216,6 +216,8 @@ Thanks to everyone involved
 - [suryadip2008](https://github.com/suryadip2008) (Translated: Bengali)
 - [BogusMosquito77](https://github.com/BogusMosquito7)
 (Translated: Dutch)
+- [Xa19u](https://github.com/Xa19u)
+(Translated: Urdu) 
 
 
 You can help translate SE Extended on [Hosted Weblate](https://hosted.weblate.org/projects/SE-Extended/se-extended/).
