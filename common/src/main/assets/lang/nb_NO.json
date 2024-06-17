@@ -244,13 +244,26 @@
                             },
                             "custom_video_codec": {
                                 "name": "Egendefinert videokodek"
+                            },
+                            "preset": {
+                                "name": "Forhåndsinnstilling"
                             }
                         }
                     },
                     "save_folder": {
                         "name": ""
+                    },
+                    "custom_path_format": {
+                        "name": "Egendefinert stiformat"
+                    },
+                    "download_profile_pictures": {
+                        "name": "Last ned profilbilder"
+                    },
+                    "logging": {
+                        "name": "Logging"
                     }
-                }
+                },
+                "name": "Nedlaster"
             },
             "user_interface": {
                 "properties": {
@@ -268,7 +281,19 @@
                                     "text_color": {
                                         "name": "Hovedtekstfarge"
                                     }
-                                }
+                                },
+                                "name": "Egendefinerte farger"
+                            },
+                            "theme_picker": {
+                                "name": "Draktvelger"
+                            }
+                        },
+                        "name": "Farger"
+                    },
+                    "friend_feed_message_preview": {
+                        "properties": {
+                            "amount": {
+                                "name": "Mengde"
                             }
                         }
                     }
@@ -330,8 +355,63 @@
                             }
                         }
                     }
+                },
+                "name": "Eksperimentelt"
+            },
+            "global": {
+                "properties": {
+                    "better_location": {
+                        "properties": {
+                            "coordinates": {
+                                "name": "Koordinater"
+                            }
+                        }
+                    }
+                }
+            },
+            "scripting": {
+                "name": "Skripting"
+            },
+            "rules": {
+                "name": "Regler"
+            },
+            "streaks_reminder": {
+                "properties": {
+                    "interval": {
+                        "name": "Tidsrom"
+                    }
                 }
             }
+        },
+        "options": {
+            "logging": {
+                "failure": "Feil",
+                "progress": "Framdrift",
+                "started": "Startet",
+                "success": "Vellykket"
+            },
+            "disable_permission_requests": {
+                "microphone": "Mikrofon",
+                "notifications": "Merknader",
+                "camera": "Kamera"
+            },
+            "notifications": {
+                "chat_screenshot": "Skjermavbildning"
+            },
+            "home_tab": {
+                "map": "Kart",
+                "camera": "Kamera"
+            },
+            "auto_purge": {
+                "never": "Aldri"
+            },
+            "disable_story_sections": {
+                "friends": "Venner"
+            }
+        },
+        "notices": {
+            "unstable": "⚠ Ustabil",
+            "ban_risk": "⚠ Denne funksjonen kan utløse bannlysninger"
         }
     },
     "scopes": {
@@ -349,5 +429,15 @@
         "export_chat_messages": {
             "name": "Eksporter sludringsmeldinger"
         }
+    },
+    "content_type": {
+        "SHARE": "Del",
+        "STATUS": "Status",
+        "STICKER": "Klistremerke",
+        "STATUS_CONVERSATION_CAPTURE_SCREENSHOT": "Skjermavbildning",
+        "STATUS_COUNTDOWN": "Nedtelling"
+    },
+    "media_download_source": {
+        "none": "Ingen"
     }
 }
