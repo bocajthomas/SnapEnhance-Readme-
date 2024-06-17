@@ -59,8 +59,8 @@
                 "no_logs_hint": "Ingen logger tilgjengelig",
                 "clear_logs_button": "Slett Logg",
                 "export_logs_button": "Eksporter Logg",
-                "saving_logs_toast": "Lagrer logg, dette kan ta en stund ...",
-                "saved_logs_success_toast": "Logg lagret vellykket",
+                "saving_logs_toast": "Lagrer logg, dette kan ta en stund …",
+                "saved_logs_success_toast": "Logg lagret",
                 "saved_logs_failure_toast": "Feil under lagring av logg"
             },
             "home_settings": {
@@ -89,6 +89,30 @@
             "logged_stories": {
                 "story_failed_to_load": "Feil under lasting",
                 "no_stories": "Ingen historier funnet"
+            },
+            "logger_history": {
+                "list_friend_format": "Venn {name}",
+                "reverse_order_checkbox": "Motsatt rekkefølge",
+                "empty_message": "Tom sludringsmelding",
+                "unknown_sender": "Ukjent avsender",
+                "list_group_format": "Gruppe {name}",
+                "no_more_messages": "Ingen flere meldinger",
+                "message_parse_failed": "Kunne ikke å tolke melding"
+            },
+            "file_imports": {
+                "file_imported": "Fil importert",
+                "import_file_button": "Importer fil",
+                "file_not_found": "Fant ikke filen",
+                "file_delete_failed": "Klarte ikke å slette fil"
+            },
+            "better_location": {
+                "save_coordinates_dialog_title": "Lagre koordinater",
+                "delete_dialog_title": "Slett lagret koordinat",
+                "save_dialog_button": "Lagre",
+                "search_bar": "Søk",
+                "no_friends_found": "Fant ingen venner",
+                "choose_location_button": "Velg sted",
+                "no_friends_map": "Ingen venner på kartet"
             }
         },
         "dialogs": {
@@ -102,6 +126,12 @@
             "scripting_warning": {
                 "title": "Advarsel",
                 "content": "SnapEnhance inkluderer et skriptverktøy som tillater utføring av brukerdefinert kode på enheten din. Vær ekstremt forsiktig og installer kun moduler fra kjente, pålitelige kilder. Uautoriserte eller uverifiserte moduler kan utgjøre sikkerhetsrisikoer for systemet ditt."
+            },
+            "reset_config": {
+                "success_toast": "Oppsett tilbakestilt"
+            },
+            "export_config": {
+                "title": "Eksporter sensitive data?"
             }
         }
     },
@@ -160,6 +190,12 @@
                     "blacklist": "Ekskluder fra smugmodus"
                 },
                 "name": "Smugmodus"
+            },
+            "e2e_encryption": {
+                "name": "Bruk E2E-kryptering"
+            },
+            "pin_conversation": {
+                "name": "Fest samtale"
             }
         },
         "toasts": {
@@ -188,6 +224,9 @@
                                 "name": "Egendefinert videokodek"
                             }
                         }
+                    },
+                    "save_folder": {
+                        "name": ""
                     }
                 }
             },
@@ -199,6 +238,46 @@
                                 "name": "Hjemmefane"
                             }
                         }
+                    },
+                    "customize_ui": {
+                        "properties": {
+                            "colors": {
+                                "properties": {
+                                    "text_color": {
+                                        "name": "Hovedtekstfarge"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "name": "Brukergrensesnitt"
+            },
+            "messaging": {
+                "properties": {
+                    "better_notifications": {
+                        "properties": {
+                            "download_button": {
+                                "name": "Nedlastingsknapp"
+                            },
+                            "reply_button": {
+                                "name": "Svar-knapp",
+                                "description": "Legger til en svarknapp i merknaden"
+                            },
+                            "smart_replies": {
+                                "name": "Smart-svar"
+                            },
+                            "mark_as_read_button": {
+                                "name": "«Marker som lest»-knapp"
+                            }
+                        }
+                    },
+                    "half_swipe_notifier": {
+                        "properties": {
+                            "max_duration": {
+                                "name": "Maksimal varighet"
+                            }
+                        }
                     }
                 }
             }
@@ -207,5 +286,16 @@
     "scopes": {
         "friend": "Venn",
         "group": "Gruppe"
+    },
+    "actions": {
+        "export_memories": {
+            "name": "Eksporter minner"
+        },
+        "manage_friend_list": {
+            "name": "Håndter venneliste"
+        },
+        "export_chat_messages": {
+            "name": "Eksporter sludringsmeldinger"
+        }
     }
 }
