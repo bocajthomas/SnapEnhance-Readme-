@@ -198,7 +198,22 @@
             "better_location": {
                 "spoofed_coordinates_title": "纬度 {latitude}, 长 {longitude}",
                 "save_coordinates_dialog_title": "保存坐标",
-                "saved_name_dialog_hint": "已保存的名称"
+                "saved_name_dialog_hint": "已保存的名称",
+                "latitude_dialog_hint": "纬度",
+                "longitude_dialog_hint": "经度",
+                "save_dialog_button": "节省",
+                "saved_coordinates_title": "已保存的坐标",
+                "no_saved_coordinates_hint": "没有保存坐标",
+                "delete_dialog_title": "删除保存的坐标",
+                "search_bar": "搜索",
+                "suspend_location_updates": "暂停位置更新",
+                "delete_dialog_message": "您确定要删除此保存的坐标吗",
+                "spoof_location_toggle": "恶搞位置",
+                "teleport_to_friend_button": "传送到朋友身边",
+                "choose_location_button": "选择地点",
+                "teleport_to_friend_title": "传送到朋友身边",
+                "no_friends_map": "地图上没有好友",
+                "no_friends_found": "没有找到好友"
             }
         },
         "dialogs": {
@@ -221,6 +236,14 @@
             "scripting_warning": {
                 "content": "SnapEnhance 包含一个脚本工具，允许在您的设备上执行用户定义的代码。请格外小心，仅安装来自已知可靠来源的模块。未经授权或未经验证的模块可能会给您的系统带来安全风险。",
                 "title": "警告"
+            },
+            "export_config": {
+                "title": "导出敏感数据?",
+                "content": "您想导出包含敏感数据的配置吗?（如位置坐标等）"
+            },
+            "file_imports": {
+                "no_files_settings_hint": "没有找到文件. 确保您已在文件导入部分导入所需的文件",
+                "settings_select_file_hint": "选择导入的文件"
             }
         }
     },
@@ -240,7 +263,23 @@
             },
             "stealth": {
                 "name": "隐形模式",
-                "description": "不让任何人知道您已打开他们的 Snap/聊天和对话"
+                "description": "不让任何人知道您已打开他们的 Snap/聊天和对话",
+                "options": {
+                    "blacklist": "从隐身模式中排除",
+                    "whitelist": "隐形模式"
+                }
+            },
+            "auto_save": {
+                "options": {
+                    "blacklist": "从自动保存中排除",
+                    "whitelist": "自动保存"
+                },
+                "name": "自动保存",
+                "description": "查看聊天消息时保存它们"
+            },
+            "unsaveable_messages": {
+                "name": "无法保存的消息",
+                "description": "防止其他人在聊天中保存消息"
             }
         },
         "modes": {
