@@ -97,13 +97,16 @@
                 "unknown_sender": "Ukjent avsender",
                 "list_group_format": "Gruppe {name}",
                 "no_more_messages": "Ingen flere meldinger",
-                "message_parse_failed": "Kunne ikke å tolke melding"
+                "message_parse_failed": "Kunne ikke å tolke melding",
+                "download_attachment_failed_toast": "Klarte ikke å lagre vedlegg",
+                "chat_attachment": "Vedlegg {index}"
             },
             "file_imports": {
                 "file_imported": "Fil importert",
                 "import_file_button": "Importer fil",
                 "file_not_found": "Fant ikke filen",
-                "file_delete_failed": "Klarte ikke å slette fil"
+                "file_delete_failed": "Klarte ikke å slette fil",
+                "file_import_failed": "Klarte ikke å importere fil: {index}"
             },
             "better_location": {
                 "save_coordinates_dialog_title": "Lagre koordinater",
@@ -112,7 +115,18 @@
                 "search_bar": "Søk",
                 "no_friends_found": "Fant ingen venner",
                 "choose_location_button": "Velg sted",
-                "no_friends_map": "Ingen venner på kartet"
+                "no_friends_map": "Ingen venner på kartet",
+                "longitude_dialog_hint": "Lengdegrad",
+                "saved_name_dialog_hint": "Lagret navn",
+                "latitude_dialog_hint": "Breddegrad",
+                "no_saved_coordinates_hint": "Ingen lagrede koordinater"
+            },
+            "messaging_preview": {
+                "delete_all_option": "Slett alle",
+                "no_message_hint": "Ingen melding",
+                "message_fetch_failed": "Klarte ikke å hente meldinger",
+                "save_all_option": "Lagre alle",
+                "unsave_all_option": "Fjern alle"
             }
         },
         "dialogs": {
@@ -128,10 +142,17 @@
                 "content": "SnapEnhance inkluderer et skriptverktøy som tillater utføring av brukerdefinert kode på enheten din. Vær ekstremt forsiktig og installer kun moduler fra kjente, pålitelige kilder. Uautoriserte eller uverifiserte moduler kan utgjøre sikkerhetsrisikoer for systemet ditt."
             },
             "reset_config": {
-                "success_toast": "Oppsett tilbakestilt"
+                "success_toast": "Oppsett tilbakestilt",
+                "title": "Tilbakestill oppsett"
             },
             "export_config": {
                 "title": "Eksporter sensitive data?"
+            },
+            "messaging_action": {
+                "select_all_button": "Velg alle"
+            },
+            "file_imports": {
+                "settings_select_file_hint": "Velg en importert fil"
             }
         }
     },
@@ -180,7 +201,8 @@
                 "name": "Meldinger som ikke kan lagres",
                 "description": "Forhindrer meldinger fra å bli lagret i chat av andre personer",
                 "options": {
-                    "blacklist": "Ekskluder fra Meldinger som ikke kan lagres"
+                    "blacklist": "Ekskluder fra Meldinger som ikke kan lagres",
+                    "whitelist": "Meldinger som ikke kan lagres"
                 }
             },
             "stealth": {
@@ -268,7 +290,8 @@
                                 "name": "Smart-svar"
                             },
                             "mark_as_read_button": {
-                                "name": "«Marker som lest»-knapp"
+                                "name": "«Marker som lest»-knapp",
+                                "description": "Lar deg markere en melding som lest fra merknaden"
                             }
                         }
                     },
@@ -276,6 +299,34 @@
                         "properties": {
                             "max_duration": {
                                 "name": "Maksimal varighet"
+                            }
+                        }
+                    },
+                    "auto_save_messages_in_conversations": {
+                        "name": "Auto-lagring av meldinger",
+                        "description": "Lagrer alle meldinger i samtalen automatisk"
+                    },
+                    "message_logger": {
+                        "properties": {
+                            "message_filter": {
+                                "name": "Meldingsfilter"
+                            }
+                        }
+                    }
+                }
+            },
+            "camera": {
+                "name": "Kamera"
+            },
+            "experimental": {
+                "properties": {
+                    "experimental_colors": {
+                        "properties": {
+                            "ring_color": {
+                                "name": "Ringfarge"
+                            },
+                            "ring_start_color": {
+                                "name": "Ring-startfarge"
                             }
                         }
                     }
@@ -289,7 +340,8 @@
     },
     "actions": {
         "export_memories": {
-            "name": "Eksporter minner"
+            "name": "Eksporter minner",
+            "description": "Eksporterer minner som en ZIP-fil"
         },
         "manage_friend_list": {
             "name": "Håndter venneliste"
