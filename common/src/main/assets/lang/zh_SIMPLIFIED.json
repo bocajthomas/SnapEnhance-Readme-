@@ -289,13 +289,60 @@
                 "name": "自动打开按扣",
                 "description": "收到 Snap 时自动打开它们",
                 "options": {
-                    "blacklist": "从自动打开快照中排除"
+                    "blacklist": "从自动打开快照中排除",
+                    "whitelist": "自动打开按扣"
                 }
+            },
+            "hide_friend_feed": {
+                "name": "隐藏好友动态"
+            },
+            "e2e_encryption": {
+                "name": "使用端到端加密"
+            },
+            "pin_conversation": {
+                "name": "引脚对话"
             }
         },
         "modes": {
             "blacklist": "黑名单模式",
             "whitelist": "白名单模式"
+        }
+    },
+    "actions": {
+        "export_chat_messages": {
+            "name": "导出聊天消息",
+            "description": "将对话消息导出到 JSON/HTML/TXT 文件"
+        },
+        "export_memories": {
+            "name": "导出记忆",
+            "description": "将记忆导出为 ZIP 文件"
+        },
+        "regen_mappings": {
+            "description": "手动重新生成映射",
+            "name": "重新生成映射"
+        },
+        "change_language": {
+            "name": "改变语言",
+            "description": "更改语言 SE Extended"
+        },
+        "file_imports": {
+            "name": "文件导入",
+            "description": "导入文件以在 Snapchat 中使用"
+        },
+        "friend_tracker": {
+            "name": "Friend Tracker"
+        },
+        "clean_snapchat_cache": {
+            "description": "清理 Snapchat 缓存",
+            "name": "清理 Snapchat 缓存"
+        },
+        "manage_friend_list": {
+            "name": "管理好友列表",
+            "description": "备份时导入/导出好友列表"
+        },
+        "bulk_messaging_action": {
+            "name": "群发消息操作",
+            "description": "执行删除好友批量删除对话等操作"
         }
     }
 }
