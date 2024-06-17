@@ -84,13 +84,20 @@
             "home": "家",
             "home_settings": "设置",
             "friend_tracker": "好友追踪器",
-            "edit_rule": "编辑规则"
+            "edit_rule": "编辑规则",
+            "file_imports": "文件导入",
+            "better_location": "更好的位置"
         },
         "sections": {
             "home": {
                 "update_button": "下载",
                 "update_content": "版本 {version} 可用！",
-                "update_title": "SnapEnhance 更新"
+                "update_title": "SnapEnhance 更新",
+                "quick_actions_title": "快速行动",
+                "version_title": "V{versionName} · 由雅各布分叉",
+                "debug_build_summary_title": "您正在运行 SE Extended 的调试版本",
+                "debug_build_summary_content": "版本 {versionName} ({versionCode)}",
+                "debug_build_summary_date": "构建日期：{date}（{days} 天前)"
             },
             "home_logs": {
                 "no_logs_hint": "没有可用的日志",
@@ -127,7 +134,8 @@
                 "remove_selected_tasks_title": "您确定要删除选定的任务吗?",
                 "remove_selected_tasks_confirm": "删除 {count} 个任务？",
                 "remove_all_tasks_confirm": "删除所有任务?",
-                "delete_files_option": "也删除文件"
+                "delete_files_option": "也删除文件",
+                "failed_to_open_file": "无法打开文件"
             },
             "social": {
                 "streaks_expiration_short": "{hours}小时",
