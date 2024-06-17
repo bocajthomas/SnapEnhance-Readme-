@@ -330,7 +330,8 @@
             "description": "导入文件以在 Snapchat 中使用"
         },
         "friend_tracker": {
-            "name": "Friend Tracker"
+            "name": "好友追踪器",
+            "description": "在 Snapchat 上追踪您的朋友"
         },
         "clean_snapchat_cache": {
             "description": "清理 Snapchat 缓存",
@@ -343,6 +344,79 @@
         "bulk_messaging_action": {
             "name": "群发消息操作",
             "description": "执行删除好友批量删除对话等操作"
+        },
+        "logger_history": {
+            "name": "记录器历史记录",
+            "description": "查看记录消息的历史记录"
+        }
+    },
+    "features": {
+        "notices": {
+            "unstable": "⚠ 不稳定",
+            "ban_risk": "⚠ 此功能可能会导致禁止",
+            "internal_behavior": "⚠ 这可能会破坏 Snapchat 的内部行为",
+            "require_native_hooks": "⚠ 此功能需要实验性 Native Hooks 才能正常工作"
+        },
+        "properties": {
+            "downloader": {
+                "name": "下载器",
+                "properties": {
+                    "auto_download_sources": {
+                        "name": "自动下载源",
+                        "description": "选择自动下载的来源"
+                    },
+                    "path_format": {
+                        "name": "路径格式",
+                        "description": "指定文件路径格式"
+                    },
+                    "prevent_self_auto_download": {
+                        "name": "防止自我自动下载",
+                        "description": "防止自动下载您自己的 Snap"
+                    },
+                    "merge_overlays": {
+                        "description": "将 Snap 的文本和媒体合并到一个文件中",
+                        "name": "合并叠加层"
+                    },
+                    "force_voice_note_format": {
+                        "name": "强制语音注释格式",
+                        "description": "强制语音笔记以指定格式保存"
+                    },
+                    "opera_download_button": {
+                        "name": "Opera 下载按钮",
+                        "description": "查看快照时在右上角添加下载按钮。\n长按按钮将强制下载"
+                    },
+                    "save_folder": {
+                        "description": "选择所有媒体应下载到的目录",
+                        "name": "保存文件夹"
+                    },
+                    "allow_duplicate": {
+                        "description": "允许多次下载相同的媒体",
+                        "name": "允许重复"
+                    },
+                    "force_image_format": {
+                        "description": "强制图像以指定格式保存",
+                        "name": "强制图像格式"
+                    },
+                    "download_profile_pictures": {
+                        "name": "下载个人资料图片",
+                        "description": "允许您从个人资料页面下载个人资料图片"
+                    },
+                    "download_context_menu": {
+                        "description": "允许您使用上下文菜单下载/预览对话或故事中的消息。\n长按按钮将强制下载",
+                        "name": "下载上下文菜单"
+                    },
+                    "ffmpeg_options": {
+                        "description": "指定额外的 FFmpeg 选项",
+                        "name": "FFmpeg 选项",
+                        "properties": {
+                            "threads": {
+                                "name": "线程数"
+                            }
+                        }
+                    }
+                },
+                "description": "下载 Snapchat 媒体"
+            }
         }
     }
 }
