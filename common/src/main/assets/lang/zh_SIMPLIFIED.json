@@ -194,6 +194,11 @@
                 "no_files_hint": "您可以在此处导入文件以在 Snapchat 中使用。按下面的按钮导入文件.",
                 "import_file_button": "导入文件",
                 "file_imported": "文件导入成功"
+            },
+            "better_location": {
+                "spoofed_coordinates_title": "纬度 {latitude}, 长 {longitude}",
+                "save_coordinates_dialog_title": "保存坐标",
+                "saved_name_dialog_hint": "已保存的名称"
             }
         },
         "dialogs": {
