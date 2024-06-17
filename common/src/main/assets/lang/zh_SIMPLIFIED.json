@@ -279,7 +279,18 @@
             },
             "unsaveable_messages": {
                 "name": "无法保存的消息",
-                "description": "防止其他人在聊天中保存消息"
+                "description": "防止其他人在聊天中保存消息",
+                "options": {
+                    "blacklist": "从不可保存的消息中排除",
+                    "whitelist": "无法保存的消息"
+                }
+            },
+            "auto_open_snaps": {
+                "name": "自动打开按扣",
+                "description": "收到 Snap 时自动打开它们",
+                "options": {
+                    "blacklist": "从自动打开快照中排除"
+                }
             }
         },
         "modes": {
