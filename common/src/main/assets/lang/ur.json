@@ -1,35 +1,35 @@
 {
     "setup": {
         "dialogs": {
-            "select_language": "",
-            "save_folder": "",
-            "select_save_folder_button": ""
+            "select_language": "زبان کا انتخاب کریں",
+            "save_folder": "SE Extended کو Snapchat سے میڈیا کو ڈاؤن لوڈ اور محفوظ کرنے کے لیے سٹوریج کی اجازت درکار ہے۔\nبراہ کرم وہ مقام منتخب کریں جہاں میڈیا کو ڈاؤن لوڈ کیا جانا چاہیے۔",
+            "select_save_folder_button": "فولڈر منتخب کریں"
         },
         "mappings": {
-            "dialog": "",
-            "generate_failure_no_snapchat": "",
-            "generate_failure": ""
+            "dialog": "میپنگ تیار ہو رہی ہے، اس میں کچھ وقت لگ سکتا ہے...",
+            "generate_failure_no_snapchat": "SE Extended Snapchat کا پتہ لگانے سے قاصر تھا، براہ کرم Snapchat کو دوبارہ انسٹال کرنے کی کوشش کریں۔",
+            "generate_failure": "میپنگ بنانے کی کوشش کے دوران ایک خرابی پیش آگئی، براہ کرم دوبارہ کوشش کریں۔"
         },
         "permissions": {
-            "dialog": "",
-            "notification_access": "",
-            "battery_optimization": "",
-            "display_over_other_apps": "",
-            "request_button": ""
+            "dialog": "جاری رکھنے کے لیے آپ کو درج ذیل تقاضوں کو پورا کرنا ہوگا:",
+            "notification_access": "اطلاع تک رسائی",
+            "battery_optimization": "بیٹری کی اصلاح",
+            "display_over_other_apps": "دیگر ایپس پر ڈسپلے کریں",
+            "request_button": "درخواست"
         }
     },
     "scopes": {
-        "friend": "",
-        "group": ""
+        "friend": "دوست",
+        "group": "گروپ"
     },
     "manager": {
         "routes": {
-            "tasks": "",
-            "features": "",
-            "home": "",
-            "home_settings": "",
-            "home_logs": "",
-            "logger_history": "",
+            "tasks": "کام",
+            "features": "خصوصیات",
+            "home": "ہوم",
+            "home_settings": "سیٹنگ",
+            "home_logs": "لاگز",
+            "logger_history": "لوگر ہسٹری",
             "logged_stories": "",
             "friend_tracker": "",
             "edit_rule": "",
