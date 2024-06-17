@@ -33,6 +33,9 @@ bocajthomas
 - feat(experimental): new color options
 - refactor: lang
 
+- Added more color options to cutom colors & More colors to themePicker 
+- Tons of refactoring 
+
 rhunk
 -- 
 - feat(notifications): smart replies
