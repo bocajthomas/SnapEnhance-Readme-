@@ -8,7 +8,7 @@
         "mappings": {
             "dialog": "Mappings werden generiert, dies könnte eine Weile dauern ...",
             "generate_failure_no_snapchat": "SE Extended konnte Snapchat nicht finden, bitte versuche Snapchat neu zu installieren.",
-            "generate_failure": "Beim Versuch, Zuordnungen zu generieren, ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut"
+            "generate_failure": "Beim Versuch, Zuordnungen zu generieren, ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
         },
         "permissions": {
             "dialog": "Um fortfahren zu können, musst du diese Anforderungen erfüllen:",
@@ -422,7 +422,7 @@
                     },
                     "hide_settings_gear": {
                         "name": "Symbol für Einstellungen ausblenden",
-                        "description": "Blendet das SnapEnhance-Einstellungssymbol im Chat-Tab aus"
+                        "description": "Blendet das SE Extended Einstellungssymbol im Chat Tab aus"
                     },
                     "opera_media_quick_info": {
                         "description": "Zeigt nützliche Informationen zu Medien wie das Erstellungsdatum im Kontextmenü der Snap-Ansicht an",
