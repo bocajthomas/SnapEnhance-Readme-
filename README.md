@@ -218,7 +218,8 @@ Thanks to everyone involved
 (Translated: Dutch)
 - [Xa19u](https://github.com/Xa19u)
 (Translated: Urdu) 
-
+- [comradekingu](https://github.com/comradekingu)
+(Translated: Norwegian Bokmål)
 
 You can help translate SE Extended on [Hosted Weblate](https://hosted.weblate.org/projects/SE-Extended/se-extended/).
 
