@@ -2,13 +2,13 @@
     "setup": {
         "dialogs": {
             "select_language": "Sprache auswählen",
-            "save_folder": "SnapEnhance benötigt Zugriff auf den Gerätespeicher, um Medien von Snapchat herunterzuladen und zu sichern.\nBitte wähle einen Ziel-Ordner für die Downloads aus.",
+            "save_folder": "SE Extended benötigt Zugriff auf den Gerätespeicher, um Medien von Snapchat herunterzuladen und zu sichern.\nBitte wähle einen Ziel-Ordner für die Downloads aus.",
             "select_save_folder_button": "Ordner auswählen"
         },
         "mappings": {
             "dialog": "Mappings werden generiert, dies könnte eine Weile dauern ...",
             "generate_failure_no_snapchat": "SE Extended konnte Snapchat nicht finden, bitte versuche Snapchat neu zu installieren.",
-            "generate_failure": "Beim Generieren der Zuordnungen ist ein Fehler aufgetreten. Bitte versuche es erneut."
+            "generate_failure": "Beim Versuch, Zuordnungen zu generieren, ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut"
         },
         "permissions": {
             "dialog": "Um fortfahren zu können, musst du diese Anforderungen erfüllen:",
@@ -23,7 +23,7 @@
             "features": "Funktionen",
             "home": "Startseite",
             "home_settings": "Einstellungen",
-            "home_logs": "Logs",
+            "home_logs": "Protokolle",
             "social": "Sozial",
             "scripts": "Skripte",
             "tasks": "Aufgaben",
@@ -129,7 +129,7 @@
                 "rules_title": "Regeln",
                 "participants_text": "{count} Teilnehmer",
                 "not_found": "Nicht gefunden",
-                "streaks_title": "Streaks",
+                "streaks_title": "Streifen",
                 "streaks_length_text": "Länge: {length}",
                 "streaks_expiration_text": "Läuft ab in {eta}",
                 "streaks_expiration_text_expired": "Abgelaufen",
@@ -339,7 +339,7 @@
                         }
                     },
                     "logging": {
-                        "name": "Logging",
+                        "name": "Protokollierung",
                         "description": "Zeigt Toasts, wenn Medien heruntergeladen werden"
                     },
                     "custom_path_format": {
@@ -478,7 +478,7 @@
                                     },
                                     "friend_feed_conversations_line_color": {
                                         "name": "Konversationslinienfarbe",
-                                        "description": "Ändert die Farbe der Linie, welche die Konversationen im Freundesfeed teilt "
+                                        "description": "Ändert die Farbe der Linientrennung, die Konversationen im Freunde Feed teilt"
                                     },
                                     "text_color": {
                                         "name": "primäre Textfarbe",
@@ -731,7 +731,7 @@
                         "description": "Aktiviert Snapchat Plus Funktionen\nEinige serverseitige Funktionen funktionieren möglicherweise nicht"
                     },
                     "auto_updater": {
-                        "name": "Auto Updater",
+                        "name": "Automatischer Updater",
                         "description": "Automatisch auf Updates prüfen"
                     },
                     "disable_metrics": {
@@ -1287,7 +1287,7 @@
                 "friend_snaps": "Freund-Snaps",
                 "friend_stories": "Freund-Stories",
                 "public_stories": "Öffentliche Stories",
-                "spotlight": "Spotlight"
+                "spotlight": "Scheinwerfer"
             },
             "logging": {
                 "started": "Gestartet",
@@ -1302,9 +1302,9 @@
                 "camera_roll_save": "In Aufnahmen gespeichert",
                 "chat": "Chat",
                 "chat_reply": "Chat Antwort",
-                "snap": "Snap",
+                "snap": "Schnapp",
                 "typing": "Schreiben",
-                "stories": "Stories",
+                "stories": "Geschichten",
                 "chat_reaction": "DM-Reaktion",
                 "group_chat_reaction": "Gruppenreaktion",
                 "initiate_audio": "Eingehender Audioanruf",
@@ -1316,7 +1316,7 @@
             "gallery_media_send_override": {
                 "ORIGINAL": "Original",
                 "NOTE": "Audio-Notiz",
-                "SNAP": "Snap",
+                "SNAP": "Schnapp",
                 "SAVABLE_SNAP": "Speicherbarer Snap",
                 "always_ask": "Immer Fragen"
             },
@@ -1334,7 +1334,7 @@
                 "chat": "Chat",
                 "camera": "Kamera",
                 "discover": "Entdecken",
-                "spotlight": "Spotlight"
+                "spotlight": "Scheinwerfer"
             },
             "add_friend_source_spoof": {
                 "added_by_username": "Nach Benutzername",
@@ -1544,8 +1544,8 @@
     },
     "download_processor": {
         "attachment_type": {
-            "snap": "Snap",
-            "sticker": "Sticker",
+            "snap": "Schnapp",
+            "sticker": "Aufkleber",
             "external_media": "Externe Medien",
             "note": "Notiz",
             "original_story": "Originale Story",
@@ -1581,11 +1581,11 @@
         "STATUS_CONVERSATION_CAPTURE_RECORD": "Bildschirmaufnahme",
         "STATUS_CALL_MISSED_VIDEO": "Verpasster Videoanruf",
         "CREATIVE_TOOL_ITEM": "Kreativ-Werkzeug Element",
-        "STICKER": "Sticker",
+        "STICKER": "Aufkleber",
         "TINY_SNAP": "Winziger Snap",
         "STATUS_SAVE_TO_CAMERA_ROLL": "In Camera Roll gespeichert",
         "EXTERNAL_MEDIA": "Externe Medien",
-        "SNAP": "Snap",
+        "SNAP": "Schnapp",
         "LOCATION": "Standort",
         "CHAT": "Chat",
         "STATUS_PLUS_GIFT": "Status Plus Geschenk",
@@ -1644,9 +1644,9 @@
         "profile_picture": "Profilbild",
         "chat_media": "Chat-Medium",
         "public_story": "Öffentliche Story",
-        "spotlight": "Spotlight",
+        "spotlight": "Scheinwerfer",
         "pending": "Ausstehend",
-        "story": "Story",
+        "story": "Geschichte",
         "story_logger": "Story Logger",
         "merged": "Zusammengeführt",
         "message_logger": "Nachrichtenprotokollierung",
@@ -1662,7 +1662,7 @@
         "date_range_picker_end_headline": "Bis",
         "date_range_picker_scroll_to_next_month": "Nächster Monat",
         "date_input_invalid_year_range": "Invalides Jahr",
-        "date_range_input_invalid_range_input": "Ungültiger Zeitraum",
+        "date_range_input_invalid_range_input": "Ungültiger Datumsbereich",
         "date_picker_switch_to_input_mode": "Eingabe",
         "date_range_picker_day_in_range": "Gewählt",
         "date_range_picker_title": "Wähle einen Zeitraum"
