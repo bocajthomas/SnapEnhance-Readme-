@@ -125,7 +125,8 @@
                 "config_import_failure_toast": "导入配置失败 {error}",
                 "disabled": "残疾人",
                 "config_import_success_toast": "配置导入成功",
-                "reset_option": "重置"
+                "reset_option": "重置",
+                "config_export_failure_toast": "导出配置失败 {error}"
             },
             "tasks": {
                 "no_tasks": "没有任务",
@@ -185,6 +186,14 @@
                 "story_failed_to_load": "加载失败",
                 "no_stories": "没有找到故事",
                 "save_from_cache_button": "从缓存中保存"
+            },
+            "file_imports": {
+                "file_import_failed": "导入文件失败: {error}",
+                "file_delete_failed": "删除文件失败",
+                "file_not_found": "文件未找到",
+                "no_files_hint": "您可以在此处导入文件以在 Snapchat 中使用。按下面的按钮导入文件.",
+                "import_file_button": "导入文件",
+                "file_imported": "文件导入成功"
             }
         },
         "dialogs": {
