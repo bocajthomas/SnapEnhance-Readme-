@@ -89,6 +89,7 @@
             "logged_stories": {
                 "story_failed_to_load": "Feil under lasting",
                 "no_stories": "Ingen historier funnet"
+
             },
             "logger_history": {
                 "list_friend_format": "Venn {name}",
