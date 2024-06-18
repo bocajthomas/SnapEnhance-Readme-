@@ -131,7 +131,7 @@
             "logger_history": {
                 "list_friend_format": "دوست {name}",
                 "list_group_format": "گروپ کا {نام}",
-                "no_more_messages": "مزید پیغامات نہیں۔",
+                "no_more_messages": "مزید پیغامات نہیں",
                 "reverse_order_checkbox": "آرڈر محفوظ کریں",
                 "chat_attachment": "منسلکہ {index}",
                 "empty_message": "خالی چیٹ پیغام",
@@ -140,45 +140,45 @@
                 "download_attachment_failed_toast": "منسلکہ ڈاؤن لوڈ کرنے میں ناکام"
             },
             "file_imports": {
-                "import_file_button": "فائل درآمد کریں۔",
+                "import_file_button": "فائل امپورٹ کریں",
                 "file_not_found": "فائل نہیں ملی",
                 "file_import_failed": "فائل درآمد کرنے میں ناکام: {error}",
-                "file_imported": "فائل کامیابی کے ساتھ درآمد ہو گئی۔",
+                "file_imported": "فائل کامیابی کے ساتھ امپورٹ ہوگئی",
                 "file_delete_failed": "فائل کو حذف کرنے میں ناکام",
                 "no_files_hint": "یہاں آپ Snapchat میں استعمال کے لیے فائلیں درآمد کر سکتے ہیں۔ فائل درآمد کرنے کے لیے نیچے دیا گیا بٹن دبائیں۔"
             },
             "better_location": {
                 "spoofed_coordinates_title": "لات{latitude}, ایل این جی {longitude}",
-                "save_coordinates_dialog_title": "",
-                "saved_name_dialog_hint": "",
-                "latitude_dialog_hint": "",
-                "longitude_dialog_hint": "",
+                "save_coordinates_dialog_title": "کوآرڈینیٹس کو محفوظ کریں",
+                "saved_name_dialog_hint": "محفوظ کردہ نام",
+                "latitude_dialog_hint": "طول",
+                "longitude_dialog_hint": "طول البلد",
                 "save_dialog_button": "",
-                "choose_location_button": "",
-                "teleport_to_friend_button": "",
-                "spoof_location_toggle": "",
-                "suspend_location_updates": "",
-                "saved_coordinates_title": "",
-                "no_saved_coordinates_hint": "",
-                "delete_dialog_title": "",
-                "delete_dialog_message": "",
-                "teleport_to_friend_title": "",
-                "search_bar": "",
-                "no_friends_map": "",
-                "no_friends_found": ""
+                "choose_location_button": "محفوظ کریں",
+                "teleport_to_friend_button": "دوست کو ٹیلیپورٹ کریں",
+                "spoof_location_toggle": "لوکیشن اسپوف کریں",
+                "suspend_location_updates": "مقام کی تازہ کاریوں کو معطل کریں",
+                "saved_coordinates_title": "محفوظ کردہ نقاط",
+                "no_saved_coordinates_hint": "کوئی محفوظ کردہ نقاط نہیں ہیں",
+                "delete_dialog_title": "محفوظ کردہ کوآرڈینیٹ کو حذف کریں",
+                "delete_dialog_message": "کیا آپ واقعی اس محفوظ کردہ کوآرڈینیٹ کو حذف کرنا چاہتے ہیں؟",
+                "teleport_to_friend_title": "دوست کو ٹیلی پورٹ کریں",
+                "search_bar": "سرچ",
+                "no_friends_map": "نقشے پر کوئی دوست نہیں ہے",
+                "no_friends_found": "کوئی دوست نہیں ملا"
             }
         },
         "dialogs": {
             "add_friend": {
-                "title": "",
-                "search_hint": "",
-                "fetch_error": "",
-                "category_groups": "",
-                "category_friends": ""
+                "title": "دوست یا گروپ شامل کریں",
+                "search_hint": "سرچ",
+                "fetch_error": "ڈیٹا حاصل کرنے میں ناکام",
+                "category_groups": "گروپس",
+                "category_friends": "دوست"
             },
             "scripting_warning": {
-                "title": "",
-                "content": ""
+                "title": "وارننگ",
+                "content": "SE Extended میں ایک اسکرپٹنگ ٹول شامل ہے، جو آپ کے آلے پر صارف کے متعین کوڈ کے نفاذ کی اجازت دیتا ہے۔ انتہائی احتیاط برتیں اور صرف معروف، قابل اعتماد ذرائع سے ماڈیول انسٹال کریں۔ غیر مجاز یا غیر تصدیق شدہ ماڈیولز آپ کے سسٹم کے لیے حفاظتی خطرات پیدا کر سکتے ہیں۔"
             },
             "reset_config": {
                 "title": "",
