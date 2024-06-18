@@ -1293,6 +1293,35 @@
                     "add_friend_source_spoof": {
                         "name": "添加好友来源恶搞",
                         "description": "欺骗好友请求的来源"
+                    },
+                    "hidden_snapchat_plus_features": {
+                        "description": "启用未发布/测试版 Snapchat Plus 功能\n可能不适用于较旧的 Snapchat 版本",
+                        "name": "隐藏的 Snapchat Plus 功能"
+                    },
+                    "prevent_forced_logout": {
+                        "name": "防止强制注销",
+                        "description": "当您在其他设备上登录时，防止 Snapchat 将您注销"
+                    },
+                    "custom_streaks_expiration_format": {
+                        "name": "自定义条纹到期格式",
+                        "description": "自定义Streaks过期格式\n\n可用变量：\n- %c：条纹计数\n- %e：沙漏表情符号\n- %d：天\n- %h：小时\n- %m：分钟\n- %s：秒\n- %w：剩余时间"
+                    }
+                }
+            },
+            "scripting": {
+                "name": "脚本编写",
+                "description": "运行自定义脚本来扩展 SE Extended",
+                "properties": {
+                    "developer_mode": {
+                        "name": "开发者模式",
+                        "description": "在 Snapchat 的 UI 上显示调试信息"
+                    },
+                    "auto_reload": {
+                        "name": "自动重新加载"
+                    },
+                    "module_folder": {
+                        "name": "模块文件夹",
+                        "description": "脚本所在的文件夹"
                     }
                 }
             }
