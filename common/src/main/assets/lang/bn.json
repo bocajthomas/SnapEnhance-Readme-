@@ -647,7 +647,7 @@
                     },
                     "hide_settings_gear": {
                         "name": "সেটিংস গিয়ার লুকান",
-                        "description": "বন্ধু ফিডে স্ন্যাপএনহ্যান্স সেটিংস গিয়ার লুকায়"
+                        "description": "ফ্রেন্ড ফিডে SE এক্সটেন্ডেড সেটিংস গিয়ার লুকিয়ে রাখে"
                     },
                     "edit_text_override": {
                         "name": "টেক্সট সম্পাদনা ওভাররাইড",
@@ -1528,7 +1528,8 @@
                 "lemon_meringue": "লেমন মেরিং",
                 "alien_landscape": "এলিয়েন ল্যান্ডস্কেপ",
                 "lava_flow": "লাভা ফ্লো",
-                "ocean_fog": "ওশান ফগ"
+                "ocean_fog": "ওশান ফগ",
+                "watercolor_wash": "জল রং ধোয়া"
             },
             "app_appearance": {
                 "always_light": "সর্বদা লাইট",
