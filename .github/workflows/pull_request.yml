@@ -1,7 +1,7 @@
 name: Pull Request CI
 on:
   pull_request:
-    branches: ["dev"]
+    branches: ["update"]
 
 jobs:
   job_armv8:

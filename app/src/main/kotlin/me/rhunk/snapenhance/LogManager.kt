@@ -179,7 +179,7 @@ class LogManager(
 
     private fun newLogFile() {
         val currentTime = System.currentTimeMillis()
-        logFile = File(logFolder, "snapenhance_${getCurrentDateTime(pathSafe = true)}.log").also {
+        logFile = File(logFolder, "SE Extended-${getCurrentDateTime(pathSafe = true)}.txt").also {
             it.createNewFile()
             remoteSideContext.sharedPreferences.edit().putString("log_file", it.absolutePath).putLong("last_created", currentTime).apply()
         }
@@ -196,7 +196,7 @@ class LogManager(
         }
 
         // add device info to zip
-        zipOutputStream.putNextEntry(ZipEntry("device_info.json"))
+        zipOutputStream.putNextEntry(ZipEntry("device-info.json"))
         val gson = GsonBuilder().setPrettyPrinting().create()
         zipOutputStream.write(gson.toJson(remoteSideContext.installationSummary).toByteArray())
         zipOutputStream.closeEntry()

@@ -1,51 +1,50 @@
 <div align="center">
-  <img src="https://raw.githubusercontent.com/rhunk/SnapEnhance/main/app/src/main/res/mipmap-xxxhdpi/launcher_icon_foreground.png" height="250" />
-
-  [![Build](https://img.shields.io/github/actions/workflow/status/rhunk/SnapEnhance/debug.yml?branch=dev&logo=github&label=Build)](https://github.com/rhunk/SnapEnhance/actions/workflows/android.yml?query=branch%3Amain+event%3Apush+is%3Acompleted) [![Total](https://shields.io/github/downloads/rhunk/SnapEnhance/total?logo=Bookmeter&label=Downloads&logoColor=Green&color=Green)](https://github.com/rhunk/snapenhance/releases) [![Translation status](https://hosted.weblate.org/widget/snapenhance/app/svg-badge.svg)](https://hosted.weblate.org/engage/snapenhance/)
+  <img src="https://raw.githubusercontent.com/bocajthomas/SE-Extended/dev/images/logo/SE%20Extended%20Logo.png" height="240" />
   
-# SnapEnhance
-SnapEnhance is an Xposed mod that enhances your Snapchat experience.<br/><br/>
-Please note that this project is currently in development, so bugs and crashes may occur. If you encounter any issues, we encourage you to report them. To do this simply visit our [issues](https://github.com/rhunk/SnapEnhance/issues) page and create an issue, make sure to follow the guidelines.
+[![Debug CI](https://github.com/bocajthomas/SE-Extended/actions/workflows/debug.yml/badge.svg)](https://github.com/bocajthomas/SE-Extended/actions/workflows/debug.yml) [![Translation status](https://hosted.weblate.org/widget/SE-Extended/se-extended/svg-badge.svg)](https://hosted.weblate.org/engage/SE-Extended/)
+
+# SE Extended 
+SE Extended is a fork from the [SnapEnhance app](https://github.com/rhunk/SnapEnhance) that uses the Xposed Framework to enhance your Snapchat experience.<br/><br/>
+Please note that this project is currently in development, So bugs and crashes may occur. If you encounter any issues, we encourage you to report them. To do this simply visit our [issues](https://github.com/bocajthomas/SE-Extended/issues/new?assignees=&labels=bug&projects=&template=bug_report.yml&title=...) page and create an issue, make sure to follow the guidelines.
 </div>
 
-## Quick Start
-Requirements:
-- Rooted using `Magisk` or `KernelSU`
-- `LSPosed` installed and fully functional
+## 📱 Screenshots
+<div align="center">
+<div>
+<img src="images/screenshots/Screenshot-1.jpg" width="30%" />
+<img src="images/screenshots/Screenshot-2.jpg" width="30%" />
+<img src="images/screenshots/Screenshot-3.jpg" width="30%" />
+<img src="images/screenshots/Screenshot-4.jpg" width="30%" />
+<img src="images/screenshots/Screenshot-6.jpg" width="30%" />
+<img src="images/screenshots/Screenshot-7.jpg" width="30%" />
+</div>
+</div>
 
-Although using this in an unrooted enviroment using something like `LSPatch` should be working fine, it is not recommended to do so, use at your own risk!
-
-1. Install the module APK from either this [Github repo](https://github.com/rhunk/SnapEnhance/releases) or the [LSPosed repo](https://modules.lsposed.org/module/me.rhunk.snapenhance)
-2. Turn on the module in `LSPosed` and make sure Snapchat is in scope
-3. Force Stop Snapchat
-4. Open the menu by clicking the [Settings Gear Icon](https://i.imgur.com/2grm8li.png)
-
-## Download 
-To Download the latest stable release, please visit the [Releases](https://github.com/rhunk/SnapEnhance/releases) page.<br/>
-You can also download the latest debug build from the [Actions](https://github.com/rhunk/SnapEnhance/actions) section.<br/>
-We no longer offer official `LSPatch` binaries for obvious reasons. However, you're welcome to patch them yourself, as they should theoretically work without any issues.
-
-## Main Features
+## 📖 Main Features
 <details closed>
-  <summary>Media Downloader</summary>
-   
-  - `Auto Download`
+  <summary>⬇️ Media Downloader</summary>
+  
+  - `Save Folder`
+  - `Auto Download Sources`
   - `Prevent Self Auto Download`
+  - `Path Format`
+  - `Allow Duplicate`
   - `Merge Overlays`
   - `Force Image Format`
   - `Force Voice Note Format`
   - `Download Profile Pictures`
   - `Opera Download Button`
-  - `Chat Download Context Menu`
+  - `Download Context Menu`
+  - `FFmpeg Options`
   - `Logging`
   - `Custom Path Format` 
 </details>
 
 <details closed>
-  <summary>User Interface</summary>
+  <summary>📲 User Interface</summary>
   
   - `Friend Feed Menu Buttons` 
-  - `AMOLED Dark Mode`
+  - `Colors` (Theme Picker, Custom Colors, Etc)
   - `Friend Feed Message Preview` 
   - `Snap Preview`
   - `Bootstrap Override` (Default Home Tab & Persistent App Appearance)
@@ -55,8 +54,8 @@ We no longer offer official `LSPatch` binaries for obvious reasons. However, you
   - `Hide Friend Feed Entry`
   - `Hide Streak Restore`
   - `Hide Quick Add In Friend Feed`
-  - `Hide Story Section` 
-  - `Hide UI Components` (Voice Record button, Call Buttons, ...)
+  - `Hide Story Suggestions` 
+  - `Hide UI Components` (Voice Record button, Call Buttons, Etc)
   - `Opera Media Quick Info`
   - `Old Bitmoji Selfie` 
   - `Disable Spotlight` 
@@ -68,7 +67,7 @@ We no longer offer official `LSPatch` binaries for obvious reasons. However, you
 </details>  
 
 <details closed>
-  <summary>Messaging</summary>
+  <summary>💬 Messaging</summary>
   
   - `Bypass Screenshot Detection` 
   - `Anonymous Story Viewing`
@@ -81,8 +80,8 @@ We no longer offer official `LSPatch` binaries for obvious reasons. However, you
   - `Loop Media PlayBack`
   - `Disable Replay In FF`
   - `Half Swipe Notifier`
-  - `Message Preview`
   - `Call Start Confirmation`
+  - `Unlimited Conversation Pinning`
   - `Auto Save Messages` 
   - `Prevent Message Sending`
   - `Friend Mutation Notifier`
@@ -97,15 +96,16 @@ We no longer offer official `LSPatch` binaries for obvious reasons. However, you
  </details>
 
 <details closed>
-  <summary>Global</summary>
+  <summary>🌎 Global</summary>
  
   - `Better Location`
-  - `Suspend Location Updates`
-  - `Snapchat Plus` 
+  - `Snapchat Plus`
+  - `Media Upload Quality` 
   - `Disable Confirmation Dialogs`
   - `Disable Metrics`
   - `Disable Story Sections`
   - `Block Ads`
+  - `Disable Custom Tabs`
   - `Disable Permission Request`
   - `Disable Memories Snap Feed`
   - `Spotlight Comments Username` 
@@ -113,110 +113,128 @@ We no longer offer official `LSPatch` binaries for obvious reasons. However, you
   - `Default Video Playback Rate`
   - `Video Playback Rate Slider`
   - `Disable Google Play Services Dialogs`
-  - `Force Upload Source Quality`
   - `Default Volume Controls`
+  - `Disable Telecom Framework`
   - `Hide Active Music`
   - `Disable Snap Splitting`
 </details>
 
 <details closed>
-  <summary>Camera</summary>
+  <summary>📜 Rules</summary>
+
+  - `Stealth Mode`
+  - `Auto Download`
+  - `Auto Save`
+  - `Auto Open Snaps`
+  - `Unsaveable Messages`
+</details>
+
+<details closed>
+  <summary>📷 Camera</summary>
   
   - `Disable Camera`
   - `Immersive Preview`
   - `Black Photos` 
-  - `Custom Frame Rate` (Front & Back)
+  - `Front Custom Frame Rate`
+  - `Back Custom Frame Rate`  
   - `HEVC Recording`
   - `Force Camera Source Encoding`
-  - `Override Resolution` (Front & Back)
-</details> 
+  - `Custom Resolution`
+  - `Override Front Resolution`
+  - `Override Back Resolution`
+</details>
 
 <details closed>
-  <summary>Experimental</summary>
+<summary>⌛ Streaks Reminder</summary>
   
-  - `Session Events`
-  - `Device Spoof`
+  - `Interval`
+  - `Remaining Time`
+  - `Group Notifications`
+</details>
+
+<details closed>
+  <summary>🧪 Experimental</summary>
+  
+  - `Native Hooks` (Custom Emoji Fonts, etc) 
+  - `Spoof`
+  - `Experimental Color Options`
   - `Convert Message Locally`
-  - `New Chat Action Menu`
   - `Media File Picker`
   - `Story Logger`
   - `Call Recorder`
   - `Account Switcher`
-  - `Edit Messages` 
-  - `App Passcode`
+  - `Better Transcript`
+  - `Edit Messages`
+  - `Context Menu Fix`
+  - `COF Experiments`
+  - `App Lock`
   - `Infinite Story Boost`
   - `My Eyes Only Passcode Bypass`
   - `No Friend Score Delay`
+  - `Best Friend Pinning`
   - `End-to-End Encryption`
-  - `Enable Hidden Snapchat Plus Features`
+  - `Hidden Snapchat Plus Features`
   - `Custom Streaks Expiration Format`
   - `Add Friend Source Spoof`
   - `Prevent Forced Logout`
 </details>
 
-## FAQ
-<details>
-  <summary>AI wallpapers and the Snapchat+ badge aren't working!</summary>
-  
-  - Yeah, they're server-sided and will probably never work.
+<details closed>
+<summary>📄 Scripting</summary>
+
+  - `Developer Mode`
+  - `Module Folder`
+  - `Auto Reload`
+  - `Integated UI`
+  - `Disable Log Anonymization`
 </details>
 
-<details>
-  <summary>Can you add this feature, please?</summary>
-  
-  - Open an issue on our Github repo.
+<details closed>
+<summary>👥 Friend Tracker</summary>
+
+  - `Record Messaging Events`
+  - `Allow Running In Background`
+  - `Auto Purge`
 </details>
 
-<details>
-  <summary>When will this feature become available or finish?</summary>
-  
-  - At some point.
-</details>
+## ⬇️ Download 
+To Download the latest stable release, please visit the [Releases](https://github.com/bocajthomas/SE-Extended/releases) page.<br/>
+You can also download the latest debug build from the [Actions](https://github.com/bocajthomas/SE-Extended/actions/workflows/debug.yml) section.<br/>
 
-<details>
-  <summary>Can I get banned with this?</summary>
-  
-  - Obviously, however, the risk is very low, and we have no reported cases of anyone ever getting banned while using the mod.
-</details>
+## ❓️Wiki
+The [Wiki](https://github.com/bocajthomas/SE-Extended/wiki) is a place for all information regarding SE Extended.
 
-<details>
-  <summary>Can I PM the developers?</summary>
-  
-  - No.
-</details>
+## 💬 Contact 
+Join our [Telegram Channel](https://t.me/SE_Extended) for Discussions, announcements, and releases!
 
-<details>
-  <summary>This doesn't work!</summary>
-  
-  - Open an issue.
-</details>
+## 💵 Donate
+SE Extended will always be free and open source for everyone, If you like it, Consider [Donating](https://www.paypal.me/Jhuddz00)
 
-<details>
-  <summary>My phone isn't rooted; how do I use this?</summary>
-  
-  - You can use `LSPatch` in combination with `SnapEnhance` to run this on an unrooted device, however this is unrecommended and not considered safe.
-</details>
+## 🤝 Contributing 
+Contributions are welcome!<br/>
+Thanks to everyone involved
+- [suryadip2008](https://github.com/suryadip2008) (Translated: Bengali)
+- [BogusMosquito77](https://github.com/BogusMosquito7)
+(Translated: Dutch)
+- [Xa19u](https://github.com/Xa19u)
+(Translated: Urdu) 
+- [comradekingu](https://github.com/comradekingu)
+(Translated: Norwegian Bokmål)
 
-<details>
-  <summary>Where can I download the latest stable build?</summary>
-  
-  - https://github.com/rhunk/snapenhance/releases
-</details>
+You can help translate SE Extended on [Hosted Weblate](https://hosted.weblate.org/projects/SE-Extended/se-extended/).
 
-<details>
-  <summary>Can I use HideMyApplist with this?</summary>
-  
-  - No, this will cause some severe issues, and the mod will not be able to inject.
-</details>
+[![Translation status](https://hosted.weblate.org/widget/SE-Extended/se-extended/multi-auto.svg)](https://hosted.weblate.org/engage/SE-Extended/)
+## ⭐ Star History
+<a href="https://star-history.com/#bocajthomas/SE-Extended&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=bocajthomas/SE-Extended&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=bocajthomas/SE-Extended&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=bocajthomas/SE-Extended&type=Date" />
+ </picture>
+</a>
 
-<details>
-  <summary>How can I translate SnapEnhance into my language?</summary>
-  
-  - We have a [Weblate](https://hosted.weblate.org/projects/snapenhance/app/) hosted repo, feel free to submit your translations there.
-</details>
-
-## Privacy
-We do not collect any user information. However, please be aware that third-party libraries may collect data as described in their respective privacy policies.
+## 🔒 Privacy
+We do not collect any user information. However, Please be aware that third-party libraries may collect data as described in their respective privacy policies.
 <details>
   <summary>Permissions</summary>
   
@@ -227,8 +245,8 @@ We do not collect any user information. However, please be aware that third-part
   - [android.permission.USE_BIOMETRIC](https://developer.android.com/reference/android/Manifest.permission#USE_BIOMETRIC)
 </details>
 
-<details>
-  <summary>Third-party libraries used</summary>
+## 🙏 Credits 
+SE Extended Uses Some Third-party libraries, These Include 
   
   - [libxposed](https://github.com/libxposed/api)
   - [ffmpeg-kit-full-gpl](https://github.com/arthenica/ffmpeg-kit)
@@ -239,28 +257,6 @@ We do not collect any user information. However, please be aware that third-part
   - [rhino-android](https://github.com/F43nd1r/rhino-android)
   - [libsu](https://github.com/topjohnwu/libsu)
   - [colorpicker-compose](https://github.com/skydoves/colorpicker-compose)
-</details>
 
-## Contributors
-Thanks to everyone involved including the [third-party libraries](https://github.com/rhunk/SnapEnhance?tab=readme-ov-file#privacy) used!
-- [rathmerdominik](https://github.com/rathmerdominik)
-- [Flole998](https://github.com/Flole998)
-- [authorisation](https://github.com/authorisation/)
-- [RevealedSoulEven](https://github.com/revealedsouleven)
-- [iBasim](https://github.com/ibasim)
-- [xerta555](https://github.com/xerta555)
-- [TheVisual](https://github.com/TheVisual)
-- [CanerKaraca23](https://github.com/CanerKaraca23)
-- [bocajthomas](https://github.com/bocajthomas)
-- [w451](https://github.com/w451)
-
-## Donate
-**@rhunk**
-- LTC: LbBnT9GxgnFhwy891EdDKqGmpn7XtduBdE
-- BCH: qpu57a05kqljjadvpgjc6t894apprvth9slvlj4vpj
-- BTC: bc1qaqnfn6mauzhmx0e6kkenh2wh4r6js0vh5vel92
-- ETH: 0x0760987491e9de53A73fd87F092Bd432a227Ee92
-- XMR: 49W4Xp7QKdUdVw4otEctWZDC8gnW9nnhoiqMJzY6sKuZBD9xrh9BG4sjdE3r1Jt78j27R6x7522YUA9JVvh892CAJLeKaMu
-
-**@authorisation**
-- XMR: 82kPkAgG2zxQYnSdoFSWzvbSEtEP63NBDh9hgLqp6LgBhPNhZ4dDGv8gVFUEuUhDoi1U14ZgE71teJXo2eBe8iERRRmhcUW
+## 📃 License
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-black.svg)](https://www.gnu.org/licenses/gpl-3.0) [![License](https://img.shields.io/badge/License-Apache_2.0-black.svg)](https://opensource.org/licenses/Apache-2.0) 

@@ -55,6 +55,7 @@ fun ActivityLauncherHelper.chooseFolder(callback: (uri: String) -> Unit) {
         Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
             .addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
             .addFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
+            .putExtra("android.provider.extra.SHOW_ADVANCED", true)
     ) { resultCode, intent ->
         if (resultCode != Activity.RESULT_OK) {
             return@launch
