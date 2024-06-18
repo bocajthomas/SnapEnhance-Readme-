@@ -48,12 +48,12 @@
             "home": {
                 "update_content": "Versjon {versjon} er tilgjengelig!",
                 "update_button": "Last ned",
-                "update_title": "SnapEnhance Oppdatering",
-                "debug_build_summary_title": "Du kjører et feilsøkingsbyggversjon av SnapEnhance",
+                "update_title": "SE Extended Oppdatering",
+                "debug_build_summary_title": "Du kjører et feilsøkingsbyggversjon av SE Extended",
                 "debug_build_summary_date": "Byggversjonsdato: {date} ({days} dager siden)",
                 "quick_actions_title": "Kjappe Handlinger",
                 "debug_build_summary_content": "Versjon {versionName} ({versionCode})",
-                "version_title": "v{versionName} · av rhunk"
+                "version_title": "V{versionName} · Forked av Jacob"
             },
             "home_logs": {
                 "no_logs_hint": "Ingen logger tilgjengelig",
@@ -67,7 +67,7 @@
                 "actions_title": "Handlinger",
                 "success_toast": "Ferdig!",
                 "message_logger_summary": "{messageCount} meldinger\n{storyCount} historier",
-                "message_logger_title": "Meldingslogger",
+                "message_logger_title": "Meldings logger",
                 "export_button": "Eksporter",
                 "clear_button": "Rensk",
                 "view_logger_history_button": "Se logghistorikk",
@@ -159,13 +159,13 @@
     "setup": {
         "mappings": {
             "dialog": "For å dynamisk støtte et bredt spekter av Snapchat-versjoner, er kartlegging nødvendig for at SnapEnhance skal fungere ordentlig, dette bør ikke ta mer enn 5 sekunder.",
-            "generate_failure_no_snapchat": "SnapEnhance kunne ikke oppdage Snapchat, prøv å installere Snapchat på nytt.",
+            "generate_failure_no_snapchat": "SE Extended kunne ikke oppdage Snapchat, prøv å installere Snapchat på nytt.",
             "generate_failure": "Det oppstod en feil under forsøk på å generere kartlegginger. Prøv igjen."
         },
         "dialogs": {
             "select_save_folder_button": "Velg mappe",
             "select_language": "Velg språk",
-            "save_folder": "SnapEnhance krever lagrings tillatelser for og laste ned og lagre media fra snapchaf. Vennligst velg hvor filene skal lagres"
+            "save_folder": "SE Extended krever lagrings tillatelser for og laste ned og lagre media fra snapchaf. Vennligst velg hvor filene skal lagres"
         },
         "permissions": {
             "battery_optimization": "Batterioptimalisering",
