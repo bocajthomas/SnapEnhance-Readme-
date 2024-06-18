@@ -990,10 +990,311 @@
                         "name": "前置自定义帧率"
                     },
                     "hevc_recording": {
-                        "name": "HEVC 录制"
+                        "name": "HEVC 录制",
+                        "description": "使用 HEVC (H.265) 编解码器进行视频录制"
                     }
                 },
                 "name": "相机"
+            },
+            "streaks_reminder": {
+                "name": "条纹提醒",
+                "description": "定期通知您有关您的连胜",
+                "properties": {
+                    "interval": {
+                        "name": "间隔",
+                        "description": "每次提醒的间隔时间（小时）"
+                    },
+                    "remaining_hours": {
+                        "description": "显示通知之前的剩余时间（小时）",
+                        "name": "剩余时间"
+                    },
+                    "group_notifications": {
+                        "name": "群组通知",
+                        "description": "将通知分组为一个通知"
+                    }
+                }
+            },
+            "experimental": {
+                "name": "实验性的",
+                "description": "实验特点",
+                "properties": {
+                    "native_hooks": {
+                        "name": "原生钩子",
+                        "description": "与 Snapchat 原生代码挂钩的不安全功能",
+                        "properties": {
+                            "composer_hooks": {
+                                "name": "作曲家挂钩",
+                                "description": "将代码注入 Composer 跨平台 UI 框架",
+                                "properties": {
+                                    "show_first_created_username": {
+                                        "description": "在个人资料页面中当前用户名旁边显示第一个创建的用户名",
+                                        "name": "显示第一个创建的用户名"
+                                    },
+                                    "bypass_camera_roll_limit": {
+                                        "description": "增加可以从相机胶卷发送的最大媒体量",
+                                        "name": "绕过相机胶卷限制"
+                                    },
+                                    "composer_console": {
+                                        "name": "作曲家控制台",
+                                        "description": "允许您在 Composer 中执行 JavaScript 代码（仅限 ARM64）"
+                                    },
+                                    "composer_logs": {
+                                        "name": "作曲家日志",
+                                        "description": "将 Composer 的控制台日志重定向到 SE Extended"
+                                    }
+                                }
+                            },
+                            "custom_emoji_font": {
+                                "description": "允许您使用自定义表情符号字体。仅适用于 .ttf 字体",
+                                "name": "自定义表情符号字体"
+                            },
+                            "disable_bitmoji": {
+                                "name": "禁用 Bitmoji",
+                                "description": "禁用好友个人资料 Bitmoji"
+                            },
+                            "remap_executable": {
+                                "name": "重新映射可执行文件",
+                                "description": "重新映射内存中的可执行区域"
+                            }
+                        }
+                    },
+                    "spoof": {
+                        "name": "欺骗",
+                        "description": "伪造有关您的各种信息",
+                        "properties": {
+                            "play_store_installer_package_name": {
+                                "name": "Play 商店安装程序包名称",
+                                "description": "将安装程序包名称覆盖为 com.android.vending"
+                            },
+                            "fingerprint": {
+                                "name": "设备指纹",
+                                "description": "欺骗您的设备指纹"
+                            },
+                            "android_id": {
+                                "name": "安卓ID",
+                                "description": "将您的 Android ID 欺骗为指定值"
+                            },
+                            "remove_vpn_transport_flag": {
+                                "name": "删除 VPN 传输标志",
+                                "description": "阻止 Snapchat 检测 VPN"
+                            },
+                            "remove_mock_location_flag": {
+                                "name": "删除模拟位置标志",
+                                "description": "阻止 Snapchat 检测模拟位置"
+                            },
+                            "randomize_persistent_device_token": {
+                                "name": "随机化持久设备令牌",
+                                "description": "每次登录后生成随机设备令牌"
+                            }
+                        }
+                    },
+                    "experimental_colors": {
+                        "name": "实验颜色选项",
+                        "properties": {
+                            "ring_color": {
+                                "name": "戒指颜色",
+                                "description": "对某物的颜色做某事;）"
+                            },
+                            "sig_color_icon_secondary": {
+                                "name": "Sig 颜色图标次要",
+                                "description": "对某物的颜色做某事；）"
+                            },
+                            "item_shape_fill_color": {
+                                "description": "对某物的颜色做某事；）",
+                                "name": "项目形状填充颜色"
+                            },
+                            "ring_start_color": {
+                                "name": "环起始颜色",
+                                "description": "对某物的颜色做某事；）"
+                            },
+                            "sig_color_layout_place_holder": {
+                                "description": "对某物的颜色做某事；）",
+                                "name": "Sig 颜色布局占位符"
+                            },
+                            "sc_button_color": {
+                                "name": "Sc 按钮颜色",
+                                "description": "对某物的颜色做某事；）"
+                            },
+                            "box_background_color": {
+                                "name": "框背景颜色",
+                                "description": "对某物的颜色做某事；）"
+                            },
+                            "edit_text_color": {
+                                "name": "编辑文字颜色",
+                                "description": "对某物的颜色做某事；）"
+                            },
+                            "chip_background_color": {
+                                "name": "芯片背景颜色",
+                                "description": "对某物的颜色做某事；）"
+                            },
+                            "recipient_input_style": {
+                                "name": "收件人输入方式",
+                                "description": "对某物的颜色做某事；）"
+                            },
+                            "psts_indicator_color": {
+                                "name": "Psts 指示器颜色",
+                                "description": "对某物的颜色做某事；）"
+                            },
+                            "psts_tab_background": {
+                                "name": "Psts 选项卡背景",
+                                "description": "对某物的颜色做某事；）"
+                            },
+                            "psts_divider_color": {
+                                "description": "对某物的颜色做某事；）",
+                                "name": "Psts 分隔线颜色"
+                            },
+                            "status_bar_foreground": {
+                                "name": "状态栏前景",
+                                "description": "对某物的颜色做某事；）"
+                            },
+                            "story_replay_view_ring_color": {
+                                "name": "故事重播视图 戒指颜色",
+                                "description": "对某物的颜色做某事；）"
+                            },
+                            "sig_color_button_primary": {
+                                "name": "Sig 颜色按钮主要",
+                                "description": "对某物的颜色做某事；）"
+                            },
+                            "sig_color_base_app_yellow": {
+                                "name": "Sig Color Base 应用程序黄色",
+                                "description": "对某物的颜色做某事；）"
+                            },
+                            "sig_color_background_surface_translucent": {
+                                "name": "sig 颜色背景表面半透明",
+                                "description": "对某物的颜色做某事；）"
+                            },
+                            "sig_color_story_ring_discover_tab_thumbnail_story_ring": {
+                                "name": "sig 彩色故事环 发现选项卡缩略图 故事环",
+                                "description": "对某物的颜色做某事；）"
+                            },
+                            "recipient_pill_background_drawable": {
+                                "name": "受药丸背景可绘制",
+                                "description": "对某物的颜色做某事；）"
+                            },
+                            "status_bar_background": {
+                                "description": "对某物的颜色做某事；）",
+                                "name": "状态栏背景"
+                            },
+                            "range_fill_color": {
+                                "name": "范围填充颜色",
+                                "description": "对某物的颜色做某事；）"
+                            },
+                            "tab_text_color": {
+                                "description": "对某物的颜色做某事；）",
+                                "name": "选项卡文本颜色"
+                            },
+                            "stroke_color": {
+                                "name": "描边颜色",
+                                "description": "对某物的颜色做某事；）"
+                            },
+                            "sig_color_story_ring_friends_feed_story_ring": {
+                                "name": "sig 彩色故事戒指 朋友饲料故事戒指",
+                                "description": "对某物的颜色做某事；）"
+                            }
+                        },
+                        "description": "注意：这些颜色功能是实验性的，因此可能会导致您的 Snapchat 看起来很奇怪，\n在主题选择器上选择“自定义颜色”以使用"
+                    },
+                    "convert_message_locally": {
+                        "description": "将快照转换为本地聊天外部媒体。这出现在聊天下载上下文菜单中",
+                        "name": "本地转换消息"
+                    },
+                    "media_file_picker": {
+                        "name": "媒体文件选择器",
+                        "description": "允许您从图库中选择任何视频/音频文件"
+                    },
+                    "story_logger": {
+                        "name": "故事记录器",
+                        "description": "提供好友故事的历史记录"
+                    },
+                    "call_recorder": {
+                        "name": "电话录音器",
+                        "description": "自动录制音频通话"
+                    },
+                    "account_switcher": {
+                        "name": "账户切换器",
+                        "properties": {
+                            "auto_backup_current_account": {
+                                "name": "自动备份往来账户",
+                                "description": "注销或切换账户时自动备份当前账户"
+                            }
+                        },
+                        "description": "允许您在帐户之间切换而无需注销\n长按 Bitmoji 个人资料旁边的搜索图标打开菜单\n注意：此功能是实验性的，将来可能会发生变化"
+                    },
+                    "better_transcript": {
+                        "name": "更好的成绩单",
+                        "properties": {
+                            "force_transcription": {
+                                "name": "强制语音笔记转录",
+                                "description": "允许转录所有语音注释"
+                            },
+                            "preferred_transcription_lang": {
+                                "name": "首选转录语言",
+                                "description": "语音注释文本的首选语言（例如 EN、ES、FR）"
+                            },
+                            "enhanced_transcript": {
+                                "name": "增强的成绩单",
+                                "description": "使用 DeepL 改进语音笔记转录。\n在使用此功能之前，请确保您已阅读他们的隐私政策。"
+                            }
+                        },
+                        "description": "改进语音笔记转录"
+                    },
+                    "cof_experiments": {
+                        "name": "COF实验",
+                        "description": "启用未发布/测试版 Snapchat 功能"
+                    },
+                    "edit_message": {
+                        "name": "编辑消息",
+                        "description": "允许您编辑对话中的消息"
+                    },
+                    "context_menu_fix": {
+                        "name": "上下文菜单修复",
+                        "description": "尝试修复好友动态菜单，设备离线时无法正确显示"
+                    },
+                    "app_lock": {
+                        "description": "防止在没有密码的情况下访问 Snapchat",
+                        "properties": {
+                            "lock_on_resume": {
+                                "name": "锁定简历",
+                                "description": "重新打开应用程序时锁定该应用程序"
+                            }
+                        },
+                        "name": "应用锁"
+                    },
+                    "infinite_story_boost": {
+                        "name": "无限故事推进",
+                        "description": "绕过故事提升限制延迟"
+                    },
+                    "meo_passcode_bypass": {
+                        "description": "绕过 My Eyes Only 密码\n仅当之前正确输入密码时此操作才有效",
+                        "name": "我的眼睛只有密码绕过"
+                    },
+                    "no_friend_score_delay": {
+                        "description": "消除了查看好友分数时的延迟",
+                        "name": "无好友评分延迟"
+                    },
+                    "best_friend_pinning": {
+                        "name": "最好的朋友固定",
+                        "description": "允许您将一位朋友固定为您的第一好朋友。注意：只有您可以看到您固定的最好的朋友"
+                    },
+                    "e2ee": {
+                        "name": "端到端加密",
+                        "properties": {
+                            "encrypted_message_indicator": {
+                                "name": "加密消息指示器",
+                                "description": "在加密消息旁边添加 🔒 表情符号"
+                            },
+                            "force_message_encryption": {
+                                "name": "强制消息加密",
+                                "description": "仅当选择多个对话时，才阻止向未启用端到端加密的人员发送加密消息"
+                            }
+                        },
+                        "description": "使用共享密钥通过 AES 加密您的消息\n请务必将您的密钥保存在安全的地方！"
+                    },
+                    "add_friend_source_spoof": {
+                        "name": "添加好友来源恶搞",
+                        "description": "欺骗好友请求的来源"
+                    }
+                }
             }
         }
     }
