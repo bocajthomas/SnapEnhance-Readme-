@@ -119,7 +119,6 @@
                 "no_friends_map": "Ingen venner på kartet",
                 "longitude_dialog_hint": "Lengdegrad",
                 "saved_name_dialog_hint": "Lagret navn",
-                "latitude_dialog_hint": "Breddegrad",
                 "no_saved_coordinates_hint": "Ingen lagrede koordinater"
             },
             "messaging_preview": {
