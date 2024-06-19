@@ -491,43 +491,43 @@
                         "description": "فرینڈ فیڈ میں آخری پیغامات کا پیش نظارہ دکھاتا ہے",
                         "properties": {
                             "amount": {
-                                "name": "",
-                                "description": ""
+                                "name": "امونٹ",
+                                "description": "پیش نظارہ کرنے کے لیے پیغامات کی مقدار"
                             }
                         }
                     },
                     "snap_preview": {
-                        "name": "",
-                        "description": ""
+                        "name": "سنیپ پیش نظارہ",
+                        "description": "چیٹ میں نادیدہ سنیپس کے آگے ایک چھوٹا پیش نظارہ دکھاتا ہے"
                     },
                     "bootstrap_override": {
-                        "name": "",
-                        "description": "",
+                        "name": "بوٹسٹریپ اوور رائیڈ",
+                        "description": "یوزر انٹرفیس بوٹسٹریپ کی ترتیبات کو اوور رائیڈ کرتا ہے",
                         "properties": {
                             "app_appearance": {
-                                "name": "",
-                                "description": ""
+                                "name": "ایپ کی ظاہری شکل",
+                                "description": "ایپ کی مستقل ظاہری شکل سیٹ کرتا ہے"
                             },
                             "home_tab": {
-                                "name": "",
-                                "description": ""
+                                "name": "ہوم ٹیب",
+                                "description": "Snapchat کھولتے وقت اسٹارٹ اپ ٹیب کو اوور رائیڈ کرتا ہے"
                             }
                         }
                     },
                     "map_friend_nametags": {
-                        "name": "",
-                        "description": ""
+                        "name": "بہتر کردہ دوست کے نقشے کے نام ٹیگز",
+                        "description": "‮سنیپ میپ پر دوستوں کے نام کے ٹیگز کو بہتر بناتا ہے"
                     },
                     "prevent_message_list_auto_scroll": {
-                        "name": "",
-                        "description": ""
+                        "name": "پیغام کی فہرست آٹو سکرول کو روکیں",
+                        "description": "پیغام بھیجنے/ وصول کرتے وقت پیغام کی فہرست کو نیچے تک سکرول کرنے سے روکتا ہے"
                     },
                     "streak_expiration_info": {
-                        "name": "",
-                        "description": ""
+                        "name": "اسٹریک کی میعاد ختم ہونے کی معلومات دکھائیں",
+                        "description": "Streaks کاؤنٹر کے آگے ایک سٹریک ایکسپائری ٹائمر دکھاتا ہے"
                     },
                     "hide_friend_feed_entry": {
-                        "name": "",
+                        "name": "فرینڈ فیڈ انٹری چھپائیں",
                         "description": ""
                     },
                     "hide_streak_restore": {
