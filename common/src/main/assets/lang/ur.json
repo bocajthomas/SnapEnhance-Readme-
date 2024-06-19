@@ -153,7 +153,7 @@
                 "saved_name_dialog_hint": "محفوظ کردہ نام",
                 "latitude_dialog_hint": "طول",
                 "longitude_dialog_hint": "طول البلد",
-                "save_dialog_button": "",
+                "save_dialog_button": "محفوظ",
                 "choose_location_button": "محفوظ کریں",
                 "teleport_to_friend_button": "دوست کو ٹیلیپورٹ کریں",
                 "spoof_location_toggle": "لوکیشن اسپوف کریں",
@@ -174,321 +174,321 @@
                 "search_hint": "سرچ",
                 "fetch_error": "ڈیٹا حاصل کرنے میں ناکام",
                 "category_groups": "گروپس",
-                "category_friends": "دوست"
+                "category_friends": "فرینڈز"
             },
             "scripting_warning": {
                 "title": "وارننگ",
                 "content": "SE Extended میں ایک اسکرپٹنگ ٹول شامل ہے، جو آپ کے آلے پر صارف کے متعین کوڈ کے نفاذ کی اجازت دیتا ہے۔ انتہائی احتیاط برتیں اور صرف معروف، قابل اعتماد ذرائع سے ماڈیول انسٹال کریں۔ غیر مجاز یا غیر تصدیق شدہ ماڈیولز آپ کے سسٹم کے لیے حفاظتی خطرات پیدا کر سکتے ہیں۔"
             },
             "reset_config": {
-                "title": "",
-                "content": "",
-                "success_toast": ""
+                "title": "‬ترتیب کو دوبارہ ترتیب دیں",
+                "content": "کیا آپ واقعی تشکیل کو دوبارہ ترتیب دینا چاہتے ہیں؟",
+                "success_toast": "ترتیب کامیابی کے ساتھ دوبارہ ترتیب دی گئی"
             },
             "export_config": {
-                "title": "",
-                "content": ""
+                "title": "حساس ڈیٹا برآمد کریں؟",
+                "content": "کیا آپ حساس ڈیٹا کے ساتھ تشکیل برآمد کرنا چاہتے ہیں؟ (جیسے مقام کے نقاط وغیرہ)"
             },
             "messaging_action": {
-                "title": "",
-                "select_all_button": ""
+                "title": "عمل کرنے کے لیے مواد کی اقسام کا انتخاب کریں",
+                "select_all_button": "تمام منتخب کریں"
             },
             "file_imports": {
-                "no_files_settings_hint": "",
-                "settings_select_file_hint": ""
+                "no_files_settings_hint": "کوئی فائل نہیں ملی۔ یقینی بنائیں کہ آپ نے فائل امپورٹس سیکشن میں مطلوبہ فائلیں درآمد کی ہیں",
+                "settings_select_file_hint": "ایک امپورٹ شدا فائل منتخب کریں"
             }
         }
     },
     "rules": {
         "toasts": {
-            "enabled": "",
-            "disabled": ""
+            "enabled": "{ruleName} فعال ہے",
+            "disabled": "{ruleName} کو غیر فعال کر دیا گیا"
         },
         "modes": {
-            "blacklist": "",
-            "whitelist": ""
+            "blacklist": "بلیک لسٹ موڈ",
+            "whitelist": "وائٹ لسٹ موڈ"
         },
         "properties": {
             "auto_download": {
-                "name": "",
-                "description": "",
+                "name": "آٹو ڈاؤن لوڈ",
+                "description": "سنیپس کو دیکھتے وقت خودکار طور پر ڈاؤن لوڈ کریں",
                 "options": {
-                    "blacklist": "",
-                    "whitelist": ""
+                    "blacklist": "آٹو ڈاؤن لوڈ سے خارج کریں",
+                    "whitelist": "آٹو ڈاؤنلوڈ"
                 }
             },
             "stealth": {
-                "name": "",
-                "description": "",
+                "name": "اسٹیلتھ موڈ",
+                "description": "کسی کو بھی یہ جاننے سے روکتا ہے کہ آپ نے ان کی سنیپ/چیٹ اور بات چیت کھولی ہے",
                 "options": {
-                    "blacklist": "",
-                    "whitelist": ""
+                    "blacklist": "اسٹیلتھ موڈ سے خارج کریں",
+                    "whitelist": "سٹیلتھ موڈ"
                 }
             },
             "auto_save": {
-                "name": "",
-                "description": "",
+                "name": "آٹو سیو",
+                "description": "چیٹ پیغامات کو دیکھتے وقت ان کو محفوظ کرتا ہے",
                 "options": {
-                    "blacklist": "",
-                    "whitelist": ""
+                    "blacklist": "آٹو سیو سے خارج کریں",
+                    "whitelist": "آٹو سیو"
                 }
             },
             "unsaveable_messages": {
-                "name": "",
-                "description": "",
+                "name": "ناقابل محفوظ پیغامات",
+                "description": "پیغامات کو دوسرے لوگوں کے چیٹ میں محفوظ ہونے سے روکتا ہے",
                 "options": {
-                    "blacklist": "",
-                    "whitelist": ""
+                    "blacklist": "غیر محفوظ پیغامات سے خارج کریں",
+                    "whitelist": "ناقابل محفوظ پیغامات"
                 }
             },
             "auto_open_snaps": {
-                "name": "",
-                "description": "",
+                "name": "آٹو اوپن سنیپس",
+                "description": "Snaps وصول کرتے وقت انہیں خودکار طور پر کھولتا ہے",
                 "options": {
-                    "blacklist": "",
-                    "whitelist": ""
+                    "blacklist": "آٹو اوپن سنیپس سے خارج کریں",
+                    "whitelist": "آٹو اوپن سنیپس"
                 }
             },
             "hide_friend_feed": {
-                "name": ""
+                "name": "فرینڈ فیڈ سے چھپائیں"
             },
             "e2e_encryption": {
-                "name": ""
+                "name": "E2E انکرپشن استعمال کریں"
             },
             "pin_conversation": {
-                "name": ""
+                "name": "‮پن بات چیت"
             }
         }
     },
     "actions": {
         "clean_snapchat_cache": {
-            "name": "",
-            "description": ""
+            "name": "اسنیپ چیٹ کیشے کو صاف کریں",
+            "description": "اسنیپ چیٹ کیشے کو صاف کریں"
         },
         "manage_friend_list": {
-            "name": "",
-            "description": ""
+            "name": "فرینڈ لسٹ کا نظم کریں",
+            "description": "بیک اپ لیتے وقت اپنے دوستوں کی فہرست درآمد/برآمد کریں"
         },
         "export_chat_messages": {
-            "name": "",
-            "description": ""
+            "name": "چیٹ پیغامات برآمد کریں",
+            "description": "گفتگو کے پیغامات کو JSON/HTML/TXT فائل میں برآمد کرتا ہے"
         },
         "export_memories": {
-            "name": "",
-            "description": ""
+            "name": "یادیں برآمد کریں",
+            "description": "یادوں کو زپ فائل میں برآمد کرتا ہے"
         },
         "bulk_messaging_action": {
-            "name": "",
-            "description": ""
+            "name": "بلک میسجنگ ایکشن",
+            "description": "دوستوں کو حذف کرنے یا بات چیت کو بڑے پیمانے پر حذف کرنے جیسے کام انجام دیتا ہے"
         },
         "regen_mappings": {
-            "name": "",
-            "description": ""
+            "name": "Mappings کو دوبارہ تخلیق کریں",
+            "description": "میپنگ کو دستی طور پر دوبارہ تخلیق کریں"
         },
         "change_language": {
-            "name": "",
-            "description": ""
+            "name": "زبان تبدیل کریں",
+            "description": "SE ایکسٹینڈیڈ کی زبان کو تبدیل کریں"
         },
         "file_imports": {
-            "name": "",
-            "description": ""
+            "name": "فائل امپورٹس",
+            "description": "Snapchat میں استعمال کے لیے فائلیں درآمد کریں"
         },
         "friend_tracker": {
-            "name": "",
-            "description": ""
+            "name": "فرینڈز ٹریکر",
+            "description": "Snapchat پر اپنے دوستوں کو ٹریک کریں"
         },
         "logger_history": {
-            "name": "",
-            "description": ""
+            "name": "لوگر ہسٹری",
+            "description": "لاگ ان پیغامات کی تاریخ دیکھیں"
         }
     },
     "features": {
         "notices": {
-            "unstable": "",
-            "ban_risk": "",
-            "internal_behavior": "",
-            "require_native_hooks": ""
+            "unstable": "⚠ غیر مستحکم",
+            "ban_risk": "⚠ یہ خصوصیت پابندی کا سبب بن سکتی ہے",
+            "internal_behavior": "⚠ یہ خصوصیت پابندی کا سبب بن سکتی ہے",
+            "require_native_hooks": "⚠ اس خصوصیت کے لیے تجرباتی مقامی ہکس درست طریقے سے کام کرنے کی ضرورت ہے"
         },
         "properties": {
             "downloader": {
-                "name": "",
-                "description": "",
+                "name": "ڈاؤنلوڈر",
+                "description": "سنیپ چیٹ میڈیا ڈاؤن لوڈ کریں",
                 "properties": {
                     "save_folder": {
-                        "name": "",
-                        "description": ""
+                        "name": "فولڈر محفوظ کریں",
+                        "description": "وہ ڈائرکٹری منتخب کریں جس میں تمام میڈیا کو ڈاؤن لوڈ کیا جانا چاہیے"
                     },
                     "auto_download_sources": {
-                        "name": "",
-                        "description": ""
+                        "name": "خودکار ڈاؤن لوڈ ذرائع",
+                        "description": "خود بخود ڈاؤن لوڈ کرنے کے لیے ذرائع منتخب کریں"
                     },
                     "prevent_self_auto_download": {
-                        "name": "",
-                        "description": ""
+                        "name": "سیلف آٹو ڈاؤن لوڈ کو روکیں",
+                        "description": "آپ کی اپنی سنیپس کو خود بخود ڈاؤن لوڈ ہونے سے روکتا ہے"
                     },
                     "path_format": {
-                        "name": "",
-                        "description": ""
+                        "name": "راستے کی شکل",
+                        "description": "فائل پاتھ فارمیٹ کی وضاحت کریں"
                     },
                     "allow_duplicate": {
-                        "name": "",
-                        "description": ""
+                        "name": "‮ڈپلیکیٹ کی اجازت دیں",
+                        "description": "ایک ہی میڈیا کو متعدد بار ڈاؤن لوڈ کرنے کی اجازت دیتا ہے"
                     },
                     "merge_overlays": {
-                        "name": "",
-                        "description": ""
+                        "name": "اوورلیز کو ضم کریں",
+                        "description": "اسنیپ کے متن اور میڈیا کو ایک فائل میں یکجا کرتا ہے"
                     },
                     "force_image_format": {
-                        "name": "",
-                        "description": ""
+                        "name": "زبردستی تصویری فارمیٹ",
+                        "description": "تصاویر کو ایک مخصوص فارمیٹ میں محفوظ کرنے پر مجبور کرتا ہے"
                     },
                     "force_voice_note_format": {
-                        "name": "",
-                        "description": ""
+                        "name": "صوتی نوٹ فارمیٹ کو مجبور کریں",
+                        "description": "صوتی نوٹس کو ایک مخصوص فارمیٹ میں محفوظ کرنے پر مجبور کرتا ہے"
                     },
                     "download_profile_pictures": {
-                        "name": "",
-                        "description": ""
+                        "name": "‬پروفائل پکچرز ڈاؤن لوڈ کریں",
+                        "description": "‮آپ کو پروفائل پیج سے پروفائل پکچرز ڈاؤن لوڈ کرنے کی اجازت دیتا ہے"
                     },
                     "opera_download_button": {
-                        "name": "",
-                        "description": ""
+                        "name": "اوپیرا ڈاؤن لوڈ بٹن",
+                        "description": "سنیپ دیکھتے وقت اوپر دائیں کونے میں ڈاؤن لوڈ بٹن شامل کرتا ہے۔\nبٹنوں پر دیر تک دبانے سے ڈاؤن لوڈ ہو جائے گا"
                     },
                     "download_context_menu": {
-                        "name": "",
-                        "description": ""
+                        "name": "سیاق و سباق کا مینو ڈاؤن لوڈ کریں",
+                        "description": "آپ کو سیاق و سباق کے مینو کا استعمال کرتے ہوئے گفتگو یا کہانی سے پیغامات ڈاؤن لوڈ/پیش نظارہ کرنے کی اجازت دیتا ہے\nبٹنوں پر دیر تک دبانے سے ڈاؤن لوڈ ہو جائے گا"
                     },
                     "ffmpeg_options": {
-                        "name": "",
-                        "description": "",
+                        "name": "FFmpeg اختیارات",
+                        "description": "اضافی FFmpeg اختیارات کی وضاحت کریں",
                         "properties": {
                             "threads": {
-                                "name": "",
-                                "description": ""
+                                "name": "تھریڈز",
+                                "description": "استعمال کرنے کے لیے تھریڈز کی مقدار"
                             },
                             "preset": {
-                                "name": "",
-                                "description": ""
+                                "name": "پرسٹ",
+                                "description": "‬تبادلوں کی رفتار مقرر کریں"
                             },
                             "constant_rate_factor": {
-                                "name": "",
-                                "description": ""
+                                "name": "مستقل شرح فیکٹر",
+                                "description": "ویڈیو انکوڈر کے لیے مستقل شرح کا عنصر سیٹ کریں۔\nlibx264 کے لیے 0 سے 51 تک"
                             },
                             "video_bitrate": {
-                                "name": "",
-                                "description": ""
+                                "name": "ویڈیو بٹری",
+                                "description": "ویڈیو بٹریٹ سیٹ کریں (kbps)"
                             },
                             "audio_bitrate": {
-                                "name": "",
-                                "description": ""
+                                "name": "آڈیو بٹریٹ",
+                                "description": "‭آڈیو بٹریٹ سیٹ کریں (kbps)"
                             },
                             "custom_video_codec": {
-                                "name": "",
-                                "description": ""
+                                "name": "حسب ضرورت ویڈیو کوڈیک",
+                                "description": "ایک حسب ضرورت ویڈیو کوڈیک سیٹ کریں (جیسے libx264)"
                             },
                             "custom_audio_codec": {
-                                "name": "",
-                                "description": ""
+                                "name": "‬حسب ضرورت آڈیو کوڈیک",
+                                "description": "ایک حسب ضرورت آڈیو کوڈیک سیٹ کریں (جیسے AAC)"
                             }
                         }
                     },
                     "logging": {
-                        "name": "",
-                        "description": ""
+                        "name": "لوگنگ",
+                        "description": "میڈیا ڈاؤن لوڈ ہونے پر ٹوسٹ دکھاتا ہے"
                     },
                     "custom_path_format": {
-                        "name": "",
-                        "description": ""
+                        "name": "کسٹم پاتھ فارمیٹ",
+                        "description": "ڈاؤن لوڈ کردہ میڈیا کے لیے اپنی مرضی کے راستے کی شکل کی وضاحت کریں۔\n\nدستیاب متغیرات:\n - % username%\n - ٪ذریعہ٪\n - % ہیش%\n - ٪تاریخ وقت٪"
                     }
                 }
             },
             "user_interface": {
-                "name": "",
-                "description": "",
+                "name": "یوزر انٹرفیس",
+                "description": "Snapchat کی شکل و صورت کو تبدیل کریں",
                 "properties": {
                     "enable_app_appearance": {
-                        "name": "",
-                        "description": ""
+                        "name": "ایپ کی ظاہری شکل کی ترتیبات کو فعال کریں",
+                        "description": "پوشیدہ ایپ ظاہری ترتیب کو فعال کرتا ہے۔\nاسنیپ چیٹ کے نئے ورژنز پر اس کی ضرورت نہیں ہوسکتی ہے"
                     },
                     "customize_ui": {
-                        "name": "",
-                        "description": "",
+                        "name": "رنگ",
+                        "description": "اسنیپ چیٹس کے رنگوں کو حسب ضرورت بنائیں",
                         "properties": {
                             "theme_picker": {
-                                "name": "",
-                                "description": ""
+                                "name": "تھیم چننے والا",
+                                "description": "پرسیت اسنیپ چیٹ تھیمز"
                             },
                             "colors": {
-                                "name": "",
-                                "description": "",
+                                "name": "کسٹم کلرز",
+                                "description": "‮انفرادی رنگوں کو اپنی مرضی کے مطابق بنائیں\nنوٹ: استعمال کرنے کے لیے تھیم چننے والے پر 'اپنی مرضی کے رنگ' منتخب کریں",
                                 "properties": {
                                     "text_color": {
-                                        "name": "",
-                                        "description": ""
+                                        "name": "بنیادی متن کا رنگ",
+                                        "description": "Snapchats کے مرکزی متن کا رنگ تبدیل کرتا ہے"
                                     },
                                     "chat_chat_text_color": {
-                                        "name": "",
-                                        "description": ""
+                                        "name": "مین فرینڈ فیڈ ٹیکسٹ کلر",
+                                        "description": "فرینڈ فیڈ پر (نئی چیٹ / نیو اسنیپ اور چیٹس / ٹائپنگ / کالنگ / مسڈ کال / سپیکنگ / نیا وائس نوٹ) کے متن کا رنگ تبدیل کرتا ہے"
                                     },
                                     "pending_sending_text_color": {
-                                        "name": "",
-                                        "description": ""
+                                        "name": "سیکنڈری فرینڈ فیڈ ٹیکسٹ کلر",
+                                        "description": "فرینڈ فیڈ پر ( ڈیلیور / موصول / بھیجنا / کھولا / چیٹ کرنے کے لئے تھپتھپائیں / دوبارہ چلانے کے لئے ہولڈ / دوبارہ چلایا / چیٹ میں محفوظ / کال کیا گیا) کے متن کا رنگ تبدیل کرتا ہے"
                                     },
                                     "snap_with_sound_text_color": {
-                                        "name": "",
-                                        "description": ""
+                                        "name": "صوتی متن کے رنگ کے ساتھ سنیپ",
+                                        "description": "فرینڈ فیڈ پر ( New Snap ) کے متن کا رنگ تبدیل کرتا ہے۔\nنوٹ: صرف ویڈیو سنیپ"
                                     },
                                     "snap_without_sound_text_color": {
-                                        "name": "",
-                                        "description": ""
+                                        "name": "صوتی متن کے رنگ کے بغیر تصاویر",
+                                        "description": "فرینڈ فیڈ پر ( New Snap ) کے متن کا رنگ تبدیل کرتا ہے۔\nنوٹ: صرف ویڈیو سنیپ"
                                     },
                                     "action_sheet_description_text_color": {
-                                        "name": "",
-                                        "description": ""
+                                        "name": "ایکشن مینو کی تفصیل متن کا رنگ",
+                                        "description": "ایکشن مینو پر تفصیل کے متن کا رنگ تبدیل کرتا ہے"
                                     },
                                     "background_color": {
-                                        "name": "",
-                                        "description": ""
+                                        "name": "بیک گرائونڈ کا رنگ",
+                                        "description": "Snapchats کے پس منظر کا رنگ تبدیل کرتا ہے"
                                     },
                                     "background_color_surface": {
-                                        "name": "",
-                                        "description": ""
+                                        "name": "بیگ گرائونڈ کی سطح کا رنگ",
+                                        "description": "Snapchats کے بیگ گرائونڈ کی سطح کا رنگ تبدیل کرتا ہے۔"
                                     },
                                     "list_background_drawable": {
-                                        "name": "",
-                                        "description": ""
+                                        "name": "گفتگو کی فہرست بیگ گرائونڈ ",
+                                        "description": "فرینڈ فیڈ پر گفتگو کی فہرست کے پس منظر کا رنگ تبدیل کرتا ہے۔\nاس سے دوست کی نظر ٹوٹ سکتی ہے"
                                     },
                                     "friend_feed_conversations_line_color": {
-                                        "name": "",
-                                        "description": ""
+                                        "name": "بات چیت کی لکیر کا رنگ",
+                                        "description": "لائن ڈیوائیڈر کا رنگ تبدیل کرتا ہے جو فرینڈ فیڈ پر گفتگو کو الگ کرتا ہے"
                                     },
                                     "action_menu_background_color": {
-                                        "name": "",
-                                        "description": ""
+                                        "name": "ایکشن مینو کے پس منظر کا رنگ",
+                                        "description": "Snapchats چیٹ ایکشن مینو کے پس منظر کا رنگ تبدیل کرتا ہے"
                                     },
                                     "action_menu_round_background_color": {
-                                        "name": "",
-                                        "description": ""
+                                        "name": "ایکشن مینو گول پس منظر کا رنگ",
+                                        "description": "اسنیپ چیٹس چیٹ ایکشن مینو کے گول پس منظر کا رنگ تبدیل کرتا ہے"
                                     },
                                     "sig_color_icon_primary": {
-                                        "name": "",
-                                        "description": ""
+                                        "name": "ایکشن مینو آئیکن کا رنگ",
+                                        "description": "چیٹ ایکشن مینو/فرینڈ فیڈ مینو پر شبیہیں کا رنگ تبدیل کرتا ہے"
                                     },
                                     "camera_grid_lines": {
-                                        "name": "",
-                                        "description": ""
+                                        "name": "‮کیمرہ گرڈ لائنز کا رنگ",
+                                        "description": "کیمرہ پیش نظارہ پر اسنیپ چیٹس گرڈ لائنز کا رنگ تبدیل کرتا ہے۔\nنوٹ: میرے کیمرے کی ترتیبات پر گرڈ کو فعال کریں"
                                     }
                                 }
                             },
                             "colors_debug": {
-                                "name": "",
-                                "description": ""
+                                "name": "رنگ ڈیبگ",
+                                "description": "لاگز The obtainStyledAttributes، جو اسنیپ چیٹ کے لوڈ ہونے پر استعمال ہوتے ہیں۔\nنوٹ: اس سے آپ کے لاگز کے سائز میں نمایاں اضافہ ہوگا"
                             }
                         }
                     },
                     "friend_feed_message_preview": {
-                        "name": "",
-                        "description": "",
+                        "name": "فرینڈ فیڈ میسج کا پیش نظارہ",
+                        "description": "فرینڈ فیڈ میں آخری پیغامات کا پیش نظارہ دکھاتا ہے",
                         "properties": {
                             "amount": {
                                 "name": "",
