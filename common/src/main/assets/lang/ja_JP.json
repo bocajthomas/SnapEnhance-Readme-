@@ -2,16 +2,135 @@
     "setup": {
         "dialogs": {
             "save_folder": "SnapEnhanceは、Snapchatからメディアをダウンロードして保存するためにストレージ許可が必要です。\nメディアをダウンロードする場所を選択してください。",
-            "select_save_folder_button": "フォルダを選択"
+            "select_save_folder_button": "フォルダを選択",
+            "select_language": "言語を選択する"
         },
         "mappings": {
-            "dialog": "スナップチャットのさまざまなバージョンを動的にサポートするためには、SnapEnhanceが正常に機能するためには、マッピングが必要です。これには5秒以上かかりません。"
+            "dialog": "スナップチャットのさまざまなバージョンを動的にサポートするためには、SnapEnhanceが正常に機能するためには、マッピングが必要です。これには5秒以上かかりません。",
+            "generate_failure": "マッピングを生成中にエラーが発生しました。もう一度お試しください。",
+            "generate_failure_no_snapchat": "SE Extended が Snapchat を検出できませんでした。Snapchat を再インストールしてみてください。"
+        },
+        "permissions": {
+            "notification_access": "通知へのアクセス",
+            "battery_optimization": "バッテリーの最適化",
+            "request_button": "リクエスト",
+            "dialog": "続行するには、次の要件を満たす必要があります。",
+            "display_over_other_apps": "他のアプリの上に重ねて表示"
         }
     },
     "manager": {
         "dialogs": {
             "scripting_warning": {
                 "content": "SnapEnhance にはスクリプト ツールが含まれており、デバイス上でユーザー定義のコードを実行できます。 細心の注意を払い、既知の信頼できるソースからのみモジュールをインストールしてください。 未承認または未検証のモジュールは、システムにセキュリティ上のリスクをもたらす可能性があります。"
+            }
+        },
+        "routes": {
+            "tasks": "タスク",
+            "home": "家",
+            "home_logs": "ログ",
+            "logger_history": "ロガー履歴",
+            "social": "社交",
+            "manage_scope": "スコープの管理",
+            "better_location": "より良いロケーション",
+            "features": "特徴",
+            "home_settings": "設定",
+            "logged_stories": "記録されたストーリー",
+            "friend_tracker": "フレンドトラッカー",
+            "edit_rule": "ルールの編集",
+            "messaging_preview": "プレビュー",
+            "file_imports": "ファイルのインポート",
+            "scripts": "スクリプト"
+        },
+        "sections": {
+            "home": {
+                "version_title": "V{versionName} · Jacob によってフォークされました",
+                "update_title": "SE Extended アップデート",
+                "update_button": "ダウンロード",
+                "update_content": "バージョン {version} が利用可能です!",
+                "debug_build_summary_title": "SE Extended のデバッグ ビルドを実行しています",
+                "debug_build_summary_content": "バージョン {versionName} ({versionCode})",
+                "debug_build_summary_date": "ビルド日: {date} ({days} 日前)",
+                "quick_actions_title": "クイックアクション"
+            },
+            "home_logs": {
+                "saved_logs_success_toast": "ログは正常に保存されました",
+                "clear_logs_button": "ログをクリアする",
+                "no_logs_hint": "利用可能なログがありません",
+                "export_logs_button": "ログのエクスポート",
+                "saving_logs_toast": "ログを保存しています。これには時間がかかる場合があります...",
+                "saved_logs_failure_toast": "ログの保存に失敗しました"
+            },
+            "home_settings": {
+                "debug_title": "デバッグ",
+                "message_logger_summary": "{messageCount} メッセージ\n{storyCount} ストーリー",
+                "clear_button": "クリア",
+                "actions_title": "行動",
+                "message_logger_title": "メッセージロガー",
+                "success_toast": "終わり！",
+                "export_button": "輸出",
+                "view_logger_history_button": "ロガー履歴の表示"
+            },
+            "tasks": {
+                "no_tasks": "タスクがありません",
+                "failed_to_open_file": "ファイルを開けませんでした",
+                "merge_files_toast": "{count} ファイルを結合しています",
+                "delete_files_option": "ファイルも削除",
+                "remove_selected_tasks_title": "選択したタスクを削除してもよろしいですか?",
+                "remove_all_tasks_title": "すべてのタスクを削除してもよろしいですか?",
+                "remove_selected_tasks_confirm": "{count} 個のタスクを削除しますか?",
+                "remove_all_tasks_confirm": "すべてのタスクを削除しますか?"
+            },
+            "features": {
+                "disabled": "無効",
+                "export_option": "輸出",
+                "import_option": "輸入",
+                "reset_option": "リセット",
+                "config_import_failure_toast": "構成のインポートに失敗しました {エラー}",
+                "config_export_success_toast": "構成は正常にエクスポートされました",
+                "config_import_success_toast": "構成が正常にインポートされました",
+                "config_export_failure_toast": "構成のエクスポートに失敗しました {エラー}",
+                "saved_config_snackbar": "設定が保存されました"
+            },
+            "manage_scope": {
+                "participants_text": "{count} 人の参加者",
+                "not_found": "見つかりません",
+                "streaks_expiration_text": "{eta} で期限切れになります",
+                "streaks_expiration_text_expired": "期限切れ",
+                "streaks_title": "縞模様",
+                "logged_stories_button": "記録されたストーリーを表示",
+                "e2ee_title": "エンドツーエンドの暗号化",
+                "rules_title": "ルール",
+                "streaks_length_text": "長さ: {長さ}",
+                "delete_scope_confirm_dialog_title": "{scope} を削除してもよろしいですか?"
+            },
+            "logged_stories": {
+                "story_failed_to_load": "読み込みに失敗しました",
+                "no_stories": "ストーリーが見つかりませんでした",
+                "save_from_cache_button": "キャッシュから保存"
+            },
+            "messaging_preview": {
+                "bridge_init_failed": "メッセージング ブリッジの初期化に失敗しました。 Snapchatがバックグラウンドで実行されていることを確認してください",
+                "save_all_option": "すべてを救う",
+                "unsave_selection_option": "選択範囲を保存しない",
+                "delete_all_option": "すべて削除",
+                "no_message_hint": "メッセージなし",
+                "save_selection_option": "選択範囲を保存",
+                "unsave_all_option": "すべて保存解除",
+                "mark_selection_as_seen_option": "選択したスナップを表示済みとしてマークします",
+                "mark_all_as_seen_option": "すべてのスナップを既読としてマークします",
+                "delete_selection_option": "選択範囲の削除",
+                "message_fetch_failed": "メッセージの取得に失敗しました",
+                "bridge_connection_failed": "ブリッジへの接続に失敗しました。 Snapchatがバックグラウンドで実行されていることを確認してください"
+            },
+            "logger_history": {
+                "list_friend_format": "友達{名前}",
+                "list_group_format": "グループ名}"
+            },
+            "social": {
+                "friends_tab": "友達",
+                "empty_hint": "（空の）",
+                "groups_tab": "グループ",
+                "streaks_expiration_short": "{時間}時間"
             }
         }
     },
@@ -40,5 +159,9 @@
                 }
             }
         }
+    },
+    "scopes": {
+        "friend": "友達",
+        "group": "グループ"
     }
 }
