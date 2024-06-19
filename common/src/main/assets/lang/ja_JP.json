@@ -21,7 +21,32 @@
     "manager": {
         "dialogs": {
             "scripting_warning": {
-                "content": "SnapEnhance にはスクリプト ツールが含まれており、デバイス上でユーザー定義のコードを実行できます。 細心の注意を払い、既知の信頼できるソースからのみモジュールをインストールしてください。 未承認または未検証のモジュールは、システムにセキュリティ上のリスクをもたらす可能性があります。"
+                "content": "SnapEnhance にはスクリプト ツールが含まれており、デバイス上でユーザー定義のコードを実行できます。 細心の注意を払い、既知の信頼できるソースからのみモジュールをインストールしてください。 未承認または未検証のモジュールは、システムにセキュリティ上のリスクをもたらす可能性があります。",
+                "title": "警告"
+            },
+            "add_friend": {
+                "search_hint": "検索",
+                "category_groups": "グループ",
+                "category_friends": "友達",
+                "title": "友達またはグループを追加",
+                "fetch_error": "データの取得に失敗しました"
+            },
+            "reset_config": {
+                "title": "設定をリセットする",
+                "success_toast": "構成が正常にリセットされました",
+                "content": "設定をリセットしてもよろしいですか?"
+            },
+            "messaging_action": {
+                "title": "処理するコンテンツ タイプの選択",
+                "select_all_button": "すべて選択"
+            },
+            "file_imports": {
+                "settings_select_file_hint": "インポートされたファイルを選択します",
+                "no_files_settings_hint": "ファイルが見つかりません。 「ファイルのインポート」セクションで必要なファイルがインポートされていることを確認してください"
+            },
+            "export_config": {
+                "title": "機密データをエクスポートしますか?",
+                "content": "機密データを含む構成をエクスポートしますか? (位置座標など)"
             }
         },
         "routes": {
@@ -124,13 +149,48 @@
             },
             "logger_history": {
                 "list_friend_format": "友達{名前}",
-                "list_group_format": "グループ名}"
+                "list_group_format": "グループ名}",
+                "no_more_messages": "これ以上のメッセージはありません",
+                "reverse_order_checkbox": "逆順",
+                "chat_attachment": "添付ファイル {インデックス}",
+                "empty_message": "空のチャットメッセージ",
+                "unknown_sender": "不明な送信者",
+                "download_attachment_failed_toast": "添付ファイルのダウンロードに失敗しました",
+                "message_parse_failed": "メッセージの解析に失敗しました"
             },
             "social": {
                 "friends_tab": "友達",
                 "empty_hint": "（空の）",
                 "groups_tab": "グループ",
                 "streaks_expiration_short": "{時間}時間"
+            },
+            "file_imports": {
+                "import_file_button": "インポートファイル",
+                "file_not_found": "ファイルが見つかりません",
+                "file_import_failed": "ファイルのインポートに失敗しました: {エラー}",
+                "file_imported": "ファイルは正常にインポートされました",
+                "file_delete_failed": "ファイルの削除に失敗しました",
+                "no_files_hint": "ここでは、Snapchat で使用するファイルをインポートできます。ファイルをインポートするには、下のボタンを押してください。"
+            },
+            "better_location": {
+                "spoofed_coordinates_title": "Lat {緯度}、Lng {経度}",
+                "save_coordinates_dialog_title": "座標の保存",
+                "saved_name_dialog_hint": "保存された名前",
+                "latitude_dialog_hint": "緯度",
+                "longitude_dialog_hint": "経度",
+                "save_dialog_button": "保存",
+                "choose_location_button": "場所を選択してください",
+                "teleport_to_friend_button": "友達にテレポート",
+                "spoof_location_toggle": "位置情報の偽装",
+                "saved_coordinates_title": "保存された座標",
+                "delete_dialog_title": "保存された座標を削除",
+                "teleport_to_friend_title": "友達にテレポート",
+                "search_bar": "検索",
+                "suspend_location_updates": "位置情報の更新を一時停止する",
+                "no_saved_coordinates_hint": "座標が保存されていません",
+                "no_friends_map": "マップ上に友達がいない",
+                "delete_dialog_message": "この保存された座標を削除してもよろしいですか?",
+                "no_friends_found": "友達が見つかりませんでした"
             }
         }
     },
@@ -157,11 +217,196 @@
                         }
                     }
                 }
+            },
+            "downloader": {
+                "properties": {
+                    "save_folder": {
+                        "name": "保存フォルダー",
+                        "description": "すべてのメディアをダウンロードするディレクトリを選択します"
+                    },
+                    "auto_download_sources": {
+                        "name": "自動ダウンロードソース",
+                        "description": "自動的にダウンロードするソースを選択します"
+                    },
+                    "prevent_self_auto_download": {
+                        "name": "自己自動ダウンロードを防止する",
+                        "description": "自分のスナップが自動的にダウンロードされないようにします"
+                    },
+                    "path_format": {
+                        "name": "パスの形式",
+                        "description": "ファイルパス形式の指定"
+                    },
+                    "allow_duplicate": {
+                        "name": "重複を許可する",
+                        "description": "同じメディアを複数回ダウンロードできるようにします"
+                    },
+                    "force_voice_note_format": {
+                        "name": "ボイスノート形式を強制する",
+                        "description": "ボイスメモを指定された形式で強制的に保存します"
+                    },
+                    "download_profile_pictures": {
+                        "description": "プロフィールページからプロフィール写真をダウンロードできます",
+                        "name": "プロフィール写真をダウンロードする"
+                    },
+                    "download_context_menu": {
+                        "name": "ダウンロードコンテキストメニュー",
+                        "description": "コンテキスト メニューを使用して、会話またはストーリーからメッセージをダウンロード/プレビューできます。\nボタンを長押しすると強制的にダウンロードされます"
+                    },
+                    "ffmpeg_options": {
+                        "properties": {
+                            "constant_rate_factor": {
+                                "name": "定率係数",
+                                "description": "ビデオエンコーダの固定レート係数を設定します。\nlibx264 の場合は 0 ～ 51"
+                            },
+                            "audio_bitrate": {
+                                "name": "オーディオビットレート",
+                                "description": "音声ビットレート (kbps) を設定します"
+                            },
+                            "threads": {
+                                "name": "スレッド",
+                                "description": "使用するスレッドの量"
+                            },
+                            "video_bitrate": {
+                                "description": "ビデオのビットレート (kbps) を設定します",
+                                "name": "ビデオビットレート"
+                            },
+                            "preset": {
+                                "name": "プリセット",
+                                "description": "変換速度を設定する"
+                            }
+                        },
+                        "description": "追加の FFmpeg オプションを指定する",
+                        "name": "FFmpeg オプション"
+                    },
+                    "opera_download_button": {
+                        "name": "Opera ダウンロード ボタン",
+                        "description": "スナップを表示しているときに右上隅にダウンロード ボタンを追加します。\nボタンを長押しすると強制的にダウンロードされます"
+                    },
+                    "merge_overlays": {
+                        "name": "オーバーレイを結合する",
+                        "description": "スナップのテキストとメディアを単一のファイルに結合します"
+                    },
+                    "force_image_format": {
+                        "description": "画像を指定された形式で強制的に保存します",
+                        "name": "画像フォーマットを強制する"
+                    }
+                },
+                "name": "ダウンローダー",
+                "description": "スナップチャットメディアをダウンロードする"
             }
+        },
+        "notices": {
+            "unstable": "⚠不安定",
+            "ban_risk": "⚠ この機能によりアクセス禁止が発生する可能性があります",
+            "require_native_hooks": "⚠ この機能が正しく動作するには、実験的なネイティブフックが必要です",
+            "internal_behavior": "⚠ これにより、Snapchat の内部動作が中断される可能性があります"
         }
     },
     "scopes": {
         "friend": "友達",
         "group": "グループ"
+    },
+    "rules": {
+        "properties": {
+            "auto_download": {
+                "description": "スナップを表示すると自動的にダウンロードされます",
+                "options": {
+                    "whitelist": "自動ダウンロード",
+                    "blacklist": "自動ダウンロードから除外する"
+                },
+                "name": "自動ダウンロード"
+            },
+            "stealth": {
+                "name": "ステルスモード",
+                "options": {
+                    "blacklist": "ステルスモードから除外する",
+                    "whitelist": "ステルスモード"
+                },
+                "description": "あなたがスナップ/チャットや会話を開いたことが他人に知られるのを防ぎます"
+            },
+            "auto_save": {
+                "name": "自動保存",
+                "description": "チャットメッセージを表示時に保存します",
+                "options": {
+                    "blacklist": "自動保存から除外する",
+                    "whitelist": "自動保存"
+                }
+            },
+            "unsaveable_messages": {
+                "description": "他の人がメッセージをチャットに保存できないようにします",
+                "options": {
+                    "blacklist": "保存できないメッセージから除外する",
+                    "whitelist": "保存できないメッセージ"
+                },
+                "name": "保存できないメッセージ"
+            },
+            "auto_open_snaps": {
+                "description": "スナップを受信すると自動的に開きます",
+                "name": "自動オープンスナップ",
+                "options": {
+                    "blacklist": "自動オープンスナップから除外する",
+                    "whitelist": "自動オープンスナップ"
+                }
+            },
+            "pin_conversation": {
+                "name": "ピンの会話"
+            },
+            "e2e_encryption": {
+                "name": "E2E 暗号化を使用する"
+            },
+            "hide_friend_feed": {
+                "name": "友達フィードから非表示にする"
+            }
+        },
+        "modes": {
+            "blacklist": "ブラックリストモード",
+            "whitelist": "ホワイトリストモード"
+        },
+        "toasts": {
+            "enabled": "{ruleName} が有効になりました",
+            "disabled": "{ruleName} が無効になっています"
+        }
+    },
+    "actions": {
+        "manage_friend_list": {
+            "name": "友達リストの管理",
+            "description": "バックアップ時に友達リストをインポート/エクスポートする"
+        },
+        "export_chat_messages": {
+            "description": "会話メッセージを JSON/HTML/TXT ファイルにエクスポートします",
+            "name": "チャットメッセージのエクスポート"
+        },
+        "export_memories": {
+            "name": "思い出をエクスポートする",
+            "description": "思い出をZIPファイルにエクスポートします"
+        },
+        "bulk_messaging_action": {
+            "name": "一括メッセージングアクション",
+            "description": "友達の削除や会話の一括削除などの操作を実行します"
+        },
+        "regen_mappings": {
+            "name": "マッピングを再生成する",
+            "description": "マッピングを手動で再生成する"
+        },
+        "change_language": {
+            "name": "言語を変えてください",
+            "description": "SE Extendedの言語を変更する"
+        },
+        "file_imports": {
+            "name": "ファイルのインポート",
+            "description": "Snapchatで使用するファイルをインポートする"
+        },
+        "friend_tracker": {
+            "name": "フレンドトラッカー",
+            "description": "Snapchat で友達を追跡する"
+        },
+        "clean_snapchat_cache": {
+            "name": "Snapchatキャッシュのクリーンアップ",
+            "description": "Snapchatキャッシュをクリーンアップします"
+        },
+        "logger_history": {
+            "name": "ロガー履歴",
+            "description": "ログに記録されたメッセージの履歴を表示する"
+        }
     }
 }
