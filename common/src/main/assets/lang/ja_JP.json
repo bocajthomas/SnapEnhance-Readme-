@@ -447,6 +447,44 @@
                     "meo_passcode_bypass": {
                         "description": "My Eyes Only パスコードをバイパスする\nこれは、パスコードが正しく入力されている場合にのみ機能します",
                         "name": "My Eyes Only パスコード バイパス"
+                    },
+                    "no_friend_score_delay": {
+                        "name": "フレンドスコア遅延なし",
+                        "description": "フレンドスコアを表示する際の遅延を解消します"
+                    },
+                    "best_friend_pinning": {
+                        "name": "親友のピン留め",
+                        "description": "友人を一番の親友としてピン留めできます。注: ピン留めされた親友のみが表示されます"
+                    },
+                    "e2ee": {
+                        "properties": {
+                            "encrypted_message_indicator": {
+                                "name": "暗号化メッセージインジケーター",
+                                "description": "暗号化されたメッセージの横に 🔒 絵文字を追加します"
+                            },
+                            "force_message_encryption": {
+                                "name": "メッセージの暗号化を強制する",
+                                "description": "複数の会話が選択されている場合にのみ、E2E 暗号化が有効になっていない人に暗号化されたメッセージが送信されないようにする"
+                            }
+                        },
+                        "name": "エンドツーエンドの暗号化",
+                        "description": "共有秘密鍵を使用してメッセージを AES で暗号化する\n鍵を安全に保存してください!"
+                    },
+                    "add_friend_source_spoof": {
+                        "name": "友達を追加 ソース スプーフィング",
+                        "description": "友達リクエストの送信元を偽装する"
+                    },
+                    "hidden_snapchat_plus_features": {
+                        "name": "隠しSnapchat Plus機能",
+                        "description": "未リリース/ベータ版の Snapchat Plus 機能を有効にする\n古いバージョンの Snapchat では動作しない可能性があります"
+                    },
+                    "custom_streaks_expiration_format": {
+                        "name": "カスタムストリークの有効期限フォーマット",
+                        "description": "ストリークの有効期限の形式をカスタマイズします\n\n利用可能な変数:\n - %c: ストリーク数\n - %e: 砂時計の絵文字\n - %d: 日\n - %h: 時間\n - %m: 分\n - %s: 秒\n - %w: 残り時間"
+                    },
+                    "prevent_forced_logout": {
+                        "name": "強制ログアウトを防ぐ",
+                        "description": "別のデバイスでログインしたときに Snapchat がログアウトしないようにします"
                     }
                 },
                 "name": "実験的",
@@ -1107,6 +1145,50 @@
                 },
                 "name": "Streaksリマインダー",
                 "description": "ストリークについて定期的に通知します"
+            },
+            "friend_tracker": {
+                "name": "フレンドトラッカー",
+                "description": "Snapchatでの友人のアクティビティを記録します",
+                "properties": {
+                    "allow_running_in_background": {
+                        "name": "バックグラウンドでの実行を許可する",
+                        "description": "トラッカーをバックグラウンドで実行できるようにします。注: これにより、バッテリーが大幅に消耗します"
+                    },
+                    "auto_purge": {
+                        "name": "自動パージ",
+                        "description": "指定された期間より古いキャッシュされたイベントを自動的に削除します"
+                    },
+                    "record_messaging_events": {
+                        "name": "メッセージングイベントの記録",
+                        "description": "スナップを開く、メッセージを読むなどのメッセージング イベントを記録します。"
+                    }
+                }
+            },
+            "scripting": {
+                "name": "スクリプト作成",
+                "properties": {
+                    "module_folder": {
+                        "name": "モジュールフォルダ",
+                        "description": "スクリプトが配置されているフォルダー"
+                    },
+                    "auto_reload": {
+                        "name": "オートリロード",
+                        "description": "スクリプトが変更されると自動的に再ロードされます"
+                    },
+                    "developer_mode": {
+                        "name": "開発者モード",
+                        "description": "Snapchat の UI にデバッグ情報を表示します"
+                    },
+                    "integrated_ui": {
+                        "name": "統合されたUI",
+                        "description": "スクリプトでカスタム UI コンポーネントを Snapchat に追加できるようにします"
+                    },
+                    "disable_log_anonymization": {
+                        "name": "ログの匿名化を無効にする",
+                        "description": "ログの匿名化を無効にします"
+                    }
+                },
+                "description": "カスタム スクリプトを実行して SE Extended を拡張する"
             }
         },
         "notices": {
@@ -1114,6 +1196,58 @@
             "ban_risk": "⚠ この機能によりアクセス禁止が発生する可能性があります",
             "require_native_hooks": "⚠ この機能が正しく動作するには、実験的なネイティブフックが必要です",
             "internal_behavior": "⚠ これにより、Snapchat の内部動作が中断される可能性があります"
+        },
+        "options": {
+            "app_appearance": {
+                "always_light": "指定された期間より古いキャッシュされたイベントを自動的に削除します",
+                "always_dark": "常に暗い"
+            },
+            "theme_picker": {
+                "custom": "カスタムカラー",
+                "light_blue": "ライトブルー",
+                "dark_blue": "濃紺",
+                "earthy_autumn": "素朴な秋",
+                "mint_chocolate": "ミントチョコレート",
+                "ginger_snap": "ジンジャースナップ",
+                "lava_flow": "溶岩流",
+                "ocean_fog": "オーシャンフォグ",
+                "watercolor_wash": "水彩ウォッシュ",
+                "industrial_chic": "インダストリアルシック",
+                "cherry_bomb": "チェリーボム",
+                "woodland_mystery": "森の謎",
+                "creamy_vanilla": "クリーミーバニラ",
+                "midnight_library": "真夜中の図書館",
+                "lemon_sorbet": "レモンシャーベット",
+                "spicy_mustard": "スパイシーマスタード",
+                "peppermint_candy": "ペパーミントキャンディー",
+                "gingerbread_house": "ペパーミントキャンディー",
+                "art_deco_glam": "アールデコグラム",
+                "ocean_depths": "海の深さ",
+                "bubblegum_pink": "バブルガムピンク",
+                "firefly_night": "ホタルナイト",
+                "lavender_field": "ラベンダー畑",
+                "lemon_drop": "レモンドロップ",
+                "modern_farmhouse": "モダンな農家",
+                "material_you_dark": "マテリアル ユー ダーク (Android 12+)",
+                "amoled_dark_mode": "AMOLEDダークモード",
+                "material_you_light": "マテリアル ユー ライト (Android 12+)",
+                "lemon_meringue": "レモンメレンゲ",
+                "alien_landscape": "エイリアンの風景",
+                "zesty_lemon": "ピリッとしたレモン",
+                "tropical_paradise": "トロピカルパラダイス",
+                "galaxy_glitter": "ギャラクシーグリッター",
+                "spicy_chili": "スパイシーチリ",
+                "cosmic_night": "コズミックナイト",
+                "spring_meadow": "春の草原",
+                "apple_orchard": "リンゴ園"
+            },
+            "friend_feed_menu_buttons": {
+                "auto_download": "⬇️ 自動ダウンロード",
+                "stealth": "👻ステルスモード",
+                "auto_save": "💬 メッセージを自動保存",
+                "unsaveable_messages": "⬇️ 保存できないメッセージ",
+                "auto_open_snaps": "📷 自動オープンスナップ"
+            }
         }
     },
     "scopes": {
