@@ -1,12 +1,12 @@
 {
     "setup": {
         "dialogs": {
-            "save_folder": "SnapEnhanceは、Snapchatからメディアをダウンロードして保存するためにストレージ許可が必要です。\nメディアをダウンロードする場所を選択してください。",
+            "save_folder": "SE Extendedは、Snapchatからメディアをダウンロードして保存するためにストレージ許可が必要です。\nメディアをダウンロードする場所を選択してください。",
             "select_save_folder_button": "フォルダを選択",
             "select_language": "言語を選択する"
         },
         "mappings": {
-            "dialog": "スナップチャットのさまざまなバージョンを動的にサポートするためには、SnapEnhanceが正常に機能するためには、マッピングが必要です。これには5秒以上かかりません。",
+            "dialog": "マッピングを生成しています。これには時間がかかる場合があります...",
             "generate_failure": "マッピングを生成中にエラーが発生しました。もう一度お試しください。",
             "generate_failure_no_snapchat": "SE Extended が Snapchat を検出できませんでした。Snapchat を再インストールしてみてください。"
         },
@@ -21,7 +21,7 @@
     "manager": {
         "dialogs": {
             "scripting_warning": {
-                "content": "SnapEnhance にはスクリプト ツールが含まれており、デバイス上でユーザー定義のコードを実行できます。 細心の注意を払い、既知の信頼できるソースからのみモジュールをインストールしてください。 未承認または未検証のモジュールは、システムにセキュリティ上のリスクをもたらす可能性があります。",
+                "content": "SE Extended にはスクリプト ツールが含まれており、デバイス上でユーザー定義のコードを実行できます。 細心の注意を払い、既知の信頼できるソースからのみモジュールをインストールしてください。 未承認または未検証のモジュールは、システムにセキュリティ上のリスクをもたらす可能性があります。",
                 "title": "警告"
             },
             "add_friend": {
@@ -110,10 +110,10 @@
                 "export_option": "輸出",
                 "import_option": "輸入",
                 "reset_option": "リセット",
-                "config_import_failure_toast": "構成のインポートに失敗しました {エラー}",
+                "config_import_failure_toast": "構成のインポートに失敗しました {error}",
                 "config_export_success_toast": "構成は正常にエクスポートされました",
                 "config_import_success_toast": "構成が正常にインポートされました",
-                "config_export_failure_toast": "構成のエクスポートに失敗しました {エラー}",
+                "config_export_failure_toast": "構成のエクスポートに失敗しました {error}",
                 "saved_config_snackbar": "設定が保存されました"
             },
             "manage_scope": {
@@ -125,8 +125,9 @@
                 "logged_stories_button": "記録されたストーリーを表示",
                 "e2ee_title": "エンドツーエンドの暗号化",
                 "rules_title": "ルール",
-                "streaks_length_text": "長さ: {長さ}",
-                "delete_scope_confirm_dialog_title": "{scope} を削除してもよろしいですか?"
+                "streaks_length_text": "長さ: {length}",
+                "delete_scope_confirm_dialog_title": "{scope} を削除してもよろしいですか?",
+                "reminder_button": "リマインダーを設定する"
             },
             "logged_stories": {
                 "story_failed_to_load": "読み込みに失敗しました",
@@ -148,11 +149,11 @@
                 "bridge_connection_failed": "ブリッジへの接続に失敗しました。 Snapchatがバックグラウンドで実行されていることを確認してください"
             },
             "logger_history": {
-                "list_friend_format": "友達{名前}",
-                "list_group_format": "グループ名}",
+                "list_friend_format": "友達 {name}",
+                "list_group_format": "グループ {name}",
                 "no_more_messages": "これ以上のメッセージはありません",
                 "reverse_order_checkbox": "逆順",
-                "chat_attachment": "添付ファイル {インデックス}",
+                "chat_attachment": "アタッチメント {index}",
                 "empty_message": "空のチャットメッセージ",
                 "unknown_sender": "不明な送信者",
                 "download_attachment_failed_toast": "添付ファイルのダウンロードに失敗しました",
@@ -162,18 +163,18 @@
                 "friends_tab": "友達",
                 "empty_hint": "（空の）",
                 "groups_tab": "グループ",
-                "streaks_expiration_short": "{時間}時間"
+                "streaks_expiration_short": "{hours}h"
             },
             "file_imports": {
                 "import_file_button": "インポートファイル",
                 "file_not_found": "ファイルが見つかりません",
-                "file_import_failed": "ファイルのインポートに失敗しました: {エラー}",
+                "file_import_failed": "ファイルのインポートに失敗しました: {error}",
                 "file_imported": "ファイルは正常にインポートされました",
                 "file_delete_failed": "ファイルの削除に失敗しました",
                 "no_files_hint": "ここでは、Snapchat で使用するファイルをインポートできます。ファイルをインポートするには、下のボタンを押してください。"
             },
             "better_location": {
-                "spoofed_coordinates_title": "Lat {緯度}、Lng {経度}",
+                "spoofed_coordinates_title": "緯度 {latitude}, ロング {longitude}",
                 "save_coordinates_dialog_title": "座標の保存",
                 "saved_name_dialog_hint": "保存された名前",
                 "latitude_dialog_hint": "緯度",
