@@ -838,18 +838,18 @@
                     },
                     "disable_metrics": {
                         "name": "میٹرکس کو غیر فعال کریں",
-                        "description": ""
+                        "description": "Snapchat کو مخصوص تجزیاتی ڈیٹا بھیجنے سے روکتا ہے"
                     },
                     "disable_story_sections": {
-                        "name": "",
-                        "description": ""
+                        "name": "کہانی کے حصوں کو غیر فعال کریں",
+                        "description": "کہانیوں کے صفحہ سے حصوں کو ہٹاتا ہے۔\nصحیح طریقے سے کام کرنے کے لیے ریفریش کی ضرورت پڑ سکتی ہے"
                     },
                     "block_ads": {
-                        "name": "",
-                        "description": ""
+                        "name": "اشتہارات کو مسدود کریں",
+                        "description": "اشتہارات کو ظاہر ہونے سے روکتا ہے"
                     },
                     "disable_custom_tabs": {
-                        "name": "",
+                        "name": "حسب ضرورت ٹیبز کو غیر فعال کریں",
                         "description": ""
                     },
                     "disable_permission_requests": {
