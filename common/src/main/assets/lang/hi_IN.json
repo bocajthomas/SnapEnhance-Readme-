@@ -30,7 +30,8 @@
             "manage_scope": "दायरा प्रबंधित करें",
             "messaging_preview": "पूर्व दर्शन",
             "logger_history": "प्रचालेखन इतिहास",
-            "logged_stories": "प्रचालेखित कि गई स्टोरी"
+            "logged_stories": "प्रचालेखित कि गई स्टोरी",
+            "friend_tracker": "मित्र ट्रैकर"
         },
         "sections": {
             "features": {
