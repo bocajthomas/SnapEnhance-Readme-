@@ -199,7 +199,14 @@
             "experimental": {
                 "properties": {
                     "account_switcher": {
-                        "description": "アカウントを切り替えることができますログアウトせずに Bitmoji プロフィールの横にある検索アイコンを長押ししてメニューを開きます 注: この機能は実験的なものであり、将来変更される可能性があります"
+                        "description": "ログアウトせずにアカウントを切り替えることができます\nBitmoji プロフィールの横にある検索アイコンを長押ししてメニューを開きます\n注: この機能は実験的なものであり、将来変更される可能性があります",
+                        "name": "アカウントスイッチャー",
+                        "properties": {
+                            "auto_backup_current_account": {
+                                "name": "現在のアカウントの自動バックアップ",
+                                "description": "ログアウトまたはアカウントの切り替え時に現在のアカウントを自動的にバックアップします"
+                            }
+                        }
                     },
                     "native_hooks": {
                         "properties": {
@@ -297,7 +304,8 @@
                                 "name": "範囲の塗りつぶしの色"
                             },
                             "psts_indicator_color": {
-                                "name": "Psts インジケーターの色"
+                                "name": "Psts インジケーターの色",
+                                "description": "何かの色に何かをします ;)"
                             },
                             "recipient_input_style": {
                                 "name": "受信者の入力スタイル",
@@ -322,10 +330,122 @@
                             "sc_button_color": {
                                 "name": "SCボタンの色",
                                 "description": "何かの色に何かをします ;)"
+                            },
+                            "psts_tab_background": {
+                                "name": "[PST] タブの背景",
+                                "description": "何かの色に何かをします ;)"
+                            },
+                            "psts_divider_color": {
+                                "name": "Psts ディバイダーの色",
+                                "description": "何かの色に何かをします ;)"
+                            },
+                            "tab_text_color": {
+                                "description": "何かの色に何かをします ;)",
+                                "name": "タブのテキストの色"
+                            },
+                            "status_bar_background": {
+                                "name": "ステータスバーの背景",
+                                "description": "何かの色に何かをします ;)"
+                            },
+                            "stroke_color": {
+                                "name": "ストロークの色",
+                                "description": "何かの色に何かをします ;)"
+                            },
+                            "sig_color_background_surface_translucent": {
+                                "name": "sig色背景表面半透明",
+                                "description": "何かの色に何かをします ;)"
+                            },
+                            "status_bar_foreground": {
+                                "name": "ステータスバーの前景",
+                                "description": "何かの色に何かをします ;)"
+                            },
+                            "story_replay_view_ring_color": {
+                                "name": "ストーリーリプレイビューリングの色",
+                                "description": "何かの色に何かをします ;)"
+                            },
+                            "sig_color_base_app_yellow": {
+                                "name": "Sig カラーベース アプリ イエロー",
+                                "description": "何かの色に何かをします ;)"
+                            },
+                            "sig_color_story_ring_discover_tab_thumbnail_story_ring": {
+                                "description": "何かの色に何かをします ;)",
+                                "name": "sigカラーストーリーリング発見タブサムネイルストーリーリング"
+                            },
+                            "sig_color_button_primary": {
+                                "description": "何かの色に何かをします ;)",
+                                "name": "サインカラーボタンプライマリ"
+                            },
+                            "sig_color_story_ring_friends_feed_story_ring": {
+                                "name": "sigカラーストーリーリング友達フィードストーリーリング",
+                                "description": "何かの色に何かをします ;)"
                             }
                         },
                         "name": "実験的な色のオプション",
                         "description": "注: これらの色機能は実験的なものであるため、スナップチャットが奇妙に見える可能性があります。\n使用するテーマピッカーで「カスタムカラー」を選択します"
+                    },
+                    "story_logger": {
+                        "name": "ストーリーロガー",
+                        "description": "友達のストーリーの履歴を提供します"
+                    },
+                    "call_recorder": {
+                        "name": "電話の録音器",
+                        "description": "音声通話を自動的に録音します"
+                    },
+                    "better_transcript": {
+                        "name": "より良いトランスクリプト",
+                        "properties": {
+                            "force_transcription": {
+                                "description": "すべての音声メモを文字に起こすことができます",
+                                "name": "ボイスノートの文字起こしを強制する"
+                            },
+                            "preferred_transcription_lang": {
+                                "description": "音声メモのトランスクリプトに使用する優先言語 (例: EN、ES、FR)",
+                                "name": "優先される文字起こし言語"
+                            },
+                            "enhanced_transcript": {
+                                "description": "DeepL を使用して音声メモのトランスクリプトを改善します。\nこの機能を使用する前に、プライバシー ポリシーを必ずお読みください。",
+                                "name": "強化されたトランスクリプト"
+                            }
+                        },
+                        "description": "音声メモのトランスクリプトを改善します"
+                    },
+                    "cof_experiments": {
+                        "name": "COF実験",
+                        "description": "未リリース/ベータ版の Snapchat 機能を有効にする"
+                    },
+                    "infinite_story_boost": {
+                        "description": "ストーリーブースト制限の遅延を回避する",
+                        "name": "無限のストーリーブースト"
+                    },
+                    "convert_message_locally": {
+                        "name": "メッセージをローカルで変換する",
+                        "description": "スナップをローカルでチャット外部メディアに変換します。これはチャットのダウンロード コンテキスト メニューに表示されます"
+                    },
+                    "media_file_picker": {
+                        "name": "メディア ファイル ピッカー",
+                        "description": "ギャラリーからビデオ/オーディオ ファイルを選択できます"
+                    },
+                    "context_menu_fix": {
+                        "description": "デバイスがオフラインの場合は正しく表示できないため、フレンド フィード メニューを修復してみます",
+                        "name": "コンテキストメニューの修正"
+                    },
+                    "app_lock": {
+                        "properties": {
+                            "lock_on_resume": {
+                                "name": "ロックオンレジューム",
+                                "description": "アプリを再度開くとロックします"
+                            }
+                        },
+                        "name": "アプリロック",
+                        "description": "パスコードなしでSnapchatにアクセスできないようにする"
+                    },
+                    "edit_message": {
+                        "name": "メッセージの編集",
+                        "description": "会話内のメッセージを編集できます"
+                    },
+                    "meo_passcode_bypass": {
+                        "description": "My Eyes Only パスコードをバイパスする\nこれは、パスコードが正しく入力されている場合にのみ機能します",
+                        "name": "My Eyes Only パスコード バイパス"
                     }
                 },
                 "name": "実験的",
