@@ -1,12 +1,26 @@
 ## v1.0.0 - Debug
+
+What's New?
+--
+
+**Features**
+- [`74bf8d1`](https://github.com/bocajthomas/SE-Extended/commit/74bf8d1): experimental color options
+- [`00a5d6e`](https://github.com/bocajthomas/SE-Extended/commit/00a5d6e): move colors to custom colors
+
+
+
+**Changes**
+
+
+
+
+
 bocajthomas
 --
 - refactor: snapenhance to se extended
 - chore(ci): sign debug apks 
 - refactor: homepage/icons
 - refactor(routes): duplicate code 
-- feat(experimental): experimental color options
-- feat(experimental): more color options
 - refactor: quick actions
 - Merge branch 'rhunk:dev' into dev (Sync Fork)
 - Merge branch 'rhunk:dev' into dev (Sync Fork)
@@ -32,9 +46,43 @@ bocajthomas
 - Revert "feat(experimental): new color options"
 - feat(experimental): new color options
 - refactor: lang
+- Merge branch 'rhunk:dev' into dev (Sync Fork)
+- chore(readme): fix spell
+- chore: sync translations
+- chore: translations
+- chore: update contributor list
+- chore: translations
+- chore: changelogs
+- refactor: changelogs
+- feat(theme_picker): watercolor wash
+- refactor: manifest
+- chore(readme): add contributor
+- chore: translations
+- chore(changelogs): start refactoring
+- Revert "chore: translations "
+- fix: translations
+- chore: fix translations
+- chore: translations
+- chore: add contributor
+- refactor: lang
+- feat(home/ui): changelog & Donate icon
+- Merge remote-tracking branch 'origin/dev' into dev (Fix Conflics) 
+- chore: translations
+- chore: sync translations from upstream
+- fix: translation conflics
+- fix
+- feat(theme_picker): 23 more themes
+- chore: translations
+- [WIP] Update fstat_hook.h
+- chore(readme): add contributor
 
-- Added more color options to cutom colors & More colors to themePicker 
-- Tons of refactoring 
+
+
+
+
+- Added more color options to cutom colors & More colors to theme Picker 
+- Tons of refactoring
+- more translations 
 
 rhunk
 -- 
