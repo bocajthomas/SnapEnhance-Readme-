@@ -215,7 +215,7 @@ Contributions are welcome!<br/>
 Thanks to everyone involved
 - [suryadip2008](https://github.com/suryadip2008) (Translated: Bengali)
 - [BogusMosquito77](https://github.com/BogusMosquito7) (Translated: Dutch)
-- [Xa19u](https://github.com/Xa19u) (Translated: Urdu) 
+- [Beingzain](https://github.com/Beingzain) (Translated: Urdu) 
 - [comradekingu](https://github.com/comradekingu) (Translated: Norwegian Bokmål)
 - [TheVisual](https://github.com/TheVisual) ([WIP] Update fstat_hook.h)
 
