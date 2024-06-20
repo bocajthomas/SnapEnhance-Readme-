@@ -215,7 +215,7 @@ class HomeRootSection : Routes.Route() {
                     size = 36.dp,
                     modifier = Modifier.offset(y = (-2).dp),
                     imageVector = Icons.Filled.Paid,
-                    link = "https://www.paypal.me/Jhuddz00"
+                    link = "https://ko-fi.com/seextended#paypalModal"
                 )
             }
 
