@@ -1317,13 +1317,55 @@
                         "description": "在 Snapchat 的 UI 上显示调试信息"
                     },
                     "auto_reload": {
-                        "name": "自动重新加载"
+                        "name": "自动重新加载",
+                        "description": "自动重新加载脚本当他们改变时"
                     },
                     "module_folder": {
                         "name": "模块文件夹",
                         "description": "脚本所在的文件夹"
+                    },
+                    "integrated_ui": {
+                        "name": "集成用户界面",
+                        "description": "允许脚本将自定义 UI 组件添加到 Snapchat"
+                    },
+                    "disable_log_anonymization": {
+                        "description": "禁用日志匿名化",
+                        "name": "禁用日志匿名化"
                     }
                 }
+            },
+            "friend_tracker": {
+                "name": "好友追踪器",
+                "description": "记录朋友在 Snapchat 上的活动",
+                "properties": {
+                    "record_messaging_events": {
+                        "name": "记录消息事件",
+                        "description": "记录消息事件，例如打开快照、阅读消息等。"
+                    },
+                    "allow_running_in_background": {
+                        "description": "允许跟踪器在后台运行。注意：这会显着耗尽您的电池电量",
+                        "name": "允许在后台运行"
+                    },
+                    "auto_purge": {
+                        "name": "自动清除",
+                        "description": "自动删除早于指定时间的缓存事件"
+                    }
+                }
+            }
+        },
+        "options": {
+            "app_appearance": {
+                "always_light": "永远轻盈",
+                "always_dark": "永远黑暗"
+            },
+            "theme_picker": {
+                "custom": "定制颜色",
+                "light_blue": "浅蓝色",
+                "material_you_light": "材质你轻 (Android 12+）",
+                "material_you_dark": "材质你黑暗 (Android 12+)",
+                "amoled_dark_mode": "AMOLED 深色模式",
+                "dark_blue": "深蓝",
+                "earthy_autumn": "土色的秋天"
             }
         }
     }
