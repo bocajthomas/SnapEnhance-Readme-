@@ -32,7 +32,9 @@
             "manage_scope": "Administrer omfang",
             "messaging_preview": "Forhåndsvisning",
             "friend_tracker": "Ven Tracker",
-            "edit_rule": "Rediger regel"
+            "edit_rule": "Rediger regel",
+            "better_location": "Bedre beliggenhed",
+            "file_imports": "Filimport"
         },
         "sections": {
             "features": {
@@ -58,7 +60,8 @@
                 "remove_selected_tasks_title": "Er du sikker på, at du vil fjerne valgte opgaver?",
                 "remove_all_tasks_title": "Er du sikker på, at du vil fjerne alle opgaver?",
                 "delete_files_option": "Slet også filer",
-                "remove_selected_tasks_confirm": "Vil du fjerne {count} opgaver?"
+                "remove_selected_tasks_confirm": "Vil du fjerne {count} opgaver?",
+                "failed_to_open_file": "Filen kunne ikke åbnes"
             },
             "logger_history": {
                 "chat_attachment": "Vedhæftet {index}",
@@ -106,7 +109,12 @@
             "home": {
                 "update_title": "SnapEnhance Opdatering",
                 "update_content": "Version {version} er tilgængelig!",
-                "update_button": "Hent"
+                "update_button": "Hent",
+                "version_title": "I{versionName} · Forked af Jacob",
+                "debug_build_summary_title": "Du kører en debug-build af SE Extended",
+                "debug_build_summary_content": "Version {versionName} ({versionCode})",
+                "debug_build_summary_date": "Byggedato: {date} ({days} dage siden)",
+                "quick_actions_title": "Hurtige handlinger"
             },
             "home_logs": {
                 "no_logs_hint": "Ingen logfiler tilgængelige",

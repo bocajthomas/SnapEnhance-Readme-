@@ -2,12 +2,12 @@
     "setup": {
         "dialogs": {
             "select_language": "Select Language",
-            "save_folder": "SnapEnhance requires Storage permissions to download and Save Media from Snapchat.\nPlease choose the location where media should be downloaded to.",
+            "save_folder": "SE Extended requires Storage permissions to download and Save Media from Snapchat.\nPlease choose the location where media should be downloaded to.",
             "select_save_folder_button": "Select Folder"
         },
         "mappings": {
             "dialog": "Generating Mappings, this may take a while ...",
-            "generate_failure_no_snapchat": "SnapEnhance was unable to detect Snapchat, please try reinstalling Snapchat.",
+            "generate_failure_no_snapchat": "SE Extended was unable to detect Snapchat, please try reinstalling Snapchat.",
             "generate_failure": "An error occurred while trying to generate mappings, please try again."
         },
         "permissions": {
@@ -44,11 +44,11 @@
         },
         "sections": {
             "home": {
-                "version_title": "v{versionName} · by rhunk",
-                "update_title": "SnapEnhance Update",
+                "version_title": "V{versionName} · Forked by Jacob",
+                "update_title": "SE Extended Update",
                 "update_content": "Version {version} is available!",
                 "update_button": "Download",
-                "debug_build_summary_title": "You are running a debug build of SnapEnhance",
+                "debug_build_summary_title": "You are running a debug build of SE Extended",
                 "debug_build_summary_content": "Version {versionName} ({versionCode})",
                 "debug_build_summary_date": "Build date: {date} ({days} days ago)",
                 "quick_actions_title": "Quick Actions"
@@ -180,7 +180,7 @@
             },
             "scripting_warning": {
                 "title": "Warning",
-                "content": "SnapEnhance includes a scripting tool, allowing the execution of user-defined code on your device. Use extreme caution and only install modules from known, reliable sources. Unauthorized or unverified modules may pose security risks to your system."
+                "content": "SE Extended includes a scripting tool, allowing the execution of user-defined code on your device. Use extreme caution and only install modules from known, reliable sources. Unauthorized or unverified modules may pose security risks to your system."
             },
             "reset_config": {
                 "title": "Reset config",
@@ -291,7 +291,7 @@
         },
         "change_language": {
             "name": "Change Language",
-            "description": "Change the language of SnapEnhance"
+            "description": "Change the language of SE Extended"
         },
         "file_imports": {
             "name": "File Imports",
@@ -425,7 +425,7 @@
                             },
                             "colors": {
                                 "name": "Custom Colors",
-                                "description": "Customize Individual colors\nNote: Select Custom Colors on Theme Picker to use",
+                                "description": "Customize Individual colors\nNote: Select `Custom Colors` on Theme Picker to use",
                                 "properties": {
                                     "text_color": {
                                         "name": "Main Text Color",
@@ -447,6 +447,10 @@
                                         "name": "Snaps Without Sound Text Color",
                                         "description": "Changes the text color of ( New Snap ) on the friend feed\nNote: Video Snaps Only"
                                     },
+                                    "action_sheet_description_text_color": {
+                                        "name": "Action Menu Description Text Color",
+                                        "description": "Changes the text color of the description on the action menu"
+                                    },
                                     "background_color": {
                                         "name": "Background Color",
                                         "description": "Changes Snapchats background color"
@@ -455,9 +459,13 @@
                                         "name": "Background Surface Color",
                                         "description": "Changes Snapchats background surface color"
                                     },
+                                    "list_background_drawable": {
+                                        "name": "Conversation list Background ",
+                                        "description": "Changes the background color of the conversation list on the friend feed\nThis might break the friend feeds look"
+                                    },
                                     "friend_feed_conversations_line_color": {
                                         "name": "Conversations Line Color",
-                                        "description": "Changes the line divider color that splits Conversations on the friend feed "
+                                        "description": "Changes the line divider color that splits Conversations on the friend feed"
                                     },
                                     "action_menu_background_color": {
                                         "name": "Action Menu Background Color",
@@ -467,11 +475,19 @@
                                         "name": "Action Menu Round Background Color",
                                         "description": "Changes Snapchats chat action menu round background color"
                                     },
+                                    "sig_color_icon_primary": {
+                                        "name": "Action Menu Icon Color",
+                                        "description": "Changes the color of icons on chat action menu/friend feed menu"
+                                    },
                                     "camera_grid_lines": {
                                         "name": "Camera Gridlines Color",
                                         "description": "Changes Snapchats Gridlines color on the Camera Preview\nNote: Enable the grid on the my camera settings"
                                     }
                                 }
+                            },
+                            "colors_debug": {
+                                "name": "Colors Debug",
+                                "description": "Logs The obtainStyledAttributes, That are being used when Snapchat is loaded\nNote: This will significantly increase the size of your logs"
                             }
                         }
                     },
@@ -549,7 +565,7 @@
                     },
                     "hide_settings_gear": {
                         "name": "Hide Settings Gear",
-                        "description": "Hides the SnapEnhance Settings Gear in friend feed"
+                        "description": "Hides the SE Extended Settings Gear in friend feed"
                     },
                     "friend_feed_menu_buttons": {
                         "name": "Friend Feed Menu Buttons",
@@ -977,11 +993,11 @@
                                     },
                                     "composer_console": {
                                         "name": "Composer Console",
-                                        "description": "Allows you to execute JavaScript code in Composer (arm64 only)"
+                                        "description": "Allows you to execute JavaScript code in Composer (ARM64 only)"
                                     },
                                     "composer_logs": {
                                         "name": "Composer Logs",
-                                        "description": "Redirects console logs of Composer to SnapEnhance"
+                                        "description": "Redirects console logs of Composer to SE Extended"
                                     }
                                 }
                             },
@@ -1026,6 +1042,112 @@
                             "randomize_persistent_device_token": {
                                 "name": "Randomize Persistent Device Token",
                                 "description": "Generates a random device token after each login"
+                            }
+                        }
+                    },
+                    "experimental_colors": {
+                        "name": "Experimental Color Options",
+                        "description": "Note: These color features are Experimental and therefore may cause your snapchat to look strange,\nSelect `Custom Colors` on Theme picker to use",
+                        "properties": {
+                            "ring_color": {
+                                "name": "Ring Color",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "sig_color_icon_secondary": {
+                                "name": "Sig Color Icon Secondary",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "item_shape_fill_color": {
+                                "name": "Item Shape Fill Color",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "ring_start_color": {
+                                "name": "Ring Start Color",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "sig_color_layout_place_holder": {
+                                "name": "Sig Color Layout Place Holder",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "sc_button_color": {
+                                "name": "Sc Button Color",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "recipient_pill_background_drawable": {
+                                "name": "Recipient Pill Background Drawable",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "box_background_color": {
+                                "name": "Box Background Color",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "edit_text_color": {
+                                "name": "Edit Text Color",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "chip_background_color": {
+                                "name": "Chip Background Color",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "recipient_input_style": {
+                                "name": "Recipient Input Style",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "range_fill_color": {
+                                "name": "Range Fill Color",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "psts_indicator_color": {
+                                "name": "Psts Indicator Color",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "psts_tab_background": {
+                                "name": "Psts Tab Background",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "psts_divider_color": {
+                                "name": "Psts Divider Color",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "tab_text_color": {
+                                "name": "Tab Text Color",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "status_bar_foreground": {
+                                "name": "Status Bar Foreground",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "status_bar_background": {
+                                "name": "Status Bar Background",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "stroke_color": {
+                                "name": "Stroke Color",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "story_replay_view_ring_color": {
+                                "name": "Story Replay View Ring Color",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "sig_color_button_primary": {
+                                "name": "Sig Color Button Primary",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "sig_color_base_app_yellow": {
+                                "name": "Sig Color Base App Yellow",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "sig_color_background_surface_translucent": {
+                                "name": "sigColorBackgroundSurfaceTranslucent",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "sig_color_story_ring_friends_feed_story_ring": {
+                                "name": "sigColorStoryRingFriendsFeedStoryRing",
+                                "description": "Does something to the color of something ;)"
+                            },
+                            "sig_color_story_ring_discover_tab_thumbnail_story_ring": {
+                                "name": "sigColorStoryRingDiscoverTabThumbnailStoryRing",
+                                "description": "Does something to the color of something ;)"
                             }
                         }
                     },
@@ -1145,7 +1267,7 @@
             },
             "scripting": {
                 "name": "Scripting",
-                "description": "Run custom scripts to extend SnapEnhance",
+                "description": "Run custom scripts to extend SE Extended",
                 "properties": {
                     "developer_mode": {
                         "name": "Developer Mode",
@@ -1206,7 +1328,31 @@
                 "lemon_meringue": "Lemon Meringue",
                 "lava_flow": "Lava Flow",
                 "ocean_fog": "Ocean Fog",
-                "alien_landscape": "Alien Landscape"
+                "alien_landscape": "Alien Landscape",
+                "watercolor_wash": "Watercolor Wash",
+                "zesty_lemon": "Zesty Lemon",
+                "tropical_paradise": "Tropical Paradise",
+                "industrial_chic": "Industrial Chic",
+                "cherry_bomb": "Cherry Bomb",
+                "woodland_mystery": "Woodland Mystery",
+                "galaxy_glitter": "Galaxy Glitter",
+                "creamy_vanilla": "Creamy Vanilla",
+                "spicy_chili": "Spicy Chili",
+                "spring_meadow": "Spring Meadow",
+                "midnight_library": "Midnight Library",
+                "lemon_sorbet": "Lemon Sorbet",
+                "cosmic_night": "Cosmic Night",
+                "spicy_mustard": "Spicy Mustard",
+                "peppermint_candy": "Peppermint Candy",
+                "gingerbread_house": "Gingerbread House",
+                "art_deco_glam": "Art Deco Glam",
+                "ocean_depths": "Ocean Depths",
+                "bubblegum_pink": "Bubblegum Pink",
+                "firefly_night": "Firefly Night",
+                "apple_orchard": "Apple Orchard",
+                "lavender_field": "Lavender Field",
+                "lemon_drop": "Lemon Drop",
+                "modern_farmhouse": "Modern Farmhouse"
             },
             "friend_feed_menu_buttons": {
                 "auto_download": "\u2B07\uFE0F Auto Download",
@@ -1319,7 +1465,7 @@
             },
             "auto_reload": {
                 "snapchat_only": "Snapchat Only",
-                "all": "All (Snapchat + SnapEnhance)"
+                "all": "All (Snapchat + SE Extended)"
             },
             "edit_text_override": {
                 "multi_line_chat_input": "Multi Line Chat Input",

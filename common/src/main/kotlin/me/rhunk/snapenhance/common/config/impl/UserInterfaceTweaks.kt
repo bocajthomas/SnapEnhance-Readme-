@@ -25,11 +25,14 @@ class UserInterfaceTweaks : ConfigContainer() {
         val pendingSendingTextColor = color("pending_sending_text_color")
         val snapWithSoundTextColor = color("snap_with_sound_text_color")
         val snapWithoutSoundTextColor = color("snap_without_sound_text_color")
+        val actionSheetDescriptionTextColor = color("action_sheet_description_text_color")
         val backgroundColor = color("background_color")
         val backgroundColorSurface = color("background_color_surface")
+        val listBackgroundDrawable = color("list_background_drawable")
         val friendFeedConversationsLineColor = color("friend_feed_conversations_line_color")
         val actionMenuBackgroundColor = color("action_menu_background_color")
         val actionMenuRoundBackgroundColor = color("action_menu_round_background_color")
+        val sigColorIconPrimary = color("sig_color_icon_primary")
         val cameraGridLines = color("camera_grid_lines")
     }
 
@@ -48,8 +51,33 @@ class UserInterfaceTweaks : ConfigContainer() {
             "lava_flow",
             "ocean_fog",
             "alien_landscape",
+            "watercolor_wash",
+            "zesty_lemon",
+            "tropical_paradise",
+            "industrial_chic",
+            "cherry_bomb",
+            "woodland_mystery",
+            "galaxy_glitter",
+            "creamy_vanilla",
+            "spicy_chili",
+            "spring_meadow",
+            "midnight_library",
+            "lemon_sorbet",
+            "cosmic_night",
+            "spicy_mustard",
+            "peppermint_candy",
+            "gingerbread_house",
+            "art_deco_glam",
+            "ocean_depths",
+            "bubblegum_pink",
+            "firefly_night",
+            "apple_orchard",
+            "lavender_field",
+            "lemon_drop",
+            "modern_farmhouse",
         )
         val colors = container("colors", ColorsConfig()) { requireRestart() }
+        val colorsDebug = boolean("colors_debug") { requireRestart() }
     }
 
     val friendFeedMenuButtons = multiple(

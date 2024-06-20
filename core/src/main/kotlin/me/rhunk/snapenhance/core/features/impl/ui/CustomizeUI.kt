@@ -22,7 +22,9 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
         val customizeUIConfig = context.config.userInterface.customizeUi
         val themePicker = customizeUIConfig.themePicker.getNullable() ?: return
         val colorsConfig = context.config.userInterface.customizeUi.colors
-
+        val experimentalColors = context.config.experimental.experimentalColors
+        val isColorDebug = customizeUIConfig.colorsDebug.get()
+        
         if (themePicker == "custom") {
             themes.clear()
             themes[themePicker] = mapOf(
@@ -37,6 +39,34 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                 "actionSheetBackgroundDrawable" to colorsConfig.actionMenuBackgroundColor.getNullable(),
                 "actionSheetRoundedBackgroundDrawable" to colorsConfig.actionMenuRoundBackgroundColor.getNullable(),
                 "sigExceptionColorCameraGridLines" to colorsConfig.cameraGridLines.getNullable(),
+                "listBackgroundDrawable" to colorsConfig.listBackgroundDrawable.getNullable(),
+                "sigColorIconPrimary" to colorsConfig.sigColorIconPrimary.getNullable(),
+                "actionSheetDescriptionTextColor" to colorsConfig.actionSheetDescriptionTextColor.getNullable(),
+                "ringColor" to experimentalColors.ringColor.getNullable(),
+                "sigColorIconSecondary" to experimentalColors.sigColorIconSecondary.getNullable(),
+                "itemShapeFillColor" to experimentalColors.itemShapeFillColor.getNullable(),
+                "ringStartColor" to experimentalColors.ringStartColor.getNullable(),
+                "sigColorLayoutPlaceholder" to experimentalColors.sigColorLayoutPlaceholder.getNullable(),
+                "scButtonColor" to experimentalColors.scButtonColor.getNullable(),
+                "recipientPillBackgroundDrawable" to experimentalColors.recipientPillBackgroundDrawable.getNullable(),
+                "boxBackgroundColor" to experimentalColors.boxBackgroundColor.getNullable(),
+                "editTextColor" to experimentalColors.editTextColor.getNullable(),
+                "chipBackgroundColor" to experimentalColors.chipBackgroundColor.getNullable(),
+                "recipientInputStyle" to experimentalColors.recipientInputStyle.getNullable(),
+                "rangeFillColor" to experimentalColors.rangeFillColor.getNullable(),
+                "pstsIndicatorColor" to experimentalColors.pstsIndicatorColor.getNullable(),
+                "pstsTabBackground" to experimentalColors.pstsTabBackground.getNullable(),
+                "pstsDividerColor" to experimentalColors.pstsDividerColor.getNullable(),
+                "tabTextColor" to experimentalColors.tabTextColor.getNullable(),
+                "statusBarForeground" to experimentalColors.statusBarForeground.getNullable(),
+                "statusBarBackground" to experimentalColors.statusBarBackground.getNullable(),
+                "strokeColor" to experimentalColors.strokeColor.getNullable(),
+                "storyReplayViewRingColor" to experimentalColors.storyReplayViewRingColor.getNullable(),
+                "sigColorButtonPrimary" to experimentalColors.sigColorButtonPrimary.getNullable(),
+                "sigColorBaseAppYellow" to experimentalColors.sigColorBaseAppYellow.getNullable(),
+                "sigColorBackgroundSurfaceTranslucent" to experimentalColors.sigColorBackgroundSurfaceTranslucent.getNullable(),
+                "sigColorStoryRingFriendsFeedStoryRing" to experimentalColors.sigColorStoryRingFriendsFeedStoryRing.getNullable(),
+                "sigColorStoryRingDiscoverTabThumbnailStoryRing" to experimentalColors.sigColorStoryRingDiscoverTabThumbnailStoryRing.getNullable(),
             ).filterValues { it != null }.map { (key, value) ->
                 getAttribute(key) to value!!
             }.toMap()
@@ -69,6 +99,9 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
             HookStage.AFTER) { param ->
             val array = param.arg<IntArray>(0)
             val result = param.getResult() as TypedArray
+            if(isColorDebug) {
+                context.log.verbose(context.resources.getResourceName(array[0]))
+            }
 
             fun ephemeralHook(methodName: String, content: Any) {
                 Hooker.ephemeralHookObjectMethod(result::class.java, result, methodName, HookStage.BEFORE) {
@@ -202,7 +235,271 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                "sigColorChatSnapWithSound" to 0xFFFFFFFF,
                "sigColorChatSnapWithoutSound" to 0xFFFFFFFF,
                "sigExceptionColorCameraGridLines" to 0xFF9B59B6
-           )
+           ),
+           "watercolor_wash" to mapOf(
+               "sigColorTextPrimary" to 0xFF3F51B5,
+               "sigColorBackgroundMain" to 0xFFFFF5F3,
+               "sigColorBackgroundSurface" to 0xFFFFF5F3,
+               "actionSheetBackgroundDrawable" to 0xFFFFF5F3,
+               "sigColorChatChat" to 0xFF3F51B5,
+               "sigColorChatPendingSending" to 0xFF3F51B5,
+               "sigColorChatSnapWithSound" to 0xFF3F51B5,
+               "sigColorChatSnapWithoutSound" to 0xFF3F51B5,
+               "sigExceptionColorCameraGridLines" to 0xFFFFF5F3
+           ),
+           "zesty_lemon" to mapOf(
+               "sigColorTextPrimary" to 0xFF222222,
+               "sigColorBackgroundMain" to 0xFFFFFFE0,
+               "sigColorBackgroundSurface" to 0xFFFFFFE0,
+               "actionSheetBackgroundDrawable" to 0xFFFFFFE0,
+               "sigColorChatChat" to 0xFF222222,
+               "sigColorChatPendingSending" to 0xFF222222,
+               "sigColorChatSnapWithSound" to 0xFF222222,
+               "sigColorChatSnapWithoutSound" to 0xFF222222,
+               "sigExceptionColorCameraGridLines" to 0xFFFFFFE0
+           ),
+           "tropical_paradise" to mapOf(
+               "sigColorTextPrimary" to 0xFF000000,
+               "sigColorBackgroundMain" to 0xFFD3FFCE,
+               "sigColorBackgroundSurface" to 0xFFD3FFCE,
+               "actionSheetBackgroundDrawable" to 0xFFD3FFCE,
+               "sigColorChatChat" to 0xFF000000,
+               "sigColorChatPendingSending" to 0xFF000000,
+               "sigColorChatSnapWithSound" to 0xFF000000,
+               "sigColorChatSnapWithoutSound" to 0xFF000000,
+               "sigExceptionColorCameraGridLines" to 0xFFD3FFCE
+           ),
+           "industrial_chic" to mapOf(
+               "sigColorTextPrimary" to 0xFF424242,
+               "sigColorBackgroundMain" to 0xFFEEEEEE,
+               "sigColorBackgroundSurface" to 0xFFEEEEEE,
+               "actionSheetBackgroundDrawable" to 0xFFEEEEEE,
+               "sigColorChatChat" to 0xFF424242,
+               "sigColorChatPendingSending" to 0xFF424242,
+               "sigColorChatSnapWithSound" to 0xFF424242,
+               "sigColorChatSnapWithoutSound" to 0xFF424242,
+               "sigExceptionColorCameraGridLines" to 0xFFEEEEEE
+           ),
+           "cherry_bomb" to mapOf(
+               "sigColorTextPrimary" to 0xFFFFFFFF,
+               "sigColorBackgroundMain" to 0xFFC24641,
+               "sigColorBackgroundSurface" to 0xFFC24641,
+               "actionSheetBackgroundDrawable" to 0xFFC24641,
+               "sigColorChatChat" to 0xFFFFFFFF,
+               "sigColorChatPendingSending" to 0xFFFFFFFF,
+               "sigColorChatSnapWithSound" to 0xFFFFFFFF,
+               "sigColorChatSnapWithoutSound" to 0xFFFFFFFF,
+               "sigExceptionColorCameraGridLines" to 0xFFC24641
+           ),
+           "woodland_mystery" to mapOf(
+               "sigColorTextPrimary" to 0xFFC2C2F0,
+               "sigColorBackgroundMain" to 0xFF333333,
+               "sigColorBackgroundSurface" to 0xFF333333,
+               "actionSheetBackgroundDrawable" to 0xFF333333,
+               "sigColorChatChat" to 0xFFC2C2F0,
+               "sigColorChatPendingSending" to 0xFFC2C2F0,
+               "sigColorChatSnapWithSound" to 0xFFC2C2F0,
+               "sigColorChatSnapWithoutSound" to 0xFFC2C2F0,
+               "sigExceptionColorCameraGridLines" to 0xFF333333
+           ),
+           "galaxy_glitter" to mapOf(
+               "sigColorTextPrimary" to 0xFFFFFFFF,
+               "sigColorBackgroundMain" to 0xFF2F4F4F,
+               "sigColorBackgroundSurface" to 0xFF2F4F4F,
+               "actionSheetBackgroundDrawable" to 0xFF2F4F4F,
+               "sigColorChatChat" to 0xFFFFFFFF,
+               "sigColorChatPendingSending" to 0xFFFFFFFF,
+               "sigColorChatSnapWithSound" to 0xFFFFFFFF,
+               "sigColorChatSnapWithoutSound" to 0xFFFFFFFF,
+               "sigExceptionColorCameraGridLines" to 0xFF2F4F4F
+           ),
+           "creamy_vanilla" to mapOf(
+               "sigColorTextPrimary" to 0xFF333333,
+               "sigColorBackgroundMain" to 0xFFF1F1F1,
+               "sigColorBackgroundSurface" to 0xFFF1F1F1,
+               "actionSheetBackgroundDrawable" to 0xFFF1F1F1,
+               "sigColorChatChat" to 0xFF333333,
+               "sigColorChatPendingSending" to 0xFF333333,
+               "sigColorChatSnapWithSound" to 0xFF333333,
+               "sigColorChatSnapWithoutSound" to 0xFF333333,
+               "sigExceptionColorCameraGridLines" to 0xFFF1F1F1
+           ),
+           "spicy_chili" to mapOf(
+               "sigColorTextPrimary" to 0xFFF5F5F5,
+               "sigColorBackgroundMain" to 0xFFC70039,
+               "sigColorBackgroundSurface" to 0xFFC70039,
+               "actionSheetBackgroundDrawable" to 0xFFC70039,
+               "sigColorChatChat" to 0xFFF5F5F5,
+               "sigColorChatPendingSending" to 0xFFF5F5F5,
+               "sigColorChatSnapWithSound" to 0xFFF5F5F5,
+               "sigColorChatSnapWithoutSound" to 0xFFF5F5F5,
+               "sigExceptionColorCameraGridLines" to 0xFFC70039
+           ),
+           "spring_meadow" to mapOf(
+               "sigColorTextPrimary" to 0xFF388E3C,
+               "sigColorBackgroundMain" to 0xFFF5FBE0,
+               "sigColorBackgroundSurface" to 0xFFF5FBE0,
+               "actionSheetBackgroundDrawable" to 0xFFF5FBE0,
+               "sigColorChatChat" to 0xFF388E3C,
+               "sigColorChatPendingSending" to 0xFF388E3C,
+               "sigColorChatSnapWithSound" to 0xFF388E3C,
+               "sigColorChatSnapWithoutSound" to 0xFF388E3C,
+               "sigExceptionColorCameraGridLines" to 0xFFF5FBE0
+           ),
+           "midnight_library" to mapOf(
+               "sigColorTextPrimary" to 0xFFEAEAEA,
+               "sigColorBackgroundMain" to 0xFF424242,
+               "sigColorBackgroundSurface" to 0xFF424242,
+               "actionSheetBackgroundDrawable" to 0xFF424242,
+               "sigColorChatChat" to 0xFFEAEAEA,
+               "sigColorChatPendingSending" to 0xFFEAEAEA,
+               "sigColorChatSnapWithSound" to 0xFFEAEAEA,
+               "sigColorChatSnapWithoutSound" to 0xFFEAEAEA,
+               "sigExceptionColorCameraGridLines" to 0xFF424242
+           ),
+           "lemon_sorbet" to mapOf(
+               "sigColorTextPrimary" to 0xFF000000,
+               "sigColorBackgroundMain" to 0xFFFCFFE7,
+               "sigColorBackgroundSurface" to 0xFFFCFFE7,
+               "actionSheetBackgroundDrawable" to 0xFFFCFFE7,
+               "sigColorChatChat" to 0xFF000000,
+               "sigColorChatPendingSending" to 0xFF000000,
+               "sigColorChatSnapWithSound" to 0xFF000000,
+               "sigColorChatSnapWithoutSound" to 0xFF000000,
+               "sigExceptionColorCameraGridLines" to 0xFFFCFFE7
+           ),
+           "cosmic_night" to mapOf(
+               "sigColorTextPrimary" to 0xFFFFFFFF,
+               "sigColorBackgroundMain" to 0xFF2F4F4F,
+               "sigColorBackgroundSurface" to 0xFF2F4F4F,
+               "actionSheetBackgroundDrawable" to 0xFF2F4F4F,
+               "sigColorChatChat" to 0xFFFFFFFF,
+               "sigColorChatPendingSending" to 0xFFFFFFFF,
+               "sigColorChatSnapWithSound" to 0xFFFFFFFF,
+               "sigColorChatSnapWithoutSound" to 0xFFFFFFFF,
+               "sigExceptionColorCameraGridLines" to 0xFF2F4F4F
+           ),
+           "spicy_mustard" to mapOf(
+               "sigColorTextPrimary" to 0xFFFFFFFF,
+               "sigColorBackgroundMain" to 0xFFFCC01E,
+               "sigColorBackgroundSurface" to 0xFFFCC01E,
+               "actionSheetBackgroundDrawable" to 0xFFFCC01E,
+               "sigColorChatChat" to 0xFFFFFFFF,
+               "sigColorChatPendingSending" to 0xFFFFFFFF,
+               "sigColorChatSnapWithSound" to 0xFFFFFFFF,
+               "sigColorChatSnapWithoutSound" to 0xFFFFFFFF,
+               "sigExceptionColorCameraGridLines" to 0xFFFCC01E
+           ),
+           "peppermint_candy" to mapOf(
+               "sigColorTextPrimary" to 0xFF29ABCA,
+               "sigColorBackgroundMain" to 0xFFFFDDCF,
+               "sigColorBackgroundSurface" to 0xFFFFDDCF,
+               "actionSheetBackgroundDrawable" to 0xFFFFDDCF,
+               "sigColorChatChat" to 0xFF29ABCA,
+               "sigColorChatPendingSending" to 0xFF29ABCA,
+               "sigColorChatSnapWithSound" to 0xFF29ABCA,
+               "sigColorChatSnapWithoutSound" to 0xFF29ABCA,
+               "sigExceptionColorCameraGridLines" to 0xFFFFDDCF
+           ),
+           "gingerbread_house" to mapOf(
+               "sigColorTextPrimary" to 0xFF333333,
+               "sigColorBackgroundMain" to 0xFFCDB391,
+               "sigColorBackgroundSurface" to 0xFFCDB391,
+               "actionSheetBackgroundDrawable" to 0xFFCDB391,
+               "sigColorChatChat" to 0xFF333333,
+               "sigColorChatPendingSending" to 0xFF333333,
+               "sigColorChatSnapWithSound" to 0xFF333333,
+               "sigColorChatSnapWithoutSound" to 0xFF333333,
+               "sigExceptionColorCameraGridLines" to 0xFFCDB391
+           ),
+           "art_deco_glam" to mapOf(
+               "sigColorTextPrimary" to 0xFF000000,
+               "sigColorBackgroundMain" to 0xFFF8F8F8,
+               "sigColorBackgroundSurface" to 0xFFF8F8F8,
+               "actionSheetBackgroundDrawable" to 0xFFF8F8F8,
+               "sigColorChatChat" to 0xFF000000,
+               "sigColorChatPendingSending" to 0xFF000000,
+               "sigColorChatSnapWithSound" to 0xFF000000,
+               "sigColorChatSnapWithoutSound" to 0xFF000000,
+               "sigExceptionColorCameraGridLines" to 0xFFF8F8F8
+           ),
+           "ocean_depths" to mapOf(
+               "sigColorTextPrimary" to 0xFFFFFFFF,
+               "sigColorBackgroundMain" to 0xFF000080,
+               "sigColorBackgroundSurface" to 0xFF000080,
+               "actionSheetBackgroundDrawable" to 0xFF000080,
+               "sigColorChatChat" to 0xFFFFFFFF,
+               "sigColorChatPendingSending" to 0xFFFFFFFF,
+               "sigColorChatSnapWithSound" to 0xFFFFFFFF,
+               "sigColorChatSnapWithoutSound" to 0xFFFFFFFF,
+               "sigExceptionColorCameraGridLines" to 0xFF000080
+           ),
+           "bubblegum_pink" to mapOf(
+               "sigColorTextPrimary" to 0xFFFFFFFF,
+               "sigColorBackgroundMain" to 0xFFFFC0CB,
+               "sigColorBackgroundSurface" to 0xFFFFC0CB,
+               "actionSheetBackgroundDrawable" to 0xFFFFC0CB,
+               "sigColorChatChat" to 0xFFFFFFFF,
+               "sigColorChatPendingSending" to 0xFFFFFFFF,
+               "sigColorChatSnapWithSound" to 0xFFFFFFFF,
+               "sigColorChatSnapWithoutSound" to 0xFFFFFFFF,
+               "sigExceptionColorCameraGridLines" to 0xFFFFC0CB
+           ),
+           "firefly_night" to mapOf(
+               "sigColorTextPrimary" to 0xFFFFFFF0,
+               "sigColorBackgroundMain" to 0xFF222222,
+               "sigColorBackgroundSurface" to 0xFF222222,
+               "actionSheetBackgroundDrawable" to 0xFF222222,
+               "sigColorChatChat" to 0xFFFFFFF0,
+               "sigColorChatPendingSending" to 0xFFFFFFF0,
+               "sigColorChatSnapWithSound" to 0xFFFFFFF0,
+               "sigColorChatSnapWithoutSound" to 0xFFFFFFF0,
+               "sigExceptionColorCameraGridLines" to 0xFF222222
+           ),
+           "apple_orchard" to mapOf(
+               "sigColorTextPrimary" to 0xFF333333,
+               "sigColorBackgroundMain" to 0xFFF4D35E,
+               "sigColorBackgroundSurface" to 0xFFF4D35E,
+               "actionSheetBackgroundDrawable" to 0xFFF4D35E,
+               "sigColorChatChat" to 0xFF333333,
+               "sigColorChatPendingSending" to 0xFF333333,
+               "sigColorChatSnapWithSound" to 0xFF333333,
+               "sigColorChatSnapWithoutSound" to 0xFF333333,
+               "sigExceptionColorCameraGridLines" to 0xFFF4D35E
+           ),
+           "lavender_field" to mapOf(
+               "sigColorTextPrimary" to 0xFF293145,
+               "sigColorBackgroundMain" to 0xFFBDBDBD,
+               "sigColorBackgroundSurface" to 0xFFBDBDBD,
+               "actionSheetBackgroundDrawable" to 0xFFBDBDBD,
+               "sigColorChatChat" to 0xFF293145,
+               "sigColorChatPendingSending" to 0xFF293145,
+               "sigColorChatSnapWithSound" to 0xFF293145,
+               "sigColorChatSnapWithoutSound" to 0xFF293145,
+               "sigExceptionColorCameraGridLines" to 0xFFBDBDBD
+           ),
+           "lemon_drop" to mapOf(
+               "sigColorTextPrimary" to 0xFF000000,
+               "sigColorBackgroundMain" to 0xFFFCE5C7,
+               "sigColorBackgroundSurface" to 0xFFFCE5C7,
+               "actionSheetBackgroundDrawable" to 0xFFFCE5C7,
+               "sigColorChatChat" to 0xFF000000,
+               "sigColorChatPendingSending" to 0xFF000000,
+               "sigColorChatSnapWithSound" to 0xFF000000,
+               "sigColorChatSnapWithoutSound" to 0xFF000000,
+               "sigExceptionColorCameraGridLines" to 0xFFFCE5C7
+           ),
+           "modern_farmhouse" to mapOf(
+               "sigColorTextPrimary" to 0xFF333333,
+               "sigColorBackgroundMain" to 0xFFF2F2F2,
+               "sigColorBackgroundSurface" to 0xFFF2F2F2,
+               "actionSheetBackgroundDrawable" to 0xFFF2F2F2,
+               "sigColorChatChat" to 0xFF333333,
+               "sigColorChatPendingSending" to 0xFF333333,
+               "sigColorChatSnapWithSound" to 0xFF333333,
+               "sigColorChatSnapWithoutSound" to 0xFF333333,
+               "sigExceptionColorCameraGridLines" to 0xFFF2F2F2
+           ),
        ).mapValues { (_, attributes) ->
             attributes.map { (key, value) ->
                 getAttribute(key) to value as Any

@@ -55,8 +55,37 @@ class Experimental : ConfigContainer() {
         val lockOnResume = boolean("lock_on_resume", defaultValue = true)
     }
 
+    class ExperimentalColors: ConfigContainer() {
+        val ringColor = color("ring_color")
+        val sigColorIconSecondary = color("sig_color_icon_secondary")
+        val itemShapeFillColor = color("item_shape_fill_color")
+        val ringStartColor = color("ring_start_color")
+        val sigColorLayoutPlaceholder = color("sig_color_layout_place_holder")
+        val scButtonColor = color("sc_button_color")
+        val recipientPillBackgroundDrawable = color("recipient_pill_background_drawable")
+        val boxBackgroundColor = color("box_background_color")
+        val editTextColor = color("edit_text_color")
+        val chipBackgroundColor = color("chip_background_color")
+        val recipientInputStyle = color("recipient_input_style")
+        val rangeFillColor = color("range_fill_color")
+        val pstsIndicatorColor = color("psts_indicator_color")
+        val pstsTabBackground = color("psts_tab_background")
+        val pstsDividerColor = color("psts_divider_color")
+        val tabTextColor = color("tab_text_color")
+        val statusBarForeground = color("status_bar_foreground")
+        val statusBarBackground = color("status_bar_background")
+        val strokeColor = color("stroke_color")
+        val storyReplayViewRingColor = color("story_replay_view_ring_color")
+        val sigColorButtonPrimary = color("sig_color_button_primary")
+        val sigColorBaseAppYellow = color("sig_color_base_app_yellow")
+        val sigColorBackgroundSurfaceTranslucent = color("sig_color_background_surface_translucent")
+        val sigColorStoryRingFriendsFeedStoryRing = color("sig_color_story_ring_friends_feed_story_ring")
+        val sigColorStoryRingDiscoverTabThumbnailStoryRing = color("sig_color_story_ring_discover_tab_thumbnail_story_ring")
+    }
+
     val nativeHooks = container("native_hooks", NativeHooks()) { icon = Icons.Default.Memory; requireRestart() }
     val spoof = container("spoof", Spoof()) { icon = Icons.Default.Fingerprint ; addNotices(FeatureNotice.BAN_RISK); requireRestart() }
+    val experimentalColors = container("experimental_colors", ExperimentalColors()) { addNotices(FeatureNotice.UNSTABLE); requireRestart() }
     val convertMessageLocally = boolean("convert_message_locally") { requireRestart() }
     val mediaFilePicker = boolean("media_file_picker") { requireRestart(); addNotices(FeatureNotice.UNSTABLE) }
     val storyLogger = boolean("story_logger") { requireRestart(); addNotices(FeatureNotice.UNSTABLE); }
