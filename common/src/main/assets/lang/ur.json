@@ -858,164 +858,164 @@
                     },
                     "disable_memories_snap_feed": {
                         "name": "یادوں کی اسنیپ فیڈ کو غیر فعال کریں",
-                        "description": ""
+                        "description": "جب آپ کیمرے میں اوپر سوائپ کرتے ہیں تو اسنیپ چیٹ کو حالیہ یادیں دکھانے سے روکتا ہے"
                     },
                     "spotlight_comments_username": {
-                        "name": "",
-                        "description": ""
+                        "name": "اسپاٹ لائٹ تبصرے صارف کا نام",
+                        "description": "اسپاٹ لائٹ تبصروں میں مصنف کا صارف نام دکھاتا ہے"
                     },
                     "bypass_video_length_restriction": {
-                        "name": "",
-                        "description": ""
+                        "name": "ویڈیو کی لمبائی کی پابندیوں کو نظرانداز کریں",
+                        "description": "سنگل: ایک ویڈیو بھیجتا ہے۔\nتقسیم: ترمیم کے بعد ویڈیوز تقسیم کریں"
                     },
                     "default_video_playback_rate": {
-                        "name": "",
-                        "description": ""
+                        "name": "پہلے سے طے شدہ ویڈیو پلے بیک کی شرح",
+                        "description": "ویڈیوز کے پلے بیک کے لیے پہلے سے طے شدہ رفتار سیٹ کرتا ہے۔\nقدر 0.1 اور 4.0 کے درمیان ہونی چاہیے"
                     },
                     "video_playback_rate_slider": {
-                        "name": "",
-                        "description": ""
+                        "name": "ویڈیو پلے بیک ریٹ سلائیڈر",
+                        "description": "ویڈیو پلے بیک کی شرح کو تبدیل کرنے کے لیے اوپیرا سیاق و سباق کے مینو میں ایک سلائیڈر شامل کرتا ہے۔\nنوٹ: تبدیلیاں صرف بعد میں آنے والی ویڈیوز پر لاگو ہوتی ہیں"
                     },
                     "disable_google_play_dialogs": {
-                        "name": "",
-                        "description": ""
+                        "name": "‬گوگل پلے سروسز ڈائیلاگز کو غیر فعال کریں",
+                        "description": "‬Google Play سروسز کی دستیابی کے ڈائیلاگز کو دکھائے جانے سے روکیں"
                     },
                     "default_volume_controls": {
-                        "name": "",
-                        "description": ""
+                        "name": "ڈیفالٹ والیوم کنٹرولز",
+                        "description": "Snapchat کو سسٹم والیوم کنٹرول استعمال کرنے پر مجبور کرتا ہے"
                     },
                     "disable_telecom_framework": {
-                        "name": "",
-                        "description": ""
+                        "name": "ٹیلی کام فریم ورک کو غیر فعال کریں",
+                        "description": "اسنیپ چیٹ کو اینڈرائیڈ ٹیلی کام فریم ورک استعمال کرنے سے روکتا ہے۔\nیہ آپ کو کال کے دوران موسیقی سننے کی اجازت دیتا ہے"
                     },
                     "hide_active_music": {
-                        "name": "",
-                        "description": ""
+                        "name": "ایکٹو میوزک چھپائیں",
+                        "description": "Snapchat کو یہ جاننے سے روکتا ہے کہ آپ موسیقی سن رہے ہیں۔\nیہ آپ کو موسیقی سنتے ہوئے کنٹرول والیوم بٹن کا استعمال کرتے ہوئے سنیپ لینے کی اجازت دے گا"
                     },
                     "disable_snap_splitting": {
-                        "name": "",
-                        "description": ""
+                        "name": "سنیپ اسپلٹنگ کو غیر فعال کریں",
+                        "description": "Snaps کو متعدد حصوں میں تقسیم ہونے سے روکتا ہے۔\nآپ کی بھیجی گئی تصاویر ویڈیوز میں تبدیل ہو جائیں گی"
                     }
                 }
             },
             "rules": {
-                "name": "",
-                "description": ""
+                "name": "اصول",
+                "description": "انفرادی لوگوں کے لیے خودکار خصوصیات کا نظم کریں"
             },
             "camera": {
-                "name": "",
-                "description": "",
+                "name": "کیمرہ",
+                "description": "کامل اسنیپ کے لیے صحیح ترتیبات کو ایڈجسٹ کریں",
                 "properties": {
                     "disable_cameras": {
-                        "name": "",
-                        "description": ""
+                        "name": "کیمروں کو غیر فعال کریں",
+                        "description": "Snapchat کو منتخب کیمرے استعمال کرنے سے روکتا ہے"
                     },
                     "black_photos": {
-                        "name": "",
-                        "description": ""
+                        "name": "سیاہ تصاویر",
+                        "description": "کیپچر کی گئی تصاویر کو سیاہ پس منظر سے بدل دیتا ہے۔\nویڈیوز متاثر نہیں ہوتے ہیں"
                     },
                     "immersive_camera_preview": {
-                        "name": "",
-                        "description": ""
+                        "name": "عمیق پیش نظارہ",
+                        "description": "اسنیپ چیٹ کو کیمرے کے پیش نظارہ کو تراشنے سے روکتا ہے۔\nاس سے کیمرہ کچھ آلات پر جھلملانے کا سبب بن سکتا ہے"
                     },
                     "override_front_resolution": {
-                        "name": "",
-                        "description": ""
+                        "name": "فرنٹ ریزولوشن کو اوور رائڈ کریں",
+                        "description": "سامنے والے کیمرے کے لیے کیمرہ ریزولوشن کو اوور رائیڈ کرتا ہے"
                     },
                     "override_back_resolution": {
-                        "name": "",
-                        "description": ""
+                        "name": "اوور رائڈ بیک ریزولوشن",
+                        "description": "پچھلے کیمرے کے لیے کیمرہ ریزولوشن کو اوور رائیڈ کرتا ہے"
                     },
                     "custom_resolution": {
-                        "name": "",
-                        "description": ""
+                        "name": "حسب ضرورت ریزولوشن",
+                        "description": "ایک حسب ضرورت کیمرہ ریزولوشن سیٹ کرتا ہے، چوڑائی x اونچائی (جیسے 1920x1080)۔\nحسب ضرورت ریزولیوشن کو آپ کے آلے کے ذریعے سپورٹ کیا جانا چاہیے"
                     },
                     "front_custom_frame_rate": {
-                        "name": "",
-                        "description": ""
+                        "name": "فرنٹ کسٹم فریم ریٹ",
+                        "description": "‭‬سامنے والے کیمرے کے فریم کی شرح کو اوور رائیڈ کرتا ہے"
                     },
                     "back_custom_frame_rate": {
-                        "name": "",
-                        "description": ""
+                        "name": "بیک حسب ضرورت فریم ریٹ",
+                        "description": "پچھلے کیمرے کے فریم کی شرح کو اوور رائیڈ کرتا ہے"
                     },
                     "force_camera_source_encoding": {
-                        "name": "",
-                        "description": ""
+                        "name": "کیمرہ سورس انکوڈنگ پر زور دیں",
+                        "description": "کیمرہ سورس انکوڈنگ پر مجبور کرتا ہے"
                     },
                     "hevc_recording": {
-                        "name": "",
-                        "description": ""
+                        "name": "HEVC ریکارڈنگ",
+                        "description": "ویڈیو ریکارڈنگ کے لیے HEVC (H.265) کوڈیک استعمال کرتا ہے"
                     }
                 }
             },
             "streaks_reminder": {
-                "name": "",
-                "description": "",
+                "name": "اسٹریکس کی یاد دہانی",
+                "description": "وقتاً فوقتاً آپ کو آپ کے Streaks کے بارے میں مطلع کرتا ہے",
                 "properties": {
                     "interval": {
-                        "name": "",
-                        "description": ""
+                        "name": "وقفہ",
+                        "description": "ہر یاد دہانی کے درمیان وقفہ (گھنٹے)"
                     },
                     "remaining_hours": {
-                        "name": "",
-                        "description": ""
+                        "name": "باقی وقت",
+                        "description": "نوٹیفکیشن ظاہر ہونے سے پہلے باقی وقت (گھنٹے)"
                     },
                     "group_notifications": {
-                        "name": "",
-                        "description": ""
+                        "name": "گروپ نوٹیفکیشن",
+                        "description": "نوٹیفکیشنز کو ایک میں گروپ کریں"
                     }
                 }
             },
             "experimental": {
-                "name": "",
-                "description": "",
+                "name": "ایکسپیریمینٹل",
+                "description": "ایکسپیریمینٹل فیچرز",
                 "properties": {
                     "native_hooks": {
-                        "name": "",
-                        "description": "",
+                        "name": "نیٹو ہوکس",
+                        "description": "‮غیر محفوظ خصوصیات جو اسنیپ چیٹ کے مقامی کوڈ میں شامل ہیں",
                         "properties": {
                             "composer_hooks": {
-                                "name": "",
-                                "description": "",
+                                "name": "کمپوزر ہکس",
+                                "description": "کمپوزر کراس پلیٹ فارم UI فریم ورک میں کوڈ داخل کرتا ہے",
                                 "properties": {
                                     "show_first_created_username": {
-                                        "name": "",
-                                        "description": ""
+                                        "name": "پہلے تخلیق شدہ صارف نام دکھائیں",
+                                        "description": "پروفائل صفحہ میں موجودہ صارف نام کے آگے پہلا بنایا ہوا صارف نام دکھاتا ہے"
                                     },
                                     "bypass_camera_roll_limit": {
-                                        "name": "",
-                                        "description": ""
+                                        "name": "بائی پاس کیمرہ رول کی حد",
+                                        "description": "میڈیا کی زیادہ سے زیادہ مقدار کو بڑھاتا ہے جسے آپ کیمرہ رول سے بھیج سکتے ہیں"
                                     },
                                     "composer_console": {
-                                        "name": "",
-                                        "description": ""
+                                        "name": "کمپوزر کنسول",
+                                        "description": "آپ کو کمپوزر میں جاوا اسکرپٹ کوڈ پر عمل کرنے کی اجازت دیتا ہے (صرف ARM64)"
                                     },
                                     "composer_logs": {
-                                        "name": "",
-                                        "description": ""
+                                        "name": "کمپوزر لاگز",
+                                        "description": "کمپوزر کے کنسول لاگز کو ایس ای ایکسٹینڈ پر ری ڈائریکٹ کرتا ہے"
                                     }
                                 }
                             },
                             "disable_bitmoji": {
-                                "name": "",
-                                "description": ""
+                                "name": "Bitmoji کو غیر فعال کریں",
+                                "description": "دوستوں کی پروفائل Bitmoji کو غیر فعال کرتا ہے"
                             },
                             "custom_emoji_font": {
-                                "name": "",
-                                "description": ""
+                                "name": "حسب ضرورت ایموجی فونٹ",
+                                "description": "آپ کو حسب ضرورت ایموجی فونٹ استعمال کرنے کی اجازت دیتا ہے۔ صرف .ttf فونٹس کے ساتھ کام کرتا ہے"
                             },
                             "remap_executable": {
-                                "name": "",
-                                "description": ""
+                                "name": "ری میپ ایگزیکیوٹیبل",
+                                "description": "میموری میں قابل عمل علاقوں کو دوبارہ نقشہ بناتا ہے"
                             }
                         }
                     },
                     "spoof": {
-                        "name": "",
-                        "description": "",
+                        "name": "سپوف",
+                        "description": "اپنے بارے میں مختلف معلومات کو دھوکہ دیں",
                         "properties": {
                             "play_store_installer_package_name": {
-                                "name": "",
+                                "name": "پلے اسٹور انسٹالر پیکیج کا نام",
                                 "description": ""
                             },
                             "fingerprint": {
