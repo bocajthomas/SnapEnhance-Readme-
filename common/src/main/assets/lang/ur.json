@@ -729,7 +729,7 @@
                         "description": "پیغامات کو حذف ہونے سے روکتا ہے",
                         "properties": {
                             "keep_my_own_messages": {
-                                "name": "",
+                                "name": "میرے اپنے پیغامات رکھیں",
                                 "description": "پیغامات کو حذف ہونے سے روکتا ہے"
                             },
                             "auto_purge": {
@@ -850,14 +850,14 @@
                     },
                     "disable_custom_tabs": {
                         "name": "حسب ضرورت ٹیبز کو غیر فعال کریں",
-                        "description": ""
+                        "description": "ویب براؤزر کے بجائے معاون ایپلیکیشنز میں لنکس کھولتا ہے"
                     },
                     "disable_permission_requests": {
-                        "name": "",
-                        "description": ""
+                        "name": "‮اجازت کی درخواستوں کو غیر فعال کریں",
+                        "description": "‮اسنیپ چیٹ کو مخصوص اجازتیں مانگنے سے روکتا ہے"
                     },
                     "disable_memories_snap_feed": {
-                        "name": "",
+                        "name": "یادوں کی اسنیپ فیڈ کو غیر فعال کریں",
                         "description": ""
                     },
                     "spotlight_comments_username": {
