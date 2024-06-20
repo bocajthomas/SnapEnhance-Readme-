@@ -208,7 +208,7 @@ The [Wiki](https://github.com/bocajthomas/SE-Extended/wiki) is a place for all i
 Join our [Telegram Channel](https://t.me/SE_Extended) for Discussions, announcements, and releases!
 
 ## 💵 Donate
-SE Extended will always be free and open source for everyone, If you like it, Consider [Donating](https://ko-fi.com/seextended#paypalModal)
+SE Extended will always be free and open source for everyone, If you like it, Consider [Donating](https://ko-fi.com/seextended)
 
 ## 🤝 Contributing 
 Contributions are welcome!<br/>
