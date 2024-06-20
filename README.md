@@ -217,8 +217,6 @@ Thanks to everyone involved
 - [BogusMosquito77](https://github.com/BogusMosquito7) (Translated: Dutch)
 - [Beingzain](https://github.com/Beingzain) (Translated: Urdu) 
 - [comradekingu](https://github.com/comradekingu) (Translated: Norwegian Bokmål)
-- [TheVisual](https://github.com/TheVisual) ([WIP] Update fstat_hook.h)
-
 
 You can help translate SE Extended on [Hosted Weblate](https://hosted.weblate.org/projects/SE-Extended/se-extended/).
 
