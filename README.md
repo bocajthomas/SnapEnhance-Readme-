@@ -217,6 +217,7 @@ Thanks to everyone involved
 - [BogusMosquito77](https://github.com/BogusMosquito7) (Translated: Dutch)
 - [Beingzain](https://github.com/Beingzain) (Translated: Urdu) 
 - [comradekingu](https://github.com/comradekingu) (Translated: Norwegian Bokmål)
+- [schrodingerspet](https://github.com/schrodingerspet) (Translated: Japanese)
 
 You can help translate SE Extended on [Hosted Weblate](https://hosted.weblate.org/projects/SE-Extended/se-extended/).
 
