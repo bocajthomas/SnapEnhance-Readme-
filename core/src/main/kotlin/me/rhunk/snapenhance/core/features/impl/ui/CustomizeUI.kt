@@ -159,6 +159,20 @@ class CustomizeUI: Feature("Customize UI", loadParams = FeatureLoadParams.ACTIVI
                "sigColorChatSnapWithoutSound" to 0xFF98C2FD,
                "sigExceptionColorCameraGridLines" to 0xFF192744
            ),
+           "midnight_slate" to mapOf(
+               "sigColorTextPrimary" to 0xFFFFFFFF,
+               "sigColorBackgroundMain" to 0xFF1F2833,
+               "sigColorBackgroundSurface" to 0xFF1F2833,
+               "actionSheetBackgroundDrawable" to 0xFF2C3E50,
+               "actionSheetRoundedBackgroundDrawable" to 0xFF34495E,
+               "listDivider" to 0xFF1F2833,
+               "sigColorChatChat" to 0xFFFFFF00,
+               "sigColorChatPendingSending" to 0xFF00FFFF,
+               "sigColorChatSnapWithSound" to 0xFFFF9800,
+               "sigColorChatSnapWithoutSound" to 0xFF00E676,
+               "sigExceptionColorCameraGridLines" to 0xFFFFFFFF,
+               "sigColorIconPrimary" to 0xFFFFFF00
+           ),
            "earthy_autumn" to mapOf(
                "sigColorTextPrimary" to 0xFFF7CAC9,
                "sigColorBackgroundMain" to 0xFF800000,

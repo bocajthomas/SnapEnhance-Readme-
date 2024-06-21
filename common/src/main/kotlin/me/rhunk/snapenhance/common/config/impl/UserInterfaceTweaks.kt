@@ -44,6 +44,7 @@ class UserInterfaceTweaks : ConfigContainer() {
             "material_you_dark",
             "light_blue",
             "dark_blue",
+            "midnight_slate",
             "earthy_autumn",
             "mint_chocolate",
             "ginger_snap",
