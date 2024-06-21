@@ -49,7 +49,7 @@ function createManagerToolBoxUI() {
 
 module.onSnapMainActivityCreate = activity => {
     var userData = getUserData(); 
-    var username = userData ? userData.getUsername() : "User";
+    var username = userData ? userData.getusername() : "User";
     var greeting = getTimeBasedGreeting();
     var customPrompt = `${greeting}, ${username}!` || "Welcome back to Snapchat";
     longToast(customPrompt);
@@ -63,9 +63,24 @@ function start(_) {
     createInterface();
 }
 
-function getUserData() { //Not able to understand, so please modify this
-    
-    return new LensUserData("", "", , , "", "");
+function getMyUserId(context) {
+    var database = context.openOrCreateDatabase("arroyo.db", 0, null);
+    var cursor = database.rawQuery("SELECT value FROM required_values WHERE key = 'USERID'", null);
+    try {
+        if (cursor.moveToFirst()) {
+            return cursor.getString(0);
+        }
+    }
+    finally {
+        cursor.close();
+        database.close();
+    }
+    return null;
+}
+
+function getUserData() {
+    var myUserId = getMyUserId(activity)
+    var username = messaging.fetchSnapchatterInfos(myUserId): Snapchatter[];
 }
 
 start();
