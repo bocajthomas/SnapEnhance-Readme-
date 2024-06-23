@@ -34,6 +34,7 @@ class UserInterfaceTweaks : ConfigContainer() {
         val actionMenuRoundBackgroundColor = color("action_menu_round_background_color")
         val sigColorIconPrimary = color("sig_color_icon_primary")
         val cameraGridLines = color("camera_grid_lines")
+    }
 
     inner class CustomizeUIConfig : ConfigContainer() {
         val themePicker = unique("theme_picker",
