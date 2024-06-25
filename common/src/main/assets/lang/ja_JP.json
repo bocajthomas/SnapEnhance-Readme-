@@ -230,7 +230,8 @@
                                         "description": "プロフィール ページの現在のユーザー名の隣に、最初に作成されたユーザー名が表示されます"
                                     },
                                     "bypass_camera_roll_limit": {
-                                        "description": "カメラロールから送信できるメディアの最大量を増やします"
+                                        "description": "カメラロールから送信できるメディアの最大量を増やします",
+                                        "name": "カメラロール制限をバイパスする"
                                     },
                                     "composer_logs": {
                                         "name": "作曲家のログ",
@@ -468,7 +469,7 @@
                             }
                         },
                         "name": "エンドツーエンドの暗号化",
-                        "description": "共有秘密鍵を使用してメッセージを AES で暗号化する\n鍵を安全に保存してください!"
+                        "description": "共有秘密キーを使用して AES でメッセージを暗号化します\n必ずキーを安全な場所に保存してください。"
                     },
                     "add_friend_source_spoof": {
                         "name": "友達を追加 ソース スプーフィング",
@@ -1246,7 +1247,42 @@
                 "stealth": "👻ステルスモード",
                 "auto_save": "💬 メッセージを自動保存",
                 "unsaveable_messages": "⬇️ 保存できないメッセージ",
-                "auto_open_snaps": "📷 自動オープンスナップ"
+                "auto_open_snaps": "📷 自動オープンスナップ",
+                "mark_snaps_as_seen": "👀 スナップを見たものとしてマーク",
+                "mark_stories_as_seen_locally": "👀 ローカルで見たストーリーをマークする",
+                "conversation_info": "👤 会話情報",
+                "e2e_encryption": "🔒 E2E 暗号化を使用する"
+            },
+            "notifications": {
+                "chat_screenshot": "スクリーンショット",
+                "chat_screen_record": "画面録画",
+                "snap_replay": "スナップリプレイ",
+                "camera_roll_save": "カメラロール保存",
+                "chat": "チャット",
+                "chat_reply": "チャットの返信",
+                "snap": "スナップ",
+                "typing": "タイピング",
+                "stories": "ストーリー"
+            },
+            "path_format": {
+                "create_author_folder": "著者ごとにフォルダを作成する",
+                "create_source_folder": "メディアソースの種類ごとにフォルダーを作成する",
+                "append_source": "ファイル名にメディアソースを追加します",
+                "append_username": "ファイル名にユーザー名を追加します",
+                "append_date_time": "ファイル名に日付と時刻を追加します",
+                "append_hash": "ファイル名に一意のハッシュを追加する"
+            },
+            "auto_download_sources": {
+                "friend_snaps": "友達のスナップ",
+                "friend_stories": "フレンドストーリー",
+                "public_stories": "公開ストーリー",
+                "spotlight": "スポットライト"
+            },
+            "logging": {
+                "started": "開始しました",
+                "success": "成功",
+                "progress": "進捗",
+                "failure": "失敗"
             }
         }
     },
