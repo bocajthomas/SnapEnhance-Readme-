@@ -583,6 +583,10 @@
                                 "description": "Logs The obtainStyledAttributes, That are being used when Snapchat is loaded\nNote: This will significantly increase the size of your logs"
                             }
                         }
+                    },
+                    "auto_close_friend_feed_menu": {
+                        "description": "Automatically closes the Friend Feed Menu after pressing a setting button",
+                        "name": "Auto Close Friend Feed Menu"
                     }
                 },
                 "name": "User Interface",
@@ -1521,7 +1525,8 @@
                 "peppermint_candy": "Peppermint Candy",
                 "bubblegum_pink": "Bubblegum Pink",
                 "lemon_drop": "Lemon Drop",
-                "modern_farmhouse": "Modern Farmhouse"
+                "modern_farmhouse": "Modern Farmhouse",
+                "midnight_slate": "Midnight Slate"
             }
         }
     },
