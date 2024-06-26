@@ -1359,6 +1359,42 @@
             "old_bitmoji_selfie": {
                 "2d": "来てもいいよ",
                 "3d": "戻ってきて、来てください"
+            },
+            "edit_text_override": {
+                "bypass_text_input_limit": "テキスト入力制限をバイパスする",
+                "multi_line_chat_input": "複数行チャット入力"
+            },
+            "auto_purge": {
+                "1_hour": "1時間",
+                "3_months": "3ヶ月",
+                "never": "一度もない",
+                "6_hours": "6時間",
+                "1_month": "1ヶ月",
+                "3_hours": "3時間",
+                "3_days": "3日",
+                "1_week": "1週間",
+                "12_hours": "12時間",
+                "1_day": "1日",
+                "2_weeks": "2週間",
+                "6_months": "6ヵ月"
+            },
+            "disable_permission_requests": {
+                "read_media_images": "メディアイメージの読み取り",
+                "camera": "カメラ",
+                "microphone": "マイクロフォン",
+                "notifications": "通知",
+                "read_media_video": "メディアビデオを読む",
+                "location": "位置",
+                "read_contacts": "連絡先を読む"
+            },
+            "disable_cameras": {
+                "front": "フロントカメラ",
+                "back": "バックカメラ"
+            },
+            "disable_story_sections": {
+                "friends": "友達",
+                "following": "続く",
+                "discover": "発見する"
             }
         }
     },
