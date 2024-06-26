@@ -664,6 +664,10 @@
                     "message_indicators": {
                         "name": "বার্তা সূচক",
                         "description": "বার্তাগুলিতে নির্দিষ্ট সূচক আইকন যোগ করে\nনোট: সূচকগুলি ১০০% সঠিক নাও হতে পারে"
+                    },
+                    "auto_close_friend_feed_menu": {
+                        "name": "অটো ক্লোজ ফ্রেন্ড ফিড মেনু",
+                        "description": "সেটিং বোতাম চাপার পরে স্বয়ংক্রিয়ভাবে ফ্রেন্ড ফিড মেনু বন্ধ হয়ে যায়"
                     }
                 },
                 "name": "ব্যবহারকারীর ইন্টারফেস"
@@ -1552,7 +1556,8 @@
                 "spring_meadow": "স্প্রিং মেডো",
                 "bubblegum_pink": "বাবলগাম পিঙ্ক",
                 "lemon_drop": "লেমন ড্রপ",
-                "modern_farmhouse": "মডার্ন ফার্মহাউস"
+                "modern_farmhouse": "মডার্ন ফার্মহাউস",
+                "midnight_slate": "মিডনাইট স্লেট"
             },
             "app_appearance": {
                 "always_light": "সর্বদা লাইট",
