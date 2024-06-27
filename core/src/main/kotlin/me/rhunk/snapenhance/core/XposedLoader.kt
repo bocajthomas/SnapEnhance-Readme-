@@ -14,7 +14,7 @@ class XposedLoader : IXposedHookLoadPackage {
         if (p0.packageName != Constants.SNAPCHAT_PACKAGE_NAME) return
         // prevent loading in sub-processes
         if (p0.processName.contains(":")) return
-        XposedBridge.log("Loading SnapEnhance v${BuildConfig.VERSION_NAME}#${BuildConfig.GIT_HASH} (package: ${BuildConfig.APPLICATION_ID})")
+        XposedBridge.log("Loading SE Extended v${BuildConfig.VERSION_NAME}#${BuildConfig.GIT_HASH} (package: ${BuildConfig.APPLICATION_ID})")
         Application::class.java.hook("attach", HookStage.BEFORE) { param ->
             SnapEnhance().init(param.arg(0))
         }
