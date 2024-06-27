@@ -12,6 +12,7 @@ data class ModuleInfo(
     val minSnapchatVersion: Long? = null,
     val minSEVersion: Long? = null,
     val grantedPermissions: List<String>,
+    val executionSides: List<String>? = null,
 ) {
     fun ensurePermissionGranted(permission: Permissions) {
         if (!grantedPermissions.contains(permission.key)) {
@@ -53,5 +54,6 @@ fun BufferedReader.readModuleInfo(): ModuleInfo {
         minSnapchatVersion = properties["minSnapchatVersion"]?.toLongOrNull(),
         minSEVersion = properties["minSEVersion"]?.toLongOrNull(),
         grantedPermissions = properties["permissions"]?.split(",")?.map { it.trim() } ?: emptyList(),
+        executionSides = properties["executionSides"]?.lowercase()?.split(",")?.map { it.trim() },
     )
 }
