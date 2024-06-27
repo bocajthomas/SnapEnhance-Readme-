@@ -16,13 +16,14 @@ import java.lang.reflect.Method
 import java.nio.ByteBuffer
 
 class BetterTranscript: Feature("Better Transcript", loadParams = FeatureLoadParams.ACTIVITY_CREATE_SYNC) {
+    val transcriptApi by lazy { TranscriptApi() }
+
     override fun onActivityCreate() {
         if (context.config.experimental.betterTranscript.globalState != true) return
         val config = context.config.experimental.betterTranscript
         val preferredTranscriptionLang = config.preferredTranscriptionLang.getNullable()?.takeIf {
             it.isNotBlank()
         }
-        val transcriptApi by lazy { TranscriptApi() }
 
         if (config.forceTranscription.get()) {
             context.event.subscribe(BuildMessageEvent::class, priority = 104) { event ->

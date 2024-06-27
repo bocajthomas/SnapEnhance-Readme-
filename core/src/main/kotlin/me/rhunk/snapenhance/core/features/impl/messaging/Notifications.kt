@@ -26,7 +26,9 @@ import me.rhunk.snapenhance.core.features.Feature
 import me.rhunk.snapenhance.core.features.FeatureLoadParams
 import me.rhunk.snapenhance.core.features.impl.FriendMutationObserver
 import me.rhunk.snapenhance.core.features.impl.downloader.MediaDownloader
+import me.rhunk.snapenhance.core.features.impl.downloader.decoder.AttachmentType
 import me.rhunk.snapenhance.core.features.impl.downloader.decoder.MessageDecoder
+import me.rhunk.snapenhance.core.features.impl.experiments.BetterTranscript
 import me.rhunk.snapenhance.core.features.impl.spying.StealthMode
 import me.rhunk.snapenhance.core.util.hook.HookStage
 import me.rhunk.snapenhance.core.util.hook.hook
@@ -34,6 +36,7 @@ import me.rhunk.snapenhance.core.util.ktx.setObjectField
 import me.rhunk.snapenhance.core.util.media.PreviewUtils
 import me.rhunk.snapenhance.core.wrapper.impl.Message
 import me.rhunk.snapenhance.core.wrapper.impl.SnapUUID
+import okhttp3.RequestBody.Companion.toRequestBody
 import kotlin.coroutines.suspendCoroutine
 
 class Notifications : Feature("Notifications", loadParams = FeatureLoadParams.INIT_SYNC) {
@@ -384,22 +387,44 @@ class Notifications : Feature("Notifications", loadParams = FeatureLoadParams.IN
         }
 
         if (config.chatPreview.get()) {
-            if (contentType == ContentType.CHAT) {
-                setNotificationText(message.serialize() ?: "[Failed to parse message]")
+            var isChatMessage = contentType == ContentType.CHAT
+            var serializedMessage = if (isChatMessage) {
+                message.serialize() ?: "[Failed to parse message]"
             } else {
-                if (config.stackedMediaMessages.get()) {
-                    setNotificationText(buildString {
-                        append("[")
-                        append(context.translation.getCategory("content_type")[contentType.name])
-                        append("]")
-                        if (config.mediaCaption.get()) {
-                            message.serialize()?.let { append(" $it") }
+                "[${context.translation.getCategory("content_type")[contentType.name]}]${
+                    if (config.mediaCaption.get()) {
+                        message.serialize() ?: ""
+                    } else ""
+                }"
+            }
+
+            if (contentType == ContentType.NOTE && context.config.experimental.betterTranscript.takeIf { it.globalState == true }?.enhancedTranscriptInNotifications?.get() == true) {
+                val transcriptApi = context.feature(BetterTranscript::class).transcriptApi
+                MessageDecoder.decode(message.messageContent!!).firstOrNull { it.type == AttachmentType.NOTE  }?.also { media ->
+                    runCatching {
+                        media.openStream { mediaStream, length ->
+                            if (mediaStream == null || length > 25 * 1024 * 1024) {
+                                context.log.error("Failed to open media stream or media is too large")
+                                return@openStream
+                            }
+                            val text = transcriptApi.transcribe(
+                                mediaStream.readBytes().toRequestBody(),
+                                lang = context.config.experimental.betterTranscript.preferredTranscriptionLang.getNullable()?.takeIf { it.isNotBlank() }
+                            )?.takeIf { it.isNotBlank() } ?: return@openStream
+                            serializedMessage = "\uD83C\uDFA4 $text"
+                            isChatMessage = true
                         }
-                    })
-                } else {
-                    sendNotification(message, data, true)
-                    return
+                    }.onFailure {
+                        context.log.error("Failed to transcribe message", it)
+                    }
                 }
+            }
+
+            if (isChatMessage || config.stackedMediaMessages.get()) {
+                setNotificationText(serializedMessage)
+            } else {
+                sendNotification(message, data, true)
+                return
             }
             computeMessages()
         }
