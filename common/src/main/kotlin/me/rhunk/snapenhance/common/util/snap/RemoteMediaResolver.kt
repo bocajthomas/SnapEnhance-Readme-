@@ -14,7 +14,7 @@ object RemoteMediaResolver {
 
     private val urlCache = mutableMapOf<String, String>()
 
-    private val okHttpClient = OkHttpClient.Builder()
+    val okHttpClient = OkHttpClient.Builder()
         .followRedirects(true)
         .retryOnConnectionFailure(true)
         .readTimeout(20, java.util.concurrent.TimeUnit.SECONDS)
@@ -36,7 +36,7 @@ object RemoteMediaResolver {
         }
         .build()
 
-    private fun newResolveRequest(protoKey: ByteArray) = Request.Builder()
+    fun newResolveRequest(protoKey: ByteArray) = Request.Builder()
         .url(BOLT_HTTP_RESOLVER_URL + "/resolve?co=" + Base64.getUrlEncoder().encodeToString(protoKey))
         .addHeader("User-Agent", Constants.USER_AGENT)
         .build()
@@ -54,7 +54,7 @@ object RemoteMediaResolver {
         }
     }
     
-    fun downloadBoltMedia(protoKey: ByteArray, decryptionCallback: (InputStream) -> InputStream = { it }, resultCallback: (stream: InputStream, length: Long) -> Unit) {
+    inline fun downloadBoltMedia(protoKey: ByteArray, decryptionCallback: (InputStream) -> InputStream = { it }, resultCallback: (stream: InputStream, length: Long) -> Unit) {
         okHttpClient.newCall(newResolveRequest(protoKey)).execute().use { response ->
             if (!response.isSuccessful) {
                 throw Throwable("invalid response ${response.code}")
