@@ -230,7 +230,8 @@
                                         "description": "プロフィール ページの現在のユーザー名の隣に、最初に作成されたユーザー名が表示されます"
                                     },
                                     "bypass_camera_roll_limit": {
-                                        "description": "カメラロールから送信できるメディアの最大量を増やします"
+                                        "description": "カメラロールから送信できるメディアの最大量を増やします",
+                                        "name": "カメラロール制限をバイパスする"
                                     },
                                     "composer_logs": {
                                         "name": "作曲家のログ",
@@ -671,6 +672,10 @@
                     "edit_text_override": {
                         "name": "テキストの上書き編集",
                         "description": "テキストフィールドの動作をオーバーライドします"
+                    },
+                    "auto_close_friend_feed_menu": {
+                        "name": "自動親しい友達フィードメニュー",
+                        "description": "設定ボタンを押すとフレンドフィードメニューを自動的に閉じます"
                     }
                 },
                 "description": "Snapchat の外観と操作性を変更する",
@@ -1239,14 +1244,178 @@
                 "spicy_chili": "スパイシーチリ",
                 "cosmic_night": "コズミックナイト",
                 "spring_meadow": "春の草原",
-                "apple_orchard": "リンゴ園"
+                "apple_orchard": "リンゴ園",
+                "midnight_slate": "ミッドナイトスレート"
             },
             "friend_feed_menu_buttons": {
                 "auto_download": "⬇️ 自動ダウンロード",
                 "stealth": "👻ステルスモード",
                 "auto_save": "💬 メッセージを自動保存",
                 "unsaveable_messages": "⬇️ 保存できないメッセージ",
-                "auto_open_snaps": "📷 自動オープンスナップ"
+                "auto_open_snaps": "📷 自動オープンスナップ",
+                "mark_snaps_as_seen": "👀 スナップを見たものとしてマーク",
+                "mark_stories_as_seen_locally": "👀 ローカルで見たストーリーをマークする",
+                "e2e_encryption": "🔒 E2E 暗号化を使用する",
+                "conversation_info": "👤 会話情報"
+            },
+            "strip_media_metadata": {
+                "hide_caption_text": "キャプションテキストを隠す",
+                "hide_snap_filters": "スナップフィルターを非表示にする",
+                "hide_extras": "追加情報 (メンションなど) を非表示にする",
+                "remove_audio_note_duration": "オーディオノートの長さを削除する",
+                "remove_audio_note_transcript_capability": "音声メモのトランスクリプト機能を削除"
+            },
+            "add_friend_source_spoof": {
+                "added_by_group_chat": "グループチャットによる",
+                "added_by_username": "ユーザー名別",
+                "added_by_mention": "言及により",
+                "added_by_qr_code": "QRコードで",
+                "added_by_quick_add": "クイック追加による (禁止されるリスクが高い)",
+                "added_by_community": "コミュニティ別"
+            },
+            "path_format": {
+                "create_author_folder": "著者ごとにフォルダを作成する",
+                "append_source": "ファイル名にメディアソースを追加します",
+                "append_date_time": "ファイル名に日付と時刻を追加します",
+                "append_hash": "ファイル名に一意のハッシュを追加する",
+                "create_source_folder": "メディアソースの種類ごとにフォルダーを作成する",
+                "append_username": "ファイル名にユーザー名を追加します"
+            },
+            "gallery_media_send_override": {
+                "ORIGINAL": "オリジナル",
+                "NOTE": "音声メモ",
+                "always_ask": "常に質問する",
+                "SNAP": "スナップ",
+                "SAVABLE_SNAP": "保存可能なスナップ"
+            },
+            "home_tab": {
+                "map": "地図",
+                "chat": "チャット",
+                "discover": "発見する",
+                "spotlight": "スポットライト",
+                "camera": "カメラ"
+            },
+            "notifications": {
+                "chat_screenshot": "スクリーンショット",
+                "chat_screen_record": "画面録画",
+                "snap_replay": "スナップリプレイ",
+                "camera_roll_save": "カメラロール保存",
+                "chat": "チャット",
+                "speaking": "話し中",
+                "chat_reaction": "DM反応",
+                "abandon_video": "ビデオ通話に失敗しました",
+                "group_chat_reaction": "集団反応",
+                "initiate_audio": "音声通話の着信",
+                "abandon_audio": "不在時の音声通話",
+                "initiate_video": "ビデオ通話の着信",
+                "chat_reply": "チャットの返信",
+                "snap": "スナップ",
+                "typing": "タイピング",
+                "stories": "ストーリー"
+            },
+            "hide_ui_components": {
+                "hide_voice_record_button": "音声録音ボタンを削除",
+                "hide_unread_chat_hint": "未読のチャットヒントを削除する",
+                "hide_post_to_story_buttons": "スナップを送信する前にストーリーに投稿ボタンを削除する",
+                "hide_profile_call_buttons": "プロファイル呼び出しボタンを削除する",
+                "hide_chat_call_buttons": "チャット通話ボタンを削除する",
+                "hide_live_location_share_button": "ライブロケーション共有ボタンを削除",
+                "hide_stickers_button": "ステッカーを削除ボタン"
+            },
+            "hide_story_suggestions": {
+                "hide_my_stories": "私のストーリーを隠す",
+                "hide_friend_suggestions": "友達の提案を非表示にする",
+                "hide_suggested_friend_stories": "提案された友達のストーリーを非表示にする"
+            },
+            "auto_download_sources": {
+                "friend_snaps": "友達のスナップ",
+                "friend_stories": "フレンドストーリー",
+                "public_stories": "公開ストーリー",
+                "spotlight": "スポットライト"
+            },
+            "logging": {
+                "failure": "失敗",
+                "started": "開始しました",
+                "success": "成功",
+                "progress": "進捗"
+            },
+            "bypass_video_length_restriction": {
+                "single": "単一メディア",
+                "split": "メディアを分割する"
+            },
+            "disable_confirmation_dialogs": {
+                "clear_conversation": "友達フィードから会話をクリアする",
+                "erase_message": "メッセージを消去",
+                "remove_friend": "友達を削除する",
+                "block_friend": "友達をブロックする",
+                "ignore_friend": "友達を無視する",
+                "hide_friend": "友達を隠す",
+                "hide_conversation": "会話を隠す"
+            },
+            "auto_reload": {
+                "snapchat_only": "スナップチャットのみ",
+                "all": "すべて (Snapchat + SE Extended)"
+            },
+            "old_bitmoji_selfie": {
+                "2d": "来てもいいよ",
+                "3d": "戻ってきて、来てください"
+            },
+            "edit_text_override": {
+                "bypass_text_input_limit": "テキスト入力制限をバイパスする",
+                "multi_line_chat_input": "複数行チャット入力"
+            },
+            "auto_purge": {
+                "1_hour": "1時間",
+                "3_months": "3ヶ月",
+                "never": "一度もない",
+                "6_hours": "6時間",
+                "1_month": "1ヶ月",
+                "3_hours": "3時間",
+                "3_days": "3日",
+                "1_week": "1週間",
+                "12_hours": "12時間",
+                "1_day": "1日",
+                "2_weeks": "2週間",
+                "6_months": "6ヵ月"
+            },
+            "disable_permission_requests": {
+                "read_media_images": "メディアイメージの読み取り",
+                "camera": "カメラ",
+                "microphone": "マイクロフォン",
+                "notifications": "通知",
+                "read_media_video": "メディアビデオを読む",
+                "location": "位置",
+                "read_contacts": "連絡先を読む",
+                "phone_calls": "電話",
+                "nearby_devices": "近くのデバイス"
+            },
+            "disable_cameras": {
+                "front": "フロントカメラ",
+                "back": "バックカメラ"
+            },
+            "disable_story_sections": {
+                "friends": "友達",
+                "following": "続く",
+                "discover": "発見する"
+            },
+            "auto_mark_as_read": {
+                "conversation_read": "メッセージを送信するときに会話を既読としてマークする",
+                "snap_reply": "スナップに返信するときに既読としてマークする"
+            },
+            "friend_mutation_notifier": {
+                "bitmoji_selfie_changes": "誰かが Bitmoji セルフィーを変更したときに通知する",
+                "bitmoji_avatar_changes": "誰かが Bitmoji アバターを変更したときに通知する",
+                "birthday_changes": "誰かの誕生日が変わったら通知する",
+                "bitmoji_scene_changes": "誰かが Bitmoji シーンを変更したときに通知する",
+                "bitmoji_background_changes": "誰かが Bitmoji の背景を変更したときに通知する",
+                "remove_friend": "誰かがあなたを友達から削除したときに通知する"
+            },
+            "message_indicators": {
+                "ovf_editor_indicator": "OVF エディターを使用してスナップが送信されたかどうかを示します",
+                "platform_indicator": "メディアの送信元のプラットフォーム アイコンを追加します (Android、iOS、Web など)",
+                "encryption_indicator": "あなただけに送信されたメッセージの横に 🔒 アイコンを追加します",
+                "director_mode_indicator": "ディレクター モードを使用してスナップが送信された場合、スナップに ✏️ アイコンを追加します。これを使用してギャラリー画像をスナップとして送信できます",
+                "location_indicator": "位置情報が有効になって送信されたスナップに 📍 アイコンを追加します"
             }
         }
     },
@@ -1356,5 +1525,177 @@
             "name": "ロガー履歴",
             "description": "ログに記録されたメッセージの履歴を表示する"
         }
+    },
+    "content_type": {
+        "EXTERNAL_MEDIA": "外部メディア",
+        "LOCATION": "位置",
+        "STATUS_CONVERSATION_CAPTURE_SCREENSHOT": "スクリーンショット",
+        "STATUS_CONVERSATION_CAPTURE_RECORD": "画面録画",
+        "STATUS_CALL_MISSED_AUDIO": "不在時の音声通話",
+        "LIVE_LOCATION_SHARE": "ライブロケーションシェア",
+        "TINY_SNAP": "タイニースナップ",
+        "SNAP": "スナップ",
+        "NOTE": "音声メモ",
+        "STATUS": "状態",
+        "STATUS_CALL_MISSED_VIDEO": "ビデオ通話に失敗しました",
+        "STATUS_COUNTDOWN": "秒読み",
+        "MAP_REACTION": "マップ反応",
+        "CHAT": "チャット",
+        "FAMILY_CENTER_INVITE": "ファミリー センターへの招待",
+        "FAMILY_CENTER_ACCEPT": "ファミリーセンター同意",
+        "FAMILY_CENTER_LEAVE": "ファミリーセンター休暇",
+        "STATUS_PLUS_GIFT": "ステータスプラスギフト",
+        "SHARE": "共有",
+        "STICKER": "ステッカー",
+        "STATUS_SAVE_TO_CAMERA_ROLL": "カメラロールに保存されました",
+        "CREATIVE_TOOL_ITEM": "クリエイティブツールアイテム"
+    },
+    "media_download_source": {
+        "none": "なし",
+        "story": "話",
+        "public_story": "公開ストーリー",
+        "story_logger": "ストーリーロガー",
+        "merged": "合併しました",
+        "profile_picture": "プロフィールの写真",
+        "chat_media": "チャットメディア",
+        "spotlight": "スポットライト",
+        "pending": "保留中",
+        "voice_call": "音声電話",
+        "message_logger": "メッセージロガー"
+    },
+    "chat_action_menu": {
+        "edit_message": "メッセージの編集",
+        "download_button": "ダウンロード",
+        "preview_button": "プレビュー",
+        "delete_logged_message_button": "記録されたメッセージの削除",
+        "show_chat_edit_history": "チャット編集履歴を表示",
+        "convert_message": "メッセージの変換"
+    },
+    "opera_context_menu": {
+        "download": "メディアをダウンロードする",
+        "sent_at": "に送信されました {date}",
+        "created_at": "で作成されました {date}",
+        "expires_at": "有効期限は次のとおりです{date}",
+        "media_size": "メディアサイズ: {size}",
+        "media_duration": "メディアの長さ: {duration} ms",
+        "show_debug_info": "デバッグ情報を表示"
+    },
+    "mark_as_seen": {
+        "seen_toast": "見たとおりのマークが付いています！",
+        "unseen_toast": "未表示としてマークされています!",
+        "no_unseen_snaps_toast": "表示されていないスナップは見つかりませんでした !",
+        "already_unseen_toast": "すでに未表示としてマークされています!",
+        "already_seen_toast": "すでに既読としてマークされています!"
+    },
+    "profile_info": {
+        "hidden_birthday": "誕生日：非公開",
+        "add_source": "ソースの追加",
+        "first_created_username": "最初に作成されたユーザー名",
+        "mutable_username": "変更可能なユーザー名",
+        "friendship": "友情",
+        "snapchat_plus_state": {
+            "not_subscribed": "未購読",
+            "subscribed": "購読済み"
+        },
+        "added_date": "追加日",
+        "birthday": "誕生日 ：{month} {day}",
+        "title": "プロフィール情報",
+        "display_name": "表示名",
+        "snapchat_plus": "スナップチャットプラス"
+    },
+    "friendship_link_type": {
+        "suggested": "提案された",
+        "incoming": "着信",
+        "blocked": "ブロックされました",
+        "deleted": "削除されました",
+        "following": "続く",
+        "mutual": "共通の",
+        "outgoing": "発信",
+        "incoming_follower": "入ってくるフォロワー"
+    },
+    "bulk_messaging_action": {
+        "confirmation_dialog": {
+            "title": "本気ですか？",
+            "message": "これは選択したすべての友達に影響します。この操作は元に戻すことができません。"
+        },
+        "choose_action_title": "アクションを選択してください",
+        "progress_status": "処理 {index} の {total}",
+        "selection_dialog_continue_button": "続く",
+        "actions": {
+            "remove_friends": "友達を削除する",
+            "clear_conversations": "明確な会話"
+        }
+    },
+    "chat_export": {
+        "exporter_dialog": {
+            "select_conversations_title": "会話を選択する",
+            "text_field_selection": "{amount} 選択された",
+            "text_field_selection_all": "全て",
+            "export_file_format_title": "エクスポートファイル形式",
+            "download_medias_title": "メディアのダウンロード",
+            "message_type_filter_title": "タイプごとにメッセージをフィルタリングする",
+            "amount_of_messages_title": "メッセージの量 (すべて空白のままにしておきます)"
+        },
+        "exporting_chats": "チャットをエクスポートしています...",
+        "dialog_negative_button": "キャンセル",
+        "dialog_positive_button": "輸出",
+        "exported_to": "輸出先 {path}",
+        "processing_chats": "処理 {amount} 会話...",
+        "export_fail": "会話のエクスポートに失敗しました {conversation}",
+        "writing_output": "出力を書き込み中...",
+        "finished": "終わり！これで、このダイアログを閉じることができます。",
+        "no_messages_found": "メッセージが見つかりません!",
+        "exporting_message": "輸出中 {conversation}..."
+    },
+    "button": {
+        "ok": "わかりました",
+        "positive": "はい",
+        "cancel": "キャンセル",
+        "negative": "いいえ",
+        "open": "開ける",
+        "download": "ダウンロード"
+    },
+    "friend_menu_option": {
+        "stealth_mode": "ステルスモード",
+        "auto_download_blacklist": "ブラックリストの自動ダウンロード",
+        "mark_snaps_as_seen": "スナップを見たものとしてマークする",
+        "mark_stories_as_seen_locally": "ローカルで見たストーリーにマークを付ける",
+        "preview": "プレビュー",
+        "anti_auto_save": "アンチオートセーブ"
+    },
+    "conversation_preview": {
+        "unknown_user": "不明なユーザー",
+        "streak_expiration": "に有効期限が切れます {day} 日々{hour} 時間 {minute} 分",
+        "total_messages": "送信された合計/受信したメッセージ: {count}",
+        "title": "プレビュー",
+        "no_messages": "メッセージが見つかりません!"
+    },
+    "better_notifications": {
+        "button": {
+            "download": "ダウンロード",
+            "reply": "返事",
+            "mark_as_read": "既読にする"
+        }
+    },
+    "profile_picture_downloader": {
+        "avatar_option": "アバター",
+        "button": "プロフィール写真をダウンロード",
+        "title": "プロフィール画像ダウンローダー",
+        "background_option": "背景"
+    },
+    "half_swipe_notifier": {
+        "notification_channel_name": "ハーフスワイプ",
+        "notification_content_dm": "{friend} チャットに半分スワイプするだけで、秒"
+    },
+    "modal_option": {
+        "profile_info": "プロフィール情報",
+        "close": "近い"
+    },
+    "gallery_media_send_override": {
+        "multiple_media_toast": "一度に送信できるメディアは 1 つだけです"
+    },
+    "call_start_confirmation": {
+        "dialog_message": "通話を開始してもよろしいですか?",
+        "dialog_title": "背景"
     }
 }
