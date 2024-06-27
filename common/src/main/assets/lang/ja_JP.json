@@ -1385,7 +1385,9 @@
                 "notifications": "通知",
                 "read_media_video": "メディアビデオを読む",
                 "location": "位置",
-                "read_contacts": "連絡先を読む"
+                "read_contacts": "連絡先を読む",
+                "phone_calls": "電話",
+                "nearby_devices": "近くのデバイス"
             },
             "disable_cameras": {
                 "front": "フロントカメラ",
@@ -1395,6 +1397,25 @@
                 "friends": "友達",
                 "following": "続く",
                 "discover": "発見する"
+            },
+            "auto_mark_as_read": {
+                "conversation_read": "メッセージを送信するときに会話を既読としてマークする",
+                "snap_reply": "スナップに返信するときに既読としてマークする"
+            },
+            "friend_mutation_notifier": {
+                "bitmoji_selfie_changes": "誰かが Bitmoji セルフィーを変更したときに通知する",
+                "bitmoji_avatar_changes": "誰かが Bitmoji アバターを変更したときに通知する",
+                "birthday_changes": "誰かの誕生日が変わったら通知する",
+                "bitmoji_scene_changes": "誰かが Bitmoji シーンを変更したときに通知する",
+                "bitmoji_background_changes": "誰かが Bitmoji の背景を変更したときに通知する",
+                "remove_friend": "誰かがあなたを友達から削除したときに通知する"
+            },
+            "message_indicators": {
+                "ovf_editor_indicator": "OVF エディターを使用してスナップが送信されたかどうかを示します",
+                "platform_indicator": "メディアの送信元のプラットフォーム アイコンを追加します (Android、iOS、Web など)",
+                "encryption_indicator": "あなただけに送信されたメッセージの横に 🔒 アイコンを追加します",
+                "director_mode_indicator": "ディレクター モードを使用してスナップが送信された場合、スナップに ✏️ アイコンを追加します。これを使用してギャラリー画像をスナップとして送信できます",
+                "location_indicator": "位置情報が有効になって送信されたスナップに 📍 アイコンを追加します"
             }
         }
     },
@@ -1504,5 +1525,177 @@
             "name": "ロガー履歴",
             "description": "ログに記録されたメッセージの履歴を表示する"
         }
+    },
+    "content_type": {
+        "EXTERNAL_MEDIA": "外部メディア",
+        "LOCATION": "位置",
+        "STATUS_CONVERSATION_CAPTURE_SCREENSHOT": "スクリーンショット",
+        "STATUS_CONVERSATION_CAPTURE_RECORD": "画面録画",
+        "STATUS_CALL_MISSED_AUDIO": "不在時の音声通話",
+        "LIVE_LOCATION_SHARE": "ライブロケーションシェア",
+        "TINY_SNAP": "タイニースナップ",
+        "SNAP": "スナップ",
+        "NOTE": "音声メモ",
+        "STATUS": "状態",
+        "STATUS_CALL_MISSED_VIDEO": "ビデオ通話に失敗しました",
+        "STATUS_COUNTDOWN": "秒読み",
+        "MAP_REACTION": "マップ反応",
+        "CHAT": "チャット",
+        "FAMILY_CENTER_INVITE": "ファミリー センターへの招待",
+        "FAMILY_CENTER_ACCEPT": "ファミリーセンター同意",
+        "FAMILY_CENTER_LEAVE": "ファミリーセンター休暇",
+        "STATUS_PLUS_GIFT": "ステータスプラスギフト",
+        "SHARE": "共有",
+        "STICKER": "ステッカー",
+        "STATUS_SAVE_TO_CAMERA_ROLL": "カメラロールに保存されました",
+        "CREATIVE_TOOL_ITEM": "クリエイティブツールアイテム"
+    },
+    "media_download_source": {
+        "none": "なし",
+        "story": "話",
+        "public_story": "公開ストーリー",
+        "story_logger": "ストーリーロガー",
+        "merged": "合併しました",
+        "profile_picture": "プロフィールの写真",
+        "chat_media": "チャットメディア",
+        "spotlight": "スポットライト",
+        "pending": "保留中",
+        "voice_call": "音声電話",
+        "message_logger": "メッセージロガー"
+    },
+    "chat_action_menu": {
+        "edit_message": "メッセージの編集",
+        "download_button": "ダウンロード",
+        "preview_button": "プレビュー",
+        "delete_logged_message_button": "記録されたメッセージの削除",
+        "show_chat_edit_history": "チャット編集履歴を表示",
+        "convert_message": "メッセージの変換"
+    },
+    "opera_context_menu": {
+        "download": "メディアをダウンロードする",
+        "sent_at": "に送信されました {date}",
+        "created_at": "で作成されました {date}",
+        "expires_at": "有効期限は次のとおりです{date}",
+        "media_size": "メディアサイズ: {size}",
+        "media_duration": "メディアの長さ: {duration} ms",
+        "show_debug_info": "デバッグ情報を表示"
+    },
+    "mark_as_seen": {
+        "seen_toast": "見たとおりのマークが付いています！",
+        "unseen_toast": "未表示としてマークされています!",
+        "no_unseen_snaps_toast": "表示されていないスナップは見つかりませんでした !",
+        "already_unseen_toast": "すでに未表示としてマークされています!",
+        "already_seen_toast": "すでに既読としてマークされています!"
+    },
+    "profile_info": {
+        "hidden_birthday": "誕生日：非公開",
+        "add_source": "ソースの追加",
+        "first_created_username": "最初に作成されたユーザー名",
+        "mutable_username": "変更可能なユーザー名",
+        "friendship": "友情",
+        "snapchat_plus_state": {
+            "not_subscribed": "未購読",
+            "subscribed": "購読済み"
+        },
+        "added_date": "追加日",
+        "birthday": "誕生日 ：{month} {day}",
+        "title": "プロフィール情報",
+        "display_name": "表示名",
+        "snapchat_plus": "スナップチャットプラス"
+    },
+    "friendship_link_type": {
+        "suggested": "提案された",
+        "incoming": "着信",
+        "blocked": "ブロックされました",
+        "deleted": "削除されました",
+        "following": "続く",
+        "mutual": "共通の",
+        "outgoing": "発信",
+        "incoming_follower": "入ってくるフォロワー"
+    },
+    "bulk_messaging_action": {
+        "confirmation_dialog": {
+            "title": "本気ですか？",
+            "message": "これは選択したすべての友達に影響します。この操作は元に戻すことができません。"
+        },
+        "choose_action_title": "アクションを選択してください",
+        "progress_status": "処理 {index} の {total}",
+        "selection_dialog_continue_button": "続く",
+        "actions": {
+            "remove_friends": "友達を削除する",
+            "clear_conversations": "明確な会話"
+        }
+    },
+    "chat_export": {
+        "exporter_dialog": {
+            "select_conversations_title": "会話を選択する",
+            "text_field_selection": "{amount} 選択された",
+            "text_field_selection_all": "全て",
+            "export_file_format_title": "エクスポートファイル形式",
+            "download_medias_title": "メディアのダウンロード",
+            "message_type_filter_title": "タイプごとにメッセージをフィルタリングする",
+            "amount_of_messages_title": "メッセージの量 (すべて空白のままにしておきます)"
+        },
+        "exporting_chats": "チャットをエクスポートしています...",
+        "dialog_negative_button": "キャンセル",
+        "dialog_positive_button": "輸出",
+        "exported_to": "輸出先 {path}",
+        "processing_chats": "処理 {amount} 会話...",
+        "export_fail": "会話のエクスポートに失敗しました {conversation}",
+        "writing_output": "出力を書き込み中...",
+        "finished": "終わり！これで、このダイアログを閉じることができます。",
+        "no_messages_found": "メッセージが見つかりません!",
+        "exporting_message": "輸出中 {conversation}..."
+    },
+    "button": {
+        "ok": "わかりました",
+        "positive": "はい",
+        "cancel": "キャンセル",
+        "negative": "いいえ",
+        "open": "開ける",
+        "download": "ダウンロード"
+    },
+    "friend_menu_option": {
+        "stealth_mode": "ステルスモード",
+        "auto_download_blacklist": "ブラックリストの自動ダウンロード",
+        "mark_snaps_as_seen": "スナップを見たものとしてマークする",
+        "mark_stories_as_seen_locally": "ローカルで見たストーリーにマークを付ける",
+        "preview": "プレビュー",
+        "anti_auto_save": "アンチオートセーブ"
+    },
+    "conversation_preview": {
+        "unknown_user": "不明なユーザー",
+        "streak_expiration": "に有効期限が切れます {day} 日々{hour} 時間 {minute} 分",
+        "total_messages": "送信された合計/受信したメッセージ: {count}",
+        "title": "プレビュー",
+        "no_messages": "メッセージが見つかりません!"
+    },
+    "better_notifications": {
+        "button": {
+            "download": "ダウンロード",
+            "reply": "返事",
+            "mark_as_read": "既読にする"
+        }
+    },
+    "profile_picture_downloader": {
+        "avatar_option": "アバター",
+        "button": "プロフィール写真をダウンロード",
+        "title": "プロフィール画像ダウンローダー",
+        "background_option": "背景"
+    },
+    "half_swipe_notifier": {
+        "notification_channel_name": "ハーフスワイプ",
+        "notification_content_dm": "{friend} チャットに半分スワイプするだけで、秒"
+    },
+    "modal_option": {
+        "profile_info": "プロフィール情報",
+        "close": "近い"
+    },
+    "gallery_media_send_override": {
+        "multiple_media_toast": "一度に送信できるメディアは 1 つだけです"
+    },
+    "call_start_confirmation": {
+        "dialog_message": "通話を開始してもよろしいですか?",
+        "dialog_title": "背景"
     }
 }
