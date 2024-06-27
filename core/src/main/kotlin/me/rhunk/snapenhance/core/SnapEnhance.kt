@@ -142,7 +142,7 @@ class SnapEnhance {
         }
     }
 
-    private fun init(scope: CoroutineScope) {
+    fun init(scope: CoroutineScope) {
         with(appContext) {
             Thread::class.java.hook("dispatchUncaughtException", HookStage.BEFORE) { param ->
                 runCatching {
