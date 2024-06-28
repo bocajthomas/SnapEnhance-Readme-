@@ -86,7 +86,7 @@ class RemoteScriptManager(
         }
 
         sync()
-        getEnabledScripts(listOf(BindingSide.MANAGER.key)).forEach { name ->
+        enabledScripts.forEach { name ->
             runCatching {
                 loadScript(name)
             }.onFailure {
@@ -181,19 +181,15 @@ class RemoteScriptManager(
        }.getOrNull()
     }
 
-    private fun getEnabledScripts(sides: List<String>): List<String> {
+
+    override fun getEnabledScripts(): List<String> {
         return runCatching {
-            getScriptFileNames().filter { name ->
-                cachedModuleInfo[name]?.executionSides?.any { it in sides } ?: true &&
-                context.database.isScriptEnabled(cachedModuleInfo[name]?.name ?: return@filter false)
+            getScriptFileNames().filter {
+                context.database.isScriptEnabled(cachedModuleInfo[it]?.name ?: return@filter false)
             }
         }.onFailure {
             context.log.error("Failed to get enabled scripts", it)
         }.getOrDefault(emptyList())
-    }
-
-    override fun getEnabledScripts(): List<String> {
-        return getEnabledScripts(listOf(BindingSide.CORE.key))
     }
 
     override fun getScriptContent(moduleName: String): ParcelFileDescriptor? {
