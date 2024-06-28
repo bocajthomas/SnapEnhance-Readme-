@@ -69,40 +69,45 @@ class MixerStories : Feature("MixerStories", loadParams = FeatureLoadParams.INIT
                         editEach(3) {
                             val sectionType = firstOrNull(10)?.toReader()?.getVarInt(1)?.toInt() ?: return@editEach
 
-                            if (sectionType == MixerStoryType.FRIENDS.index && context.config.experimental.storyLogger.get()) {
-                                val storyMap = mutableMapOf<String, MutableList<StoryData>>()
+                            edit(3) {
+                                removeIf(3) { wire ->
+                                    val reader = wire.toReader()
+                                    val storySubType = reader.getVarInt(23)
+                                    val isSuggested = storySubType == 39L
 
-                                firstOrNull(3)?.toReader()?.eachBuffer(3) {
-                                    val storySubType = getVarInt(23)
-                                    // ignore friends of friends stories
-                                    if (storySubType == 39L) return@eachBuffer
-                                    followPath(36) {
-                                        eachBuffer(1) data@{
-                                            val userId = getString(8, 1) ?: return@data
+                                    if (!isSuggested && sectionType == MixerStoryType.FRIENDS.index && context.config.experimental.storyLogger.get()) {
+                                        val storyMap = mutableMapOf<String, MutableList<StoryData>>()
 
-                                            storyMap.getOrPut(userId) {
-                                                mutableListOf()
-                                            }.add(StoryData(
-                                                url = getString(2, 2)?.substringBefore("?") ?: return@data,
-                                                postedAt = getVarInt(3) ?: -1L,
-                                                createdAt = getVarInt(27) ?: -1L,
-                                                key = Base64.decode(getString(2, 5) ?: return@data),
-                                                iv = Base64.decode(getString(2, 4) ?: return@data)
-                                            ))
+                                        reader.followPath(36) {
+                                            eachBuffer(1) data@{
+                                                val userId = getString(8, 1) ?: return@data
+
+                                                storyMap.getOrPut(userId) {
+                                                    mutableListOf()
+                                                }.add(StoryData(
+                                                    url = getString(2, 2)?.substringBefore("?") ?: return@data,
+                                                    postedAt = getVarInt(3) ?: -1L,
+                                                    createdAt = getVarInt(27) ?: -1L,
+                                                    key = Base64.decode(getString(2, 5) ?: return@data),
+                                                    iv = Base64.decode(getString(2, 4) ?: return@data)
+                                                ))
+                                            }
                                         }
-                                    }
-                                }
 
-                                context.coroutineScope.launch {
-                                    storyMap.forEach { (userId, stories) ->
-                                        stories.forEach { story ->
-                                            runCatching {
-                                                context.bridgeClient.getMessageLogger().addStory(userId, story.url, story.postedAt, story.createdAt, story.key, story.iv)
-                                            }.onFailure {
-                                                context.log.error("Failed to log story", it)
+                                        context.coroutineScope.launch {
+                                            storyMap.forEach { (userId, stories) ->
+                                                stories.forEach { story ->
+                                                    runCatching {
+                                                        context.bridgeClient.getMessageLogger().addStory(userId, story.url, story.postedAt, story.createdAt, story.key, story.iv)
+                                                    }.onFailure {
+                                                        context.log.error("Failed to log story", it)
+                                                    }
+                                                }
                                             }
                                         }
                                     }
+
+                                    isSuggested && disableDiscoverSections.contains("suggested_stories")
                                 }
                             }
 

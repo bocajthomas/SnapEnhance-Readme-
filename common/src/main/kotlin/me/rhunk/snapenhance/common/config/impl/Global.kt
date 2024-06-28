@@ -40,7 +40,7 @@ class Global : ConfigContainer() {
     val mediaUploadQualityConfig = container("media_upload_quality", MediaUploadQualityConfig())
     val disableConfirmationDialogs = multiple("disable_confirmation_dialogs", "erase_message", "remove_friend", "block_friend", "ignore_friend", "hide_friend", "hide_conversation", "clear_conversation") { requireRestart() }
     val disableMetrics = boolean("disable_metrics") { requireRestart() }
-    val disableStorySections = multiple("disable_story_sections", "friends", "following", "discover") { requireRestart(); requireCleanCache() }
+    val disableStorySections = multiple("disable_story_sections", "friends", "suggested_stories", "following", "discover") { requireRestart(); requireCleanCache() }
     val blockAds = boolean("block_ads")
     val disableCustomTabs = boolean("disable_custom_tabs") { requireRestart() }
     val disablePermissionRequests = multiple("disable_permission_requests", *permissionMap.values.toTypedArray()) { requireRestart(); addNotices(FeatureNotice.UNSTABLE) }
