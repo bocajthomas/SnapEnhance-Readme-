@@ -69,6 +69,12 @@ class EditorContext(
         wires.addAll(newWires)
     }
 
+    fun removeIf(id: Int, predicate: (Wire) -> Boolean) {
+        wires[id]?.removeIf {
+            predicate(it)
+        }
+    }
+
     override fun toString(): String {
         return ProtoWriter().apply {
             wires.values.flatten().forEach { addWire(it) }

@@ -43,7 +43,8 @@ Please note that this project is currently in development, So bugs and crashes m
 <details closed>
   <summary>📲 User Interface</summary>
   
-  - `Friend Feed Menu Buttons` 
+  - `Friend Feed Menu Buttons`
+  - `Auto Close Friend Feed Menu`
   - `Colors` (Theme Picker, Custom Colors, Etc)
   - `Friend Feed Message Preview` 
   - `Snap Preview`

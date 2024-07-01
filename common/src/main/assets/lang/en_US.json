@@ -1496,6 +1496,7 @@
             },
             "disable_story_sections": {
                 "friends": "Friends",
+                "suggested_stories": "Suggested Stories",
                 "following": "Following",
                 "discover": "Discover"
             },
