@@ -32,6 +32,12 @@ jobs:
       - name: Build
         run: ./gradlew assembleArmv8Debug
 
+      - name: Decode and save keystore
+        run: |
+          echo "$SIGNING_KEY_BASE64" | base64 --decode > my-release-key.jks
+        env:
+          SIGNING_KEY_BASE64: ${{ secrets.SIGNING_KEY_BASE64 }}
+
       - name: Sign APK
         id: sign_app
         uses: tiann/zipalign-sign-android-release@v1.1.4
@@ -98,6 +104,12 @@ jobs:
       - name: Build
         run: ./gradlew assembleArmv7Debug
 
+      - name: Decode and save keystore
+        run: |
+          echo "$SIGNING_KEY_BASE64" | base64 --decode > my-release-key.jks
+        env:
+          SIGNING_KEY_BASE64: ${{ secrets.SIGNING_KEY_BASE64 }}
+
       - name: Sign APK
         id: sign_app
         uses: tiann/zipalign-sign-android-release@v1.1.4
@@ -163,6 +175,12 @@ jobs:
 
       - name: Build
         run: ./gradlew assembleAllDebug
+
+      - name: Decode and save keystore
+        run: |
+          echo "$SIGNING_KEY_BASE64" | base64 --decode > my-release-key.jks
+        env:
+          SIGNING_KEY_BASE64: ${{ secrets.SIGNING_KEY_BASE64 }}
 
       - name: Sign APK
         id: sign_app
@@ -232,7 +250,6 @@ jobs:
         with:
           name: Manager
           path: manager/build/outputs/apk/debug/*.apk
-
   job_core:
     runs-on: ubuntu-latest
     steps:
