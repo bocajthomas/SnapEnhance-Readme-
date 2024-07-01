@@ -63,6 +63,7 @@ class UITweaks : Feature("UITweaks", loadParams = FeatureLoadParams.ACTIVITY_CRE
         val chatNoteRecordButton = getId("chat_note_record_button", "id")
         val unreadHintButton = getId("unread_hint_button", "id")
         val friendCardFrame = getId("friend_card_frame", "id")
+        val loadingIndicator = getId("loading_indicator", "id") // Assuming "loading_indicator" is the ID of the loading spinner
 
         View::class.java.hook("setVisibility", HookStage.BEFORE) { methodParam ->
             val viewId = (methodParam.thisObject() as View).id
@@ -78,7 +79,7 @@ class UITweaks : Feature("UITweaks", loadParams = FeatureLoadParams.ACTIVITY_CRE
             }
         }
 
-        Resources::class.java.methods.first { it.name == "getDimensionPixelSize"}.hook(
+        Resources::class.java.methods.first { it.name == "getDimensionPixelSize" }.hook(
             HookStage.AFTER,
             { isImmersiveCamera }
         ) { param ->
@@ -99,7 +100,7 @@ class UITweaks : Feature("UITweaks", loadParams = FeatureLoadParams.ACTIVITY_CRE
             if (event.view is FrameLayout) {
                 val viewModelString = event.prevModel.toString()
                 val isSuggestedFriend by lazy { viewModelString.startsWith("DFFriendSuggestionCardViewModel") }
-                val isMyStory by lazy { viewModelString.let { it.startsWith("CircularItemViewModel") && it.contains("storyId=")} }
+                val isMyStory by lazy { viewModelString.let { it.startsWith("CircularItemViewModel") && it.contains("storyId=") } }
 
                 if ((hideStorySuggestions.contains("hide_friend_suggestions") && isSuggestedFriend) ||
                     (hideStorySuggestions.contains("hide_my_stories") && isMyStory)) {
@@ -169,6 +170,9 @@ class UITweaks : Feature("UITweaks", loadParams = FeatureLoadParams.ACTIVITY_CRE
             }
             if (viewId == unreadHintButton && hiddenElements.contains("hide_unread_chat_hint")) {
                 event.canceled = true
+            }
+            if (viewId == loadingIndicator && hideStorySuggestions.contains("hide_suggested_friend_stories")) {
+                hideView(view)
             }
         }
     }
