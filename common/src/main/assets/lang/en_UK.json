@@ -1467,7 +1467,8 @@
             "disable_story_sections": {
                 "friends": "Friends",
                 "discover": "Discover",
-                "following": "Following"
+                "following": "Following",
+                "suggested_stories": "Suggested Stories"
             },
             "disable_cameras": {
                 "back": "Back Camera",
