@@ -1400,7 +1400,8 @@
             "disable_story_sections": {
                 "friends": "友達",
                 "following": "続く",
-                "discover": "発見する"
+                "discover": "発見する",
+                "suggested_stories": "おすすめのストーリー"
             },
             "auto_mark_as_read": {
                 "conversation_read": "メッセージを送信するときに会話を既読としてマークする",
