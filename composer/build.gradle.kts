@@ -1,3 +1,4 @@
+import org.apache.tools.ant.taskdefs.condition.Os
 plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
@@ -16,12 +17,22 @@ android {
 
 task("compileTypeScript") {
     doLast {
-        project.exec {
-            commandLine("npx", "--yes", "tsc", "--project", "tsconfig.json")
+        if (Os.isFamily(Os.FAMILY_WINDOWS))  {
+            project.exec {
+                commandLine("npx.cmd", "--yes", "tsc", "--project", "tsconfig.json")
+            }
+            project.exec {
+                commandLine("npx.cmd", "--yes", "rollup", "--config", "rollup.config.js", "--bundleConfigAsCjs")
+            }
+        } else {
+            project.exec {
+                commandLine("npx", "--yes", "tsc", "--project", "tsconfig.json")
+            }
+            project.exec {
+                commandLine("npx", "--yes", "rollup", "--config", "rollup.config.js", "--bundleConfigAsCjs")
+            }
         }
-        project.exec {
-            commandLine("npx", "--yes", "rollup", "--config", "rollup.config.js", "--bundleConfigAsCjs")
-        }
+
         project.copy {
             from("build/loader.js")
             into("build/assets/composer")
