@@ -63,7 +63,7 @@ class UITweaks : Feature("UITweaks", loadParams = FeatureLoadParams.ACTIVITY_CRE
         val chatNoteRecordButton = getId("chat_note_record_button", "id")
         val unreadHintButton = getId("unread_hint_button", "id")
         val friendCardFrame = getId("friend_card_frame", "id")
-        val loadingIndicator = getId("loading_indicator", "id") // Assuming "loading_indicator" is the ID of the loading spinner
+        val loadingIndicator = getId("loading_indicator", "id")
 
         View::class.java.hook("setVisibility", HookStage.BEFORE) { methodParam ->
             val viewId = (methodParam.thisObject() as View).id
