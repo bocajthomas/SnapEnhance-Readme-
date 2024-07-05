@@ -32,19 +32,6 @@ jobs:
       - name: Build
         run: ./gradlew assembleArmv8Debug
 
-      - name: Debug Secrets
-        run: |
-          echo "JAVA_KEYSTORE_DATA is set: ${{ secrets.JAVA_KEYSTORE_DATA != '' }}"
-          echo "KEY_ALIAS is: ${{ secrets.KEY_ALIAS }}"
-          echo "KEYSTORE_PASSWORD is set: ${{ secrets.KEYSTORE_PASSWORD != '' }}"
-          echo "KEY_PASSWORD is set: ${{ secrets.KEY_PASSWORD != '' }}"
-
-      - name: Check Release Directory
-        run: |
-          ls -la app/build/outputs/apk/armv8/debug/
-          echo "APK file size:"
-          du -sh app/build/outputs/apk/armv8/debug/*.apk
-
       - name: Sign APK
         id: sign_app
         uses: tiann/zipalign-sign-android-release@v1.1.4
@@ -56,17 +43,7 @@ jobs:
           keyPassword: ${{ secrets.KEY_PASSWORD }}
           zipAlign: true
         env:
-          BUILD_TOOLS_VERSION: "33.0.0"
-
-      - name: Debug Signing Output
-        if: failure()
-        run: |
-          echo "Signing step failed. Checking apksigner version:"
-          $ANDROID_HOME/build-tools/33.0.0/apksigner --version
-          echo "Listing build-tools versions:"
-          ls -la $ANDROID_HOME/build-tools/
-          echo "Attempting manual signing:"
-          $ANDROID_HOME/build-tools/33.0.0/apksigner sign --verbose --ks ${{ secrets.JAVA_KEYSTORE_DATA }} --ks-key-alias ${{ secrets.KEY_ALIAS }} --ks-pass pass:${{ secrets.KEYSTORE_PASSWORD }} --key-pass pass:${{ secrets.KEY_PASSWORD }} app/build/outputs/apk/armv8/debug/*.apk
+          BUILD_TOOLS_VERSION: "34.0.0"
 
       - name: Delete unsigned file
         run: |
@@ -121,19 +98,6 @@ jobs:
       - name: Build
         run: ./gradlew assembleArmv7Debug
 
-      - name: Debug Secrets
-        run: |
-          echo "JAVA_KEYSTORE_DATA is set: ${{ secrets.JAVA_KEYSTORE_DATA != '' }}"
-          echo "KEY_ALIAS is: ${{ secrets.KEY_ALIAS }}"
-          echo "KEYSTORE_PASSWORD is set: ${{ secrets.KEYSTORE_PASSWORD != '' }}"
-          echo "KEY_PASSWORD is set: ${{ secrets.KEY_PASSWORD != '' }}"
-
-      - name: Check Release Directory
-        run: |
-          ls -la app/build/outputs/apk/armv7/debug/
-          echo "APK file size:"
-          du -sh app/build/outputs/apk/armv7/debug/*.apk
-
       - name: Sign APK
         id: sign_app
         uses: tiann/zipalign-sign-android-release@v1.1.4
@@ -145,17 +109,7 @@ jobs:
           keyPassword: ${{ secrets.KEY_PASSWORD }}
           zipAlign: true
         env:
-          BUILD_TOOLS_VERSION: "33.0.0"
-
-      - name: Debug Signing Output
-        if: failure()
-        run: |
-          echo "Signing step failed. Checking apksigner version:"
-          $ANDROID_HOME/build-tools/33.0.0/apksigner --version
-          echo "Listing build-tools versions:"
-          ls -la $ANDROID_HOME/build-tools/
-          echo "Attempting manual signing:"
-          $ANDROID_HOME/build-tools/33.0.0/apksigner sign --verbose --ks ${{ secrets.JAVA_KEYSTORE_DATA }} --ks-key-alias ${{ secrets.KEY_ALIAS }} --ks-pass pass:${{ secrets.KEYSTORE_PASSWORD }} --key-pass pass:${{ secrets.KEY_PASSWORD }} app/build/outputs/apk/armv7/debug/*.apk
+          BUILD_TOOLS_VERSION: "34.0.0"
 
       - name: Delete unsigned file
         run: |
@@ -210,19 +164,6 @@ jobs:
       - name: Build
         run: ./gradlew assembleAllDebug
 
-      - name: Debug Secrets
-        run: |
-          echo "JAVA_KEYSTORE_DATA is set: ${{ secrets.JAVA_KEYSTORE_DATA != '' }}"
-          echo "KEY_ALIAS is: ${{ secrets.KEY_ALIAS }}"
-          echo "KEYSTORE_PASSWORD is set: ${{ secrets.KEYSTORE_PASSWORD != '' }}"
-          echo "KEY_PASSWORD is set: ${{ secrets.KEY_PASSWORD != '' }}"
-
-      - name: Check Release Directory
-        run: |
-          ls -la app/build/outputs/apk/all/debug/
-          echo "APK file size:"
-          du -sh app/build/outputs/apk/all/debug/*.apk
-
       - name: Sign APK
         id: sign_app
         uses: tiann/zipalign-sign-android-release@v1.1.4
@@ -234,17 +175,7 @@ jobs:
           keyPassword: ${{ secrets.KEY_PASSWORD }}
           zipAlign: true
         env:
-          BUILD_TOOLS_VERSION: "33.0.0"
-
-      - name: Debug Signing Output
-        if: failure()
-        run: |
-          echo "Signing step failed. Checking apksigner version:"
-          $ANDROID_HOME/build-tools/33.0.0/apksigner --version
-          echo "Listing build-tools versions:"
-          ls -la $ANDROID_HOME/build-tools/
-          echo "Attempting manual signing:"
-          $ANDROID_HOME/build-tools/33.0.0/apksigner sign --verbose --ks ${{ secrets.JAVA_KEYSTORE_DATA }} --ks-key-alias ${{ secrets.KEY_ALIAS }} --ks-pass pass:${{ secrets.KEYSTORE_PASSWORD }} --key-pass pass:${{ secrets.KEY_PASSWORD }} app/build/outputs/apk/all/debug/*.apk
+          BUILD_TOOLS_VERSION: "34.0.0"
 
       - name: Delete unsigned file
         run: |
