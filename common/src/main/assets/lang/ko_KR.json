@@ -11,7 +11,10 @@
             "generate_failure": "매핑을 생성하는 중에 오류가 발생했습니다. 다시 시도해 주세요."
         },
         "permissions": {
-            "dialog": "계속하려면 다음 요구 사항을 충족해야 합니다."
+            "dialog": "계속하려면 다음 요구 사항을 충족해야 합니다.",
+            "notification_access": "알림 액세스",
+            "battery_optimization": "배터리 최적화",
+            "display_over_other_apps": "다른 앱 위에 표시"
         }
     }
 }
