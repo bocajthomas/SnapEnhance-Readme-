@@ -631,6 +631,10 @@
                     "edit_text_override": {
                         "name": "编辑文本覆盖",
                         "description": "覆盖文本字段行为"
+                    },
+                    "auto_close_friend_feed_menu": {
+                        "name": "自动关闭好友提要菜单",
+                        "description": "按下设置按钮后自动关闭好友动态菜单"
                     }
                 },
                 "description": "更改 Snapchat 的外观和风格",
@@ -1234,6 +1238,10 @@
                             "enhanced_transcript": {
                                 "name": "增强的成绩单",
                                 "description": "使用 DeepL 改进语音笔记转录。\n在使用此功能之前，请确保您已阅读他们的隐私政策。"
+                            },
+                            "enhanced_transcript_in_notifications": {
+                                "name": "通知中的增强文字记录",
+                                "description": "使用 DeepL 转录通知中的语音注释。这需要在更好的通知中启用聊天预览功能"
                             }
                         },
                         "description": "改进语音笔记转录"
@@ -1365,7 +1373,15 @@
                 "material_you_dark": "材质你黑暗 (Android 12+)",
                 "amoled_dark_mode": "AMOLED 深色模式",
                 "dark_blue": "深蓝",
-                "earthy_autumn": "土色的秋天"
+                "earthy_autumn": "土色的秋天",
+                "mint_chocolate": "薄荷巧克力",
+                "ginger_snap": "姜片",
+                "lemon_meringue": "柠檬酥皮",
+                "watercolor_wash": "水彩水洗",
+                "midnight_slate": "午夜石板",
+                "lava_flow": "熔岩流",
+                "ocean_fog": "海洋雾",
+                "alien_landscape": "外星风景"
             }
         }
     }

@@ -1257,6 +1257,10 @@
                             "preferred_transcription_lang": {
                                 "name": "Preferred Transcription Language",
                                 "description": "The preferred language for the voice note transcript (e.g. EN, ES, FR)"
+                            },
+                            "enhanced_transcript_in_notifications": {
+                                "name": "Enhanced Transcript in Notifications",
+                                "description": "Transcribes voice notes in notifications using DeepL. This requires the Chat Preview feature to be enabled in Better Notifications"
                             }
                         },
                         "description": "Improves the voice note transcript",
@@ -1463,7 +1467,8 @@
             "disable_story_sections": {
                 "friends": "Friends",
                 "discover": "Discover",
-                "following": "Following"
+                "following": "Following",
+                "suggested_stories": "Suggested Stories"
             },
             "disable_cameras": {
                 "back": "Back Camera",
