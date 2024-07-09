@@ -1385,7 +1385,15 @@
                 "zesty_lemon": "柠檬味",
                 "tropical_paradise": "热带天堂",
                 "industrial_chic": "工业时尚",
-                "cherry_bomb": "樱桃炸弹"
+                "cherry_bomb": "樱桃炸弹",
+                "woodland_mystery": "林地之谜",
+                "galaxy_glitter": "银河闪光",
+                "creamy_vanilla": "奶油香草",
+                "spicy_chili": "辣辣椒",
+                "spring_meadow": "春天的草地",
+                "midnight_library": "午夜图书馆",
+                "lemon_sorbet": "柠檬冰糕",
+                "cosmic_night": "宇宙之夜"
             }
         }
     }
