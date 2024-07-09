@@ -1382,7 +1382,10 @@
                 "lava_flow": "熔岩流",
                 "ocean_fog": "海洋雾",
                 "alien_landscape": "外星风景",
-                "zesty_lemon": "柠檬味"
+                "zesty_lemon": "柠檬味",
+                "tropical_paradise": "热带天堂",
+                "industrial_chic": "工业时尚",
+                "cherry_bomb": "樱桃炸弹"
             }
         }
     }
