@@ -1394,6 +1394,13 @@
                 "midnight_library": "午夜图书馆",
                 "lemon_sorbet": "柠檬冰糕",
                 "cosmic_night": "宇宙之夜"
+            },
+            "auto_purge": {
+                "12_hours": "",
+                "1_day": "",
+                "1_hour": "",
+                "1_month": "",
+                "1_week": ""
             }
         }
     }
