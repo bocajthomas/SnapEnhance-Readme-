@@ -1016,133 +1016,133 @@
                         "properties": {
                             "play_store_installer_package_name": {
                                 "name": "پلے اسٹور انسٹالر پیکیج کا نام",
-                                "description": ""
+                                "description": "انسٹالر پیکیج کے نام کو com.android.vending پر اوور رائیڈ کرتا ہے"
                             },
                             "fingerprint": {
-                                "name": "",
-                                "description": ""
+                                "name": "ڈیوائس فنگر پرنٹ",
+                                "description": "آپ کے ڈیوائس کے فنگر پرنٹ کو دھوکہ دیتا ہے"
                             },
                             "android_id": {
-                                "name": "",
-                                "description": ""
+                                "name": "اینڈرائیڈ آئی ڈی",
+                                "description": "‫آپ کی اینڈرائیڈ آئی ڈی کو متعین قدر کے مطابق بناتا ہے"
                             },
                             "remove_vpn_transport_flag": {
-                                "name": "",
-                                "description": ""
+                                "name": "VPN ٹرانسپورٹ پرچم کو ہٹا دیں",
+                                "description": "Snapchat کو VPNs کا پتہ لگانے سے روکتا ہے"
                             },
                             "remove_mock_location_flag": {
-                                "name": "",
-                                "description": ""
+                                "name": "فرضی مقام کا جھنڈا ہٹا دیں",
+                                "description": "‮Snapchat کو فرضی مقام کا پتہ لگانے سے روکتا ہے"
                             },
                             "randomize_persistent_device_token": {
-                                "name": "",
-                                "description": ""
+                                "name": "پرسسٹنٹ ڈیوائس ٹوکن کو بے ترتیب بنائیں",
+                                "description": "ہر لاگ ان کے بعد ایک بے ترتیب ڈیوائس ٹوکن تیار کرتا ہے"
                             }
                         }
                     },
                     "experimental_colors": {
-                        "name": "",
-                        "description": "",
+                        "name": "تجرباتی رنگ کے اختیارات",
+                        "description": "نوٹ: یہ رنگ کی خصوصیات تجرباتی ہیں اور اس وجہ سے آپ کی اسنیپ چیٹ کو عجیب لگ سکتا ہے، استعمال کرنے کے لیے تھیم چننے والے پر 'اپنی مرضی کے رنگ' منتخب کریں",
                         "properties": {
                             "ring_color": {
-                                "name": "",
-                                "description": ""
+                                "name": "رنگ کا رنگ",
+                                "description": "‮کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
                             },
                             "sig_color_icon_secondary": {
-                                "name": "",
+                                "name": "سگ کلر آئیکن سیکنڈری",
                                 "description": ""
                             },
                             "item_shape_fill_color": {
                                 "name": "",
-                                "description": ""
+                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
                             },
                             "ring_start_color": {
                                 "name": "",
-                                "description": ""
+                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
                             },
                             "sig_color_layout_place_holder": {
                                 "name": "",
-                                "description": ""
+                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
                             },
                             "sc_button_color": {
                                 "name": "",
-                                "description": ""
+                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
                             },
                             "recipient_pill_background_drawable": {
                                 "name": "",
-                                "description": ""
+                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
                             },
                             "box_background_color": {
                                 "name": "",
-                                "description": ""
+                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
                             },
                             "edit_text_color": {
                                 "name": "",
-                                "description": ""
+                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
                             },
                             "chip_background_color": {
                                 "name": "",
-                                "description": ""
+                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
                             },
                             "recipient_input_style": {
                                 "name": "",
-                                "description": ""
+                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
                             },
                             "range_fill_color": {
                                 "name": "",
-                                "description": ""
+                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
                             },
                             "psts_indicator_color": {
                                 "name": "",
-                                "description": ""
+                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
                             },
                             "psts_tab_background": {
                                 "name": "",
-                                "description": ""
+                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
                             },
                             "psts_divider_color": {
                                 "name": "",
-                                "description": ""
+                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
                             },
                             "tab_text_color": {
                                 "name": "",
-                                "description": ""
+                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
                             },
                             "status_bar_foreground": {
                                 "name": "",
-                                "description": ""
+                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
                             },
                             "status_bar_background": {
                                 "name": "",
-                                "description": ""
+                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
                             },
                             "stroke_color": {
                                 "name": "",
-                                "description": ""
+                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
                             },
                             "story_replay_view_ring_color": {
                                 "name": "",
-                                "description": ""
+                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
                             },
                             "sig_color_button_primary": {
                                 "name": "",
-                                "description": ""
+                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
                             },
                             "sig_color_base_app_yellow": {
                                 "name": "",
-                                "description": ""
+                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
                             },
                             "sig_color_background_surface_translucent": {
                                 "name": "",
-                                "description": ""
+                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
                             },
                             "sig_color_story_ring_friends_feed_story_ring": {
                                 "name": "",
-                                "description": ""
+                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
                             },
                             "sig_color_story_ring_discover_tab_thumbnail_story_ring": {
                                 "name": "",
-                                "description": ""
+                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
                             }
                         }
                     },
