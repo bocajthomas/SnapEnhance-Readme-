@@ -1393,7 +1393,18 @@
                 "spring_meadow": "春天的草地",
                 "midnight_library": "午夜图书馆",
                 "lemon_sorbet": "柠檬冰糕",
-                "cosmic_night": "宇宙之夜"
+                "cosmic_night": "宇宙之夜",
+                "peppermint_candy": "薄荷糖",
+                "gingerbread_house": "姜饼屋",
+                "spicy_mustard": "辣芥末",
+                "art_deco_glam": "装饰艺术魅力",
+                "ocean_depths": "海洋深处",
+                "bubblegum_pink": "泡泡糖粉红",
+                "firefly_night": "萤火虫之夜",
+                "apple_orchard": "苹果园",
+                "lavender_field": "薰衣草田",
+                "lemon_drop": "柠檬滴",
+                "modern_farmhouse": "现代农舍"
             },
             "auto_purge": {
                 "12_hours": "",
@@ -1401,6 +1412,12 @@
                 "1_hour": "",
                 "1_month": "",
                 "1_week": ""
+            },
+            "friend_feed_menu_buttons": {
+                "auto_download": "⬇️自动下载",
+                "auto_save": "💬 自动保存消息",
+                "unsaveable_messages": "⬇️ 无法保存的消息",
+                "auto_open_snaps": "📷 自动打开按扣"
             }
         }
     }
