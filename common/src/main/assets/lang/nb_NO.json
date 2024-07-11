@@ -338,6 +338,10 @@
                     "download_context_menu": {
                         "name": "Nedlastningsbindeleddsmeny",
                         "description": "Gir deg muligheten til å laste ned/forhåndsvise meldinger fra en samtale eller historie ved bruk av bindeleddsmenyen.\nLang-trykk på knappene laster ned."
+                    },
+                    "merge_overlays": {
+                        "name": "Flett overlag",
+                        "description": "Kombinerer tekst og media tilhørende Snapp til én fil"
                     }
                 },
                 "name": "Nedlaster",
@@ -365,10 +369,12 @@
                                         "description": "Endrer Snapchat sin hovedtekstfarge"
                                     },
                                     "background_color": {
-                                        "name": "Bakgrunnsfarge"
+                                        "name": "Bakgrunnsfarge",
+                                        "description": "Endrer Snapchats bakgrunnsfarge"
                                     },
                                     "camera_grid_lines": {
-                                        "name": "Kamerarutenett-farge"
+                                        "name": "Kamerarutenett-farge",
+                                        "description": "Endrer Snapchats rutenettsfarge for kameraforhåndsvisning.\nMerk: Skrur på rutenettet i innstillinger for eget kamera."
                                     },
                                     "chat_chat_text_color": {
                                         "name": "Primær venneflytsfarge"
@@ -377,7 +383,28 @@
                                         "name": "Sekundær venneflytsfarge"
                                     },
                                     "friend_feed_conversations_line_color": {
-                                        "name": "Samtalelinjefarge"
+                                        "name": "Samtalelinjefarge",
+                                        "description": "Endrer inndelingsfargen som deler samtaler på venneflyten"
+                                    },
+                                    "background_color_surface": {
+                                        "description": "Endrer Snapchats overflatebakgrunnsfarge",
+                                        "name": "Overflatefarge for bakgrunn"
+                                    },
+                                    "list_background_drawable": {
+                                        "name": "Bakgrunn for samtaleliste ",
+                                        "description": "Endrer bakgrunnsfargen for samtalelisten på venneflyten.\nDette kan ødelegge utseende på venneflyter."
+                                    },
+                                    "action_menu_background_color": {
+                                        "name": "Bakgrunnsfarge for handlingsmeny",
+                                        "description": "Endrer Snapchats bakgrunnsfarge for sludringshandlingsmenyen"
+                                    },
+                                    "sig_color_icon_primary": {
+                                        "description": "Endrer ikonfargen for sludringhandlingsmeny/venneflytsmeny",
+                                        "name": "Ikonfarge for handlingsmeny"
+                                    },
+                                    "action_menu_round_background_color": {
+                                        "description": "Endrer Snapchats bakgrunnsfarge for den runde sludringshandlingsmenyen",
+                                        "name": "Bakgrunnsfarge for rund handlingsmeny"
                                     }
                                 },
                                 "name": "Egendefinerte farger"
@@ -399,10 +426,13 @@
                                 "name": "Mengde",
                                 "description": "Antall meldinger å forhåndsvise"
                             }
-                        }
+                        },
+                        "name": "Forhåndsvisning av meldinger fra venneflyt",
+                        "description": "Viser en forhåndsvisning av de siste meldingene i venneflyten"
                     },
                     "snap_preview": {
-                        "name": "Snapp-forhåndsvisning"
+                        "name": "Snapp-forhåndsvisning",
+                        "description": "Viser en liten forhåndsvisning ved siden av usette Snapper i sludringen"
                     },
                     "hide_ui_components": {
                         "name": "Skjul grensesnittskomponenter",
