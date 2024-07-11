@@ -217,7 +217,7 @@ Thanks to everyone involved
 - [suryadip2008](https://github.com/suryadip2008) (Translated: Bengali)
 - [BogusMosquito77](https://github.com/BogusMosquito7) (Translated: Dutch)
 - [Beingzain](https://github.com/Beingzain) (Translated: Urdu) 
-- [comradekingu](https://github.com/comradekingu) (Translated: Norwegian Bokmål)
+- [comradekingu](https://github.com/comradekingu) (Translated: Norwegian Bokmål, Danish, Swedish)
 - [scrodingerspet](https://github.com/schrodingerspet) (Translated: Japanese, Hindi)
 - [MHaaning](https://github.com/MHaaning) (Translated: Danish)
 - [vampskillz](https://github.com/vampskillz) (Translated: Italian)
