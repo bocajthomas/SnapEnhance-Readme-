@@ -1431,6 +1431,27 @@
                 "append_username": "将用户名添加到文件中姓名",
                 "append_hash": "向文件添加唯一的哈希值姓名",
                 "append_date_time": "将日期和时间添加到文件名中"
+            },
+            "auto_download_sources": {
+                "friend_snaps": "朋友快照",
+                "friend_stories": "朋友故事",
+                "public_stories": "公共故事",
+                "spotlight": "聚光灯"
+            },
+            "logging": {
+                "started": "开始",
+                "success": "成功",
+                "progress": "进步",
+                "failure": "失败"
+            },
+            "notifications": {
+                "chat_screenshot": "截屏",
+                "chat_screen_record": "屏幕记录",
+                "snap_replay": "快照重播",
+                "camera_roll_save": "相机胶卷保存",
+                "chat": "聊天",
+                "chat_reply": "聊天回复",
+                "snap": "折断"
             }
         }
     }
