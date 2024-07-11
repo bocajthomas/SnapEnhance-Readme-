@@ -167,20 +167,15 @@ class UITweaks : Feature("UITweaks", loadParams = FeatureLoadParams.ACTIVITY_CRE
                 (viewId == chatNoteRecordButton && hiddenElements.contains("hide_voice_record_button")) ||
                 (viewId == getId("chat_input_bar_sticker", "id") && hiddenElements.contains("hide_stickers_button")) ||
                 (viewId == getId("chat_input_bar_sharing_drawer_button", "id") && hiddenElements.contains("hide_live_location_share_button")) ||
-                (viewId == callButtonsStub && hiddenElements.contains("hide_chat_call_buttons"))
+                (viewId == callButtonsStub && hiddenElements.contains("hide_chat_call_buttons")) || 
+                (viewId == belowHeaderMessageBannerText) ||
+                (viewId == belowHeaderMessageBanner)
+                
             ) {
                 hideView(view)
             }
             if (viewId == unreadHintButton && hiddenElements.contains("hide_unread_chat_hint")) {
                 event.canceled = true
-            }
-            
-            
-            if (viewId == belowHeaderMessageBannerText) {
-                hideView(view)
-            }
-            if (viewId == belowHeaderMessageBanner) {
-                hideView(view)
             }
         }
     }
