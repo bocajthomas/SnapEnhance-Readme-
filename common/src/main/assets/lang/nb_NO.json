@@ -125,7 +125,9 @@
                 "teleport_to_friend_button": "Teleporter til venn",
                 "saved_coordinates_title": "Lagrede koordinater",
                 "delete_dialog_message": "Slett dette lagrede koordinatet?",
-                "teleport_to_friend_title": "Teleporter til venn"
+                "teleport_to_friend_title": "Teleporter til venn",
+                "spoof_location_toggle": "Forfalsk posisjon",
+                "suspend_location_updates": "Stopp flytting av posisjon"
             },
             "messaging_preview": {
                 "delete_all_option": "Slett alt",
@@ -264,7 +266,8 @@
                                 "description": "Sett videobitraten (kbps)"
                             },
                             "threads": {
-                                "name": "Tråder"
+                                "name": "Tråder",
+                                "description": "Mengden tråder å bruke"
                             },
                             "audio_bitrate": {
                                 "name": "Lydbitrate",
@@ -275,21 +278,31 @@
                                 "description": "Set egendefinert videokodek (f.eks. libx264)"
                             },
                             "preset": {
-                                "name": "Forhåndsinnstilling"
+                                "name": "Forhåndsinnstilling",
+                                "description": "Sett samtalehastighet"
                             },
                             "custom_audio_codec": {
-                                "name": "Egendefinert lydkodek"
+                                "name": "Egendefinert lydkodek",
+                                "description": "Sett egendefinert lydkodek (f.eks. FLAC)"
+                            },
+                            "constant_rate_factor": {
+                                "name": "Konstant lesefaktor",
+                                "description": "Sett konstant lesefaktor for videokoderen\nFra 0 til 51 for libx264"
                             }
-                        }
+                        },
+                        "name": "FFmpeg-alterantiver",
+                        "description": "Angi ytterligere FFmpeg-alternativer"
                     },
                     "save_folder": {
-                        "name": ""
+                        "name": "Lagringsmappe",
+                        "description": "Velg mappen all media skal lastes ned til"
                     },
                     "custom_path_format": {
                         "name": "Egendefinert stiformat"
                     },
                     "download_profile_pictures": {
-                        "name": "Last ned profilbilder"
+                        "name": "Last ned profilbilder",
+                        "description": "Lar deg laste ned profilbilder fra profilsiden"
                     },
                     "logging": {
                         "name": "Logging"
@@ -297,6 +310,26 @@
                     "path_format": {
                         "name": "Stiformat",
                         "description": "Angi fillagringsformatet"
+                    },
+                    "auto_download_sources": {
+                        "name": "Last ned kilder automatisk",
+                        "description": "Velg kilder det automatisk skal lastes ned materiale fra"
+                    },
+                    "prevent_self_auto_download": {
+                        "name": "Forhindre automatisk nedlasting av eget materiale",
+                        "description": "Forhindrer at egne Snapper lastes ned automatisk"
+                    },
+                    "allow_duplicate": {
+                        "name": "Tillat duplisering",
+                        "description": "Tillat at samme media lastes ned flere ganger"
+                    },
+                    "force_image_format": {
+                        "name": "Påtving bildeformat",
+                        "description": "Tvinger lagrede bilder inn i angitt format"
+                    },
+                    "force_voice_note_format": {
+                        "description": "Tvinger stemmenotater inn i angitt format",
+                        "name": "Påtving stemmenotat-format"
                     }
                 },
                 "name": "Nedlaster",
@@ -323,12 +356,19 @@
                                     },
                                     "background_color": {
                                         "name": "Bakgrunnsfarge"
+                                    },
+                                    "camera_grid_lines": {
+                                        "name": "Kamerarutenett-farge"
                                     }
                                 },
                                 "name": "Egendefinerte farger"
                             },
                             "theme_picker": {
-                                "name": "Draktvelger"
+                                "name": "Draktvelger",
+                                "description": "Forhåndsinnstilte Snapchat-drakter"
+                            },
+                            "colors_debug": {
+                                "name": "Fargeavlusning"
                             }
                         },
                         "name": "Farger",
@@ -348,9 +388,42 @@
                     "hide_ui_components": {
                         "name": "Skjul grensesnittskomponenter",
                         "description": "Velg hvilke grensesnittskomponenter som skal skjules"
+                    },
+                    "enable_app_appearance": {
+                        "name": "Skru på programutseende-innstillinger",
+                        "description": "Skrur på skjult innstilling for programutseende\nEr kanskje ikke påkrevd for nyere Snapchat-versjoner"
+                    },
+                    "map_friend_nametags": {
+                        "name": "Bedre navnelapper på vennekart",
+                        "description": "Forbedrer navnelappene vist på Snappkartet"
+                    },
+                    "prevent_message_list_auto_scroll": {
+                        "name": "Forhindre autorulling av meldingsliste",
+                        "description": "Forhindrer meldingslisten fra å rulle til bunnen når du sender/mottar en melding"
+                    },
+                    "streak_expiration_info": {
+                        "description": "Viser utløpstidsur ved siden av rekkefølgetelleren",
+                        "name": "Vis utløpsinfo for rekkefølge"
+                    },
+                    "hide_settings_gear": {
+                        "name": "Skjul innstillingstannhjul",
+                        "description": "Skjuler Se Extended-innstillingstannhjulet i venneflyten"
+                    },
+                    "stealth_mode_indicator": {
+                        "name": "Smugmodus-indikator",
+                        "description": "Legger til 👻-ideogram i samtalen i smugmodus"
+                    },
+                    "message_indicators": {
+                        "name": "Meldingsindikatorer",
+                        "description": "Legger til spesifikke indikatorikoner i meldinger.\nMerk: Indikatorer trenger ikke å være 100% nøyaktige."
+                    },
+                    "edit_text_override": {
+                        "name": "Rediger tekstoverstyring",
+                        "description": "Overstyrer adferd for tekstfelt"
                     }
                 },
-                "name": "Brukergrensesnitt"
+                "name": "Brukergrensesnitt",
+                "description": "Endre utseende og opplevelse i Snapchat"
             },
             "messaging": {
                 "properties": {
@@ -378,13 +451,24 @@
                             },
                             "media_preview": {
                                 "name": "Mediaforhåndsvisning"
+                            },
+                            "group_notifications": {
+                                "description": "Grupper merknader i én",
+                                "name": "Merknadsgruppering"
                             }
-                        }
+                        },
+                        "name": "Bedre merknader",
+                        "description": "Legger til mer info i mottatte merknader"
                     },
                     "half_swipe_notifier": {
                         "properties": {
                             "max_duration": {
-                                "name": "Maksimal varighet"
+                                "name": "Maksimal varighet",
+                                "description": "Maksimal varighet for halvdragning (i sekunder)"
+                            },
+                            "min_duration": {
+                                "description": "Minste varighet for halvdragning (i sekunder)",
+                                "name": "Minimumsvarighet"
                             }
                         }
                     },
@@ -395,16 +479,47 @@
                     "message_logger": {
                         "properties": {
                             "message_filter": {
-                                "name": "Meldingsfilter"
+                                "name": "Meldingsfilter",
+                                "description": "Velger hvilke meldinger som skal loggføres (la stå tom for alle meldinger)"
                             },
                             "keep_my_own_messages": {
                                 "name": "Behold mine egne meldinger",
                                 "description": "Forhindrer dine egne meldinger fra å bli slettet"
+                            },
+                            "auto_purge": {
+                                "name": "Automatisk fjerning",
+                                "description": "Sletter hurtiglagrede meldinger eldre enn angitt periode automatisk"
                             }
-                        }
+                        },
+                        "name": "Meldingsloggføring",
+                        "description": "Forhindrer sletting av meldinger"
+                    },
+                    "bypass_screenshot_detection": {
+                        "name": "Omgå skjermavbildningsoppdagelse"
+                    },
+                    "anonymous_story_viewing": {
+                        "name": "Anonym historievisning",
+                        "description": "Forhindrer andre fra å finne ut at du har sett historien deres"
+                    },
+                    "call_start_confirmation": {
+                        "description": "Viser en bekreftelsesdialog ved oppstart av anrop",
+                        "name": "Anropstartsbekreftelse"
+                    },
+                    "prevent_message_sending": {
+                        "name": "Forhindre meldingsforsendelse",
+                        "description": "Forhindrer forsendelse av gitte typer meldinger"
+                    },
+                    "notification_blacklist": {
+                        "name": "Merknadssvarteliste",
+                        "description": "Velg merknader å blokkere"
+                    },
+                    "unlimited_conversation_pinning": {
+                        "name": "Ubegrenset festing av samtaler",
+                        "description": "Lar deg feste ubegrenset mengde samtaler lokalt"
                     }
                 },
-                "name": "Meldinger"
+                "name": "Meldinger",
+                "description": "Endre hvordan du kommuniserer med venner"
             },
             "camera": {
                 "name": "Kamera",
@@ -543,7 +658,9 @@
         },
         "notices": {
             "unstable": "⚠ Ustabil",
-            "ban_risk": "⚠ Denne funksjonen kan utløse bannlysninger"
+            "ban_risk": "⚠ Denne funksjonen kan utløse bannlysninger",
+            "internal_behavior": "⚠ Dette kan krangle med hvordan Snapchat fungerer",
+            "require_native_hooks": "⚠ Denne funksjonen krever eksperimentelle systemspesifikke kroker for å fungere på rett vis"
         }
     },
     "scopes": {
@@ -568,10 +685,12 @@
             "description": "Tømmer Snapchat-hurtiglageret"
         },
         "bulk_messaging_action": {
-            "description": "Utfører handlinger som f.eks. sletting av venner, eller massesletting av samtaler"
+            "description": "Utfører handlinger som f.eks. sletting av venner, eller massesletting av samtaler",
+            "name": "Massehåndtering av meldinger"
         },
         "change_language": {
-            "name": "Endre språk"
+            "name": "Endre språk",
+            "description": "Endre språket i SE Extended"
         },
         "file_imports": {
             "name": "Filimporteringer",
@@ -580,6 +699,14 @@
         "friend_tracker": {
             "name": "Vennesporer",
             "description": "Sporer vennene dine på Snapchat"
+        },
+        "regen_mappings": {
+            "name": "Regenerer tilknytninger",
+            "description": "Regenerer tilknytninger manuelt"
+        },
+        "logger_history": {
+            "name": "Loggføringshistorikk",
+            "description": "Vis historikk over loggførte meldinger"
         }
     },
     "content_type": {
