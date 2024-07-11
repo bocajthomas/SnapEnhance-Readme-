@@ -1451,7 +1451,38 @@
                 "camera_roll_save": "相机胶卷保存",
                 "chat": "聊天",
                 "chat_reply": "聊天回复",
-                "snap": "折断"
+                "snap": "折断",
+                "typing": "打字",
+                "stories": "故事",
+                "speaking": "请讲",
+                "chat_reaction": "DM反应",
+                "group_chat_reaction": "群体反应",
+                "initiate_audio": "音频来电",
+                "abandon_audio": "错过的音频通话",
+                "initiate_video": "视频来电",
+                "abandon_video": "错过视频通话"
+            },
+            "gallery_media_send_override": {
+                "always_ask": "总是问",
+                "ORIGINAL": "原来的",
+                "NOTE": "音频笔记",
+                "SNAP": "折断",
+                "SAVABLE_SNAP": "可保存的快照"
+            },
+            "strip_media_metadata": {
+                "hide_caption_text": "隐藏标题文本",
+                "hide_snap_filters": "隐藏捕捉滤镜",
+                "hide_extras": "隐藏额外内容（例如提及)",
+                "remove_audio_note_duration": "删除音频注释持续时间",
+                "remove_audio_note_transcript_capability": "删除音频笔记转录功能"
+            },
+            "hide_ui_components": {
+                "hide_profile_call_buttons": "删除个人资料呼叫按钮",
+                "hide_chat_call_buttons": "删除聊天呼叫按钮",
+                "hide_live_location_share_button": "删除实时位置共享按钮",
+                "hide_stickers_button": "删除贴纸按钮",
+                "hide_voice_record_button": "删除录音按钮",
+                "hide_unread_chat_hint": "删除未读聊天提示"
             }
         }
     }
