@@ -64,6 +64,9 @@ class UITweaks : Feature("UITweaks", loadParams = FeatureLoadParams.ACTIVITY_CRE
         val unreadHintButton = getId("unread_hint_button", "id")
         val friendCardFrame = getId("friend_card_frame", "id")
 
+        // New view ID for below_header_message_banner_text
+        val belowHeaderMessageBannerText = getId("below_header_message_banner_text", "id")
+
         View::class.java.hook("setVisibility", HookStage.BEFORE) { methodParam ->
             val viewId = (methodParam.thisObject() as View).id
             if (viewId == callButton1 || viewId == callButton2) {
@@ -169,6 +172,11 @@ class UITweaks : Feature("UITweaks", loadParams = FeatureLoadParams.ACTIVITY_CRE
             }
             if (viewId == unreadHintButton && hiddenElements.contains("hide_unread_chat_hint")) {
                 event.canceled = true
+            }
+            
+            
+            if (viewId == belowHeaderMessageBannerText) {
+                hideView(view)
             }
         }
     }
