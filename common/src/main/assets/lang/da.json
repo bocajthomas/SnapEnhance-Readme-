@@ -602,7 +602,7 @@
                                 "name": "Markér som læst og gem i chat"
                             },
                             "group_notifications": {
-                                "name": "Gruppe notifikationer",
+                                "name": "Notifikationsgruppering",
                                 "description": "Gruppér notifikationer i en enkelt"
                             },
                             "chat_preview": {
