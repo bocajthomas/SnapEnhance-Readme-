@@ -330,6 +330,14 @@
                     "force_voice_note_format": {
                         "description": "Tvinger stemmenotater inn i angitt format",
                         "name": "Påtving stemmenotat-format"
+                    },
+                    "opera_download_button": {
+                        "name": "Opera-nedlastingsknapp",
+                        "description": "Legger til en nedlastingsknapp øverst til høyre når du ser en Snapp.\nLang-trykk på knappen laster ned."
+                    },
+                    "download_context_menu": {
+                        "name": "Nedlastningsbindeleddsmeny",
+                        "description": "Gir deg muligheten til å laste ned/forhåndsvise meldinger fra en samtale eller historie ved bruk av bindeleddsmenyen.\nLang-trykk på knappene laster ned."
                     }
                 },
                 "name": "Nedlaster",
@@ -343,7 +351,8 @@
                                 "name": "Hjemmefane"
                             },
                             "app_appearance": {
-                                "name": "Programutseende"
+                                "name": "Programutseende",
+                                "description": "Setter vedvarende programutseende"
                             }
                         }
                     },
@@ -352,13 +361,23 @@
                             "colors": {
                                 "properties": {
                                     "text_color": {
-                                        "name": "Hovedtekstfarge"
+                                        "name": "Hovedtekstfarge",
+                                        "description": "Endrer Snapchat sin hovedtekstfarge"
                                     },
                                     "background_color": {
                                         "name": "Bakgrunnsfarge"
                                     },
                                     "camera_grid_lines": {
                                         "name": "Kamerarutenett-farge"
+                                    },
+                                    "chat_chat_text_color": {
+                                        "name": "Primær venneflytsfarge"
+                                    },
+                                    "pending_sending_text_color": {
+                                        "name": "Sekundær venneflytsfarge"
+                                    },
+                                    "friend_feed_conversations_line_color": {
+                                        "name": "Samtalelinjefarge"
                                     }
                                 },
                                 "name": "Egendefinerte farger"
@@ -516,6 +535,13 @@
                     "unlimited_conversation_pinning": {
                         "name": "Ubegrenset festing av samtaler",
                         "description": "Lar deg feste ubegrenset mengde samtaler lokalt"
+                    },
+                    "mark_snap_as_seen_button": {
+                        "name": "«Marker Snapp som sett»-knapp",
+                        "description": "Legger til en knapp for å markere Snapp sett ved visning.\nFungerer selv om smugmodus er påslått."
+                    },
+                    "skip_when_marking_as_seen": {
+                        "name": "Hopp over ved markering som sett"
                     }
                 },
                 "name": "Meldinger",
