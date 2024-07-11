@@ -64,9 +64,9 @@ class UITweaks : Feature("UITweaks", loadParams = FeatureLoadParams.ACTIVITY_CRE
         val unreadHintButton = getId("unread_hint_button", "id")
         val friendCardFrame = getId("friend_card_frame", "id")
 
-        
         val belowHeaderMessageBannerText = getId("below_header_message_banner_text", "id")
         val belowHeaderMessageBanner = getId("below_header_message_banner", "id")
+        val billboardPrompt = getId("billboard_prompt", "id")
 
         View::class.java.hook("setVisibility", HookStage.BEFORE) { methodParam ->
             val viewId = (methodParam.thisObject() as View).id
@@ -167,15 +167,23 @@ class UITweaks : Feature("UITweaks", loadParams = FeatureLoadParams.ACTIVITY_CRE
                 (viewId == chatNoteRecordButton && hiddenElements.contains("hide_voice_record_button")) ||
                 (viewId == getId("chat_input_bar_sticker", "id") && hiddenElements.contains("hide_stickers_button")) ||
                 (viewId == getId("chat_input_bar_sharing_drawer_button", "id") && hiddenElements.contains("hide_live_location_share_button")) ||
-                (viewId == callButtonsStub && hiddenElements.contains("hide_chat_call_buttons")) || 
-                (viewId == belowHeaderMessageBannerText) ||
-                (viewId == belowHeaderMessageBanner)
-                
+                (viewId == callButtonsStub && hiddenElements.contains("hide_chat_call_buttons"))
             ) {
                 hideView(view)
             }
             if (viewId == unreadHintButton && hiddenElements.contains("hide_unread_chat_hint")) {
                 event.canceled = true
+            }
+            
+            if (viewId == billboardPrompt) {
+                hideView(view)
+            }
+            
+            if (viewId == belowHeaderMessageBannerText) {
+                hideView(view)
+            }
+            if (viewId == belowHeaderMessageBanner) {
+                hideView(view)
             }
         }
     }
