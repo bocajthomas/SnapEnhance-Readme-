@@ -161,6 +161,7 @@ class UITweaks : Feature("UITweaks", loadParams = FeatureLoadParams.ACTIVITY_CRE
                     }
                 }
             }
+            
 
             if (
                 ((viewId == getId("post_tool", "id") || viewId == getId("story_button", "id")) && hiddenElements.contains("hide_post_to_story_buttons")) ||
@@ -173,6 +174,10 @@ class UITweaks : Feature("UITweaks", loadParams = FeatureLoadParams.ACTIVITY_CRE
                 (viewId == belowHeaderMessageBanner)
             ) {
                 hideView(view)
+            }
+
+            if (viewId == unreadHintButton && hiddenElements.contains("hide_unread_chat_hint")) {
+                event.canceled = true
             }
         }
     }
