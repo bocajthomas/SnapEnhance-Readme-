@@ -22,7 +22,9 @@
         "preview": "预览",
         "stealth_mode": "隐身模式",
         "auto_download_blacklist": "自动下载黑名单",
-        "anti_auto_save": "自动保存"
+        "anti_auto_save": "自动保存",
+        "mark_snaps_as_seen": "将快照标记为所见",
+        "mark_stories_as_seen_locally": "将故事标记为本地可见"
     },
     "chat_action_menu": {
         "preview_button": "预览",
@@ -1570,12 +1572,47 @@
                 "bitmoji_avatar_changes": "当有人更改 Bitmoji 头像时发出通知",
                 "bitmoji_background_changes": "当有人更改 Bitmoji 背景时发出通知",
                 "birthday_changes": "当有人改变时通知他们的生日",
-                "remove_friend": "当有人将您删除为好友时发出通知"
+                "remove_friend": "当有人将您删除为好友时发出通知",
+                "bitmoji_scene_changes": "当有人更改 Bitmoji 场景时发出通知"
             },
             "auto_mark_as_read": {
                 "conversation_read": "将对话标记为已读发送消息时",
                 "snap_reply": "回复时将快照标记为已读"
             }
         }
+    },
+    "content_type": {
+        "CHAT": "聊天",
+        "SNAP": "折断",
+        "EXTERNAL_MEDIA": "外部媒体",
+        "NOTE": "音频笔记",
+        "STICKER": "贴纸",
+        "SHARE": "分享",
+        "STATUS": "地位",
+        "LOCATION": "地点",
+        "STATUS_SAVE_TO_CAMERA_ROLL": "保存到相机胶卷",
+        "STATUS_CONVERSATION_CAPTURE_SCREENSHOT": "截屏",
+        "STATUS_CONVERSATION_CAPTURE_RECORD": "屏幕记录",
+        "STATUS_CALL_MISSED_VIDEO": "错过视频通话",
+        "STATUS_CALL_MISSED_AUDIO": "错过的音频通话",
+        "LIVE_LOCATION_SHARE": "实时位置分享",
+        "CREATIVE_TOOL_ITEM": "创意工具项目",
+        "FAMILY_CENTER_INVITE": "家庭中心邀请函",
+        "FAMILY_CENTER_ACCEPT": "家庭中心接受",
+        "FAMILY_CENTER_LEAVE": "家庭中心休假",
+        "STATUS_PLUS_GIFT": "状态加礼物",
+        "TINY_SNAP": "微小的快照",
+        "STATUS_COUNTDOWN": "倒数",
+        "MAP_REACTION": "地图反应"
+    },
+    "media_download_source": {
+        "none": "没有任何",
+        "pending": "待办的",
+        "chat_media": "聊天媒体",
+        "story": "故事",
+        "public_story": "公共故事",
+        "spotlight": "聚光灯",
+        "profile_picture": "个人资料图片",
+        "story_logger": "故事记录器"
     }
 }
