@@ -29,10 +29,19 @@
     "chat_action_menu": {
         "preview_button": "预览",
         "download_button": "下载",
-        "delete_logged_message_button": "删除已记录的消息"
+        "delete_logged_message_button": "删除已记录的消息",
+        "show_chat_edit_history": "显示聊天编辑历史记录",
+        "convert_message": "转换消息",
+        "edit_message": "编辑留言"
     },
     "opera_context_menu": {
-        "download": "下载媒体"
+        "download": "下载媒体",
+        "sent_at": "发送于 {date}",
+        "created_at": "创建于 {date}",
+        "expires_at": "到期日 {date}",
+        "media_size": "介质尺寸: {size}",
+        "media_duration": "媒体时长: {duration} 多发性硬化症",
+        "show_debug_info": "显示调试信息"
     },
     "modal_option": {
         "profile_info": "配置信息",
@@ -1613,6 +1622,19 @@
         "public_story": "公共故事",
         "spotlight": "聚光灯",
         "profile_picture": "个人资料图片",
-        "story_logger": "故事记录器"
+        "story_logger": "故事记录器",
+        "message_logger": "消息记录器",
+        "merged": "合并",
+        "voice_call": "语音通话"
+    },
+    "gallery_media_send_override": {
+        "multiple_media_toast": "您一次只能发送一种媒体"
+    },
+    "mark_as_seen": {
+        "no_unseen_snaps_toast": "未找到未见过的快照 !",
+        "seen_toast": "标记为已看到!",
+        "unseen_toast": "标记为未见!",
+        "already_seen_toast": "已经标记为已看到!",
+        "already_unseen_toast": "已经标记为未见!"
     }
 }
