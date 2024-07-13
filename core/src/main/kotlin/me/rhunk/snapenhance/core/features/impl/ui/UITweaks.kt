@@ -99,7 +99,7 @@ class UITweaks : Feature("UITweaks", loadParams = FeatureLoadParams.ACTIVITY_CRE
             if (event.view is FrameLayout) {
                 val viewModelString = event.prevModel.toString()
                 val isSuggestedFriend by lazy { viewModelString.startsWith("DFFriendSuggestionCardViewModel") }
-                val isMyStory by lazy { viewModelString.let { it.startsWith("CircularItemViewModel") && it.contains("storyId=") } }
+                val isMyStory by lazy { viewModelString.let { it.startsWith("CircularItemViewModel") && it.contains("storyId=") }}
 
                 if ((hideStorySuggestions.contains("hide_friend_suggestions") && isSuggestedFriend) ||
                     (hideStorySuggestions.contains("hide_my_stories") && isMyStory)) {
