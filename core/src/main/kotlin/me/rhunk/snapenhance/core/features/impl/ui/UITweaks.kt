@@ -163,9 +163,9 @@ class UITweaks : Feature("UITweaks", loadParams = FeatureLoadParams.ACTIVITY_CRE
                 (viewId == getId("chat_input_bar_sticker", "id") && hiddenElements.contains("hide_stickers_button")) ||
                 (viewId == getId("chat_input_bar_sharing_drawer_button", "id") && hiddenElements.contains("hide_live_location_share_button")) ||
                 (viewId == callButtonsStub && hiddenElements.contains("hide_chat_call_buttons")) ||
-                (viewId == getId("chat_input_bar_camera", "id") && hiddenElements.contains("hide_chat_input_bar_camera"))
-                (viewId == getId("chat_input_bar_gallery", "id") && hiddenElements.contains("hide_chat_input_bar_gallery"))
-                (viewId == getId("billboard_prompt", "id") && hiddenElements.contains("hide_billboard_prompt"))
+                (viewId == getId("chat_input_bar_camera", "id") && hiddenElements.contains("hide_chat_input_bar_camera")) ||
+                (viewId == getId("chat_input_bar_gallery", "id") && hiddenElements.contains("hide_chat_input_bar_gallery")) || 
+                (viewId == getId("billboard_prompt", "id") && hiddenElements.contains("hide_billboard_prompt")) || 
                 (viewId == getId("hide_below_header_message_banner_text", "id") || viewId == getId("hide_below_header_message_banner", "id")) && hiddenElements.contains("hide_below_header_message_banner") ||
                 (viewId == getId("camera_zoom_factor_pill", "id") && hiddenElements.contains("hide_camera_zoom_factor_pill"))    
             ) {
