@@ -63,10 +63,7 @@ class UITweaks : Feature("UITweaks", loadParams = FeatureLoadParams.ACTIVITY_CRE
         val chatNoteRecordButton = getId("chat_note_record_button", "id")
         val unreadHintButton = getId("unread_hint_button", "id")
         val friendCardFrame = getId("friend_card_frame", "id")
-
-        val belowHeaderMessageBannerText = getId("below_header_message_banner_text", "id")
-        val belowHeaderMessageBanner = getId("below_header_message_banner", "id")
-        val billboardPrompt = getId("billboard_prompt", "id")
+        val cameraZoomFactorPill = getId("camera_zoom_factor_pill", "id")
 
         View::class.java.hook("setVisibility", HookStage.BEFORE) { methodParam ->
             val viewId = (methodParam.thisObject() as View).id
@@ -82,7 +79,7 @@ class UITweaks : Feature("UITweaks", loadParams = FeatureLoadParams.ACTIVITY_CRE
             }
         }
 
-        Resources::class.java.methods.first { it.name == "getDimensionPixelSize"}.hook(
+        Resources::class.java.methods.first { it.name == "getDimensionPixelSize" }.hook(
             HookStage.AFTER,
             { isImmersiveCamera }
         ) { param ->
@@ -103,7 +100,7 @@ class UITweaks : Feature("UITweaks", loadParams = FeatureLoadParams.ACTIVITY_CRE
             if (event.view is FrameLayout) {
                 val viewModelString = event.prevModel.toString()
                 val isSuggestedFriend by lazy { viewModelString.startsWith("DFFriendSuggestionCardViewModel") }
-                val isMyStory by lazy { viewModelString.let { it.startsWith("CircularItemViewModel") && it.contains("storyId=")} }
+                val isMyStory by lazy { viewModelString.let { it.startsWith("CircularItemViewModel") && it.contains("storyId=") } }
 
                 if ((hideStorySuggestions.contains("hide_friend_suggestions") && isSuggestedFriend) ||
                     (hideStorySuggestions.contains("hide_my_stories") && isMyStory)) {
@@ -161,23 +158,52 @@ class UITweaks : Feature("UITweaks", loadParams = FeatureLoadParams.ACTIVITY_CRE
                     }
                 }
             }
-            
 
-            if (
-                ((viewId == getId("post_tool", "id") || viewId == getId("story_button", "id")) && hiddenElements.contains("hide_post_to_story_buttons")) ||
-                (viewId == chatNoteRecordButton && hiddenElements.contains("hide_voice_record_button")) ||
-                (viewId == getId("chat_input_bar_sticker", "id") && hiddenElements.contains("hide_stickers_button")) ||
-                (viewId == getId("chat_input_bar_sharing_drawer_button", "id") && hiddenElements.contains("hide_live_location_share_button")) ||
-                (viewId == callButtonsStub && hiddenElements.contains("hide_chat_call_buttons")) ||
-                (viewId == billboardPrompt) ||
-                (viewId == belowHeaderMessageBannerText) ||
-                (viewId == belowHeaderMessageBanner)
-            ) {
+            if (viewId == chatNoteRecordButton && hiddenElements.contains("hide_voice_record_button")) {
                 hideView(view)
+            }
+
+            if (viewId == getId("chat_input_bar_sticker", "id") && hiddenElements.contains("hide_stickers_button")) {
+                hideView(view)
+            }
+
+            if (viewId == getId("chat_input_bar_sharing_drawer_button", "id") && hiddenElements.contains("hide_live_location_share_button")) {
+                hideView(view)
+            }
+
+            if (viewId == callButtonsStub && hiddenElements.contains("hide_chat_call_buttons")) {
+                hideView(view)
+            }
+
+            if (viewId == getId("chat_input_bar_camera", "id") && hiddenElements.contains("hide_chat_input_bar_camera")) {
+                hideView(view)
+            }
+
+            if (viewId == getId("chat_input_bar_gallery", "id") && hiddenElements.contains("hide_chat_input_bar_gallery")) {
+                hideView(view)
+            }
+
+            if (viewId == getId("billboard_prompt", "id") && hiddenElements.contains("hide_billboard_prompt")) {
+                hideView(view)
+            }
+
+            if ((viewId == getId("hide_below_header_message_banner_text", "id") || 
+                 viewId == getId("hide_below_header_message_banner", "id")) && hiddenElements.contains("hide_below_header_message_banner")) {
+                hideView(view)
+            }
+
+            if (viewId == getId("post_tool", "id") || viewId == getId("story_button", "id")) {
+                if (hiddenElements.contains("hide_post_to_story_buttons")) {
+                    hideView(view)
+                }
             }
 
             if (viewId == unreadHintButton && hiddenElements.contains("hide_unread_chat_hint")) {
                 event.canceled = true
+            }
+
+            if (viewId == cameraZoomFactorPill && hiddenElements.contains("hide_camera_zoom_factor_pill")) {
+                hideView(view)
             }
         }
     }
