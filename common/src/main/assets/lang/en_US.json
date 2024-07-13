@@ -1433,7 +1433,12 @@
                 "hide_stickers_button": "Remove Stickers Button",
                 "hide_voice_record_button": "Remove Voice Record Button",
                 "hide_unread_chat_hint": "Remove Unread Chat Hint",
-                "hide_post_to_story_buttons": "Remove Post to Story buttons before sending a Snap"
+                "hide_post_to_story_buttons": "Remove Post to Story Buttons before sending a Snap",
+                "hide_billboard_prompt": "Remove Home Screen Annoying Reminders",
+                "hide_below_header_message_banner": "Remove Annoying Reminders to gift Snapchat Plus",
+                "hide_chat_input_bar_camera": "Remove Chat Camera Icon",
+                "hide_chat_input_bar_gallery": "Remove Chat Gallery Icon",
+                "hide_camera_zoom_factor_pill": "Remove Camera Zoom Pill"
             },
             "hide_story_suggestions": {
                 "hide_friend_suggestions": "Hide friend suggestions",
