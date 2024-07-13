@@ -20,10 +20,10 @@ jobs:
         with:
           submodules: 'recursive'
 
-      - name: set up JDK 17
+      - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
+          java-version: '21'
           distribution: 'temurin'
           cache: gradle
 
@@ -35,28 +35,28 @@ jobs:
 
       - name: Build
         run: ./gradlew assembleArmv8Release
+
+      - name: Determine the latest Build Tools version installed
+        shell: bash
+        run: echo "BUILD_TOOL_VERSION=$(ls "$ANDROID_HOME/build-tools/" | tail -n 1)" >> $GITHUB_ENV
         
       - name: Sign APK
         id: sign_app
-        uses: kevin-david/zipalign-sign-android-release@main
+        uses: SnapEnhance/sign-android-release@master
         with:
           releaseDirectory: app/build/outputs/apk/armv8/release/
           signingKeyBase64: ${{ secrets.JAVA_KEYSTORE_DATA }}
           alias: ${{ secrets.KEY_ALIAS }}
           keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
           keyPassword: ${{ secrets.KEY_PASSWORD }}
-
-      - name: Delete unsigned file
-        run: |
-          cd app/build/outputs/apk/armv8/release/
-          shopt -s extglob
-          rm !(*-signed*)
+        env:
+          BUILD_TOOLS_VERSION: ${{ env.BUILD_TOOL_VERSION }}
       
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: snapenhance-armv8-release
-          path: app/build/outputs/apk/armv8/release/*.apk
+          path: ${{steps.sign_app.outputs.signedReleaseFile}}
           
   job_armv7:
     runs-on: macos-latest
@@ -66,10 +66,10 @@ jobs:
         with:
           submodules: 'recursive'
 
-      - name: set up JDK 17
+      - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
+          java-version: '21'
           distribution: 'temurin'
           cache: gradle
 
@@ -82,27 +82,27 @@ jobs:
       - name: Build
         run: ./gradlew assembleArmv7Release
 
+      - name: Determine the latest Build Tools version installed
+        shell: bash
+        run: echo "BUILD_TOOL_VERSION=$(ls "$ANDROID_HOME/build-tools/" | tail -n 1)" >> $GITHUB_ENV
+
       - name: Sign APK
         id: sign_app
-        uses: kevin-david/zipalign-sign-android-release@main
+        uses: SnapEnhance/sign-android-release@master
         with:
           releaseDirectory: app/build/outputs/apk/armv7/release/
           signingKeyBase64: ${{ secrets.JAVA_KEYSTORE_DATA }}
           alias: ${{ secrets.KEY_ALIAS }}
           keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
           keyPassword: ${{ secrets.KEY_PASSWORD }}
-
-      - name: Delete unsigned file
-        run: |
-          cd app/build/outputs/apk/armv7/release/
-          shopt -s extglob
-          rm !(*-signed*)
+        env:
+          BUILD_TOOLS_VERSION: ${{ env.BUILD_TOOL_VERSION }}
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: snapenhance-armv7-release
-          path: app/build/outputs/apk/armv7/release/*.apk
+          path: ${{steps.sign_app.outputs.signedReleaseFile}}
 
   job_universal:
     runs-on: macos-latest
@@ -112,10 +112,10 @@ jobs:
         with:
           submodules: 'recursive'
 
-      - name: set up JDK 17
+      - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
+          java-version: '21'
           distribution: 'temurin'
           cache: gradle
 
@@ -127,28 +127,28 @@ jobs:
 
       - name: Build
         run: ./gradlew assembleAllRelease
-        
+
+      - name: Determine the latest Build Tools version installed
+        shell: bash
+        run: echo "BUILD_TOOL_VERSION=$(ls "$ANDROID_HOME/build-tools/" | tail -n 1)" >> $GITHUB_ENV
+
       - name: Sign APK
         id: sign_app
-        uses: kevin-david/zipalign-sign-android-release@main
+        uses: SnapEnhance/sign-android-release@master
         with:
           releaseDirectory: app/build/outputs/apk/all/release/
           signingKeyBase64: ${{ secrets.JAVA_KEYSTORE_DATA }}
           alias: ${{ secrets.KEY_ALIAS }}
           keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
           keyPassword: ${{ secrets.KEY_PASSWORD }}
-
-      - name: Delete unsigned file
-        run: |
-          cd app/build/outputs/apk/all/release/
-          shopt -s extglob
-          rm !(*-signed*)
+        env:
+          BUILD_TOOLS_VERSION: ${{ env.BUILD_TOOL_VERSION }}
 
       - name: Upload universal
         uses: actions/upload-artifact@v4
         with:
           name: snapenhance-universal-release
-          path: app/build/outputs/apk/all/release/*.apk
+          path: ${{steps.sign_app.outputs.signedReleaseFile}}
 
   job_manager:
     runs-on: ubuntu-latest
@@ -158,10 +158,10 @@ jobs:
         with:
           submodules: 'recursive'
 
-      - name: set up JDK 17
+      - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
+          java-version: '21'
           distribution: 'temurin'
           cache: gradle
 
@@ -171,27 +171,27 @@ jobs:
       - name: Build
         run: ./gradlew manager:assembleRelease
 
+      - name: Determine the latest Build Tools version installed
+        shell: bash
+        run: echo "BUILD_TOOL_VERSION=$(ls "$ANDROID_HOME/build-tools/" | tail -n 1)" >> $GITHUB_ENV
+
       - name: Sign APK
         id: sign_app
-        uses: kevin-david/zipalign-sign-android-release@main
+        uses: SnapEnhance/sign-android-release@master
         with:
           releaseDirectory: manager/build/outputs/apk/release/
           signingKeyBase64: ${{ secrets.JAVA_KEYSTORE_DATA }}
           alias: ${{ secrets.KEY_ALIAS }}
           keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
           keyPassword: ${{ secrets.KEY_PASSWORD }}
-
-      - name: Delete unsigned file
-        run: |
-          cd manager/build/outputs/apk/release/
-          shopt -s extglob
-          rm !(*-signed*)
+        env:
+          BUILD_TOOLS_VERSION: ${{ env.BUILD_TOOL_VERSION }}
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: manager
-          path: manager/build/outputs/apk/release/*.apk
+          path: ${{steps.sign_app.outputs.signedReleaseFile}}
 
   job_release:
     runs-on: ubuntu-latest
@@ -203,24 +203,21 @@ jobs:
         with:
           submodules: 'recursive'
 
-      - name: set up JDK 17
+      - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
+          java-version: '21'
           distribution: 'temurin'
           cache: gradle
 
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
 
-      - name: Generate version
-        run: ./gradlew getVersion
-
-      - name: Set Environment Variables
+      - name: Get current build version
         id: version-env
         run: |
+          ./gradlew getVersion
           echo "version=$(cat app/build/version.txt)" >> $GITHUB_ENV
-          echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
 
       - name: Download artifacts
         uses: actions/download-artifact@v4
@@ -229,9 +226,9 @@ jobs:
           merge-multiple: true
 
       - name: Publish APK
-        uses: marvinpinto/action-automatic-releases@latest
+        uses: softprops/action-gh-release@v2
         with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
+          token: ${{ secrets.GITHUB_TOKEN }}
           prerelease: ${{ inputs.prerelease }}
           files: bins/*.apk
-          automatic_release_tag: v${{ env.version }}
+          tag_name: v${{ env.version }}

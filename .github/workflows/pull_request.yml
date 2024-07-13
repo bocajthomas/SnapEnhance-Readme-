@@ -12,10 +12,10 @@ jobs:
         with:
           submodules: 'recursive'
 
-      - name: set up JDK 17
+      - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
+          java-version: '21'
           distribution: 'temurin'
           cache: gradle
 
@@ -28,22 +28,15 @@ jobs:
       - name: Build
         run: ./gradlew assembleArmv8Debug
 
-      - name: Build Version
-        run: ./gradlew getVersion
-
-      - name: Set Environment Variables
+      - name: Get current build version
         id: version-env
         run: |
+          ./gradlew getVersion
           echo "version=$(cat app/build/version.txt)" >> $GITHUB_ENV
-          echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
-
-      - name: Git branch name
-        id: git-branch-name
-        uses: EthanSK/git-branch-name-action@main
 
       - name: Rename APK file
         run: |
-          mv app/build/outputs/apk/armv8/debug/*.apk app/build/outputs/apk/armv8/debug/snapenhance-${{ env.version }}-armv8-${{ steps.version-env.outputs.sha_short }}.apk
+          mv app/build/outputs/apk/armv8/debug/*.apk app/build/outputs/apk/armv8/debug/snapenhance-${{ env.version }}-armv8-${GITHUB_SHA::7}.apk
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
@@ -59,10 +52,10 @@ jobs:
         with:
           submodules: 'recursive'
 
-      - name: set up JDK 17
+      - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
+          java-version: '21'
           distribution: 'temurin'
           cache: gradle
 
@@ -75,22 +68,15 @@ jobs:
       - name: Build
         run: ./gradlew assembleArmv7Debug
 
-      - name: Build Version
-        run: ./gradlew getVersion
-
-      - name: Set Environment Variables
+      - name: Get current build version
         id: version-env
         run: |
+          ./gradlew getVersion
           echo "version=$(cat app/build/version.txt)" >> $GITHUB_ENV
-          echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
-
-      - name: Git branch name
-        id: git-branch-name
-        uses: EthanSK/git-branch-name-action@main
 
       - name: Rename APK file
         run: |
-          mv app/build/outputs/apk/armv7/debug/*.apk app/build/outputs/apk/armv7/debug/snapenhance-${{ env.version }}-armv7-${{ steps.version-env.outputs.sha_short }}.apk
+          mv app/build/outputs/apk/armv7/debug/*.apk app/build/outputs/apk/armv7/debug/snapenhance-${{ env.version }}-armv7-${GITHUB_SHA::7}.apk
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
@@ -106,10 +92,10 @@ jobs:
         with:
           submodules: 'recursive'
 
-      - name: set up JDK 17
+      - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
+          java-version: '21'
           distribution: 'temurin'
           cache: gradle
 
@@ -122,22 +108,15 @@ jobs:
       - name: Build
         run: ./gradlew assembleAllDebug
 
-      - name: Build Version
-        run: ./gradlew getVersion
-
-      - name: Set Environment Variables
+      - name: Get current build version
         id: version-env
         run: |
+          ./gradlew getVersion
           echo "version=$(cat app/build/version.txt)" >> $GITHUB_ENV
-          echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
 
-      - name: Git branch name
-        id: git-branch-name
-        uses: EthanSK/git-branch-name-action@main
-
-      - name: Rename APK files
+      - name: Rename APK file
         run: |
-          mv app/build/outputs/apk/all/debug/*.apk app/build/outputs/apk/all/debug/snapenhance-${{ env.version }}-universal-${{ steps.version-env.outputs.sha_short }}.apk
+          mv app/build/outputs/apk/all/debug/*.apk app/build/outputs/apk/all/debug/snapenhance-${{ env.version }}-universal-${GITHUB_SHA::7}.apk
 
       - name: Upload universal
         uses: actions/upload-artifact@v4
@@ -153,10 +132,10 @@ jobs:
         with:
           submodules: 'recursive'
 
-      - name: set up JDK 17
+      - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
+          java-version: '21'
           distribution: 'temurin'
           cache: gradle
 
@@ -180,10 +159,10 @@ jobs:
         with:
           submodules: 'recursive'
 
-      - name: set up JDK 17
+      - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
-          java-version: '17'
+          java-version: '21'
           distribution: 'temurin'
           cache: gradle
 
