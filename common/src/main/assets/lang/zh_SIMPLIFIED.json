@@ -50,13 +50,25 @@
     "conversation_preview": {
         "streak_expiration": "在 {day} 天 {hour} 小时 {minute} 分钟",
         "title": "预览",
-        "unknown_user": "未知用户"
+        "unknown_user": "未知用户",
+        "total_messages": "发送/接收消息总数: {count}",
+        "no_messages": "没有找到消息!"
     },
     "profile_info": {
         "title": "配置信息",
         "display_name": "显示姓名 ",
         "added_date": "添加日期",
-        "birthday": "生日: {month} {day}"
+        "birthday": "生日: {month} {day}",
+        "first_created_username": "首次创建的用户名",
+        "mutable_username": "可变用户名",
+        "hidden_birthday": "生日: 隐藏",
+        "friendship": "友谊",
+        "add_source": "添加来源",
+        "snapchat_plus": "Snapchat Plus",
+        "snapchat_plus_state": {
+            "subscribed": "已订阅",
+            "not_subscribed": "未订阅"
+        }
     },
     "chat_export": {
         "dialog_negative_button": "取消",
@@ -1636,5 +1648,27 @@
         "unseen_toast": "标记为未见!",
         "already_seen_toast": "已经标记为已看到!",
         "already_unseen_toast": "已经标记为未见!"
+    },
+    "friendship_link_type": {
+        "mutual": "相互的",
+        "outgoing": "传出",
+        "blocked": "被阻止",
+        "deleted": "已删除",
+        "following": "下列的",
+        "suggested": "建议",
+        "incoming": "传入",
+        "incoming_follower": "即将到来的追随者"
+    },
+    "bulk_messaging_action": {
+        "choose_action_title": "选择一个动作",
+        "progress_status": "正在处理 {index} 的 {total}",
+        "selection_dialog_continue_button": "继续",
+        "confirmation_dialog": {
+            "title": "你确定吗?",
+            "message": "这将影响所有选定的好友.此操作无法撤消."
+        },
+        "actions": {
+            "remove_friends": "删除好友"
+        }
     }
 }
