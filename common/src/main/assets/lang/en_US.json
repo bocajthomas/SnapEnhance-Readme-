@@ -1438,7 +1438,7 @@
                 "hide_below_header_message_banner": "Remove Reminders to gift Snapchat Plus",
                 "hide_chat_input_bar_camera": "Remove Chat Camera Icon",
                 "hide_chat_input_bar_gallery": "Remove Chat Gallery Icon",
-                "hide_camera_zoom_factor_pill": "Remove Camera Zoom Pill"
+                "hide_send_to_recipient_bar_new_group_button": "Remove Create Group Button when sending a Snap"
             },
             "hide_story_suggestions": {
                 "hide_friend_suggestions": "Hide friend suggestions",
