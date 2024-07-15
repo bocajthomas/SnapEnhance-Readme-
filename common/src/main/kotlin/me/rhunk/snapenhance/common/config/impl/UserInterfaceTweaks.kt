@@ -109,7 +109,7 @@ class UserInterfaceTweaks : ConfigContainer() {
         "hide_below_header_message_banner",
         "hide_chat_input_bar_camera",
         "hide_chat_input_bar_gallery",
-        "hide_camera_zoom_factor_pill"
+        "hide_send_to_recipient_bar_new_group_button"
     ) { requireRestart() }
     val operaMediaQuickInfo = boolean("opera_media_quick_info") { requireRestart() }
     val oldBitmojiSelfie = unique("old_bitmoji_selfie", "2d", "3d") { requireCleanCache() }
