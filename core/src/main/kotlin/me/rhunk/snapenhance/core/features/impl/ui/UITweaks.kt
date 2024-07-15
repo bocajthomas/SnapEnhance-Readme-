@@ -166,8 +166,8 @@ class UITweaks : Feature("UITweaks", loadParams = FeatureLoadParams.ACTIVITY_CRE
                 (viewId == getId("chat_input_bar_camera", "id") && hiddenElements.contains("hide_chat_input_bar_camera")) ||
                 (viewId == getId("chat_input_bar_gallery", "id") && hiddenElements.contains("hide_chat_input_bar_gallery")) || 
                 (viewId == getId("billboard_prompt", "id") && hiddenElements.contains("hide_billboard_prompt")) || 
-                (viewId == getId("hide_below_header_message_banner_text", "id") || viewId == getId("hide_below_header_message_banner", "id")) && hiddenElements.contains("hide_below_header_message_banner") ||
-                (viewId == getId("camera_zoom_factor_pill", "id") && hiddenElements.contains("hide_camera_zoom_factor_pill"))    
+                (viewId == getId("below_header_message_banner_text", "id") || viewId == getId("below_header_message_banner", "id")) && hiddenElements.contains("hide_below_header_message_banner") ||
+                (viewId == getId("send_to_recipient_bar_new_group_button", "id") && hiddenElements.contains("hide_send_to_recipient_bar_new_group_button"))    
             ) {
                 hideView(view)
             }
