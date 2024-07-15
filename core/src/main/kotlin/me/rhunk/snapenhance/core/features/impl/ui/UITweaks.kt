@@ -64,6 +64,9 @@ class UITweaks : Feature("UITweaks", loadParams = FeatureLoadParams.ACTIVITY_CRE
         val unreadHintButton = getId("unread_hint_button", "id")
         val friendCardFrame = getId("friend_card_frame", "id")
 
+        val explorerActionIcon = getId("explorer_action_icon", "id")
+        val explorerActionText = getId("explorer_action_text", "id")
+
         View::class.java.hook("setVisibility", HookStage.BEFORE) { methodParam ->
             val viewId = (methodParam.thisObject() as View).id
             if (viewId == callButton1 || viewId == callButton2) {
@@ -167,7 +170,9 @@ class UITweaks : Feature("UITweaks", loadParams = FeatureLoadParams.ACTIVITY_CRE
                 (viewId == getId("chat_input_bar_gallery", "id") && hiddenElements.contains("hide_chat_input_bar_gallery")) || 
                 (viewId == getId("billboard_prompt", "id") && hiddenElements.contains("hide_billboard_prompt")) || 
                 (viewId == getId("below_header_message_banner_text", "id") || viewId == getId("below_header_message_banner", "id")) && hiddenElements.contains("hide_below_header_message_banner") ||
-                (viewId == getId("send_to_recipient_bar_new_group_button", "id") && hiddenElements.contains("hide_send_to_recipient_bar_new_group_button"))    
+                (viewId == getId("send_to_recipient_bar_new_group_button", "id") && hiddenElements.contains("hide_send_to_recipient_bar_new_group_button")) ||    
+                (viewId == getId("ngs_spotlight_icon_container", "id") && hiddenElements.contains("hide_ngs_spotlight_icon_container")) ||
+                (viewId == explorerActionIcon || viewId == explorerActionText) && hiddenElements.contains("hide_explorer_action") // Add this line
             ) {
                 hideView(view)
             }
