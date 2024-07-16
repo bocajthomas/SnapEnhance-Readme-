@@ -18,7 +18,6 @@ class UserInterfaceTweaks : ConfigContainer() {
         val amount = integer("amount", defaultValue = 1)
     }
 
-
     class ColorsConfig : ConfigContainer() {
         val textColor = color("text_color")
         val chatChatTextColor = color("chat_chat_text_color")
@@ -103,9 +102,14 @@ class UserInterfaceTweaks : ConfigContainer() {
         "hide_stickers_button",
         "hide_live_location_share_button",
         "hide_chat_call_buttons",
+        "hide_chat_camera_button",
+        "hide_chat_gallery_button",
         "hide_profile_call_buttons",
         "hide_unread_chat_hint",
         "hide_post_to_story_buttons",
+        "hide_snap_create_group_buttons",
+        "hide_explorer_token_button",
+        "hide_gift_snapchat_plus_reminders"
     ) { requireRestart() }
     val operaMediaQuickInfo = boolean("opera_media_quick_info") { requireRestart() }
     val oldBitmojiSelfie = unique("old_bitmoji_selfie", "2d", "3d") { requireCleanCache() }

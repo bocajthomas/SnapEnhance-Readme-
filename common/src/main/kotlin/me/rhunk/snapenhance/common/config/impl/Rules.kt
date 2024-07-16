@@ -19,6 +19,7 @@ class Rules : ConfigContainer() {
                 customTranslationPath = "rules.properties.${ruleType.key}"
                 customOptionTranslationPath = "rules.modes"
                 addNotices(*ruleType.configNotices)
+                requireRestart()
             }.apply {
                 set(ruleType.defaultValue)
             }
