@@ -1428,17 +1428,17 @@
             },
             "hide_ui_components": {
                 "hide_profile_call_buttons": "Remove Profile Call Buttons",
+                "hide_snap_create_group_buttons": "Remove Snap Create Group Buttons",
                 "hide_chat_call_buttons": "Remove Chat Call Buttons",
+                "hide_chat_camera_button": "Remove Chat Camera Button",
+                "hide_chat_gallery_button": "Remove Chat Gallery Button",
+                "hide_explorer_token_button": "Remove Explorer Token Button",
                 "hide_live_location_share_button": "Remove Live Location Share Button",
                 "hide_stickers_button": "Remove Stickers Button",
                 "hide_voice_record_button": "Remove Voice Record Button",
                 "hide_unread_chat_hint": "Remove Unread Chat Hint",
                 "hide_post_to_story_buttons": "Remove Post to Story Buttons",
-                "hide_below_header_message_banner": "Remove Reminders to gift Snapchat Plus",
-                "hide_chat_input_bar_camera": "Remove Chat Camera Icon",
-                "hide_chat_input_bar_gallery": "Remove Chat Gallery Icon",
-                "hide_send_to_recipient_bar_new_group_button": "Remove Create Group Button when sending a Snap",
-                "hide_explorer_action": "Remove Tokens Icon in Explorer"
+                "hide_gift_snapchat_plus_reminders": "Remove Gift Snapchat Plus Reminders"
             },
             "hide_story_suggestions": {
                 "hide_friend_suggestions": "Hide friend suggestions",

@@ -64,9 +64,6 @@ class UITweaks : Feature("UITweaks", loadParams = FeatureLoadParams.ACTIVITY_CRE
         val unreadHintButton = getId("unread_hint_button", "id")
         val friendCardFrame = getId("friend_card_frame", "id")
 
-        val explorerActionIcon = getId("explorer_action_icon", "id")
-        val explorerActionText = getId("explorer_action_text", "id")
-
         View::class.java.hook("setVisibility", HookStage.BEFORE) { methodParam ->
             val viewId = (methodParam.thisObject() as View).id
             if (viewId == callButton1 || viewId == callButton2) {
@@ -163,15 +160,15 @@ class UITweaks : Feature("UITweaks", loadParams = FeatureLoadParams.ACTIVITY_CRE
 
             if (
                 ((viewId == getId("post_tool", "id") || viewId == getId("story_button", "id")) && hiddenElements.contains("hide_post_to_story_buttons")) ||
-                (viewId == chatNoteRecordButton && hiddenElements.contains("hide_voice_record_button")) ||
+                ((viewId == getId("below_header_message_banner_text", "id") || viewId == getId("below_header_message_banner", "id")) && hiddenElements.contains("hide_gift_snapchat_plus_reminders")) ||
+                ((viewId == getId("explorer_action_icon", "id") || viewId == getId("explorer_action_text", "id")) && hiddenElements.contains("hide_explorer_token_button")) ||
                 (viewId == getId("chat_input_bar_sticker", "id") && hiddenElements.contains("hide_stickers_button")) ||
                 (viewId == getId("chat_input_bar_sharing_drawer_button", "id") && hiddenElements.contains("hide_live_location_share_button")) ||
-                (viewId == getId("chat_input_bar_camera", "id") && hiddenElements.contains("hide_chat_input_bar_camera")) || 
-                (viewId == getId("chat_input_bar_gallery", "id") && hiddenElements.contains("hide_chat_input_bar_gallery")) || 
-                (viewId == callButtonsStub && hiddenElements.contains("hide_chat_call_buttons")) ||
-                ((viewId == getId("below_header_message_banner_text", "id") || viewId == getId("below_header_message_banner", "id")) && hiddenElements.contains("hide_below_header_message_banner")) ||
-                (viewId == getId("send_to_recipient_bar_new_group_button", "id") && hiddenElements.contains("hide_send_to_recipient_bar_new_group_button")) ||    
-                (viewId == explorerActionIcon || viewId == explorerActionText) && hiddenElements.contains("hide_explorer_action")
+                (viewId == getId("chat_input_bar_camera", "id") && hiddenElements.contains("hide_chat_camera_button")) ||
+                (viewId == getId("chat_input_bar_gallery", "id") && hiddenElements.contains("hide_chat_gallery_button")) ||
+                (viewId == getId("send_to_recipient_bar_new_group_button", "id") && hiddenElements.contains("hide_snap_create_group_buttons")) ||
+                (viewId == chatNoteRecordButton && hiddenElements.contains("hide_voice_record_button")) ||
+                (viewId == callButtonsStub && hiddenElements.contains("hide_chat_call_buttons"))
             ) {
                 hideView(view)
             }
