@@ -1474,7 +1474,12 @@
                 "hide_stickers_button": "স্টিকার বোতাম অপসারণ করুন",
                 "hide_voice_record_button": "ভয়েস রেকর্ড বোতাম অপসারণ করুন",
                 "hide_unread_chat_hint": "অপঠিত চ্যাটের সংকেত অপসারণ করুন",
-                "hide_post_to_story_buttons": "স্ন্যাপ পাঠানোর আগে স্টোরি পোস্ট বোতাম সরান"
+                "hide_post_to_story_buttons": "স্টোরিতে পোস্ট করার বোতামগুলি সরান",
+                "hide_snap_create_group_buttons": "স্ন্যাপ গ্রুপ তৈরি বোতামগুলি সরান",
+                "hide_chat_camera_button": "চ্যাট ক্যামেরা বোতাম সরান",
+                "hide_explorer_token_button": "এক্সপ্লোরার টোকেন বোতাম সরান",
+                "hide_gift_snapchat_plus_reminders": "গিফট স্ন্যাপচ্যাট প্লাস অনুস্মারকগুলি সরান",
+                "hide_chat_gallery_button": "চ্যাট গ্যালারি বোতাম সরান"
             },
             "strip_media_metadata": {
                 "remove_audio_note_transcript_capability": "অডিও নোট ট্রান্সক্রিপ্ট ক্ষমতা অপসারণ করুন",
