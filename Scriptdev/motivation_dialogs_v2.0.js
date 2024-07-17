@@ -1,7 +1,7 @@
 // ==SE_module==
-// name: motivation_toast
-// displayName: Motivation Toast
-// description: A Script that shows a random motivation quote toast on the startup of Snapchat.
+// name: motivation_dialogs
+// displayName: Motivation Dialogs
+// description: A Script that shows a random motivation quote dialog on the startup of Snapchat.
 // version: 2.0
 // author: Suryadip Sarkar , Jacob Thomas
 // credits: Gabriel Modz & Jimothy
