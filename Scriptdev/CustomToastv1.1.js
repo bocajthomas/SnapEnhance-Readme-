@@ -2,8 +2,8 @@
 // name: custom_toast
 // displayName: Custom Toast
 // description: A Script that shows a custom toast on the startup of Snapchat.
-// version: 1.0
-// author: Gabe Modz & Jacob Thomas 
+// version: 1.1
+// author: Gabriel Modz & Jacob Thomas & Jimothy
 // ==/SE_module==
 
 var networking = require("networking");
@@ -19,12 +19,12 @@ var settingsContext = {
         events: [],
 };
 
-var defaultPrompt = "Type You're Welcome Message";
+var defaultPrompt = "Welcome back to Snapchat";
 function createManagerToolBoxUI() {
     settingsContext.events.push({
         start: function (builder) {
             builder.row(function (builder) {
-                builder.textInput("Type You're Welcome Message", config.get("customPrompt", defaultPrompt), function (value) {
+                builder.textInput("Type a Custom Toast here", config.get("customPrompt", defaultPrompt), function (value) {
                     config.set("customPrompt", value, true);
                 }) .maxLines(8)
                    .singleLine(false);
@@ -34,8 +34,8 @@ function createManagerToolBoxUI() {
 }
   
 module.onSnapMainActivityCreate = activity => {
-        const customPrompt = String(config.get("customPrompt")) || "Type You're Welcome Message";
-        shortToast(customPrompt);
+        const customPrompt = String(config.get("customPrompt")) || "Welcome back to Snapchat";
+        longToast(customPrompt);
 }
 function createInterface() {
         createManagerToolBoxUI();
