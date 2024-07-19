@@ -82,7 +82,7 @@ class SnapEnhance {
                     buildString {
                         append("Snapchat timed out while trying to connect to SE Extended\n\n")
                         append("Make sure you:\n")
-                        append(" - Have installed the latest SE Extended version (https://github.com/bocajthomas/SE_Extended)\n")
+                        append(" - Have installed the latest SE Extended version (https://github.com/bocajthomas/SE-Extended)\n")
                         append(" - Disabled battery optimizations\n")
                         append(" - Excluded SE Extended and Snapchat in HideMyApplist")
                     },
