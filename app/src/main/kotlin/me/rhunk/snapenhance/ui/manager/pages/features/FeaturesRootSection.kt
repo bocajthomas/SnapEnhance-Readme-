@@ -40,6 +40,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import me.rhunk.snapenhance.common.config.*
 import me.rhunk.snapenhance.common.ui.rememberAsyncMutableStateList
+import me.rhunk.snapenhance.common.ui.transparentTextFieldColors
 import me.rhunk.snapenhance.ui.manager.MainActivity
 import me.rhunk.snapenhance.ui.manager.Routes
 import me.rhunk.snapenhance.ui.util.*
@@ -177,11 +178,15 @@ class FeaturesRootSection : Routes.Route() {
                         .fillMaxWidth(),
                 ) {
                     LazyColumn(
-                        modifier = Modifier.fillMaxWidth().padding(4.dp),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(4.dp),
                     ) {
                         item {
                             Column(
-                                modifier = Modifier.fillMaxWidth().padding(16.dp),
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(16.dp),
                                 horizontalAlignment = Alignment.CenterHorizontally
                             ) {
                                 Text(
@@ -200,10 +205,13 @@ class FeaturesRootSection : Routes.Route() {
                         }
                         items(files, key = { it.name }) { file ->
                             Row(
-                                modifier = Modifier.clickable {
-                                    selectedFile = if (selectedFile == file.name) null else file.name
-                                    propertyValue.setAny(selectedFile)
-                                }.padding(5.dp),
+                                modifier = Modifier
+                                    .clickable {
+                                        selectedFile =
+                                            if (selectedFile == file.name) null else file.name
+                                        propertyValue.setAny(selectedFile)
+                                    }
+                                    .padding(5.dp),
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
                                 Icon(Icons.Filled.AttachFile, contentDescription = null, modifier = Modifier.padding(5.dp))
@@ -321,23 +329,13 @@ class FeaturesRootSection : Routes.Route() {
 
             DataProcessors.Type.INT_COLOR -> {
                 dialogComposable = {
-                    alertDialogs.ColorPickerDialog(property) {
+                    alertDialogs.ColorPickerPropertyDialog(property) {
                         showDialog = false
                     }
                 }
 
                 registerDialogOnClickCallback().let { { it.invoke(true) } }.also {
-                    val selectedColor = (propertyValue.getNullable() as? Int)?.let { Color(it) }
-                    AlphaTile(
-                        modifier = Modifier
-                            .size(30.dp)
-                            .border(2.dp, Color.White, shape = RoundedCornerShape(15.dp))
-                            .clip(RoundedCornerShape(15.dp)),
-                        selectedColor = selectedColor ?: Color.Transparent,
-                        tileEvenColor = selectedColor?.let { Color(0xFFCBCBCB) } ?: Color.Transparent,
-                        tileOddColor = selectedColor?.let { Color.White } ?: Color.Transparent,
-                        tileSize = 8.dp,
-                    )
+                    CircularAlphaTile(selectedColor = (propertyValue.getNullable() as? Int)?.let { Color(it) })
                 }
             }
 
@@ -489,14 +487,7 @@ class FeaturesRootSection : Routes.Route() {
                     .padding(end = 10.dp)
                     .height(70.dp),
                 singleLine = true,
-                colors = TextFieldDefaults.colors(
-                    unfocusedContainerColor = MaterialTheme.colorScheme.surface,
-                    focusedContainerColor = MaterialTheme.colorScheme.surface,
-                    focusedIndicatorColor = Color.Transparent,
-                    unfocusedIndicatorColor = Color.Transparent,
-                    disabledIndicatorColor = Color.Transparent,
-                    cursorColor = MaterialTheme.colorScheme.primary
-                )
+                colors = transparentTextFieldColors()
             )
         }
     }

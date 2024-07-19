@@ -7,12 +7,11 @@ import android.net.Network
 import android.net.NetworkCapabilities
 import android.os.Build
 import me.rhunk.snapenhance.core.features.Feature
-import me.rhunk.snapenhance.core.features.FeatureLoadParams
 import me.rhunk.snapenhance.core.util.LSPatchUpdater
 import me.rhunk.snapenhance.core.util.hook.HookStage
 import me.rhunk.snapenhance.core.util.hook.hook
 
-class DeviceSpooferHook: Feature("device_spoofer", loadParams = FeatureLoadParams.INIT_SYNC)  {
+class DeviceSpooferHook: Feature("Device Spoofer")  {
 	private fun hookInstallerPackageName() {
 		context.androidContext.packageManager::class.java.hook("getInstallerPackageName", HookStage.BEFORE) { param ->
 			param.setResult("com.android.vending")

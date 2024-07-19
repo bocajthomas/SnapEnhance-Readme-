@@ -1,33 +1,39 @@
 package me.rhunk.snapenhance.core.features
 
+import android.app.Activity
+import kotlinx.coroutines.launch
 import me.rhunk.snapenhance.core.ModContext
 
 abstract class Feature(
-    val featureKey: String,
-    val loadParams: Int = FeatureLoadParams.INIT_SYNC
+    val key: String
 ) {
     lateinit var context: ModContext
+    lateinit var registerNextActivityCallback: ((Activity) -> Unit) -> Unit
 
-    /**
-     * called on the main thread when the mod initialize
-     */
+    protected fun defer(block: () -> Unit) {
+        context.coroutineScope.launch {
+            runCatching {
+                block()
+            }.onFailure {
+                context.log.error("Failed to run onNextActivityCreate callback", it)
+            }
+        }
+    }
+
+    protected fun onNextActivityCreate(defer: Boolean = false, block: (Activity) -> Unit) {
+        if (defer) {
+            registerNextActivityCallback {
+                defer {
+                    block(it)
+                }
+            }
+            return
+        }
+        registerNextActivityCallback(block)
+    }
+
     open fun init() {}
 
-    /**
-     * called on a dedicated thread when the mod initialize
-     */
-    open fun asyncInit() {}
-
-    /**
-     * called when the Snapchat Activity is created
-     */
-    open fun onActivityCreate() {}
-
-
-    /**
-     * called on a dedicated thread when the Snapchat Activity is created
-     */
-    open fun asyncOnActivityCreate() {}
 
     protected fun findClass(name: String): Class<*> {
         return context.androidContext.classLoader.loadClass(name)

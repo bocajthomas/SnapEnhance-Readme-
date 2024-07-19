@@ -25,7 +25,6 @@ import me.rhunk.snapenhance.common.util.protobuf.ProtoReader
 import me.rhunk.snapenhance.core.event.events.impl.AddViewEvent
 import me.rhunk.snapenhance.core.event.events.impl.UnaryCallEvent
 import me.rhunk.snapenhance.core.features.Feature
-import me.rhunk.snapenhance.core.features.FeatureLoadParams
 import me.rhunk.snapenhance.core.util.RandomWalking
 import me.rhunk.snapenhance.core.util.hook.HookStage
 import me.rhunk.snapenhance.core.util.hook.hook
@@ -44,7 +43,7 @@ data class FriendLocation(
     val localityPieces: List<String>
 )
 
-class BetterLocation : Feature("Better Location", loadParams = FeatureLoadParams.INIT_SYNC) {
+class BetterLocation : Feature("Better Location") {
     private val locationHistory = mutableMapOf<String, FriendLocation>()
 
     private val walkRadius by lazy {

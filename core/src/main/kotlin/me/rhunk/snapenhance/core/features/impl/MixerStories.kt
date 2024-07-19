@@ -7,13 +7,13 @@ import me.rhunk.snapenhance.common.data.StoryData
 import me.rhunk.snapenhance.common.util.protobuf.ProtoEditor
 import me.rhunk.snapenhance.core.event.events.impl.NetworkApiRequestEvent
 import me.rhunk.snapenhance.core.features.Feature
-import me.rhunk.snapenhance.core.features.FeatureLoadParams
+
 import java.nio.ByteBuffer
 import kotlin.coroutines.suspendCoroutine
 import kotlin.io.encoding.Base64
 import kotlin.io.encoding.ExperimentalEncodingApi
 
-class MixerStories : Feature("MixerStories", loadParams = FeatureLoadParams.INIT_SYNC) {
+class MixerStories : Feature("MixerStories") {
     @OptIn(ExperimentalEncodingApi::class)
     override fun init() {
         val disableDiscoverSections by context.config.global.disableStorySections

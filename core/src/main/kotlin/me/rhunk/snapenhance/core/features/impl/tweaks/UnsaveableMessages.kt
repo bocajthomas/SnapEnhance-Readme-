@@ -5,14 +5,12 @@ import me.rhunk.snapenhance.common.data.MessagingRuleType
 import me.rhunk.snapenhance.common.util.protobuf.ProtoEditor
 import me.rhunk.snapenhance.common.util.protobuf.ProtoReader
 import me.rhunk.snapenhance.core.event.events.impl.NativeUnaryCallEvent
-import me.rhunk.snapenhance.core.features.FeatureLoadParams
 import me.rhunk.snapenhance.core.features.MessagingRuleFeature
 import me.rhunk.snapenhance.core.wrapper.impl.SnapUUID
 
 class UnsaveableMessages : MessagingRuleFeature(
     "Unsaveable Messages",
-    MessagingRuleType.UNSAVEABLE_MESSAGES,
-    loadParams = FeatureLoadParams.INIT_SYNC
+    MessagingRuleType.UNSAVEABLE_MESSAGES
 ) {
     override fun init() {
         if (context.config.rules.getRuleState(MessagingRuleType.UNSAVEABLE_MESSAGES) == null) return

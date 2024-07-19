@@ -5,12 +5,11 @@ import me.rhunk.snapenhance.common.util.protobuf.ProtoEditor
 import me.rhunk.snapenhance.core.event.events.impl.NativeUnaryCallEvent
 import me.rhunk.snapenhance.core.event.events.impl.SendMessageWithContentEvent
 import me.rhunk.snapenhance.core.features.Feature
-import me.rhunk.snapenhance.core.features.FeatureLoadParams
 import me.rhunk.snapenhance.core.util.hook.HookStage
 import me.rhunk.snapenhance.core.util.hook.hook
 
-class PreventMessageSending : Feature("Prevent message sending", loadParams = FeatureLoadParams.ACTIVITY_CREATE_ASYNC) {
-    override fun asyncOnActivityCreate() {
+class PreventMessageSending : Feature("Prevent message sending") {
+    override fun init() {
         val preventMessageSending by context.config.messaging.preventMessageSending
 
         context.event.subscribe(NativeUnaryCallEvent::class, { preventMessageSending.contains("snap_replay") }) { event ->

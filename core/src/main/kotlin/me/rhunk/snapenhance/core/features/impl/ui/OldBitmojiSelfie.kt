@@ -4,9 +4,8 @@ import android.net.Uri
 import me.rhunk.snapenhance.common.util.snap.BitmojiSelfie
 import me.rhunk.snapenhance.core.event.events.impl.NetworkApiRequestEvent
 import me.rhunk.snapenhance.core.features.Feature
-import me.rhunk.snapenhance.core.features.FeatureLoadParams
 
-class OldBitmojiSelfie : Feature("OldBitmojiSelfie", loadParams = FeatureLoadParams.INIT_SYNC) {
+class OldBitmojiSelfie : Feature("OldBitmojiSelfie") {
     override fun init() {
         val urlPrefixes = arrayOf("https://images.bitmoji.com/3d/render/", "https://cf-st.sc-cdn.net/3d/render/")
         val oldBitmojiSelfie = context.config.userInterface.oldBitmojiSelfie.getNullable() ?: return

@@ -13,7 +13,6 @@ typedef struct {
     bool disable_bitmoji;
     bool disable_metrics;
     bool composer_hooks;
-    bool remap_executable;
     char custom_emoji_font_path[256];
 } native_config_t;
 

@@ -22,11 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.net.toUri
 import androidx.navigation.NavBackStackEntry
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.asCoroutineDispatcher
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import me.rhunk.snapenhance.common.scripting.type.ModuleInfo
 import me.rhunk.snapenhance.common.scripting.ui.EnumScriptInterface
 import me.rhunk.snapenhance.common.scripting.ui.InterfaceManager
@@ -34,6 +30,7 @@ import me.rhunk.snapenhance.common.scripting.ui.ScriptInterface
 import me.rhunk.snapenhance.common.ui.AsyncUpdateDispatcher
 import me.rhunk.snapenhance.common.ui.rememberAsyncMutableState
 import me.rhunk.snapenhance.common.ui.rememberAsyncUpdateDispatcher
+import me.rhunk.snapenhance.common.util.ktx.getUrlFromClipboard
 import me.rhunk.snapenhance.storage.isScriptEnabled
 import me.rhunk.snapenhance.storage.setScriptEnabled
 import me.rhunk.snapenhance.ui.manager.Routes
@@ -101,6 +98,11 @@ class ScriptingRootSection : Routes.Route() {
                                 focusRequester.requestFocus()
                             }
                     )
+                    LaunchedEffect(Unit) {
+                        context.androidContext.getUrlFromClipboard()?.let {
+                            url = it
+                        }
+                    }
                     Spacer(modifier = Modifier.height(8.dp))
                     Button(
                         enabled = url.isNotBlank(),

@@ -34,7 +34,6 @@ import me.rhunk.snapenhance.common.scripting.ui.ScriptInterface
 import me.rhunk.snapenhance.common.ui.createComposeAlertDialog
 import me.rhunk.snapenhance.core.event.events.impl.AddViewEvent
 import me.rhunk.snapenhance.core.features.Feature
-import me.rhunk.snapenhance.core.features.FeatureLoadParams
 import me.rhunk.snapenhance.core.features.impl.messaging.Messaging
 import me.rhunk.snapenhance.core.util.ktx.getId
 
@@ -45,7 +44,7 @@ data class ComposableMenu(
     val composable: @Composable (alertDialog: AlertDialog, conversationId: String) -> Unit,
 )
 
-class ConversationToolbox : Feature("Conversation Toolbox", loadParams = FeatureLoadParams.ACTIVITY_CREATE_SYNC) {
+class ConversationToolbox : Feature("Conversation Toolbox") {
     private val composableList = mutableListOf<ComposableMenu>()
     private val expandedComposableCache = mutableStateMapOf<String, Boolean>()
 
@@ -56,49 +55,51 @@ class ConversationToolbox : Feature("Conversation Toolbox", loadParams = Feature
     }
 
     @SuppressLint("SetTextI18n")
-    override fun onActivityCreate() {
-        val defaultInputBarId = context.resources.getId("default_input_bar")
+    override fun init() {
+        onNextActivityCreate {
+            val defaultInputBarId = context.resources.getId("default_input_bar")
 
-        context.event.subscribe(AddViewEvent::class) { event ->
-            if (event.view.id != defaultInputBarId) return@subscribe
-            if (composableList.isEmpty()) return@subscribe
+            context.event.subscribe(AddViewEvent::class) { event ->
+                if (event.view.id != defaultInputBarId) return@subscribe
+                if (composableList.isEmpty()) return@subscribe
 
-            (event.view as ViewGroup).addView(FrameLayout(event.view.context).apply {
-                layoutParams = LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.WRAP_CONTENT,
-                    (52 * context.resources.displayMetrics.density).toInt(),
-                ).apply {
-                    gravity = Gravity.BOTTOM
-                }
-                setPadding(25, 0, 25, 0)
-
-                addView(TextView(event.view.context).apply {
-                    layoutParams = FrameLayout.LayoutParams(
+                (event.view as ViewGroup).addView(FrameLayout(event.view.context).apply {
+                    layoutParams = LinearLayout.LayoutParams(
                         ViewGroup.LayoutParams.WRAP_CONTENT,
-                        ViewGroup.LayoutParams.WRAP_CONTENT,
+                        (52 * context.resources.displayMetrics.density).toInt(),
                     ).apply {
-                        gravity = Gravity.CENTER_VERTICAL
+                        gravity = Gravity.BOTTOM
                     }
-                    setOnClickListener {
-                        openToolbox()
-                    }
-                    textSize = 21f
-                    text = "\uD83E\uDDF0"
-                })
-            })
-        }
+                    setPadding(25, 0, 25, 0)
 
-        context.scriptRuntime.eachModule {
-            val interfaceManager = getBinding(InterfaceManager::class)?.takeIf {
-                it.hasInterface(EnumScriptInterface.CONVERSATION_TOOLBOX)
-            } ?: return@eachModule
-            addComposable("\uD83D\uDCDC ${moduleInfo.displayName}") { alertDialog, conversationId ->
-                ScriptInterface(remember {
-                    interfaceManager.buildInterface(EnumScriptInterface.CONVERSATION_TOOLBOX, mapOf(
-                        "alertDialog" to alertDialog,
-                        "conversationId" to conversationId,
-                    ))
-                } ?: return@addComposable)
+                    addView(TextView(event.view.context).apply {
+                        layoutParams = FrameLayout.LayoutParams(
+                            ViewGroup.LayoutParams.WRAP_CONTENT,
+                            ViewGroup.LayoutParams.WRAP_CONTENT,
+                        ).apply {
+                            gravity = Gravity.CENTER_VERTICAL
+                        }
+                        setOnClickListener {
+                            openToolbox()
+                        }
+                        textSize = 21f
+                        text = "\uD83E\uDDF0"
+                    })
+                })
+            }
+
+            context.scriptRuntime.eachModule {
+                val interfaceManager = getBinding(InterfaceManager::class)?.takeIf {
+                    it.hasInterface(EnumScriptInterface.CONVERSATION_TOOLBOX)
+                } ?: return@eachModule
+                addComposable("\uD83D\uDCDC ${moduleInfo.displayName}") { alertDialog, conversationId ->
+                    ScriptInterface(remember {
+                        interfaceManager.buildInterface(EnumScriptInterface.CONVERSATION_TOOLBOX, mapOf(
+                            "alertDialog" to alertDialog,
+                            "conversationId" to conversationId,
+                        ))
+                    } ?: return@addComposable)
+                }
             }
         }
     }

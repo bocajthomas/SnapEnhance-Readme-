@@ -360,12 +360,11 @@ class AlertDialogs(
 
     @Composable
     fun ColorPickerDialog(
-        property: PropertyPair<*>,
-        dismiss: () -> Unit = {},
+        initialColor: Color?,
+        setProperty: (Color?) -> Unit,
+        dismiss: () -> Unit
     ) {
-        var currentColor by remember {
-            mutableStateOf((property.value.getNullable() as? Int)?.let { Color(it) })
-        }
+        var currentColor by remember { mutableStateOf(initialColor) }
 
         DefaultDialogCard {
             val controller = remember { ColorPickerController().apply {
@@ -389,7 +388,7 @@ class AlertDialogs(
                         runCatching {
                             currentColor = Color(android.graphics.Color.parseColor("#$value")).also {
                                 controller.selectByColor(it, true)
-                                property.value.setAny(it.toArgb())
+                                setProperty(it)
                             }
                         }.onFailure {
                             currentColor = null
@@ -417,7 +416,7 @@ class AlertDialogs(
                     if (!it.fromUser) return@HsvColorPicker
                     currentColor = it.color
                     colorHexValue = Integer.toHexString(it.color.toArgb())
-                    property.value.setAny(it.color.toArgb())
+                    setProperty(it.color)
                 }
             )
             AlphaSlider(
@@ -450,7 +449,7 @@ class AlertDialogs(
                     controller = controller
                 )
                 IconButton(onClick = {
-                    property.value.setAny(null)
+                    setProperty(null)
                     dismiss()
                 }) {
                     Icon(
@@ -461,6 +460,25 @@ class AlertDialogs(
                 }
             }
         }
+    }
+
+    @Composable
+    fun ColorPickerPropertyDialog(
+        property: PropertyPair<*>,
+        dismiss: () -> Unit = {},
+    ) {
+        var currentColor by remember {
+            mutableStateOf((property.value.getNullable() as? Int)?.let { Color(it) })
+        }
+
+        ColorPickerDialog(
+            initialColor = currentColor,
+            setProperty = {
+                currentColor = it
+                property.value.setAny(it?.toArgb())
+            },
+            dismiss = dismiss
+        )
     }
 
     @Composable

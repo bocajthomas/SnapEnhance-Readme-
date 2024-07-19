@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.core.content.res.use
 import me.rhunk.snapenhance.common.ui.createComposeView
 import me.rhunk.snapenhance.core.features.impl.OperaViewerParamsOverride
 import me.rhunk.snapenhance.core.features.impl.downloader.MediaDownloader
@@ -170,7 +171,7 @@ class OperaContextActionMenu : AbstractMenu() {
                             color = remember {
                                 view.context.theme.obtainStyledAttributes(
                                     intArrayOf(view.context.resources.getIdentifier("sigColorTextPrimary", "attr"))
-                                ).getColor(0, 0).let { Color(it) }
+                                ).use { Color(it.getColor(0, 0)) }
                             },
                             textAlign = TextAlign.Center,
                             modifier = Modifier.fillMaxWidth()

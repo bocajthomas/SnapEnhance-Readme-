@@ -18,18 +18,13 @@ import me.rhunk.snapenhance.common.util.protobuf.ProtoReader
 import me.rhunk.snapenhance.core.event.events.impl.BindViewEvent
 import me.rhunk.snapenhance.core.event.events.impl.BuildMessageEvent
 import me.rhunk.snapenhance.core.features.Feature
-import me.rhunk.snapenhance.core.features.FeatureLoadParams
 import me.rhunk.snapenhance.core.ui.addForegroundDrawable
 import me.rhunk.snapenhance.core.ui.removeForegroundDrawable
 import me.rhunk.snapenhance.core.util.EvictingMap
 import java.util.concurrent.Executors
 import kotlin.system.measureTimeMillis
 
-class MessageLogger : Feature("MessageLogger",
-    loadParams = FeatureLoadParams.INIT_SYNC or
-        FeatureLoadParams.ACTIVITY_CREATE_SYNC or
-        FeatureLoadParams.ACTIVITY_CREATE_ASYNC
-) {
+class MessageLogger : Feature("MessageLogger") {
     companion object {
         const val PREFETCH_MESSAGE_COUNT = 20
         const val PREFETCH_FEED_COUNT = 20
@@ -96,22 +91,19 @@ class MessageLogger : Feature("MessageLogger",
         return computeMessageIdentifier(conversationId, serverMessageId)
     }
 
-    override fun asyncOnActivityCreate() {
-        if (!isEnabled || !context.database.hasArroyo()) {
-            return
-        }
-
-        measureTimeMillis {
-            val conversationIds = context.database.getFeedEntries(PREFETCH_FEED_COUNT).map { it.key!! }
-            if (conversationIds.isEmpty()) return@measureTimeMillis
-            fetchedMessages.addAll(loggerInterface.getLoggedIds(conversationIds.toTypedArray(), PREFETCH_MESSAGE_COUNT).toList())
-        }.also { context.log.verbose("Loaded ${fetchedMessages.size} cached messages in ${it}ms") }
-    }
-
     override fun init() {
         if (!isEnabled) return
         val keepMyOwnMessages = context.config.messaging.messageLogger.keepMyOwnMessages.get()
         val messageFilter by context.config.messaging.messageLogger.messageFilter
+
+        onNextActivityCreate(defer = true) {
+            if (!context.database.hasArroyo()) return@onNextActivityCreate
+            measureTimeMillis {
+                val conversationIds = context.database.getFeedEntries(PREFETCH_FEED_COUNT).map { it.key!! }
+                if (conversationIds.isEmpty()) return@measureTimeMillis
+                fetchedMessages.addAll(loggerInterface.getLoggedIds(conversationIds.toTypedArray(), PREFETCH_MESSAGE_COUNT).toList())
+            }.also { context.log.verbose("Loaded ${fetchedMessages.size} cached messages in ${it}ms") }
+        }
 
         context.event.subscribe(BuildMessageEvent::class, priority = 1) { event ->
             val messageInstance = event.message.instanceNonNull()
@@ -183,10 +175,6 @@ class MessageLogger : Feature("MessageLogger",
 
             deletedMessageCache[uniqueMessageIdentifier] = deletedMessageObject
         }
-    }
-
-    override fun onActivityCreate() {
-        if (!isEnabled) return
 
         context.event.subscribe(BindViewEvent::class) { event ->
             event.chatMessage { conversationId, messageId ->

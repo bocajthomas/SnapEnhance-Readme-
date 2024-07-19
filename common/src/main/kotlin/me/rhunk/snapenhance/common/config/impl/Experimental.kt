@@ -31,7 +31,7 @@ class Experimental : ConfigContainer() {
         val composerLogs = boolean("composer_logs")
     }
 
-    class NativeHooks : ConfigContainer(hasGlobalState = true) {
+    class NativeHooks : ConfigContainer() {
         val composerHooks = container("composer_hooks", ComposerHooksConfig()) { requireRestart() }
         val disableBitmoji = boolean("disable_bitmoji")
         val customEmojiFont = string("custom_emoji_font") {
@@ -40,7 +40,6 @@ class Experimental : ConfigContainer() {
             addFlags(ConfigFlag.USER_IMPORT)
             filenameFilter = { it.endsWith(".ttf") }
         }
-        val remapExecutable = boolean("remap_executable") { requireRestart(); addNotices(FeatureNotice.INTERNAL_BEHAVIOR, FeatureNotice.UNSTABLE) }
     }
 
     class E2EEConfig : ConfigContainer(hasGlobalState = true) {

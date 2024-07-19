@@ -74,9 +74,12 @@ fun LogsTab(
 
     suspend fun loadNewLogs() {
         withContext(Dispatchers.IO) {
-            logs.addAll(getPaginatedLogs(pageIndex).apply {
-                pageIndex += 1
-            })
+            getPaginatedLogs(pageIndex).let {
+                withContext(Dispatchers.Main) {
+                    logs.addAll(it)
+                    pageIndex += 1
+                }
+            }
         }
     }
 

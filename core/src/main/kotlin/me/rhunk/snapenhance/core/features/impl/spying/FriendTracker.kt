@@ -12,7 +12,6 @@ import me.rhunk.snapenhance.common.util.lazyBridge
 import me.rhunk.snapenhance.common.util.protobuf.ProtoReader
 import me.rhunk.snapenhance.common.util.toParcelable
 import me.rhunk.snapenhance.core.features.Feature
-import me.rhunk.snapenhance.core.features.FeatureLoadParams
 import me.rhunk.snapenhance.core.features.impl.messaging.Messaging
 import me.rhunk.snapenhance.core.util.hook.HookStage
 import me.rhunk.snapenhance.core.util.hook.hook
@@ -23,7 +22,7 @@ import me.rhunk.snapenhance.nativelib.NativeLib
 import java.lang.reflect.Method
 import java.nio.ByteBuffer
 
-class FriendTracker : Feature("Friend Tracker", loadParams = FeatureLoadParams.INIT_SYNC) {
+class FriendTracker : Feature("Friend Tracker") {
     private val conversationPresenceState = mutableMapOf<String, MutableMap<String, FriendPresenceState?>>() // conversationId -> (userId -> state)
     private val tracker by lazyBridge { context.bridgeClient.getTracker() }
     private val notificationManager by lazy { context.androidContext.getSystemService(NotificationManager::class.java).apply {

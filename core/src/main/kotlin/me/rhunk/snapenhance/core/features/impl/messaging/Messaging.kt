@@ -7,7 +7,6 @@ import me.rhunk.snapenhance.common.ReceiversConfig
 import me.rhunk.snapenhance.core.event.events.impl.ConversationUpdateEvent
 import me.rhunk.snapenhance.core.event.events.impl.OnSnapInteractionEvent
 import me.rhunk.snapenhance.core.features.Feature
-import me.rhunk.snapenhance.core.features.FeatureLoadParams
 import me.rhunk.snapenhance.core.features.impl.spying.StealthMode
 import me.rhunk.snapenhance.core.util.EvictingMap
 import me.rhunk.snapenhance.core.util.hook.HookStage
@@ -25,7 +24,7 @@ import me.rhunk.snapenhance.mapper.impl.FriendsFeedEventDispatcherMapper
 import java.util.UUID
 import java.util.concurrent.Future
 
-class Messaging : Feature("Messaging", loadParams = FeatureLoadParams.ACTIVITY_CREATE_SYNC or FeatureLoadParams.INIT_ASYNC or FeatureLoadParams.INIT_SYNC) {
+class Messaging : Feature("Messaging") {
     var conversationManager: ConversationManager? = null
         private set
     private var conversationManagerDelegate: Any? = null
@@ -48,6 +47,7 @@ class Messaging : Feature("Messaging", loadParams = FeatureLoadParams.ACTIVITY_C
     }
 
     override fun init() {
+        val stealthMode = context.feature(StealthMode::class)
         context.classCache.conversationManager.hookConstructor(HookStage.BEFORE) { param ->
             conversationManager = ConversationManager(context, param.thisObject())
             context.messagingBridge.triggerSessionStart()
@@ -83,6 +83,80 @@ class Messaging : Feature("Messaging", loadParams = FeatureLoadParams.ACTIVITY_C
                 }
             }
         }
+
+        defer {
+            arrayOf("activate", "deactivate", "processTypingActivity").forEach { hook ->
+                context.classCache.presenceSession.hook(hook, HookStage.BEFORE, {
+                    context.config.messaging.hideBitmojiPresence.get() || stealthMode.canUseRule(openedConversationUUID.toString())
+                }) {
+                    it.setResult(null)
+                }
+            }
+
+            context.classCache.presenceSession.hook("startPeeking", HookStage.BEFORE, {
+                context.config.messaging.hidePeekAPeek.get() || stealthMode.canUseRule(openedConversationUUID.toString())
+            }) { it.setResult(null) }
+
+            //get last opened snap for media downloader
+            context.event.subscribe(OnSnapInteractionEvent::class) { event ->
+                openedConversationUUID = event.conversationId
+                lastFocusedMessageId = event.messageId
+            }
+
+            context.classCache.conversationManager.hook("fetchMessage", HookStage.BEFORE) { param ->
+                val conversationId = SnapUUID(param.arg(0)).toString()
+                if (openedConversationUUID?.toString() == conversationId) {
+                    lastFocusedMessageId = param.arg(1)
+                }
+            }
+
+            context.classCache.conversationManager.hook("sendTypingNotification", HookStage.BEFORE, {
+                context.config.messaging.hideTypingNotifications.get() || stealthMode.canUseRule(openedConversationUUID.toString())
+            }) {
+                it.setResult(null)
+            }
+        }
+
+        onNextActivityCreate {
+            context.mappings.useMapper(FriendsFeedEventDispatcherMapper::class) {
+                classReference.getAsClass()?.hook("onItemLongPress", HookStage.BEFORE) { param ->
+                    val viewItemContainer = param.arg<Any>(0)
+                    val viewItem = viewItemContainer.getObjectField(viewModelField.get()!!).toString()
+                    val conversationId = viewItem.substringAfter("conversationId: ").substring(0, 36).also {
+                        if (it.startsWith("null")) return@hook
+                    }
+                    lastFocusedConversationId = conversationId
+                    lastFocusedConversationType = context.database.getConversationType(conversationId) ?: 0
+                }
+            }
+
+            context.classCache.feedEntry.hookConstructor(HookStage.AFTER) { param ->
+                val instance = param.thisObject<Any>()
+                val interactionInfo = instance.getObjectFieldOrNull("mInteractionInfo") ?: return@hookConstructor
+                val messages = (interactionInfo.getObjectFieldOrNull("mMessages") as? List<*>)?.map { Message(it) } ?: return@hookConstructor
+                val conversationId = SnapUUID(instance.getObjectFieldOrNull("mConversationId") ?: return@hookConstructor).toString()
+                val myUserId = context.database.myUserId
+
+                feedCachedSnapMessages[conversationId] = messages.filter { msg ->
+                    msg.messageMetadata?.openedBy?.none { it.toString() == myUserId } == true
+                }.sortedBy { it.orderKey }.mapNotNull { it.messageDescriptor?.messageId }
+            }
+
+            context.classCache.conversationManager.apply {
+                hook("enterConversation", HookStage.BEFORE) { param ->
+                    openedConversationUUID = SnapUUID(param.arg(0))
+                    if (context.config.messaging.bypassMessageRetentionPolicy.get()) {
+                        val callback = param.argNullable<Any>(2) ?: return@hook
+                        callback::class.java.methods.firstOrNull { it.name == "onSuccess" }?.invoke(callback)
+                        param.setResult(null)
+                    }
+                }
+
+                hook("exitConversation", HookStage.BEFORE) {
+                    openedConversationUUID = null
+                }
+            }
+        }
     }
 
     fun getFeedCachedMessageIds(conversationId: String) = feedCachedSnapMessages[conversationId]
@@ -113,82 +187,6 @@ class Messaging : Feature("Messaging", loadParams = FeatureLoadParams.ACTIVITY_C
             it::class.java.methods.first { method ->
                 method.name == "onConversationUpdated"
             }.invoke(conversationManagerDelegate, conversationId.toSnapUUID().instanceNonNull(), null, mutableListOf(message.instanceNonNull()), mutableListOf<Any>())
-        }
-    }
-
-    override fun onActivityCreate() {
-        context.mappings.useMapper(FriendsFeedEventDispatcherMapper::class) {
-            classReference.getAsClass()?.hook("onItemLongPress", HookStage.BEFORE) { param ->
-                val viewItemContainer = param.arg<Any>(0)
-                val viewItem = viewItemContainer.getObjectField(viewModelField.get()!!).toString()
-                val conversationId = viewItem.substringAfter("conversationId: ").substring(0, 36).also {
-                    if (it.startsWith("null")) return@hook
-                }
-                lastFocusedConversationId = conversationId
-                lastFocusedConversationType = context.database.getConversationType(conversationId) ?: 0
-            }
-        }
-
-        context.classCache.feedEntry.hookConstructor(HookStage.AFTER) { param ->
-            val instance = param.thisObject<Any>()
-            val interactionInfo = instance.getObjectFieldOrNull("mInteractionInfo") ?: return@hookConstructor
-            val messages = (interactionInfo.getObjectFieldOrNull("mMessages") as? List<*>)?.map { Message(it) } ?: return@hookConstructor
-            val conversationId = SnapUUID(instance.getObjectFieldOrNull("mConversationId") ?: return@hookConstructor).toString()
-            val myUserId = context.database.myUserId
-
-            feedCachedSnapMessages[conversationId] = messages.filter { msg ->
-                msg.messageMetadata?.openedBy?.none { it.toString() == myUserId } == true
-            }.sortedBy { it.orderKey }.mapNotNull { it.messageDescriptor?.messageId }
-        }
-
-        context.classCache.conversationManager.apply {
-            hook("enterConversation", HookStage.BEFORE) { param ->
-                openedConversationUUID = SnapUUID(param.arg(0))
-                if (context.config.messaging.bypassMessageRetentionPolicy.get()) {
-                    val callback = param.argNullable<Any>(2) ?: return@hook
-                    callback::class.java.methods.firstOrNull { it.name == "onSuccess" }?.invoke(callback)
-                    param.setResult(null)
-                }
-            }
-
-            hook("exitConversation", HookStage.BEFORE) {
-                openedConversationUUID = null
-            }
-        }
-    }
-
-    override fun asyncInit() {
-        val stealthMode = context.feature(StealthMode::class)
-
-        arrayOf("activate", "deactivate", "processTypingActivity").forEach { hook ->
-            context.classCache.presenceSession.hook(hook, HookStage.BEFORE, {
-                context.config.messaging.hideBitmojiPresence.get() || stealthMode.canUseRule(openedConversationUUID.toString())
-            }) {
-                it.setResult(null)
-            }
-        }
-
-        context.classCache.presenceSession.hook("startPeeking", HookStage.BEFORE, {
-            context.config.messaging.hidePeekAPeek.get() || stealthMode.canUseRule(openedConversationUUID.toString())
-        }) { it.setResult(null) }
-
-        //get last opened snap for media downloader
-        context.event.subscribe(OnSnapInteractionEvent::class) { event ->
-            openedConversationUUID = event.conversationId
-            lastFocusedMessageId = event.messageId
-        }
-
-        context.classCache.conversationManager.hook("fetchMessage", HookStage.BEFORE) { param ->
-            val conversationId = SnapUUID(param.arg(0)).toString()
-            if (openedConversationUUID?.toString() == conversationId) {
-                lastFocusedMessageId = param.arg(1)
-            }
-        }
-
-        context.classCache.conversationManager.hook("sendTypingNotification", HookStage.BEFORE, {
-            context.config.messaging.hideTypingNotifications.get() || stealthMode.canUseRule(openedConversationUUID.toString())
-        }) {
-            it.setResult(null)
         }
     }
 

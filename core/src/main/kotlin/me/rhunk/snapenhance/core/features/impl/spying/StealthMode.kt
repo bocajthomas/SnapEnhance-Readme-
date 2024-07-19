@@ -2,14 +2,13 @@ package me.rhunk.snapenhance.core.features.impl.spying
 
 import me.rhunk.snapenhance.common.data.MessagingRuleType
 import me.rhunk.snapenhance.core.event.events.impl.OnSnapInteractionEvent
-import me.rhunk.snapenhance.core.features.FeatureLoadParams
 import me.rhunk.snapenhance.core.features.MessagingRuleFeature
 import me.rhunk.snapenhance.core.util.hook.HookStage
 import me.rhunk.snapenhance.core.util.hook.hook
 import me.rhunk.snapenhance.core.wrapper.impl.SnapUUID
 import java.util.concurrent.CopyOnWriteArraySet
 
-class StealthMode : MessagingRuleFeature("StealthMode", MessagingRuleType.STEALTH, loadParams = FeatureLoadParams.INIT_SYNC) {
+class StealthMode : MessagingRuleFeature("StealthMode", MessagingRuleType.STEALTH) {
     private val displayedMessageQueue = CopyOnWriteArraySet<Long>()
 
     fun addDisplayedMessageException(clientMessageId: Long) {

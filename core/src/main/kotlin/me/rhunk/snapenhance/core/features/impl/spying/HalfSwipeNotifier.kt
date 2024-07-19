@@ -6,7 +6,6 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import me.rhunk.snapenhance.common.Constants
 import me.rhunk.snapenhance.core.features.Feature
-import me.rhunk.snapenhance.core.features.FeatureLoadParams
 import me.rhunk.snapenhance.core.util.hook.HookStage
 import me.rhunk.snapenhance.core.util.hook.hook
 import me.rhunk.snapenhance.core.util.hook.hookConstructor
@@ -16,7 +15,7 @@ import me.rhunk.snapenhance.mapper.impl.CallbackMapper
 import java.util.concurrent.ConcurrentHashMap
 import kotlin.time.Duration.Companion.milliseconds
 
-class HalfSwipeNotifier : Feature("Half Swipe Notifier", loadParams = FeatureLoadParams.INIT_SYNC) {
+class HalfSwipeNotifier : Feature("Half Swipe Notifier") {
     private val peekingConversations = ConcurrentHashMap<String, List<String>>()
     private val startPeekingTimestamps = ConcurrentHashMap<String, Long>()
 

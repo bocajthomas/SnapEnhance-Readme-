@@ -1,5 +1,6 @@
 package me.rhunk.snapenhance.core.features
 
+import android.app.Activity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -25,6 +26,7 @@ class FeatureManager(
     private val context: ModContext
 ) {
     private val features = mutableMapOf<KClass<out Feature>, Feature>()
+    private val onActivityCreateListeners = mutableListOf<(Activity) -> Unit>()
 
     private fun register(vararg featureList: Feature) {
         if (context.bridgeClient.getDebugProp("disable_feature_loading") == "true") {
@@ -37,11 +39,12 @@ class FeatureManager(
                 launch(Dispatchers.IO) {
                     runCatching {
                         feature.context = context
+                        feature.registerNextActivityCallback = { block -> onActivityCreateListeners.add(block) }
                         synchronized(features) {
                             features[feature::class] = feature
                         }
                     }.onFailure {
-                        CoreLogger.xposedLog("Failed to register feature ${feature.featureKey}", it)
+                        CoreLogger.xposedLog("Failed to register feature ${feature.key}", it)
                     }
                 }
             }
@@ -119,7 +122,7 @@ class FeatureManager(
             AccountSwitcher(),
             RemoveGroupsLockedStatus(),
             BypassMessageActionRestrictions(),
-            CustomizeUI(),
+            CustomTheming(),
             BetterLocation(),
             MediaFilePicker(),
             HideActiveMusic(),
@@ -132,65 +135,35 @@ class FeatureManager(
             DisableTelecomFramework(),
             BetterTranscript(),
         )
-        initializeFeatures()
-    }
-
-    private inline fun tryInit(feature: Feature, crossinline block: () -> Unit) {
-        runCatching {
-            block()
-        }.onFailure {
-            context.log.error("Failed to init feature ${feature.featureKey}", it)
-            context.longToast("Failed to init feature ${feature.featureKey}! Check logcat for more details.")
-        }
-    }
-
-    private fun initFeatures(
-        syncParam: Int,
-        asyncParam: Int,
-        syncAction: (Feature) -> Unit,
-        asyncAction: (Feature) -> Unit
-    ) {
 
         features.values.toList().forEach { feature ->
-            if (feature.loadParams and syncParam != 0) {
-                tryInit(feature) {
-                    syncAction(feature)
+            runCatching {
+                measureTimeMillis {
+                    feature.init()
+                }.also {
+                    context.log.verbose("Feature ${feature.key} initialized in $it ms")
                 }
-            }
-            if (feature.loadParams and asyncParam != 0) {
-                context.coroutineScope.launch {
-                    tryInit(feature) {
-                        asyncAction(feature)
-                    }
-                }
+            }.onFailure {
+                context.log.error("Failed to init feature ${feature.key}", it)
+                context.longToast("Failed to init feature ${feature.key}! Check logcat for more details.")
             }
         }
     }
 
-    private fun initializeFeatures() {
-        //TODO: async called when all features are initiated ?
-        measureTimeMillis {
-            initFeatures(
-                FeatureLoadParams.INIT_SYNC,
-                FeatureLoadParams.INIT_ASYNC,
-                Feature::init,
-                Feature::asyncInit
-            )
-        }.also {
-            context.log.verbose("feature manager init took $it ms")
-        }
-    }
-
-    fun onActivityCreate() {
-        measureTimeMillis {
-            initFeatures(
-                FeatureLoadParams.ACTIVITY_CREATE_SYNC,
-                FeatureLoadParams.ACTIVITY_CREATE_ASYNC,
-                Feature::onActivityCreate,
-                Feature::asyncOnActivityCreate
-            )
-        }.also {
-            context.log.verbose("feature manager onActivityCreate took $it ms")
+    fun onActivityCreate(activity: Activity) {
+        context.log.verbose("Activity created: ${activity.javaClass.simpleName}")
+        onActivityCreateListeners.toList().also {
+            onActivityCreateListeners.clear()
+        }.forEach { activityListener ->
+            measureTimeMillis {
+                runCatching {
+                    activityListener(activity)
+                }.onFailure {
+                    context.log.error("Failed to run activity listener ${activityListener::class.simpleName}", it)
+                }
+            }.also {
+                context.log.verbose("Activity listener ${activityListener::class.simpleName} executed in $it ms")
+            }
         }
     }
 }

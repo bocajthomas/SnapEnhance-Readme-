@@ -5,13 +5,12 @@ import me.rhunk.snapenhance.common.util.protobuf.ProtoReader
 import me.rhunk.snapenhance.common.util.protobuf.ProtoWriter
 import me.rhunk.snapenhance.core.event.events.impl.BuildMessageEvent
 import me.rhunk.snapenhance.core.features.Feature
-import me.rhunk.snapenhance.core.features.FeatureLoadParams
 import me.rhunk.snapenhance.core.features.impl.messaging.Messaging
 import me.rhunk.snapenhance.core.ui.ViewAppearanceHelper
 import me.rhunk.snapenhance.core.wrapper.impl.Message
 import me.rhunk.snapenhance.core.wrapper.impl.MessageContent
 
-class ConvertMessageLocally : Feature("Convert Message Edit", loadParams = FeatureLoadParams.ACTIVITY_CREATE_SYNC) {
+class ConvertMessageLocally : Feature("Convert Message Edit") {
     private val messageCache = mutableMapOf<Long, MessageContent>()
 
     private fun dispatchMessageEdit(message: Message, restore: Boolean = false) {
@@ -64,11 +63,13 @@ class ConvertMessageLocally : Feature("Convert Message Edit", loadParams = Featu
         }.show()
     }
 
-    override fun onActivityCreate() {
-        context.event.subscribe(BuildMessageEvent::class, priority = 2) {
-            val clientMessageId = it.message.messageDescriptor?.messageId ?: return@subscribe
-            if (!messageCache.containsKey(clientMessageId)) return@subscribe
-            it.message.messageContent = messageCache[clientMessageId]
+    override fun init() {
+        onNextActivityCreate {
+            context.event.subscribe(BuildMessageEvent::class, priority = 2) {
+                val clientMessageId = it.message.messageDescriptor?.messageId ?: return@subscribe
+                if (!messageCache.containsKey(clientMessageId)) return@subscribe
+                it.message.messageContent = messageCache[clientMessageId]
+            }
         }
     }
 }

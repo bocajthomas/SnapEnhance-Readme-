@@ -89,6 +89,19 @@ class AppDatabase(
                 "longitude DOUBLE",
                 "radius DOUBLE",
             ),
+            "themes" to listOf(
+                "id INTEGER PRIMARY KEY AUTOINCREMENT",
+                "enabled BOOLEAN DEFAULT 0",
+                "name VARCHAR",
+                "description TEXT",
+                "version VARCHAR",
+                "author VARCHAR",
+                "updateUrl VARCHAR",
+                "content TEXT",
+            ),
+            "repositories" to listOf(
+                "url VARCHAR PRIMARY KEY",
+            ),
         ))
     }
 }

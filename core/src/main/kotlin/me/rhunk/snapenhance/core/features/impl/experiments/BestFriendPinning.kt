@@ -12,13 +12,12 @@ import me.rhunk.snapenhance.common.util.protobuf.ProtoReader
 import me.rhunk.snapenhance.core.event.events.impl.NetworkApiRequestEvent
 import me.rhunk.snapenhance.core.event.events.impl.UnaryCallEvent
 import me.rhunk.snapenhance.core.features.BridgeFileFeature
-import me.rhunk.snapenhance.core.features.FeatureLoadParams
 import me.rhunk.snapenhance.core.ui.triggerRootCloseTouchEvent
 import java.io.InputStreamReader
 import java.nio.ByteBuffer
 import java.util.UUID
 
-class BestFriendPinning: BridgeFileFeature("Best Friend Pinning", InternalFileHandleType.PINNED_BEST_FRIEND, loadParams = FeatureLoadParams.INIT_SYNC) {
+class BestFriendPinning: BridgeFileFeature("Best Friend Pinning", InternalFileHandleType.PINNED_BEST_FRIEND) {
     private fun updatePinnedBestFriendStatus() {
         lines().firstOrNull()?.trim()?.let {
             context.database.updatePinnedBestFriendStatus(it.substring(0, 36), "number_one_bf_for_two_months")

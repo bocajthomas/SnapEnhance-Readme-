@@ -3,7 +3,7 @@ package me.rhunk.snapenhance.core.features
 import me.rhunk.snapenhance.common.data.MessagingRuleType
 import me.rhunk.snapenhance.common.data.RuleState
 
-abstract class MessagingRuleFeature(name: String, val ruleType: MessagingRuleType, loadParams: Int = 0) : Feature(name, loadParams) {
+abstract class MessagingRuleFeature(name: String, val ruleType: MessagingRuleType) : Feature(name) {
     private val listeners = mutableListOf<(String, Boolean) -> Unit>()
 
     fun addStateListener(listener: (conversationId: String, newState: Boolean) -> Unit) {

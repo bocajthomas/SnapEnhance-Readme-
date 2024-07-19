@@ -1,7 +1,6 @@
 package me.rhunk.snapenhance.core.features.impl.ui
 
 import me.rhunk.snapenhance.core.features.Feature
-import me.rhunk.snapenhance.core.features.FeatureLoadParams
 import me.rhunk.snapenhance.core.features.impl.messaging.Messaging
 import me.rhunk.snapenhance.core.util.dataBuilder
 import me.rhunk.snapenhance.core.util.hook.HookStage
@@ -11,7 +10,7 @@ import me.rhunk.snapenhance.core.util.ktx.getObjectFieldOrNull
 import me.rhunk.snapenhance.core.util.ktx.setObjectField
 import me.rhunk.snapenhance.core.wrapper.impl.SnapUUID
 
-class HideStreakRestore : Feature("HideStreakRestore", loadParams = FeatureLoadParams.INIT_SYNC) {
+class HideStreakRestore : Feature("HideStreakRestore") {
     override fun init() {
         if (!context.config.userInterface.hideStreakRestore.get()) return
 

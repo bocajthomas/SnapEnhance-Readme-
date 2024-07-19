@@ -20,8 +20,23 @@ fun PackageManager.getApplicationInfoCompat(packageName: String, flags: Int) =
     }
 
 fun Context.copyToClipboard(data: String, label: String = "Copied Text") {
-    getSystemService(android.content.ClipboardManager::class.java).setPrimaryClip(
-        ClipData.newPlainText(label, data))
+    runCatching {
+        getSystemService(android.content.ClipboardManager::class.java).setPrimaryClip(
+            ClipData.newPlainText(label, data))
+    }
+}
+
+fun Context.getTextFromClipboard(): String? {
+    return runCatching {
+        getSystemService(android.content.ClipboardManager::class.java).primaryClip
+            ?.takeIf { it.itemCount > 0 }
+            ?.getItemAt(0)
+            ?.text?.toString()
+    }.getOrNull()
+}
+
+fun Context.getUrlFromClipboard(): String? {
+    return getTextFromClipboard()?.takeIf { it.startsWith("http") }
 }
 
 fun InputStream.toParcelFileDescriptor(coroutineScope: CoroutineScope): ParcelFileDescriptor {

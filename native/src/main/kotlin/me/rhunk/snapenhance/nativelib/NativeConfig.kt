@@ -8,7 +8,5 @@ data class NativeConfig(
     @JvmField
     val composerHooks: Boolean = false,
     @JvmField
-    val remapExecutable: Boolean = false,
-    @JvmField
     val customEmojiFontPath: String? = null,
 )

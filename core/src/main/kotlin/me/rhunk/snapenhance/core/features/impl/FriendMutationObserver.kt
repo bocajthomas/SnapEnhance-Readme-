@@ -10,12 +10,12 @@ import me.rhunk.snapenhance.common.data.FriendLinkType
 import me.rhunk.snapenhance.common.database.impl.FriendInfo
 import me.rhunk.snapenhance.core.event.events.impl.NetworkApiRequestEvent
 import me.rhunk.snapenhance.core.features.Feature
-import me.rhunk.snapenhance.core.features.FeatureLoadParams
+
 import me.rhunk.snapenhance.core.util.EvictingMap
 import java.io.InputStreamReader
 import java.util.Calendar
 
-class FriendMutationObserver: Feature("FriendMutationObserver", loadParams = FeatureLoadParams.INIT_SYNC) {
+class FriendMutationObserver: Feature("FriendMutationObserver") {
     private val translation by lazy { context.translation.getCategory("friend_mutation_observer") }
     private val addSourceCache = EvictingMap<String, String>(500)
 

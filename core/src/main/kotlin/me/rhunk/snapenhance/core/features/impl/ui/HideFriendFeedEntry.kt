@@ -2,7 +2,7 @@ package me.rhunk.snapenhance.core.features.impl.ui
 
 import me.rhunk.snapenhance.common.data.MessagingRuleType
 import me.rhunk.snapenhance.common.data.RuleState
-import me.rhunk.snapenhance.core.features.FeatureLoadParams
+
 import me.rhunk.snapenhance.core.features.MessagingRuleFeature
 import me.rhunk.snapenhance.core.util.dataBuilder
 import me.rhunk.snapenhance.core.util.hook.HookStage
@@ -11,7 +11,7 @@ import me.rhunk.snapenhance.core.util.ktx.getObjectField
 import me.rhunk.snapenhance.core.wrapper.impl.SnapUUID
 import me.rhunk.snapenhance.mapper.impl.CallbackMapper
 
-class HideFriendFeedEntry : MessagingRuleFeature("HideFriendFeedEntry", ruleType = MessagingRuleType.HIDE_FRIEND_FEED, loadParams = FeatureLoadParams.INIT_SYNC) {
+class HideFriendFeedEntry : MessagingRuleFeature("HideFriendFeedEntry", ruleType = MessagingRuleType.HIDE_FRIEND_FEED) {
     private fun createDeletedFeedEntry(conversationIdInstance: Any) = findClass("com.snapchat.client.messaging.DeletedFeedEntry").dataBuilder {
         from("mFeedEntryIdentifier") {
             set("mConversationId", conversationIdInstance)

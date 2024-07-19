@@ -19,6 +19,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Switch
 import android.widget.TextView
+import androidx.core.content.res.use
 import me.rhunk.snapenhance.core.SnapEnhance
 import me.rhunk.snapenhance.core.util.ktx.getDimens
 import me.rhunk.snapenhance.core.util.ktx.getDimensFloat
@@ -136,10 +137,10 @@ object ViewAppearanceHelper {
 
         val sigColorTextPrimary = component.context.theme.obtainStyledAttributes(
             intArrayOf(resources.getIdentifier("sigColorTextPrimary", "attr"))
-        ).getColor(0, 0)
+        ).use { it.getColor(0, 0) }
         val sigColorBackgroundSurface = component.context.theme.obtainStyledAttributes(
             intArrayOf(resources.getIdentifier("sigColorBackgroundSurface", "attr"))
-        ).getColor(0, 0)
+        ).use { it.getColor(0, 0) }
 
         val actionSheetDefaultCellHeight = resources.getDimens("action_sheet_default_cell_height")
         val actionSheetCornerRadius = resources.getDimensFloat("action_sheet_corner_radius")

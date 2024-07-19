@@ -16,7 +16,8 @@ enum class FileHandleScope(
     INTERNAL("internal"),
     LOCALE("locale"),
     USER_IMPORT("user_import"),
-    COMPOSER("composer");
+    COMPOSER("composer"),
+    THEME("theme");
 
     companion object {
         fun fromValue(name: String): FileHandleScope? = entries.find { it.key == name }
@@ -31,8 +32,8 @@ enum class InternalFileHandleType(
     CONFIG("config", "config.json"),
     MAPPINGS("mappings", "mappings.json"),
     MESSAGE_LOGGER("message_logger", "message_logger.db", isDatabase = true),
-    PINNED_BEST_FRIEND("pinned_best_friend", "pinned_best_friend.txt");
-
+    PINNED_BEST_FRIEND("pinned_best_friend", "pinned_best_friend.txt"),
+    SIF("sif", "libsif.so");
 
     fun resolve(context: Context): File = if (isDatabase) {
         context.getDatabasePath(fileName)
