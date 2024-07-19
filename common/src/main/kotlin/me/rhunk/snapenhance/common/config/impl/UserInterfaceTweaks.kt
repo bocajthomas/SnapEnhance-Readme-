@@ -24,7 +24,7 @@ class UserInterfaceTweaks : ConfigContainer() {
         set(mutableListOf("conversation_info", MessagingRuleType.STEALTH.key))
     }
     val autoCloseFriendFeedMenu = boolean("auto_close_friend_feed_menu")
-    val customTheme = unique(
+    val customTheme = unique("custom_theme",
         "custom",
         "amoled_dark_mode",
         "material_you_light",
