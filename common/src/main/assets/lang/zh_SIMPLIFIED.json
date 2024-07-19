@@ -22,15 +22,26 @@
         "preview": "预览",
         "stealth_mode": "隐身模式",
         "auto_download_blacklist": "自动下载黑名单",
-        "anti_auto_save": "自动保存"
+        "anti_auto_save": "自动保存",
+        "mark_snaps_as_seen": "将快照标记为所见",
+        "mark_stories_as_seen_locally": "将故事标记为本地可见"
     },
     "chat_action_menu": {
         "preview_button": "预览",
         "download_button": "下载",
-        "delete_logged_message_button": "删除已记录的消息"
+        "delete_logged_message_button": "删除已记录的消息",
+        "show_chat_edit_history": "显示聊天编辑历史记录",
+        "convert_message": "转换消息",
+        "edit_message": "编辑留言"
     },
     "opera_context_menu": {
-        "download": "下载媒体"
+        "download": "下载媒体",
+        "sent_at": "发送于 {date}",
+        "created_at": "创建于 {date}",
+        "expires_at": "到期日 {date}",
+        "media_size": "介质尺寸: {size}",
+        "media_duration": "媒体时长: {duration} 多发性硬化症",
+        "show_debug_info": "显示调试信息"
     },
     "modal_option": {
         "profile_info": "配置信息",
@@ -39,13 +50,25 @@
     "conversation_preview": {
         "streak_expiration": "在 {day} 天 {hour} 小时 {minute} 分钟",
         "title": "预览",
-        "unknown_user": "未知用户"
+        "unknown_user": "未知用户",
+        "total_messages": "发送/接收消息总数: {count}",
+        "no_messages": "没有找到消息!"
     },
     "profile_info": {
         "title": "配置信息",
         "display_name": "显示姓名 ",
         "added_date": "添加日期",
-        "birthday": "生日: {month} {day}"
+        "birthday": "生日: {month} {day}",
+        "first_created_username": "首次创建的用户名",
+        "mutable_username": "可变用户名",
+        "hidden_birthday": "生日: 隐藏",
+        "friendship": "友谊",
+        "add_source": "添加来源",
+        "snapchat_plus": "Snapchat Plus",
+        "snapchat_plus_state": {
+            "subscribed": "已订阅",
+            "not_subscribed": "未订阅"
+        }
     },
     "chat_export": {
         "dialog_negative_button": "取消",
@@ -1381,8 +1404,271 @@
                 "midnight_slate": "午夜石板",
                 "lava_flow": "熔岩流",
                 "ocean_fog": "海洋雾",
-                "alien_landscape": "外星风景"
+                "alien_landscape": "外星风景",
+                "zesty_lemon": "柠檬味",
+                "tropical_paradise": "热带天堂",
+                "industrial_chic": "工业时尚",
+                "cherry_bomb": "樱桃炸弹",
+                "woodland_mystery": "林地之谜",
+                "galaxy_glitter": "银河闪光",
+                "creamy_vanilla": "奶油香草",
+                "spicy_chili": "辣辣椒",
+                "spring_meadow": "春天的草地",
+                "midnight_library": "午夜图书馆",
+                "lemon_sorbet": "柠檬冰糕",
+                "cosmic_night": "宇宙之夜",
+                "peppermint_candy": "薄荷糖",
+                "gingerbread_house": "姜饼屋",
+                "spicy_mustard": "辣芥末",
+                "art_deco_glam": "装饰艺术魅力",
+                "ocean_depths": "海洋深处",
+                "bubblegum_pink": "泡泡糖粉红",
+                "firefly_night": "萤火虫之夜",
+                "apple_orchard": "苹果园",
+                "lavender_field": "薰衣草田",
+                "lemon_drop": "柠檬滴",
+                "modern_farmhouse": "现代农舍"
+            },
+            "auto_purge": {
+                "12_hours": "12小时",
+                "1_day": "1天",
+                "1_hour": "1小时",
+                "1_month": "1个月",
+                "1_week": "1周",
+                "never": "绝不",
+                "3_hours": "3小时",
+                "6_hours": "6个小时",
+                "3_days": "3天",
+                "2_weeks": "2周",
+                "3_months": "3个月",
+                "6_months": "6个月"
+            },
+            "friend_feed_menu_buttons": {
+                "auto_download": "⬇️自动下载",
+                "auto_save": "💬 自动保存消息",
+                "unsaveable_messages": "⬇️ 无法保存的消息",
+                "auto_open_snaps": "📷 自动打开按扣",
+                "stealth": "👻 隐形模式",
+                "mark_snaps_as_seen": "👀 将快照标记为所见",
+                "mark_stories_as_seen_locally": "👀 将故事标记为本地可见",
+                "conversation_info": "👤 对话信息",
+                "e2e_encryption": "🔒 使用端到端加密"
+            },
+            "path_format": {
+                "create_author_folder": "为每个作者创建文件夹",
+                "create_source_folder": "为每个媒体创建文件夹源类型",
+                "append_source": "将媒体源添加到文件名中",
+                "append_username": "将用户名添加到文件中姓名",
+                "append_hash": "向文件添加唯一的哈希值姓名",
+                "append_date_time": "将日期和时间添加到文件名中"
+            },
+            "auto_download_sources": {
+                "friend_snaps": "朋友快照",
+                "friend_stories": "朋友故事",
+                "public_stories": "公共故事",
+                "spotlight": "聚光灯"
+            },
+            "logging": {
+                "started": "开始",
+                "success": "成功",
+                "progress": "进步",
+                "failure": "失败"
+            },
+            "notifications": {
+                "chat_screenshot": "截屏",
+                "chat_screen_record": "屏幕记录",
+                "snap_replay": "快照重播",
+                "camera_roll_save": "相机胶卷保存",
+                "chat": "聊天",
+                "chat_reply": "聊天回复",
+                "snap": "折断",
+                "typing": "打字",
+                "stories": "故事",
+                "speaking": "请讲",
+                "chat_reaction": "DM反应",
+                "group_chat_reaction": "群体反应",
+                "initiate_audio": "音频来电",
+                "abandon_audio": "错过的音频通话",
+                "initiate_video": "视频来电",
+                "abandon_video": "错过视频通话"
+            },
+            "gallery_media_send_override": {
+                "always_ask": "总是问",
+                "ORIGINAL": "原来的",
+                "NOTE": "音频笔记",
+                "SNAP": "折断",
+                "SAVABLE_SNAP": "可保存的快照"
+            },
+            "strip_media_metadata": {
+                "hide_caption_text": "隐藏标题文本",
+                "hide_snap_filters": "隐藏捕捉滤镜",
+                "hide_extras": "隐藏额外内容（例如提及)",
+                "remove_audio_note_duration": "删除音频注释持续时间",
+                "remove_audio_note_transcript_capability": "删除音频笔记转录功能"
+            },
+            "hide_ui_components": {
+                "hide_profile_call_buttons": "删除个人资料呼叫按钮",
+                "hide_chat_call_buttons": "删除聊天呼叫按钮",
+                "hide_live_location_share_button": "删除实时位置共享按钮",
+                "hide_stickers_button": "删除贴纸按钮",
+                "hide_voice_record_button": "删除录音按钮",
+                "hide_unread_chat_hint": "删除未读聊天提示",
+                "hide_post_to_story_buttons": "在发送快照之前删除“发布到故事按钮"
+            },
+            "hide_story_suggestions": {
+                "hide_suggested_friend_stories": "隐藏建议的朋友故事",
+                "hide_friend_suggestions": "隐藏好友建议",
+                "hide_my_stories": "隐藏我的故事"
+            },
+            "home_tab": {
+                "map": "地图",
+                "chat": "聊天",
+                "camera": "相机",
+                "discover": "发现",
+                "spotlight": "聚光灯"
+            },
+            "add_friend_source_spoof": {
+                "added_by_username": "按用户名",
+                "added_by_group_chat": "通过群聊",
+                "added_by_qr_code": "通过二维码",
+                "added_by_community": "按社区",
+                "added_by_quick_add": "通过快速添加 (被禁止的风险很高）",
+                "added_by_mention": "通过提及"
+            },
+            "bypass_video_length_restriction": {
+                "single": "单一媒体",
+                "split": "分割媒体"
+            },
+            "old_bitmoji_selfie": {
+                "2d": "2D Bitmoji",
+                "3d": "3D Bitmoji"
+            },
+            "disable_confirmation_dialogs": {
+                "erase_message": "删除消息",
+                "remove_friend": "删除好友",
+                "block_friend": "阻止朋友",
+                "ignore_friend": "忽略朋友",
+                "hide_friend": "隐藏朋友",
+                "hide_conversation": "隐藏对话",
+                "clear_conversation": "朋友的清晰对话喂养"
+            },
+            "auto_reload": {
+                "snapchat_only": "仅限 Snapchat",
+                "all": "全部 (Snapchat + SE Extended)"
+            },
+            "edit_text_override": {
+                "multi_line_chat_input": "多线聊天输入",
+                "bypass_text_input_limit": "绕过文本输入限制"
+            },
+            "disable_story_sections": {
+                "friends": "朋友们",
+                "suggested_stories": "推荐故事",
+                "following": "下列的",
+                "discover": "发现"
+            },
+            "disable_cameras": {
+                "front": "前置摄像头",
+                "back": "后置摄像头"
+            },
+            "disable_permission_requests": {
+                "notifications": "通知",
+                "read_media_images": "阅读媒体图片",
+                "read_media_video": "阅读媒体视频",
+                "camera": "相机",
+                "microphone": "麦克风",
+                "location": "地点",
+                "read_contacts": "读取联系人",
+                "nearby_devices": "附近的设备",
+                "phone_calls": "电话"
+            },
+            "message_indicators": {
+                "encryption_indicator": "添加一个 🔒 仅发送给您的消息旁边的图标",
+                "location_indicator": "添加一个 📍发送时启用位置的快照图标",
+                "director_mode_indicator": "添加一个 ✏️ 使用导演模式发送快照时的图标，可用于将图库图像作为快照发送",
+                "platform_indicator": "添加发送媒体的平台图标（例如 Android、iOS、Web",
+                "ovf_editor_indicator": "指示是否已使用 OVF 编辑器发送快照"
+            },
+            "friend_mutation_notifier": {
+                "bitmoji_selfie_changes": "当有人更改 Bitmoji 自拍照时发出通知",
+                "bitmoji_avatar_changes": "当有人更改 Bitmoji 头像时发出通知",
+                "bitmoji_background_changes": "当有人更改 Bitmoji 背景时发出通知",
+                "birthday_changes": "当有人改变时通知他们的生日",
+                "remove_friend": "当有人将您删除为好友时发出通知",
+                "bitmoji_scene_changes": "当有人更改 Bitmoji 场景时发出通知"
+            },
+            "auto_mark_as_read": {
+                "conversation_read": "将对话标记为已读发送消息时",
+                "snap_reply": "回复时将快照标记为已读"
             }
+        }
+    },
+    "content_type": {
+        "CHAT": "聊天",
+        "SNAP": "折断",
+        "EXTERNAL_MEDIA": "外部媒体",
+        "NOTE": "音频笔记",
+        "STICKER": "贴纸",
+        "SHARE": "分享",
+        "STATUS": "地位",
+        "LOCATION": "地点",
+        "STATUS_SAVE_TO_CAMERA_ROLL": "保存到相机胶卷",
+        "STATUS_CONVERSATION_CAPTURE_SCREENSHOT": "截屏",
+        "STATUS_CONVERSATION_CAPTURE_RECORD": "屏幕记录",
+        "STATUS_CALL_MISSED_VIDEO": "错过视频通话",
+        "STATUS_CALL_MISSED_AUDIO": "错过的音频通话",
+        "LIVE_LOCATION_SHARE": "实时位置分享",
+        "CREATIVE_TOOL_ITEM": "创意工具项目",
+        "FAMILY_CENTER_INVITE": "家庭中心邀请函",
+        "FAMILY_CENTER_ACCEPT": "家庭中心接受",
+        "FAMILY_CENTER_LEAVE": "家庭中心休假",
+        "STATUS_PLUS_GIFT": "状态加礼物",
+        "TINY_SNAP": "微小的快照",
+        "STATUS_COUNTDOWN": "倒数",
+        "MAP_REACTION": "地图反应"
+    },
+    "media_download_source": {
+        "none": "没有任何",
+        "pending": "待办的",
+        "chat_media": "聊天媒体",
+        "story": "故事",
+        "public_story": "公共故事",
+        "spotlight": "聚光灯",
+        "profile_picture": "个人资料图片",
+        "story_logger": "故事记录器",
+        "message_logger": "消息记录器",
+        "merged": "合并",
+        "voice_call": "语音通话"
+    },
+    "gallery_media_send_override": {
+        "multiple_media_toast": "您一次只能发送一种媒体"
+    },
+    "mark_as_seen": {
+        "no_unseen_snaps_toast": "未找到未见过的快照 !",
+        "seen_toast": "标记为已看到!",
+        "unseen_toast": "标记为未见!",
+        "already_seen_toast": "已经标记为已看到!",
+        "already_unseen_toast": "已经标记为未见!"
+    },
+    "friendship_link_type": {
+        "mutual": "相互的",
+        "outgoing": "传出",
+        "blocked": "被阻止",
+        "deleted": "已删除",
+        "following": "下列的",
+        "suggested": "建议",
+        "incoming": "传入",
+        "incoming_follower": "即将到来的追随者"
+    },
+    "bulk_messaging_action": {
+        "choose_action_title": "选择一个动作",
+        "progress_status": "正在处理 {index} 的 {total}",
+        "selection_dialog_continue_button": "继续",
+        "confirmation_dialog": {
+            "title": "你确定吗?",
+            "message": "这将影响所有选定的好友.此操作无法撤消."
+        },
+        "actions": {
+            "remove_friends": "删除好友"
         }
     }
 }

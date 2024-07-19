@@ -637,10 +637,6 @@
                         "name": "Disable Replay in FF",
                         "description": "Disables the ability to replay with a long press from the Friend Feed"
                     },
-                    "message_preview_length": {
-                        "name": "Message Preview Length",
-                        "description": "Specify the amount of messages to get previewed"
-                    },
                     "call_start_confirmation": {
                         "name": "Call Start Confirmation",
                         "description": "Shows a confirmation dialog when starting a call"
@@ -1419,7 +1415,12 @@
                 "hide_stickers_button": "Remove Stickers Button",
                 "hide_voice_record_button": "Remove Voice Record Button",
                 "hide_unread_chat_hint": "Remove Unread Chat Hint",
-                "hide_post_to_story_buttons": "Remove Post to Story buttons before sending a Snap"
+                "hide_post_to_story_buttons": "Remove Post to Story buttons",
+                "hide_snap_create_group_buttons": "Remove Snap Create Group Buttons",
+                "hide_chat_gallery_button": "Remove Chat Gallery Button",
+                "hide_explorer_token_button": "Remove Explorer Token Button",
+                "hide_gift_snapchat_plus_reminders": "Remove Gift Snapchat Plus Reminders",
+                "hide_chat_camera_button": "Remove Chat Camera Button"
             },
             "hide_story_suggestions": {
                 "hide_friend_suggestions": "Hide friend suggestions",

@@ -144,7 +144,7 @@
                 "no_files_hint": "Hier können Sie Dateien zur Verwendung in Snapchat importieren. Klicken Sie auf die Schaltfläche unten, um eine Datei zu importieren."
             },
             "better_location": {
-                "spoofed_coordinates_title": "Lat {latitude}, Lng {longitude}",
+                "spoofed_coordinates_title": "Lati {latitude}, Long {longitude}",
                 "save_coordinates_dialog_title": "Koordinaten speichern",
                 "saved_coordinates_title": "Gespeicherte Koordinaten",
                 "no_saved_coordinates_hint": "Keine gespeicherten Koordinaten",
@@ -265,7 +265,7 @@
         },
         "properties": {
             "downloader": {
-                "name": "Downloader",
+                "name": "Herunterladen",
                 "description": "Snapchat Medien herunterladen",
                 "properties": {
                     "save_folder": {
@@ -1203,6 +1203,10 @@
                             "preferred_transcription_lang": {
                                 "name": "Bevorzugte Transkriptionssprache",
                                 "description": "Die bevorzugte Sprache für das Sprachnotiz-Transkript (z. B. EN, ES, FR)"
+                            },
+                            "enhanced_transcript_in_notifications": {
+                                "name": "Verbessertes Transkript in Benachrichtigungen",
+                                "description": "Transkribiert Sprachnotizen in Benachrichtigungen mithilfe von DeepL. Dazu muss die Chat-Vorschau-Funktion in Better Notifications aktiviert sein"
                             }
                         },
                         "name": "Besseres Transkript",
@@ -1402,7 +1406,8 @@
             "disable_story_sections": {
                 "friends": "Freunde",
                 "following": "Folge Ich",
-                "discover": "Entdecken"
+                "discover": "Entdecken",
+                "suggested_stories": "Vorgeschlagene Geschichten"
             },
             "disable_cameras": {
                 "front": "Selfie Kamera",
