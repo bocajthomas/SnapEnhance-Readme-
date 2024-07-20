@@ -34,7 +34,10 @@
             "friend_tracker": "Friend Tracker",
             "edit_rule": "Edit Rule",
             "better_location": "Better Location",
-            "file_imports": "File Imports"
+            "file_imports": "File Imports",
+            "edit_theme": "Edit Theme",
+            "theming": "Theming",
+            "manage_repos": "Manage Repositories"
         },
         "sections": {
             "features": {
@@ -162,6 +165,9 @@
                 "latitude_dialog_hint": "Latitude",
                 "longitude_dialog_hint": "Longitude",
                 "suspend_location_updates": "Suspend Location Updates"
+            },
+            "theming": {
+                "no_themes_hint": "No themes found"
             }
         },
         "dialogs": {
@@ -300,6 +306,14 @@
         "friend_tracker": {
             "name": "Friend Tracker",
             "description": "Track your friends on Snapchat"
+        },
+        "theming": {
+            "name": "Theming",
+            "description": "Customize the look and feel of Snapchat"
+        },
+        "security_features": {
+            "description": "Access security features",
+            "name": "Security Features"
         }
     },
     "features": {
@@ -511,6 +525,10 @@
                     "auto_close_friend_feed_menu": {
                         "description": "Automatically closes the Friend Feed Menu after pressing a setting button",
                         "name": "Auto Close Friend Feed Menu"
+                    },
+                    "custom_theme": {
+                        "name": "Custom Theme",
+                        "description": "Customize Snapchat's Colors\nNote: if you choose a dark theme (like AMOLED), You may need to enable the dark mode on the App Appearance settings for better results"
                     }
                 },
                 "name": "User Interface",
@@ -1311,6 +1329,11 @@
                 "bitmoji_scene_changes": "Notify when someone changes their Bitmoji scene",
                 "bitmoji_avatar_changes": "Notify when someone changes their Bitmoji avatar",
                 "bitmoji_background_changes": "Notify when someone changes their Bitmoji background"
+            },
+            "custom_theme": {
+                "amoled_dark_mode": "AMOLED Dark Mode",
+                "custom": "Custom Themes (Use the Quick Actions to manage themes)",
+                "material_you_light": "Material You Light (Android 12+)"
             }
         }
     },
