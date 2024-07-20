@@ -463,82 +463,6 @@
                         "description": "Viser nyttig information om medier såsom oprettelsesdato i opera fremviser kontekstmenu",
                         "name": "Opera Media Hurtig info"
                     },
-                    "customize_ui": {
-                        "name": "Farver",
-                        "description": "Tilpas Snapchats farver",
-                        "properties": {
-                            "theme_picker": {
-                                "name": "Tema vælger",
-                                "description": "Forudindstillede Snapchat temaer"
-                            },
-                            "colors": {
-                                "name": "Brugerdefinerede farver",
-                                "description": "Tilpas individuelle farver\nBemærk: Vælg brugerdefinerede farver på temavælgeren for at bruge",
-                                "properties": {
-                                    "text_color": {
-                                        "name": "Hovedtekst farve",
-                                        "description": "Ændrer Snapchats hovedtekst farve"
-                                    },
-                                    "chat_chat_text_color": {
-                                        "name": "Hoved vens feed tekstfarve",
-                                        "description": "Ændrer tekstfarven på (Ny chat / Nyt snap og chats / Indtastning / Opkald / Ubesvaret opkald / Taler / Ny stemmebesked) på vennefeedet"
-                                    },
-                                    "pending_sending_text_color": {
-                                        "name": "Sekundær Friend Feed Tekst farve",
-                                        "description": "Ændrer tekstfarven på ( Leveret / Modtaget / Sender / Åbnet / Tryk for at chatte / Hold for at afspille / Afspilles igen / Gemt i chat / Opkaldet) på vennefeedet"
-                                    },
-                                    "snap_with_sound_text_color": {
-                                        "name": "Snaps med lyd tekst farve",
-                                        "description": "Ændrer tekstfarven på ( Ny Snap ) på vennefeedet\nBemærk: Kun videosnaps"
-                                    },
-                                    "snap_without_sound_text_color": {
-                                        "name": "Snaps uden lyd Tekst farve",
-                                        "description": "Ændrer tekstfarven på ( Ny Snap ) på vennefeedet\nBemærk: Kun videosnaps"
-                                    },
-                                    "background_color": {
-                                        "name": "Baggrundsfarve",
-                                        "description": "Ændrer Snapchats baggrundsfarve"
-                                    },
-                                    "background_color_surface": {
-                                        "name": "Baggrunds overflade farve",
-                                        "description": "Ændrer Snapchats baggrunds overflade farve"
-                                    },
-                                    "action_menu_background_color": {
-                                        "name": "Handlingsmenu Baggrunds farve",
-                                        "description": "Ændrer baggrunds farve på Snapchats chat handlingsmenu"
-                                    },
-                                    "action_menu_round_background_color": {
-                                        "name": "Handlingsmenu Rund baggrunds farve",
-                                        "description": "Ændrer Snapchats chat handlingsmenu rundt om baggrunds farven"
-                                    },
-                                    "camera_grid_lines": {
-                                        "name": "Farve på kameragitter",
-                                        "description": "Ændrer farven på Snapchats-gitterlinjerne på forhåndsvisningen af kameraet\nBemærk: Aktiver gitteret på mine kamera-indstillinger"
-                                    },
-                                    "friend_feed_conversations_line_color": {
-                                        "description": "Ændrer linje deler farven, der opdeler samtaler på vennefeedet ",
-                                        "name": "Samtaler linje farve"
-                                    },
-                                    "action_sheet_description_text_color": {
-                                        "name": "Handlingsmenu Beskrivelse Tekstfarve",
-                                        "description": "Ændrer tekstfarven på beskrivelsen i handlingsmenuen"
-                                    },
-                                    "sig_color_icon_primary": {
-                                        "description": "Ændrer farven på ikoner på chathandlingsmenuen/vennefeedmenuen",
-                                        "name": "Action Menu Ikon Farve"
-                                    },
-                                    "list_background_drawable": {
-                                        "name": "Samtaleliste Baggrund ",
-                                        "description": "Ændrer baggrundsfarven på samtalelisten på vennefeedet\nDette kan ødelægge vennefeeds-looket"
-                                    }
-                                }
-                            },
-                            "colors_debug": {
-                                "name": "Fejlfinding i farver",
-                                "description": "Logs De opnåStyledAttributes, der bruges, når Snapchat indlæses\nBemærk: Dette vil øge størrelsen på dine logfiler markant"
-                            }
-                        }
-                    },
                     "auto_close_friend_feed_menu": {
                         "name": "Auto Luk Venne Feed Menu",
                         "description": "Lukker automatisk Friend Feed-menuen efter at have trykket på en indstillingsknap"
@@ -1082,91 +1006,6 @@
                     "best_friend_pinning": {
                         "description": "Tillader dig at fastgøre en ven som din bedste ven nummer ét. Bemærk: Kun du kan se din fastgjorte bedste ven",
                         "name": "Pinning af bedste ven"
-                    },
-                    "experimental_colors": {
-                        "name": "Eksperimentelle farveindstillinger",
-                        "properties": {
-                            "ring_color": {
-                                "description": "Gør et eller andet ved farven på noget ;)",
-                                "name": "Ring farve"
-                            },
-                            "sig_color_icon_secondary": {
-                                "name": "Sig farveikon sekundært",
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "sig_color_layout_place_holder": {
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "sc_button_color": {
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "recipient_pill_background_drawable": {
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "box_background_color": {
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "recipient_input_style": {
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "psts_indicator_color": {
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "psts_divider_color": {
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "status_bar_foreground": {
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "status_bar_background": {
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "sig_color_background_surface_translucent": {
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "sig_color_story_ring_friends_feed_story_ring": {
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "sig_color_story_ring_discover_tab_thumbnail_story_ring": {
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "story_replay_view_ring_color": {
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "sig_color_button_primary": {
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "item_shape_fill_color": {
-                                "name": "Emne Form Fyld Farve",
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "ring_start_color": {
-                                "name": "Ring start farve",
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "edit_text_color": {
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "chip_background_color": {
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "range_fill_color": {
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "psts_tab_background": {
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "tab_text_color": {
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "stroke_color": {
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "sig_color_base_app_yellow": {
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            }
-                        },
-                        "description": "Bemærk: Disse farvefunktioner er eksperimentelle og kan derfor få din snapchat til at se mærkelig ud,\nVælg \"Brugerdefinerede farver\" på temavælgeren for at bruge"
                     }
                 }
             },
@@ -1387,21 +1226,6 @@
                 "bitmoji_avatar_changes": "Giv besked, når nogen ændrer deres Bitmoji avatar",
                 "bitmoji_background_changes": "Giv besked, når nogen ændrer deres Bitmoji baggrund",
                 "bitmoji_scene_changes": "Giv besked, når nogen ændrer deres Bitmoji scene"
-            },
-            "theme_picker": {
-                "ginger_snap": "Ingefær Snap",
-                "lemon_meringue": "Citron marengs",
-                "lava_flow": "Lava flow",
-                "ocean_fog": "Havtåge",
-                "alien_landscape": "Alien Landskab",
-                "amoled_dark_mode": "AMOLED mørk tilstand",
-                "custom": "Brugerdefinerede farver",
-                "light_blue": "Lyseblå",
-                "dark_blue": "Mørke blå",
-                "earthy_autumn": "Jordisk efterår",
-                "mint_chocolate": "Mint Chokolade",
-                "material_you_light": "Material You Light (Android 12+)",
-                "material_you_dark": "Material You Dark (Android 12+)"
             }
         }
     },

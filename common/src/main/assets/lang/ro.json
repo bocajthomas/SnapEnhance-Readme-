@@ -411,10 +411,6 @@
                     "hide_story_suggestions": {
                         "name": "Ascundeți sugestiile de povești",
                         "description": "Elimină sugestiile din pagina Povestiri"
-                    },
-                    "customize_ui": {
-                        "name": "Culori",
-                        "description": "Personalizați culorile Snapchat"
                     }
                 },
                 "name": "Interfața cu utilizatorul",

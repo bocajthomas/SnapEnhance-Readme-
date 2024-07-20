@@ -320,66 +320,6 @@
                         "name": "Anular Bootstrap",
                         "description": "Anula los ajustes de bootstrap de la interfaz de usuario"
                     },
-                    "customize_ui": {
-                        "properties": {
-                            "colors": {
-                                "properties": {
-                                    "snap_without_sound_text_color": {
-                                        "name": "Color de texto de Snaps sin sonido",
-                                        "description": "Cambia el color de texto de (Snap nuevo) en la lista de amigxs\nTen en cuenta: Solo Snaps de vídeo"
-                                    },
-                                    "background_color": {
-                                        "name": "Color del fondo",
-                                        "description": "Cambia el color del fondo de Snapchat"
-                                    },
-                                    "text_color": {
-                                        "name": "Color de texto principal",
-                                        "description": "Cambia el color de texto principal de Snapchat"
-                                    },
-                                    "chat_chat_text_color": {
-                                        "description": "Cambia el color de texto de (Chats nuevos/ Snaps y chats nuevos/ Escribiendo/ Llamando/ Llamada perdida/ Hablando/ Nota de voz nueva) en la lista de amigxs",
-                                        "name": "Color de texto principal de la lista de amigxs"
-                                    },
-                                    "pending_sending_text_color": {
-                                        "name": "Color del texto secundario de la lista de amigxs",
-                                        "description": "Cambia el color de (Entregado/ Recibido/ Enviando/ Abierto/ Pulsa para chatear/ Mantén pulsado para repetir/ Repetido/ Guardado en el chat/ Llamado) en la lista de amigxs"
-                                    },
-                                    "snap_with_sound_text_color": {
-                                        "name": "Color de texto de Snaps con sonido",
-                                        "description": "Cambia el color de texto de (Snap nuevo) en la lista de amigxs\nTen en cuenta: Solo Snaps de vídeo"
-                                    },
-                                    "background_color_surface": {
-                                        "name": "Color de la superficie del fondo",
-                                        "description": "Cambia el color de la superficie del fondo de Snapchat"
-                                    },
-                                    "action_menu_background_color": {
-                                        "name": "Color de fondo del Menú de acciones",
-                                        "description": "Cambia el color de fondo del menú de acciones de Snapchat"
-                                    },
-                                    "action_menu_round_background_color": {
-                                        "name": "Color de fondo redondo del menú de acciones",
-                                        "description": "Cambia el color de fondo redondo del menú de acciones de Snapchat"
-                                    },
-                                    "camera_grid_lines": {
-                                        "name": "Color de la cuadricula de la cámara",
-                                        "description": "Cambia el color de la cuadricula en la prevista de la cámara de Snapchat\nTen en cuenta: habilita la cuadricula en los ajustes de la cámara"
-                                    },
-                                    "friend_feed_conversations_line_color": {
-                                        "name": "Color de línea en conversaciones",
-                                        "description": "Cambia el color de las líneas que separan conversaciones en la lista de amigxs "
-                                    }
-                                },
-                                "name": "Colores personalizados",
-                                "description": "Personaliza colores individuos\nTen en cuenta: Elige colores personalizados en el selector de temas para usar"
-                            },
-                            "theme_picker": {
-                                "name": "selector de temas",
-                                "description": "Temas de Snapchat preestablecidos"
-                            }
-                        },
-                        "name": "Colores",
-                        "description": "Personaliza Colores de Snapchat"
-                    },
                     "enable_app_appearance": {
                         "name": "Habilitar ajustes de apariencia de la app",
                         "description": "Habilita los ajustes de apariencia de la app escondidos\nPuede que no sea necesario en nuevas versiones de Snapchat"
@@ -1223,21 +1163,6 @@
             "bypass_video_length_restriction": {
                 "single": "Archivo de Media único",
                 "split": "Archivos de media divididos"
-            },
-            "theme_picker": {
-                "amoled_dark_mode": "Modo oscuro AMOLED",
-                "custom": "Colores personalizados",
-                "light_blue": "Azul claro",
-                "dark_blue": "Azul oscuro",
-                "earthy_autumn": "Otoño terroso",
-                "mint_chocolate": "Chocolate de menta",
-                "ginger_snap": "Snap jengibre",
-                "lemon_meringue": "Merengue Limón",
-                "lava_flow": "Flujo de magma",
-                "ocean_fog": "Niebla oceánica",
-                "alien_landscape": "Paisaje extraterrestre",
-                "material_you_light": "Material You claro (Android 12+)",
-                "material_you_dark": "Material You oscuro (Android 12+)"
             },
             "path_format": {
                 "append_username": "Añadir el usuario al nombre del archivo",

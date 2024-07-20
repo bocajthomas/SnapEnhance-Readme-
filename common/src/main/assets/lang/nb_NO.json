@@ -360,66 +360,6 @@
                             }
                         }
                     },
-                    "customize_ui": {
-                        "properties": {
-                            "colors": {
-                                "properties": {
-                                    "text_color": {
-                                        "name": "Hovedtekstfarge",
-                                        "description": "Endrer Snapchat sin hovedtekstfarge"
-                                    },
-                                    "background_color": {
-                                        "name": "Bakgrunnsfarge",
-                                        "description": "Endrer Snapchats bakgrunnsfarge"
-                                    },
-                                    "camera_grid_lines": {
-                                        "name": "Kamerarutenett-farge",
-                                        "description": "Endrer Snapchats rutenettsfarge for kameraforhåndsvisning.\nMerk: Skrur på rutenettet i innstillinger for eget kamera."
-                                    },
-                                    "chat_chat_text_color": {
-                                        "name": "Primær venneflytsfarge"
-                                    },
-                                    "pending_sending_text_color": {
-                                        "name": "Sekundær venneflytsfarge"
-                                    },
-                                    "friend_feed_conversations_line_color": {
-                                        "name": "Samtalelinjefarge",
-                                        "description": "Endrer inndelingsfargen som deler samtaler på venneflyten"
-                                    },
-                                    "background_color_surface": {
-                                        "description": "Endrer Snapchats overflatebakgrunnsfarge",
-                                        "name": "Overflatefarge for bakgrunn"
-                                    },
-                                    "list_background_drawable": {
-                                        "name": "Bakgrunn for samtaleliste ",
-                                        "description": "Endrer bakgrunnsfargen for samtalelisten på venneflyten.\nDette kan ødelegge utseende på venneflyter."
-                                    },
-                                    "action_menu_background_color": {
-                                        "name": "Bakgrunnsfarge for handlingsmeny",
-                                        "description": "Endrer Snapchats bakgrunnsfarge for sludringshandlingsmenyen"
-                                    },
-                                    "sig_color_icon_primary": {
-                                        "description": "Endrer ikonfargen for sludringhandlingsmeny/venneflytsmeny",
-                                        "name": "Ikonfarge for handlingsmeny"
-                                    },
-                                    "action_menu_round_background_color": {
-                                        "description": "Endrer Snapchats bakgrunnsfarge for den runde sludringshandlingsmenyen",
-                                        "name": "Bakgrunnsfarge for rund handlingsmeny"
-                                    }
-                                },
-                                "name": "Egendefinerte farger"
-                            },
-                            "theme_picker": {
-                                "name": "Draktvelger",
-                                "description": "Forhåndsinnstilte Snapchat-drakter"
-                            },
-                            "colors_debug": {
-                                "name": "Fargeavlusning"
-                            }
-                        },
-                        "name": "Farger",
-                        "description": "Tilpass Snapchat-farger"
-                    },
                     "friend_feed_message_preview": {
                         "properties": {
                             "amount": {
@@ -588,16 +528,6 @@
             },
             "experimental": {
                 "properties": {
-                    "experimental_colors": {
-                        "properties": {
-                            "ring_color": {
-                                "name": "Ringfarge"
-                            },
-                            "ring_start_color": {
-                                "name": "Ring-startfarge"
-                            }
-                        }
-                    },
                     "spoof": {
                         "properties": {
                             "android_id": {

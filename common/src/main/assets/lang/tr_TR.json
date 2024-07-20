@@ -463,66 +463,6 @@
                     "message_indicators": {
                         "name": "Mesaj Göstergeleri",
                         "description": "Mesajlara belirli gösterge simgeleri ekler\nNot: Göstergeler %100 doğru olmayabilir"
-                    },
-                    "customize_ui": {
-                        "description": "Snapchat'in Renklerini Özelleştirme",
-                        "name": "Renkler",
-                        "properties": {
-                            "theme_picker": {
-                                "name": "Tema Seçici",
-                                "description": "Önceden Ayarlanmış Snapchat Temaları"
-                            },
-                            "colors": {
-                                "name": "Özel Renkler",
-                                "description": "Renkleri özelleştirin\nNot: Kullanmak için Tema Seçici'de Özel Renkler'i seçin",
-                                "properties": {
-                                    "text_color": {
-                                        "name": "Ana Metin Rengi",
-                                        "description": "Snapchat'in ana metin rengini değiştirir"
-                                    },
-                                    "chat_chat_text_color": {
-                                        "name": "Arkadaş Akışı Ana Metin Rengi",
-                                        "description": "Arkadaş akışındaki ( Yeni Sohbet / Yeni Snap ve Sohbetler / Yazma / Arama / Cevapsız arama / Konuşma / Yeni Sesli Not ) metin rengini değiştirir"
-                                    },
-                                    "pending_sending_text_color": {
-                                        "name": "Arkadaş Akışı İkincil Metin Rengi",
-                                        "description": "Arkadaş akışındaki ( Teslim Edildi / Alındı / Gönderiliyor / Açıldı / Sohbet Etmek İçin Dokun / Tekrar Oynatmak İçin Beklet / Tekrar Oynatıldı / Sohbete Kaydedildi / Arandı ) metin rengini değiştirir"
-                                    },
-                                    "snap_with_sound_text_color": {
-                                        "name": "Sesli Snap'ler Metin Rengi",
-                                        "description": "Arkadaş akışındaki ( Yeni Snap ) metin rengini değiştirir\nNot: Yalnızca Video Snap'leri"
-                                    },
-                                    "snap_without_sound_text_color": {
-                                        "name": "Sessiz Snap'ler Metin Rengi",
-                                        "description": "Arkadaş akışındaki ( Yeni Snap ) metin rengini değiştirir\nNot: Yalnızca Video Snap'leri"
-                                    },
-                                    "background_color": {
-                                        "name": "Arkaplan Rengi",
-                                        "description": "Snapchat'in arkaplan rengini değiştirir"
-                                    },
-                                    "background_color_surface": {
-                                        "name": "Arkaplan Yüzey Rengi",
-                                        "description": "Snapchat'in arkaplan yüzey rengini değiştirir"
-                                    },
-                                    "action_menu_background_color": {
-                                        "name": "Eylem Menüsü Arkaplan Rengi",
-                                        "description": "Snapchat'in sohbet eylem menüsü arkaplan rengini değiştirir"
-                                    },
-                                    "action_menu_round_background_color": {
-                                        "name": "Eylem Menüsü Yuvarlak Arkaplan Rengi",
-                                        "description": "Snapchat'in sohbet eylem menüsü yuvarlak arkaplan rengini değiştirir"
-                                    },
-                                    "camera_grid_lines": {
-                                        "name": "Kamera Izgara Çizgileri Rengi",
-                                        "description": "Snapchat'in Kamera Önizlemesinde Izgara Çizgileri rengini değiştirir\nNot: Kameram ayarlarında ızgarayı etkinleştirin"
-                                    },
-                                    "friend_feed_conversations_line_color": {
-                                        "name": "Sohbetler Çizgi Rengi",
-                                        "description": "Arkadaş akışındaki Konuşmaları bölen çizgi bölücü rengini değiştirir "
-                                    }
-                                }
-                            }
-                        }
                     }
                 }
             },
@@ -1311,21 +1251,6 @@
                 "remove_friend": "Birisi sizi arkadaşlıktan çıkardığında bildir",
                 "birthday_changes": "Birisi doğum gününü değiştirdiğinde bildir",
                 "bitmoji_background_changes": "Birisi Bitmoji arka planını değiştirdiğinde bildir"
-            },
-            "theme_picker": {
-                "custom": "Özel Renkler",
-                "light_blue": "Açık Mavi",
-                "earthy_autumn": "Topraksı Sonbahar",
-                "mint_chocolate": "Naneli Çikolata",
-                "ginger_snap": "Zencefilli Snap",
-                "lemon_meringue": "Limonlu Beze",
-                "lava_flow": "Lav Akışı",
-                "ocean_fog": "Okyanus Sisi",
-                "alien_landscape": "Uzaylı Manzarası",
-                "amoled_dark_mode": "AMOLED Karanlık Mod",
-                "dark_blue": "Koyu Mavi",
-                "material_you_light": "Material You Aydınlık (Android 12+)",
-                "material_you_dark": "Material You Karanlık (Android 12+)"
             }
         }
     },

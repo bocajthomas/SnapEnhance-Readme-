@@ -3,29 +3,6 @@
         "properties": {
             "user_interface": {
                 "properties": {
-                    "customize_ui": {
-                        "properties": {
-                            "colors": {
-                                "properties": {
-                                    "snap_with_sound_text_color": {
-                                        "description": "Änderet d Textfarb vo ( New Snap ) im Fründ-Feed\nHiwiis: Nume Video Snaps"
-                                    },
-                                    "snap_without_sound_text_color": {
-                                        "description": "Änderet d Textfarb vo ( New Snap ) im Fründ-Feed\nHiwiis: Nume Video Snaps"
-                                    },
-                                    "pending_sending_text_color": {
-                                        "description": "Änderet d Textfarb vo ( Glieferet / Empfange / Sende / Göffnet / Uf Chat tippe / Widergebe / Gspicheret im Chat / Ufgruefe ) im Fründ-Feed"
-                                    },
-                                    "chat_chat_text_color": {
-                                        "description": "Änderet d Textfarb vo ( Neuer Chat / Neuer Snap And Chats / Tippe / Aarüef verpasst / Spreche / Neui Voice Note ) im Fründ-Feed"
-                                    },
-                                    "camera_grid_lines": {
-                                        "description": "Ändert Snapchats Gitterliniefarb ir Kamera-Vorschau\nHiwiis: Aktivier ds Raster i de my-Kamera-Iistelligen"
-                                    }
-                                }
-                            }
-                        }
-                    },
                     "opera_media_quick_info": {
                         "description": "Zeigt nützlechi Informatione zu Medie wi Erschtelligsdatum im Opernbetrachter-Kontextmenü"
                     },

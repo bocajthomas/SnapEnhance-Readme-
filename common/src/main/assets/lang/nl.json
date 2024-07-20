@@ -373,30 +373,6 @@
                     "disable_spotlight": {
                         "name": "Spotlight uitschakelen",
                         "description": "Schakelt de Spotlight pagina uit"
-                    },
-                    "customize_ui": {
-                        "properties": {
-                            "theme_picker": {
-                                "name": "vThemakiezer",
-                                "description": "Vooraf ingestelde Snapchat-thema's"
-                            },
-                            "colors": {
-                                "properties": {
-                                    "text_color": {
-                                        "name": "Kleur hoofdtekst",
-                                        "description": "Verandert de hoofdtekstkleur van Snapchat"
-                                    },
-                                    "chat_chat_text_color": {
-                                        "name": "Tekstkleur hoofdvriendfeed",
-                                        "description": "Verandert de tekstkleur van (Nieuwe chat / Nieuwe snap en chats / Typen / Bellen / Gemiste oproep / Spreken / Nieuwe spraaknotitie) in de vriendenfeed"
-                                    }
-                                },
-                                "name": "Aangepaste kleuren",
-                                "description": "Pas individuele kleuren aan\nOpmerking: Selecteer Aangepaste kleuren in de Themakiezer om te gebruiken"
-                            }
-                        },
-                        "name": "Kleuren",
-                        "description": "Pas Snapchats-kleuren aan"
                     }
                 },
                 "name": "Gebruikersomgeving"
