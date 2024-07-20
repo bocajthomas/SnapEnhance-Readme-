@@ -34,7 +34,9 @@
             "friend_tracker": "Freund:in-tracker",
             "edit_rule": "Regel bearbeiten",
             "file_imports": "Dateiimporte",
-            "better_location": "Bessere Lage"
+            "better_location": "Bessere Lage",
+            "manage_repos": "Repository bearbeiten",
+            "edit_theme": "Design ändern"
         },
         "sections": {
             "features": {
@@ -162,6 +164,9 @@
                 "no_friends_map": "Keine Freunde auf der Karte",
                 "teleport_to_friend_title": "Zum Freund teleportieren",
                 "no_friends_found": "Keine Freunde gefunden"
+            },
+            "theming": {
+                "no_themes_hint": "Keine Designs gefunden"
             }
         },
         "dialogs": {
@@ -467,6 +472,9 @@
                     "auto_close_friend_feed_menu": {
                         "name": "Freunde-Feed-Menü automatisch schließen",
                         "description": "Schließt das Freunde-Feed-Menü automatisch, nachdem eine Einstellungstaste gedrückt wurde"
+                    },
+                    "custom_theme": {
+                        "name": "Benutzerdefiniertes Design"
                     }
                 }
             },
@@ -1518,6 +1526,12 @@
         "logger_history": {
             "name": "Logger Verlauf",
             "description": "Sehen Sie sich den Verlauf der protokollierten Nachrichten an"
+        },
+        "security_features": {
+            "name": "Sicherheitsfunktionen"
+        },
+        "theming": {
+            "name": "Designs"
         }
     },
     "mark_as_seen": {
