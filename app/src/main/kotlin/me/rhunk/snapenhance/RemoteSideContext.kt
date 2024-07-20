@@ -220,9 +220,9 @@ class RemoteSideContext(
             requirements = requirements or Requirements.MAPPINGS
         }
 
-        /*if (sharedPreferences.getString("sif", null) == null) {
+        if (sharedPreferences.getString("sif", null) == null) {
             requirements = requirements or Requirements.SIF
-        }*/
+        }
 
         if (requirements == 0) return false
 

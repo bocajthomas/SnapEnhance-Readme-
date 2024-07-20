@@ -1,0 +1,35 @@
+name: "Theme Picker Theme"
+description: Summit a Theme For the Theme Picker
+title: "Name of theme"
+labels: [
+  "Theme"
+]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: "Description"
+      description: Please input your theme, Include the hex color code, Change the Info below. 
+      value: |
+        Name: Magical Green
+        Main Text Color: #FF17FF00 
+        Main Friend Feed Text Color: #000000 
+        Secondary Friend Feed Text Color: #FF17FF00 
+        Snaps With Sound Text Color: #FF17FF00 
+        Snaps Without Sound Text Color: #FF17FF00 
+        Background Color: #FF17FF00 
+        Background Surface Color: #FF17FF00 
+        Conversations Line Color: #000000 
+        Action Menu Background Color: #FF17FF00 
+        Action Menu Round Background Color: #FF17FF00 
+        Camera Gridlines Color: #000000  
+    validations:
+      required: true
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Agreement
+      description: Make sure you tick, If it applies to you.
+      options:
+        - label: Have you submitted This Theme correctly?
+          required: true

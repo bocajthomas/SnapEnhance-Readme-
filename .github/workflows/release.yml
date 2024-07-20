@@ -42,7 +42,7 @@ jobs:
         
       - name: Sign APK
         id: sign_app
-        uses: SnapEnhance/sign-android-release@master
+        uses: SE-Extended/sign-android-release@master
         with:
           releaseDirectory: app/build/outputs/apk/armv8/release/
           signingKeyBase64: ${{ secrets.JAVA_KEYSTORE_DATA }}
@@ -55,7 +55,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: snapenhance-armv8-release
+          name: SE-Extended-ARMV8-Release
           path: ${{steps.sign_app.outputs.signedReleaseFile}}
           
   job_armv7:
@@ -88,7 +88,7 @@ jobs:
 
       - name: Sign APK
         id: sign_app
-        uses: SnapEnhance/sign-android-release@master
+        uses: SE-Extended/sign-android-release@master
         with:
           releaseDirectory: app/build/outputs/apk/armv7/release/
           signingKeyBase64: ${{ secrets.JAVA_KEYSTORE_DATA }}
@@ -101,7 +101,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: snapenhance-armv7-release
+          name: SE-Extended-ARMV7-Release
           path: ${{steps.sign_app.outputs.signedReleaseFile}}
 
   job_universal:
@@ -134,7 +134,7 @@ jobs:
 
       - name: Sign APK
         id: sign_app
-        uses: SnapEnhance/sign-android-release@master
+        uses: SE-Extended/sign-android-release@master
         with:
           releaseDirectory: app/build/outputs/apk/all/release/
           signingKeyBase64: ${{ secrets.JAVA_KEYSTORE_DATA }}
@@ -147,7 +147,7 @@ jobs:
       - name: Upload universal
         uses: actions/upload-artifact@v4
         with:
-          name: snapenhance-universal-release
+          name: SE-Extended-UNIVERSAL-Release
           path: ${{steps.sign_app.outputs.signedReleaseFile}}
 
   job_manager:
@@ -177,7 +177,7 @@ jobs:
 
       - name: Sign APK
         id: sign_app
-        uses: SnapEnhance/sign-android-release@master
+        uses: SE-Extended/sign-android-release@master
         with:
           releaseDirectory: manager/build/outputs/apk/release/
           signingKeyBase64: ${{ secrets.JAVA_KEYSTORE_DATA }}
@@ -190,7 +190,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: manager
+          name: Manager
           path: ${{steps.sign_app.outputs.signedReleaseFile}}
 
   job_release:

@@ -29,7 +29,7 @@
             "tasks": "Tehtävät",
             "logger_history": "Lokejen historia",
             "logged_stories": "kirjattuja tarinoita",
-            "manage_scope": "Muokkaa  laajuutta",
+            "manage_scope": "Muokkaa laajuutta",
             "messaging_preview": "Esikatsoa",
             "friend_tracker": "Kavereiden Seuranta",
             "edit_rule": "Muokkaa Sääntöä"
@@ -71,7 +71,7 @@
             },
             "home": {
                 "update_title": "SnapEnchance päivitys",
-                "update_content": "Versio on saatavilla",
+                "update_content": "Versio {version} on saatavilla!",
                 "update_button": "Lataa"
             },
             "tasks": {
@@ -165,7 +165,7 @@
                 }
             },
             "stealth": {
-                "name": "Haamutila",
+                "name": "",
                 "description": "Estää ketään tietämästä, että olet avannut heidän snäpin tai chatin",
                 "options": {
                     "blacklist": "Sulje pois haamutilasta",
@@ -670,7 +670,7 @@
     },
     "friend_menu_option": {
         "preview": "Esikatselu",
-        "stealth_mode": "Haamutila",
+        "stealth_mode": "",
         "auto_download_blacklist": "Automaattisen latauksen esto lista",
         "anti_auto_save": "Automaattisen tallennuksen esto"
     },

@@ -3,10 +3,10 @@
         "dialogs": {
             "select_language": "Select Language",
             "select_save_folder_button": "Select Folder",
-            "save_folder": "SnapEnhance requires Storage permissions to download and Save Media from Snapchat.\nPlease choose the location where media should be downloaded to."
+            "save_folder": "SE Extended requires Storage permissions to download and Save Media from Snapchat.\nPlease choose the location where media should be downloaded to."
         },
         "mappings": {
-            "generate_failure_no_snapchat": "SnapEnhance was unable to detect Snapchat, please try reinstalling Snapchat.",
+            "generate_failure_no_snapchat": "SE Extended was unable to detect Snapchat, please try reinstalling Snapchat.",
             "generate_failure": "An error occurred while trying to generate mappings, please try again.",
             "dialog": "Generating Mappings, this may take a while, please be patient..."
         },
@@ -65,11 +65,11 @@
                 "empty_hint": "(blank)"
             },
             "home": {
-                "update_title": "SnapEnhance Update",
+                "update_title": "SE Extended Update",
                 "update_button": "Download",
                 "update_content": "Version {version} is Available!",
-                "debug_build_summary_title": "You are running a debug build of SnapEnhance",
-                "version_title": "v{versionName} · by rhunk",
+                "debug_build_summary_title": "You are running a debug build of SE Extended",
+                "version_title": "V{versionName} · Forked by Jacob",
                 "debug_build_summary_date": "Build date: {date} ({days} days ago)",
                 "debug_build_summary_content": "Version {versionName} ({versionCode})",
                 "quick_actions_title": "Quick Actions"
@@ -498,7 +498,7 @@
                     },
                     "hide_settings_gear": {
                         "name": "Hide Settings Gear",
-                        "description": "Hides the SnapEnhance Settings Gear in The friend feed"
+                        "description": "Hides the SE Extended Settings Gear in The friend feed"
                     },
                     "enable_friend_feed_menu_bar": {
                         "name": "Friend Feed Menu Bar",
@@ -557,6 +557,18 @@
                                     "friend_feed_conversations_line_color": {
                                         "name": "Conversations Line Colour",
                                         "description": "Changes the line divider colour that splits Conversations on the friend feed "
+                                    },
+                                    "sig_color_icon_primary": {
+                                        "name": "Action Menu Icon Colour",
+                                        "description": "Changes the colour of icons on chat action menu/friend feed menu"
+                                    },
+                                    "action_sheet_description_text_color": {
+                                        "name": "Action Menu Description Text Colour",
+                                        "description": "Changes the text colour of the description on the action menu"
+                                    },
+                                    "list_background_drawable": {
+                                        "name": "Conversation list Background ",
+                                        "description": "Changes the background colour of the conversation list on the friend feed\nThis might break the friend feeds look"
                                     }
                                 },
                                 "name": "Custom Colours",
@@ -565,8 +577,16 @@
                             "theme_picker": {
                                 "name": "Theme Picker",
                                 "description": "Preset Snapchat Themes"
+                            },
+                            "colors_debug": {
+                                "name": "Colours Debug",
+                                "description": "Logs The obtainStyledAttributes, That are being used when Snapchat is loaded\nNote: This will significantly increase the size of your logs"
                             }
                         }
+                    },
+                    "auto_close_friend_feed_menu": {
+                        "description": "Automatically closes the Friend Feed Menu after pressing a setting button",
+                        "name": "Auto Close Friend Feed Menu"
                     }
                 },
                 "name": "User Interface",
@@ -741,13 +761,13 @@
                         "description": "Allows you to pin an unlimited amount of conversations locally",
                         "name": "Unlimited Conversation Pinning"
                     },
-                    "mark_snap_as_seen_button": {
-                        "name": "Mark Snap as Seen Button",
-                        "description": "Adds a button to mark a Snap as seen when viewing it.\nThis will work even when Stealth Mode is enabled"
-                    },
                     "skip_when_marking_as_seen": {
-                        "name": "Skip When Marking as Seen",
-                        "description": "Automatically skips to the next Snap when marking a Snap as seen.\nUse in combination with Mark Snap as Seen Button"
+                        "description": "Automatically skips to the next Snap when marking a Snap as seen.\nUse in combination with Mark Snap as Seen Button",
+                        "name": "Skip When Marking as Seen"
+                    },
+                    "mark_snap_as_seen_button": {
+                        "description": "Adds a button to mark a Snap as seen when viewing it.\nThis will work even when Stealth Mode is enabled",
+                        "name": "Mark Snap as Seen Button"
                     }
                 },
                 "description": "Change how you interact with friends"
@@ -877,8 +897,8 @@
                         }
                     },
                     "disable_telecom_framework": {
-                        "name": "Disable Telecom Framework",
-                        "description": "Prevents Snapchat from using the Android Telecom framework\nThis allows you to listen to music while on a call"
+                        "description": "Prevents Snapchat from using the Android Telecom framework\nThis allows you to listen to music while on a call",
+                        "name": "Disable Telecom Framework"
                     }
                 }
             },
@@ -1114,23 +1134,133 @@
                         "name": "Context Menu Fix",
                         "description": "Attempts to repair the Friend Feed Menu when the device is offline, it cannot be displayed correctly"
                     },
-                    "better_transcript": {
-                        "name": "Better Transcript",
+                    "experimental_colors": {
                         "properties": {
-                            "preferred_transcription_lang": {
-                                "name": "Preferred Transcription Language",
-                                "description": "The preferred language for the voice note transcript (e.g. EN, ES, FR)"
+                            "sig_color_icon_secondary": {
+                                "name": "Sig Colour Icon Secondary",
+                                "description": "Does something to the colour of something ;)"
                             },
+                            "ring_color": {
+                                "description": "Does something to the colour of something ;)",
+                                "name": "Ring Colour"
+                            },
+                            "sc_button_color": {
+                                "name": "Sc Button Colour",
+                                "description": "Does something to the colour of something ;)"
+                            },
+                            "psts_divider_color": {
+                                "name": "Psts Divider Colour",
+                                "description": "Does something to the colour of something ;)"
+                            },
+                            "stroke_color": {
+                                "name": "Stroke Colour",
+                                "description": "Does something to the colour of something ;)"
+                            },
+                            "psts_tab_background": {
+                                "description": "Does something to the colour of something ;)",
+                                "name": "Psts Tab Background"
+                            },
+                            "sig_color_base_app_yellow": {
+                                "description": "Does something to the colour of something ;)",
+                                "name": "Sig Colour Base App Yellow"
+                            },
+                            "sig_color_layout_place_holder": {
+                                "name": "Sig Colour Layout Place Holder",
+                                "description": "Does something to the colour of something ;)"
+                            },
+                            "ring_start_color": {
+                                "description": "Does something to the colour of something ;)",
+                                "name": "Ring Start Colour"
+                            },
+                            "status_bar_background": {
+                                "name": "Status Bar Background",
+                                "description": "Does something to the colour of something ;)"
+                            },
+                            "edit_text_color": {
+                                "description": "Does something to the colour of something ;)",
+                                "name": "Edit Text Colour"
+                            },
+                            "item_shape_fill_color": {
+                                "name": "Item Shape Fill Colour",
+                                "description": "Does something to the colour of something ;)"
+                            },
+                            "tab_text_color": {
+                                "name": "Tab Text Colour",
+                                "description": "Does something to the colour of something ;)"
+                            },
+                            "status_bar_foreground": {
+                                "description": "Does something to the colour of something ;)",
+                                "name": "Status Bar Foreground"
+                            },
+                            "chip_background_color": {
+                                "name": "Chip Background Colour",
+                                "description": "Does something to the colour of something ;)"
+                            },
+                            "psts_indicator_color": {
+                                "name": "Psts Indicator Colour",
+                                "description": "Does something to the colour of something ;)"
+                            },
+                            "sig_color_button_primary": {
+                                "description": "Does something to the colour of something ;)",
+                                "name": "Sig Colour Button Primary"
+                            },
+                            "story_replay_view_ring_color": {
+                                "name": "Story Replay View Ring Colour",
+                                "description": "Does something to the colour of something ;)"
+                            },
+                            "box_background_color": {
+                                "name": "Box Background Colour",
+                                "description": "Does something to the colour of something ;)"
+                            },
+                            "recipient_input_style": {
+                                "name": "Recipient Input Style",
+                                "description": "Does something to the colour of something ;)"
+                            },
+                            "range_fill_color": {
+                                "name": "Range Fill Colour",
+                                "description": "Does something to the colour of something ;)"
+                            },
+                            "recipient_pill_background_drawable": {
+                                "name": "Recipient Pill Background Drawable",
+                                "description": "Does something to the colour of something ;)"
+                            },
+                            "sig_color_story_ring_friends_feed_story_ring": {
+                                "description": "Does something to the colour of something ;)",
+                                "name": "sigColourStoryRingFriendsFeedStoryRing"
+                            },
+                            "sig_color_background_surface_translucent": {
+                                "name": "sigColourBackgroundSurfaceTranslucent",
+                                "description": "Does something to the colour of something ;)"
+                            },
+                            "sig_color_story_ring_discover_tab_thumbnail_story_ring": {
+                                "name": "sigColourStoryRingDiscoverTabThumbnailStoryRing",
+                                "description": "Does something to the colour of something ;)"
+                            }
+                        },
+                        "description": "Note: These colour features are Experimental and therefore may cause your snapchat to look strange,\nSelect `Custom Colours` on Theme picker to use",
+                        "name": "Experimental Colour Options"
+                    },
+                    "better_transcript": {
+                        "properties": {
                             "enhanced_transcript": {
                                 "name": "Enhanced Transcript",
                                 "description": "Improves the voice note transcript using DeepL.\nBefore using this feature, please ensure that you have read their privacy policy."
                             },
                             "force_transcription": {
-                                "description": "Allows all voice notes to be transcribed",
-                                "name": "Force Voice Note Transcription"
+                                "name": "Force Voice Note Transcription",
+                                "description": "Allows all voice notes to be transcribed"
+                            },
+                            "preferred_transcription_lang": {
+                                "name": "Preferred Transcription Language",
+                                "description": "The preferred language for the voice note transcript (e.g. EN, ES, FR)"
+                            },
+                            "enhanced_transcript_in_notifications": {
+                                "name": "Enhanced Transcript in Notifications",
+                                "description": "Transcribes voice notes in notifications using DeepL. This requires the Chat Preview feature to be enabled in Better Notifications"
                             }
                         },
-                        "description": "Improves the voice note transcript"
+                        "description": "Improves the voice note transcript",
+                        "name": "Better Transcript"
                     }
                 }
             },
@@ -1140,7 +1270,7 @@
             },
             "scripting": {
                 "name": "Scripting",
-                "description": "Run custom scripts to extend SnapEnhance",
+                "description": "Run custom scripts to extend SE Extended",
                 "properties": {
                     "developer_mode": {
                         "name": "Developer Mode",
@@ -1285,7 +1415,12 @@
                 "hide_stickers_button": "Remove Stickers Button",
                 "hide_voice_record_button": "Remove Voice Record Button",
                 "hide_unread_chat_hint": "Remove Unread Chat Hint",
-                "hide_post_to_story_buttons": "Remove Post to Story buttons before sending a Snap"
+                "hide_post_to_story_buttons": "Remove Post to Story buttons",
+                "hide_snap_create_group_buttons": "Remove Snap Create Group Buttons",
+                "hide_chat_gallery_button": "Remove Chat Gallery Button",
+                "hide_explorer_token_button": "Remove Explorer Token Button",
+                "hide_gift_snapchat_plus_reminders": "Remove Gift Snapchat Plus Reminders",
+                "hide_chat_camera_button": "Remove Chat Camera Button"
             },
             "hide_story_suggestions": {
                 "hide_friend_suggestions": "Hide friend suggestions",
@@ -1333,7 +1468,8 @@
             "disable_story_sections": {
                 "friends": "Friends",
                 "discover": "Discover",
-                "following": "Following"
+                "following": "Following",
+                "suggested_stories": "Suggested Stories"
             },
             "disable_cameras": {
                 "back": "Back Camera",
@@ -1371,7 +1507,32 @@
                 "lemon_meringue": "Lemon Meringue",
                 "alien_landscape": "Alien Landscape",
                 "material_you_dark": "Material You Dark (Android 12+)",
-                "material_you_light": "Material You Light (Android 12+)"
+                "material_you_light": "Material You Light (Android 12+)",
+                "watercolor_wash": "Watercolor Wash",
+                "industrial_chic": "Industrial Chic",
+                "creamy_vanilla": "Creamy Vanilla",
+                "spicy_chili": "Spicy Chili",
+                "midnight_library": "Midnight Library",
+                "art_deco_glam": "Art Deco Glam",
+                "ocean_depths": "Ocean Depths",
+                "firefly_night": "Firefly Night",
+                "apple_orchard": "Apple Orchard",
+                "lavender_field": "Lavender Field",
+                "zesty_lemon": "Zesty Lemon",
+                "tropical_paradise": "Tropical Paradise",
+                "cherry_bomb": "Cherry Bomb",
+                "woodland_mystery": "Woodland Mystery",
+                "lemon_sorbet": "Lemon Sorbet",
+                "spicy_mustard": "Spicy Mustard",
+                "gingerbread_house": "Gingerbread House",
+                "galaxy_glitter": "Galaxy Glitter",
+                "spring_meadow": "Spring Meadow",
+                "cosmic_night": "Cosmic Night",
+                "peppermint_candy": "Peppermint Candy",
+                "bubblegum_pink": "Bubblegum Pink",
+                "lemon_drop": "Lemon Drop",
+                "modern_farmhouse": "Modern Farmhouse",
+                "midnight_slate": "Midnight Slate"
             }
         }
     },
