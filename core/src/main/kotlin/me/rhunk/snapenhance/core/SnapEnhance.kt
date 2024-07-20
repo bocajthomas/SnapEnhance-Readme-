@@ -179,13 +179,13 @@ class SnapEnhance {
                 scriptRuntime.eachModule { callFunction("module.onSnapMainActivityCreate", activity) }
                 actionManager.onActivityCreate()
 
-                if (safeMode) {
+                /*if (safeMode) {
                     appContext.inAppOverlay.showStatusToast(
                         Icons.Outlined.Cancel,
                         "Failed to load security features! Snapchat may not work properly.",
                         durationMs = 3000
                     )
-                }
+                }*/
             }
         }.also { time ->
             appContext.log.verbose("onActivityCreate took $time")
