@@ -2,10 +2,9 @@ package me.rhunk.snapenhance.core.features.impl.experiments
 
 import me.rhunk.snapenhance.core.event.events.impl.UnaryCallEvent
 import me.rhunk.snapenhance.core.features.Feature
-import me.rhunk.snapenhance.core.features.FeatureLoadParams
 import java.nio.ByteBuffer
 
-class ContextMenuFix: Feature("Context Menu Fix", loadParams = FeatureLoadParams.INIT_SYNC) {
+class ContextMenuFix: Feature("Context Menu Fix") {
     override fun init() {
         if (!context.config.experimental.contextMenuFix.get()) return
         context.event.subscribe(UnaryCallEvent::class) { event ->

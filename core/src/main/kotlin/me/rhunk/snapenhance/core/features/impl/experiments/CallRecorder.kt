@@ -8,7 +8,6 @@ import kotlinx.coroutines.withTimeoutOrNull
 import me.rhunk.snapenhance.common.data.download.AudioStreamFormat
 import me.rhunk.snapenhance.common.data.download.MediaDownloadSource
 import me.rhunk.snapenhance.core.features.Feature
-import me.rhunk.snapenhance.core.features.FeatureLoadParams
 import me.rhunk.snapenhance.core.features.impl.downloader.MediaDownloader
 import me.rhunk.snapenhance.core.util.hook.HookStage
 import me.rhunk.snapenhance.core.util.hook.hook
@@ -23,7 +22,7 @@ import java.util.UUID
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.CopyOnWriteArrayList
 
-class CallRecorder : Feature("Call Recorder", loadParams = FeatureLoadParams.INIT_SYNC) {
+class CallRecorder : Feature("Call Recorder") {
     private val httpServer = HttpServer(
         timeout = Integer.MAX_VALUE
     )

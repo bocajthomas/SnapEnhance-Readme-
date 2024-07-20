@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
+import androidx.core.content.res.use
 import me.rhunk.snapenhance.common.ui.OverlayType
 import me.rhunk.snapenhance.core.ui.menu.AbstractMenu
 import me.rhunk.snapenhance.core.util.ktx.getDimens
@@ -65,8 +66,8 @@ class SettingsGearInjector : AbstractMenu() {
                     gravity = android.view.Gravity.CENTER
                 }
                 setImageDrawable(context.resources.getDrawable("svg_settings_32x32", context.theme))
-                context.resources.getStyledAttributes("headerButtonOpaqueIconTint", context.theme).getColorStateList(0)?.let {
-                    imageTintList = it
+                context.resources.getStyledAttributes("headerButtonOpaqueIconTint", context.theme).use {
+                    imageTintList = it.getColorStateList(0)
                 }
             })
         })

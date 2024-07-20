@@ -2,7 +2,6 @@ package me.rhunk.snapenhance.core.features.impl.ui
 
 import me.rhunk.snapenhance.common.data.MessagingRuleType
 import me.rhunk.snapenhance.common.data.RuleState
-import me.rhunk.snapenhance.core.features.FeatureLoadParams
 import me.rhunk.snapenhance.core.features.MessagingRuleFeature
 import me.rhunk.snapenhance.core.util.hook.HookStage
 import me.rhunk.snapenhance.core.util.hook.Hooker
@@ -12,8 +11,8 @@ import me.rhunk.snapenhance.core.util.ktx.getObjectField
 import me.rhunk.snapenhance.core.util.ktx.setObjectField
 import me.rhunk.snapenhance.core.wrapper.impl.SnapUUID
 
-class PinConversations : MessagingRuleFeature("PinConversations", MessagingRuleType.PIN_CONVERSATION, loadParams = FeatureLoadParams.ACTIVITY_CREATE_SYNC) {
-    override fun onActivityCreate() {
+class PinConversations : MessagingRuleFeature("PinConversations", MessagingRuleType.PIN_CONVERSATION) {
+    override fun init() {
         if (!context.config.messaging.unlimitedConversationPinning.get()) return
 
         context.classCache.feedManager.hook("setPinnedConversationStatus", HookStage.BEFORE) { param ->

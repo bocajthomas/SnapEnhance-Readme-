@@ -3,6 +3,7 @@ package me.rhunk.snapenhance.action
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.FolderOpen
 import androidx.compose.material.icons.filled.History
+import androidx.compose.material.icons.filled.Palette
 import androidx.compose.material.icons.filled.PersonSearch
 import androidx.compose.ui.graphics.vector.ImageVector
 import me.rhunk.snapenhance.ui.manager.Routes
@@ -21,4 +22,7 @@ enum class EnumQuickActions(
     LOGGER_HISTORY("logger_history", Icons.Default.History, {
         loggerHistory.navigateReset()
     }),
+    THEMING("theming", Icons.Default.Palette, {
+        theming.navigateReset()
+    })
 }

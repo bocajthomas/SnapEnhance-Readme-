@@ -33,6 +33,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.core.content.res.use
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -74,12 +75,12 @@ class FriendFeedInfoMenu : AbstractMenu() {
     private val sigColorTextPrimary by lazy {
         context.androidContext.theme.obtainStyledAttributes(
             intArrayOf(context.resources.getIdentifier("sigColorTextPrimary", "attr"))
-        ).getColor(0, 0)
+        ).use { it.getColor(0, 0) }
     }
     private val sigColorBackgroundSurface by lazy {
         context.androidContext.theme.obtainStyledAttributes(
             intArrayOf(context.resources.getIdentifier("sigColorBackgroundSurface", "attr"))
-        ).getColor(0, 0)
+        ).use { it.getColor(0, 0) }
     }
 
     private fun getImageDrawable(url: String): Drawable {

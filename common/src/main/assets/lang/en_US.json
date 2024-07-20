@@ -36,6 +36,9 @@
             "friend_tracker": "Friend Tracker",
             "edit_rule": "Edit Rule",
             "file_imports": "File Imports",
+            "theming": "Theming",
+            "edit_theme": "Edit Theme",
+            "manage_repos": "Manage Repositories",
             "social": "Social",
             "manage_scope": "Manage Scope",
             "messaging_preview": "Preview",
@@ -168,6 +171,9 @@
                 "search_bar": "Search",
                 "no_friends_map": "No friends on the map",
                 "no_friends_found": "No friends found"
+            },
+            "theming": {
+                "no_themes_hint": "No themes found"
             }
         },
         "dialogs": {
@@ -293,6 +299,10 @@
             "name": "Change Language",
             "description": "Change the language of SE Extended"
         },
+        "security_features": {
+            "name": "Security Features",
+            "description": "Access security features"
+        },
         "file_imports": {
             "name": "File Imports",
             "description": "Import files for use in Snapchat"
@@ -304,6 +314,10 @@
         "logger_history": {
             "name": "Logger History",
             "description": "View the history of logged messages"
+        },
+        "theming": {
+            "name": "Theming",
+            "description": "Customize the look and feel of Snapchat"
         }
     },
 
@@ -415,81 +429,9 @@
                         "name": "Enable App Appearance Settings",
                         "description": "Enables the hidden App Appearance Setting\nMay not be required on newer Snapchat versions"
                     },
-                    "customize_ui": {
-                        "name": "Colors",
-                        "description": "Customize Snapchats Colors",
-                        "properties": {
-                            "theme_picker": {
-                                "name": "Theme Picker",
-                                "description": "Preset Snapchat Themes"
-                            },
-                            "colors": {
-                                "name": "Custom Colors",
-                                "description": "Customize Individual colors\nNote: Select `Custom Colors` on Theme Picker to use",
-                                "properties": {
-                                    "text_color": {
-                                        "name": "Main Text Color",
-                                        "description": "Changes Snapchats main text color"
-                                    },
-                                    "chat_chat_text_color": {
-                                        "name": "Main Friend Feed Text Color",
-                                        "description": "Changes the text color of ( New Chat / New Snap And Chats / Typing / Calling / Missed call / Speaking / New Voice Note ) on the friend feed"
-                                    },
-                                    "pending_sending_text_color": {
-                                        "name": "Secondary Friend Feed Text Color",
-                                        "description": "Changes the text color of ( Delivered / Received / Sending / Opened / Tap To Chat / Hold To Replay / Replayed / Saved In Chat / Called ) on the friend feed"
-                                    },
-                                    "snap_with_sound_text_color": {
-                                        "name": "Snaps With Sound Text Color",
-                                        "description": "Changes the text color of ( New Snap ) on the friend feed\nNote: Video Snaps Only"
-                                    },
-                                    "snap_without_sound_text_color": {
-                                        "name": "Snaps Without Sound Text Color",
-                                        "description": "Changes the text color of ( New Snap ) on the friend feed\nNote: Video Snaps Only"
-                                    },
-                                    "action_sheet_description_text_color": {
-                                        "name": "Action Menu Description Text Color",
-                                        "description": "Changes the text color of the description on the action menu"
-                                    },
-                                    "background_color": {
-                                        "name": "Background Color",
-                                        "description": "Changes Snapchats background color"
-                                    },
-                                    "background_color_surface": {
-                                        "name": "Background Surface Color",
-                                        "description": "Changes Snapchats background surface color"
-                                    },
-                                    "list_background_drawable": {
-                                        "name": "Conversation list Background ",
-                                        "description": "Changes the background color of the conversation list on the friend feed\nThis might break the friend feeds look"
-                                    },
-                                    "friend_feed_conversations_line_color": {
-                                        "name": "Conversations Line Color",
-                                        "description": "Changes the line divider color that splits Conversations on the friend feed"
-                                    },
-                                    "action_menu_background_color": {
-                                        "name": "Action Menu Background Color",
-                                        "description": "Changes Snapchats chat action menu background color"
-                                    },
-                                    "action_menu_round_background_color": {
-                                        "name": "Action Menu Round Background Color",
-                                        "description": "Changes Snapchats chat action menu round background color"
-                                    },
-                                    "sig_color_icon_primary": {
-                                        "name": "Action Menu Icon Color",
-                                        "description": "Changes the color of icons on chat action menu/friend feed menu"
-                                    },
-                                    "camera_grid_lines": {
-                                        "name": "Camera Gridlines Color",
-                                        "description": "Changes Snapchats Gridlines color on the Camera Preview\nNote: Enable the grid on the my camera settings"
-                                    }
-                                }
-                            },
-                            "colors_debug": {
-                                "name": "Colors Debug",
-                                "description": "Logs The obtainStyledAttributes, That are being used when Snapchat is loaded\nNote: This will significantly increase the size of your logs"
-                            }
-                        }
+                    "custom_theme": {
+                        "name": "Custom Theme",
+                        "description": "Customize Snapchat's Colors\nNote: if you choose a dark theme (like AMOLED), You may need to enable the dark mode on the App Appearance settings for better results"
                     },
                     "friend_feed_message_preview": {
                         "name": "Friend Feed Message Preview",
@@ -1049,112 +991,6 @@
                             }
                         }
                     },
-                    "experimental_colors": {
-                        "name": "Experimental Color Options",
-                        "description": "Note: These color features are Experimental and therefore may cause your snapchat to look strange,\nSelect `Custom Colors` on Theme picker to use",
-                        "properties": {
-                            "ring_color": {
-                                "name": "Ring Color",
-                                "description": "Does something to the color of something ;)"
-                            },
-                            "sig_color_icon_secondary": {
-                                "name": "Sig Color Icon Secondary",
-                                "description": "Does something to the color of something ;)"
-                            },
-                            "item_shape_fill_color": {
-                                "name": "Item Shape Fill Color",
-                                "description": "Does something to the color of something ;)"
-                            },
-                            "ring_start_color": {
-                                "name": "Ring Start Color",
-                                "description": "Does something to the color of something ;)"
-                            },
-                            "sig_color_layout_place_holder": {
-                                "name": "Sig Color Layout Place Holder",
-                                "description": "Does something to the color of something ;)"
-                            },
-                            "sc_button_color": {
-                                "name": "Sc Button Color",
-                                "description": "Does something to the color of something ;)"
-                            },
-                            "recipient_pill_background_drawable": {
-                                "name": "Recipient Pill Background Drawable",
-                                "description": "Does something to the color of something ;)"
-                            },
-                            "box_background_color": {
-                                "name": "Box Background Color",
-                                "description": "Does something to the color of something ;)"
-                            },
-                            "edit_text_color": {
-                                "name": "Edit Text Color",
-                                "description": "Does something to the color of something ;)"
-                            },
-                            "chip_background_color": {
-                                "name": "Chip Background Color",
-                                "description": "Does something to the color of something ;)"
-                            },
-                            "recipient_input_style": {
-                                "name": "Recipient Input Style",
-                                "description": "Does something to the color of something ;)"
-                            },
-                            "range_fill_color": {
-                                "name": "Range Fill Color",
-                                "description": "Does something to the color of something ;)"
-                            },
-                            "psts_indicator_color": {
-                                "name": "Psts Indicator Color",
-                                "description": "Does something to the color of something ;)"
-                            },
-                            "psts_tab_background": {
-                                "name": "Psts Tab Background",
-                                "description": "Does something to the color of something ;)"
-                            },
-                            "psts_divider_color": {
-                                "name": "Psts Divider Color",
-                                "description": "Does something to the color of something ;)"
-                            },
-                            "tab_text_color": {
-                                "name": "Tab Text Color",
-                                "description": "Does something to the color of something ;)"
-                            },
-                            "status_bar_foreground": {
-                                "name": "Status Bar Foreground",
-                                "description": "Does something to the color of something ;)"
-                            },
-                            "status_bar_background": {
-                                "name": "Status Bar Background",
-                                "description": "Does something to the color of something ;)"
-                            },
-                            "stroke_color": {
-                                "name": "Stroke Color",
-                                "description": "Does something to the color of something ;)"
-                            },
-                            "story_replay_view_ring_color": {
-                                "name": "Story Replay View Ring Color",
-                                "description": "Does something to the color of something ;)"
-                            },
-                            "sig_color_button_primary": {
-                                "name": "Sig Color Button Primary",
-                                "description": "Does something to the color of something ;)"
-                            },
-                            "sig_color_base_app_yellow": {
-                                "name": "Sig Color Base App Yellow",
-                                "description": "Does something to the color of something ;)"
-                            },
-                            "sig_color_background_surface_translucent": {
-                                "name": "sigColorBackgroundSurfaceTranslucent",
-                                "description": "Does something to the color of something ;)"
-                            },
-                            "sig_color_story_ring_friends_feed_story_ring": {
-                                "name": "sigColorStoryRingFriendsFeedStoryRing",
-                                "description": "Does something to the color of something ;)"
-                            },
-                            "sig_color_story_ring_discover_tab_thumbnail_story_ring": {
-                                "name": "sigColorStoryRingDiscoverTabThumbnailStoryRing",
-                                "description": "Does something to the color of something ;)"
-                            }
-                        }
-                    },
                     "convert_message_locally": {
                         "name": "Convert Message Locally",
                         "description": "Converts snaps to chat external media locally. This appears in chat download context menu"
@@ -1323,9 +1159,9 @@
                 "always_light": "Always Light",
                 "always_dark": "Always Dark"
             },
-            "theme_picker": {
+            "custom_theme": {
                 "amoled_dark_mode": "AMOLED Dark Mode",
-                "custom": "Custom Colors",
+                "custom": "Custom Themes (Use the Quick Actions to manage themes)",
                 "material_you_light": "Material You Light (Android 12+)",
                 "material_you_dark": "Material You Dark (Android 12+)",
                 "light_blue": "Light Blue",
@@ -1833,5 +1669,48 @@
         "date_input_invalid_year_range": "Invalid year",
         "date_input_invalid_not_allowed": "Invalid date",
         "date_range_input_invalid_range_input": "Invalid date range"
+    },
+
+    "theming_attributes": {
+        "sigColorTextPrimary": "Main Text Color",
+        "sigColorChatChat": "Main Friend Feed Text Color",
+        "sigColorBackgroundSurface": "Background Surface Color",
+        "sigColorChatPendingSending": "Secondary Friend Feed Text Color",
+        "sigColorChatSnapWithSound": "Snaps With Sound Text Color",
+        "sigColorChatSnapWithoutSound": "Snaps Without Sound Text Color",
+        "actionSheetDescriptionTextColor": "Action Menu Description Text Color",
+        "sigColorBackgroundMain": "Background Color",
+        "listBackgroundDrawable": "Conversation list Background",
+        "sigColorChatConversationsLine": "Conversations Line Color",
+        "actionSheetBackgroundDrawable": "Action Menu Background Color",
+        "actionSheetRoundedBackgroundDrawable": "Action Menu Round Background Color",
+        "sigColorIconPrimary": "Action Menu Icon Color",
+        "sigExceptionColorCameraGridLines": "Camera Gridlines Color",
+        "listDivider": "List Divider Color",
+        "sigColorIconSecondary": "Secondary Icon Color",
+        "itemShapeFillColor": "Item Shape Fill Color",
+        "ringColor": "Ring Color",
+        "ringStartColor": "Ring Start Color",
+        "sigColorLayoutPlaceholder": "Layout Placeholder Color",
+        "scButtonColor": "Snapchat Button Color",
+        "recipientPillBackgroundDrawable": "Recipient Pill Background",
+        "boxBackgroundColor": "Box Background Color",
+        "editTextColor": "Edit Text Color",
+        "chipBackgroundColor": "Chip Background Color",
+        "recipientInputStyle": "Recipient Input Style",
+        "rangeFillColor": "Range Fill Color",
+        "pstsIndicatorColor": "PSTS Indicator Color",
+        "pstsTabBackground": "PSTS Tab Background",
+        "pstsDividerColor": "PSTS Divider Color",
+        "tabTextColor": "Tab Text Color",
+        "statusBarForeground": "Status Bar Foreground Color",
+        "statusBarBackground": "Status Bar Background Color",
+        "strokeColor": "Stroke Color",
+        "storyReplayViewRingColor": "Story Replay View Ring Color",
+        "sigColorButtonPrimary": "Primary Button Color",
+        "sigColorBaseAppYellow": "Base App Yellow Color",
+        "sigColorBackgroundSurfaceTranslucent": "Translucent Background Surface Color",
+        "sigColorStoryRingFriendsFeedStoryRing": "Story Ring Friends Feed Story Ring Color",
+        "sigColorStoryRingDiscoverTabThumbnailStoryRing": "Story Ring Discover Tab Thumbnail Story Ring Color"
     }
 }

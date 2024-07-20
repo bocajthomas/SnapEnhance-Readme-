@@ -33,7 +33,6 @@ import me.rhunk.snapenhance.core.event.events.impl.BindViewEvent
 import me.rhunk.snapenhance.core.event.events.impl.BuildMessageEvent
 import me.rhunk.snapenhance.core.event.events.impl.NativeUnaryCallEvent
 import me.rhunk.snapenhance.core.event.events.impl.SendMessageWithContentEvent
-import me.rhunk.snapenhance.core.features.FeatureLoadParams
 import me.rhunk.snapenhance.core.features.MessagingRuleFeature
 import me.rhunk.snapenhance.core.features.impl.ui.ConversationToolbox
 import me.rhunk.snapenhance.core.ui.ViewAppearanceHelper
@@ -55,8 +54,7 @@ import kotlin.random.Random
 
 class EndToEndEncryption : MessagingRuleFeature(
     "EndToEndEncryption",
-    MessagingRuleType.E2E_ENCRYPTION,
-    loadParams = FeatureLoadParams.ACTIVITY_CREATE_SYNC or FeatureLoadParams.INIT_SYNC or FeatureLoadParams.INIT_ASYNC
+    MessagingRuleType.E2E_ENCRYPTION
 ) {
     val isEnabled get() = context.config.experimental.e2eEncryption.globalState == true
     private val e2eeInterface by lazyBridge { context.bridgeClient.getE2eeInterface() }
@@ -174,96 +172,223 @@ class EndToEndEncryption : MessagingRuleFeature(
     }
 
     @SuppressLint("SetTextI18n", "DiscouragedApi")
-    override fun onActivityCreate() {
+    override fun init() {
         if (!isEnabled) return
 
-        context.feature(ConversationToolbox::class).addComposable(translation["confirmation_dialogs.title"], filter = {
-            context.database.getDMOtherParticipant(it) != null
-        }) { dialog, conversationId ->
-            val friendId = remember {
-                context.database.getDMOtherParticipant(conversationId)
-            } ?: return@addComposable
-            val fingerprint = remember {
-                runCatching {
-                    e2eeInterface.getSecretFingerprint(friendId)
-                }.getOrNull()
-            }
-            if (fingerprint != null) {
-                Text(translation.format("toolbox.shared_key_fingerprint", "fingerprint" to fingerprint))
-            } else {
-                Text(translation["toolbox.no_shared_key"])
-            }
-            Spacer(modifier = Modifier.height(10.dp))
-            Button(onClick = {
-                dialog.dismiss()
-                warnKeyOverwrite(friendId) {
-                    askForKeys(conversationId)
+        context.mappings.useMapper(CallbackMapper::class) {
+            callbacks.getClass("ConversationManagerDelegate")?.hook("onSendComplete", HookStage.BEFORE) { param ->
+                val sendMessageResult = param.arg<Any>(0)
+                val messageDestinations = MessageDestinations(sendMessageResult.getObjectField("mCompletedDestinations") ?: return@hook)
+                if (messageDestinations.mPhoneNumbers?.isNotEmpty() == true || messageDestinations.stories?.isNotEmpty() == true) return@hook
+
+                val completedConversationDestinations = sendMessageResult.getObjectField("mCompletedConversationDestinations") as? ArrayList<*> ?: return@hook
+                val messageIds = completedConversationDestinations.filter { getState(SnapUUID(it.getObjectField("mConversationId")).toString()) }.mapNotNull {
+                    it.getObjectFieldOrNull("mMessageId") as? Long
                 }
-            }) {
-                Text(translation["toolbox.initiate_exchange_button"])
+
+                encryptedMessages.addAll(messageIds)
             }
         }
 
-        val encryptedMessageIndicator by context.config.experimental.e2eEncryption.encryptedMessageIndicator
+        context.event.subscribe(BuildMessageEvent::class, priority = 0) { event ->
+            val message = event.message
+            val conversationId = message.messageDescriptor!!.conversationId.toString()
+            val isMessageCommitted = message.messageState == MessageState.COMMITTED
+            messageHook(
+                conversationId = conversationId,
+                messageId = message.messageDescriptor!!.messageId!!,
+                senderId = message.senderId.toString(),
+                messageContent = message.messageContent!!,
+                committed = isMessageCommitted
+            )
 
-        val specialCard = Random.nextLong().toString(16)
-
-        context.event.subscribe(BindViewEvent::class) { event ->
-            event.chatMessage { conversationId, messageId ->
-                val viewGroup = event.view.parent as? ViewGroup ?: return@subscribe
-
-                viewGroup.findViewWithTag<View>(specialCard)?.also {
-                    viewGroup.removeView(it)
+            message.messageContent!!.instanceNonNull()
+                .getObjectField("mQuotedMessage")
+                ?.getObjectField("mContent")
+                ?.also { quotedMessage ->
+                    messageHook(
+                        conversationId = conversationId,
+                        messageId = quotedMessage.getObjectField("mMessageId")?.toString()?.toLong() ?: return@also,
+                        senderId = SnapUUID(quotedMessage.getObjectField("mSenderId")).toString(),
+                        messageContent = MessageContent(quotedMessage),
+                        committed = isMessageCommitted
+                    )
                 }
+        }
 
-                if (encryptedMessageIndicator) {
-                    viewGroup.removeForegroundDrawable("encryptedMessage")
+        onNextActivityCreate(defer = true) {
+            context.feature(ConversationToolbox::class).addComposable(translation["confirmation_dialogs.title"], filter = {
+                context.database.getDMOtherParticipant(it) != null
+            }) { dialog, conversationId ->
+                val friendId = remember {
+                    context.database.getDMOtherParticipant(conversationId)
+                } ?: return@addComposable
+                val fingerprint = remember {
+                    runCatching {
+                        e2eeInterface.getSecretFingerprint(friendId)
+                    }.getOrNull()
+                }
+                if (fingerprint != null) {
+                    Text(translation.format("toolbox.shared_key_fingerprint", "fingerprint" to fingerprint))
+                } else {
+                    Text(translation["toolbox.no_shared_key"])
+                }
+                Spacer(modifier = Modifier.height(10.dp))
+                Button(onClick = {
+                    dialog.dismiss()
+                    warnKeyOverwrite(friendId) {
+                        askForKeys(conversationId)
+                    }
+                }) {
+                    Text(translation["toolbox.initiate_exchange_button"])
+                }
+            }
 
-                    if (encryptedMessages.contains(messageId.toLong())) {
-                        viewGroup.addForegroundDrawable("encryptedMessage", ShapeDrawable(object: Shape() {
-                            override fun draw(canvas: Canvas, paint: Paint) {
-                                paint.textSize = 20f
-                                canvas.drawText("\uD83D\uDD12", 0f, canvas.height / 2f, paint)
+            val encryptedMessageIndicator by context.config.experimental.e2eEncryption.encryptedMessageIndicator
+
+            val specialCard = Random.nextLong().toString(16)
+
+            context.event.subscribe(BindViewEvent::class) { event ->
+                event.chatMessage { conversationId, messageId ->
+                    val viewGroup = event.view.parent as? ViewGroup ?: return@subscribe
+
+                    viewGroup.findViewWithTag<View>(specialCard)?.also {
+                        viewGroup.removeView(it)
+                    }
+
+                    if (encryptedMessageIndicator) {
+                        viewGroup.removeForegroundDrawable("encryptedMessage")
+
+                        if (encryptedMessages.contains(messageId.toLong())) {
+                            viewGroup.addForegroundDrawable("encryptedMessage", ShapeDrawable(object: Shape() {
+                                override fun draw(canvas: Canvas, paint: Paint) {
+                                    paint.textSize = 20f
+                                    canvas.drawText("\uD83D\uDD12", 0f, canvas.height / 2f, paint)
+                                }
+                            }))
+                        }
+                    }
+
+                    val secret = secretResponses[messageId.toLong()]
+                    val publicKey = pkRequests[messageId.toLong()]
+
+                    if (publicKey != null || secret != null) {
+                        viewGroup.addView(createComposeView(context.mainActivity!!) {
+                            Card(
+                                modifier = Modifier.fillMaxWidth().padding(8.dp),
+                                onClick = {
+                                    if (publicKey != null) {
+                                        handlePublicKeyRequest(conversationId, publicKey)
+                                    }
+                                    if (secret != null) {
+                                        handleSecretResponse(conversationId, secret)
+                                    }
+                                }
+                            ) {
+                                Box(
+                                    modifier = Modifier.fillMaxWidth().padding(5.dp),
+                                    contentAlignment = Alignment.Center
+                                ) {
+                                    if (publicKey != null) {
+                                        Text(translation["accept_public_key_button"])
+                                    }
+                                    if (secret != null) {
+                                        Text(translation["accept_secret_button"])
+                                    }
+                                }
                             }
-                        }))
+                        }.apply {
+                            tag = specialCard
+                            layoutParams = ViewGroup.LayoutParams(
+                                ViewGroup.LayoutParams.MATCH_PARENT,
+                                ViewGroup.LayoutParams.WRAP_CONTENT,
+                            )
+                        })
                     }
                 }
+            }
+        }
 
-                val secret = secretResponses[messageId.toLong()]
-                val publicKey = pkRequests[messageId.toLong()]
+        defer {
+            val forceMessageEncryption by context.config.experimental.e2eEncryption.forceMessageEncryption
 
-                if (publicKey != null || secret != null) {
-                    viewGroup.addView(createComposeView(context.mainActivity!!) {
-                        Card(
-                            modifier = Modifier.fillMaxWidth().padding(8.dp),
-                            onClick = {
-                                if (publicKey != null) {
-                                    handlePublicKeyRequest(conversationId, publicKey)
-                                }
-                                if (secret != null) {
-                                    handleSecretResponse(conversationId, secret)
-                                }
-                            }
-                        ) {
-                            Box(
-                                modifier = Modifier.fillMaxWidth().padding(5.dp),
-                                contentAlignment = Alignment.Center
-                            ) {
-                                if (publicKey != null) {
-                                    Text(translation["accept_public_key_button"])
-                                }
-                                if (secret != null) {
-                                    Text(translation["accept_secret_button"])
-                                }
-                            }
+            context.mappings.useMapper(CallbackMapper::class) {
+                callbacks.getClass("UploadDelegate")?.hook("uploadMedia", HookStage.BEFORE) { param ->
+                    val messageDestinations = MessageDestinations(param.arg(1))
+                    val uploadCallback = param.arg<Any>(2)
+                    val e2eeConversations = messageDestinations.getEndToEndConversations()
+                    if (e2eeConversations.isEmpty()) return@hook
+
+                    if (messageDestinations.conversations!!.size != e2eeConversations.size || messageDestinations.stories?.isNotEmpty() == true) {
+                        context.log.debug("skipping encryption")
+                        return@hook
+                    }
+
+                    Hooker.hookObjectMethod(uploadCallback::class.java, uploadCallback, "onUploadFinished", HookStage.BEFORE) { methodParam ->
+                        val messageContent = MessageContent(methodParam.arg(1))
+                        runCatching {
+                            messageContent.content = ProtoWriter().apply {
+                                writeEncryptedMessage(e2eeConversations.map { getE2EParticipants(it) }.flatten().distinct(), messageContent.content!!)
+                            }.toByteArray()
+                        }.onFailure {
+                            context.log.error("Failed to encrypt message", it)
+                            context.longToast(translation["encryption_failed_toast"])
                         }
-                    }.apply {
-                        tag = specialCard
-                        layoutParams = ViewGroup.LayoutParams(
-                            ViewGroup.LayoutParams.MATCH_PARENT,
-                            ViewGroup.LayoutParams.WRAP_CONTENT,
-                        )
-                    })
+                    }
+                }
+            }
+
+            // trick to disable fidelius encryption
+            context.event.subscribe(SendMessageWithContentEvent::class) { event ->
+                val messageContent = event.messageContent
+                val destinations = event.destinations
+
+                val e2eeConversations = destinations.getEndToEndConversations().takeIf { it.isNotEmpty() } ?: return@subscribe
+
+                if (e2eeConversations.size != destinations.conversations!!.size || destinations.stories?.isNotEmpty() == true) {
+                    if (!forceMessageEncryption) return@subscribe
+                    context.longToast(translation["unencrypted_conversation_send_failure_toast"])
+                    event.canceled = true
+                    return@subscribe
+                }
+
+                if (!NativeLib.initialized) {
+                    context.longToast(translation["native_hooks_send_failure_toast"])
+                    event.canceled = true
+                    return@subscribe
+                }
+
+                event.addInvokeLater {
+                    if (event.messageContent.localMediaReferences?.isEmpty() == true) {
+                        runCatching {
+                            event.messageContent.content = ProtoWriter().apply {
+                                writeEncryptedMessage(e2eeConversations.map { getE2EParticipants(it) }.flatten().distinct(), messageContent.content!!)
+                            }.toByteArray()
+                        }.onFailure {
+                            context.log.error("Failed to encrypt message", it)
+                            context.longToast(translation["encryption_failed_toast"])
+                        }
+                    }
+
+                    if (event.messageContent.contentType == ContentType.SNAP) {
+                        event.messageContent.contentType = ContentType.EXTERNAL_MEDIA
+                    }
+                }
+            }
+
+            context.event.subscribe(NativeUnaryCallEvent::class) { event ->
+                if (event.uri != "/messagingcoreservice.MessagingCoreService/CreateContentMessage") return@subscribe
+                val protoReader = ProtoReader(event.buffer)
+                val messageReader = protoReader.followPath(4) ?: return@subscribe
+
+                if (messageReader.getVarInt(4, 2, 1, 5) == 1L) {
+                    event.buffer = ProtoEditor(event.buffer).apply {
+                        edit(4) {
+                            remove(2)
+                            addVarInt(2, ContentType.SNAP.id)
+                            context.log.verbose("fixed snap content type")
+                        }
+                    }.toByteArray()
                 }
             }
         }
@@ -438,136 +563,6 @@ class EndToEndEncryption : MessagingRuleFeature(
 
     private fun MessageDestinations.getEndToEndConversations(): List<String> {
         return conversations!!.filter { getState(it.toString()) && getE2EParticipants(it.toString()).isNotEmpty() }.map { it.toString() }
-    }
-
-    override fun asyncInit() {
-        if (!isEnabled) return
-        val forceMessageEncryption by context.config.experimental.e2eEncryption.forceMessageEncryption
-
-        context.mappings.useMapper(CallbackMapper::class) {
-            callbacks.getClass("UploadDelegate")?.hook("uploadMedia", HookStage.BEFORE) { param ->
-                val messageDestinations = MessageDestinations(param.arg(1))
-                val uploadCallback = param.arg<Any>(2)
-                val e2eeConversations = messageDestinations.getEndToEndConversations()
-                if (e2eeConversations.isEmpty()) return@hook
-
-                if (messageDestinations.conversations!!.size != e2eeConversations.size || messageDestinations.stories?.isNotEmpty() == true) {
-                    context.log.debug("skipping encryption")
-                    return@hook
-                }
-
-                Hooker.hookObjectMethod(uploadCallback::class.java, uploadCallback, "onUploadFinished", HookStage.BEFORE) { methodParam ->
-                    val messageContent = MessageContent(methodParam.arg(1))
-                    runCatching {
-                        messageContent.content = ProtoWriter().apply {
-                            writeEncryptedMessage(e2eeConversations.map { getE2EParticipants(it) }.flatten().distinct(), messageContent.content!!)
-                        }.toByteArray()
-                    }.onFailure {
-                        context.log.error("Failed to encrypt message", it)
-                        context.longToast(translation["encryption_failed_toast"])
-                    }
-                }
-            }
-        }
-
-        // trick to disable fidelius encryption
-        context.event.subscribe(SendMessageWithContentEvent::class) { event ->
-            val messageContent = event.messageContent
-            val destinations = event.destinations
-
-            val e2eeConversations = destinations.getEndToEndConversations().takeIf { it.isNotEmpty() } ?: return@subscribe
-
-            if (e2eeConversations.size != destinations.conversations!!.size || destinations.stories?.isNotEmpty() == true) {
-                if (!forceMessageEncryption) return@subscribe
-                context.longToast(translation["unencrypted_conversation_send_failure_toast"])
-                event.canceled = true
-                return@subscribe
-            }
-
-            if (!NativeLib.initialized) {
-                context.longToast(translation["native_hooks_send_failure_toast"])
-                event.canceled = true
-                return@subscribe
-            }
-
-            event.addInvokeLater {
-                if (event.messageContent.localMediaReferences?.isEmpty() == true) {
-                    runCatching {
-                        event.messageContent.content = ProtoWriter().apply {
-                            writeEncryptedMessage(e2eeConversations.map { getE2EParticipants(it) }.flatten().distinct(), messageContent.content!!)
-                        }.toByteArray()
-                    }.onFailure {
-                        context.log.error("Failed to encrypt message", it)
-                        context.longToast(translation["encryption_failed_toast"])
-                    }
-                }
-
-                if (event.messageContent.contentType == ContentType.SNAP) {
-                    event.messageContent.contentType = ContentType.EXTERNAL_MEDIA
-                }
-            }
-        }
-
-        context.event.subscribe(NativeUnaryCallEvent::class) { event ->
-            if (event.uri != "/messagingcoreservice.MessagingCoreService/CreateContentMessage") return@subscribe
-            val protoReader = ProtoReader(event.buffer)
-            val messageReader = protoReader.followPath(4) ?: return@subscribe
-
-            if (messageReader.getVarInt(4, 2, 1, 5) == 1L) {
-                event.buffer = ProtoEditor(event.buffer).apply {
-                    edit(4) {
-                        remove(2)
-                        addVarInt(2, ContentType.SNAP.id)
-                        context.log.verbose("fixed snap content type")
-                    }
-                }.toByteArray()
-            }
-        }
-    }
-
-    override fun init() {
-        if (!isEnabled) return
-
-        context.mappings.useMapper(CallbackMapper::class) {
-            callbacks.getClass("ConversationManagerDelegate")?.hook("onSendComplete", HookStage.BEFORE) { param ->
-                val sendMessageResult = param.arg<Any>(0)
-                val messageDestinations = MessageDestinations(sendMessageResult.getObjectField("mCompletedDestinations") ?: return@hook)
-                if (messageDestinations.mPhoneNumbers?.isNotEmpty() == true || messageDestinations.stories?.isNotEmpty() == true) return@hook
-
-                val completedConversationDestinations = sendMessageResult.getObjectField("mCompletedConversationDestinations") as? ArrayList<*> ?: return@hook
-                val messageIds = completedConversationDestinations.filter { getState(SnapUUID(it.getObjectField("mConversationId")).toString()) }.mapNotNull {
-                    it.getObjectFieldOrNull("mMessageId") as? Long
-                }
-
-                encryptedMessages.addAll(messageIds)
-            }
-        }
-
-        context.event.subscribe(BuildMessageEvent::class, priority = 0) { event ->
-            val message = event.message
-            val conversationId = message.messageDescriptor!!.conversationId.toString()
-            val isMessageCommitted = message.messageState == MessageState.COMMITTED
-            messageHook(
-                conversationId = conversationId,
-                messageId = message.messageDescriptor!!.messageId!!,
-                senderId = message.senderId.toString(),
-                messageContent = message.messageContent!!,
-                committed = isMessageCommitted
-            )
-
-            message.messageContent!!.instanceNonNull()
-                .getObjectField("mQuotedMessage")
-                ?.getObjectField("mContent")
-                ?.also { quotedMessage ->
-                messageHook(
-                    conversationId = conversationId,
-                    messageId = quotedMessage.getObjectField("mMessageId")?.toString()?.toLong() ?: return@also,
-                    senderId = SnapUUID(quotedMessage.getObjectField("mSenderId")).toString(),
-                    messageContent = MessageContent(quotedMessage),
-                    committed = isMessageCommitted
-                )
-            }
-        }
     }
 
     override fun getRuleState() = RuleState.WHITELIST

@@ -4,9 +4,8 @@ import me.rhunk.snapenhance.common.util.protobuf.ProtoReader
 import me.rhunk.snapenhance.core.event.events.impl.NetworkApiRequestEvent
 import me.rhunk.snapenhance.core.event.events.impl.UnaryCallEvent
 import me.rhunk.snapenhance.core.features.Feature
-import me.rhunk.snapenhance.core.features.FeatureLoadParams
 
-class DisableMetrics : Feature("DisableMetrics", loadParams = FeatureLoadParams.INIT_SYNC) {
+class DisableMetrics : Feature("DisableMetrics") {
     override fun init() {
         if (!context.config.global.disableMetrics.get()) return
 

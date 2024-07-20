@@ -2,7 +2,7 @@ package me.rhunk.snapenhance.core.features.impl
 
 import de.robv.android.xposed.XposedHelpers
 import me.rhunk.snapenhance.core.features.Feature
-import me.rhunk.snapenhance.core.features.FeatureLoadParams
+
 import me.rhunk.snapenhance.core.util.hook.HookStage
 import me.rhunk.snapenhance.core.util.hook.Hooker
 import me.rhunk.snapenhance.core.util.hook.hook
@@ -22,7 +22,7 @@ data class ConfigFilter(
     val isAppExperiment: Boolean?
 )
 
-class ConfigurationOverride : Feature("Configuration Override", loadParams = FeatureLoadParams.INIT_SYNC) {
+class ConfigurationOverride : Feature("Configuration Override") {
     override fun init() {
         context.mappings.useMapper(CompositeConfigurationProviderMapper::class) {
             fun getConfigKeyInfo(key: Any?) = runCatching {

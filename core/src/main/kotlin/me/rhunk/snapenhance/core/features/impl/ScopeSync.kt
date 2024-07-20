@@ -7,9 +7,8 @@ import me.rhunk.snapenhance.common.data.ContentType
 import me.rhunk.snapenhance.common.data.SocialScope
 import me.rhunk.snapenhance.core.event.events.impl.SendMessageWithContentEvent
 import me.rhunk.snapenhance.core.features.Feature
-import me.rhunk.snapenhance.core.features.FeatureLoadParams
 
-class ScopeSync : Feature("Scope Sync", loadParams = FeatureLoadParams.INIT_SYNC) {
+class ScopeSync : Feature("Scope Sync") {
     companion object {
         private const val DELAY_BEFORE_SYNC = 2000L
     }

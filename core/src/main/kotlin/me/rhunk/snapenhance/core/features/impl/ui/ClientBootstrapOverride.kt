@@ -2,11 +2,10 @@ package me.rhunk.snapenhance.core.features.impl.ui
 
 import me.rhunk.snapenhance.common.config.impl.UserInterfaceTweaks
 import me.rhunk.snapenhance.core.features.Feature
-import me.rhunk.snapenhance.core.features.FeatureLoadParams
 import java.io.File
 
 
-class ClientBootstrapOverride: Feature("ClientBootstrapOverride", loadParams = FeatureLoadParams.INIT_SYNC) {
+class ClientBootstrapOverride: Feature("ClientBootstrapOverride") {
 
     private val clientBootstrapFolder by lazy { File(context.androidContext.filesDir, "client-bootstrap") }
 

@@ -8,14 +8,13 @@ import me.rhunk.snapenhance.common.util.protobuf.ProtoReader
 import me.rhunk.snapenhance.core.event.events.impl.NativeUnaryCallEvent
 import me.rhunk.snapenhance.core.event.events.impl.SendMessageWithContentEvent
 import me.rhunk.snapenhance.core.features.Feature
-import me.rhunk.snapenhance.core.features.FeatureLoadParams
 import me.rhunk.snapenhance.core.features.impl.experiments.MediaFilePicker
 import me.rhunk.snapenhance.core.messaging.MessageSender
 import me.rhunk.snapenhance.core.ui.ViewAppearanceHelper
 import me.rhunk.snapenhance.nativelib.NativeLib
 import java.util.Locale
 
-class SendOverride : Feature("Send Override", loadParams = FeatureLoadParams.INIT_SYNC) {
+class SendOverride : Feature("Send Override") {
     private var isLastSnapSavable = false
     private val typeNames by lazy {
         mutableListOf("ORIGINAL", "SNAP", "NOTE").also {

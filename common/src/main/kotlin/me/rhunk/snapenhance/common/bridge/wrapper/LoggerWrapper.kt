@@ -39,7 +39,7 @@ class ConversationInfo(
     val usernames: List<String>
 )
 
-class TrackerLog(
+data class TrackerLog(
     val id: Int,
     val timestamp: Long,
     val conversationId: String,

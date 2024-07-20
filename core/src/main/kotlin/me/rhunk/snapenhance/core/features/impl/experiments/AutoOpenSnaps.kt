@@ -11,7 +11,6 @@ import me.rhunk.snapenhance.common.data.ContentType
 import me.rhunk.snapenhance.common.data.MessageUpdate
 import me.rhunk.snapenhance.common.data.MessagingRuleType
 import me.rhunk.snapenhance.core.event.events.impl.BuildMessageEvent
-import me.rhunk.snapenhance.core.features.FeatureLoadParams
 import me.rhunk.snapenhance.core.features.MessagingRuleFeature
 import me.rhunk.snapenhance.core.features.impl.messaging.Messaging
 import java.util.concurrent.atomic.AtomicInteger
@@ -19,7 +18,7 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 import kotlin.random.Random
 
-class AutoOpenSnaps: MessagingRuleFeature("Auto Open Snaps", MessagingRuleType.AUTO_OPEN_SNAPS, loadParams = FeatureLoadParams.INIT_SYNC) {
+class AutoOpenSnaps: MessagingRuleFeature("Auto Open Snaps", MessagingRuleType.AUTO_OPEN_SNAPS) {
     private val snapQueue = MutableSharedFlow<Pair<String, Long>>()
     private var snapQueueSize = AtomicInteger(0)
     private val openedSnaps = mutableListOf<Long>()

@@ -52,46 +52,6 @@ namespace util {
         return { start_offset, end_offset - start_offset };
     }
 
-    static void remap_sections(std::function<bool(const std::string &, size_t)> filter, bool remove_read_permission) {
-        char buff[256];
-        auto maps = fopen("/proc/self/maps", "rt");
-
-        while (fgets(buff, sizeof buff, maps) != NULL) {
-            int len = strlen(buff);
-            if (len > 0 && buff[len - 1] == '\n') buff[--len] = '\0';
-
-            size_t start, end, offset;
-            char flags[4];
-
-            if (sscanf(buff, "%zx-%zx %c%c%c%c %zx", &start, &end,
-                       &flags[0], &flags[1], &flags[2], &flags[3], &offset) != 7) continue;
-
-            if (!filter(buff, end - start)) continue;
-
-            auto section_size = end - start;
-            auto section_ptr = mmap(0, section_size, PROT_READ | PROT_EXEC | PROT_WRITE, MAP_PRIVATE | MAP_ANONYMOUS, -1, 0);
-
-            if (section_ptr == MAP_FAILED) {
-                LOGE("mmap failed: %s", strerror(errno));
-                break;
-            }
-
-            memcpy(section_ptr, (void *)start, section_size);
-
-            if (mremap(section_ptr, section_size, section_size, MREMAP_MAYMOVE | MREMAP_FIXED, start) == MAP_FAILED) {
-                LOGE("mremap failed: %s", strerror(errno));
-                break;
-            }
-
-            auto new_prot = (flags[0] == 'r' ? PROT_READ : 0) | (flags[1] == 'w' ? PROT_WRITE : 0) | (flags[2] == 'x' ? PROT_EXEC : 0);
-            if (remove_read_permission && flags[0] == 'r' && flags[2] == 'x') {
-                new_prot &= ~PROT_READ;
-            }
-            mprotect((void *)start, section_size, new_prot);
-        }
-        fclose(maps);
-    }
-
     static uintptr_t find_signature(uintptr_t module_base, uintptr_t size, const std::string &pattern, int offset = 0) {
         std::vector<char> bytes;
         std::vector<char> mask;

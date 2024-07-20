@@ -11,7 +11,6 @@ import me.rhunk.snapenhance.common.data.ContentType
 import me.rhunk.snapenhance.common.data.MessageUpdate
 import me.rhunk.snapenhance.core.event.events.impl.SendMessageWithContentEvent
 import me.rhunk.snapenhance.core.features.Feature
-import me.rhunk.snapenhance.core.features.FeatureLoadParams
 import me.rhunk.snapenhance.core.features.impl.spying.StealthMode
 import me.rhunk.snapenhance.core.ui.ViewAppearanceHelper
 import me.rhunk.snapenhance.core.util.ktx.getObjectFieldOrNull
@@ -19,7 +18,7 @@ import kotlin.coroutines.resume
 import kotlin.coroutines.suspendCoroutine
 import kotlin.random.Random
 
-class AutoMarkAsRead : Feature("Auto Mark As Read", loadParams = FeatureLoadParams.INIT_SYNC) {
+class AutoMarkAsRead : Feature("Auto Mark As Read") {
     val canMarkConversationAsRead by lazy { context.config.messaging.autoMarkAsRead.get().contains("conversation_read") }
 
     fun markConversationsAsRead(conversationIds: List<String>) {

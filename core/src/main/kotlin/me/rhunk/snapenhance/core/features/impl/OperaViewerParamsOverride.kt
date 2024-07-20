@@ -1,12 +1,11 @@
 package me.rhunk.snapenhance.core.features.impl
 
 import me.rhunk.snapenhance.core.features.Feature
-import me.rhunk.snapenhance.core.features.FeatureLoadParams
 import me.rhunk.snapenhance.core.util.hook.HookStage
 import me.rhunk.snapenhance.core.util.hook.hook
 import me.rhunk.snapenhance.mapper.impl.OperaViewerParamsMapper
 
-class OperaViewerParamsOverride : Feature("OperaViewerParamsOverride", loadParams = FeatureLoadParams.ACTIVITY_CREATE_SYNC) {
+class OperaViewerParamsOverride : Feature("OperaViewerParamsOverride") {
     var currentPlaybackRate = 1.0F
 
     data class OverrideKey(
@@ -19,7 +18,7 @@ class OperaViewerParamsOverride : Feature("OperaViewerParamsOverride", loadParam
         val value: (key: OverrideKey, value: Any?) -> Any?
     )
 
-    override fun onActivityCreate() {
+    override fun init() {
         val overrideMap = mutableMapOf<String, Override>()
 
         fun overrideParam(key: String, filter: (value: Any?) -> Boolean, value: (overrideKey: OverrideKey, value: Any?) -> Any?) {
@@ -44,37 +43,39 @@ class OperaViewerParamsOverride : Feature("OperaViewerParamsOverride", loadParam
             })
         }
 
-        context.mappings.useMapper(OperaViewerParamsMapper::class) {
-            fun overrideParamResult(paramKey: Any, value: Any?): Any? {
-                val fields = paramKey::class.java.fields
-                val key = OverrideKey(
-                    name = fields.firstOrNull {
-                        it.type == String::class.java
-                    }?.get(paramKey)?.toString() ?: return value,
-                    defaultValue = fields.firstOrNull {
-                        it.type == Object::class.java
-                    }?.get(paramKey)
-                )
+        onNextActivityCreate {
+            context.mappings.useMapper(OperaViewerParamsMapper::class) {
+                fun overrideParamResult(paramKey: Any, value: Any?): Any? {
+                    val fields = paramKey::class.java.fields
+                    val key = OverrideKey(
+                        name = fields.firstOrNull {
+                            it.type == String::class.java
+                        }?.get(paramKey)?.toString() ?: return value,
+                        defaultValue = fields.firstOrNull {
+                            it.type == Object::class.java
+                        }?.get(paramKey)
+                    )
 
-                overrideMap[key.name]?.let { override ->
-                    if (override.filter(value)) {
-                        runCatching {
-                            return override.value(key, value)
-                        }.onFailure {
-                            context.log.error("Failed to override param $key", it)
+                    overrideMap[key.name]?.let { override ->
+                        if (override.filter(value)) {
+                            runCatching {
+                                return override.value(key, value)
+                            }.onFailure {
+                                context.log.error("Failed to override param $key", it)
+                            }
                         }
                     }
+
+                    return value
                 }
 
-                return value
-            }
+                classReference.get()?.hook(getMethod.get()!!, HookStage.AFTER) { param ->
+                    param.setResult(overrideParamResult(param.arg(0), param.getResult()))
+                }
 
-            classReference.get()?.hook(getMethod.get()!!, HookStage.AFTER) { param ->
-                param.setResult(overrideParamResult(param.arg(0), param.getResult()))
-            }
-
-            classReference.get()?.hook(getOrDefaultMethod.get()!!, HookStage.AFTER) { param ->
-                param.setResult(overrideParamResult(param.arg(0), param.getResult()))
+                classReference.get()?.hook(getOrDefaultMethod.get()!!, HookStage.AFTER) { param ->
+                    param.setResult(overrideParamResult(param.arg(0), param.getResult()))
+                }
             }
         }
     }

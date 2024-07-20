@@ -18,75 +18,52 @@ class UserInterfaceTweaks : ConfigContainer() {
         val amount = integer("amount", defaultValue = 1)
     }
 
-    class ColorsConfig : ConfigContainer() {
-        val textColor = color("text_color")
-        val chatChatTextColor = color("chat_chat_text_color")
-        val pendingSendingTextColor = color("pending_sending_text_color")
-        val snapWithSoundTextColor = color("snap_with_sound_text_color")
-        val snapWithoutSoundTextColor = color("snap_without_sound_text_color")
-        val actionSheetDescriptionTextColor = color("action_sheet_description_text_color")
-        val backgroundColor = color("background_color")
-        val backgroundColorSurface = color("background_color_surface")
-        val listBackgroundDrawable = color("list_background_drawable")
-        val friendFeedConversationsLineColor = color("friend_feed_conversations_line_color")
-        val actionMenuBackgroundColor = color("action_menu_background_color")
-        val actionMenuRoundBackgroundColor = color("action_menu_round_background_color")
-        val sigColorIconPrimary = color("sig_color_icon_primary")
-        val cameraGridLines = color("camera_grid_lines")
-    }
-
-    inner class CustomizeUIConfig : ConfigContainer() {
-        val themePicker = unique("theme_picker",
-            "custom",
-            "amoled_dark_mode",
-            "material_you_light",
-            "material_you_dark",
-            "light_blue",
-            "dark_blue",
-            "midnight_slate",
-            "earthy_autumn",
-            "mint_chocolate",
-            "ginger_snap",
-            "lemon_meringue",
-            "lava_flow",
-            "ocean_fog",
-            "alien_landscape",
-            "watercolor_wash",
-            "zesty_lemon",
-            "tropical_paradise",
-            "industrial_chic",
-            "cherry_bomb",
-            "woodland_mystery",
-            "galaxy_glitter",
-            "creamy_vanilla",
-            "spicy_chili",
-            "spring_meadow",
-            "midnight_library",
-            "lemon_sorbet",
-            "cosmic_night",
-            "spicy_mustard",
-            "peppermint_candy",
-            "gingerbread_house",
-            "art_deco_glam",
-            "ocean_depths",
-            "bubblegum_pink",
-            "firefly_night",
-            "apple_orchard",
-            "lavender_field",
-            "lemon_drop",
-            "modern_farmhouse",
-        )
-        val colors = container("colors", ColorsConfig()) { requireRestart() }
-        val colorsDebug = boolean("colors_debug") { requireRestart() }
-    }
-
     val friendFeedMenuButtons = multiple(
         "friend_feed_menu_buttons","conversation_info", "mark_snaps_as_seen", "mark_stories_as_seen_locally", *MessagingRuleType.entries.filter { it.showInFriendMenu }.map { it.key }.toTypedArray()
     ).apply {
         set(mutableListOf("conversation_info", MessagingRuleType.STEALTH.key))
     }
     val autoCloseFriendFeedMenu = boolean("auto_close_friend_feed_menu")
-    val customizeUi = container("customize_ui", CustomizeUIConfig()) { addNotices(FeatureNotice.UNSTABLE); requireRestart() }
+    val customTheme = unique("custom_theme",
+        "custom",
+        "amoled_dark_mode",
+        "material_you_light",
+        "material_you_dark",
+        "light_blue",
+        "dark_blue",
+        "midnight_slate",
+        "earthy_autumn",
+        "mint_chocolate",
+        "ginger_snap",
+        "lemon_meringue",
+        "lava_flow",
+        "ocean_fog",
+        "alien_landscape",
+        "watercolor_wash",
+        "zesty_lemon",
+        "tropical_paradise",
+        "industrial_chic",
+        "cherry_bomb",
+        "woodland_mystery",
+        "galaxy_glitter",
+        "creamy_vanilla",
+        "spicy_chili",
+        "spring_meadow",
+        "midnight_library",
+        "lemon_sorbet",
+        "cosmic_night",
+        "spicy_mustard",
+        "peppermint_candy",
+        "gingerbread_house",
+        "art_deco_glam",
+        "ocean_depths",
+        "bubblegum_pink",
+        "firefly_night",
+        "apple_orchard",
+        "lavender_field",
+        "lemon_drop",
+        "modern_farmhouse",
+    )
     val friendFeedMessagePreview = container("friend_feed_message_preview", FriendFeedMessagePreview()) { requireRestart() }
     val snapPreview = boolean("snap_preview") { addNotices(FeatureNotice.UNSTABLE); requireRestart() }
     val bootstrapOverride = container("bootstrap_override", BootstrapOverride()) { requireRestart() }

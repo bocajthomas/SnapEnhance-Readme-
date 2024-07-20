@@ -1,6 +1,9 @@
 package me.rhunk.snapenhance.nativelib
 
+import android.annotation.SuppressLint
 import android.util.Log
+import kotlin.math.absoluteValue
+import kotlin.random.Random
 
 @Suppress("KotlinJniMissingFunction")
 class NativeLib {
@@ -11,19 +14,21 @@ class NativeLib {
             private set
     }
 
-    fun initOnce(callback: NativeLib.() -> Unit) {
+    fun initOnce(callback: NativeLib.() -> Unit): () -> Unit {
         if (initialized) throw IllegalStateException("NativeLib already initialized")
-        runCatching {
+        return runCatching {
             System.loadLibrary(BuildConfig.NATIVE_NAME)
             initialized = true
             callback(this)
-            if (!init()) {
-                throw IllegalStateException("NativeLib init failed. Check logcat for more info")
+            return@runCatching {
+                if (!init()) {
+                    throw IllegalStateException("NativeLib init failed. Check logcat for more info")
+                }
             }
         }.onFailure {
             initialized = false
             Log.e("SnapEnhance", "NativeLib init failed", it)
-        }
+        }.getOrThrow()
     }
 
     @Suppress("unused")
@@ -54,10 +59,18 @@ class NativeLib {
         }
     }
 
+    @SuppressLint("UnsafeDynamicallyLoadedCode")
+    fun loadSharedLibrary(content: ByteArray) {
+        if (!initialized) throw IllegalStateException("NativeLib not initialized")
+        val generatedPath = "/data/app/${Random.nextLong().absoluteValue.toString(16)}.so"
+        addLinkerSharedLibrary(generatedPath, content)
+        System.load(generatedPath)
+    }
+
     private external fun init(): Boolean
     private external fun loadConfig(config: NativeConfig)
     private external fun lockDatabase(name: String, callback: Runnable)
     external fun setComposerLoader(code: String)
     external fun composerEval(code: String): String?
-    external fun hideAnonymousDexFiles()
+    private external fun addLinkerSharedLibrary(path: String, content: ByteArray)
 }

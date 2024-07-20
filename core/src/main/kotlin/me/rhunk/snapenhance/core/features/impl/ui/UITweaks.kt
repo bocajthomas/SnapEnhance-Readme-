@@ -10,13 +10,12 @@ import me.rhunk.snapenhance.core.event.events.impl.AddViewEvent
 import me.rhunk.snapenhance.core.event.events.impl.BindViewEvent
 import me.rhunk.snapenhance.core.event.events.impl.LayoutInflateEvent
 import me.rhunk.snapenhance.core.features.Feature
-import me.rhunk.snapenhance.core.features.FeatureLoadParams
 import me.rhunk.snapenhance.core.util.hook.HookStage
 import me.rhunk.snapenhance.core.util.hook.Hooker
 import me.rhunk.snapenhance.core.util.hook.hook
 import me.rhunk.snapenhance.core.util.ktx.getIdentifier
 
-class UITweaks : Feature("UITweaks", loadParams = FeatureLoadParams.ACTIVITY_CREATE_SYNC) {
+class UITweaks : Feature("UITweaks") {
     private val identifierCache = mutableMapOf<String, Int>()
 
     fun getId(name: String, defType: String): Int {
@@ -47,7 +46,7 @@ class UITweaks : Feature("UITweaks", loadParams = FeatureLoadParams.ACTIVITY_CRE
         }
     }
 
-    override fun onActivityCreate() {
+    private fun onActivityCreate() {
         val blockAds by context.config.global.blockAds
         val hiddenElements by context.config.userInterface.hideUiComponents
         val hideStorySuggestions by context.config.userInterface.hideStorySuggestions
@@ -176,6 +175,12 @@ class UITweaks : Feature("UITweaks", loadParams = FeatureLoadParams.ACTIVITY_CRE
             if (viewId == unreadHintButton && hiddenElements.contains("hide_unread_chat_hint")) {
                 event.canceled = true
             }
+        }
+    }
+
+    override fun init() {
+        onNextActivityCreate {
+            onActivityCreate()
         }
     }
 }

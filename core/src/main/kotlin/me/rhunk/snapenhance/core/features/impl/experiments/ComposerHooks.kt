@@ -25,7 +25,6 @@ import me.rhunk.snapenhance.common.ui.AppMaterialTheme
 import me.rhunk.snapenhance.common.ui.createComposeAlertDialog
 import me.rhunk.snapenhance.common.ui.createComposeView
 import me.rhunk.snapenhance.core.features.Feature
-import me.rhunk.snapenhance.core.features.FeatureLoadParams
 import me.rhunk.snapenhance.core.features.impl.downloader.MediaDownloader
 import me.rhunk.snapenhance.core.util.hook.HookStage
 import me.rhunk.snapenhance.core.util.hook.Hooker
@@ -36,7 +35,7 @@ import java.lang.reflect.Proxy
 import kotlin.math.absoluteValue
 import kotlin.random.Random
 
-class ComposerHooks: Feature("ComposerHooks", loadParams = FeatureLoadParams.INIT_SYNC) {
+class ComposerHooks: Feature("ComposerHooks") {
     private val config by lazy { context.config.experimental.nativeHooks.composerHooks }
     private val getImportsFunctionName = Random.nextLong().absoluteValue.toString(16)
 

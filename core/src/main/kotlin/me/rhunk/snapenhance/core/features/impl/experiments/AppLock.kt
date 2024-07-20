@@ -31,7 +31,6 @@ import me.rhunk.snapenhance.common.ui.AppMaterialTheme
 import me.rhunk.snapenhance.common.ui.createComposeView
 import me.rhunk.snapenhance.core.event.events.impl.ActivityResultEvent
 import me.rhunk.snapenhance.core.features.Feature
-import me.rhunk.snapenhance.core.features.FeatureLoadParams
 import me.rhunk.snapenhance.core.ui.addForegroundDrawable
 import me.rhunk.snapenhance.core.ui.children
 import me.rhunk.snapenhance.core.ui.removeForegroundDrawable
@@ -39,7 +38,7 @@ import me.rhunk.snapenhance.core.util.hook.HookStage
 import me.rhunk.snapenhance.core.util.hook.hook
 import kotlin.random.Random
 
-class AppLock : Feature("AppLock", loadParams = FeatureLoadParams.ACTIVITY_CREATE_SYNC) {
+class AppLock : Feature("AppLock") {
     private var isUnlockRequested = false
 
     private val rootContentView get() = context.mainActivity!!.findViewById<FrameLayout>(android.R.id.content)
@@ -122,32 +121,34 @@ class AppLock : Feature("AppLock", loadParams = FeatureLoadParams.ACTIVITY_CREAT
         }
     }
 
-    override fun onActivityCreate() {
+    override fun init() {
         if (context.config.experimental.appLock.globalState != true) return
 
-        Activity::class.java.apply {
-            if (context.config.experimental.appLock.lockOnResume.get()) {
-                hook("onResume", HookStage.BEFORE) { param ->
-                    if (param.thisObject<Activity>().packageName != Constants.SNAPCHAT_PACKAGE_NAME) return@hook
-                    if (isUnlockRequested) return@hook
-                    lock(prompt = true)
-                }
-                hook("onPause", HookStage.BEFORE) { param ->
-                    if (param.thisObject<Activity>().packageName != Constants.SNAPCHAT_PACKAGE_NAME) return@hook
-                    if (isUnlockRequested) return@hook
-                    hideRootView()
+        onNextActivityCreate {
+            Activity::class.java.apply {
+                if (context.config.experimental.appLock.lockOnResume.get()) {
+                    hook("onResume", HookStage.BEFORE) { param ->
+                        if (param.thisObject<Activity>().packageName != Constants.SNAPCHAT_PACKAGE_NAME) return@hook
+                        if (isUnlockRequested) return@hook
+                        lock(prompt = true)
+                    }
+                    hook("onPause", HookStage.BEFORE) { param ->
+                        if (param.thisObject<Activity>().packageName != Constants.SNAPCHAT_PACKAGE_NAME) return@hook
+                        if (isUnlockRequested) return@hook
+                        hideRootView()
+                    }
                 }
             }
-        }
 
-        context.event.subscribe(ActivityResultEvent::class) { event ->
-            if (event.requestCode != requestCode) return@subscribe
-            if (event.resultCode == Activity.RESULT_OK) {
-                unlock()
-                return@subscribe
+            context.event.subscribe(ActivityResultEvent::class) { event ->
+                if (event.requestCode != requestCode) return@subscribe
+                if (event.resultCode == Activity.RESULT_OK) {
+                    unlock()
+                    return@subscribe
+                }
+                lock(prompt = false)
             }
-            lock(prompt = false)
+            lock()
         }
-        lock()
     }
 }

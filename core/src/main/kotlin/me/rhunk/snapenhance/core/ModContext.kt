@@ -79,7 +79,7 @@ class ModContext(
     }
 
     fun runOnUiThread(runnable: () -> Unit) {
-        if (Looper.myLooper() == Looper.getMainLooper()) {
+        if (Looper.getMainLooper().isCurrentThread) {
             runnable()
             return
         }
@@ -95,7 +95,7 @@ class ModContext(
             runCatching {
                 runnable()
             }.onFailure {
-                longToast("Async task failed " + it.message)
+                longToast("Async task failed: " + it.message)
                 log.error("Async task failed", it)
             }
         }
@@ -153,13 +153,11 @@ class ModContext(
     }
 
     fun reloadNativeConfig() {
-        if (config.experimental.nativeHooks.globalState != true) return
         native.loadNativeConfig(
             NativeConfig(
                 disableBitmoji = config.experimental.nativeHooks.disableBitmoji.get(),
                 disableMetrics = config.global.disableMetrics.get(),
                 composerHooks = config.experimental.nativeHooks.composerHooks.globalState == true,
-                remapExecutable = config.experimental.nativeHooks.remapExecutable.get(),
                 customEmojiFontPath = getCustomEmojiFontPath(this)
             )
         )

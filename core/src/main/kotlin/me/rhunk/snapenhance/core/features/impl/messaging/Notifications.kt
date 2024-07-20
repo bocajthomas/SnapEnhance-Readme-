@@ -23,7 +23,6 @@ import me.rhunk.snapenhance.common.util.snap.MediaDownloaderHelper
 import me.rhunk.snapenhance.common.util.snap.SnapWidgetBroadcastReceiverHelper
 import me.rhunk.snapenhance.core.event.events.impl.SnapWidgetBroadcastReceiveEvent
 import me.rhunk.snapenhance.core.features.Feature
-import me.rhunk.snapenhance.core.features.FeatureLoadParams
 import me.rhunk.snapenhance.core.features.impl.FriendMutationObserver
 import me.rhunk.snapenhance.core.features.impl.downloader.MediaDownloader
 import me.rhunk.snapenhance.core.features.impl.downloader.decoder.AttachmentType
@@ -39,7 +38,7 @@ import me.rhunk.snapenhance.core.wrapper.impl.SnapUUID
 import okhttp3.RequestBody.Companion.toRequestBody
 import kotlin.coroutines.suspendCoroutine
 
-class Notifications : Feature("Notifications", loadParams = FeatureLoadParams.INIT_SYNC) {
+class Notifications : Feature("Notifications") {
     inner class NotificationData(
         val tag: String?,
         val id: Int,
@@ -301,7 +300,7 @@ class Notifications : Feature("Notifications", loadParams = FeatureLoadParams.IN
                     )
                 }
             }.onFailure {
-                context.log.warn("Failed to set notification group key: ${it.stackTraceToString()}", featureKey)
+                context.log.warn("Failed to set notification group key: ${it.stackTraceToString()}", key)
             }
         }
 

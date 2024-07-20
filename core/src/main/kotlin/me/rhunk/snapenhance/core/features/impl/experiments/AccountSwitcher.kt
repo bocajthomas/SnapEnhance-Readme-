@@ -36,7 +36,6 @@ import me.rhunk.snapenhance.common.util.snap.MediaDownloaderHelper
 import me.rhunk.snapenhance.core.event.events.impl.ActivityResultEvent
 import me.rhunk.snapenhance.core.event.events.impl.AddViewEvent
 import me.rhunk.snapenhance.core.features.Feature
-import me.rhunk.snapenhance.core.features.FeatureLoadParams
 import me.rhunk.snapenhance.core.util.hook.HookStage
 import me.rhunk.snapenhance.core.util.hook.hook
 import me.rhunk.snapenhance.core.util.ktx.getId
@@ -47,7 +46,7 @@ import java.util.zip.ZipInputStream
 import java.util.zip.ZipOutputStream
 import kotlin.random.Random
 
-class AccountSwitcher: Feature("Account Switcher", loadParams = FeatureLoadParams.INIT_SYNC or FeatureLoadParams.ACTIVITY_CREATE_SYNC) {
+class AccountSwitcher: Feature("Account Switcher") {
     private var exportCallback: Pair<Int, String>? = null // requestCode -> userId
     private var importRequestCode: Int? = null
 
@@ -425,25 +424,23 @@ class AccountSwitcher: Feature("Account Switcher", loadParams = FeatureLoadParam
         mainDbShmFile?.delete()
     }
 
-    override fun onActivityCreate() {
-        if (context.config.experimental.accountSwitcher.globalState != true) return
-
-        val hovaHeaderSearchIcon = context.mainActivity!!.resources.getId("hova_header_search_icon")
-
-        context.event.subscribe(AddViewEvent::class) { event ->
-            if (event.view.id != hovaHeaderSearchIcon) return@subscribe
-
-            event.view.setOnLongClickListener {
-                context.mainActivity!!.vibrateLongPress()
-                showManagementPopup()
-                false
-            }
-        }
-    }
-
     @SuppressLint("SetTextI18n")
     override fun init() {
         if (context.config.experimental.accountSwitcher.globalState != true) return
+
+        onNextActivityCreate {
+            val hovaHeaderSearchIcon = context.resources.getId("hova_header_search_icon")
+
+            context.event.subscribe(AddViewEvent::class) { event ->
+                if (event.view.id != hovaHeaderSearchIcon) return@subscribe
+
+                event.view.setOnLongClickListener {
+                    context.mainActivity!!.vibrateLongPress()
+                    showManagementPopup()
+                    false
+                }
+            }
+        }
 
         context.event.subscribe(ActivityResultEvent::class) { event ->
             if (importRequestCode == event.requestCode) {
@@ -501,7 +498,7 @@ class AccountSwitcher: Feature("Account Switcher", loadParams = FeatureLoadParam
         }
 
         findClass("com.snap.identity.loginsignup.ui.LoginSignupActivity").apply {
-            hook("onPostCreate", HookStage.AFTER) { param ->
+            hook("onPostCreate", HookStage.AFTER) {
                 context.mainActivity!!.findViewById<FrameLayout>(android.R.id.content).addView(createComposeView(context.mainActivity!!) {
                     Row(
                         modifier = Modifier.fillMaxWidth(),

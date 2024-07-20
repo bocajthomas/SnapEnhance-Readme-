@@ -5,12 +5,11 @@ import android.content.ContentResolver
 import android.database.ContentObserver
 import android.net.Uri
 import me.rhunk.snapenhance.core.features.Feature
-import me.rhunk.snapenhance.core.features.FeatureLoadParams
 import me.rhunk.snapenhance.core.util.hook.HookStage
 import me.rhunk.snapenhance.core.util.hook.hook
 
-class BypassScreenshotDetection : Feature("BypassScreenshotDetection", loadParams = FeatureLoadParams.ACTIVITY_CREATE_SYNC) {
-    override fun onActivityCreate() {
+class BypassScreenshotDetection : Feature("BypassScreenshotDetection") {
+    override fun init() {
         if (!context.config.messaging.bypassScreenshotDetection.get()) return
         Activity::class.java.hook("registerScreenCaptureCallback", HookStage.BEFORE) { param ->
             param.setResult(null)

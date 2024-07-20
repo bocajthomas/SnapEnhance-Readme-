@@ -8,9 +8,27 @@ import me.rhunk.snapenhance.common.bridge.InternalFileHandleType
 import me.rhunk.snapenhance.common.bridge.wrapper.LocaleWrapper
 import me.rhunk.snapenhance.common.logger.AbstractLogger
 import me.rhunk.snapenhance.common.util.ktx.toParcelFileDescriptor
+import me.rhunk.snapenhance.storage.getEnabledThemesContent
 import java.io.File
 import java.io.OutputStream
 
+
+class ByteArrayFileHandle(
+    private val context: RemoteSideContext,
+    private val data: ByteArray
+): FileHandle.Stub() {
+    override fun exists() = true
+    override fun create() = false
+    override fun delete() = false
+
+    override fun open(mode: Int): ParcelFileDescriptor? {
+        return runCatching {
+            data.inputStream().toParcelFileDescriptor(context.coroutineScope)
+        }.onFailure {
+            context.log.error("Failed to open byte array file handle: ${it.message}", it)
+        }.getOrNull()
+    }
+}
 
 class LocalFileHandle(
     private val file: File
@@ -95,6 +113,12 @@ class RemoteFileHandleManager(
                 return AssetFileHandle(
                     context,
                     "composer/${name.substringAfterLast("/")}"
+                )
+            }
+            FileHandleScope.THEME -> {
+                return ByteArrayFileHandle(
+                    context,
+                    context.gson.toJson(context.database.getEnabledThemesContent()).toByteArray(Charsets.UTF_8)
                 )
             }
             else -> return null

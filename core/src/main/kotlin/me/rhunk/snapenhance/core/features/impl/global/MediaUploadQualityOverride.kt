@@ -2,13 +2,12 @@ package me.rhunk.snapenhance.core.features.impl.global
 
 import android.graphics.Bitmap
 import me.rhunk.snapenhance.core.features.Feature
-import me.rhunk.snapenhance.core.features.FeatureLoadParams
 import me.rhunk.snapenhance.core.util.hook.HookStage
 import me.rhunk.snapenhance.core.util.hook.hook
 import me.rhunk.snapenhance.mapper.impl.MediaQualityLevelProviderMapper
 import java.lang.reflect.Method
 
-class MediaUploadQualityOverride : Feature("Media Upload Quality Override", loadParams = FeatureLoadParams.INIT_SYNC) {
+class MediaUploadQualityOverride : Feature("Media Upload Quality Override") {
     override fun init() {
         if (context.config.global.mediaUploadQualityConfig.forceVideoUploadSourceQuality.get()) {
             context.mappings.useMapper(MediaQualityLevelProviderMapper::class) {

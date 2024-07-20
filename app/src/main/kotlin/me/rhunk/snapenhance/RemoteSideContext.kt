@@ -78,6 +78,7 @@ class RemoteSideContext(
     val tracker = RemoteTracker(this)
     val accountStorage = RemoteAccountStorage(this)
     val locationManager = RemoteLocationManager(this)
+    val remoteSharedLibraryManager = RemoteSharedLibraryManager(this)
 
     //used to load bitmoji selfies and download previews
     val imageLoader by lazy {
@@ -130,6 +131,9 @@ class RemoteSideContext(
                     }?.autoPurge?.let { getPurgeTime(it.getNullable()) }?.let {
                         messageLogger.purgeTrackerLogs(it)
                     }
+                }
+                coroutineScope.launch {
+                    remoteSharedLibraryManager.init()
                 }
             }
         }.onFailure {
@@ -211,6 +215,10 @@ class RemoteSideContext(
         if (!sharedPreferences.getBoolean("debug_disable_mapper", false) && mappings.getSnapchatPackageInfo() != null && mappings.isMappingsOutdated()) {
             requirements = requirements or Requirements.MAPPINGS
         }
+
+        /*if (sharedPreferences.getString("sif", null) == null) {
+            requirements = requirements or Requirements.SIF
+        }*/
 
         if (requirements == 0) return false
 

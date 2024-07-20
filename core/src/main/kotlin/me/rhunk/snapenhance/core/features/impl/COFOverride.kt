@@ -1,7 +1,7 @@
 package me.rhunk.snapenhance.core.features.impl
 
 import me.rhunk.snapenhance.core.features.Feature
-import me.rhunk.snapenhance.core.features.FeatureLoadParams
+
 import me.rhunk.snapenhance.core.util.dataBuilder
 import me.rhunk.snapenhance.core.util.hook.HookStage
 import me.rhunk.snapenhance.core.util.hook.hook
@@ -9,7 +9,7 @@ import me.rhunk.snapenhance.core.util.ktx.getObjectField
 import me.rhunk.snapenhance.mapper.impl.COFObservableMapper
 import java.lang.reflect.Method
 
-class COFOverride : Feature("COF Override", loadParams = FeatureLoadParams.INIT_SYNC) {
+class COFOverride : Feature("COF Override") {
     var hasActionMenuV2 = false
 
     override fun init() {
