@@ -54,6 +54,7 @@ class Experimental : ConfigContainer() {
     class AppLockConfig: ConfigContainer(hasGlobalState = true) {
         val lockOnResume = boolean("lock_on_resume", defaultValue = true)
     }
+
     val nativeHooks = container("native_hooks", NativeHooks()) { icon = Icons.Default.Memory; requireRestart() }
     val spoof = container("spoof", Spoof()) { icon = Icons.Default.Fingerprint ; addNotices(FeatureNotice.BAN_RISK); requireRestart() }
     val convertMessageLocally = boolean("convert_message_locally") { requireRestart() }
