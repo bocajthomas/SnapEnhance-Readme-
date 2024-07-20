@@ -116,7 +116,10 @@
             "friend_tracker": "বন্ধু ট্র্যাকার",
             "edit_rule": "সম্পাদনার নিয়ম",
             "file_imports": "ফাইল আমদানি",
-            "better_location": "বেটার অবস্থান"
+            "better_location": "বেটার অবস্থান",
+            "theming": "থিমিং",
+            "edit_theme": "থিম সম্পাদনা করুন",
+            "manage_repos": "রেপোসিটরি ম্যানেজ করুন"
         },
         "sections": {
             "features": {
@@ -244,6 +247,9 @@
                 "teleport_to_friend_title": "বন্ধুর কাছে টেলিপোর্ট করুন",
                 "no_friends_map": "মানচিত্রে কোনো বন্ধু নেই",
                 "no_friends_found": "কোনো বন্ধু পাওয়া যায়নি"
+            },
+            "theming": {
+                "no_themes_hint": "কোনো থিম পাওয়া যায়নি"
             }
         },
         "dialogs": {
@@ -386,6 +392,14 @@
         "logger_history": {
             "name": "লগার ইতিহাস",
             "description": "লগ করা বার্তার ইতিহাস দেখুন"
+        },
+        "theming": {
+            "description": "স্ন্যাপচ্যাটের চেহারা এবং অনুভূতি কাস্টমাইজ করুন",
+            "name": "থিমিং"
+        },
+        "security_features": {
+            "name": "নিরাপত্তা বৈশিষ্ট্য",
+            "description": "নিরাপত্তা বৈশিষ্ট্য অ্যাক্সেস করুন"
         }
     },
     "features": {
@@ -592,6 +606,10 @@
                     "auto_close_friend_feed_menu": {
                         "name": "অটো ক্লোজ ফ্রেন্ড ফিড মেনু",
                         "description": "সেটিং বোতাম চাপার পরে স্বয়ংক্রিয়ভাবে ফ্রেন্ড ফিড মেনু বন্ধ হয়ে যায়"
+                    },
+                    "custom_theme": {
+                        "name": "কাস্টম থিম",
+                        "description": "স্ন্যাপচ্যাটের রং কাস্টমাইজ করুন\nনোট: আপনি যদি একটি ডার্ক থিম (যেমন AMOLED) বেছে নেন, তবে ভাল ফলাফলের জন্য অ্যাপ অ্যাপিয়ারেন্স সেটিংসে ডার্ক মোড সক্রিয় করতে হতে পারে"
                     }
                 },
                 "name": "ব্যবহারকারীর ইন্টারফেস"
@@ -1391,6 +1409,46 @@
             "disable_cameras": {
                 "back": "পিছনের ক্যামেরা",
                 "front": "সামনের ক্যামেরা"
+            },
+            "custom_theme": {
+                "light_blue": "লাইট ব্লু",
+                "dark_blue": "ডার্ক ব্লু",
+                "midnight_slate": "মিডনাইট স্লেট",
+                "earthy_autumn": "আর্থি অটাম",
+                "mint_chocolate": "মিন্ট চকোলেট",
+                "custom": "কাস্টম থিমস (থিমগুলি পরিচালনা করতে দ্রুত কর্ম ব্যবহার করুন)",
+                "lemon_meringue": "লেমন মেরিংগ",
+                "alien_landscape": "এলিয়েন ল্যান্ডস্কেপ",
+                "zesty_lemon": "জেস্টি লেমন",
+                "tropical_paradise": "ট্রপিকাল প্যারাডাইস",
+                "industrial_chic": "ইন্ডাস্ট্রিয়াল চিক",
+                "cherry_bomb": "চেরি বোম্ব",
+                "firefly_night": "ফায়ারফ্লাই নাইট",
+                "spicy_chili": "স্পাইসি চিলি",
+                "midnight_library": "মিডনাইট লাইব্রেরি",
+                "material_you_light": "ম্যাটেরিয়াল ইউ লাইট (অ্যান্ড্রয়েড ১২+)",
+                "amoled_dark_mode": "AMOLED ডার্ক মোড",
+                "material_you_dark": "ম্যাটেরিয়াল ইউ ডার্ক (অ্যান্ড্রয়েড ১২+)",
+                "watercolor_wash": "ওয়াটারকালার ওয়াশ",
+                "galaxy_glitter": "গ্যালাক্সি গ্লিটার",
+                "creamy_vanilla": "ক্রিমি ভ্যানিলা",
+                "spring_meadow": "স্প্রিং মেডো",
+                "lemon_sorbet": "লেমন সরবেট",
+                "ginger_snap": "জিঞ্জার স্ন্যাপ",
+                "lava_flow": "লাভা ফ্লো",
+                "ocean_fog": "ওশান ফগ",
+                "woodland_mystery": "উডল্যান্ড মিস্ট্রি",
+                "cosmic_night": "কসমিক নাইট",
+                "spicy_mustard": "স্পাইসি মাস্টার্ড",
+                "peppermint_candy": "পেপারমিন্ট ক্যান্ডি",
+                "gingerbread_house": "জিঞ্জারব্রেড হাউস",
+                "art_deco_glam": "আর্ট ডেকো গ্ল্যাম",
+                "bubblegum_pink": "বাবলগাম পিংক",
+                "ocean_depths": "ওশান ডেপথস",
+                "apple_orchard": "অ্যাপল অর্চার্ড",
+                "lavender_field": "ল্যাভেন্ডার ফিল্ড",
+                "lemon_drop": "লেমন ড্রপ",
+                "modern_farmhouse": "মডার্ন ফার্মহাউস"
             }
         },
         "notices": {
@@ -1581,5 +1639,47 @@
     "auto_open_snaps": {
         "title": "স্বয়ংক্রিয়ভাবে স্ন্যাপ খুলুন",
         "notification_content": "{count} স্ন্যাপ খোলা হয়েছে"
+    },
+    "theming_attributes": {
+        "recipientPillBackgroundDrawable": "প্রাপক পিল ব্যাকগ্রাউন্ড",
+        "boxBackgroundColor": "বক্স ব্যাকগ্রাউন্ড রঙ",
+        "editTextColor": "টেক্সট সম্পাদনা রঙ",
+        "rangeFillColor": "রেঞ্জ পূর্ণ রঙ",
+        "statusBarForeground": "স্ট্যাটাস বার সামনের রঙ",
+        "strokeColor": "স্ট্রোক রঙ",
+        "listDivider": "তালিকা বিভাজক রঙ",
+        "sigColorChatChat": "প্রধান বন্ধু ফিড টেক্সট রঙ",
+        "sigColorBackgroundSurface": "ব্যাকগ্রাউন্ড সারফেস রঙ",
+        "sigColorChatSnapWithoutSound": "শব্দবিহীন স্ন্যাপের টেক্সট রঙ",
+        "actionSheetBackgroundDrawable": "অ্যাকশন মেনু ব্যাকগ্রাউন্ড রঙ",
+        "sigColorTextPrimary": "প্রধান টেক্সট রঙ",
+        "sigColorChatConversationsLine": "কথোপকথন লাইন রঙ",
+        "sigColorIconPrimary": "অ্যাকশন মেনু আইকন রঙ",
+        "sigColorChatPendingSending": "মাধ্যমিক বন্ধু ফিড টেক্সট রঙ",
+        "sigColorChatSnapWithSound": "শব্দসহ স্ন্যাপের টেক্সট রঙ",
+        "sigColorBackgroundMain": "ব্যাকগ্রাউন্ড রঙ",
+        "listBackgroundDrawable": "কথোপকথন তালিকা ব্যাকগ্রাউন্ড",
+        "actionSheetDescriptionTextColor": "অ্যাকশন মেনু বিবরণ টেক্সট রঙ",
+        "actionSheetRoundedBackgroundDrawable": "অ্যাকশন মেনু গোল ব্যাকগ্রাউন্ড রঙ",
+        "itemShapeFillColor": "আইটেম আকৃতি পূর্ণ রঙ",
+        "sigExceptionColorCameraGridLines": "ক্যামেরা গ্রিডলাইন রঙ",
+        "sigColorIconSecondary": "মাধ্যমিক আইকন রঙ",
+        "ringColor": "রিং রঙ",
+        "ringStartColor": "রিং শুরুর রঙ",
+        "sigColorLayoutPlaceholder": "লেআউট প্লেসহোল্ডার রঙ",
+        "scButtonColor": "স্ন্যাপচ্যাট বোতাম রঙ",
+        "chipBackgroundColor": "চিপ ব্যাকগ্রাউন্ড রঙ",
+        "recipientInputStyle": "প্রাপক ইনপুট স্টাইল",
+        "pstsIndicatorColor": "PSTS ইন্ডিকেটর রঙ",
+        "pstsTabBackground": "PSTS ট্যাব ব্যাকগ্রাউন্ড",
+        "pstsDividerColor": "PSTS বিভাজক রঙ",
+        "tabTextColor": "ট্যাব টেক্সট রঙ",
+        "statusBarBackground": "স্ট্যাটাস বার ব্যাকগ্রাউন্ড রঙ",
+        "storyReplayViewRingColor": "গল্প রিপ্লে ভিউ রিং রঙ",
+        "sigColorButtonPrimary": "প্রাথমিক বোতাম রঙ",
+        "sigColorBaseAppYellow": "বেস অ্যাপ হলুদ রঙ",
+        "sigColorBackgroundSurfaceTranslucent": "স্বচ্ছ ব্যাকগ্রাউন্ড সারফেস রঙ",
+        "sigColorStoryRingFriendsFeedStoryRing": "গল্প রিং বন্ধু ফিড গল্প রিং রঙ",
+        "sigColorStoryRingDiscoverTabThumbnailStoryRing": "গল্প রিং আবিষ্কার ট্যাব থাম্বনেইল গল্প রিং রঙ"
     }
 }
