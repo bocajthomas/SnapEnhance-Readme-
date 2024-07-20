@@ -31,7 +31,6 @@ import me.rhunk.snapenhance.core.util.LSPatchUpdater
 import me.rhunk.snapenhance.core.util.hook.HookAdapter
 import me.rhunk.snapenhance.core.util.hook.HookStage
 import me.rhunk.snapenhance.core.util.hook.hook
-import java.lang.reflect.Modifier
 import kotlin.reflect.KClass
 import kotlin.system.exitProcess
 import kotlin.system.measureTimeMillis
@@ -125,8 +124,8 @@ class SnapEnhance {
 
                 hookMainActivity("onResume") {
                     if (appContext.isMainActivityPaused.also {
-                        appContext.isMainActivityPaused = false
-                    }) {
+                            appContext.isMainActivityPaused = false
+                        }) {
                         appContext.reloadConfig()
                         appContext.executeAsync {
                             syncRemote()
@@ -361,7 +360,7 @@ class SnapEnhance {
         fun strings(vararg classes: KClass<*>): Map<Int, String> {
             return classes.fold(mapOf()) { map, clazz ->
                 map + clazz.java.fields.filter {
-                    Modifier.isStatic(it.modifiers) && it.type == Int::class.javaPrimitiveType
+                    java.lang.reflect.Modifier.isStatic(it.modifiers) && it.type == Int::class.javaPrimitiveType
                 }.associate { it.getInt(null) to it.name }
             }
         }
