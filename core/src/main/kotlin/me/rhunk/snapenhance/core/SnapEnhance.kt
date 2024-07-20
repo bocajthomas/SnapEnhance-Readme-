@@ -169,7 +169,7 @@ class SnapEnhance {
         }
     }
 
-    private var safeMode = false
+    private var safeMode = true
 
     private fun onActivityCreate(activity: Activity) {
         measureTimeMillis {
