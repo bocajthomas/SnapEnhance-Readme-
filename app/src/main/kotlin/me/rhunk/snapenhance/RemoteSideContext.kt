@@ -133,7 +133,11 @@ class RemoteSideContext(
                     }
                 }
                 coroutineScope.launch {
-                    remoteSharedLibraryManager.init()
+                    runCatching {
+                        remoteSharedLibraryManager.init()
+                    }.onFailure {
+                        log.error("Failed to init RemoteSharedLibraryManager", it)
+                    }
                 }
             }
         }.onFailure {
