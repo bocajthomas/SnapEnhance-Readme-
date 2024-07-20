@@ -1,9 +1,6 @@
 package me.rhunk.snapenhance.ui.setup.screens.impl
 
-import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.WarningAmber
 import androidx.compose.material3.*
@@ -13,22 +10,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import me.rhunk.snapenhance.ui.setup.screens.SetupScreen
 
 class SecurityScreen : SetupScreen() {
-    @SuppressLint("ApplySharedPref")
     @Composable
     override fun Content() {
         Icon(
             imageVector = Icons.Default.WarningAmber,
             contentDescription = null,
-            modifier = Modifier
-                .padding(16.dp)
-                .size(30.dp),
+            modifier = Modifier.padding(16.dp).size(30.dp),
         )
 
         DialogText(
@@ -65,47 +56,6 @@ class SecurityScreen : SetupScreen() {
             )
         }
 
-        var downloadJob by remember { mutableStateOf(null as Job?) }
-        var jobError by remember { mutableStateOf(null as Throwable?) }
-
-        if (downloadJob != null) {
-            AlertDialog(onDismissRequest = {
-                downloadJob?.cancel()
-                downloadJob = null
-            }, confirmButton = {}, text = {
-                Column(
-                    modifier = Modifier.verticalScroll(rememberScrollState()).fillMaxWidth(),
-                    horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.spacedBy(10.dp),
-                ) {
-                    if (jobError != null) {
-                        Text("Failed to download the required files.\n\n${jobError?.message}")
-                    } else {
-                        Text("Downloading the required files...")
-                        CircularProgressIndicator(modifier = Modifier.padding(16.dp))
-                    }
-                }
-            })
-        }
-
-        fun newDownloadJob() {
-            downloadJob?.cancel()
-            downloadJob = context.coroutineScope.launch {
-                context.sharedPreferences.edit().putString("sif", "").commit()
-                runCatching {
-                    context.remoteSharedLibraryManager.init()
-                }.onFailure {
-                    jobError = it
-                    context.log.error("Failed to download the required files", it)
-                }.onSuccess {
-                    downloadJob = null
-                    withContext(Dispatchers.Main) {
-                        goNext()
-                    }
-                }
-            }
-        }
-
         Column (
             modifier = Modifier.padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -113,7 +63,11 @@ class SecurityScreen : SetupScreen() {
         ) {
             Button(
                 onClick = {
-                    newDownloadJob()
+                    context.coroutineScope.launch {
+                        context.sharedPreferences.edit().putString("sif", "").commit()
+                        context.remoteSharedLibraryManager.init()
+                    }
+                    goNext()
                 }
             ) {
                 Text("Accept and continue", fontSize = 18.sp, fontWeight = FontWeight.Bold)
