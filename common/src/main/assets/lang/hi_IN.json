@@ -33,7 +33,11 @@
             "logged_stories": "प्रचालेखित कि गई स्टोरी",
             "friend_tracker": "मित्र ट्रैकर",
             "edit_rule": "नियम संपादित करें",
-            "file_imports": "फ़ाइल आयात"
+            "file_imports": "फ़ाइल आयात",
+            "theming": "थीम",
+            "manage_repos": "रिपॉजिटरी प्रबंधित करें",
+            "edit_theme": "थीम संपादित करें",
+            "better_location": "बेहतर स्थान"
         },
         "sections": {
             "features": {
@@ -65,12 +69,13 @@
             },
             "home": {
                 "update_content": "वर्जन {वर्जन} उपलब्ध है!",
-                "update_title": "SnapEnhance अपडेट",
+                "update_title": "SE Extended अपडेट",
                 "update_button": "डाऊनलोड",
                 "debug_build_summary_title": "आप एसई एक्सटेंडेड का डिबग बिल्ड चला रहे हैं",
                 "debug_build_summary_date": "निर्माण की तारीख: {date} ({days} days ago)",
                 "quick_actions_title": "त्वरित कार्रवाई",
-                "debug_build_summary_content": "संस्करण {versionName} ({versionCode})"
+                "debug_build_summary_content": "संस्करण {versionName} ({versionCode})",
+                "version_title": "V{versionName} ·जैकब द्वारा फोर्क किया गया"
             },
             "home_logs": {
                 "no_logs_hint": "logs उपलब्ध नहीं",
