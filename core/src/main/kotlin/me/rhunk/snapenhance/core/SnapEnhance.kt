@@ -4,8 +4,6 @@ import android.app.Activity
 import android.content.Context
 import android.content.res.Resources
 import android.os.Build
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Cancel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -180,11 +178,7 @@ class SnapEnhance {
                 actionManager.onActivityCreate()
 
                 if (safeMode) {
-                    appContext.inAppOverlay.showStatusToast(
-                        Icons.Outlined.Cancel,
-                        "Failed to load security features! Snapchat may not work properly.",
-                        durationMs = 3000
-                    )
+                    appContext.log.verbose("Failed to load security features! Snapchat may not work properly")
                 }
             }
         }.also { time ->
