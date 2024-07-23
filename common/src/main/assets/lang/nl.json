@@ -33,7 +33,11 @@
             "logged_stories": "Gelogde Stories",
             "friend_tracker": "Vriendentracker",
             "edit_rule": "Regel bewerken",
-            "better_location": "Betere Locatie"
+            "better_location": "Betere Locatie",
+            "edit_theme": "Wijzig Thema",
+            "manage_repos": "Beheer Repositories",
+            "theming": "Thema",
+            "file_imports": "Bestand Imports"
         },
         "sections": {
             "features": {
@@ -133,6 +137,37 @@
                 "message_parse_failed": "Kan het bericht niet parseren",
                 "unknown_sender": "Onbekende Afzender",
                 "download_attachment_failed_toast": "Kan bijlage niet downloaden"
+            },
+            "file_imports": {
+                "file_not_found": "Bestand niet gevonden",
+                "file_import_failed": "Kan bestand niet importeren: {error}",
+                "file_imported": "Fike is succesvol geïmporteerd",
+                "no_files_hint": "Hier kun je bestanden importeren voor gebruik in Snapchat. Druk op onderstaande knop om een bestand te importeren.",
+                "file_delete_failed": "Verwijderen van bestsnd mislukt",
+                "import_file_button": "Importeer Bestand"
+            },
+            "better_location": {
+                "spoofed_coordinates_title": "Len {latitude}, Bre {longitude}",
+                "save_dialog_button": "Opslaan",
+                "choose_location_button": "Kies locatie",
+                "teleport_to_friend_button": "Teleporteer naar vriend",
+                "spoof_location_toggle": "Spoof-locatie",
+                "no_saved_coordinates_hint": "Geen opgeslagen coördinaten",
+                "delete_dialog_title": "Verwijder opgeslagen coördinaat",
+                "suspend_location_updates": "Locatie-updates opschorten",
+                "saved_coordinates_title": "Opgeslagen coördinaten",
+                "longitude_dialog_hint": "Lengtegraad",
+                "save_coordinates_dialog_title": "Sla coördinaten op",
+                "saved_name_dialog_hint": "Naam opgeslagen",
+                "latitude_dialog_hint": "Breedtegraad",
+                "delete_dialog_message": "Weet je zeker dat je dit opgeslagen coördinaat wilt verwijderen?",
+                "teleport_to_friend_title": "Teleporteer naar vriend",
+                "search_bar": "Zoeken",
+                "no_friends_map": "Geen vrienden op de map",
+                "no_friends_found": "Geen vrienden gevonden"
+            },
+            "theming": {
+                "no_themes_hint": "Geen themas gevonden"
             }
         },
         "dialogs": {
@@ -155,6 +190,14 @@
             "messaging_action": {
                 "title": "Kies inhoudstypen om te verwerken",
                 "select_all_button": "Alles Selecteren"
+            },
+            "export_config": {
+                "title": "Exporteer gevoelige data?",
+                "content": "Wilt u de configuratie met gevoelige gegevens exporteren? (Zoals locatiecoördinaten, enz.)"
+            },
+            "file_imports": {
+                "settings_select_file_hint": "Selecteer een geïmporteerd bestand",
+                "no_files_settings_hint": "Geen bestanden gevonden. Zorg ervoor dat u de vereiste bestanden hebt geïmporteerd in de sectie Bestand importeren"
             }
         }
     },
@@ -377,6 +420,91 @@
                 },
                 "name": "Gebruikersomgeving"
             }
+        },
+        "options": {
+            "bypass_video_length_restriction": {
+                "single": "Enkele media",
+                "split": "Split media"
+            },
+            "add_friend_source_spoof": {
+                "added_by_quick_add": "Door Snel Toevoegen (groot risico om verbannen te worden)",
+                "added_by_community": "Door gemeenschap",
+                "added_by_qr_code": "Door QR code",
+                "added_by_group_chat": "Door groepsapp",
+                "added_by_mention": "Door vermelding",
+                "added_by_username": "Door gebruikersnaam"
+            },
+            "old_bitmoji_selfie": {
+                "3d": "3D bitmoji",
+                "2d": "2D bitmoji"
+            },
+            "disable_confirmation_dialogs": {
+                "remove_friend": "Verwijder vriend",
+                "erase_message": "Wis vriend",
+                "clear_conversation": "Verwijder gesprek uit vriendenlijst",
+                "hide_conversation": "Verberg gesprek",
+                "hide_friend": "Verberg vriend",
+                "ignore_friend": "Negeer vriend",
+                "block_friend": "Blokkeer vriend"
+            },
+            "home_tab": {
+                "discover": "Ontdekken",
+                "camera": "Camera",
+                "chat": "Gesprek",
+                "map": "Kaart",
+                "spotlight": "Uitgelicht"
+            },
+            "hide_story_suggestions": {
+                "hide_my_stories": "Verberg mijn verhalen"
+            },
+            "auto_reload": {
+                "all": "Alles (Snapchat + SE Extended)",
+                "snapchat_only": "Snapchat alleen"
+            },
+            "auto_purge": {
+                "6_hours": "6 uur",
+                "3_hours": "3 uur",
+                "1_hour": "1 uur",
+                "never": "Nooit",
+                "6_months": "6 maanden",
+                "3_months": "3 maanden",
+                "1_month": "1 maand",
+                "2_weeks": "2 weken",
+                "1_week": "1 week",
+                "3_days": "3 dagen",
+                "1_day": "1 dag",
+                "12_hours": "12 uur"
+            },
+            "edit_text_override": {
+                "bypass_text_input_limit": "Omzeil de tekstinvoerlimiet",
+                "multi_line_chat_input": "Chatinvoer met meerdere regels"
+            },
+            "disable_story_sections": {
+                "suggested_stories": "Voorgestelde verhalen",
+                "friends": "Vrienden",
+                "discover": "Ontdekken",
+                "following": "Volgend"
+            },
+            "disable_cameras": {
+                "front": "Voor camera",
+                "back": "Achter camera"
+            },
+            "disable_permission_requests": {
+                "read_contacts": "Contacten inzien",
+                "location": "Locatie",
+                "microphone": "Microfoon",
+                "camera": "Camera",
+                "phone_calls": "Telefoon oproepen",
+                "nearby_devices": "Apparaten dichtbij",
+                "read_media_video": "Lees media video",
+                "read_media_images": "Lees media fotos",
+                "notifications": "Meldingen"
+            },
+            "message_indicators": {
+                "location_indicator": "Voegt een 📍-pictogram toe aan snaps wanneer deze zijn verzonden met ingeschakelde locatie",
+                "platform_indicator": "Voegt het platformpictogram toe waarvandaan een medium is verzonden (bijvoorbeeld Android, iOS, Web)",
+                "encryption_indicator": "Voegt een 🔒-pictogram toe naast berichten die alleen naar jou zijn verzonden"
+            }
         }
     },
     "scopes": {
@@ -411,6 +539,16 @@
         "regen_mappings": {
             "name": "Mappings Regenereren",
             "description": "Mappings Handmatig Regenereren"
+        },
+        "security_features": {
+            "name": "Beveiliging functies"
         }
+    },
+    "friend_menu_option": {
+        "anti_auto_save": "Anti auto. opslaan"
+    },
+    "content_type": {
+        "CHAT": "Bericht",
+        "FAMILY_CENTER_ACCEPT": "Familie centrum accepteren"
     }
 }
