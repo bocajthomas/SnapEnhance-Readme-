@@ -45,7 +45,7 @@ Please note that this project is currently in development, So bugs and crashes m
   
   - `Friend Feed Menu Buttons`
   - `Auto Close Friend Feed Menu`
-  - `Colors` (Theme Picker, Custom Colors, Etc)
+  - `Custom Theme`
   - `Friend Feed Message Preview` 
   - `Snap Preview`
   - `Bootstrap Override` (Default Home Tab & Persistent App Appearance)
@@ -221,6 +221,7 @@ Thanks to everyone involved
 - [scrodingerspet](https://github.com/schrodingerspet) (Translated: Japanese, Hindi)
 - [MHaaning](https://github.com/MHaaning) (Translated: Danish)
 - [vampskillz](https://github.com/vampskillz) (Translated: Italian)
+- [jollindeerus](https://github.com/jollindeerus) (Translated: Finnish)
 
 You can help translate SE Extended on [Hosted Weblate](https://hosted.weblate.org/projects/se-extended/se-extended/).
 
