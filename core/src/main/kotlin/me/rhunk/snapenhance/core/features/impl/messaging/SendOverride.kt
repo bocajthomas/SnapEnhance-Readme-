@@ -5,6 +5,8 @@ import androidx.compose.material.icons.filled.WarningAmber
 import me.rhunk.snapenhance.common.data.ContentType
 import me.rhunk.snapenhance.common.util.protobuf.ProtoEditor
 import me.rhunk.snapenhance.common.util.protobuf.ProtoReader
+import me.rhunk.snapenhance.common.util.protobuf.ProtoWriter
+import me.rhunk.snapenhance.core.event.events.impl.MediaUploadEvent
 import me.rhunk.snapenhance.core.event.events.impl.NativeUnaryCallEvent
 import me.rhunk.snapenhance.core.event.events.impl.SendMessageWithContentEvent
 import me.rhunk.snapenhance.core.features.Feature
@@ -15,17 +17,17 @@ import me.rhunk.snapenhance.nativelib.NativeLib
 import java.util.Locale
 
 class SendOverride : Feature("Send Override") {
-    private var isLastSnapSavable = false
     private val typeNames by lazy {
         mutableListOf("ORIGINAL", "SNAP", "NOTE").also {
             if (NativeLib.initialized) {
-                it.add("SAVABLE_SNAP")
+                it.add("SAVEABLE_SNAP")
             }
         }.associateWith { it }
     }
 
     override fun init() {
         val stripSnapMetadata = context.config.messaging.stripMediaMetadata.get()
+        var postSavePolicy: Int? = null
 
         context.event.subscribe(SendMessageWithContentEvent::class, {
             stripSnapMetadata.isNotEmpty()
@@ -76,14 +78,38 @@ class SendOverride : Feature("Send Override") {
 
         val configOverrideType = context.config.messaging.galleryMediaSendOverride.getNullable() ?: return
 
+        context.event.subscribe(MediaUploadEvent::class) { event ->
+            ProtoReader(event.localMessageContent.content!!).followPath(11, 5)?.let { snapDocPlayback ->
+                event.onMediaUploaded { result ->
+                    result.messageContent.content = ProtoEditor(result.messageContent.content!!).apply {
+                        edit(11, 5) {
+                            // remove media upload hint when viewing snap
+                            edit(1) {
+                                edit(1) {
+                                    remove(27)
+                                    addBuffer(26, byteArrayOf())
+                                }
+                            }
+
+                            remove(2)
+                            snapDocPlayback.getByteArray(2)?.let {
+                                addBuffer(2, it)
+                            }
+                        }
+                    }.toByteArray()
+                }
+            }
+        }
+
         context.event.subscribe(NativeUnaryCallEvent::class) { event ->
             if (event.uri != "/messagingcoreservice.MessagingCoreService/CreateContentMessage") return@subscribe
-            if (isLastSnapSavable) {
+            postSavePolicy?.let { savePolicy ->
+                context.log.verbose("post save policy $savePolicy")
                 event.buffer = ProtoEditor(event.buffer).apply {
                     edit {
                         edit(4) {
                             remove(7)
-                            addVarInt(7, 3) // savePolicy = VIEW_SESSION
+                            addVarInt(7, savePolicy)
                         }
                         add(6) {
                             from(9) {
@@ -96,7 +122,7 @@ class SendOverride : Feature("Send Override") {
         }
 
         context.event.subscribe(SendMessageWithContentEvent::class) { event ->
-            isLastSnapSavable = false
+            postSavePolicy = null
             if (event.destinations.stories?.isNotEmpty() == true && event.destinations.conversations?.isEmpty() == true) return@subscribe
             val localMessageContent = event.messageContent
             if (localMessageContent.contentType != ContentType.EXTERNAL_MEDIA) return@subscribe
@@ -117,14 +143,31 @@ class SendOverride : Feature("Send Override") {
                 }
 
                 when (overrideType) {
-                    "SNAP", "SAVABLE_SNAP" -> {
-                        val extras = messageProtoReader.followPath(3, 3, 13)?.getBuffer()
+                    "SNAP", "SAVEABLE_SNAP" -> {
+                        postSavePolicy = if (overrideType == "SAVEABLE_SNAP") 3 /* VIEW_SESSION */ else 1 /* PROHIBITED */
 
+                        val extras = messageProtoReader.followPath(3, 3, 13)?.getBuffer()
                         localMessageContent.contentType = ContentType.SNAP
-                        localMessageContent.content = MessageSender.redSnapProto(extras)
-                        if (overrideType == "SAVABLE_SNAP") {
-                            isLastSnapSavable = true
-                        }
+                        localMessageContent.content = ProtoWriter().apply {
+                            from(11) {
+                                from(5) {
+                                    from(1) {
+                                        from(1) {
+                                            addVarInt(2, 0)
+                                            addVarInt(12, 0)
+                                            addVarInt(15, 0)
+                                        }
+                                        addVarInt(6, 0)
+                                    }
+                                    messageProtoReader.getByteArray(3, 3, 5, 2)?.let {
+                                        addBuffer(2, it)
+                                    }
+                                }
+                                extras?.let {
+                                    addBuffer(13, it)
+                                }
+                            }
+                        }.toByteArray()
                     }
                     "NOTE" -> {
                         localMessageContent.contentType = ContentType.NOTE
@@ -156,6 +199,7 @@ class SendOverride : Feature("Send Override") {
                             event.invokeOriginal()
                         }
                     }
+                    .setTitle(context.translation["send_override_dialog.title"])
                     .setNegativeButton(context.translation["button.cancel"], null)
                     .show()
             }
