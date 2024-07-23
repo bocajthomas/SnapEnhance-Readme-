@@ -30,7 +30,10 @@
             "manage_scope": "दायरा प्रबंधित करें",
             "messaging_preview": "पूर्व दर्शन",
             "logger_history": "प्रचालेखन इतिहास",
-            "logged_stories": "प्रचालेखित कि गई स्टोरी"
+            "logged_stories": "प्रचालेखित कि गई स्टोरी",
+            "friend_tracker": "मित्र ट्रैकर",
+            "edit_rule": "नियम संपादित करें",
+            "file_imports": "फ़ाइल आयात"
         },
         "sections": {
             "features": {
@@ -41,12 +44,14 @@
                 "config_import_success_toast": "फाइल सफलतापूर्वक लग चुकी है",
                 "config_import_failure_toast": "फाइल असफल हुई आने मे (Import failed)",
                 "saved_config_snackbar": "फाइल सेव हो चुकी है",
-                "config_export_success_toast": "विन्यास सफलतापूर्वक निर्यात किया गया"
+                "config_export_success_toast": "विन्यास सफलतापूर्वक निर्यात किया गया",
+                "config_export_failure_toast": "कॉन्फ़िगरेशन निर्यात करने में विफल {error}"
             },
             "social": {
                 "streaks_expiration_short": "{hours}h",
                 "friends_tab": "दोस्त",
-                "groups_tab": "समूह"
+                "groups_tab": "समूह",
+                "empty_hint": "(empty)"
             },
             "tasks": {
                 "no_tasks": "कोई कार्य नहीं",
@@ -55,12 +60,17 @@
                 "remove_selected_tasks_confirm": "{संख्या} कार्य हटाएं?",
                 "remove_all_tasks_confirm": "सभी कार्य हटाएं?",
                 "remove_all_tasks_title": "क्या आप सभी कार्यों को हटाने के लिए सहमत हैं?",
-                "remove_selected_tasks_title": "क्या आप चिह्नित किए हुए कार्यों को हटाने के लिए सहमत है?"
+                "remove_selected_tasks_title": "क्या आप चिह्नित किए हुए कार्यों को हटाने के लिए सहमत है?",
+                "failed_to_open_file": "फ़ाइलें खोलने में विफल"
             },
             "home": {
                 "update_content": "वर्जन {वर्जन} उपलब्ध है!",
                 "update_title": "SnapEnhance अपडेट",
-                "update_button": "डाऊनलोड"
+                "update_button": "डाऊनलोड",
+                "debug_build_summary_title": "आप एसई एक्सटेंडेड का डिबग बिल्ड चला रहे हैं",
+                "debug_build_summary_date": "निर्माण की तारीख: {date} ({days} days ago)",
+                "quick_actions_title": "त्वरित कार्रवाई",
+                "debug_build_summary_content": "संस्करण {versionName} ({versionCode})"
             },
             "home_logs": {
                 "no_logs_hint": "logs उपलब्ध नहीं",
@@ -122,6 +132,34 @@
                 "chat_attachment": "अनुलग्नक {सूचकांक}",
                 "empty_message": "खाली चैट संदेश",
                 "download_attachment_failed_toast": "अनुलग्नक डाउनलोड करने में विफल"
+            },
+            "file_imports": {
+                "file_not_found": "फ़ाइल प्राप्त नहीं हुई",
+                "file_import_failed": "फ़ाइल आयात करने में विफल",
+                "file_imported": "फ़ाइल सफलतापूर्वक आयात की गई",
+                "file_delete_failed": "फ़ाइल हटाने में विफल",
+                "import_file_button": "फ़ाइल आयात करें",
+                "no_files_hint": "यहां आप स्नैपचैट में उपयोग के लिए फ़ाइलें आयात कर सकते हैं। फ़ाइल आयात करने के लिए नीचे दिया गया बटन दबाएँ।"
+            },
+            "better_location": {
+                "spoofed_coordinates_title": "अक्षांश {latitude}, देशांतर {longitude}",
+                "save_coordinates_dialog_title": "निर्देशांक सहेजें",
+                "saved_name_dialog_hint": "सहेजा गया नाम",
+                "latitude_dialog_hint": "अक्षांश",
+                "longitude_dialog_hint": "देशान्तर",
+                "save_dialog_button": "बचाना",
+                "choose_location_button": "स्थान का चयन",
+                "teleport_to_friend_button": "मित्र को टेलीपोर्ट करें",
+                "suspend_location_updates": "स्थान अपडेट निलंबित करें",
+                "saved_coordinates_title": "सहेजे गए निर्देशांक",
+                "no_saved_coordinates_hint": "कोई सहेजा गया निर्देशांक नहीं",
+                "delete_dialog_title": "सहेजे गए निर्देशांक हटाएँ",
+                "delete_dialog_message": "क्या आप वाकई इस सहेजे गए समन्वय को हटाना चाहते हैं?",
+                "teleport_to_friend_title": "मित्र को टेलीपोर्ट करें",
+                "no_friends_map": "मानचित्र पर कोई मित्र नहीं",
+                "no_friends_found": "कोई मित्र नहीं मिला",
+                "spoof_location_toggle": "नकली स्थान",
+                "search_bar": "खोज"
             }
         },
         "dialogs": {
@@ -144,6 +182,14 @@
                 "title": "कॉन्फ़िगरेशन रीसेट करें",
                 "content": "क्या आप वाकई कॉन्फिग को रीसेट करना चाहते हैं?",
                 "success_toast": "कॉन्फ़िगरेशन सफलतापूर्वक रीसेट हो गया"
+            },
+            "export_config": {
+                "title": "संवेदनशील डेटा निर्यात करें?",
+                "content": "क्या आप संवेदनशील डेटा के साथ कॉन्फ़िगरेशन निर्यात करना चाहते हैं? (जैसे स्थान निर्देशांक, आदि)"
+            },
+            "file_imports": {
+                "settings_select_file_hint": "एक आयातित फ़ाइल का चयन करें",
+                "no_files_settings_hint": "कोई फाईल नहीं मिली। सुनिश्चित करें कि आपने फ़ाइल आयात अनुभाग में आवश्यक फ़ाइलें आयात कर ली हैं"
             }
         }
     },
@@ -261,6 +307,14 @@
             },
             "hide_friend_feed": {
                 "name": "मित्र फ़ीड से छिपाएँ"
+            },
+            "auto_open_snaps": {
+                "name": "ऑटो ओपन स्नैप्स",
+                "description": "स्नैप प्राप्त होने पर स्वचालित रूप से खुल जाता है",
+                "options": {
+                    "whitelist": "ऑटो ओपन स्नैप्स",
+                    "blacklist": "ऑटो ओपन स्नैप्स से बाहर रखें"
+                }
             }
         },
         "toasts": {
@@ -296,6 +350,18 @@
         "change_language": {
             "name": "भाषा बदलें",
             "description": "SnapEnhance की भाषा बदलें"
+        },
+        "file_imports": {
+            "name": "फ़ाइल आयात",
+            "description": "स्नैपचैट में उपयोग के लिए फ़ाइलें आयात करें"
+        },
+        "friend_tracker": {
+            "name": "मित्र ट्रैकर",
+            "description": "स्नैपचैट पर अपने दोस्तों को ट्रैक करें"
+        },
+        "logger_history": {
+            "name": "लॉगर इतिहास",
+            "description": "लॉग किए गए संदेशों का इतिहास देखें"
         }
     },
     "features": {
@@ -401,6 +467,38 @@
                                 "name": "होम टैब"
                             }
                         }
+                    },
+                    "enable_app_appearance": {
+                        "name": "ऐप उपस्थिति सेटिंग्स सक्षम करें",
+                        "description": "छिपी हुई ऐप उपस्थिति सेटिंग को सक्षम करता है\nनए स्नैपचैट संस्करणों पर इसकी आवश्यकता नहीं हो सकती है"
+                    },
+                    "customize_ui": {
+                        "name": "रंग की",
+                        "properties": {
+                            "theme_picker": {
+                                "description": "प्रीसेट स्नैपचैट थीम्स",
+                                "name": "थीम पिकर"
+                            },
+                            "colors": {
+                                "name": "रीति रिवाजों के रंग",
+                                "description": "व्यक्तिगत रंग अनुकूलित करें\nनोट: उपयोग करने के लिए थीम पिकर पर `कस्टम रंग` चुनें",
+                                "properties": {
+                                    "text_color": {
+                                        "name": "मुख्य पाठ का रंग",
+                                        "description": "स्नैपचैट के मुख्य टेक्स्ट का रंग बदलता है"
+                                    },
+                                    "chat_chat_text_color": {
+                                        "name": "मुख्य मित्र फ़ीड टेक्स्ट रंग",
+                                        "description": "मित्र फ़ीड पर (नया चैट/नया स्नैप और चैट/टाइपिंग/कॉलिंग/मिस्ड कॉल/स्पीकिंग/नया वॉयस नोट) का टेक्स्ट रंग बदलता है"
+                                    },
+                                    "pending_sending_text_color": {
+                                        "name": "द्वितीयक मित्र फ़ीड टेक्स्ट रंग",
+                                        "description": "मित्र फ़ीड पर टेक्स्ट का रंग बदलता है (डिलीवर किया गया / प्राप्त किया गया / भेजा गया / खोला गया / चैट करने के लिए टैप करें / दोबारा चलाने के लिए दबाए रखें / दोबारा चलाया गया / चैट में सेव किया गया / कॉल किया गया)"
+                                    }
+                                }
+                            }
+                        },
+                        "description": "स्नैपचैट रंग अनुकूलित करें"
                     }
                 },
                 "description": "स्नैपचैट का स्वरूप और अनुभव बदलें"

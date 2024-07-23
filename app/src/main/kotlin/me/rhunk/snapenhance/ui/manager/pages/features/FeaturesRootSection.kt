@@ -469,7 +469,7 @@ class FeaturesRootSection : Routes.Route() {
                     }
                     currentSearchJob?.cancel()
                     scope.launch {
-                        delay(300)
+                        delay(150)
                         routes.navController.navigate(SEARCH_FEATURE_ROUTE.replace("{keyword}", keyword), NavOptions.Builder()
                             .setLaunchSingleTop(true)
                             .setPopUpTo(routeInfo.id, false)

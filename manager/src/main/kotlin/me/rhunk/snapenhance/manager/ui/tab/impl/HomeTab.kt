@@ -63,7 +63,7 @@ class HomeTab : Tab("home", true, icon = Icons.Default.Home) {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Column {
-                        Text(text = "SnapEnhance", fontSize = 24.sp, color = MaterialTheme.colorScheme.onSurface, fontWeight = FontWeight.Bold)
+                        Text(text = "SE Extended", fontSize = 24.sp, color = MaterialTheme.colorScheme.onSurface, fontWeight = FontWeight.Bold)
                         snapEnhanceInfo?.let {
                             Text(text = "${it.versionName} (${it.longVersionCode}) - ${if ((it.applicationInfo.flags and FLAG_DEBUGGABLE) != 0) "Debug" else "Release"}", fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)
                             Text(it.packageName, fontSize = 12.sp, color = MaterialTheme.colorScheme.onSurfaceVariant)

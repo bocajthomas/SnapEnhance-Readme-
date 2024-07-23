@@ -2,13 +2,13 @@
     "setup": {
         "dialogs": {
             "select_language": "Sprache auswählen",
-            "save_folder": "SnapEnhance benötigt Zugriff auf den Gerätespeicher, um Medien von Snapchat herunterzuladen und zu sichern.\nBitte wähle einen Ziel-Ordner für die Downloads aus.",
+            "save_folder": "SE Extended benötigt Zugriff auf den Gerätespeicher, um Medien von Snapchat herunterzuladen und zu sichern.\nBitte wähle einen Ziel-Ordner für die Downloads aus.",
             "select_save_folder_button": "Ordner auswählen"
         },
         "mappings": {
             "dialog": "Mappings werden generiert, dies könnte eine Weile dauern ...",
-            "generate_failure_no_snapchat": "SnapEnhance konnte Snapchat nicht finden, bitte versuche Snapchat neu zu installieren.",
-            "generate_failure": "Beim Generieren der Zuordnungen ist ein Fehler aufgetreten. Bitte versuche es erneut."
+            "generate_failure_no_snapchat": "SE Extended konnte Snapchat nicht finden, bitte versuche Snapchat neu zu installieren.",
+            "generate_failure": "Beim Versuch, Zuordnungen zu generieren, ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut."
         },
         "permissions": {
             "dialog": "Um fortfahren zu können, musst du diese Anforderungen erfüllen:",
@@ -23,7 +23,7 @@
             "features": "Funktionen",
             "home": "Startseite",
             "home_settings": "Einstellungen",
-            "home_logs": "Logs",
+            "home_logs": "Protokolle",
             "social": "Sozial",
             "scripts": "Skripte",
             "tasks": "Aufgaben",
@@ -32,7 +32,9 @@
             "messaging_preview": "Vorschau",
             "manage_scope": "Verwalte Scope",
             "friend_tracker": "Freund:in-tracker",
-            "edit_rule": "Regel bearbeiten"
+            "edit_rule": "Regel bearbeiten",
+            "file_imports": "Dateiimporte",
+            "better_location": "Bessere Lage"
         },
         "sections": {
             "features": {
@@ -43,7 +45,8 @@
                 "config_export_success_toast": "Einstellungen erfolgreich exportiert",
                 "config_import_success_toast": "Einstellungen erfolgreich importiert",
                 "config_import_failure_toast": "Einstellungen konnten nicht importiert werden {error}",
-                "saved_config_snackbar": "Einstellungen gespeichert"
+                "saved_config_snackbar": "Einstellungen gespeichert",
+                "config_export_failure_toast": "Konfiguration konnte nicht exportiert werden {error}"
             },
             "social": {
                 "streaks_expiration_short": "{hours}h",
@@ -58,12 +61,18 @@
                 "remove_all_tasks_title": "Sind Sie sicher, dass Sie alle Aufgaben entfernen möchten?",
                 "delete_files_option": "Auch Dateien löschen",
                 "remove_selected_tasks_confirm": "{count} Aufgaben entfernen?",
-                "remove_all_tasks_confirm": "Alle Aufgaben entfernen?"
+                "remove_all_tasks_confirm": "Alle Aufgaben entfernen?",
+                "failed_to_open_file": "Datei konnte nicht geöffnet werden"
             },
             "home": {
                 "update_title": "SnapEnhance Update",
                 "update_content": "Version {version} ist verfügbar!",
-                "update_button": "Herunterladen"
+                "update_button": "Herunterladen",
+                "version_title": "V{versionName} · Gegabelt von Jacob",
+                "quick_actions_title": "Schnelle Aktionen",
+                "debug_build_summary_title": "Sie führen einen debug build von SE Extended",
+                "debug_build_summary_content": "Ausführung {versionName} ({versionCode})",
+                "debug_build_summary_date": "Baudatum: {date} ({days} Vor Tagen)"
             },
             "home_logs": {
                 "saving_logs_toast": "Speichern von Protokollen, das kann eine Weile dauern ...",
@@ -120,11 +129,39 @@
                 "rules_title": "Regeln",
                 "participants_text": "{count} Teilnehmer",
                 "not_found": "Nicht gefunden",
-                "streaks_title": "Streaks",
+                "streaks_title": "Streifen",
                 "streaks_length_text": "Länge: {length}",
                 "streaks_expiration_text": "Läuft ab in {eta}",
                 "streaks_expiration_text_expired": "Abgelaufen",
                 "reminder_button": "Erinnerung erstellen"
+            },
+            "file_imports": {
+                "import_file_button": "Datei importieren",
+                "file_not_found": "Datei nicht gefunden",
+                "file_import_failed": "Datei konnte nicht importiert werden: {error}",
+                "file_imported": "Datei erfolgreich importiert",
+                "file_delete_failed": "Datei konnte nicht gelöscht werden",
+                "no_files_hint": "Hier können Sie Dateien zur Verwendung in Snapchat importieren. Klicken Sie auf die Schaltfläche unten, um eine Datei zu importieren."
+            },
+            "better_location": {
+                "spoofed_coordinates_title": "Lati {latitude}, Long {longitude}",
+                "save_coordinates_dialog_title": "Koordinaten speichern",
+                "saved_coordinates_title": "Gespeicherte Koordinaten",
+                "no_saved_coordinates_hint": "Keine gespeicherten Koordinaten",
+                "delete_dialog_title": "Gespeicherte Koordinate löschen",
+                "delete_dialog_message": "Sind Sie sicher, dass Sie diese gespeicherte Koordinate löschen möchten?",
+                "search_bar": "Suchen",
+                "latitude_dialog_hint": "Breite",
+                "choose_location_button": "Ort wählen",
+                "longitude_dialog_hint": "Längengrad",
+                "saved_name_dialog_hint": "Gespeicherter Name",
+                "save_dialog_button": "Speichern",
+                "teleport_to_friend_button": "Zum Freund teleportieren",
+                "spoof_location_toggle": "Spoof Standort",
+                "suspend_location_updates": "Standortaktualisierungen unterbrechen",
+                "no_friends_map": "Keine Freunde auf der Karte",
+                "teleport_to_friend_title": "Zum Freund teleportieren",
+                "no_friends_found": "Keine Freunde gefunden"
             }
         },
         "dialogs": {
@@ -147,6 +184,14 @@
             "messaging_action": {
                 "title": "Wählen Sie die zu verarbeitenden Inhaltstypen um fortzufahren",
                 "select_all_button": "Alle auswählen"
+            },
+            "file_imports": {
+                "no_files_settings_hint": "Keine Dateien gefunden. Stellen Sie sicher, dass Sie die erforderlichen Dateien im Abschnitt „Dateiimporte“ importiert haben",
+                "settings_select_file_hint": "Wählen Sie eine importierte Datei aus"
+            },
+            "export_config": {
+                "content": "Möchten Sie die Konfiguration mit sensiblen Daten exportieren? (Zum Beispiel Standortkoordinaten usw.)",
+                "title": "Sensible Daten exportieren?"
             }
         }
     },
@@ -220,7 +265,7 @@
         },
         "properties": {
             "downloader": {
-                "name": "Downloader",
+                "name": "Herunterladen",
                 "description": "Snapchat Medien herunterladen",
                 "properties": {
                     "save_folder": {
@@ -294,7 +339,7 @@
                         }
                     },
                     "logging": {
-                        "name": "Logging",
+                        "name": "Protokollierung",
                         "description": "Zeigt Toasts, wenn Medien heruntergeladen werden"
                     },
                     "custom_path_format": {
@@ -377,7 +422,7 @@
                     },
                     "hide_settings_gear": {
                         "name": "Symbol für Einstellungen ausblenden",
-                        "description": "Blendet das SnapEnhance-Einstellungssymbol im Chat-Tab aus"
+                        "description": "Blendet das SE Extended Einstellungssymbol im Chat Tab aus"
                     },
                     "opera_media_quick_info": {
                         "description": "Zeigt nützliche Informationen zu Medien wie das Erstellungsdatum im Kontextmenü der Snap-Ansicht an",
@@ -433,7 +478,7 @@
                                     },
                                     "friend_feed_conversations_line_color": {
                                         "name": "Konversationslinienfarbe",
-                                        "description": "Ändert die Farbe der Linie, welche die Konversationen im Freundesfeed teilt "
+                                        "description": "Ändert die Farbe der Linientrennung, die Konversationen im Freunde Feed teilt"
                                     },
                                     "text_color": {
                                         "name": "primäre Textfarbe",
@@ -466,6 +511,18 @@
                                     "camera_grid_lines": {
                                         "name": "Kameragitterlinienfarbe",
                                         "description": "Ändert Snapchats Kameragitterlinienfarbe in der Kameravorschau\nNotiz: Aktiviert die Kameragitterlinien in den Kameraeinstellungen"
+                                    },
+                                    "action_sheet_description_text_color": {
+                                        "name": "Aktionsmenü Beschreibung Textfarbe",
+                                        "description": "Ändert die Textfarbe der Beschreibung im Aktionsmenü"
+                                    },
+                                    "sig_color_icon_primary": {
+                                        "name": "Farbe des Aktionsmenüsymbols",
+                                        "description": "Ändert die Farbe der Symbole im Chat Aktionsmenü/Freundesfeed Menü"
+                                    },
+                                    "list_background_drawable": {
+                                        "name": "Hintergrund der Konversationsliste ",
+                                        "description": "Ändert die Hintergrundfarbe der Konversationsliste im Freundes-Feed\nDies könnte das Erscheinungsbild des Freunde-Feeds beeinträchtigen"
                                     }
                                 },
                                 "name": "Benutzerdefinierte Farben",
@@ -474,10 +531,18 @@
                             "theme_picker": {
                                 "name": "Theme Wähler",
                                 "description": "Voreingestellte Snapchatthemes"
+                            },
+                            "colors_debug": {
+                                "name": "Farben Debug",
+                                "description": "Protokolliert die obtainStyledAttributes, die beim Laden von Snapchat verwendet werden\nHinweis: Dadurch wird die Größe Ihrer Protokolle erheblich erhöht"
                             }
                         },
                         "name": "Farben",
                         "description": "Snapchats Farben anpassen"
+                    },
+                    "auto_close_friend_feed_menu": {
+                        "name": "Freunde-Feed-Menü automatisch schließen",
+                        "description": "Schließt das Freunde-Feed-Menü automatisch, nachdem eine Einstellungstaste gedrückt wurde"
                     }
                 }
             },
@@ -552,6 +617,10 @@
                             "mark_as_read_and_save_in_chat": {
                                 "name": "Als gelesen markieren und im Chat speichern",
                                 "description": "Fügt der Benachrichtigung eine Schaltfläche „Als gelesen markieren und im Chat speichern“ hinzu"
+                            },
+                            "smart_replies": {
+                                "name": "Intelligente Antworten",
+                                "description": "Fügt vorgeschlagene Antworten zu Benachrichtigungen hinzu (Android 10+). In Kombination mit der Antwortschaltfläche verwenden"
                             }
                         }
                     },
@@ -646,6 +715,14 @@
                     "unlimited_conversation_pinning": {
                         "name": "Unlimitiertes Anpinnen von Konversationen",
                         "description": "Erlaubt dir eine unlimitierte Anzahl von Konversationen lokal anzupinnen"
+                    },
+                    "skip_when_marking_as_seen": {
+                        "description": "Springt automatisch zum nächsten Snap, wenn ein Snap als gesehen markiert wird.\nIn Kombination mit der Schaltfläche „Snap als gesehen markieren“ verwenden",
+                        "name": "Beim Markieren als gesehen überspringen"
+                    },
+                    "mark_snap_as_seen_button": {
+                        "name": "Schaltfläche Snap als gesehen markieren",
+                        "description": "Fügt eine Schaltfläche hinzu, um einen Snap beim Anzeigen als sichtbar zu markieren.\nDies funktioniert auch, wenn der Stealth Modus aktiviert ist"
                     }
                 }
             },
@@ -658,7 +735,7 @@
                         "description": "Aktiviert Snapchat Plus Funktionen\nEinige serverseitige Funktionen funktionieren möglicherweise nicht"
                     },
                     "auto_updater": {
-                        "name": "Auto Updater",
+                        "name": "Automatischer Updater",
                         "description": "Automatisch auf Updates prüfen"
                     },
                     "disable_metrics": {
@@ -772,6 +849,10 @@
                     "disable_custom_tabs": {
                         "name": "Deaktivieren Sie benutzerdefinierte Registerkarten",
                         "description": "Öffnet Links in unterstützen Applikationen, anstatt dem Webbrowser"
+                    },
+                    "disable_telecom_framework": {
+                        "name": "Deaktivieren Sie das Telecom Framework",
+                        "description": "Verhindert, dass Snapchat das Android Telecom-Framework verwendet\nDadurch können Sie während eines Anrufs Musik hören"
                     }
                 }
             },
@@ -876,6 +957,14 @@
                                 },
                                 "name": "Composer Haken",
                                 "description": "Injiziert Code in das Composer UI-Framework (nur arm64)"
+                            },
+                            "custom_emoji_font": {
+                                "name": "Benutzerdefinierte Emoji Schriftart",
+                                "description": "Ermöglicht die Verwendung einer benutzerdefinierten Emoji Schriftart. Funktioniert nur mit .ttf Schriftarten"
+                            },
+                            "remap_executable": {
+                                "name": "Ausführbare Datei neu zuordnen",
+                                "description": "Ordnet ausführbare Bereiche im Speicher neu zu"
                             }
                         }
                     },
@@ -994,6 +1083,142 @@
                     "best_friend_pinning": {
                         "name": "Bester Freund Pinning",
                         "description": "Erlaubt einen Freund als besten Freund Nummer 1 anzupinnen. Notiz: Nur du kannst deinen gepinnten besten Freund sehen"
+                    },
+                    "experimental_colors": {
+                        "properties": {
+                            "sig_color_icon_secondary": {
+                                "description": "Macht etwas mit der Farbe von etwas ;)",
+                                "name": "Sig Farbsymbol sekundär"
+                            },
+                            "item_shape_fill_color": {
+                                "name": "Füllfarbe der Elementform",
+                                "description": "Macht etwas mit der Farbe von etwas ;)"
+                            },
+                            "ring_start_color": {
+                                "name": "Ring Startfarbe",
+                                "description": "Macht etwas mit der Farbe von etwas ;)"
+                            },
+                            "recipient_input_style": {
+                                "description": "Macht etwas mit der Farbe von etwas ;)",
+                                "name": "Eingabestil des Empfängers"
+                            },
+                            "range_fill_color": {
+                                "name": "Bereichsfüllfarbe",
+                                "description": "Macht etwas mit der Farbe von etwas ;)"
+                            },
+                            "psts_indicator_color": {
+                                "name": "Psts Indikatorfarbe",
+                                "description": "Macht etwas mit der Farbe von etwas ;)"
+                            },
+                            "psts_tab_background": {
+                                "description": "Macht etwas mit der Farbe von etwas ;)",
+                                "name": "Psts Tab Hintergrund"
+                            },
+                            "stroke_color": {
+                                "description": "Macht etwas mit der Farbe von etwas ;)",
+                                "name": "Strichfarbe"
+                            },
+                            "story_replay_view_ring_color": {
+                                "name": "Ringfarbe der Story Wiederholungsansicht",
+                                "description": "Macht etwas mit der Farbe von etwas ;)"
+                            },
+                            "sig_color_background_surface_translucent": {
+                                "description": "Macht etwas mit der Farbe von etwas ;)",
+                                "name": "sigColorBackgroundSurfaceTranslucent"
+                            },
+                            "ring_color": {
+                                "name": "Ringfarbe",
+                                "description": "Macht etwas mit der Farbe von etwas ;)"
+                            },
+                            "sig_color_layout_place_holder": {
+                                "name": "Sig Farblayout Platzhalter",
+                                "description": "Macht etwas mit der Farbe von etwas ;)"
+                            },
+                            "sc_button_color": {
+                                "name": "Farbe der Sc Taste",
+                                "description": "Macht etwas mit der Farbe von etwas ;)"
+                            },
+                            "recipient_pill_background_drawable": {
+                                "name": "Hintergrund der Empfängerpille zum Zeichnen",
+                                "description": "Macht etwas mit der Farbe von etwas ;)"
+                            },
+                            "box_background_color": {
+                                "description": "Macht etwas mit der Farbe von etwas ;)",
+                                "name": "Box Hintergrundfarbe"
+                            },
+                            "status_bar_foreground": {
+                                "name": "Statusleiste im Vordergrund",
+                                "description": "Macht etwas mit der Farbe von etwas ;)"
+                            },
+                            "edit_text_color": {
+                                "name": "Bearbeiten Sie die Textfarbe",
+                                "description": "Macht etwas mit der Farbe von etwas ;)"
+                            },
+                            "chip_background_color": {
+                                "name": "Chip Hintergrundfarbe",
+                                "description": "Macht etwas mit der Farbe von etwas ;)"
+                            },
+                            "psts_divider_color": {
+                                "name": "Psts Teilerfarbe",
+                                "description": "Macht etwas mit der Farbe von etwas ;)"
+                            },
+                            "tab_text_color": {
+                                "name": "Tab Textfarbe",
+                                "description": "Macht etwas mit der Farbe von etwas ;)"
+                            },
+                            "status_bar_background": {
+                                "name": "Hintergrund der Statusleiste",
+                                "description": "Macht etwas mit der Farbe von etwas ;)"
+                            },
+                            "sig_color_base_app_yellow": {
+                                "description": "Macht etwas mit der Farbe von etwas ;)",
+                                "name": "Sig Color Base App Gelb"
+                            },
+                            "sig_color_button_primary": {
+                                "name": "Sig Farbtaste Primär",
+                                "description": "Macht etwas mit der Farbe von etwas ;)"
+                            },
+                            "sig_color_story_ring_friends_feed_story_ring": {
+                                "name": "sigColorStoryRingFriendsFeedStoryRing",
+                                "description": "Macht etwas mit der Farbe von etwas ;)"
+                            },
+                            "sig_color_story_ring_discover_tab_thumbnail_story_ring": {
+                                "name": "sigColorStoryRingDiscoverTabThumbnailStoryRing",
+                                "description": "Macht etwas mit der Farbe von etwas ;)"
+                            }
+                        },
+                        "description": "Hinweis: Diese Farbfunktionen sind experimentell und können daher dazu führen, dass Ihr Snapchat seltsam aussieht.\nWählen Sie in der Themenauswahl „Benutzerdefinierte Farben“ aus, die Sie verwenden möchten",
+                        "name": "Experimentelle Farboptionen"
+                    },
+                    "better_transcript": {
+                        "properties": {
+                            "force_transcription": {
+                                "name": "Transkription von Sprachnotizen erzwingen",
+                                "description": "Ermöglicht die Transkription aller Sprachnotizen"
+                            },
+                            "enhanced_transcript": {
+                                "description": "Verbessert das Transkript von Sprachnotizen mithilfe von DeepL.\nBevor Sie diese Funktion nutzen, stellen Sie bitte sicher, dass Sie deren Datenschutzbestimmungen gelesen haben.",
+                                "name": "Erweitertes Transkript"
+                            },
+                            "preferred_transcription_lang": {
+                                "name": "Bevorzugte Transkriptionssprache",
+                                "description": "Die bevorzugte Sprache für das Sprachnotiz-Transkript (z. B. EN, ES, FR)"
+                            },
+                            "enhanced_transcript_in_notifications": {
+                                "name": "Verbessertes Transkript in Benachrichtigungen",
+                                "description": "Transkribiert Sprachnotizen in Benachrichtigungen mithilfe von DeepL. Dazu muss die Chat-Vorschau-Funktion in Better Notifications aktiviert sein"
+                            }
+                        },
+                        "name": "Besseres Transkript",
+                        "description": "Verbessert die Transkription von Sprachnotizen"
+                    },
+                    "cof_experiments": {
+                        "name": "COF Experimente",
+                        "description": "Aktiviert unveröffentlichte/Beta Snapchat Funktionen"
+                    },
+                    "context_menu_fix": {
+                        "name": "Kontextmenü Korrektur",
+                        "description": "Versuchen Sie, das Freunde Feed Menü zu reparieren, da es nicht korrekt angezeigt werden kann, wenn das Gerät offline ist"
                     }
                 }
             },
@@ -1070,7 +1295,7 @@
                 "friend_snaps": "Freund-Snaps",
                 "friend_stories": "Freund-Stories",
                 "public_stories": "Öffentliche Stories",
-                "spotlight": "Spotlight"
+                "spotlight": "Scheinwerfer"
             },
             "logging": {
                 "started": "Gestartet",
@@ -1085,9 +1310,9 @@
                 "camera_roll_save": "In Aufnahmen gespeichert",
                 "chat": "Chat",
                 "chat_reply": "Chat Antwort",
-                "snap": "Snap",
+                "snap": "Schnapp",
                 "typing": "Schreiben",
-                "stories": "Stories",
+                "stories": "Geschichten",
                 "chat_reaction": "DM-Reaktion",
                 "group_chat_reaction": "Gruppenreaktion",
                 "initiate_audio": "Eingehender Audioanruf",
@@ -1099,7 +1324,7 @@
             "gallery_media_send_override": {
                 "ORIGINAL": "Original",
                 "NOTE": "Audio-Notiz",
-                "SNAP": "Snap",
+                "SNAP": "Schnapp",
                 "SAVABLE_SNAP": "Speicherbarer Snap",
                 "always_ask": "Immer Fragen"
             },
@@ -1109,14 +1334,15 @@
                 "hide_live_location_share_button": "Schaltfläche Live-Standortfreigabe entfernen",
                 "hide_stickers_button": "Entferne Stickers Taste",
                 "hide_voice_record_button": "Knopf für Sprachaufzeichnung entfernen",
-                "hide_unread_chat_hint": "Hinweis auf ungelesene Chats entfernen"
+                "hide_unread_chat_hint": "Hinweis auf ungelesene Chats entfernen",
+                "hide_post_to_story_buttons": "Entfernen Sie die Schaltflächen In Story posten bevor Sie einen Snap senden"
             },
             "home_tab": {
                 "map": "Karte",
                 "chat": "Chat",
                 "camera": "Kamera",
                 "discover": "Entdecken",
-                "spotlight": "Spotlight"
+                "spotlight": "Scheinwerfer"
             },
             "add_friend_source_spoof": {
                 "added_by_username": "Nach Benutzername",
@@ -1180,7 +1406,8 @@
             "disable_story_sections": {
                 "friends": "Freunde",
                 "following": "Folge Ich",
-                "discover": "Entdecken"
+                "discover": "Entdecken",
+                "suggested_stories": "Vorgeschlagene Geschichten"
             },
             "disable_cameras": {
                 "front": "Selfie Kamera",
@@ -1229,7 +1456,32 @@
                 "ocean_fog": "Meeresnebel",
                 "alien_landscape": "Fremde Landschaften",
                 "material_you_light": "Material You Lite (Android 12+)",
-                "material_you_dark": "Material You dunkel (Android 12+)"
+                "material_you_dark": "Material You dunkel (Android 12+)",
+                "watercolor_wash": "Aquarellwäsche",
+                "midnight_slate": "Mitternachtsschiefer",
+                "tropical_paradise": "Tropisches Paradies",
+                "apple_orchard": "Apfelplantage",
+                "zesty_lemon": "Pikante Zitrone",
+                "creamy_vanilla": "Cremige Vanille",
+                "spicy_chili": "Scharfes Chili",
+                "galaxy_glitter": "Galaxie-Glitzer",
+                "industrial_chic": "Industrieller Chic",
+                "cherry_bomb": "Kirschbombe",
+                "woodland_mystery": "Waldgeheimnis",
+                "spicy_mustard": "Würziger Senf",
+                "peppermint_candy": "Pfefferminzbonbons",
+                "spring_meadow": "Frühlingswiese",
+                "midnight_library": "Mitternachtsbibliothek",
+                "lemon_sorbet": "Zitronensorbet",
+                "cosmic_night": "Kosmische Nacht",
+                "gingerbread_house": "Lebkuchenhaus",
+                "art_deco_glam": "Art-Deco-Glamour",
+                "ocean_depths": "Meerestiefen",
+                "bubblegum_pink": "Kaugummirosa",
+                "lavender_field": "Lavendelfeld",
+                "lemon_drop": "Zitronen Bonbon",
+                "modern_farmhouse": "Modernes Bauernhaus",
+                "firefly_night": "Glühwürmchen-Nacht"
             }
         }
     },
@@ -1246,7 +1498,8 @@
         "download_button": "Download",
         "delete_logged_message_button": "Gespeicherte Nachrichten löschen",
         "convert_message": "Nachricht konvertieren",
-        "edit_message": "Nachricht bearbeiten"
+        "edit_message": "Nachricht bearbeiten",
+        "show_chat_edit_history": "Chat Bearbeitungsverlauf anzeigen"
     },
     "opera_context_menu": {
         "download": "Medien herunterladen",
@@ -1268,7 +1521,8 @@
         "streak_expiration": "läuft in {day} Tagen, {hour} Stunden, {minute} Minuten ab",
         "total_messages": "Insgesamt gesendete/empfangene Nachrichten: {count}",
         "title": "Vorschau",
-        "unknown_user": "Unbekannter Benutzer"
+        "unknown_user": "Unbekannter Benutzer",
+        "no_messages": "Keine Nachrichten gefunden!"
     },
     "profile_info": {
         "title": "Profil Info",
@@ -1323,8 +1577,8 @@
     },
     "download_processor": {
         "attachment_type": {
-            "snap": "Snap",
-            "sticker": "Sticker",
+            "snap": "Schnapp",
+            "sticker": "Aufkleber",
             "external_media": "Externe Medien",
             "note": "Notiz",
             "original_story": "Originale Story",
@@ -1360,11 +1614,11 @@
         "STATUS_CONVERSATION_CAPTURE_RECORD": "Bildschirmaufnahme",
         "STATUS_CALL_MISSED_VIDEO": "Verpasster Videoanruf",
         "CREATIVE_TOOL_ITEM": "Kreativ-Werkzeug Element",
-        "STICKER": "Sticker",
+        "STICKER": "Aufkleber",
         "TINY_SNAP": "Winziger Snap",
         "STATUS_SAVE_TO_CAMERA_ROLL": "In Camera Roll gespeichert",
         "EXTERNAL_MEDIA": "Externe Medien",
-        "SNAP": "Snap",
+        "SNAP": "Schnapp",
         "LOCATION": "Standort",
         "CHAT": "Chat",
         "STATUS_PLUS_GIFT": "Status Plus Geschenk",
@@ -1423,9 +1677,9 @@
         "profile_picture": "Profilbild",
         "chat_media": "Chat-Medium",
         "public_story": "Öffentliche Story",
-        "spotlight": "Spotlight",
+        "spotlight": "Scheinwerfer",
         "pending": "Ausstehend",
-        "story": "Story",
+        "story": "Geschichte",
         "story_logger": "Story Logger",
         "merged": "Zusammengeführt",
         "message_logger": "Nachrichtenprotokollierung",
@@ -1441,7 +1695,7 @@
         "date_range_picker_end_headline": "Bis",
         "date_range_picker_scroll_to_next_month": "Nächster Monat",
         "date_input_invalid_year_range": "Invalides Jahr",
-        "date_range_input_invalid_range_input": "Ungültiger Zeitraum",
+        "date_range_input_invalid_range_input": "Ungültiger Datumsbereich",
         "date_picker_switch_to_input_mode": "Eingabe",
         "date_range_picker_day_in_range": "Gewählt",
         "date_range_picker_title": "Wähle einen Zeitraum"
@@ -1474,6 +1728,18 @@
         "change_language": {
             "name": "Sprache ändern",
             "description": "Ändere die Sprache von SnapEnhance"
+        },
+        "file_imports": {
+            "description": "Importieren Sie Dateien zur Verwendung in Snapchat",
+            "name": "Dateiimporte"
+        },
+        "friend_tracker": {
+            "name": "Freunde Tracker",
+            "description": "Verfolgen Sie Ihre Freunde auf Snapchat"
+        },
+        "logger_history": {
+            "name": "Logger Verlauf",
+            "description": "Sehen Sie sich den Verlauf der protokollierten Nachrichten an"
         }
     },
     "mark_as_seen": {

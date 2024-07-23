@@ -149,7 +149,7 @@ class RemoteScriptManager(
 
             val scriptPath = filepath ?: (moduleInfo.name + ".js")
             val scriptFile = getScriptsFolder()?.findFile(scriptPath) ?: getScriptsFolder()?.createFile("text/javascript", scriptPath)
-                ?: throw Exception("Failed to create script file")
+            ?: throw Exception("Failed to create script file")
 
             context.androidContext.contentResolver.openOutputStream(scriptFile.uri, "wt")?.use { output ->
                 bufferedInputStream.copyTo(output)
@@ -173,19 +173,19 @@ class RemoteScriptManager(
                 val reader = inputStream.buffered().bufferedReader()
                 val moduleInfo = reader.readModuleInfo()
                 moduleInfo.takeIf {
-                   it.version != inputModuleInfo.version
+                    it.version != inputModuleInfo.version
                 }
             }
-       }.onFailure {
-           context.log.error("Failed to check for updates", it)
-       }.getOrNull()
+        }.onFailure {
+            context.log.error("Failed to check for updates", it)
+        }.getOrNull()
     }
 
     private fun getEnabledScripts(sides: List<String>): List<String> {
         return runCatching {
             getScriptFileNames().filter { name ->
                 cachedModuleInfo[name]?.executionSides?.any { it in sides } ?: true &&
-                context.database.isScriptEnabled(cachedModuleInfo[name]?.name ?: return@filter false)
+                        context.database.isScriptEnabled(cachedModuleInfo[name]?.name ?: return@filter false)
             }
         }.onFailure {
             context.log.error("Failed to get enabled scripts", it)
