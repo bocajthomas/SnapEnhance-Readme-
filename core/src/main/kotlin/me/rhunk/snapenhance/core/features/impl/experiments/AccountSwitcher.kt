@@ -7,11 +7,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.net.Uri
 import android.os.ParcelFileDescriptor
 import android.widget.FrameLayout
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
@@ -303,24 +299,38 @@ class AccountSwitcher: Feature("Account Switcher") {
         context.coroutineScope.launch(Dispatchers.IO) {
             val zipOutputStream = ZipOutputStream(ParcelFileDescriptor.AutoCloseOutputStream(pfd[1]))
 
-            for (file in arrayOf(
+            fun addFile(path: String, file: File) {
+                file.takeIf { it.exists() }?.inputStream()?.use {
+                    context.log.verbose("Adding $file to zip")
+                    zipOutputStream.putNextEntry(ZipEntry(path))
+                    it.copyTo(zipOutputStream)
+                    zipOutputStream.closeEntry()
+                }
+            }
+
+            for (path in arrayOf(
                 "databases/main.db",
                 "databases/main.db-shm",
                 "databases/main.db-wal",
                 "databases/core.db",
                 "databases/core.db-wal",
                 "databases/core.db-shm",
+                "databases/fidelius_database.db",
+                "databases/fidelius_database.db-wal",
+                "databases/fidelius_database.db-shm",
                 "shared_prefs/user_session_shared_pref.xml",
                 "shared_prefs/user_device_identity_keys.xml",
                 "shared_prefs/com.google.android.gms.appid.xml",
             )) {
-                context.androidContext.dataDir.resolve(file).takeIf { it.exists() }?.inputStream()?.use {
-                    context.log.verbose("Adding $file to zip")
-                    zipOutputStream.putNextEntry(ZipEntry(file))
-                    it.copyTo(zipOutputStream)
-                    zipOutputStream.closeEntry()
-                }
+                addFile(path, context.androidContext.dataDir.resolve(path))
             }
+
+            context.androidContext.dataDir.resolve("databases").listFiles()?.filter {
+                it.name.contains("_fidelius.db")
+            }?.forEach {
+                addFile("databases/${it.name}", it)
+            }
+
             zipOutputStream.flush()
             zipOutputStream.close()
         }
