@@ -19,6 +19,7 @@ import me.rhunk.snapenhance.core.wrapper.impl.Message
 import me.rhunk.snapenhance.core.wrapper.impl.MessageContent
 import me.rhunk.snapenhance.core.wrapper.impl.MessageDestinations
 import me.rhunk.snapenhance.core.wrapper.impl.SnapUUID
+import me.rhunk.snapenhance.mapper.impl.CallbackMapper
 import me.rhunk.snapenhance.mapper.impl.ViewBinderMapper
 import java.nio.ByteBuffer
 
@@ -270,6 +271,34 @@ class EventDispatcher(
                 ) {
                     if (canceled) param.setResult(null)
                     postHookEvent()
+                }
+            }
+        }
+
+        context.mappings.useMapper(CallbackMapper::class) {
+            callbacks.getClass("UploadDelegate")?.hook("uploadMedia", HookStage.BEFORE) { param ->
+                val uploadCallback = param.arg<Any>(2)
+
+                val event = context.event.post(MediaUploadEvent(
+                    localMessageContent = MessageContent(param.arg(0)),
+                    destinations = MessageDestinations(param.arg(1)),
+                    callback = uploadCallback
+                ).apply {
+                    adapter = param
+                })
+
+                if (event?.canceled == true) {
+                    param.setResult(null)
+                    return@hook
+                }
+
+                event?.mediaUploadCallbacks?.takeIf { it.isNotEmpty() }?.let { callbacks ->
+                    Hooker.ephemeralHookObjectMethod(uploadCallback::class.java, uploadCallback, "onUploadFinished", HookStage.BEFORE) { methodParam ->
+                        val messageContent = MessageContent(methodParam.arg(1))
+                        callbacks.forEach {
+                            it(MediaUploadEvent.MediaUploadResult(messageContent))
+                        }
+                    }
                 }
             }
         }

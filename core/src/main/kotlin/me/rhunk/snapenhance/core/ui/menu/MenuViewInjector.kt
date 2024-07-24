@@ -50,6 +50,7 @@ class MenuViewInjector : Feature("MenuViewInjector") {
             val actionMenu = context.resources.getIdentifier("action_menu", "id")
             val componentsHolder = context.resources.getIdentifier("components_holder", "id")
             val feedNewChat = context.resources.getIdentifier("feed_new_chat", "id")
+            val hovaNavMapIcon = context.resources.getIdentifier("hova_header_search_icon", "id")
             val contextMenuButtonIconView = context.resources.getIdentifier("context_menu_button_icon_view", "id")
             val chatActionMenu = context.resources.getIdentifier("chat_action_menu", "id")
 
@@ -87,7 +88,7 @@ class MenuViewInjector : Feature("MenuViewInjector") {
                     menuMap[OperaViewerIcons::class]!!.inject(viewGroup, childView, originalAddView)
                 }
 
-                if (event.parent.id == componentsHolder && childView.id == feedNewChat) {
+                if (event.parent.id == componentsHolder && (childView.id == feedNewChat || childView.id == hovaNavMapIcon)) {
                     menuMap[SettingsGearInjector::class]!!.inject(viewGroup, childView, originalAddView)
                     return@subscribe
                 }

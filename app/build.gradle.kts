@@ -181,3 +181,8 @@ afterEvaluate {
         }
     }
 }
+properties["debug_flavor"]?.let {
+    configurations.all {
+        exclude(group = "androidx.profileinstaller", "profileinstaller")
+    }
+}

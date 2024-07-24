@@ -18,21 +18,22 @@ import me.rhunk.snapenhance.core.util.ktx.getStyledAttributes
 class SettingsGearInjector : AbstractMenu() {
     override fun inject(parent: ViewGroup, view: View, viewConsumer: (View) -> Unit) {
         if (context.config.userInterface.hideSettingsGear.get()) return
-        val firstView = (view as ViewGroup).getChildAt(0)
+        val hovaNavMapIcon = parent.findViewById<View>(context.resources.getId("hova_nav_map_icon"))
+        val firstView = hovaNavMapIcon ?: (view as ViewGroup).getChildAt(0)
 
         val ngsHovaHeaderSearchIconBackgroundMarginLeft = context.resources.getDimens("ngs_hova_header_search_icon_background_margin_left")
 
-        view.clipChildren = false
+        (view as ViewGroup).clipChildren = false
         view.addView(FrameLayout(parent.context).apply {
             visibility = View.GONE
             post {
                 layoutParams = FrameLayout.LayoutParams(firstView.layoutParams.width, firstView.layoutParams.height).apply {
                     y = 0f
-                    x = if (parent.findViewById<View>(context.resources.getId("hova_nav_map_icon")) != null) {
-                        parent.resources.displayMetrics.widthPixels - firstView.layoutParams.width - ngsHovaHeaderSearchIconBackgroundMarginLeft * 2 - (firstView.layoutParams.width).toFloat() * 2f
-                    } else {
-                        -(ngsHovaHeaderSearchIconBackgroundMarginLeft + firstView.layoutParams.width).toFloat()
-                    }
+                    // TODO: find a better way to calculate the x position with the correct padding when Simple Snapchat is active
+                    x = -(ngsHovaHeaderSearchIconBackgroundMarginLeft + firstView.layoutParams.width).toFloat() +
+                        (hovaNavMapIcon.takeIf { it != null }?.let {
+                            7 * context.resources.displayMetrics.density
+                        } ?: 0f)
                 }
                 visibility = View.VISIBLE
             }
@@ -66,6 +67,7 @@ class SettingsGearInjector : AbstractMenu() {
                     gravity = android.view.Gravity.CENTER
                 }
                 setImageDrawable(context.resources.getDrawable("svg_settings_32x32", context.theme))
+                // TODO: find a better way to tint the icon when Simple Snapchat is active
                 context.resources.getStyledAttributes("headerButtonOpaqueIconTint", context.theme).use {
                     imageTintList = it.getColorStateList(0)
                 }
