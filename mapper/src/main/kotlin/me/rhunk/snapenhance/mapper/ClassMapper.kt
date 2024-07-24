@@ -37,6 +37,7 @@ class ClassMapper(
             MemoriesPresenterMapper(),
             StreaksExpirationMapper(),
             COFObservableMapper(),
+            PlaybackViewContextMapper(),
         )
     }
 

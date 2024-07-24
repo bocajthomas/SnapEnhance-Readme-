@@ -1039,6 +1039,10 @@
                             }
                         }
                     },
+                    "voice_note_auto_play": {
+                        "name": "Voice Note Auto Play",
+                        "description": "Automatically plays the next voice note after the current one finishes"
+                    },
                     "cof_experiments": {
                         "name": "COF Experiments",
                         "description": "Enables unreleased/beta Snapchat features"

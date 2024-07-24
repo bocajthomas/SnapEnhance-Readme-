@@ -63,6 +63,7 @@ class Experimental : ConfigContainer() {
     val callRecorder = boolean("call_recorder") { requireRestart(); addNotices(FeatureNotice.UNSTABLE); }
     val accountSwitcher = container("account_switcher", AccountSwitcherConfig()) { requireRestart(); addNotices(FeatureNotice.UNSTABLE) }
     val betterTranscript = container("better_transcript", BetterTranscriptConfig()) { requireRestart() }
+    val voiceNoteAutoPlay = boolean("voice_note_auto_play") { requireRestart() }
     val editMessage = boolean("edit_message") { requireRestart() }
     val contextMenuFix = boolean("context_menu_fix") { requireRestart() }
     val cofExperiments = multiple("cof_experiments", *cofExperimentList.toTypedArray()) { requireRestart(); addFlags(ConfigFlag.NO_TRANSLATE); addNotices(FeatureNotice.UNSTABLE) }
