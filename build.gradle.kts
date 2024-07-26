@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.androidLibrary) apply false
     alias(libs.plugins.kotlinAndroid) apply false
     alias(libs.plugins.compose.compiler) apply false
+    alias(libs.plugins.rust.android) apply false
 }
 
 var versionName = "1.0.0"
@@ -12,7 +13,7 @@ var versionCode = 100
 rootProject.ext.set("appVersionName", versionName)
 rootProject.ext.set("appVersionCode", versionCode)
 rootProject.ext.set("applicationId", "me.rhunk.snapenhance")
-rootProject.ext.set("buildHash", properties["debug_build_hash"] ?: java.security.SecureRandom().nextLong(1000000000, 99999999999).toString(16))
+rootProject.ext.set("buildHash", properties["debug_build_hash"] ?: java.security.SecureRandom().nextLong(Long.MAX_VALUE / 1000L, Long.MAX_VALUE).toString(16))
 
 tasks.register("getVersion") {
     doLast {
