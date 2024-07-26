@@ -1097,6 +1097,10 @@
                         },
                         "description": "Improves the voice note transcript",
                         "name": "Better Transcript"
+                    },
+                    "voice_note_auto_play": {
+                        "description": "Automatically plays the next voice note after the current one finishes",
+                        "name": "Voice Note Auto Play"
                     }
                 }
             },
@@ -1231,10 +1235,11 @@
                 "speaking": "Talking"
             },
             "gallery_media_send_override": {
-                "ORIGINAL": "Original",
+                "ORIGINAL": "Original Media",
                 "NOTE": "Audio Note",
                 "SNAP": "Snap",
-                "always_ask": "Always Ask"
+                "always_ask": "Always Ask",
+                "SAVEABLE_SNAP": "Saveable Snap"
             },
             "strip_media_metadata": {
                 "hide_caption_text": "Hide Caption Text",
@@ -1332,7 +1337,42 @@
             "custom_theme": {
                 "amoled_dark_mode": "AMOLED Dark Mode",
                 "custom": "Custom Themes (Use the Quick Actions to manage themes)",
-                "material_you_light": "Material You Light (Android 12+)"
+                "material_you_light": "Material You Light (Android 12+)",
+                "watercolor_wash": "Watercolor Wash",
+                "industrial_chic": "Industrial Chic",
+                "cherry_bomb": "Cherry Bomb",
+                "creamy_vanilla": "Creamy Vanilla",
+                "woodland_mystery": "Woodland Mystery",
+                "galaxy_glitter": "Galaxy Glitter",
+                "bubblegum_pink": "Bubblegum Pink",
+                "firefly_night": "Firefly Night",
+                "apple_orchard": "Apple Orchard",
+                "light_blue": "Light Blue",
+                "ocean_fog": "Ocean Fog",
+                "zesty_lemon": "Zesty Lemon",
+                "dark_blue": "Dark Blue",
+                "tropical_paradise": "Tropical Paradise",
+                "gingerbread_house": "Gingerbread House",
+                "art_deco_glam": "Art Deco Glam",
+                "midnight_slate": "Midnight Slate",
+                "earthy_autumn": "Earthy Autumn",
+                "mint_chocolate": "Mint Chocolate",
+                "ginger_snap": "Ginger Snap",
+                "lemon_meringue": "Lemon Meringue",
+                "lava_flow": "Lava Flow",
+                "alien_landscape": "Alien Landscape",
+                "spicy_chili": "Spicy Chili",
+                "spring_meadow": "Spring Meadow",
+                "midnight_library": "Midnight Library",
+                "lemon_sorbet": "Lemon Sorbet",
+                "cosmic_night": "Cosmic Night",
+                "spicy_mustard": "Spicy Mustard",
+                "peppermint_candy": "Peppermint Candy",
+                "ocean_depths": "Ocean Depths",
+                "lavender_field": "Lavender Field",
+                "lemon_drop": "Lemon Drop",
+                "modern_farmhouse": "Modern Farmhouse",
+                "material_you_dark": "Material You Dark (Android 12+)"
             }
         }
     },
@@ -1603,5 +1643,50 @@
         "bitmoji_selfie_changed": "{username} has changed their Bitmoji selfie",
         "bitmoji_avatar_changed": "{username} has changed their Bitmoji avatar",
         "bitmoji_background_changed": "{username} has changed their Bitmoji background"
+    },
+    "theming_attributes": {
+        "sigColorIconPrimary": "Action Menu Icon Colour",
+        "actionSheetBackgroundDrawable": "Action Menu Background Colour",
+        "sigColorChatConversationsLine": "Conversations Line Colour",
+        "listBackgroundDrawable": "Conversation list Background",
+        "sigColorLayoutPlaceholder": "Layout Placeholder Colour",
+        "scButtonColor": "Snapchat Button Colour",
+        "tabTextColor": "Tab Text Colour",
+        "sigColorStoryRingFriendsFeedStoryRing": "Story Ring Friends Feed Story Ring Colour",
+        "sigColorStoryRingDiscoverTabThumbnailStoryRing": "Story Ring Discover Tab Thumbnail Story Ring Colour",
+        "actionSheetDescriptionTextColor": "Action Menu Description Text Colour",
+        "sigColorBackgroundMain": "Background Colour",
+        "itemShapeFillColor": "Item Shape Fill Colour",
+        "sigColorIconSecondary": "Secondary Icon Colour",
+        "listDivider": "List Divider Colour",
+        "sigColorChatSnapWithSound": "Snaps With Sound Text Colour",
+        "sigColorChatSnapWithoutSound": "Snaps Without Sound Text Colour",
+        "sigExceptionColorCameraGridLines": "Camera Gridlines Colour",
+        "sigColorChatPendingSending": "Secondary Friend Feed Text Colour",
+        "sigColorBackgroundSurface": "Background Surface Colour",
+        "pstsTabBackground": "PSTS Tab Background",
+        "pstsDividerColor": "PSTS Divider Colour",
+        "sigColorChatChat": "Main Friend Feed Text Colour",
+        "sigColorBaseAppYellow": "Base App Yellow Colour",
+        "sigColorTextPrimary": "Main Text Colour",
+        "actionSheetRoundedBackgroundDrawable": "Action Menu Round Background Colour",
+        "ringColor": "Ring Colour",
+        "ringStartColor": "Ring Start Colour",
+        "recipientPillBackgroundDrawable": "Recipient Pill Background",
+        "boxBackgroundColor": "Box Background Colour",
+        "editTextColor": "Edit Text Colour",
+        "chipBackgroundColor": "Chip Background Colour",
+        "recipientInputStyle": "Recipient Input Style",
+        "rangeFillColor": "Range Fill Colour",
+        "pstsIndicatorColor": "PSTS Indicator Colour",
+        "statusBarForeground": "Status Bar Foreground Colour",
+        "statusBarBackground": "Status Bar Background Colour",
+        "strokeColor": "Stroke Colour",
+        "storyReplayViewRingColor": "Story Replay View Ring Colour",
+        "sigColorButtonPrimary": "Primary Button Colour",
+        "sigColorBackgroundSurfaceTranslucent": "Translucent Background Surface Colour"
+    },
+    "send_override_dialog": {
+        "title": "Send media as ..."
     }
 }
