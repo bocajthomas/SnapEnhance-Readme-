@@ -5,9 +5,9 @@ import android.util.Log
 import kotlin.math.absoluteValue
 import kotlin.random.Random
 
-@Suppress("KotlinJniMissingFunction")
 class NativeLib {
     var nativeUnaryCallCallback: (NativeRequestData) -> Unit = {}
+    var signatureCache: String? = null
 
     companion object {
         var initialized = false
@@ -21,9 +21,7 @@ class NativeLib {
             initialized = true
             callback(this)
             return@runCatching {
-                if (!init()) {
-                    throw IllegalStateException("NativeLib init failed. Check logcat for more info")
-                }
+                signatureCache = init(signatureCache) ?: throw IllegalStateException("NativeLib init failed. Check logcat for more info")
             }
         }.onFailure {
             initialized = false
@@ -67,7 +65,7 @@ class NativeLib {
         System.load(generatedPath)
     }
 
-    private external fun init(): Boolean
+    private external fun init(signatureCache: String?): String?
     private external fun loadConfig(config: NativeConfig)
     private external fun lockDatabase(name: String, callback: Runnable)
     external fun setComposerLoader(code: String)

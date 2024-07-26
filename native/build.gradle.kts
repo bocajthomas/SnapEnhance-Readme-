@@ -1,4 +1,5 @@
 plugins {
+    alias(libs.plugins.rust.android)
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.kotlinAndroid)
 }
@@ -8,43 +9,16 @@ val nativeName = rootProject.ext.get("buildHash")
 android {
     namespace = rootProject.ext["applicationId"].toString() + ".nativelib"
     compileSdk = 34
-    buildToolsVersion = "34.0.0"
-    ndkVersion = "26.3.11579264"
 
     buildFeatures {
         buildConfig = true
     }
 
     defaultConfig {
-        buildConfigField("String", "NATIVE_NAME", "\"$nativeName\"")
-        packaging {
-            jniLibs {
-                excludes += "**/libdobby.so"
-            }
-        }
-        externalNativeBuild {
-            cmake {
-                arguments += listOf(
-                    "-DOBFUSCATED_NAME=$nativeName",
-                    "-DBUILD_PACKAGE=${rootProject.ext["applicationId"]}",
-                    "-DBUILD_NAMESPACE=${namespace!!.replace(".", "/")}"
-                )
-            }
-            ndk {
-                //noinspection ChromeOsAbiSupport
-                abiFilters += properties["debug_abi_filters"]?.toString()?.split(",")
-                    ?: listOf("arm64-v8a", "armeabi-v7a")
-            }
-        }
+        buildConfigField("String", "NATIVE_NAME", "\"$nativeName\".toString()")
         minSdk = 28
     }
 
-    externalNativeBuild {
-        cmake {
-            path("jni/CMakeLists.txt")
-            version = "3.22.1"
-        }
-    }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
@@ -52,5 +26,37 @@ android {
 
     kotlinOptions {
         jvmTarget = "17"
+    }
+}
+
+cargo {
+    module = "rust"
+    libname = nativeName.toString()
+    targetIncludes = arrayOf("libsnapenhance.so")
+    targets = listOf("arm64", "arm")
+}
+
+fun getNativeFiles() = File(projectDir, "build/rustJniLibs/android").listFiles()?.flatMap { abiFolder ->
+    abiFolder.takeIf { it.isDirectory }?.listFiles()?.toList() ?: emptyList()
+}
+
+tasks.register("cleanNatives") {
+    doLast {
+        println("Cleaning native files")
+        getNativeFiles()?.forEach { file ->
+            file.deleteRecursively()
+        }
+    }
+}
+
+tasks.named("preBuild").configure {
+    dependsOn("cleanNatives", "cargoBuild")
+    doLast {
+        getNativeFiles()?.forEach { file ->
+            if (file.name.endsWith(".so")) {
+                println("Renaming ${file.absolutePath}")
+                file.renameTo(File(file.parent, "lib$nativeName.so"))
+            }
+        }
     }
 }

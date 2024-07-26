@@ -6,6 +6,7 @@ import kotlinx.coroutines.runBlocking
 import me.rhunk.snapenhance.bridge.storage.FileHandleManager
 import me.rhunk.snapenhance.common.BuildConfig
 import me.rhunk.snapenhance.common.Constants
+import me.rhunk.snapenhance.common.bridge.FileHandleScope
 import me.rhunk.snapenhance.common.bridge.InternalFileHandleType
 import me.rhunk.snapenhance.common.bridge.InternalFileWrapper
 import me.rhunk.snapenhance.common.logger.AbstractLogger
@@ -15,7 +16,7 @@ import me.rhunk.snapenhance.mapper.ClassMapper
 import kotlin.reflect.KClass
 
 class MappingsWrapper(
-    fileHandleManager: LazyBridgeValue<FileHandleManager>
+    private val fileHandleManager: LazyBridgeValue<FileHandleManager>
 ): InternalFileWrapper(fileHandleManager, InternalFileHandleType.MAPPINGS, defaultValue = "{}") {
     private lateinit var context: Context
     private var mappingUniqueHash: Long = 0
@@ -68,6 +69,10 @@ class MappingsWrapper(
 
     fun refresh() {
         mappingUniqueHash = getUniqueBuildId()
+
+        // reset native signature cache
+        fileHandleManager.value.getFileHandle(FileHandleScope.INTERNAL.key, InternalFileHandleType.NATIVE_SIG_CACHE.key).delete()
+
         val classMapper = ClassMapper(*mappers.values.toTypedArray())
 
         runCatching {
