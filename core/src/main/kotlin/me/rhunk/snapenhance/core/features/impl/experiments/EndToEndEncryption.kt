@@ -7,11 +7,8 @@ import android.graphics.drawable.ShapeDrawable
 import android.graphics.drawable.shapes.Shape
 import android.view.View
 import android.view.ViewGroup
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
+import android.widget.LinearLayout
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
@@ -29,18 +26,15 @@ import me.rhunk.snapenhance.common.util.lazyBridge
 import me.rhunk.snapenhance.common.util.protobuf.ProtoEditor
 import me.rhunk.snapenhance.common.util.protobuf.ProtoReader
 import me.rhunk.snapenhance.common.util.protobuf.ProtoWriter
-import me.rhunk.snapenhance.core.event.events.impl.BindViewEvent
-import me.rhunk.snapenhance.core.event.events.impl.BuildMessageEvent
-import me.rhunk.snapenhance.core.event.events.impl.NativeUnaryCallEvent
-import me.rhunk.snapenhance.core.event.events.impl.SendMessageWithContentEvent
+import me.rhunk.snapenhance.core.event.events.impl.*
 import me.rhunk.snapenhance.core.features.MessagingRuleFeature
 import me.rhunk.snapenhance.core.features.impl.ui.ConversationToolbox
 import me.rhunk.snapenhance.core.ui.ViewAppearanceHelper
 import me.rhunk.snapenhance.core.ui.addForegroundDrawable
+import me.rhunk.snapenhance.core.ui.findParent
 import me.rhunk.snapenhance.core.ui.removeForegroundDrawable
 import me.rhunk.snapenhance.core.util.EvictingMap
 import me.rhunk.snapenhance.core.util.hook.HookStage
-import me.rhunk.snapenhance.core.util.hook.Hooker
 import me.rhunk.snapenhance.core.util.hook.hook
 import me.rhunk.snapenhance.core.util.ktx.getObjectField
 import me.rhunk.snapenhance.core.util.ktx.getObjectFieldOrNull
@@ -250,7 +244,9 @@ class EndToEndEncryption : MessagingRuleFeature(
 
             context.event.subscribe(BindViewEvent::class) { event ->
                 event.chatMessage { conversationId, messageId ->
-                    val viewGroup = event.view.parent as? ViewGroup ?: return@subscribe
+                    val viewGroup = event.view.findParent(maxIteration = 3) {
+                        it is LinearLayout
+                    } as? ViewGroup ?: event.view.parent as? ViewGroup ?: return@chatMessage
 
                     viewGroup.findViewWithTag<View>(specialCard)?.also {
                         viewGroup.removeView(it)
@@ -312,28 +308,23 @@ class EndToEndEncryption : MessagingRuleFeature(
         defer {
             val forceMessageEncryption by context.config.experimental.e2eEncryption.forceMessageEncryption
 
-            context.mappings.useMapper(CallbackMapper::class) {
-                callbacks.getClass("UploadDelegate")?.hook("uploadMedia", HookStage.BEFORE) { param ->
-                    val messageDestinations = MessageDestinations(param.arg(1))
-                    val uploadCallback = param.arg<Any>(2)
-                    val e2eeConversations = messageDestinations.getEndToEndConversations()
-                    if (e2eeConversations.isEmpty()) return@hook
+            context.event.subscribe(MediaUploadEvent::class) { event ->
+                val e2eeConversations = event.destinations.getEndToEndConversations()
+                if (e2eeConversations.isEmpty()) return@subscribe
 
-                    if (messageDestinations.conversations!!.size != e2eeConversations.size || messageDestinations.stories?.isNotEmpty() == true) {
-                        context.log.debug("skipping encryption")
-                        return@hook
-                    }
+                if (event.destinations.conversations!!.size != e2eeConversations.size || event.destinations.stories?.isNotEmpty() == true) {
+                    context.log.debug("skipping encryption")
+                    return@subscribe
+                }
 
-                    Hooker.hookObjectMethod(uploadCallback::class.java, uploadCallback, "onUploadFinished", HookStage.BEFORE) { methodParam ->
-                        val messageContent = MessageContent(methodParam.arg(1))
-                        runCatching {
-                            messageContent.content = ProtoWriter().apply {
-                                writeEncryptedMessage(e2eeConversations.map { getE2EParticipants(it) }.flatten().distinct(), messageContent.content!!)
-                            }.toByteArray()
-                        }.onFailure {
-                            context.log.error("Failed to encrypt message", it)
-                            context.longToast(translation["encryption_failed_toast"])
-                        }
+                event.onMediaUploaded { result ->
+                    runCatching {
+                        result.messageContent.content = ProtoWriter().apply {
+                            writeEncryptedMessage(e2eeConversations.map { getE2EParticipants(it) }.flatten().distinct(), result.messageContent.content!!)
+                        }.toByteArray()
+                    }.onFailure {
+                        context.log.error("Failed to encrypt message", it)
+                        context.longToast(translation["encryption_failed_toast"])
                     }
                 }
             }
@@ -359,6 +350,10 @@ class EndToEndEncryption : MessagingRuleFeature(
                 }
 
                 event.addInvokeLater {
+                    // check if the content is already encrypted
+                    if (ProtoReader(messageContent.content!!).getByteArray(2, 1, 2) != null) {
+                        return@addInvokeLater
+                    }
                     if (event.messageContent.localMediaReferences?.isEmpty() == true) {
                         runCatching {
                             event.messageContent.content = ProtoWriter().apply {

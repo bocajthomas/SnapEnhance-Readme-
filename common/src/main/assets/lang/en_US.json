@@ -1039,6 +1039,10 @@
                             }
                         }
                     },
+                    "voice_note_auto_play": {
+                        "name": "Voice Note Auto Play",
+                        "description": "Automatically plays the next voice note after the current one finishes"
+                    },
                     "cof_experiments": {
                         "name": "COF Experiments",
                         "description": "Enables unreleased/beta Snapchat features"
@@ -1250,10 +1254,10 @@
             },
             "gallery_media_send_override": {
                 "always_ask": "Always Ask",
-                "ORIGINAL": "Original",
+                "ORIGINAL": "Original Media",
                 "NOTE": "Audio Note",
                 "SNAP": "Snap",
-                "SAVABLE_SNAP": "Savable Snap"
+                "SAVEABLE_SNAP": "Saveable Snap"
             },
             "strip_media_metadata": {
                 "hide_caption_text": "Hide Caption Text",
@@ -1712,5 +1716,8 @@
         "sigColorBackgroundSurfaceTranslucent": "Translucent Background Surface Color",
         "sigColorStoryRingFriendsFeedStoryRing": "Story Ring Friends Feed Story Ring Color",
         "sigColorStoryRingDiscoverTabThumbnailStoryRing": "Story Ring Discover Tab Thumbnail Story Ring Color"
+    },
+    "send_override_dialog": {
+        "title": "Send media as ..."
     }
 }

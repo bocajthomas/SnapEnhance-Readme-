@@ -112,14 +112,14 @@ class FriendMutationObserver: Feature("FriendMutationObserver") {
                                 } != friend.get("birthday")?.asString
                             ) {
                                 val oldBirthday = databaseFriend.birthday.takeIf { it != 0L }?.let {
-                                    prettyPrintBirthday((it shr 32).toInt(), it.toInt())
+                                    prettyPrintBirthday((it shr 32).toInt() - 1, it.toInt())
                                 }
 
                                 if (!friend.has("birthday")) {
                                     sendWarnNotification(translation.format("birthday_removed", "username" to formatUsername(databaseFriend), "birthday" to oldBirthday.orEmpty()))
                                 } else {
                                     val newBirthday = friend.get("birthday")?.asString?.split("-")?.let {
-                                        prettyPrintBirthday(it[0].toInt(), it[1].toInt())
+                                        prettyPrintBirthday(it[0].toInt() - 1, it[1].toInt())
                                     }
                                     if (oldBirthday == null) {
                                         sendWarnNotification(translation.format("birthday_added", "username" to formatUsername(databaseFriend), "birthday" to newBirthday.orEmpty()))

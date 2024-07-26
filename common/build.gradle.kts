@@ -23,13 +23,14 @@ android {
         buildConfigField("int", "VERSION_CODE", "${rootProject.ext["appVersionCode"]}")
         buildConfigField("String", "APPLICATION_ID", "\"${rootProject.ext["applicationId"]}\"")
         buildConfigField("long", "BUILD_TIMESTAMP", "${System.currentTimeMillis()}L")
-        buildConfigField("String", "BUILD_HASH", "\"${rootProject.ext["buildHash"]}\"")
+        buildConfigField("String", "BUILD_HASH", "\"${rootProject.ext["buildHash"]}\".toString()")
         val gitHash = ByteArrayOutputStream()
         exec {
             commandLine("git", "rev-parse", "HEAD")
             standardOutput = gitHash
         }
         buildConfigField("String", "GIT_HASH", "\"${gitHash.toString(Charsets.UTF_8).trim()}\"")
+        buildConfigField("String", "SIF_ENDPOINT", "\"${properties["debug_sif_endpoint"]?.toString() ?: "https://raw.githubusercontent.com/SnapEnhance/resources/main/sif"}\"")
     }
 
     compileOptions {

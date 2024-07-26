@@ -1,7 +1,14 @@
 package me.rhunk.snapenhance
 
 import android.annotation.SuppressLint
+import android.app.Notification
+import android.app.NotificationChannel
+import android.app.NotificationManager
+import android.app.PendingIntent
+import android.content.Intent
 import android.os.Build
+import androidx.core.net.toUri
+import me.rhunk.snapenhance.common.BuildConfig
 import me.rhunk.snapenhance.common.bridge.InternalFileHandleType
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -16,7 +23,7 @@ class RemoteSharedLibraryManager(
         return runCatching {
             okHttpClient.newCall(
                 Request.Builder()
-                    .url("https://raw.githubusercontent.com/SnapEnhance/resources/main/sif/version")
+                    .url("${BuildConfig.SIF_ENDPOINT}/version")
                     .build()
             ).execute().use { response ->
                 if (!response.isSuccessful) {
@@ -30,7 +37,7 @@ class RemoteSharedLibraryManager(
     private fun downloadLatest(outputFile: File): Boolean {
         val abi = Build.SUPPORTED_ABIS.firstOrNull() ?: return false
         val request = Request.Builder()
-            .url("https://raw.githubusercontent.com/SnapEnhance/resources/main/sif/$abi.so")
+            .url("${BuildConfig.SIF_ENDPOINT}/$abi.so")
             .build()
         runCatching {
             okHttpClient.newCall(request).execute().use { response ->
@@ -60,8 +67,7 @@ class RemoteSharedLibraryManager(
             return
         }
         val latestVersion = getVersion()?.trim() ?: run {
-            remoteSideContext.log.warn("Failed to get latest sif version")
-            return
+            throw Exception("Failed to get latest sif version")
         }
 
         if (currentVersion == latestVersion) {
@@ -73,12 +79,45 @@ class RemoteSharedLibraryManager(
         if (downloadLatest(libraryFile)) {
             remoteSideContext.sharedPreferences.edit().putString("sif", latestVersion).commit()
             remoteSideContext.shortToast("SIF updated to $latestVersion!")
+
+            if (currentVersion.isNotEmpty()) {
+                val notificationManager = remoteSideContext.androidContext.getSystemService(NotificationManager::class.java)
+                val channelId = "sif_update"
+
+                notificationManager.createNotificationChannel(
+                    NotificationChannel(
+                        channelId,
+                        "SIF Updates",
+                        NotificationManager.IMPORTANCE_DEFAULT
+                    )
+                )
+
+                notificationManager.notify(
+                    System.nanoTime().toInt(),
+                    Notification.Builder(remoteSideContext.androidContext, channelId)
+                        .setContentTitle("SnapEnhance")
+                        .setContentText("Security Features have been updated to version $latestVersion")
+                        .setSmallIcon(android.R.drawable.stat_sys_download_done)
+                        .setContentIntent(PendingIntent.getActivity(
+                            remoteSideContext.androidContext,
+                            0,
+                            Intent().apply {
+                                action = Intent.ACTION_VIEW
+                                data = "https://github.com/SnapEnhance/resources".toUri()
+                                flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                            },
+                            PendingIntent.FLAG_UPDATE_CURRENT
+                        )).build()
+                )
+            }
+
             // force restart snapchat
             runCatching {
                 remoteSideContext.config.configStateListener?.takeIf { it.asBinder().pingBinder() }?.onRestartRequired()
             }
         } else {
             remoteSideContext.log.warn("Failed to download latest sif")
+            throw Exception("Failed to download latest sif")
         }
     }
 }
