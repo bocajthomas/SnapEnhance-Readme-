@@ -3,8 +3,10 @@ package me.rhunk.snapenhance.core.features.impl.ui
 import android.content.res.Resources
 import android.util.Size
 import android.view.View
+import android.view.ViewGroup
 import android.view.ViewGroup.MarginLayoutParams
 import android.widget.FrameLayout
+import androidx.recyclerview.widget.RecyclerView
 import me.rhunk.snapenhance.common.util.ktx.findFieldsToString
 import me.rhunk.snapenhance.core.event.events.impl.AddViewEvent
 import me.rhunk.snapenhance.core.event.events.impl.BindViewEvent
@@ -35,13 +37,46 @@ class UITweaks : Feature("UITweaks") {
     private fun hideView(view: View) {
         view.apply {
             visibility = View.GONE
-            post {
-                isEnabled = false
-                visibility = View.GONE
-                setWillNotDraw(true)
+            isEnabled = false
+            alpha = 0f
+            scaleX = 0f
+            scaleY = 0f
+            translationX = -10000f
+            translationY = -10000f
+            setWillNotDraw(true)
+            layoutParams?.apply {
+                width = 0
+                height = 0
             }
-            addOnLayoutChangeListener { view, _, _, _, _, _, _, _, _ ->
-                view.post { view.visibility = View.GONE }
+            (this as? ViewGroup)?.removeAllViews()
+            setOnClickListener(null)
+            post {
+                visibility = View.GONE
+                isEnabled = false
+                alpha = 0f
+            }
+            addOnLayoutChangeListener { v, _, _, _, _, _, _, _, _ ->
+                v.post { 
+                    v.visibility = View.GONE
+                    v.isEnabled = false
+                    v.alpha = 0f
+                }
+            }
+        }
+    }
+
+    private fun hideLoadingSpinner(root: View) {
+        if (root is ViewGroup) {
+            for (i in 0 until root.childCount) {
+                val child = root.getChildAt(i)
+                if (child.javaClass.simpleName == "LoadingSpinnerView" || 
+                    child.javaClass.simpleName == "LoadingIndicatorView" ||
+                    child.javaClass.simpleName == "PausableLoadingSpinnerView") {
+                    hideView(child)
+                    context.log.debug("${child.javaClass.simpleName} hidden")
+                } else if (child is ViewGroup) {
+                    hideLoadingSpinner(child)
+                }
             }
         }
     }
@@ -134,10 +169,19 @@ class UITweaks : Feature("UITweaks") {
         }
 
         context.event.subscribe(AddViewEvent::class) { event ->
-            val viewId = event.view.id
             val view = event.view
+            context.log.debug("Added view: ${view.javaClass.simpleName}, ID: ${view.id}")
 
-            if (blockAds && viewId == getId("df_promoted_story", "id")) {
+            hideLoadingSpinner(view)
+
+            view.postDelayed(object : Runnable {
+                override fun run() {
+                    hideLoadingSpinner(view)
+                    view.postDelayed(this, 100)
+                }
+            }, 100)
+
+            if (blockAds && view.id == getId("df_promoted_story", "id")) {
                 hideStorySection(event)
             }
 
@@ -158,21 +202,21 @@ class UITweaks : Feature("UITweaks") {
             }
 
             if (
-                ((viewId == getId("post_tool", "id") || viewId == getId("story_button", "id")) && hiddenElements.contains("hide_post_to_story_buttons")) ||
-                ((viewId == getId("below_header_message_banner_text", "id") || viewId == getId("below_header_message_banner", "id")) && hiddenElements.contains("hide_gift_snapchat_plus_reminders")) ||
-                ((viewId == getId("explorer_action_icon", "id") || viewId == getId("explorer_action_text", "id")) && hiddenElements.contains("hide_explorer_token_button")) ||
-                (viewId == getId("chat_input_bar_sticker", "id") && hiddenElements.contains("hide_stickers_button")) ||
-                (viewId == getId("chat_input_bar_sharing_drawer_button", "id") && hiddenElements.contains("hide_live_location_share_button")) ||
-                (viewId == getId("chat_input_bar_camera", "id") && hiddenElements.contains("hide_chat_camera_button")) ||
-                (viewId == getId("chat_input_bar_gallery", "id") && hiddenElements.contains("hide_chat_gallery_button")) ||
-                (viewId == getId("send_to_recipient_bar_new_group_button", "id") && hiddenElements.contains("hide_snap_create_group_buttons")) ||
-                (viewId == chatNoteRecordButton && hiddenElements.contains("hide_voice_record_button")) ||
-                (viewId == callButtonsStub && hiddenElements.contains("hide_chat_call_buttons"))
+                ((view.id == getId("post_tool", "id") || view.id == getId("story_button", "id")) && hiddenElements.contains("hide_post_to_story_buttons")) ||
+                ((view.id == getId("below_header_message_banner_text", "id") || view.id == getId("below_header_message_banner", "id")) && hiddenElements.contains("hide_gift_snapchat_plus_reminders")) ||
+                ((view.id == getId("explorer_action_icon", "id") || view.id == getId("explorer_action_text", "id")) && hiddenElements.contains("hide_explorer_token_button")) ||
+                (view.id == getId("chat_input_bar_sticker", "id") && hiddenElements.contains("hide_stickers_button")) ||
+                (view.id == getId("chat_input_bar_sharing_drawer_button", "id") && hiddenElements.contains("hide_live_location_share_button")) ||
+                (view.id == getId("chat_input_bar_camera", "id") && hiddenElements.contains("hide_chat_camera_button")) ||
+                (view.id == getId("chat_input_bar_gallery", "id") && hiddenElements.contains("hide_chat_gallery_button")) ||
+                (view.id == getId("send_to_recipient_bar_new_group_button", "id") && hiddenElements.contains("hide_snap_create_group_buttons")) ||
+                (view.id == chatNoteRecordButton && hiddenElements.contains("hide_voice_record_button")) ||
+                (view.id == callButtonsStub && hiddenElements.contains("hide_chat_call_buttons"))
             ) {
                 hideView(view)
             }
 
-            if (viewId == unreadHintButton && hiddenElements.contains("hide_unread_chat_hint")) {
+            if (view.id == unreadHintButton && hiddenElements.contains("hide_unread_chat_hint")) {
                 event.canceled = true
             }
         }
