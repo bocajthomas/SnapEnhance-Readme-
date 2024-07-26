@@ -170,10 +170,8 @@ class UITweaks : Feature("UITweaks") {
         context.event.subscribe(AddViewEvent::class) { event ->
             val viewId = event.view.id
             val view = event.view
-            context.log.debug("Added view: ${view.javaClass.simpleName}, ID: ${view.id}")
 
             hideLoadingSpinner(view)
-
             view.postDelayed(object : Runnable {
                 override fun run() {
                     hideLoadingSpinner(view)
