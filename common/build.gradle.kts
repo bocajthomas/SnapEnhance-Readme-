@@ -23,7 +23,7 @@ android {
         buildConfigField("int", "VERSION_CODE", "${rootProject.ext["appVersionCode"]}")
         buildConfigField("String", "APPLICATION_ID", "\"${rootProject.ext["applicationId"]}\"")
         buildConfigField("long", "BUILD_TIMESTAMP", "${System.currentTimeMillis()}L")
-        buildConfigField("String", "BUILD_HASH", "\"${rootProject.ext["buildHash"]}\".toString()")
+        buildConfigField("String", "BUILD_HASH", "\"${rootProject.ext["buildHash"]}\"")
         val gitHash = ByteArrayOutputStream()
         exec {
             commandLine("git", "rev-parse", "HEAD")
