@@ -72,7 +72,6 @@ class UITweaks : Feature("UITweaks") {
                     child.javaClass.simpleName == "LoadingIndicatorView" ||
                     child.javaClass.simpleName == "PausableLoadingSpinnerView") {
                     hideView(child)
-                    context.log.debug("${child.javaClass.simpleName} hidden")
                 } else if (child is ViewGroup) {
                     hideLoadingSpinner(child)
                 }
@@ -171,7 +170,6 @@ class UITweaks : Feature("UITweaks") {
             val viewId = event.view.id
             val view = event.view
 
-            hideLoadingSpinner(view)
             view.postDelayed(object : Runnable {
                 override fun run() {
                     hideLoadingSpinner(view)
