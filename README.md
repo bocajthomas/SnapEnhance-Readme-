@@ -199,8 +199,7 @@ Please note that this project is currently in development, So bugs and crashes m
 </details>
 
 ## ⬇️ Download 
-To Download the latest stable release, please visit the [Releases](https://github.com/bocajthomas/SE-Extended/releases) page.<br/>
-You can also download the latest debug build from the [Actions](https://github.com/bocajthomas/SE-Extended/actions/workflows/debug.yml) section.<br/>
+You will need to download SE Extended from ether the [Actions](https://github.com/bocajthomas/SE-Extended/actions/workflows/debug.yml) or our [CI Builds](https://t.me/SE_Extended_CI) Channel on telegram<br/>
 
 ## ❓️Wiki
 The [Wiki](https://github.com/bocajthomas/SE-Extended/wiki) is a place for all information regarding SE Extended.
