@@ -1299,7 +1299,6 @@
             "gallery_media_send_override": {
                 "always_ask": "সর্বদা জিজ্ঞাসা করুন",
                 "NOTE": "অডিও নোট",
-                "SAVABLE_SNAP": "সংরক্ষণযোগ্য স্ন্যাপ",
                 "SNAP": "স্ন্যাপ",
                 "ORIGINAL": "মূল"
             },

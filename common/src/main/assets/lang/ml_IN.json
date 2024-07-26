@@ -691,7 +691,6 @@
             "gallery_media_send_override": {
                 "ORIGINAL": "ഒറിജിനൽ",
                 "NOTE": "ഓഡിയോ കുറിപ്പ്",
-                "SAVABLE_SNAP": "സേവ് ചെയ്യാവുന്ന സ്നാപ്പ്",
                 "SNAP": "സ്നാപ്പ്"
             },
             "strip_media_metadata": {

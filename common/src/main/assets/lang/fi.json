@@ -862,7 +862,6 @@
                 "ORIGINAL": "Alkuperäinen",
                 "NOTE": "Ääniviesti",
                 "SNAP": "Snap",
-                "SAVABLE_SNAP": "Tallennettava Snap",
                 "always_ask": "Kysy aina"
             },
             "hide_ui_components": {

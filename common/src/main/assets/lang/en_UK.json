@@ -1234,7 +1234,6 @@
                 "ORIGINAL": "Original",
                 "NOTE": "Audio Note",
                 "SNAP": "Snap",
-                "SAVABLE_SNAP": "Savable Snap",
                 "always_ask": "Always Ask"
             },
             "strip_media_metadata": {

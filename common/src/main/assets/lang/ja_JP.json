@@ -1067,8 +1067,7 @@
                 "ORIGINAL": "オリジナル",
                 "NOTE": "音声メモ",
                 "always_ask": "常に質問する",
-                "SNAP": "スナップ",
-                "SAVABLE_SNAP": "保存可能なスナップ"
+                "SNAP": "スナップ"
             },
             "home_tab": {
                 "map": "地図",

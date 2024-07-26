@@ -1274,8 +1274,7 @@
                 "always_ask": "总是问",
                 "ORIGINAL": "原来的",
                 "NOTE": "音频笔记",
-                "SNAP": "折断",
-                "SAVABLE_SNAP": "可保存的快照"
+                "SNAP": "折断"
             },
             "strip_media_metadata": {
                 "hide_caption_text": "隐藏标题文本",

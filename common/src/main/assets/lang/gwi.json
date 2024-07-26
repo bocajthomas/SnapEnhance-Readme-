@@ -1151,8 +1151,7 @@
                 "always_ask": "Immer Fragen",
                 "ORIGINAL": "Original",
                 "NOTE": "Audio-Notiz",
-                "SNAP": "Snap",
-                "SAVABLE_SNAP": "Speicherbarer Snap"
+                "SNAP": "Snap"
             },
             "strip_media_metadata": {
                 "hide_caption_text": "Bildunterschriftstext ausblenden",

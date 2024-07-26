@@ -1132,7 +1132,6 @@
             },
             "gallery_media_send_override": {
                 "SNAP": "Snap",
-                "SAVABLE_SNAP": "Snap salvabil",
                 "ORIGINAL": "Original",
                 "NOTE": "Notă audio",
                 "always_ask": "Intreaba mereu"

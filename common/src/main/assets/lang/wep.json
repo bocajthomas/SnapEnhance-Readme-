@@ -915,7 +915,6 @@
             "gallery_media_send_override": {
                 "NOTE": "Audio-Notiz",
                 "SNAP": "Snap",
-                "SAVABLE_SNAP": "Speicherbarer Snap",
                 "always_ask": "Immer Fragen",
                 "ORIGINAL": "Original"
             },

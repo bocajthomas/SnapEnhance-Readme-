@@ -1134,7 +1134,6 @@
             "gallery_media_send_override": {
                 "ORIGINAL": "Originale",
                 "NOTE": "Vocal",
-                "SAVABLE_SNAP": "Snap Enregistrable",
                 "SNAP": "Snap",
                 "always_ask": "Demandez toujours"
             },

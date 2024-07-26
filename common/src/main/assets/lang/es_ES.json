@@ -1206,8 +1206,7 @@
                 "always_ask": "Preguntar siempre",
                 "ORIGINAL": "Original",
                 "NOTE": "Nota de voz",
-                "SNAP": "Snap",
-                "SAVABLE_SNAP": "Snap guardable"
+                "SNAP": "Snap"
             },
             "strip_media_metadata": {
                 "hide_caption_text": "Ocultar texto de subtítulos",

@@ -1097,7 +1097,6 @@
                 "ORIGINAL": "Eredeti",
                 "SNAP": "Snap",
                 "NOTE": "Hangüzenet",
-                "SAVABLE_SNAP": "Lementhető Snap",
                 "always_ask": "Mindig kérdezze meg"
             },
             "hide_ui_components": {
