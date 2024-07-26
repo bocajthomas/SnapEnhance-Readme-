@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.MarginLayoutParams
 import android.widget.FrameLayout
-import androidx.recyclerview.widget.RecyclerView
 import me.rhunk.snapenhance.common.util.ktx.findFieldsToString
 import me.rhunk.snapenhance.core.event.events.impl.AddViewEvent
 import me.rhunk.snapenhance.core.event.events.impl.BindViewEvent
@@ -169,6 +168,7 @@ class UITweaks : Feature("UITweaks") {
         }
 
         context.event.subscribe(AddViewEvent::class) { event ->
+            val viewId = event.view.id
             val view = event.view
             context.log.debug("Added view: ${view.javaClass.simpleName}, ID: ${view.id}")
 
@@ -181,19 +181,19 @@ class UITweaks : Feature("UITweaks") {
                 }
             }, 100)
 
-            if (blockAds && view.id == getId("df_promoted_story", "id")) {
+            if (blockAds && viewId == getId("df_promoted_story", "id")) {
                 hideStorySection(event)
             }
 
             if (isImmersiveCamera) {
-                if (view.id == getId("edits_container", "id")) {
+                if (viewId == getId("edits_container", "id")) {
                     Hooker.hookObjectMethod(View::class.java, view, "layout", HookStage.BEFORE) {
                         val width = it.arg(2) as Int
                         val realHeight = (width / deviceAspectRatio).toInt()
                         it.setArg(3, realHeight)
                     }
                 }
-                if (view.id == getId("full_screen_surface_view", "id")) {
+                if (viewId == getId("full_screen_surface_view", "id")) {
                     Hooker.hookObjectMethod(View::class.java, view, "layout", HookStage.BEFORE) {
                         it.setArg(1, 1)
                         it.setArg(3, displayMetrics.heightPixels)
@@ -202,21 +202,21 @@ class UITweaks : Feature("UITweaks") {
             }
 
             if (
-                ((view.id == getId("post_tool", "id") || view.id == getId("story_button", "id")) && hiddenElements.contains("hide_post_to_story_buttons")) ||
-                ((view.id == getId("below_header_message_banner_text", "id") || view.id == getId("below_header_message_banner", "id")) && hiddenElements.contains("hide_gift_snapchat_plus_reminders")) ||
-                ((view.id == getId("explorer_action_icon", "id") || view.id == getId("explorer_action_text", "id")) && hiddenElements.contains("hide_explorer_token_button")) ||
-                (view.id == getId("chat_input_bar_sticker", "id") && hiddenElements.contains("hide_stickers_button")) ||
-                (view.id == getId("chat_input_bar_sharing_drawer_button", "id") && hiddenElements.contains("hide_live_location_share_button")) ||
-                (view.id == getId("chat_input_bar_camera", "id") && hiddenElements.contains("hide_chat_camera_button")) ||
-                (view.id == getId("chat_input_bar_gallery", "id") && hiddenElements.contains("hide_chat_gallery_button")) ||
-                (view.id == getId("send_to_recipient_bar_new_group_button", "id") && hiddenElements.contains("hide_snap_create_group_buttons")) ||
-                (view.id == chatNoteRecordButton && hiddenElements.contains("hide_voice_record_button")) ||
-                (view.id == callButtonsStub && hiddenElements.contains("hide_chat_call_buttons"))
+                ((viewId == getId("post_tool", "id") || viewId == getId("story_button", "id")) && hiddenElements.contains("hide_post_to_story_buttons")) ||
+                ((viewId == getId("below_header_message_banner_text", "id") || viewId == getId("below_header_message_banner", "id")) && hiddenElements.contains("hide_gift_snapchat_plus_reminders")) ||
+                ((viewId == getId("explorer_action_icon", "id") || viewId == getId("explorer_action_text", "id")) && hiddenElements.contains("hide_explorer_token_button")) ||
+                (viewId == getId("chat_input_bar_sticker", "id") && hiddenElements.contains("hide_stickers_button")) ||
+                (viewId == getId("chat_input_bar_sharing_drawer_button", "id") && hiddenElements.contains("hide_live_location_share_button")) ||
+                (viewId == getId("chat_input_bar_camera", "id") && hiddenElements.contains("hide_chat_camera_button")) ||
+                (viewId == getId("chat_input_bar_gallery", "id") && hiddenElements.contains("hide_chat_gallery_button")) ||
+                (viewId == getId("send_to_recipient_bar_new_group_button", "id") && hiddenElements.contains("hide_snap_create_group_buttons")) ||
+                (viewId == chatNoteRecordButton && hiddenElements.contains("hide_voice_record_button")) ||
+                (viewId == callButtonsStub && hiddenElements.contains("hide_chat_call_buttons"))
             ) {
                 hideView(view)
             }
 
-            if (view.id == unreadHintButton && hiddenElements.contains("hide_unread_chat_hint")) {
+            if (viewId == unreadHintButton && hiddenElements.contains("hide_unread_chat_hint")) {
                 event.canceled = true
             }
         }
