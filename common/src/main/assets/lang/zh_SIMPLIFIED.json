@@ -109,7 +109,10 @@
             "friend_tracker": "好友追踪器",
             "edit_rule": "编辑规则",
             "file_imports": "文件导入",
-            "better_location": "更好的位置"
+            "better_location": "更好的位置",
+            "theming": "主题化",
+            "edit_theme": "编辑主题",
+            "manage_repos": "管理存储库"
         },
         "sections": {
             "home": {
@@ -237,6 +240,9 @@
                 "teleport_to_friend_title": "传送到朋友身边",
                 "no_friends_map": "地图上没有好友",
                 "no_friends_found": "没有找到好友"
+            },
+            "theming": {
+                "no_themes_hint": "没有找到主题"
             }
         },
         "dialogs": {
@@ -371,6 +377,14 @@
         "logger_history": {
             "name": "记录器历史记录",
             "description": "查看记录消息的历史记录"
+        },
+        "security_features": {
+            "name": "安全特性",
+            "description": "访问安全功能"
+        },
+        "theming": {
+            "name": "主题化",
+            "description": "自定义 Snapchat 的外观和风格"
         }
     },
     "features": {
@@ -582,6 +596,10 @@
                     "auto_close_friend_feed_menu": {
                         "name": "自动关闭好友提要菜单",
                         "description": "按下设置按钮后自动关闭好友动态菜单"
+                    },
+                    "custom_theme": {
+                        "name": "自定义主题",
+                        "description": "自定义 Snapchat 的颜色\n注意: 如果您选择深色主题（如 AMOLED), 您可能需要在应用程序外观设置中启用深色模式以获得更好的效果"
                     }
                 },
                 "description": "更改 Snapchat 的外观和风格",
@@ -1154,6 +1172,10 @@
                     "custom_streaks_expiration_format": {
                         "name": "自定义条纹到期格式",
                         "description": "自定义Streaks过期格式\n\n可用变量：\n- %c：条纹计数\n- %e：沙漏表情符号\n- %d：天\n- %h：小时\n- %m：分钟\n- %s：秒\n- %w：剩余时间"
+                    },
+                    "voice_note_auto_play": {
+                        "name": "语音笔记自动播放",
+                        "description": "当前语音注释结束后自动播放下一个语音注释"
                     }
                 }
             },
@@ -1376,6 +1398,25 @@
             "auto_mark_as_read": {
                 "conversation_read": "将对话标记为已读发送消息时",
                 "snap_reply": "回复时将快照标记为已读"
+            },
+            "custom_theme": {
+                "custom": "自定义主题（使用快速操作来管理主题）",
+                "earthy_autumn": "土色的秋天",
+                "mint_chocolate": "薄荷巧克力",
+                "tropical_paradise": "热带天堂",
+                "material_you_light": "材料 你 光 (安卓 12+)",
+                "amoled_dark_mode": "AMOLED 深色模式",
+                "material_you_dark": "材料 你 黑暗的 (安卓 12+)",
+                "light_blue": "浅蓝色",
+                "dark_blue": "深蓝",
+                "midnight_slate": "午夜石板",
+                "ginger_snap": "姜片",
+                "lemon_meringue": "柠檬酥皮",
+                "ocean_fog": "海洋雾",
+                "alien_landscape": "外星风景",
+                "zesty_lemon": "柠檬味",
+                "lava_flow": "熔岩流",
+                "watercolor_wash": "水彩水洗"
             }
         }
     },
