@@ -1238,7 +1238,8 @@
                 "ORIGINAL": "Original Media",
                 "NOTE": "Audio Note",
                 "SNAP": "Snap",
-                "always_ask": "Always Ask"
+                "always_ask": "Always Ask",
+                "SAVABLE_SNAP": "Savable Snap"
             },
             "strip_media_metadata": {
                 "hide_caption_text": "Hide Caption Text",
@@ -1686,6 +1687,6 @@
         "sigColorBackgroundSurfaceTranslucent": "Translucent Background Surface Colour"
     },
     "send_override_dialog": {
-        "title": "Send media as ..."
+        "title": "Send media as: "
     }
 }
