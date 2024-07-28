@@ -1111,6 +1111,10 @@
                             }
                         },
                         "description": "ভয়েস নোটের ট্রান্সক্রিপ্ট উন্নত করে"
+                    },
+                    "voice_note_auto_play": {
+                        "name": "ভয়েস নোট অটো প্লে",
+                        "description": "বর্তমান ভয়েস নোট শেষ হওয়ার পর স্বয়ংক্রিয়ভাবে পরবর্তী ভয়েস নোট চালু হয়"
                     }
                 },
                 "description": "পরীক্ষামূলক বৈশিষ্ট্য",
@@ -1300,7 +1304,8 @@
                 "always_ask": "সর্বদা জিজ্ঞাসা করুন",
                 "NOTE": "অডিও নোট",
                 "SNAP": "স্ন্যাপ",
-                "ORIGINAL": "মূল"
+                "ORIGINAL": "মূল মিডিয়া",
+                "SAVABLE_SNAP": "সংরক্ষণযোগ্য স্ন্যাপ"
             },
             "hide_ui_components": {
                 "hide_profile_call_buttons": "প্রোফাইল কল বোতামগুলি অপসারণ করুন",
@@ -1680,5 +1685,8 @@
         "sigColorBackgroundSurfaceTranslucent": "স্বচ্ছ ব্যাকগ্রাউন্ড সারফেস রঙ",
         "sigColorStoryRingFriendsFeedStoryRing": "গল্প রিং বন্ধু ফিড গল্প রিং রঙ",
         "sigColorStoryRingDiscoverTabThumbnailStoryRing": "গল্প রিং আবিষ্কার ট্যাব থাম্বনেইল গল্প রিং রঙ"
+    },
+    "send_override_dialog": {
+        "title": "মিডিয়া পাঠান এভাবে: "
     }
 }
