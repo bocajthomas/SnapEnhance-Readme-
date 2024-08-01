@@ -34,7 +34,10 @@
             "edit_rule": "Modifier la règle",
             "friend_tracker": "Traqueur d'amis",
             "file_imports": "Importations de fichiers",
-            "better_location": "Localisation Améliorée"
+            "better_location": "Localisation Améliorée",
+            "theming": "Thèmes",
+            "edit_theme": "Éditer le thème",
+            "manage_repos": "Gérer les dépôts"
         },
         "sections": {
             "features": {
@@ -162,6 +165,9 @@
                 "latitude_dialog_hint": "Latitude",
                 "longitude_dialog_hint": "Longitude",
                 "suspend_location_updates": "Suspendre les mises à jour de localisation"
+            },
+            "theming": {
+                "no_themes_hint": "Aucun thème trouvé"
             }
         },
         "dialogs": {
@@ -1508,6 +1514,13 @@
         "friend_tracker": {
             "name": "Traqueur d'amis",
             "description": "Traquer vos amis sur Snapchat"
+        },
+        "security_features": {
+            "name": "Options de sécurité",
+            "description": "Accéder aux options de sécurité"
+        },
+        "theming": {
+            "description": "Personnaliser l'apparence de Snapchat"
         }
     },
     "mark_as_seen": {
@@ -1566,5 +1579,8 @@
         "birthday_removed": "{username} a supprimé son anniversaire ({birthday})",
         "birthday_added": "{username} a ajouté son anniversaire ({birthday})",
         "bitmoji_scene_changed": "{username} a changé sa scène Bitmoji"
+    },
+    "send_override_dialog": {
+        "title": "Envoyer média en tant que: "
     }
 }
