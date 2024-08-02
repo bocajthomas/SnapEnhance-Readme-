@@ -469,6 +469,9 @@
                     "message_indicators": {
                         "name": "Indicateur de messages",
                         "description": "Ajoute des icônes d'indicateurs spécifiques aux messages\nRemarque : les indicateurs peuvent ne pas être à 100% précis"
+                    },
+                    "custom_theme": {
+                        "description": "Personnaliser les couleurs de Snapchat\nNote : si vous choisissez un thème sombre (comme AMOLED), vous devrez peut-être activer le mode sombre dans les paramètres d'apparence pour obtenir de meilleurs résultats"
                     }
                 }
             },
@@ -1031,10 +1034,18 @@
                             "preferred_transcription_lang": {
                                 "name": "Langue de transcription préférée",
                                 "description": "La langue préférée pour la transcription des notes vocales (par exemple EN, ES, FR)"
+                            },
+                            "enhanced_transcript_in_notifications": {
+                                "name": "Transcription améliorée dans les notifications",
+                                "description": "Transcrit les notes vocales dans les notifications à l'aide de DeepL. Pour ce faire, la fonction de prévisualisation du chat doit être activée dans Meilleures notifications"
                             }
                         },
                         "name": "Meilleure transcription",
                         "description": "Améliore la transcription des notes vocales"
+                    },
+                    "voice_note_auto_play": {
+                        "name": "Note vocale Lecture automatique",
+                        "description": "Lecture automatique de la note vocale suivante après la fin de la note en cours"
                     }
                 }
             },
@@ -1256,6 +1267,21 @@
                 "bitmoji_avatar_changes": "Vous averti lorsque quelqu'un change son avatar Bitmoji",
                 "bitmoji_background_changes": "Vous averti lorsque quelqu'un modifie son arrière-plan Bitmoji",
                 "bitmoji_scene_changes": "Vous averti lorsque quelqu'un change sa scène Bitmoji"
+            },
+            "custom_theme": {
+                "mint_chocolate": "Chocolat à la menthe",
+                "ginger_snap": "­Tarte au gingembre",
+                "lemon_meringue": "Meringue au citron",
+                "ocean_fog": "Brume de l'océan",
+                "alien_landscape": "Paysage extraterrestre",
+                "watercolor_wash": "Peinture à l'eau",
+                "zesty_lemon": "­Zeste de citron",
+                "tropical_paradise": "Paradis tropical",
+                "industrial_chic": "Chic industriel",
+                "woodland_mystery": "Mystère des bois",
+                "creamy_vanilla": "Vanille crémeuse",
+                "lava_flow": "Coulée de lave",
+                "amoled_dark_mode": "Mode sombre AMOLED"
             }
         }
     },
