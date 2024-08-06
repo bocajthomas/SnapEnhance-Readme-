@@ -15,7 +15,7 @@ def_hook!(
         let pathname_str = CStr::from_ptr(pathname).to_str().unwrap().to_string();
 
         if let Some(content) = SHARED_LIBRARIES.lock().unwrap().remove(&pathname_str) {
-            let memfd = libc::syscall(libc::SYS_memfd_create, "me.rhunk.snapenhance\0".as_ptr(), 0) as i32;
+            let memfd = libc::syscall(libc::SYS_memfd_create, "jit-cache\0".as_ptr(), 0) as i32;
             let content = content.into_boxed_slice();
             
             if libc::write(memfd, content.as_ptr() as *const c_void, content.len() as libc::size_t) == -1 {

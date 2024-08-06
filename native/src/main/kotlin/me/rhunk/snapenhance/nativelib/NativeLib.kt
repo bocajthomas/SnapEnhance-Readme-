@@ -20,6 +20,7 @@ class NativeLib {
             System.loadLibrary(BuildConfig.NATIVE_NAME)
             initialized = true
             callback(this)
+            preInit()
             return@runCatching {
                 signatureCache = init(signatureCache) ?: throw IllegalStateException("NativeLib init failed. Check logcat for more info")
             }
@@ -65,6 +66,7 @@ class NativeLib {
         System.load(generatedPath)
     }
 
+    private external fun preInit()
     private external fun init(signatureCache: String?): String?
     private external fun loadConfig(config: NativeConfig)
     private external fun lockDatabase(name: String, callback: Runnable)
