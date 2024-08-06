@@ -39,6 +39,9 @@ export interface Module {
     init: () => void
 }
 
+export const modules: Module[] = []
+
 export function defineModule<T extends Module>(module: T & Record<string, any>): T {
+    modules.push(module)
     return module
 }

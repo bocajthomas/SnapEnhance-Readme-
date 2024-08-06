@@ -1,9 +1,9 @@
 import { getConfig, log } from "./imports";
-import { Module } from "./types";
+import { Module, modules } from "./types";
 
-import operaDownloadButton from "./modules/operaDownloadButton";
-import firstCreatedUsername from "./modules/firstCreatedUsername";
-import bypassCameraRollSelectionLimit from "./modules/bypassCameraRollSelectionLimit";
+import  "./modules/operaDownloadButton";
+import  "./modules/firstCreatedUsername";
+import  "./modules/bypassCameraRollSelectionLimit";
 
 
 try {
@@ -15,22 +15,18 @@ try {
         })
     }
 
-    const modules: Module[] = [
-        operaDownloadButton, 
-        firstCreatedUsername,
-        bypassCameraRollSelectionLimit
-    ];
-
-    modules.forEach(module => {
-        if (!module.enabled(config)) return
+    modules.forEach(m => {
+        if (!m.enabled(config)) {
+            return
+        }
         try {
-            module.init();
+            m.init();
         } catch (e) {
-            console.error(`failed to initialize module ${module.name}`, e, e.stack);
+            console.error(`failed to initialize module ${m.name}`, e, e.stack);
         }
     });
 
-    console.log("composer modules loaded!");
+    console.log("modules loaded!");
 } catch (e) {
     log("error", "Failed to load composer modules\n" + e + "\n" + e.stack)
 }
