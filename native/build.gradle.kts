@@ -15,6 +15,9 @@ android {
     buildToolsVersion = "34.0.0"
     ndkVersion = "26.3.11579264"
 
+    buildToolsVersion = "34.0.0"
+    ndkVersion = "26.3.11579264"
+
     buildFeatures {
         buildConfig = true
     }
