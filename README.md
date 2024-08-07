@@ -213,14 +213,22 @@ SE Extended will always be free and open source for everyone, If you like it, Co
 ## 🤝 Contributing 
 Contributions are welcome!<br/>
 Thanks to everyone involved
-- [suryadip2008](https://github.com/suryadip2008) (Translated: Bengali)
-- [BogusMosquito77](https://github.com/BogusMosquito7) (Translated: Dutch)
-- [Beingzain](https://github.com/Beingzain) (Translated: Urdu) 
-- [comradekingu](https://github.com/comradekingu) (Translated: Norwegian Bokmål, Danish, Swedish)
-- [scrodingerspet](https://github.com/schrodingerspet) (Translated: Japanese, Hindi)
-- [MHaaning](https://github.com/MHaaning) (Translated: Danish)
-- [vampskillz](https://github.com/vampskillz) (Translated: Italian)
-- [jollindeerus](https://github.com/jollindeerus) (Translated: Finnish)
+
+**Pull Requests:**
+- [suryadip2008](https://github.com/suryadip2008) - feat(core/ui_tweaks): multiple hide ui components [#106](https://github.com/bocajthomas/SE-Extended/pull/106)
+
+**Translations:**
+- Bengali - [suryadip2008](https://github.com/suryadip2008) 
+- Dutch - [BogusMosquito77](https://github.com/BogusMosquito7), [dnlweijers](https://github.com/dnlweijers)
+- Urdu - [Beingzain](https://github.com/Beingzain) 
+- Danish - [comradekingu](https://github.com/comradekingu), [MHaaning](https://github.com/MHaaning)
+- Japanese - [scrodingerspet](https://github.com/schrodingerspet) 
+- Hindi - [scrodingerspet](https://github.com/schrodingerspet) 
+- Norwegian Bokmål - [comradekingu](https://github.com/comradekingu)
+- Swedish - [comradekingu](https://github.com/comradekingu)
+- Italian - [vampskillz](https://github.com/vampskillz)
+- Finnish - [jollindeerus](https://github.com/jollindeerus)
+- French - [pyramyds](https://github.com/pyramyds), [Mizaruta](https://github.com/Mizaruta)
 
 You can help translate SE Extended on [Hosted Weblate](https://hosted.weblate.org/projects/se-extended/se-extended/).
 
