@@ -10,12 +10,12 @@ abstract class Feature(
     lateinit var context: ModContext
     lateinit var registerNextActivityCallback: ((Activity) -> Unit) -> Unit
 
-    protected fun defer(block: () -> Unit) {
+    protected fun defer(block: suspend () -> Unit) {
         context.coroutineScope.launch {
             runCatching {
                 block()
             }.onFailure {
-                context.log.error("Failed to run onNextActivityCreate callback", it)
+                context.log.error("Failed to run defer callback", it)
             }
         }
     }

@@ -1,6 +1,8 @@
 package me.rhunk.snapenhance.core.features.impl.tweaks
 
-import android.view.View
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import me.rhunk.snapenhance.core.event.events.impl.BindViewEvent
 import me.rhunk.snapenhance.core.features.Feature
 import me.rhunk.snapenhance.core.util.dataBuilder
@@ -9,49 +11,49 @@ import me.rhunk.snapenhance.core.util.hook.hook
 import me.rhunk.snapenhance.core.util.ktx.getObjectField
 import me.rhunk.snapenhance.mapper.impl.PlaybackViewContextMapper
 import java.lang.reflect.Proxy
-import java.util.WeakHashMap
 
 class VoiceNoteAutoPlay: Feature("Voice Note Auto Play") {
     override fun init() {
         if (!context.config.experimental.voiceNoteAutoPlay.get()) return
 
-        val views = WeakHashMap<View, Any>() // component context -> view
+        val playbackMap = sortedMapOf<Long, MutableList<Any>>()
 
         fun setPlaybackState(componentContext: Any, state: String): Boolean {
+            val seek = componentContext.getObjectField("_seek") ?: return false
+            seek.javaClass.getMethod("invoke", Any::class.java).invoke(seek, 0)
+
             val onPlayButtonTapped = componentContext.getObjectField("_onPlayButtonTapped") ?: return false
             onPlayButtonTapped.javaClass.getMethod("invoke", Any::class.java).invoke(
                 onPlayButtonTapped,
-                findClass("com.snap.voicenotes.PlaybackState").enumConstants.first {
+                findClass("com.snap.voicenotes.PlaybackState").enumConstants?.first {
                     it.toString() == state
                 }
             )
             return true
         }
 
-        fun playNextVoiceNote(currentContext: Any): Boolean {
-            val currentContextView = views.entries.filter { it.key.isAttachedToWindow }.firstOrNull { it.value.hashCode() == currentContext.hashCode() }?.key ?: return false
+        fun playNextVoiceNote(currentContext: Any) {
+            val currentContextMessageId = playbackMap.entries.firstOrNull { entry -> entry.value.any { it.hashCode() == currentContext.hashCode() } }?.key ?: return
 
-            val currentViewLocation = IntArray(2)
-            currentContextView.getLocationOnScreen(currentViewLocation)
+            context.log.verbose("messageId=$currentContextMessageId")
 
-            context.log.verbose("currentView -> $currentContextView")
+            val nextPlayback = playbackMap.entries.firstOrNull { it.key > currentContextMessageId }
 
-            // find a view under the current view
-            val nextView = views.entries.filter { it.key.isAttachedToWindow }.map { entry ->
-                entry to IntArray(2).let {
-                    entry.key.getLocationOnScreen(it)
-                    it[1] - currentViewLocation[1]
-                }
-            }.filter { it.second > 1 }.minByOrNull { it.second }?.first
-
-            if (nextView == null) {
+            if (nextPlayback == null) {
                 context.log.verbose("No more voice notes to play")
-                return false
+                return
             }
+            nextPlayback.value.forEach { setPlaybackState(it, "PLAYING") }
+        }
 
-            context.log.verbose("nextView -> ${nextView.key}")
-
-            return setPlaybackState(nextView.value, "PLAYING")
+        context.classCache.conversationManager.apply {
+            arrayOf("enterConversation", "exitConversation").forEach {
+                hook(it, HookStage.BEFORE) {
+                    context.coroutineScope.launch(Dispatchers.Main) {
+                        playbackMap.clear()
+                    }
+                }
+            }
         }
 
         context.mappings.useMapper(PlaybackViewContextMapper::class) {
@@ -92,10 +94,11 @@ class VoiceNoteAutoPlay: Feature("Voice Note Auto Play") {
                                     val state = listenerArgs[2]?.toString()
 
                                     if (state == "PAUSED" && lastPlayerState == "PLAYING") {
+                                        lastPlayerState = null
                                         context.log.verbose("playback finished. playing next voice note")
                                         runCatching {
-                                            if (!playNextVoiceNote(instance)) {
-                                                lastPlayerState = null
+                                            context.coroutineScope.launch(Dispatchers.Main) {
+                                                playNextVoiceNote(instance)
                                             }
                                         }.onFailure {
                                             context.log.error("Failed to play next voice note", it)
@@ -106,7 +109,6 @@ class VoiceNoteAutoPlay: Feature("Voice Note Auto Play") {
                                     function4.javaClass.methods.first { it.parameterCount == 4 }.invoke(function4, *listenerArgs)
                                 }
                             )
-
                         })
                     }
                 }
@@ -116,26 +118,38 @@ class VoiceNoteAutoPlay: Feature("Voice Note Auto Play") {
         onNextActivityCreate {
             context.event.subscribe(BindViewEvent::class) { event ->
                 if (!event.prevModel.toString().contains("audio_note")) return@subscribe
+                event.chatMessage { _, messageId ->
+                    // find view model of the audio note
+                    val viewModelField = event.prevModel.javaClass.fields.firstOrNull { field ->
+                        field.type.constructors.firstOrNull()?.parameterTypes?.takeIf { it.size == 3 }?.let { args ->
+                            args[1].interfaces.any { it.name == "com.snap.composer.utils.ComposerMarshallable" }
+                        } == true
+                    } ?: return@subscribe
 
-                // find view model of the audio note
-                val viewModelField = event.prevModel.javaClass.fields.firstOrNull { field ->
-                    field.type.constructors.firstOrNull()?.parameterTypes?.takeIf { it.size == 3 }?.let { args ->
-                        args[1].interfaces.any { it.name == "com.snap.composer.utils.ComposerMarshallable" }
-                    } == true
-                } ?: return@subscribe
+                    val viewModel = viewModelField.get(event.prevModel)
+                    var playbackViewComponentContext: Any? = null
 
-                val viewModel = viewModelField.get(event.prevModel)
-                var playbackViewComponentContext: Any? = null
+                    for (field in viewModel.javaClass.fields) {
+                        val fieldContent = runCatching { field.get(viewModel) }.getOrNull() ?: continue
+                        if (fieldContent.javaClass.declaredFields.any { it.name == "_onPlayButtonTapped" }) {
+                            playbackViewComponentContext = fieldContent
+                            break;
+                        }
+                    }
 
-                for (field in viewModel.javaClass.fields) {
-                    val fieldContent = runCatching { field.get(viewModel) }.getOrNull() ?: continue
-                    if (fieldContent.javaClass.declaredFields.any { it.name == "_onPlayButtonTapped" }) {
-                        playbackViewComponentContext = fieldContent
-                        break;
+                    if (playbackViewComponentContext == null) {
+                        context.log.warn("Failed to find playback view component context")
+                        return@subscribe
+                    }
+
+                    context.coroutineScope.launch {
+                        val serverMessageId = context.database.getConversationMessageFromId(messageId.toLong())?.serverMessageId?.toLong() ?: return@launch
+
+                        withContext(Dispatchers.Main) {
+                            playbackMap.computeIfAbsent(serverMessageId) { mutableListOf() }.add(playbackViewComponentContext)
+                        }
                     }
                 }
-
-                views[event.view] = playbackViewComponentContext ?: return@subscribe
             }
         }
     }

@@ -187,6 +187,16 @@ class SnapEnhance {
     }
 
     private fun initNative() {
+        val nativeSigCacheFileHandle = appContext.fileHandlerManager.getFileHandle(FileHandleScope.INTERNAL.key, InternalFileHandleType.NATIVE_SIG_CACHE.key).toWrapper()
+
+        val oldSignatureCache = nativeSigCacheFileHandle.readBytes()
+            .takeIf {
+                it.isNotEmpty()
+            }?.toString(Charsets.UTF_8)?.also {
+                appContext.native.signatureCache = it
+                appContext.log.verbose("old signature cache $it")
+            }
+
         val lateInit = appContext.native.initOnce {
             nativeUnaryCallCallback = { request ->
                 appContext.event.post(NativeUnaryCallEvent(request.uri, request.buffer)) {
@@ -195,6 +205,14 @@ class SnapEnhance {
                 }
             }
             appContext.reloadNativeConfig()
+        }.let { init ->
+            {
+                init()
+                appContext.native.signatureCache.takeIf { it != oldSignatureCache }?.let {
+                    appContext.log.verbose("new signature cache $it")
+                    nativeSigCacheFileHandle.writeBytes(it.toByteArray(Charsets.UTF_8))
+                }
+            }
         }
 
         if (appContext.bridgeClient.getDebugProp("disable_sif", "false") != "true") {

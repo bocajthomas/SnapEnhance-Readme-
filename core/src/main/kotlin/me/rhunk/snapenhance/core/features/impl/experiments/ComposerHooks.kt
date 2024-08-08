@@ -1,14 +1,22 @@
 package me.rhunk.snapenhance.core.features.impl.experiments
 
-import android.os.ParcelFileDescriptor
+import android.app.Activity
 import android.view.View
 import android.widget.FrameLayout
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BugReport
-import androidx.compose.material3.*
+import androidx.compose.material3.Button
+import androidx.compose.material3.FilledIconButton
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -48,7 +56,7 @@ class ComposerHooks: Feature("ComposerHooks") {
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 var result by remember { mutableStateOf("") }
-                var codeContent by remember { mutableStateOf("") }
+                var codeContent by remember { mutableStateOf("return 1 + 2") }
 
                 Text("Composer Console", fontSize = 18.sp, fontWeight = FontWeight.Bold)
 
@@ -95,8 +103,11 @@ class ComposerHooks: Feature("ComposerHooks") {
 
     private val composerConsoleTag = Random.nextLong().toString()
 
-    private fun injectConsole() {
-        val root = context.mainActivity!!.findViewById<FrameLayout>(android.R.id.content)
+    private fun injectConsole(activity: Activity) {
+        val root = activity.findViewById<FrameLayout>(android.R.id.content) ?: run {
+            context.log.warn("Unable to find root view. Can't inject console.")
+            return
+        }
         root.post {
             if (root.findViewWithTag<View>(composerConsoleTag) != null) return@post
             root.addView(createComposeView(root.context) {
@@ -200,18 +211,28 @@ class ComposerHooks: Feature("ComposerHooks") {
                 context.log.error("Failed to load composer loader script", it)
             }.getOrNull() ?: return
             context.native.setComposerLoader("""
-                (() => { const _getImportsFunctionName = "$getImportsFunctionName"; $loaderScript })();
+                const i = setInterval(() => {
+                    try {
+                        require('composer_core/src/DeviceBridge').toString();
+                        clearInterval(i);
+                        (() => { const _getImportsFunctionName = "$getImportsFunctionName"; $loaderScript })();
+                    } catch (e) {}
+                }, 200)
             """.trimIndent().trim())
+        }
 
+        loadHooks()
+
+        onNextActivityCreate { activity ->
             if (config.composerConsole.get()) {
-                injectConsole()
+                injectConsole(activity)
             }
         }
 
         findClass("com.snapchat.client.composer.NativeBridge").apply {
             hook("registerNativeModuleFactory", HookStage.BEFORE) { param ->
                 val moduleFactory = param.argNullable<Any>(1) ?: return@hook
-                if (moduleFactory.javaClass.getMethod("getModulePath").invoke(moduleFactory)?.toString() != "DeviceBridge") return@hook
+                if (moduleFactory.javaClass.getMethod("getModulePath").invoke(moduleFactory)?.toString()?.contains("DeviceBridge") != true) return@hook
                 Hooker.ephemeralHookObjectMethod(moduleFactory.javaClass, moduleFactory, "loadModule", HookStage.AFTER) { methodParam ->
                     val result = methodParam.getResult() as? MutableMap<String, Any?> ?: return@ephemeralHookObjectMethod
                     result[getImportsFunctionName] = newComposerFunction {
@@ -219,7 +240,6 @@ class ComposerHooks: Feature("ComposerHooks") {
                         true
                     }
                 }
-                loadHooks()
             }
         }
     }
