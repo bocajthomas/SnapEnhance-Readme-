@@ -578,7 +578,7 @@ class ScriptingRootSection : Routes.Route() {
     override val topBarActions: @Composable() (RowScope.() -> Unit) = {
         IconButton(onClick = {
             context.androidContext.startActivity(Intent(Intent.ACTION_VIEW).apply {
-                data = "https://github.com/SnapEnhance/docs".toUri()
+                data = "https://github.com/SE-Extended/Scripts".toUri()
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK
             })
         }) {
