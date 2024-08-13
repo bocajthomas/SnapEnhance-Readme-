@@ -1,6 +1,7 @@
 package me.rhunk.snapenhance.core.event.events.impl
 
 import android.view.View
+import me.rhunk.snapenhance.common.database.impl.ConversationMessage
 import me.rhunk.snapenhance.core.event.Event
 import me.rhunk.snapenhance.core.util.ktx.getId
 
@@ -11,6 +12,14 @@ class BindViewEvent(
 ): Event() {
     val chatMessageContentContainerId by lazy {
         view.resources.getId("chat_message_content_container")
+    }
+
+    val databaseMessage by lazy {
+        var message: ConversationMessage? = null
+        chatMessage { _, messageId ->
+            message = context.database.getConversationMessageFromId(messageId.toLong())
+        }
+        message
     }
 
     inline fun chatMessage(block: (conversationId: String, messageId: String) -> Unit) {

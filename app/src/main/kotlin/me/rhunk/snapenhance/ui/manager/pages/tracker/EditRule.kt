@@ -7,11 +7,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.DeleteOutline
-import androidx.compose.material.icons.filled.ExpandLess
-import androidx.compose.material.icons.filled.ExpandMore
-import androidx.compose.material.icons.filled.Save
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -25,11 +21,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavBackStackEntry
-import me.rhunk.snapenhance.common.data.TrackerEventType
-import me.rhunk.snapenhance.common.data.TrackerRuleAction
-import me.rhunk.snapenhance.common.data.TrackerRuleActionParams
-import me.rhunk.snapenhance.common.data.TrackerRuleEvent
-import me.rhunk.snapenhance.common.data.TrackerScopeType
+import me.rhunk.snapenhance.common.data.*
 import me.rhunk.snapenhance.common.ui.rememberAsyncMutableState
 import me.rhunk.snapenhance.common.ui.rememberAsyncMutableStateList
 import me.rhunk.snapenhance.storage.*
@@ -260,29 +252,11 @@ class EditRule : Routes.Route() {
                     }
 
                     Box(modifier = Modifier.clickable {
-                        currentScopeType = TrackerScopeType.BLACKLIST
-                        addFriendDialog = AddFriendDialog(
-                            context,
-                            friendDialogActions
-                        )
-                    }) {
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(10.dp),
-                            horizontalArrangement = Arrangement.spacedBy(4.dp),
-                            verticalAlignment = Alignment.CenterVertically,
-                        ) {
-                            RadioButton(selected = scopes.isNotEmpty() && currentScopeType == TrackerScopeType.BLACKLIST, onClick = null)
-                            Text("Blacklist" + if (currentScopeType == TrackerScopeType.BLACKLIST && scopes.isNotEmpty()) " (" + scopes.size.toString() + ")" else "")
-                        }
-                    }
-
-                    Box(modifier = Modifier.clickable {
                         currentScopeType = TrackerScopeType.WHITELIST
                         addFriendDialog = AddFriendDialog(
                             context,
-                            friendDialogActions
+                            friendDialogActions,
+                            pinnedIds = scopes,
                         )
                     }) {
                         Row(
@@ -293,7 +267,27 @@ class EditRule : Routes.Route() {
                             verticalAlignment = Alignment.CenterVertically,
                         ) {
                             RadioButton(selected = scopes.isNotEmpty() && currentScopeType == TrackerScopeType.WHITELIST, onClick = null)
-                            Text("Whitelist" + if (currentScopeType == TrackerScopeType.WHITELIST && scopes.isNotEmpty()) " (" + scopes.size.toString() + ")" else "")
+                            Text("No one except " + if (currentScopeType == TrackerScopeType.WHITELIST && scopes.isNotEmpty()) scopes.size.toString() + " friends/groups" else "...")
+                        }
+                    }
+
+                    Box(modifier = Modifier.clickable {
+                        currentScopeType = TrackerScopeType.BLACKLIST
+                        addFriendDialog = AddFriendDialog(
+                            context,
+                            friendDialogActions,
+                            pinnedIds = scopes,
+                        )
+                    }) {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(10.dp),
+                            horizontalArrangement = Arrangement.spacedBy(4.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                        ) {
+                            RadioButton(selected = scopes.isNotEmpty() && currentScopeType == TrackerScopeType.BLACKLIST, onClick = null)
+                            Text("Everyone except " + if (currentScopeType == TrackerScopeType.BLACKLIST && scopes.isNotEmpty()) scopes.size.toString() + " friends/groups" else "...")
                         }
                     }
 

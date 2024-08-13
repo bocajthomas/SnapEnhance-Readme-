@@ -60,6 +60,7 @@ class FeatureManager(
 
     fun init() {
         register(
+            SecurityFeatures(),
             EndToEndEncryption(),
             ScopeSync(),
             PreventMessageListAutoScroll(),
@@ -134,7 +135,7 @@ class FeatureManager(
             ContextMenuFix(),
             DisableTelecomFramework(),
             BetterTranscript(),
-            VoiceNoteAutoPlay(),
+            VoiceNoteOverride(),
         )
 
         features.values.toList().forEach { feature ->

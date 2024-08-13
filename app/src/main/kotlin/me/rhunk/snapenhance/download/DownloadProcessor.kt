@@ -24,6 +24,7 @@ import me.rhunk.snapenhance.common.data.download.InputMedia
 import me.rhunk.snapenhance.common.data.download.SplitMediaAssetType
 import me.rhunk.snapenhance.common.util.snap.MediaDownloaderHelper
 import me.rhunk.snapenhance.common.util.snap.RemoteMediaResolver
+import me.rhunk.snapenhance.core.features.impl.downloader.decoder.AttachmentType
 import me.rhunk.snapenhance.task.PendingTask
 import me.rhunk.snapenhance.task.PendingTaskListener
 import me.rhunk.snapenhance.task.Task
@@ -278,7 +279,7 @@ class DownloadProcessor (
             val media = downloadedMedias[inputMedia]!!
 
             if (!downloadRequest.isDashPlaylist) {
-                if (inputMedia.attachmentType == "NOTE") {
+                if (inputMedia.attachmentType == AttachmentType.NOTE.key) {
                     remoteSideContext.config.root.downloader.forceVoiceNoteFormat.getNullable()?.let { format ->
                         val outputFile = File.createTempFile("voice_note", ".$format")
                         newFFMpegProcessor(pendingTask).execute(FFMpegProcessor.Request(

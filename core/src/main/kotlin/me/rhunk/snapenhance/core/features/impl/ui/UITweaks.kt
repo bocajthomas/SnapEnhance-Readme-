@@ -10,6 +10,8 @@ import me.rhunk.snapenhance.core.event.events.impl.AddViewEvent
 import me.rhunk.snapenhance.core.event.events.impl.BindViewEvent
 import me.rhunk.snapenhance.core.event.events.impl.LayoutInflateEvent
 import me.rhunk.snapenhance.core.features.Feature
+import me.rhunk.snapenhance.core.ui.getComposerContext
+import me.rhunk.snapenhance.core.util.dataBuilder
 import me.rhunk.snapenhance.core.util.hook.HookStage
 import me.rhunk.snapenhance.core.util.hook.Hooker
 import me.rhunk.snapenhance.core.util.hook.hook
@@ -154,6 +156,14 @@ class UITweaks : Feature("UITweaks") {
                         it.setArg(1, 1)
                         it.setArg(3, displayMetrics.heightPixels)
                     }
+                }
+            }
+
+            if (hiddenElements.contains("hide_billboard_prompt") && event.parent.javaClass.name.endsWith("BillboardFeedHeaderPromptComponent")) {
+                hideView(event.parent)
+                view.getComposerContext()?.componentContext?.get()?.dataBuilder {
+                    val dismissFunction = get<Any>("_onDismiss") ?: return@subscribe
+                    dismissFunction.javaClass.getMethod("invoke").invoke(dismissFunction)
                 }
             }
 

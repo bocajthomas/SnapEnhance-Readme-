@@ -45,27 +45,6 @@ class SocialRootSection : Routes.Route() {
         }
     }
 
-    private val addFriendDialog by lazy {
-        AddFriendDialog(context, AddFriendDialog.Actions(
-            onFriendState = { friend, state ->
-                if (state) {
-                    context.bridgeService?.triggerScopeSync(SocialScope.FRIEND, friend.userId)
-                } else {
-                    context.database.deleteFriend(friend.userId)
-                }
-            },
-            onGroupState = { group, state ->
-                if (state) {
-                    context.bridgeService?.triggerScopeSync(SocialScope.GROUP, group.conversationId)
-                } else {
-                    context.database.deleteGroup(group.conversationId)
-                }
-            },
-            getFriendState = { friend -> context.database.getFriendInfo(friend.userId) != null },
-            getGroupState = { group -> context.database.getGroupInfo(group.conversationId) != null }
-        ))
-    }
-
     @Composable
     private fun ScopeList(scope: SocialScope) {
         val remainingHours = remember { context.config.root.streaksReminder.remainingHours.get() }
@@ -211,11 +190,11 @@ class SocialRootSection : Routes.Route() {
         }
         val coroutineScope = rememberCoroutineScope()
         val pagerState = rememberPagerState { titles.size }
-        var showAddFriendDialog by remember { mutableStateOf(false) }
+        var addFriendDialog by remember { mutableStateOf(null as AddFriendDialog?) }
 
-        if (showAddFriendDialog) {
-            addFriendDialog.Content {
-                showAddFriendDialog = false
+        if (addFriendDialog != null) {
+            addFriendDialog?.Content {
+                addFriendDialog = null
             }
             DisposableEffect(Unit) {
                 onDispose {
@@ -232,7 +211,28 @@ class SocialRootSection : Routes.Route() {
             floatingActionButton = {
                 FloatingActionButton(
                     onClick = {
-                        showAddFriendDialog = true
+                        addFriendDialog = AddFriendDialog(
+                            context,
+                            AddFriendDialog.Actions(
+                                onFriendState = { friend, state ->
+                                    if (state) {
+                                        context.bridgeService?.triggerScopeSync(SocialScope.FRIEND, friend.userId)
+                                    } else {
+                                        context.database.deleteFriend(friend.userId)
+                                    }
+                                },
+                                onGroupState = { group, state ->
+                                    if (state) {
+                                        context.bridgeService?.triggerScopeSync(SocialScope.GROUP, group.conversationId)
+                                    } else {
+                                        context.database.deleteGroup(group.conversationId)
+                                    }
+                                },
+                                getFriendState = { friend -> context.database.getFriendInfo(friend.userId) != null },
+                                getGroupState = { group -> context.database.getGroupInfo(group.conversationId) != null }
+                            ),
+                            pinnedIds = (friendList.map { it.userId } + groupList.map { it.conversationId }).reversed(),
+                        )
                     },
                     modifier = Modifier.padding(10.dp),
                     containerColor = MaterialTheme.colorScheme.primary,

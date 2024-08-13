@@ -40,13 +40,13 @@ class MessageIndicators : Feature("Message Indicators") {
             val appleLogo = AppleLogo
 
             context.event.subscribe(BindViewEvent::class) { event ->
-                event.chatMessage { _, messageId ->
+                event.chatMessage { _, _ ->
                     val parentLinearLayout = event.view.parent as? ViewGroup ?: return@subscribe
                     parentLinearLayout.findViewWithTag<View>(messageInfoTag)?.let { parentLinearLayout.removeView(it) }
 
                     event.view.removeForegroundDrawable("messageIndicators")
 
-                    val message = context.database.getConversationMessageFromId(messageId.toLong()) ?: return@chatMessage
+                    val message = event.databaseMessage ?: return@chatMessage
                     if (message.contentType != ContentType.SNAP.id && message.contentType != ContentType.EXTERNAL_MEDIA.id) return@chatMessage
                     val reader = ProtoReader(message.messageContent ?: return@chatMessage)
 

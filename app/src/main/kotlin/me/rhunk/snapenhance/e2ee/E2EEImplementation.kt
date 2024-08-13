@@ -42,7 +42,7 @@ class E2EEImplementation (
             runCatching {
                 File(e2eeFolder, "$friendId.key").readBytes()
             }.onFailure {
-                context.log.error("Failed to read shared secret key", it)
+                context.log.warn("Failed to read shared secret key: ${it.message}")
             }.getOrNull()
         }
     }

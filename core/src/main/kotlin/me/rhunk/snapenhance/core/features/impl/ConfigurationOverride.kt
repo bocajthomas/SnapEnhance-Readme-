@@ -67,6 +67,7 @@ class ConfigurationOverride : Feature("Configuration Override") {
             arrayOf("CUSTOM_AD_TRACKER_URL", "CUSTOM_AD_INIT_SERVER_URL", "CUSTOM_AD_SERVER_URL", "INIT_PRIMARY_URL", "INIT_SHADOW_URL", "GRAPHENE_HOST").forEach {
                 overrideProperty(it, { context.config.global.blockAds.get() }, { "http://127.0.0.1" })
             }
+            overrideProperty("GIFTING_CHAT_BIRTHDAY_UPSELL_ENABLED", { context.config.userInterface.hideUiComponents.get().contains("hide_snapchat_plus_gift_reminders") }, { false })
 
             classReference.getAsClass()?.hook(
                 getProperty.getAsString()!!,

@@ -6,7 +6,6 @@ import android.content.Intent
 import android.database.sqlite.SQLiteDatabase
 import android.net.Uri
 import android.os.ParcelFileDescriptor
-import android.widget.FrameLayout
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -26,12 +25,12 @@ import kotlinx.coroutines.withContext
 import me.rhunk.snapenhance.common.data.FileType
 import me.rhunk.snapenhance.common.ui.AppMaterialTheme
 import me.rhunk.snapenhance.common.ui.createComposeAlertDialog
-import me.rhunk.snapenhance.common.ui.createComposeView
 import me.rhunk.snapenhance.common.util.ktx.toParcelFileDescriptor
 import me.rhunk.snapenhance.common.util.snap.MediaDownloaderHelper
 import me.rhunk.snapenhance.core.event.events.impl.ActivityResultEvent
 import me.rhunk.snapenhance.core.event.events.impl.AddViewEvent
 import me.rhunk.snapenhance.core.features.Feature
+import me.rhunk.snapenhance.core.ui.CustomComposable
 import me.rhunk.snapenhance.core.util.hook.HookStage
 import me.rhunk.snapenhance.core.util.hook.hook
 import me.rhunk.snapenhance.core.util.ktx.getId
@@ -507,24 +506,26 @@ class AccountSwitcher: Feature("Account Switcher") {
             }
         }
 
-        findClass("com.snap.identity.loginsignup.ui.LoginSignupActivity").apply {
-            hook("onPostCreate", HookStage.AFTER) {
-                context.mainActivity!!.findViewById<FrameLayout>(android.R.id.content).addView(createComposeView(context.mainActivity!!) {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                    ) {
-                        Button(
-                            onClick = { showManagementPopup() },
-                            modifier = Modifier.padding(16.dp)
-                        ) {
-                            Text("Switch Account")
-                        }
-                    }
-                }.apply {
-                    layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT).apply {
-                        gravity = android.view.Gravity.TOP or android.view.Gravity.START
-                    }
-                })
+        val switchButtonComposable: CustomComposable = {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .align(Alignment.TopStart),
+            ) {
+                Button(
+                    onClick = { showManagementPopup() },
+                    modifier = Modifier.padding(16.dp)
+                ) {
+                    Text("Switch Account")
+                }
+            }
+        }
+
+        onNextActivityCreate { activity ->
+            if (!activity.componentName.className.endsWith("LoginSignupActivity")) return@onNextActivityCreate
+            context.inAppOverlay.addCustomComposable(switchButtonComposable)
+            onNextActivityCreate {
+                context.inAppOverlay.removeCustomComposable(switchButtonComposable)
             }
         }
     }

@@ -179,3 +179,9 @@ fun AppDatabase.getRuleIds(type: String): MutableList<String> {
     }
 }
 
+fun AppDatabase.clearRuleIds(type: String) {
+    executeAsync {
+        database.execSQL("DELETE FROM rules WHERE type = ?", arrayOf(type))
+    }
+}
+

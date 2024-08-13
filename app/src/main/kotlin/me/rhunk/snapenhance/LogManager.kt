@@ -2,8 +2,6 @@ package me.rhunk.snapenhance
 
 import android.util.Log
 import com.google.gson.GsonBuilder
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import me.rhunk.snapenhance.common.data.FileType
 import me.rhunk.snapenhance.common.logger.AbstractLogger
 import me.rhunk.snapenhance.common.logger.LogChannel
@@ -120,6 +118,7 @@ class LogManager(
         private val LOG_LIFETIME = 24.hours
     }
 
+    private val printLogLock = Any()
     private val anonymizeLogs by lazy { !remoteSideContext.config.root.scripting.disableLogAnonymization.get() }
 
     var lineAddListener = { _: LogLine -> }
@@ -146,28 +145,28 @@ class LogManager(
     }
 
     fun internalLog(tag: String, logLevel: LogLevel, message: Any?) {
-        runCatching {
-            val anonymizedMessage = message.toString().let {
-                if (remoteSideContext.config.isInitialized() && anonymizeLogs)
-                    it.replace(uuidRegex, "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")
-                        .replace(contentUriRegex, "content://xxx")
-                        .replace(filePathRegex, "xxxxxxxx.$2")
-                else it
-            }
-            val line = LogLine(
-                logLevel = logLevel,
-                dateTime = getCurrentDateTime(),
-                tag = tag,
-                message = anonymizedMessage
-            )
-            remoteSideContext.coroutineScope.launch(Dispatchers.IO) {
+        synchronized(printLogLock) {
+            runCatching {
+                val anonymizedMessage = message.toString().let {
+                    if (remoteSideContext.config.isInitialized() && anonymizeLogs)
+                        it.replace(uuidRegex, "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx")
+                            .replace(contentUriRegex, "content://xxx")
+                            .replace(filePathRegex, "xxxxxxxx.$2")
+                    else it
+                }
+                val line = LogLine(
+                    logLevel = logLevel,
+                    dateTime = getCurrentDateTime(),
+                    tag = tag,
+                    message = anonymizedMessage
+                )
                 logFile?.appendText("|$line\n", Charsets.UTF_8)
+                lineAddListener(line)
+                Log.println(logLevel.priority, tag, anonymizedMessage)
+            }.onFailure {
+                Log.println(Log.ERROR, tag, "Failed to log message: $message")
+                Log.println(Log.ERROR, tag, it.stackTraceToString())
             }
-            lineAddListener(line)
-            Log.println(logLevel.priority, tag, anonymizedMessage)
-        }.onFailure {
-            Log.println(Log.ERROR, tag, "Failed to log message: $message")
-            Log.println(Log.ERROR, tag, it.stackTraceToString())
         }
     }
 

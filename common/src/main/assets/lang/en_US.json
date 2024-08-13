@@ -28,6 +28,7 @@
         "routes": {
             "tasks": "Tasks",
             "features": "Features",
+            "manage_rule_feature": "Manage Rule Feature",
             "home": "Home",
             "home_settings": "Settings",
             "home_logs": "Logs",
@@ -94,6 +95,18 @@
                 "config_import_failure_toast": "Failed to import config {error}",
                 "config_export_failure_toast": "Failed to export config {error}",
                 "saved_config_snackbar": "Config saved"
+            },
+            "manage_rule_feature": {
+                "disable_state_option": "Disabled",
+                "disable_state_subtext": "No friends/groups will be affected",
+                "whitelist_state_option": "No one except ...",
+                "whitelist_state_subtext": "Only {count} friends/groups will be affected by this rule",
+                "whitelist_state_button": "Select allowed friends/groups",
+                "blacklist_state_option": "Everyone except ...",
+                "blacklist_state_subtext": "Everyone except {count} friends/groups will be affected by this rule",
+                "blacklist_state_button": "Select excluded friends/groups",
+                "clear_list_button": "Clear friends/groups list",
+                "dialog_clear_confirmation_text": "Are you sure you want to clear the list?"
             },
             "social": {
                 "friends_tab": "Friends",
@@ -301,7 +314,7 @@
         },
         "security_features": {
             "name": "Security Features",
-            "description": "Access security features"
+            "description": "Change security features preferences"
         },
         "file_imports": {
             "name": "File Imports",
@@ -364,6 +377,10 @@
                     "force_voice_note_format": {
                         "name": "Force Voice Note Format",
                         "description": "Forces Voice Notes to be saved in a specified Format"
+                    },
+                    "auto_download_voice_notes": {
+                        "name": "Auto Download Voice Notes",
+                        "description": "Automatically downloads voice notes when playing them"
                     },
                     "download_profile_pictures": {
                         "name": "Download Profile Pictures",

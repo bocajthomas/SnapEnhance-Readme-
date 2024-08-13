@@ -23,12 +23,12 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
 
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = "21"
     }
 }
 
@@ -44,17 +44,9 @@ fun getNativeFiles() = File(projectDir, "build/rustJniLibs/android").listFiles()
     abiFolder.takeIf { it.isDirectory }?.listFiles()?.toList() ?: emptyList()
 }
 
-tasks.register("cleanNatives") {
-    doLast {
-        println("Cleaning native files")
-        getNativeFiles()?.forEach { file ->
-            file.deleteRecursively()
-        }
-    }
-}
 
-tasks.named("preBuild").configure {
-    dependsOn("cleanNatives", "cargoBuild")
+val buildAndRename by tasks.registering {
+    dependsOn("cargoBuild")
     doLast {
         getNativeFiles()?.forEach { file ->
             if (file.name.endsWith(".so")) {
@@ -63,4 +55,18 @@ tasks.named("preBuild").configure {
             }
         }
     }
+}
+
+val cleanNatives by tasks.registering {
+    finalizedBy(buildAndRename)
+    doFirst {
+        println("Cleaning native files")
+        getNativeFiles()?.forEach { file ->
+            file.deleteRecursively()
+        }
+    }
+}
+
+tasks.named("preBuild").configure {
+    dependsOn(cleanNatives)
 }

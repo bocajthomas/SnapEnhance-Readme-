@@ -26,6 +26,7 @@ import me.rhunk.snapenhance.ui.manager.pages.social.MessagingPreview
 import me.rhunk.snapenhance.ui.manager.pages.social.SocialRootSection
 import me.rhunk.snapenhance.ui.manager.pages.theming.EditThemeSection
 import me.rhunk.snapenhance.ui.manager.pages.ManageReposSection
+import me.rhunk.snapenhance.ui.manager.pages.features.ManageRuleFeature
 import me.rhunk.snapenhance.ui.manager.pages.theming.ThemingRoot
 import me.rhunk.snapenhance.ui.manager.pages.tracker.EditRule
 import me.rhunk.snapenhance.ui.manager.pages.tracker.FriendTrackerManagerRoot
@@ -52,6 +53,7 @@ class Routes(
     val tasks = route(RouteInfo("tasks", icon = Icons.Default.TaskAlt, primary = true), TasksRootSection())
 
     val features = route(RouteInfo("features", icon = Icons.Default.Stars, primary = true), FeaturesRootSection())
+    val manageRuleFeature = route(RouteInfo("manage_rule_feature/?rule_type={rule_type}"), ManageRuleFeature()).parent(features)
 
     val home = route(RouteInfo("home", icon = Icons.Default.Home, primary = true), HomeRootSection())
     val settings = route(RouteInfo("home_settings"), HomeSettings()).parent(home)

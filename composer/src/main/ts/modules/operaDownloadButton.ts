@@ -8,7 +8,6 @@ export default defineModule({
     name: "Opera Download Button",
     enabled: config => config.operaDownloadButton,
     init() {
-        const downloadIcon = assetCatalog.loadCatalog("share_sheet/res").downloadIcon
         interceptComponent(
             'context_chrome_header/src/ChromeHeaderRenderer',
             'ChromeHeaderRenderer',
@@ -24,7 +23,7 @@ export default defineModule({
                         objectFit: "contain",
                         tint: "white"
                     }))
-                    jsx.setAttribute("src", downloadIcon)
+                    jsx.setAttribute("src", assetCatalog.loadCatalog("share_sheet/res").downloadIcon)
                     jsx.setAttributeFunction("onTap", () => downloadLastOperaMedia(false))
                     jsx.setAttributeFunction("onLongPress", () => downloadLastOperaMedia(true))
                     jsx.endRender()
