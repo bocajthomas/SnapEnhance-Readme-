@@ -60,7 +60,6 @@ class FeatureManager(
 
     fun init() {
         register(
-            SecurityFeatures(),
             EndToEndEncryption(),
             ScopeSync(),
             PreventMessageListAutoScroll(),
