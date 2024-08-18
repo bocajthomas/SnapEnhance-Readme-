@@ -188,6 +188,11 @@ class HomeRootSection : Routes.Route() {
                     .padding(all = 10.dp)
             ) {
                 ExternalLinkIcon(
+                    imageVector = ImageVector.vectorResource(id = R.drawable.ic_codeberg),
+                    link = "https://codeberg.org/SnapEnhance/SnapEnhance"
+                )
+
+                ExternalLinkIcon(
                     imageVector = ImageVector.vectorResource(id = R.drawable.ic_telegram),
                     link = "https://t.me/SE_Extended"
                 )
@@ -198,8 +203,8 @@ class HomeRootSection : Routes.Route() {
                 )
 
                 ExternalLinkIcon(
-                    size = 36.dp,
-                    modifier = Modifier.offset(y = (-2).dp),
+                    size = 38.dp,
+                    modifier = Modifier.offset(x = (-3).dp, y = (-3).dp),
                     imageVector = Icons.AutoMirrored.Default.Help,
                     link = "https://github.com/bocajthomas/SE-Extended/wiki"
                 )

@@ -103,7 +103,7 @@ class RemoteSharedLibraryManager(
                             0,
                             Intent().apply {
                                 action = Intent.ACTION_VIEW
-                                data = "https://github.com/SnapEnhance/resources".toUri()
+                                data = "https://codeberg.org/SnapEnhance/resources".toUri()
                                 flags = Intent.FLAG_ACTIVITY_NEW_TASK
                             },
                             PendingIntent.FLAG_UPDATE_CURRENT
