@@ -1,5 +1,7 @@
 package me.rhunk.snapenhance.core.util
 
+import java.lang.reflect.Proxy
+
 
 inline fun Any?.dataBuilder(dataClassBuilder: DataClassBuilder.() -> Unit): Any? {
     return DataClassBuilder(
@@ -12,18 +14,34 @@ inline fun Any?.dataBuilder(dataClassBuilder: DataClassBuilder.() -> Unit): Any?
     ).apply(dataClassBuilder).build()
 }
 
+fun makeFunctionProxy(function: Any, handler: (args: Array<Any?>, originalCall: (Array<Any?>) -> Any?) -> Any?): Any {
+    val type = function.javaClass.interfaces.firstOrNull() ?: function.javaClass
+    val method = type.methods.firstOrNull {
+        it.declaringClass == type
+    }
+
+    return Proxy.newProxyInstance(
+        function::class.java.classLoader,
+        arrayOf(type)
+    ) { _, _, args ->
+        handler(args) { newArgs ->
+            method?.invoke(function, *newArgs)
+        }
+    }
+}
+
 // Util for building/editing data classes
 class DataClassBuilder(
     private val instance: Any,
 ) {
     fun set(fieldName: String, value: Any?) {
         val field = instance::class.java.declaredFields.firstOrNull { it.name == fieldName } ?: return
-        val fieldType = field.type
+        val fieldType = field.type ?: return
         field.isAccessible = true
 
         when {
             fieldType.isEnum -> {
-                val enumValue = fieldType.enumConstants.firstOrNull { it.toString() == value } ?: return
+                val enumValue = fieldType.enumConstants?.firstOrNull { it.toString() == value } ?: return
                 field.set(instance, enumValue)
             }
             fieldType.isPrimitive -> {
@@ -67,6 +85,12 @@ class DataClassBuilder(
 
     fun <T> cast(type: Class<T>, callback: T.() -> Unit) {
         type.cast(instance)?.let { callback(it) }
+    }
+
+    fun interceptFieldInterface(fieldName: String, callback: (args: Array<Any?>, originalCall: (Array<Any?>) -> Any?) -> Any?) {
+        val field = instance.javaClass.declaredFields.firstOrNull { it.name == fieldName } ?: return
+        field.isAccessible = true
+        set(fieldName, field.get(instance)?.let { makeFunctionProxy(it, callback) } ?: return)
     }
 
     fun build() = instance

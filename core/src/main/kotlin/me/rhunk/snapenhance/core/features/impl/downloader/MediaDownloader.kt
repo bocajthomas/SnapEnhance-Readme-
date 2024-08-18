@@ -54,7 +54,6 @@ import me.rhunk.snapenhance.mapper.impl.OperaPageViewControllerMapper
 import java.nio.file.Paths
 import java.util.UUID
 import kotlin.coroutines.suspendCoroutine
-import kotlin.io.encoding.ExperimentalEncodingApi
 import kotlin.math.absoluteValue
 
 class SnapChapterInfo(
@@ -239,6 +238,11 @@ class MediaDownloader : MessagingRuleFeature("MediaDownloader", MessagingRuleTyp
             DownloadMediaType.fromUri(Uri.parse(originalMediaInfoReference)),
             originalMediaInfo.encryption?.toKeyPair()
         )
+    }
+
+    fun canAutoDownloadMessage(databaseMessage: ConversationMessage): Boolean {
+        if (context.config.downloader.preventSelfAutoDownload.get() && databaseMessage.senderId == context.database.myUserId) return false
+        return canUseRule(databaseMessage.clientConversationId!!)
     }
 
     /**
@@ -653,7 +657,7 @@ class MediaDownloader : MessagingRuleFeature("MediaDownloader", MessagingRuleTyp
     }
 
     @SuppressLint("SetTextI18n")
-    fun downloadMessageId(messageId: Long, forceAllowDuplicate: Boolean = false, isPreview: Boolean = false) {
+    fun downloadMessageId(messageId: Long, forceAllowDuplicate: Boolean = false, isPreview: Boolean = false, forceDownloadFirst: Boolean = false) {
         val messageLogger = context.feature(MessageLogger::class)
         val message = context.database.getConversationMessageFromId(messageId) ?: throw Exception("Message not found in database")
 
@@ -696,7 +700,8 @@ class MediaDownloader : MessagingRuleFeature("MediaDownloader", MessagingRuleTyp
         }
 
         if (!isPreview) {
-            if (decodedAttachments.size == 1 ||
+            if (forceDownloadFirst ||
+                decodedAttachments.size == 1 ||
                 context.isMainActivityPaused // we can't show alert dialogs when it downloads from a notification, so it downloads the first one
             ) {
                 downloadMessageAttachments(friendInfo, message, authorName,

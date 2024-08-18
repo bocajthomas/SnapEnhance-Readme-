@@ -2,6 +2,7 @@ package me.rhunk.snapenhance.ui.manager.data
 
 import com.google.gson.JsonParser
 import me.rhunk.snapenhance.common.BuildConfig
+import me.rhunk.snapenhance.common.logger.AbstractLogger
 import okhttp3.OkHttpClient
 import okhttp3.Request
 
@@ -12,7 +13,7 @@ object Updater {
         val releaseUrl: String
     )
 
-    fun checkForLatestRelease(): LatestRelease? {
+    private fun fetchLatestRelease() = runCatching {
         val endpoint = Request.Builder().url("https://api.github.com/repos/bocajthomas/SE-Extended/releases").build()
         val response = OkHttpClient().newCall(endpoint).execute()
 
@@ -24,8 +25,14 @@ object Updater {
 
         val latestRelease = releases.get(0).asJsonObject
         val latestVersion = latestRelease.getAsJsonPrimitive("tag_name").asString
-        if (latestVersion.removePrefix("v") == BuildConfig.VERSION_NAME) return null
+        if (latestVersion.removePrefix("v") == BuildConfig.VERSION_NAME) return@runCatching null
 
-        return LatestRelease(latestVersion, endpoint.url.toString().replace("api.", "").replace("repos/", ""))
+        LatestRelease(latestVersion, endpoint.url.toString().replace("api.", "").replace("repos/", ""))
+    }.onFailure {
+        AbstractLogger.directError("Failed to fetch latest release", it)
+    }.getOrNull()
+
+    val latestRelease by lazy {
+        fetchLatestRelease()
     }
 }

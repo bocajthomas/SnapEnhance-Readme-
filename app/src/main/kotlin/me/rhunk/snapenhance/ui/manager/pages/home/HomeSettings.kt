@@ -49,7 +49,7 @@ class HomeSettings : Routes.Route() {
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(55.dp)
+                .heightIn(min = 55.dp)
                 .clickable {
                     value = !value
                     sharedPreferences
@@ -96,7 +96,7 @@ class HomeSettings : Routes.Route() {
         ShiftedRow(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(55.dp)
+                .heightIn(min = 55.dp)
                 .clickable {
                     takeAction()
                 },
@@ -106,8 +106,8 @@ class HomeSettings : Routes.Route() {
             Column(
                 modifier = Modifier.weight(1f),
             ) {
-                Text(text = context.translation["actions.$key.name"], fontSize = 16.sp, fontWeight = FontWeight.Bold)
-                context.translation.getOrNull("actions.$key.description")?.let { Text(text = it, fontSize = 12.sp, maxLines = 3) }
+                Text(text = context.translation["actions.$key.name"], fontSize = 16.sp, fontWeight = FontWeight.Bold, lineHeight = 20.sp)
+                context.translation.getOrNull("actions.$key.description")?.let { Text(text = it, fontSize = 12.sp, fontWeight = FontWeight.Light, lineHeight = 15.sp) }
             }
             IconButton(onClick = { takeAction() },
                 modifier = Modifier.padding(end = 2.dp)

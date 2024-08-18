@@ -1,26 +1,16 @@
 package me.rhunk.snapenhance.core.features.impl.experiments
 
-import android.app.Activity
-import android.view.View
-import android.widget.FrameLayout
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.BugReport
-import androidx.compose.material3.Button
-import androidx.compose.material3.FilledIconButton
-import androidx.compose.material3.Icon
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
+import androidx.compose.material3.*
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -29,9 +19,7 @@ import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.launch
 import me.rhunk.snapenhance.common.bridge.FileHandleScope
 import me.rhunk.snapenhance.common.bridge.toWrapper
-import me.rhunk.snapenhance.common.ui.AppMaterialTheme
 import me.rhunk.snapenhance.common.ui.createComposeAlertDialog
-import me.rhunk.snapenhance.common.ui.createComposeView
 import me.rhunk.snapenhance.core.features.Feature
 import me.rhunk.snapenhance.core.features.impl.downloader.MediaDownloader
 import me.rhunk.snapenhance.core.util.hook.HookStage
@@ -98,35 +86,6 @@ class ComposerHooks: Feature("ComposerHooks") {
                     Text(result)
                 }
             }
-        }
-    }
-
-    private val composerConsoleTag = Random.nextLong().toString()
-
-    private fun injectConsole(activity: Activity) {
-        val root = activity.findViewById<FrameLayout>(android.R.id.content) ?: run {
-            context.log.warn("Unable to find root view. Can't inject console.")
-            return
-        }
-        root.post {
-            if (root.findViewWithTag<View>(composerConsoleTag) != null) return@post
-            root.addView(createComposeView(root.context) {
-                AppMaterialTheme {
-                    FilledIconButton(
-                        onClick = {
-                            composerConsole.show()
-                        },
-                        modifier = Modifier.padding(top = 100.dp, end = 16.dp)
-                    ) {
-                        Icon(Icons.Default.BugReport, contentDescription = "Debug Console")
-                    }
-                }
-            }.apply {
-                tag = composerConsoleTag
-                layoutParams = FrameLayout.LayoutParams(FrameLayout.LayoutParams.WRAP_CONTENT, FrameLayout.LayoutParams.WRAP_CONTENT).apply {
-                    gravity = android.view.Gravity.TOP or android.view.Gravity.END
-                }
-            })
         }
     }
 
@@ -223,9 +182,16 @@ class ComposerHooks: Feature("ComposerHooks") {
 
         loadHooks()
 
-        onNextActivityCreate { activity ->
-            if (config.composerConsole.get()) {
-                injectConsole(activity)
+        if (config.composerConsole.get()) {
+            context.inAppOverlay.addCustomComposable {
+                FilledIconButton(
+                    onClick = {
+                        composerConsole.show()
+                    },
+                    modifier = Modifier.align(Alignment.TopEnd).padding(top = 100.dp, end = 16.dp)
+                ) {
+                    Icon(Icons.Default.BugReport, contentDescription = "Debug Console")
+                }
             }
         }
 

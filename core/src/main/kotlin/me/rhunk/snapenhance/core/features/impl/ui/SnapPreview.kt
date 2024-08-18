@@ -60,10 +60,10 @@ class SnapPreview : Feature("SnapPreview") {
             }.getOrNull()
 
             context.event.subscribe(BindViewEvent::class) { event ->
-                event.chatMessage { _, messageId ->
+                event.chatMessage { _, _ ->
                     event.view.removeForegroundDrawable("snapPreview")
 
-                    val message = context.database.getConversationMessageFromId(messageId.toLong()) ?: return@chatMessage
+                    val message = event.databaseMessage ?: return@chatMessage
                     val messageReader = ProtoReader(message.messageContent ?: return@chatMessage)
                     val contentType = ContentType.fromMessageContainer(messageReader.followPath(4, 4))
 

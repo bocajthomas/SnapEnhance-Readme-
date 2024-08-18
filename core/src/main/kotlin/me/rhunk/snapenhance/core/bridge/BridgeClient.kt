@@ -64,52 +64,64 @@ class BridgeClient(
             return true
         }
 
-        return withTimeoutOrNull(10000L) {
-            suspendCancellableCoroutine { cancellableContinuation ->
-                continuation = cancellableContinuation
-                with(context.androidContext) {
-                    //ensure the remote process is running
-                    runCatching {
-                        startActivity(Intent()
-                            .setClassName(Constants.SE_PACKAGE_NAME, "me.rhunk.snapenhance.bridge.ForceStartActivity")
-                            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
-                        )
-                    }
+        val connectionTimeout = 15000L
+        val retryDelay = 3000L
 
-                    runCatching {
-                        val intent = Intent()
-                            .setClassName(Constants.SE_PACKAGE_NAME, "me.rhunk.snapenhance.bridge.BridgeService")
-                        runCatching {
-                            if (this@BridgeClient::service.isInitialized) {
-                                unbindService(this@BridgeClient)
+        return withTimeoutOrNull(connectionTimeout) {
+            var result: Boolean? = null
+
+            for (retry in 0.. (connectionTimeout / retryDelay).toInt()) {
+                result = withTimeoutOrNull(retryDelay) {
+                    suspendCancellableCoroutine { cancellableContinuation ->
+                        continuation = cancellableContinuation
+                        with(context.androidContext) {
+                            //ensure the remote process is running
+                            runCatching {
+                                startActivity(Intent()
+                                    .setClassName(Constants.SE_PACKAGE_NAME, "me.rhunk.snapenhance.bridge.ForceStartActivity")
+                                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
+                                )
+                            }
+
+                            runCatching {
+                                val intent = Intent()
+                                    .setClassName(Constants.SE_PACKAGE_NAME, "me.rhunk.snapenhance.bridge.BridgeService")
+                                runCatching {
+                                    if (this@BridgeClient::service.isInitialized) {
+                                        unbindService(this@BridgeClient)
+                                    }
+                                }
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                                    bindService(
+                                        intent,
+                                        Context.BIND_AUTO_CREATE,
+                                        Executors.newSingleThreadExecutor(),
+                                        this@BridgeClient
+                                    )
+                                } else {
+                                    XposedHelpers.callMethod(
+                                        this,
+                                        "bindServiceAsUser",
+                                        intent,
+                                        this@BridgeClient,
+                                        Context.BIND_AUTO_CREATE,
+                                        Handler(HandlerThread("BridgeClient").apply {
+                                            start()
+                                        }.looper),
+                                        Process.myUserHandle()
+                                    )
+                                }
+                            }.onFailure {
+                                onFailure(it)
+                                resumeContinuation(false)
                             }
                         }
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                            bindService(
-                                intent,
-                                Context.BIND_AUTO_CREATE,
-                                Executors.newSingleThreadExecutor(),
-                                this@BridgeClient
-                            )
-                        } else {
-                            XposedHelpers.callMethod(
-                                this,
-                                "bindServiceAsUser",
-                                intent,
-                                this@BridgeClient,
-                                Context.BIND_AUTO_CREATE,
-                                Handler(HandlerThread("BridgeClient").apply {
-                                    start()
-                                }.looper),
-                                Process.myUserHandle()
-                            )
-                        }
-                    }.onFailure {
-                        onFailure(it)
-                        resumeContinuation(false)
                     }
                 }
+                if (result != null) break
             }
+
+            result
         }
     }
 
@@ -181,7 +193,7 @@ class BridgeClient(
 
     fun broadcastLog(tag: String, level: String, message: String) {
         message.chunked(1024 * 256).forEach {
-            safeServiceCall {
+            runCatching {
                 service.broadcastLog(tag, level, it)
             }
         }

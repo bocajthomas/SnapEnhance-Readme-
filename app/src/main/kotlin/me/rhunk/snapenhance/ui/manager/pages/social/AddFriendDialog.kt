@@ -15,13 +15,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.window.Dialog
-import androidx.compose.ui.window.DialogProperties
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import me.rhunk.snapenhance.RemoteSideContext
 import me.rhunk.snapenhance.common.ReceiversConfig
 import me.rhunk.snapenhance.common.data.MessagingFriendInfo
@@ -34,6 +28,7 @@ import me.rhunk.snapenhance.ui.util.coil.BitmojiImage
 class AddFriendDialog(
     private val context: RemoteSideContext,
     private val actionHandler: Actions,
+    private val pinnedIds: List<String>? = null
 ) {
     class Actions(
         val onFriendState: (friend: MessagingFriendInfo, state: Boolean) -> Unit,
@@ -151,8 +146,16 @@ class AddFriendDialog(
 
         LaunchedEffect(Unit) {
             context.database.receiveMessagingDataCallback = { friends, groups ->
-                cachedFriends = friends
-                cachedGroups = groups
+                cachedFriends = friends.run {
+                    if (pinnedIds != null) {
+                        sortedBy { -pinnedIds.indexOf(it.userId) }
+                    } else friends
+                }
+                cachedGroups = groups.run {
+                    if (pinnedIds != null) {
+                        sortedBy { -pinnedIds.indexOf(it.conversationId) }
+                    } else groups
+                }
                 timeoutJob?.cancel()
                 hasFetchError = false
             }
@@ -172,12 +175,12 @@ class AddFriendDialog(
             }
         }
 
-        Dialog(
+        me.rhunk.snapenhance.ui.util.Dialog(
             onDismissRequest = {
                 timeoutJob?.cancel()
                 dismiss()
             },
-            properties = DialogProperties(usePlatformDefaultWidth = false)
+            properties = me.rhunk.snapenhance.ui.util.DialogProperties(usePlatformDefaultWidth = false)
         ) {
             Card(
                 colors = CardDefaults.elevatedCardColors(),

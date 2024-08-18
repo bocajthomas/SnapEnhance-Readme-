@@ -41,6 +41,7 @@ class DownloaderConfig : ConfigContainer() {
     val forceVoiceNoteFormat = unique("force_voice_note_format", "aac", "mp3", "opus") {
         addFlags(ConfigFlag.NO_TRANSLATE)
     }
+    val autoDownloadVoiceNotes = boolean("auto_download_voice_notes") { requireRestart(); addNotices(FeatureNotice.UNSTABLE) }
     val downloadProfilePictures = boolean("download_profile_pictures") { requireRestart() }
     val operaDownloadButton = boolean("opera_download_button") { requireRestart() }
     val downloadContextMenu = boolean("download_context_menu")

@@ -10,6 +10,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import me.rhunk.snapenhance.ui.setup.screens.SetupScreen
 import me.rhunk.snapenhance.ui.util.AlertDialogs
 
@@ -40,7 +41,9 @@ class MappingsScreen : SetupScreen() {
                         throw Exception(context.translation["setup.mappings.generate_failure_no_snapchat"])
                     }
                     context.mappings.refresh()
-                    goNext()
+                    withContext(Dispatchers.Main) {
+                        goNext()
+                    }
                 }.onFailure {
                     isGenerating = false
                     infoText = context.translation["setup.mappings.generate_failure"] + "\n\n" + it.message

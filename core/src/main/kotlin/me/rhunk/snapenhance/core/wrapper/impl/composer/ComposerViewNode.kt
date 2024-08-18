@@ -16,6 +16,14 @@ fun createComposerFunction(block: (args: Array<*>) -> Any?): Any {
 }
 
 class ComposerViewNode(obj: Long) : AbstractWrapper(obj) {
+    companion object {
+        fun fromNode(composerViewNode: Any?): ComposerViewNode? {
+            return (composerViewNode?.javaClass?.methods?.firstOrNull {
+                it.name == "getNativeHandle"
+            }?.invoke(composerViewNode) as? Long)?.let { ComposerViewNode(it) } ?: return null
+        }
+    }
+
     fun getAttribute(name: String): Any? {
         return SnapEnhance.classCache.nativeBridge.methods.firstOrNull {
             it.name == "getValueForAttribute"

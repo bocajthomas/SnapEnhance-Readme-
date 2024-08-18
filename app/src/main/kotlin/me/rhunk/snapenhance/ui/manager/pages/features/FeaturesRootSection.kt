@@ -5,7 +5,6 @@ import android.net.Uri
 import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -19,7 +18,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
@@ -33,7 +31,6 @@ import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavOptions
 import androidx.navigation.compose.composable
-import com.github.skydoves.colorpicker.compose.AlphaTile
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -444,6 +441,14 @@ class FeaturesRootSection : Routes.Route() {
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     PropertyAction(property, registerClickCallback = { callback ->
+                        if (property.key.propertyTranslationPath().startsWith("rules.properties")) {
+                            clickCallback = {
+                                routes.manageRuleFeature.navigate {
+                                    put("rule_type", property.key.name)
+                                }
+                            }
+                            return@PropertyAction clickCallback!!
+                        }
                         clickCallback = callback
                         callback
                     })

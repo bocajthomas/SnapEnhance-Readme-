@@ -70,11 +70,11 @@ class ModConfig(
         }
     }
 
-    fun writeConfig() {
-        writeConfigObject(root)
+    fun writeConfig(dispatchConfigListener: Boolean = true) {
+        writeConfigObject(root, dispatchConfigListener)
     }
 
-    private fun writeConfigObject(config: RootConfig) {
+    private fun writeConfigObject(config: RootConfig, dispatchConfigListener: Boolean = true) {
         var shouldRestart = false
         var shouldCleanCache = false
         var configChanged = false
@@ -113,7 +113,7 @@ class ModConfig(
         val oldConfig = runCatching { fileWrapper.readBytes().toString(Charsets.UTF_8) }.getOrNull()
         fileWrapper.writeBytes(exportToString(config = config).toByteArray(Charsets.UTF_8))
 
-        configStateListener?.takeIf { it.asBinder().pingBinder() }?.also {
+        configStateListener?.takeIf { dispatchConfigListener && it.asBinder().pingBinder() }?.also {
             runCatching {
                 compareDiff(createRootConfig().apply {
                     fromJson(gson.fromJson(oldConfig ?: return@runCatching, JsonObject::class.java))
