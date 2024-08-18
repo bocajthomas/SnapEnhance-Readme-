@@ -112,7 +112,8 @@
             "better_location": "更好的位置",
             "theming": "主题化",
             "edit_theme": "编辑主题",
-            "manage_repos": "管理存储库"
+            "manage_repos": "管理存储库",
+            "manage_rule_feature": "管理规则功能"
         },
         "sections": {
             "home": {
@@ -243,6 +244,9 @@
             },
             "theming": {
                 "no_themes_hint": "没有找到主题"
+            },
+            "manage_rule_feature": {
+                "disable_state_option": "残疾人"
             }
         },
         "dialogs": {
