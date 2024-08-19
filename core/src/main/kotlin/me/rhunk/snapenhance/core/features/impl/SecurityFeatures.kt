@@ -53,7 +53,7 @@ class SecurityFeatures : Feature("Security Features") {
                     else -> return@addResponseCallback
                 }
 
-                if (isBlocked) {
+               /*if (isBlocked) {
                     val status = transact(token ?: return@addResponseCallback, 1)?.let {
                         val buffer = ByteArray(8192)
                         val fd = FileDescriptor().apply {
@@ -70,7 +70,7 @@ class SecurityFeatures : Feature("Security Features") {
                             addString(1, status)
                         }
                     }.toByteArray()
-                }
+                }*/
             }
         }
 
