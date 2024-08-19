@@ -22,15 +22,26 @@
         "preview": "预览",
         "stealth_mode": "隐身模式",
         "auto_download_blacklist": "自动下载黑名单",
-        "anti_auto_save": "自动保存"
+        "anti_auto_save": "自动保存",
+        "mark_snaps_as_seen": "将快照标记为所见",
+        "mark_stories_as_seen_locally": "将故事标记为本地可见"
     },
     "chat_action_menu": {
         "preview_button": "预览",
         "download_button": "下载",
-        "delete_logged_message_button": "删除已记录的消息"
+        "delete_logged_message_button": "删除已记录的消息",
+        "show_chat_edit_history": "显示聊天编辑历史记录",
+        "convert_message": "转换消息",
+        "edit_message": "编辑留言"
     },
     "opera_context_menu": {
-        "download": "下载媒体"
+        "download": "下载媒体",
+        "sent_at": "发送于 {date}",
+        "created_at": "创建于 {date}",
+        "expires_at": "到期日 {date}",
+        "media_size": "介质尺寸: {size}",
+        "media_duration": "媒体时长: {duration} 多发性硬化症",
+        "show_debug_info": "显示调试信息"
     },
     "modal_option": {
         "profile_info": "配置信息",
@@ -39,13 +50,25 @@
     "conversation_preview": {
         "streak_expiration": "在 {day} 天 {hour} 小时 {minute} 分钟",
         "title": "预览",
-        "unknown_user": "未知用户"
+        "unknown_user": "未知用户",
+        "total_messages": "发送/接收消息总数: {count}",
+        "no_messages": "没有找到消息!"
     },
     "profile_info": {
         "title": "配置信息",
         "display_name": "显示姓名 ",
         "added_date": "添加日期",
-        "birthday": "生日: {month} {day}"
+        "birthday": "生日: {month} {day}",
+        "first_created_username": "首次创建的用户名",
+        "mutable_username": "可变用户名",
+        "hidden_birthday": "生日: 隐藏",
+        "friendship": "友谊",
+        "add_source": "添加来源",
+        "snapchat_plus": "Snapchat Plus",
+        "snapchat_plus_state": {
+            "subscribed": "已订阅",
+            "not_subscribed": "未订阅"
+        }
     },
     "chat_export": {
         "dialog_negative_button": "取消",
@@ -84,13 +107,20 @@
             "home": "家",
             "home_settings": "设置",
             "friend_tracker": "好友追踪器",
-            "edit_rule": "编辑规则"
+            "edit_rule": "编辑规则",
+            "file_imports": "文件导入",
+            "better_location": "更好的位置"
         },
         "sections": {
             "home": {
                 "update_button": "下载",
                 "update_content": "版本 {version} 可用！",
-                "update_title": "SnapEnhance 更新"
+                "update_title": "SnapEnhance 更新",
+                "quick_actions_title": "快速行动",
+                "version_title": "V{versionName} · 由雅各布分叉",
+                "debug_build_summary_title": "您正在运行 SE Extended 的调试版本",
+                "debug_build_summary_content": "版本 {versionName} ({versionCode)}",
+                "debug_build_summary_date": "构建日期：{date}（{days} 天前)"
             },
             "home_logs": {
                 "no_logs_hint": "没有可用的日志",
@@ -118,7 +148,8 @@
                 "config_import_failure_toast": "导入配置失败 {error}",
                 "disabled": "残疾人",
                 "config_import_success_toast": "配置导入成功",
-                "reset_option": "重置"
+                "reset_option": "重置",
+                "config_export_failure_toast": "导出配置失败 {error}"
             },
             "tasks": {
                 "no_tasks": "没有任务",
@@ -127,7 +158,8 @@
                 "remove_selected_tasks_title": "您确定要删除选定的任务吗?",
                 "remove_selected_tasks_confirm": "删除 {count} 个任务？",
                 "remove_all_tasks_confirm": "删除所有任务?",
-                "delete_files_option": "也删除文件"
+                "delete_files_option": "也删除文件",
+                "failed_to_open_file": "无法打开文件"
             },
             "social": {
                 "streaks_expiration_short": "{hours}小时",
@@ -177,6 +209,34 @@
                 "story_failed_to_load": "加载失败",
                 "no_stories": "没有找到故事",
                 "save_from_cache_button": "从缓存中保存"
+            },
+            "file_imports": {
+                "file_import_failed": "导入文件失败: {error}",
+                "file_delete_failed": "删除文件失败",
+                "file_not_found": "文件未找到",
+                "no_files_hint": "您可以在此处导入文件以在 Snapchat 中使用。按下面的按钮导入文件.",
+                "import_file_button": "导入文件",
+                "file_imported": "文件导入成功"
+            },
+            "better_location": {
+                "spoofed_coordinates_title": "纬度 {latitude}, 长 {longitude}",
+                "save_coordinates_dialog_title": "保存坐标",
+                "saved_name_dialog_hint": "已保存的名称",
+                "latitude_dialog_hint": "纬度",
+                "longitude_dialog_hint": "经度",
+                "save_dialog_button": "节省",
+                "saved_coordinates_title": "已保存的坐标",
+                "no_saved_coordinates_hint": "没有保存坐标",
+                "delete_dialog_title": "删除保存的坐标",
+                "search_bar": "搜索",
+                "suspend_location_updates": "暂停位置更新",
+                "delete_dialog_message": "您确定要删除此保存的坐标吗",
+                "spoof_location_toggle": "恶搞位置",
+                "teleport_to_friend_button": "传送到朋友身边",
+                "choose_location_button": "选择地点",
+                "teleport_to_friend_title": "传送到朋友身边",
+                "no_friends_map": "地图上没有好友",
+                "no_friends_found": "没有找到好友"
             }
         },
         "dialogs": {
@@ -199,6 +259,14 @@
             "scripting_warning": {
                 "content": "SnapEnhance 包含一个脚本工具，允许在您的设备上执行用户定义的代码。请格外小心，仅安装来自已知可靠来源的模块。未经授权或未经验证的模块可能会给您的系统带来安全风险。",
                 "title": "警告"
+            },
+            "export_config": {
+                "title": "导出敏感数据?",
+                "content": "您想导出包含敏感数据的配置吗?（如位置坐标等）"
+            },
+            "file_imports": {
+                "no_files_settings_hint": "没有找到文件. 确保您已在文件导入部分导入所需的文件",
+                "settings_select_file_hint": "选择导入的文件"
             }
         }
     },
@@ -218,12 +286,1389 @@
             },
             "stealth": {
                 "name": "隐形模式",
-                "description": "不让任何人知道您已打开他们的 Snap/聊天和对话"
+                "description": "不让任何人知道您已打开他们的 Snap/聊天和对话",
+                "options": {
+                    "blacklist": "从隐身模式中排除",
+                    "whitelist": "隐形模式"
+                }
+            },
+            "auto_save": {
+                "options": {
+                    "blacklist": "从自动保存中排除",
+                    "whitelist": "自动保存"
+                },
+                "name": "自动保存",
+                "description": "查看聊天消息时保存它们"
+            },
+            "unsaveable_messages": {
+                "name": "无法保存的消息",
+                "description": "防止其他人在聊天中保存消息",
+                "options": {
+                    "blacklist": "从不可保存的消息中排除",
+                    "whitelist": "无法保存的消息"
+                }
+            },
+            "auto_open_snaps": {
+                "name": "自动打开按扣",
+                "description": "收到 Snap 时自动打开它们",
+                "options": {
+                    "blacklist": "从自动打开快照中排除",
+                    "whitelist": "自动打开按扣"
+                }
+            },
+            "hide_friend_feed": {
+                "name": "隐藏好友动态"
+            },
+            "e2e_encryption": {
+                "name": "使用端到端加密"
+            },
+            "pin_conversation": {
+                "name": "引脚对话"
             }
         },
         "modes": {
             "blacklist": "黑名单模式",
             "whitelist": "白名单模式"
+        }
+    },
+    "actions": {
+        "export_chat_messages": {
+            "name": "导出聊天消息",
+            "description": "将对话消息导出到 JSON/HTML/TXT 文件"
+        },
+        "export_memories": {
+            "name": "导出记忆",
+            "description": "将记忆导出为 ZIP 文件"
+        },
+        "regen_mappings": {
+            "description": "手动重新生成映射",
+            "name": "重新生成映射"
+        },
+        "change_language": {
+            "name": "改变语言",
+            "description": "更改语言 SE Extended"
+        },
+        "file_imports": {
+            "name": "文件导入",
+            "description": "导入文件以在 Snapchat 中使用"
+        },
+        "friend_tracker": {
+            "name": "好友追踪器",
+            "description": "在 Snapchat 上追踪您的朋友"
+        },
+        "clean_snapchat_cache": {
+            "description": "清理 Snapchat 缓存",
+            "name": "清理 Snapchat 缓存"
+        },
+        "manage_friend_list": {
+            "name": "管理好友列表",
+            "description": "备份时导入/导出好友列表"
+        },
+        "bulk_messaging_action": {
+            "name": "群发消息操作",
+            "description": "执行删除好友批量删除对话等操作"
+        },
+        "logger_history": {
+            "name": "记录器历史记录",
+            "description": "查看记录消息的历史记录"
+        }
+    },
+    "features": {
+        "notices": {
+            "unstable": "⚠ 不稳定",
+            "ban_risk": "⚠ 此功能可能会导致禁止",
+            "internal_behavior": "⚠ 这可能会破坏 Snapchat 的内部行为",
+            "require_native_hooks": "⚠ 此功能需要实验性 Native Hooks 才能正常工作"
+        },
+        "properties": {
+            "downloader": {
+                "name": "下载器",
+                "properties": {
+                    "auto_download_sources": {
+                        "name": "自动下载源",
+                        "description": "选择自动下载的来源"
+                    },
+                    "path_format": {
+                        "name": "路径格式",
+                        "description": "指定文件路径格式"
+                    },
+                    "prevent_self_auto_download": {
+                        "name": "防止自我自动下载",
+                        "description": "防止自动下载您自己的 Snap"
+                    },
+                    "merge_overlays": {
+                        "description": "将 Snap 的文本和媒体合并到一个文件中",
+                        "name": "合并叠加层"
+                    },
+                    "force_voice_note_format": {
+                        "name": "强制语音注释格式",
+                        "description": "强制语音笔记以指定格式保存"
+                    },
+                    "opera_download_button": {
+                        "name": "Opera 下载按钮",
+                        "description": "查看快照时在右上角添加下载按钮。\n长按按钮将强制下载"
+                    },
+                    "save_folder": {
+                        "description": "选择所有媒体应下载到的目录",
+                        "name": "保存文件夹"
+                    },
+                    "allow_duplicate": {
+                        "description": "允许多次下载相同的媒体",
+                        "name": "允许重复"
+                    },
+                    "force_image_format": {
+                        "description": "强制图像以指定格式保存",
+                        "name": "强制图像格式"
+                    },
+                    "download_profile_pictures": {
+                        "name": "下载个人资料图片",
+                        "description": "允许您从个人资料页面下载个人资料图片"
+                    },
+                    "download_context_menu": {
+                        "description": "允许您使用上下文菜单下载/预览对话或故事中的消息。\n长按按钮将强制下载",
+                        "name": "下载上下文菜单"
+                    },
+                    "ffmpeg_options": {
+                        "description": "指定额外的 FFmpeg 选项",
+                        "name": "FFmpeg 选项",
+                        "properties": {
+                            "threads": {
+                                "name": "线程数",
+                                "description": "使用的线程数量"
+                            },
+                            "preset": {
+                                "name": "预设",
+                                "description": "设置转换速度"
+                            },
+                            "custom_video_codec": {
+                                "description": "设置自定义视频编解码器（例如 libx264）",
+                                "name": "自定义视频编解码器"
+                            },
+                            "constant_rate_factor": {
+                                "name": "恒定速率因子",
+                                "description": "设置视频编码器的恒定速率因子\nlibx264 从 0 到 51"
+                            },
+                            "video_bitrate": {
+                                "name": "视频比特率",
+                                "description": "设置视频比特率（kbps）"
+                            },
+                            "audio_bitrate": {
+                                "name": "音频比特率",
+                                "description": "设置音频比特率（kbps）"
+                            },
+                            "custom_audio_codec": {
+                                "name": "自定义音频编解码器",
+                                "description": "设置自定义音频编解码器（例如 AAC）"
+                            }
+                        }
+                    },
+                    "custom_path_format": {
+                        "description": "为下载的媒体指定自定义路径格式\n\n可用变量:\n- ％用户名％\n- ％来源％\n- %哈希%\n- ％约会时间％",
+                        "name": "自定义路径格式"
+                    },
+                    "logging": {
+                        "description": "下载媒体时显示 toast",
+                        "name": "记录"
+                    }
+                },
+                "description": "下载 Snapchat 媒体"
+            },
+            "user_interface": {
+                "properties": {
+                    "customize_ui": {
+                        "properties": {
+                            "colors": {
+                                "properties": {
+                                    "text_color": {
+                                        "name": "主要文字颜色",
+                                        "description": "更改 Snapchat 主要文本颜色"
+                                    },
+                                    "friend_feed_conversations_line_color": {
+                                        "name": "对话线条颜色",
+                                        "description": "更改分隔朋友提要上的对话的分隔线颜色"
+                                    },
+                                    "pending_sending_text_color": {
+                                        "name": "次要好友提要文本颜色",
+                                        "description": "更改好友源上的（已发送/已接收/正在发送/已打开/点击聊天/按住重播/已重播/已保存在聊天中/已呼叫）的文本颜色"
+                                    },
+                                    "chat_chat_text_color": {
+                                        "name": "主要好友提要文本颜色",
+                                        "description": "更改朋友源上的（新聊天/新快照和聊天/打字/呼叫/未接来电/讲话/新语音注释）的文本颜色"
+                                    },
+                                    "snap_with_sound_text_color": {
+                                        "name": "带有声音文本颜色的快照",
+                                        "description": "更改朋友提要上（新快照）的文本颜色\n注意：仅限视频快照"
+                                    },
+                                    "snap_without_sound_text_color": {
+                                        "name": "没有声音的快照文本颜色",
+                                        "description": "更改朋友提要上（新快照）的文本颜色\n注意：仅限视频快照"
+                                    },
+                                    "action_sheet_description_text_color": {
+                                        "description": "更改操作菜单上描述的文本颜色",
+                                        "name": "操作菜单说明文本颜色"
+                                    },
+                                    "camera_grid_lines": {
+                                        "description": "更改相机预览上的 Snapchat 网格线颜色\n注意：在我的相机设置中启用网格",
+                                        "name": "相机网格线颜色"
+                                    },
+                                    "background_color": {
+                                        "name": "背景颜色",
+                                        "description": "更改 Snapchat 背景颜色"
+                                    },
+                                    "background_color_surface": {
+                                        "name": "背景表面颜色",
+                                        "description": "更改 Snapchat 背景表面颜色"
+                                    },
+                                    "action_menu_round_background_color": {
+                                        "name": "操作菜单圆形背景颜色",
+                                        "description": "更改 Snapchat 聊天操作菜单圆形背景颜色"
+                                    },
+                                    "sig_color_icon_primary": {
+                                        "name": "操作菜单图标颜色",
+                                        "description": "更改聊天操作菜单/好友提要菜单上图标的颜色"
+                                    },
+                                    "list_background_drawable": {
+                                        "name": "对话列表背景 ",
+                                        "description": "更改好友动态中对话列表的背景颜色\n这可能会破坏好友动态的外观"
+                                    },
+                                    "action_menu_background_color": {
+                                        "name": "操作菜单背景颜色",
+                                        "description": "更改 Snapchat 聊天操作菜单背景颜色"
+                                    }
+                                },
+                                "name": "定制颜色",
+                                "description": "定制个性化颜色\n注意：在主题选择器上选择“自定义颜色”即可使用"
+                            },
+                            "colors_debug": {
+                                "name": "颜色调试",
+                                "description": "日志 acquireStyledAttributes，加载 Snapchat 时正在使用\n注意：这将显着增加日志的大小"
+                            },
+                            "theme_picker": {
+                                "name": "主题选择器",
+                                "description": "预设 Snapchat 主题"
+                            }
+                        },
+                        "name": "颜色",
+                        "description": "自定义 Snapchat 颜色"
+                    },
+                    "friend_feed_message_preview": {
+                        "name": "好友动态消息预览",
+                        "description": "显示好友动态中最新消息的预览",
+                        "properties": {
+                            "amount": {
+                                "description": "要预览的消息数量",
+                                "name": "数量"
+                            }
+                        }
+                    },
+                    "hide_streak_restore": {
+                        "description": "隐藏好友源中的“恢复”按钮",
+                        "name": "隐藏连胜恢复"
+                    },
+                    "hide_story_suggestions": {
+                        "name": "隐藏故事建议",
+                        "description": "从“故事”页面删除建议"
+                    },
+                    "hide_ui_components": {
+                        "name": "隐藏 UI 组件",
+                        "description": "选择要隐藏的 UI 组件"
+                    },
+                    "enable_app_appearance": {
+                        "name": "启用应用程序外观设置",
+                        "description": "启用隐藏的应用程序外观设置\n较新的 Snapchat 版本可能不需要"
+                    },
+                    "bootstrap_override": {
+                        "properties": {
+                            "home_tab": {
+                                "description": "打开 Snapchat 时覆盖启动选项卡",
+                                "name": "主页选项卡"
+                            },
+                            "app_appearance": {
+                                "name": "应用程序外观",
+                                "description": "设置持久的应用程序外观"
+                            }
+                        },
+                        "name": "引导程序覆盖",
+                        "description": "覆盖用户界面引导程序设置"
+                    },
+                    "streak_expiration_info": {
+                        "name": "显示连续到期信息",
+                        "description": "在 Streaks 计数器旁边显示 Streak Expiration 计时器"
+                    },
+                    "hide_friend_feed_entry": {
+                        "description": "从好友动态中隐藏特定好友\n使用社交选项卡来管理此功能",
+                        "name": "隐藏好友动态条目"
+                    },
+                    "opera_media_quick_info": {
+                        "name": "Opera 媒体快速信息",
+                        "description": "在 Opera 查看器上下文菜单中显示媒体的有用信息，例如创建日期"
+                    },
+                    "snap_preview": {
+                        "name": "快照预览",
+                        "description": "在聊天中看不见的快照旁边显示一个小预览"
+                    },
+                    "hide_quick_add_friend_feed": {
+                        "description": "隐藏好友动态中的“快速添加”部分",
+                        "name": "隐藏好友动态中的快速添加"
+                    },
+                    "prevent_message_list_auto_scroll": {
+                        "description": "发送/接收消息时防止消息列表滚动到底部",
+                        "name": "防止消息列表自动滚动"
+                    },
+                    "old_bitmoji_selfie": {
+                        "description": "从旧 Snapchat 版本中恢复 Bitmoji 自拍照",
+                        "name": "老 Bitmoji 自拍照"
+                    },
+                    "map_friend_nametags": {
+                        "name": "增强的朋友地图名称标签",
+                        "description": "改进了 Snapmap 上朋友的姓名标签"
+                    },
+                    "disable_spotlight": {
+                        "name": "禁用聚光灯",
+                        "description": "禁用 Spotlight 页面"
+                    },
+                    "hide_settings_gear": {
+                        "name": "隐藏设置齿轮",
+                        "description": "在好友动态中隐藏 SE Extended 设置装备"
+                    },
+                    "friend_feed_menu_buttons": {
+                        "name": "好友动态菜单按钮",
+                        "description": "选择要在好友动态菜单中显示的按钮"
+                    },
+                    "vertical_story_viewer": {
+                        "name": "垂直故事查看器",
+                        "description": "为所有故事启用垂直故事查看器"
+                    },
+                    "enable_friend_feed_menu_bar": {
+                        "name": "好友动态菜单栏",
+                        "description": "启用新的好友动态菜单栏"
+                    },
+                    "message_indicators": {
+                        "description": "向消息添加特定指示符图标\n注意：指标可能不是 100% 准确",
+                        "name": "消息指示器"
+                    },
+                    "stealth_mode_indicator": {
+                        "name": "隐形模式指示器",
+                        "description": "在隐身模式下的对话旁边添加 👻 表情符号"
+                    },
+                    "edit_text_override": {
+                        "name": "编辑文本覆盖",
+                        "description": "覆盖文本字段行为"
+                    },
+                    "auto_close_friend_feed_menu": {
+                        "name": "自动关闭好友提要菜单",
+                        "description": "按下设置按钮后自动关闭好友动态菜单"
+                    }
+                },
+                "description": "更改 Snapchat 的外观和风格",
+                "name": "用户界面"
+            },
+            "messaging": {
+                "name": "消息传递",
+                "properties": {
+                    "anonymous_story_viewing": {
+                        "description": "防止任何人知道您看过他们的故事",
+                        "name": "匿名故事观看"
+                    },
+                    "prevent_story_rewatch_indicator": {
+                        "name": "防止故事重看指示器",
+                        "description": "防止任何人知道您重新观看了他们的故事"
+                    },
+                    "hide_peek_a_peek": {
+                        "name": "隐藏窥视",
+                        "description": "防止在您半滑进入聊天时发送通知"
+                    },
+                    "hide_bitmoji_presence": {
+                        "name": "隐藏 Bitmoji 存在",
+                        "description": "防止您的 Bitmoji 在聊天时弹出"
+                    },
+                    "hide_typing_notifications": {
+                        "name": "隐藏输入通知",
+                        "description": "防止任何人知道您正在输入消息"
+                    },
+                    "unlimited_snap_view_time": {
+                        "name": "无限快照查看时间",
+                        "description": "取消查看快照的时间限制"
+                    },
+                    "auto_mark_as_read": {
+                        "name": "自动标记为已读",
+                        "description": "即使启用隐身模式，也会自动将消息/快照标记为已读"
+                    },
+                    "mark_snap_as_seen_button": {
+                        "name": "将捕捉标记为“已见”按钮",
+                        "description": "添加一个按钮以将快照标记为查看时所见。\n即使启用隐身模式，这也将起作用"
+                    },
+                    "loop_media_playback": {
+                        "name": "循环媒体播放",
+                        "description": "查看快照/故事时循环播放媒体"
+                    },
+                    "half_swipe_notifier": {
+                        "name": "半刷通知",
+                        "properties": {
+                            "min_duration": {
+                                "name": "最短持续时间",
+                                "description": "半滑动的最短持续时间（以秒为单位）"
+                            },
+                            "max_duration": {
+                                "name": "最长持续时间",
+                                "description": "半滑动的最大持续时间（以秒为单位）"
+                            }
+                        },
+                        "description": "当有人半滑进入对话时通知您"
+                    },
+                    "call_start_confirmation": {
+                        "description": "开始通话时显示确认对话框",
+                        "name": "通话开始确认"
+                    },
+                    "prevent_message_sending": {
+                        "name": "阻止消息发送",
+                        "description": "阻止发送某些类型的消息"
+                    },
+                    "friend_mutation_notifier": {
+                        "name": "好友突变通知器",
+                        "description": "当朋友的个人资料发生变化时通知您"
+                    },
+                    "better_notifications": {
+                        "properties": {
+                            "group_notifications": {
+                                "name": "群组通知",
+                                "description": "将通知分组为一个通知"
+                            },
+                            "chat_preview": {
+                                "description": "在通知中显示收到消息的预览",
+                                "name": "聊天预览"
+                            },
+                            "media_preview": {
+                                "name": "媒体预览",
+                                "description": "在通知中显示所选媒体类型的预览"
+                            },
+                            "media_caption": {
+                                "name": "媒体标题",
+                                "description": "显示通知中附加的媒体标题"
+                            },
+                            "stacked_media_messages": {
+                                "name": "堆叠媒体消息",
+                                "description": "当无法预览多条媒体消息时，将其合并为一条文本通知。与聊天预览结合使用"
+                            },
+                            "friend_add_source": {
+                                "name": "好友添加来源",
+                                "description": "在通知中显示好友请求的来源"
+                            },
+                            "download_button": {
+                                "name": "下载按钮",
+                                "description": "允许您从通知下载媒体"
+                            },
+                            "mark_as_read_button": {
+                                "description": "允许您将消息标记为已从通知中读取",
+                                "name": "标记为已读按钮"
+                            },
+                            "mark_as_read_and_save_in_chat": {
+                                "description": "在通知中添加标记为已读并在聊天按钮中保存",
+                                "name": "在聊天中标记为已读并保存"
+                            },
+                            "reply_button": {
+                                "description": "向通知添加回复按钮",
+                                "name": "回复按钮"
+                            },
+                            "smart_replies": {
+                                "name": "智能回复",
+                                "description": "添加对通知的建议回复（Android 10+）。与回复按钮结合使用"
+                            }
+                        },
+                        "name": "更好的通知",
+                        "description": "在收到的通知中添加更多信息"
+                    },
+                    "message_logger": {
+                        "name": "消息记录器",
+                        "description": "防止消息被删除",
+                        "properties": {
+                            "message_filter": {
+                                "name": "消息过滤器",
+                                "description": "选择应记录哪些消息（所有消息为空）"
+                            },
+                            "keep_my_own_messages": {
+                                "description": "防止您自己的消息被删除",
+                                "name": "保留我自己的消息"
+                            },
+                            "auto_purge": {
+                                "name": "自动清除",
+                                "description": "自动删除早于指定时间的缓存消息"
+                            }
+                        }
+                    },
+                    "gallery_media_send_override": {
+                        "name": "图库媒体发送覆盖",
+                        "description": "从图库发送时欺骗媒体源"
+                    },
+                    "bypass_message_retention_policy": {
+                        "description": "防止消息在查看后被删除",
+                        "name": "绕过消息保留策略"
+                    },
+                    "remove_groups_locked_status": {
+                        "name": "删除组锁定状态",
+                        "description": "被踢出后可查看群组信息"
+                    },
+                    "bypass_screenshot_detection": {
+                        "name": "绕过截图检测",
+                        "description": "阻止 Snapchat 检测您何时进行屏幕截图"
+                    },
+                    "skip_when_marking_as_seen": {
+                        "name": "标记为“已见”时跳过",
+                        "description": "将快照标记为已看到时，自动跳到下一个快照。\n与“将捕捉标记为已见按钮”结合使用"
+                    },
+                    "disable_replay_in_ff": {
+                        "name": "在 FF 中禁用重播",
+                        "description": "禁用长按好友动态重播的功能"
+                    },
+                    "unlimited_conversation_pinning": {
+                        "description": "允许您在本地固定无限数量的对话",
+                        "name": "无限对话固定"
+                    },
+                    "notification_blacklist": {
+                        "description": "选择应阻止的通知",
+                        "name": "通知黑名单"
+                    },
+                    "auto_save_messages_in_conversations": {
+                        "name": "自动保存消息",
+                        "description": "自动保存对话中的每条消息"
+                    },
+                    "strip_media_metadata": {
+                        "name": "剥离媒体元数据",
+                        "description": "在作为消息发送之前删除媒体的元数据"
+                    },
+                    "bypass_message_action_restrictions": {
+                        "name": "绕过消息操作限制",
+                        "description": "允许您在不打开快照的情况下对其做出反应或保存不可保存的消息"
+                    }
+                },
+                "description": "改变你与朋友互动的方式"
+            },
+            "global": {
+                "description": "调整全局 Snapchat 设置",
+                "properties": {
+                    "better_location": {
+                        "name": "更好的位置",
+                        "description": "增强 Snapchat 位置",
+                        "properties": {
+                            "spoof_location": {
+                                "name": "恶搞位置",
+                                "description": "欺骗您的位置到指定位置"
+                            },
+                            "coordinates": {
+                                "description": "设置欺骗位置的坐标",
+                                "name": "坐标"
+                            },
+                            "walk_radius": {
+                                "name": "行走半径",
+                                "description": "在此半径（英尺）内随机走动"
+                            },
+                            "suspend_location_updates": {
+                                "description": "防止您的位置被更新",
+                                "name": "暂停位置更新"
+                            },
+                            "spoof_battery_level": {
+                                "name": "欺骗电池电量",
+                                "description": "在地图上欺骗您设备的电池电量\n值必须介于 0 到 100 之间"
+                            },
+                            "spoof_headphones": {
+                                "name": "恶搞耳机",
+                                "description": "欺骗地图上听音乐的状态"
+                            },
+                            "always_update_location": {
+                                "description": "即使没有收到 GPS 数据，也强制 Snapchat 更新位置",
+                                "name": "始终更新位置"
+                            }
+                        }
+                    },
+                    "snapchat_plus": {
+                        "name": "Snapchat Plus",
+                        "description": "启用 Snapchat Plus 功能\n某些服务器端功能可能无法使用"
+                    },
+                    "media_upload_quality": {
+                        "name": "媒体上传质量",
+                        "properties": {
+                            "force_video_upload_source_quality": {
+                                "name": "强制视频上传源质量",
+                                "description": "强制 Snapchat 在上传视频时使用源质量\n请注意，这可能不会从媒体中删除元数据"
+                            },
+                            "disable_image_compression": {
+                                "name": "禁用图像压缩",
+                                "description": "上传媒体时禁用图像压缩"
+                            },
+                            "custom_image_upload_format": {
+                                "name": "自定义图片上传格式",
+                                "description": "设置自定义图片上传格式\n选择无损格式（如 PNG）以获得最佳质量"
+                            }
+                        },
+                        "description": "覆盖媒体上传质量"
+                    },
+                    "disable_confirmation_dialogs": {
+                        "name": "禁用确认对话框",
+                        "description": "自动确认所选操作"
+                    },
+                    "auto_updater": {
+                        "name": "自动更新程序",
+                        "description": "自动检查新更新"
+                    },
+                    "disable_metrics": {
+                        "name": "禁用指标",
+                        "description": "阻止向 Snapchat 发送特定分析数据"
+                    },
+                    "disable_story_sections": {
+                        "name": "禁用故事部分",
+                        "description": "从“故事”页面中删除部分\n可能需要刷新才能正常工作"
+                    },
+                    "block_ads": {
+                        "name": "阻止广告",
+                        "description": "防止显示广告"
+                    },
+                    "disable_custom_tabs": {
+                        "name": "禁用自定义选项卡",
+                        "description": "在支持的应用程序中而不是在 Web 浏览器中打开链接"
+                    },
+                    "spotlight_comments_username": {
+                        "name": "聚光灯评论用户名",
+                        "description": "在 Spotlight 评论中显示作者用户名"
+                    },
+                    "bypass_video_length_restriction": {
+                        "name": "绕过视频长度限制",
+                        "description": "Single：发送单个视频\n分割：编辑后分割视频"
+                    },
+                    "default_video_playback_rate": {
+                        "description": "设置视频播放的默认速度\n值必须介于 0.1 和 4.0 之间",
+                        "name": "默认视频播放速率"
+                    },
+                    "video_playback_rate_slider": {
+                        "name": "视频播放速率滑块",
+                        "description": "在 Opera 上下文菜单中添加滑块以更改视频播放速率\n注意：更改仅适用于后续视频"
+                    },
+                    "default_volume_controls": {
+                        "name": "默认音量控制",
+                        "description": "强制 Snapchat 使用系统音量控制"
+                    },
+                    "disable_telecom_framework": {
+                        "name": "禁用电信框架",
+                        "description": "阻止 Snapchat 使用 Android Telecom 框架\n这使您可以在通话时听音乐"
+                    },
+                    "disable_snap_splitting": {
+                        "name": "禁用捕捉分割",
+                        "description": "防止 Snap 被分割成多个部分\n您发送的图片将变成视频"
+                    },
+                    "disable_google_play_dialogs": {
+                        "name": "禁用 Google Play 服务对话框",
+                        "description": "阻止显示 Google Play 服务可用性对话框"
+                    },
+                    "disable_permission_requests": {
+                        "name": "禁用权限请求",
+                        "description": "防止 Snapchat 请求特定权限"
+                    },
+                    "disable_memories_snap_feed": {
+                        "name": "禁用内存快照",
+                        "description": "当您在相机中向上滑动时，阻止 Snapchat 显示最近的记忆"
+                    },
+                    "hide_active_music": {
+                        "name": "隐藏当前音乐",
+                        "description": "阻止 Snapchat 知道您正在听音乐\n这将允许您在听音乐时使用控制音量按钮拍摄快照"
+                    }
+                },
+                "name": "全球的"
+            },
+            "rules": {
+                "description": "管理个人的自动功能",
+                "name": "规则"
+            },
+            "camera": {
+                "description": "调整正确的设置以获得完美的快照",
+                "properties": {
+                    "disable_cameras": {
+                        "description": "阻止 Snapchat 使用选定的摄像头",
+                        "name": "禁用相机"
+                    },
+                    "black_photos": {
+                        "name": "黑色照片",
+                        "description": "将拍摄的照片替换为黑色背景\n视频不受影响"
+                    },
+                    "immersive_camera_preview": {
+                        "name": "沉浸式预览",
+                        "description": "防止 Snapchat 裁剪相机预览\n这可能会导致相机在某些设备上闪烁"
+                    },
+                    "override_front_resolution": {
+                        "name": "覆盖前端分辨率",
+                        "description": "覆盖前置摄像头的摄像头分辨率"
+                    },
+                    "override_back_resolution": {
+                        "description": "覆盖后置摄像头的摄像头分辨率",
+                        "name": "覆盖后向分辨率"
+                    },
+                    "custom_resolution": {
+                        "name": "自定义分辨率",
+                        "description": "设置自定义相机分辨率，宽度 x 高度（例如 1920x1080）。\n您的设备必须支持自定义分辨率"
+                    },
+                    "back_custom_frame_rate": {
+                        "name": "返回 自定义帧率",
+                        "description": "覆盖后置摄像头帧速率"
+                    },
+                    "force_camera_source_encoding": {
+                        "description": "强制相机源编码",
+                        "name": "强制相机源编码"
+                    },
+                    "front_custom_frame_rate": {
+                        "description": "覆盖前置摄像头帧速率",
+                        "name": "前置自定义帧率"
+                    },
+                    "hevc_recording": {
+                        "name": "HEVC 录制",
+                        "description": "使用 HEVC (H.265) 编解码器进行视频录制"
+                    }
+                },
+                "name": "相机"
+            },
+            "streaks_reminder": {
+                "name": "条纹提醒",
+                "description": "定期通知您有关您的连胜",
+                "properties": {
+                    "interval": {
+                        "name": "间隔",
+                        "description": "每次提醒的间隔时间（小时）"
+                    },
+                    "remaining_hours": {
+                        "description": "显示通知之前的剩余时间（小时）",
+                        "name": "剩余时间"
+                    },
+                    "group_notifications": {
+                        "name": "群组通知",
+                        "description": "将通知分组为一个通知"
+                    }
+                }
+            },
+            "experimental": {
+                "name": "实验性的",
+                "description": "实验特点",
+                "properties": {
+                    "native_hooks": {
+                        "name": "原生钩子",
+                        "description": "与 Snapchat 原生代码挂钩的不安全功能",
+                        "properties": {
+                            "composer_hooks": {
+                                "name": "作曲家挂钩",
+                                "description": "将代码注入 Composer 跨平台 UI 框架",
+                                "properties": {
+                                    "show_first_created_username": {
+                                        "description": "在个人资料页面中当前用户名旁边显示第一个创建的用户名",
+                                        "name": "显示第一个创建的用户名"
+                                    },
+                                    "bypass_camera_roll_limit": {
+                                        "description": "增加可以从相机胶卷发送的最大媒体量",
+                                        "name": "绕过相机胶卷限制"
+                                    },
+                                    "composer_console": {
+                                        "name": "作曲家控制台",
+                                        "description": "允许您在 Composer 中执行 JavaScript 代码（仅限 ARM64）"
+                                    },
+                                    "composer_logs": {
+                                        "name": "作曲家日志",
+                                        "description": "将 Composer 的控制台日志重定向到 SE Extended"
+                                    }
+                                }
+                            },
+                            "custom_emoji_font": {
+                                "description": "允许您使用自定义表情符号字体。仅适用于 .ttf 字体",
+                                "name": "自定义表情符号字体"
+                            },
+                            "disable_bitmoji": {
+                                "name": "禁用 Bitmoji",
+                                "description": "禁用好友个人资料 Bitmoji"
+                            },
+                            "remap_executable": {
+                                "name": "重新映射可执行文件",
+                                "description": "重新映射内存中的可执行区域"
+                            }
+                        }
+                    },
+                    "spoof": {
+                        "name": "欺骗",
+                        "description": "伪造有关您的各种信息",
+                        "properties": {
+                            "play_store_installer_package_name": {
+                                "name": "Play 商店安装程序包名称",
+                                "description": "将安装程序包名称覆盖为 com.android.vending"
+                            },
+                            "fingerprint": {
+                                "name": "设备指纹",
+                                "description": "欺骗您的设备指纹"
+                            },
+                            "android_id": {
+                                "name": "安卓ID",
+                                "description": "将您的 Android ID 欺骗为指定值"
+                            },
+                            "remove_vpn_transport_flag": {
+                                "name": "删除 VPN 传输标志",
+                                "description": "阻止 Snapchat 检测 VPN"
+                            },
+                            "remove_mock_location_flag": {
+                                "name": "删除模拟位置标志",
+                                "description": "阻止 Snapchat 检测模拟位置"
+                            },
+                            "randomize_persistent_device_token": {
+                                "name": "随机化持久设备令牌",
+                                "description": "每次登录后生成随机设备令牌"
+                            }
+                        }
+                    },
+                    "experimental_colors": {
+                        "name": "实验颜色选项",
+                        "properties": {
+                            "ring_color": {
+                                "name": "戒指颜色",
+                                "description": "对某物的颜色做某事;）"
+                            },
+                            "sig_color_icon_secondary": {
+                                "name": "Sig 颜色图标次要",
+                                "description": "对某物的颜色做某事；）"
+                            },
+                            "item_shape_fill_color": {
+                                "description": "对某物的颜色做某事；）",
+                                "name": "项目形状填充颜色"
+                            },
+                            "ring_start_color": {
+                                "name": "环起始颜色",
+                                "description": "对某物的颜色做某事；）"
+                            },
+                            "sig_color_layout_place_holder": {
+                                "description": "对某物的颜色做某事；）",
+                                "name": "Sig 颜色布局占位符"
+                            },
+                            "sc_button_color": {
+                                "name": "Sc 按钮颜色",
+                                "description": "对某物的颜色做某事；）"
+                            },
+                            "box_background_color": {
+                                "name": "框背景颜色",
+                                "description": "对某物的颜色做某事；）"
+                            },
+                            "edit_text_color": {
+                                "name": "编辑文字颜色",
+                                "description": "对某物的颜色做某事；）"
+                            },
+                            "chip_background_color": {
+                                "name": "芯片背景颜色",
+                                "description": "对某物的颜色做某事；）"
+                            },
+                            "recipient_input_style": {
+                                "name": "收件人输入方式",
+                                "description": "对某物的颜色做某事；）"
+                            },
+                            "psts_indicator_color": {
+                                "name": "Psts 指示器颜色",
+                                "description": "对某物的颜色做某事；）"
+                            },
+                            "psts_tab_background": {
+                                "name": "Psts 选项卡背景",
+                                "description": "对某物的颜色做某事；）"
+                            },
+                            "psts_divider_color": {
+                                "description": "对某物的颜色做某事；）",
+                                "name": "Psts 分隔线颜色"
+                            },
+                            "status_bar_foreground": {
+                                "name": "状态栏前景",
+                                "description": "对某物的颜色做某事；）"
+                            },
+                            "story_replay_view_ring_color": {
+                                "name": "故事重播视图 戒指颜色",
+                                "description": "对某物的颜色做某事；）"
+                            },
+                            "sig_color_button_primary": {
+                                "name": "Sig 颜色按钮主要",
+                                "description": "对某物的颜色做某事；）"
+                            },
+                            "sig_color_base_app_yellow": {
+                                "name": "Sig Color Base 应用程序黄色",
+                                "description": "对某物的颜色做某事；）"
+                            },
+                            "sig_color_background_surface_translucent": {
+                                "name": "sig 颜色背景表面半透明",
+                                "description": "对某物的颜色做某事；）"
+                            },
+                            "sig_color_story_ring_discover_tab_thumbnail_story_ring": {
+                                "name": "sig 彩色故事环 发现选项卡缩略图 故事环",
+                                "description": "对某物的颜色做某事；）"
+                            },
+                            "recipient_pill_background_drawable": {
+                                "name": "受药丸背景可绘制",
+                                "description": "对某物的颜色做某事；）"
+                            },
+                            "status_bar_background": {
+                                "description": "对某物的颜色做某事；）",
+                                "name": "状态栏背景"
+                            },
+                            "range_fill_color": {
+                                "name": "范围填充颜色",
+                                "description": "对某物的颜色做某事；）"
+                            },
+                            "tab_text_color": {
+                                "description": "对某物的颜色做某事；）",
+                                "name": "选项卡文本颜色"
+                            },
+                            "stroke_color": {
+                                "name": "描边颜色",
+                                "description": "对某物的颜色做某事；）"
+                            },
+                            "sig_color_story_ring_friends_feed_story_ring": {
+                                "name": "sig 彩色故事戒指 朋友饲料故事戒指",
+                                "description": "对某物的颜色做某事；）"
+                            }
+                        },
+                        "description": "注意：这些颜色功能是实验性的，因此可能会导致您的 Snapchat 看起来很奇怪，\n在主题选择器上选择“自定义颜色”以使用"
+                    },
+                    "convert_message_locally": {
+                        "description": "将快照转换为本地聊天外部媒体。这出现在聊天下载上下文菜单中",
+                        "name": "本地转换消息"
+                    },
+                    "media_file_picker": {
+                        "name": "媒体文件选择器",
+                        "description": "允许您从图库中选择任何视频/音频文件"
+                    },
+                    "story_logger": {
+                        "name": "故事记录器",
+                        "description": "提供好友故事的历史记录"
+                    },
+                    "call_recorder": {
+                        "name": "电话录音器",
+                        "description": "自动录制音频通话"
+                    },
+                    "account_switcher": {
+                        "name": "账户切换器",
+                        "properties": {
+                            "auto_backup_current_account": {
+                                "name": "自动备份往来账户",
+                                "description": "注销或切换账户时自动备份当前账户"
+                            }
+                        },
+                        "description": "允许您在帐户之间切换而无需注销\n长按 Bitmoji 个人资料旁边的搜索图标打开菜单\n注意：此功能是实验性的，将来可能会发生变化"
+                    },
+                    "better_transcript": {
+                        "name": "更好的成绩单",
+                        "properties": {
+                            "force_transcription": {
+                                "name": "强制语音笔记转录",
+                                "description": "允许转录所有语音注释"
+                            },
+                            "preferred_transcription_lang": {
+                                "name": "首选转录语言",
+                                "description": "语音注释文本的首选语言（例如 EN、ES、FR）"
+                            },
+                            "enhanced_transcript": {
+                                "name": "增强的成绩单",
+                                "description": "使用 DeepL 改进语音笔记转录。\n在使用此功能之前，请确保您已阅读他们的隐私政策。"
+                            },
+                            "enhanced_transcript_in_notifications": {
+                                "name": "通知中的增强文字记录",
+                                "description": "使用 DeepL 转录通知中的语音注释。这需要在更好的通知中启用聊天预览功能"
+                            }
+                        },
+                        "description": "改进语音笔记转录"
+                    },
+                    "cof_experiments": {
+                        "name": "COF实验",
+                        "description": "启用未发布/测试版 Snapchat 功能"
+                    },
+                    "edit_message": {
+                        "name": "编辑消息",
+                        "description": "允许您编辑对话中的消息"
+                    },
+                    "context_menu_fix": {
+                        "name": "上下文菜单修复",
+                        "description": "尝试修复好友动态菜单，设备离线时无法正确显示"
+                    },
+                    "app_lock": {
+                        "description": "防止在没有密码的情况下访问 Snapchat",
+                        "properties": {
+                            "lock_on_resume": {
+                                "name": "锁定简历",
+                                "description": "重新打开应用程序时锁定该应用程序"
+                            }
+                        },
+                        "name": "应用锁"
+                    },
+                    "infinite_story_boost": {
+                        "name": "无限故事推进",
+                        "description": "绕过故事提升限制延迟"
+                    },
+                    "meo_passcode_bypass": {
+                        "description": "绕过 My Eyes Only 密码\n仅当之前正确输入密码时此操作才有效",
+                        "name": "我的眼睛只有密码绕过"
+                    },
+                    "no_friend_score_delay": {
+                        "description": "消除了查看好友分数时的延迟",
+                        "name": "无好友评分延迟"
+                    },
+                    "best_friend_pinning": {
+                        "name": "最好的朋友固定",
+                        "description": "允许您将一位朋友固定为您的第一好朋友。注意：只有您可以看到您固定的最好的朋友"
+                    },
+                    "e2ee": {
+                        "name": "端到端加密",
+                        "properties": {
+                            "encrypted_message_indicator": {
+                                "name": "加密消息指示器",
+                                "description": "在加密消息旁边添加 🔒 表情符号"
+                            },
+                            "force_message_encryption": {
+                                "name": "强制消息加密",
+                                "description": "仅当选择多个对话时，才阻止向未启用端到端加密的人员发送加密消息"
+                            }
+                        },
+                        "description": "使用共享密钥通过 AES 加密您的消息\n请务必将您的密钥保存在安全的地方！"
+                    },
+                    "add_friend_source_spoof": {
+                        "name": "添加好友来源恶搞",
+                        "description": "欺骗好友请求的来源"
+                    },
+                    "hidden_snapchat_plus_features": {
+                        "description": "启用未发布/测试版 Snapchat Plus 功能\n可能不适用于较旧的 Snapchat 版本",
+                        "name": "隐藏的 Snapchat Plus 功能"
+                    },
+                    "prevent_forced_logout": {
+                        "name": "防止强制注销",
+                        "description": "当您在其他设备上登录时，防止 Snapchat 将您注销"
+                    },
+                    "custom_streaks_expiration_format": {
+                        "name": "自定义条纹到期格式",
+                        "description": "自定义Streaks过期格式\n\n可用变量：\n- %c：条纹计数\n- %e：沙漏表情符号\n- %d：天\n- %h：小时\n- %m：分钟\n- %s：秒\n- %w：剩余时间"
+                    }
+                }
+            },
+            "scripting": {
+                "name": "脚本编写",
+                "description": "运行自定义脚本来扩展 SE Extended",
+                "properties": {
+                    "developer_mode": {
+                        "name": "开发者模式",
+                        "description": "在 Snapchat 的 UI 上显示调试信息"
+                    },
+                    "auto_reload": {
+                        "name": "自动重新加载",
+                        "description": "自动重新加载脚本当他们改变时"
+                    },
+                    "module_folder": {
+                        "name": "模块文件夹",
+                        "description": "脚本所在的文件夹"
+                    },
+                    "integrated_ui": {
+                        "name": "集成用户界面",
+                        "description": "允许脚本将自定义 UI 组件添加到 Snapchat"
+                    },
+                    "disable_log_anonymization": {
+                        "description": "禁用日志匿名化",
+                        "name": "禁用日志匿名化"
+                    }
+                }
+            },
+            "friend_tracker": {
+                "name": "好友追踪器",
+                "description": "记录朋友在 Snapchat 上的活动",
+                "properties": {
+                    "record_messaging_events": {
+                        "name": "记录消息事件",
+                        "description": "记录消息事件，例如打开快照、阅读消息等。"
+                    },
+                    "allow_running_in_background": {
+                        "description": "允许跟踪器在后台运行。注意：这会显着耗尽您的电池电量",
+                        "name": "允许在后台运行"
+                    },
+                    "auto_purge": {
+                        "name": "自动清除",
+                        "description": "自动删除早于指定时间的缓存事件"
+                    }
+                }
+            }
+        },
+        "options": {
+            "app_appearance": {
+                "always_light": "永远轻盈",
+                "always_dark": "永远黑暗"
+            },
+            "theme_picker": {
+                "custom": "定制颜色",
+                "light_blue": "浅蓝色",
+                "material_you_light": "材质你轻 (Android 12+）",
+                "material_you_dark": "材质你黑暗 (Android 12+)",
+                "amoled_dark_mode": "AMOLED 深色模式",
+                "dark_blue": "深蓝",
+                "earthy_autumn": "土色的秋天",
+                "mint_chocolate": "薄荷巧克力",
+                "ginger_snap": "姜片",
+                "lemon_meringue": "柠檬酥皮",
+                "watercolor_wash": "水彩水洗",
+                "midnight_slate": "午夜石板",
+                "lava_flow": "熔岩流",
+                "ocean_fog": "海洋雾",
+                "alien_landscape": "外星风景",
+                "zesty_lemon": "柠檬味",
+                "tropical_paradise": "热带天堂",
+                "industrial_chic": "工业时尚",
+                "cherry_bomb": "樱桃炸弹",
+                "woodland_mystery": "林地之谜",
+                "galaxy_glitter": "银河闪光",
+                "creamy_vanilla": "奶油香草",
+                "spicy_chili": "辣辣椒",
+                "spring_meadow": "春天的草地",
+                "midnight_library": "午夜图书馆",
+                "lemon_sorbet": "柠檬冰糕",
+                "cosmic_night": "宇宙之夜",
+                "peppermint_candy": "薄荷糖",
+                "gingerbread_house": "姜饼屋",
+                "spicy_mustard": "辣芥末",
+                "art_deco_glam": "装饰艺术魅力",
+                "ocean_depths": "海洋深处",
+                "bubblegum_pink": "泡泡糖粉红",
+                "firefly_night": "萤火虫之夜",
+                "apple_orchard": "苹果园",
+                "lavender_field": "薰衣草田",
+                "lemon_drop": "柠檬滴",
+                "modern_farmhouse": "现代农舍"
+            },
+            "auto_purge": {
+                "12_hours": "12小时",
+                "1_day": "1天",
+                "1_hour": "1小时",
+                "1_month": "1个月",
+                "1_week": "1周",
+                "never": "绝不",
+                "3_hours": "3小时",
+                "6_hours": "6个小时",
+                "3_days": "3天",
+                "2_weeks": "2周",
+                "3_months": "3个月",
+                "6_months": "6个月"
+            },
+            "friend_feed_menu_buttons": {
+                "auto_download": "⬇️自动下载",
+                "auto_save": "💬 自动保存消息",
+                "unsaveable_messages": "⬇️ 无法保存的消息",
+                "auto_open_snaps": "📷 自动打开按扣",
+                "stealth": "👻 隐形模式",
+                "mark_snaps_as_seen": "👀 将快照标记为所见",
+                "mark_stories_as_seen_locally": "👀 将故事标记为本地可见",
+                "conversation_info": "👤 对话信息",
+                "e2e_encryption": "🔒 使用端到端加密"
+            },
+            "path_format": {
+                "create_author_folder": "为每个作者创建文件夹",
+                "create_source_folder": "为每个媒体创建文件夹源类型",
+                "append_source": "将媒体源添加到文件名中",
+                "append_username": "将用户名添加到文件中姓名",
+                "append_hash": "向文件添加唯一的哈希值姓名",
+                "append_date_time": "将日期和时间添加到文件名中"
+            },
+            "auto_download_sources": {
+                "friend_snaps": "朋友快照",
+                "friend_stories": "朋友故事",
+                "public_stories": "公共故事",
+                "spotlight": "聚光灯"
+            },
+            "logging": {
+                "started": "开始",
+                "success": "成功",
+                "progress": "进步",
+                "failure": "失败"
+            },
+            "notifications": {
+                "chat_screenshot": "截屏",
+                "chat_screen_record": "屏幕记录",
+                "snap_replay": "快照重播",
+                "camera_roll_save": "相机胶卷保存",
+                "chat": "聊天",
+                "chat_reply": "聊天回复",
+                "snap": "折断",
+                "typing": "打字",
+                "stories": "故事",
+                "speaking": "请讲",
+                "chat_reaction": "DM反应",
+                "group_chat_reaction": "群体反应",
+                "initiate_audio": "音频来电",
+                "abandon_audio": "错过的音频通话",
+                "initiate_video": "视频来电",
+                "abandon_video": "错过视频通话"
+            },
+            "gallery_media_send_override": {
+                "always_ask": "总是问",
+                "ORIGINAL": "原来的",
+                "NOTE": "音频笔记",
+                "SNAP": "折断",
+                "SAVABLE_SNAP": "可保存的快照"
+            },
+            "strip_media_metadata": {
+                "hide_caption_text": "隐藏标题文本",
+                "hide_snap_filters": "隐藏捕捉滤镜",
+                "hide_extras": "隐藏额外内容（例如提及)",
+                "remove_audio_note_duration": "删除音频注释持续时间",
+                "remove_audio_note_transcript_capability": "删除音频笔记转录功能"
+            },
+            "hide_ui_components": {
+                "hide_profile_call_buttons": "删除个人资料呼叫按钮",
+                "hide_chat_call_buttons": "删除聊天呼叫按钮",
+                "hide_live_location_share_button": "删除实时位置共享按钮",
+                "hide_stickers_button": "删除贴纸按钮",
+                "hide_voice_record_button": "删除录音按钮",
+                "hide_unread_chat_hint": "删除未读聊天提示",
+                "hide_post_to_story_buttons": "在发送快照之前删除“发布到故事按钮"
+            },
+            "hide_story_suggestions": {
+                "hide_suggested_friend_stories": "隐藏建议的朋友故事",
+                "hide_friend_suggestions": "隐藏好友建议",
+                "hide_my_stories": "隐藏我的故事"
+            },
+            "home_tab": {
+                "map": "地图",
+                "chat": "聊天",
+                "camera": "相机",
+                "discover": "发现",
+                "spotlight": "聚光灯"
+            },
+            "add_friend_source_spoof": {
+                "added_by_username": "按用户名",
+                "added_by_group_chat": "通过群聊",
+                "added_by_qr_code": "通过二维码",
+                "added_by_community": "按社区",
+                "added_by_quick_add": "通过快速添加 (被禁止的风险很高）",
+                "added_by_mention": "通过提及"
+            },
+            "bypass_video_length_restriction": {
+                "single": "单一媒体",
+                "split": "分割媒体"
+            },
+            "old_bitmoji_selfie": {
+                "2d": "2D Bitmoji",
+                "3d": "3D Bitmoji"
+            },
+            "disable_confirmation_dialogs": {
+                "erase_message": "删除消息",
+                "remove_friend": "删除好友",
+                "block_friend": "阻止朋友",
+                "ignore_friend": "忽略朋友",
+                "hide_friend": "隐藏朋友",
+                "hide_conversation": "隐藏对话",
+                "clear_conversation": "朋友的清晰对话喂养"
+            },
+            "auto_reload": {
+                "snapchat_only": "仅限 Snapchat",
+                "all": "全部 (Snapchat + SE Extended)"
+            },
+            "edit_text_override": {
+                "multi_line_chat_input": "多线聊天输入",
+                "bypass_text_input_limit": "绕过文本输入限制"
+            },
+            "disable_story_sections": {
+                "friends": "朋友们",
+                "suggested_stories": "推荐故事",
+                "following": "下列的",
+                "discover": "发现"
+            },
+            "disable_cameras": {
+                "front": "前置摄像头",
+                "back": "后置摄像头"
+            },
+            "disable_permission_requests": {
+                "notifications": "通知",
+                "read_media_images": "阅读媒体图片",
+                "read_media_video": "阅读媒体视频",
+                "camera": "相机",
+                "microphone": "麦克风",
+                "location": "地点",
+                "read_contacts": "读取联系人",
+                "nearby_devices": "附近的设备",
+                "phone_calls": "电话"
+            },
+            "message_indicators": {
+                "encryption_indicator": "添加一个 🔒 仅发送给您的消息旁边的图标",
+                "location_indicator": "添加一个 📍发送时启用位置的快照图标",
+                "director_mode_indicator": "添加一个 ✏️ 使用导演模式发送快照时的图标，可用于将图库图像作为快照发送",
+                "platform_indicator": "添加发送媒体的平台图标（例如 Android、iOS、Web",
+                "ovf_editor_indicator": "指示是否已使用 OVF 编辑器发送快照"
+            },
+            "friend_mutation_notifier": {
+                "bitmoji_selfie_changes": "当有人更改 Bitmoji 自拍照时发出通知",
+                "bitmoji_avatar_changes": "当有人更改 Bitmoji 头像时发出通知",
+                "bitmoji_background_changes": "当有人更改 Bitmoji 背景时发出通知",
+                "birthday_changes": "当有人改变时通知他们的生日",
+                "remove_friend": "当有人将您删除为好友时发出通知",
+                "bitmoji_scene_changes": "当有人更改 Bitmoji 场景时发出通知"
+            },
+            "auto_mark_as_read": {
+                "conversation_read": "将对话标记为已读发送消息时",
+                "snap_reply": "回复时将快照标记为已读"
+            }
+        }
+    },
+    "content_type": {
+        "CHAT": "聊天",
+        "SNAP": "折断",
+        "EXTERNAL_MEDIA": "外部媒体",
+        "NOTE": "音频笔记",
+        "STICKER": "贴纸",
+        "SHARE": "分享",
+        "STATUS": "地位",
+        "LOCATION": "地点",
+        "STATUS_SAVE_TO_CAMERA_ROLL": "保存到相机胶卷",
+        "STATUS_CONVERSATION_CAPTURE_SCREENSHOT": "截屏",
+        "STATUS_CONVERSATION_CAPTURE_RECORD": "屏幕记录",
+        "STATUS_CALL_MISSED_VIDEO": "错过视频通话",
+        "STATUS_CALL_MISSED_AUDIO": "错过的音频通话",
+        "LIVE_LOCATION_SHARE": "实时位置分享",
+        "CREATIVE_TOOL_ITEM": "创意工具项目",
+        "FAMILY_CENTER_INVITE": "家庭中心邀请函",
+        "FAMILY_CENTER_ACCEPT": "家庭中心接受",
+        "FAMILY_CENTER_LEAVE": "家庭中心休假",
+        "STATUS_PLUS_GIFT": "状态加礼物",
+        "TINY_SNAP": "微小的快照",
+        "STATUS_COUNTDOWN": "倒数",
+        "MAP_REACTION": "地图反应"
+    },
+    "media_download_source": {
+        "none": "没有任何",
+        "pending": "待办的",
+        "chat_media": "聊天媒体",
+        "story": "故事",
+        "public_story": "公共故事",
+        "spotlight": "聚光灯",
+        "profile_picture": "个人资料图片",
+        "story_logger": "故事记录器",
+        "message_logger": "消息记录器",
+        "merged": "合并",
+        "voice_call": "语音通话"
+    },
+    "gallery_media_send_override": {
+        "multiple_media_toast": "您一次只能发送一种媒体"
+    },
+    "mark_as_seen": {
+        "no_unseen_snaps_toast": "未找到未见过的快照 !",
+        "seen_toast": "标记为已看到!",
+        "unseen_toast": "标记为未见!",
+        "already_seen_toast": "已经标记为已看到!",
+        "already_unseen_toast": "已经标记为未见!"
+    },
+    "friendship_link_type": {
+        "mutual": "相互的",
+        "outgoing": "传出",
+        "blocked": "被阻止",
+        "deleted": "已删除",
+        "following": "下列的",
+        "suggested": "建议",
+        "incoming": "传入",
+        "incoming_follower": "即将到来的追随者"
+    },
+    "bulk_messaging_action": {
+        "choose_action_title": "选择一个动作",
+        "progress_status": "正在处理 {index} 的 {total}",
+        "selection_dialog_continue_button": "继续",
+        "confirmation_dialog": {
+            "title": "你确定吗?",
+            "message": "这将影响所有选定的好友.此操作无法撤消."
+        },
+        "actions": {
+            "remove_friends": "删除好友"
         }
     }
 }

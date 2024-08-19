@@ -32,7 +32,9 @@
             "manage_scope": "Administrer omfang",
             "messaging_preview": "Forhåndsvisning",
             "friend_tracker": "Ven Tracker",
-            "edit_rule": "Rediger regel"
+            "edit_rule": "Rediger regel",
+            "better_location": "Bedre beliggenhed",
+            "file_imports": "Filimport"
         },
         "sections": {
             "features": {
@@ -43,7 +45,8 @@
                 "reset_option": "Nulstil",
                 "config_export_success_toast": "Konfigurationen blev eksporteret",
                 "config_import_failure_toast": "Kunne ikke importere konfiguration {error}",
-                "saved_config_snackbar": "Konfiguration gemt"
+                "saved_config_snackbar": "Konfiguration gemt",
+                "config_export_failure_toast": "Kunne ikke eksportere konfiguration {error}"
             },
             "social": {
                 "streaks_expiration_short": "{hours} timer",
@@ -58,7 +61,8 @@
                 "remove_selected_tasks_title": "Er du sikker på, at du vil fjerne valgte opgaver?",
                 "remove_all_tasks_title": "Er du sikker på, at du vil fjerne alle opgaver?",
                 "delete_files_option": "Slet også filer",
-                "remove_selected_tasks_confirm": "Vil du fjerne {count} opgaver?"
+                "remove_selected_tasks_confirm": "Vil du fjerne {count} opgaver?",
+                "failed_to_open_file": "Filen kunne ikke åbnes"
             },
             "logger_history": {
                 "chat_attachment": "Vedhæftet {index}",
@@ -106,7 +110,12 @@
             "home": {
                 "update_title": "SnapEnhance Opdatering",
                 "update_content": "Version {version} er tilgængelig!",
-                "update_button": "Hent"
+                "update_button": "Hent",
+                "version_title": "I{versionName} · Forked af Jacob",
+                "debug_build_summary_title": "Du kører en debug-build af SE Extended",
+                "debug_build_summary_content": "Version {versionName} ({versionCode})",
+                "debug_build_summary_date": "Byggedato: {date} ({days} dage siden)",
+                "quick_actions_title": "Hurtige handlinger"
             },
             "home_logs": {
                 "no_logs_hint": "Ingen logfiler tilgængelige",
@@ -125,6 +134,33 @@
                 "export_button": "Eksport",
                 "clear_button": "Ryd",
                 "view_logger_history_button": "Se logger historik"
+            },
+            "file_imports": {
+                "import_file_button": "Importer fil",
+                "file_not_found": "Fil ikke fundet",
+                "file_import_failed": "Kunne ikke importere fil: {error}",
+                "file_imported": "Filen blev importeret",
+                "file_delete_failed": "Filen kunne ikke slettes",
+                "no_files_hint": "Her kan du importere filer til brug i Snapchat. Tryk på knappen nedenfor for at importere en fil."
+            },
+            "better_location": {
+                "save_coordinates_dialog_title": "Gem koordinater",
+                "saved_name_dialog_hint": "Gem navn",
+                "latitude_dialog_hint": "Breddegrad",
+                "longitude_dialog_hint": "Længdegrad",
+                "save_dialog_button": "Gem",
+                "choose_location_button": "Vælg Placering",
+                "teleport_to_friend_button": "Teleporter til ven",
+                "spoof_location_toggle": "Spoof placering",
+                "suspend_location_updates": "Suspender placeringsopdateringer",
+                "no_saved_coordinates_hint": "Ingen gemte koordinater",
+                "delete_dialog_title": "Slet gemte kordinater",
+                "teleport_to_friend_title": "Teleporter til ven",
+                "search_bar": "Søg",
+                "no_friends_found": "Ingen venner fundet",
+                "saved_coordinates_title": "Gemte koordinater",
+                "delete_dialog_message": "Er du sikker på, at du vil slette denne gemte koordinat?",
+                "no_friends_map": "Ingen venner på kortet"
             }
         },
         "dialogs": {
@@ -147,6 +183,14 @@
             "messaging_action": {
                 "title": "Vælg indholdstyper, der skal behandles",
                 "select_all_button": "Vælg alle"
+            },
+            "export_config": {
+                "title": "Eksportere følsomme data?",
+                "content": "Vil du eksportere konfigurationen med følsomme data? (Såsom placeringskoordinater osv.)"
+            },
+            "file_imports": {
+                "settings_select_file_hint": "Vælg en importeret fil",
+                "no_files_settings_hint": "Ingen filer fundet. Sørg for, at du har importeret de nødvendige filer i afsnittet Fil import"
             }
         }
     },
@@ -389,7 +433,7 @@
                     },
                     "hide_settings_gear": {
                         "name": "Skjul Indstillinger Gear",
-                        "description": "Skjuler SnapEnhance Settings Gear i vennefeed"
+                        "description": "Skjuler SE Extended indstilling Gear i vennefeed"
                     },
                     "message_indicators": {
                         "name": "Meddelelsesindikatorer",
@@ -474,10 +518,30 @@
                                     "friend_feed_conversations_line_color": {
                                         "description": "Ændrer linje deler farven, der opdeler samtaler på vennefeedet ",
                                         "name": "Samtaler linje farve"
+                                    },
+                                    "action_sheet_description_text_color": {
+                                        "name": "Handlingsmenu Beskrivelse Tekstfarve",
+                                        "description": "Ændrer tekstfarven på beskrivelsen i handlingsmenuen"
+                                    },
+                                    "sig_color_icon_primary": {
+                                        "description": "Ændrer farven på ikoner på chathandlingsmenuen/vennefeedmenuen",
+                                        "name": "Action Menu Ikon Farve"
+                                    },
+                                    "list_background_drawable": {
+                                        "name": "Samtaleliste Baggrund ",
+                                        "description": "Ændrer baggrundsfarven på samtalelisten på vennefeedet\nDette kan ødelægge vennefeeds-looket"
                                     }
                                 }
+                            },
+                            "colors_debug": {
+                                "name": "Fejlfinding i farver",
+                                "description": "Logs De opnåStyledAttributes, der bruges, når Snapchat indlæses\nBemærk: Dette vil øge størrelsen på dine logfiler markant"
                             }
                         }
+                    },
+                    "auto_close_friend_feed_menu": {
+                        "name": "Auto Luk Venne Feed Menu",
+                        "description": "Lukker automatisk Friend Feed-menuen efter at have trykket på en indstillingsknap"
                     }
                 }
             },
@@ -538,7 +602,7 @@
                                 "name": "Markér som læst og gem i chat"
                             },
                             "group_notifications": {
-                                "name": "Gruppe notifikationer",
+                                "name": "Notifikationsgruppering",
                                 "description": "Gruppér notifikationer i en enkelt"
                             },
                             "chat_preview": {
@@ -552,6 +616,10 @@
                             "stacked_media_messages": {
                                 "name": "Stablede medie beskeder",
                                 "description": "Kombinerer flere mediebeskeder i én tekstmeddelelse, når de ikke kan forhåndsvises. Brug i kombination med Chat forhåndsvisning"
+                            },
+                            "smart_replies": {
+                                "name": "Smarte svar",
+                                "description": "Tilføjer foreslåede svar til notifikationer (Android 10+). Bruges i kombination med Svar-knap"
                             }
                         }
                     },
@@ -646,6 +714,14 @@
                     "unlimited_conversation_pinning": {
                         "description": "Giver dig mulighed for at fastgøre et ubegrænset antal samtaler lokalt",
                         "name": "Ubegrænset samtale fastgørelse"
+                    },
+                    "mark_snap_as_seen_button": {
+                        "name": "Markér Snap som set-knap",
+                        "description": "Tilføjer en knap for at markere et Snap, som det ses, når du ser det.\nDette fungerer, selv når Stealth Mode er aktiveret"
+                    },
+                    "skip_when_marking_as_seen": {
+                        "name": "Spring over, når du markerer som set",
+                        "description": "Springer automatisk til næste snap, når et snap markeres som set.\nBruges i kombination med Mark Snap as Seen Button"
                     }
                 }
             },
@@ -772,6 +848,10 @@
                         },
                         "name": "Medie upload kvalitet",
                         "description": "Tilsidesætter medie overførsel kvaliteten"
+                    },
+                    "disable_telecom_framework": {
+                        "description": "Forhindrer Snapchat i at bruge Android Telecom-rammerne\nDette giver dig mulighed for at lytte til musik under et opkald",
+                        "name": "Deaktiver Telecom Framework"
                     }
                 }
             },
@@ -876,6 +956,14 @@
                                 },
                                 "name": "Komponistkroge",
                                 "description": "Injicerer kode i Composer-grænsefladen på tværs af platforme"
+                            },
+                            "custom_emoji_font": {
+                                "name": "Brugerdefineret Emoji-skrifttype",
+                                "description": "Giver dig mulighed for at bruge en brugerdefineret emoji-skrifttype. Virker kun med .ttf-skrifttyper"
+                            },
+                            "remap_executable": {
+                                "name": "Remap eksekverbar",
+                                "description": "Ommaper eksekverbare regioner i hukommelsen"
                             }
                         }
                     },
@@ -994,6 +1082,91 @@
                     "best_friend_pinning": {
                         "description": "Tillader dig at fastgøre en ven som din bedste ven nummer ét. Bemærk: Kun du kan se din fastgjorte bedste ven",
                         "name": "Pinning af bedste ven"
+                    },
+                    "experimental_colors": {
+                        "name": "Eksperimentelle farveindstillinger",
+                        "properties": {
+                            "ring_color": {
+                                "description": "Gør et eller andet ved farven på noget ;)",
+                                "name": "Ring farve"
+                            },
+                            "sig_color_icon_secondary": {
+                                "name": "Sig farveikon sekundært",
+                                "description": "Gør et eller andet ved farven på noget ;)"
+                            },
+                            "sig_color_layout_place_holder": {
+                                "description": "Gør et eller andet ved farven på noget ;)"
+                            },
+                            "sc_button_color": {
+                                "description": "Gør et eller andet ved farven på noget ;)"
+                            },
+                            "recipient_pill_background_drawable": {
+                                "description": "Gør et eller andet ved farven på noget ;)"
+                            },
+                            "box_background_color": {
+                                "description": "Gør et eller andet ved farven på noget ;)"
+                            },
+                            "recipient_input_style": {
+                                "description": "Gør et eller andet ved farven på noget ;)"
+                            },
+                            "psts_indicator_color": {
+                                "description": "Gør et eller andet ved farven på noget ;)"
+                            },
+                            "psts_divider_color": {
+                                "description": "Gør et eller andet ved farven på noget ;)"
+                            },
+                            "status_bar_foreground": {
+                                "description": "Gør et eller andet ved farven på noget ;)"
+                            },
+                            "status_bar_background": {
+                                "description": "Gør et eller andet ved farven på noget ;)"
+                            },
+                            "sig_color_background_surface_translucent": {
+                                "description": "Gør et eller andet ved farven på noget ;)"
+                            },
+                            "sig_color_story_ring_friends_feed_story_ring": {
+                                "description": "Gør et eller andet ved farven på noget ;)"
+                            },
+                            "sig_color_story_ring_discover_tab_thumbnail_story_ring": {
+                                "description": "Gør et eller andet ved farven på noget ;)"
+                            },
+                            "story_replay_view_ring_color": {
+                                "description": "Gør et eller andet ved farven på noget ;)"
+                            },
+                            "sig_color_button_primary": {
+                                "description": "Gør et eller andet ved farven på noget ;)"
+                            },
+                            "item_shape_fill_color": {
+                                "name": "Emne Form Fyld Farve",
+                                "description": "Gør et eller andet ved farven på noget ;)"
+                            },
+                            "ring_start_color": {
+                                "name": "Ring start farve",
+                                "description": "Gør et eller andet ved farven på noget ;)"
+                            },
+                            "edit_text_color": {
+                                "description": "Gør et eller andet ved farven på noget ;)"
+                            },
+                            "chip_background_color": {
+                                "description": "Gør et eller andet ved farven på noget ;)"
+                            },
+                            "range_fill_color": {
+                                "description": "Gør et eller andet ved farven på noget ;)"
+                            },
+                            "psts_tab_background": {
+                                "description": "Gør et eller andet ved farven på noget ;)"
+                            },
+                            "tab_text_color": {
+                                "description": "Gør et eller andet ved farven på noget ;)"
+                            },
+                            "stroke_color": {
+                                "description": "Gør et eller andet ved farven på noget ;)"
+                            },
+                            "sig_color_base_app_yellow": {
+                                "description": "Gør et eller andet ved farven på noget ;)"
+                            }
+                        },
+                        "description": "Bemærk: Disse farvefunktioner er eksperimentelle og kan derfor få din snapchat til at se mærkelig ud,\nVælg \"Brugerdefinerede farver\" på temavælgeren for at bruge"
                     }
                 }
             },
@@ -1382,6 +1555,18 @@
         "change_language": {
             "name": "Skift sprog",
             "description": "Skift sproget for SnapEnhance"
+        },
+        "file_imports": {
+            "name": "Fil import",
+            "description": "Importer filer til brug i Snapchat"
+        },
+        "friend_tracker": {
+            "name": "Ven Tracker",
+            "description": "Spor dine venner på Snapchat"
+        },
+        "logger_history": {
+            "name": "Log historie",
+            "description": "Se historikken for loggede meddelelser"
         }
     },
     "material3_strings": {

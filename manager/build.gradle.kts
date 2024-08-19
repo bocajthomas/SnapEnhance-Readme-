@@ -47,7 +47,7 @@ android {
 
     applicationVariants.all {
         outputs.map { it as BaseVariantOutputImpl }.forEach { outputVariant ->
-            outputVariant.outputFileName = "manager.apk"
+            outputVariant.outputFileName = "Manager.apk"
         }
     }
 
