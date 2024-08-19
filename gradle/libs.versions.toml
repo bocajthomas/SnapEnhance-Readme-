@@ -24,6 +24,7 @@ okhttp = "5.0.0-alpha.14"
 rhino = "1.7.15"
 rhino-android = "1.6.0"
 rust-android = "0.9.4"
+hiddenapibypass = "4.3"
 
 [libraries]
 androidx-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
@@ -51,6 +52,7 @@ jsoup = { module = "org.jsoup:jsoup", version.ref = "jsoup" }
 junit = { group = "org.junit.vintage", name = "junit-vintage-engine", version.ref = "junit" }
 okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
 osmdroid-android = { group = "org.osmdroid", name = "osmdroid-android", version.ref = "osmdroid-android" }
+hiddenapibypass = { module = "org.lsposed.hiddenapibypass:hiddenapibypass", version.ref = "hiddenapibypass" }
 recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
 rhino = { module = "org.mozilla:rhino", version.ref = "rhino" }
 rhino-android = { group = "com.faendir.rhino", name = "rhino-android", version.ref = "rhino-android" }

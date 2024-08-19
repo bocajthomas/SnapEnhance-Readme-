@@ -3,6 +3,7 @@ package me.rhunk.snapenhance.core.util.hook
 import de.robv.android.xposed.XC_MethodHook
 import de.robv.android.xposed.XposedBridge
 import me.rhunk.snapenhance.common.logger.AbstractLogger
+import org.lsposed.hiddenapibypass.HiddenApiBypass
 import java.lang.reflect.Member
 import java.lang.reflect.Method
 import java.lang.reflect.Modifier
@@ -182,4 +183,10 @@ fun Array<Method>.hookAll(stage: HookStage, param: (HookAdapter) -> Unit) {
     filter { it.declaringClass != Object::class.java && !Modifier.isAbstract(it.modifiers) }.forEach {
         it.hook(stage, param)
     }
+}
+
+fun Class<*>.findRestrictedMethod(
+    predicate: (Method) -> Boolean
+): Method? {
+    return declaredMethods.find(predicate) ?: HiddenApiBypass.getDeclaredMethods(this).filterIsInstance<Method>().find(predicate)
 }
