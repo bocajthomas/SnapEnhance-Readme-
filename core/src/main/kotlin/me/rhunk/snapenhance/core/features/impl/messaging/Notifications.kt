@@ -30,6 +30,7 @@ import me.rhunk.snapenhance.core.features.impl.downloader.decoder.MessageDecoder
 import me.rhunk.snapenhance.core.features.impl.experiments.BetterTranscript
 import me.rhunk.snapenhance.core.features.impl.spying.StealthMode
 import me.rhunk.snapenhance.core.util.hook.HookStage
+import me.rhunk.snapenhance.core.util.hook.findRestrictedMethod
 import me.rhunk.snapenhance.core.util.hook.hook
 import me.rhunk.snapenhance.core.util.ktx.setObjectField
 import me.rhunk.snapenhance.core.util.media.PreviewUtils
@@ -509,7 +510,7 @@ class Notifications : Feature("Notifications") {
             }
         }
 
-        NotificationManager::class.java.declaredMethods.find {
+        NotificationManager::class.java.findRestrictedMethod {
             it.name == "cancelAsUser"
         }?.hook(HookStage.AFTER) { param ->
             val notificationId = param.arg<Int>(1)
