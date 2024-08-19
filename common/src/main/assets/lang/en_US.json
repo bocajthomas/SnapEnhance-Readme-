@@ -1561,7 +1561,8 @@
         "negative": "No",
         "cancel": "Cancel",
         "open": "Open",
-        "download": "Download"
+        "download": "Download",
+        "send": "Send"
     },
 
     "better_notifications": {
@@ -1735,6 +1736,9 @@
         "sigColorStoryRingDiscoverTabThumbnailStoryRing": "Story Ring Discover Tab Thumbnail Story Ring Color"
     },
     "send_override_dialog": {
-        "title": "Send media as:"
+        "title": "Send media as {type}",
+        "duration": "Duration: {duration}",
+        "saveable_snap_hint": "Make Snap saveable in the chat",
+        "unlimited_duration": "Unlimited"
     }
 }
