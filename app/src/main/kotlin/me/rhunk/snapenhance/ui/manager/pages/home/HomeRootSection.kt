@@ -187,10 +187,6 @@ class HomeRootSection : Routes.Route() {
                     .fillMaxWidth()
                     .padding(all = 10.dp)
             ) {
-                ExternalLinkIcon(
-                    imageVector = ImageVector.vectorResource(id = R.drawable.ic_codeberg),
-                    link = "https://codeberg.org/SnapEnhance/SnapEnhance"
-                )
 
                 ExternalLinkIcon(
                     imageVector = ImageVector.vectorResource(id = R.drawable.ic_telegram),
@@ -311,7 +307,7 @@ class HomeRootSection : Routes.Route() {
                             buildSummary.getStringAnnotations(
                                 tag = "git_hash", start = offset, end = offset
                             ).firstOrNull()?.let {
-                                openExternalLink("https://github.com/bocajthomas/SE-Extended/commit/${it.item}")
+                                openLink("https://github.com/bocajthomas/SE-Extended/commit/${it.item}")
                             }
                         }
                     )
