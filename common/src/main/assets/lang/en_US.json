@@ -2,12 +2,12 @@
     "setup": {
         "dialogs": {
             "select_language": "Select Language",
-            "save_folder": "SnapEnhance requires Storage permissions to download and Save Media from Snapchat.\nPlease choose the location where media should be downloaded to.",
+            "save_folder": "SE Extended requires Storage permissions to download and Save Media from Snapchat.\nPlease choose the location where media should be downloaded to.",
             "select_save_folder_button": "Select Folder"
         },
         "mappings": {
             "dialog": "Generating Mappings, this may take a while ...",
-            "generate_failure_no_snapchat": "SnapEnhance was unable to detect Snapchat, please try reinstalling Snapchat.",
+            "generate_failure_no_snapchat": "SE Extended was unable to detect Snapchat, please try reinstalling Snapchat.",
             "generate_failure": "An error occurred while trying to generate mappings, please try again."
         },
         "permissions": {
@@ -48,11 +48,11 @@
         },
         "sections": {
             "home": {
-                "version_title": "v{versionName} · by rhunk",
-                "update_title": "SnapEnhance Update",
+                "version_title": "V{versionName} · Forked by Jacob",
+                "update_title": "SE Extended Update",
                 "update_content": "Version {version} is available!",
                 "update_button": "Download",
-                "debug_build_summary_title": "You are running a debug build of SnapEnhance",
+                "debug_build_summary_title": "You are running a debug build of SE Extended",
                 "debug_build_summary_content": "Version {versionName} ({versionCode})",
                 "debug_build_summary_date": "Build date: {date} ({days} days ago)",
                 "quick_actions_title": "Quick Actions"
@@ -199,7 +199,7 @@
             },
             "scripting_warning": {
                 "title": "Warning",
-                "content": "SnapEnhance includes a scripting tool, allowing the execution of user-defined code on your device. Use extreme caution and only install modules from known, reliable sources. Unauthorized or unverified modules may pose security risks to your system."
+                "content": "SE Extended includes a scripting tool, allowing the execution of user-defined code on your device. Use extreme caution and only install modules from known, reliable sources. Unauthorized or unverified modules may pose security risks to your system."
             },
             "reset_config": {
                 "title": "Reset config",
@@ -310,7 +310,7 @@
         },
         "change_language": {
             "name": "Change Language",
-            "description": "Change the language of SnapEnhance"
+            "description": "Change the language of SE Extended"
         },
         "security_features": {
             "name": "Security Features",
@@ -448,7 +448,7 @@
                     },
                     "custom_theme": {
                         "name": "Custom Theme",
-                        "description": "Customize Snapchat's Colors\nNote: if you choose a dark theme (like Amoled), you may need to enable the dark mode in Snapchat settings for better results"
+                        "description": "Customize Snapchat's Colors\nNote: if you choose a dark theme (like AMOLED), You may need to enable the dark mode on the App Appearance settings for better results"
                     },
                     "friend_feed_message_preview": {
                         "name": "Friend Feed Message Preview",
@@ -524,7 +524,7 @@
                     },
                     "hide_settings_gear": {
                         "name": "Hide Settings Gear",
-                        "description": "Hides the SnapEnhance Settings Gear in friend feed"
+                        "description": "Hides the SE Extended Settings Gear in friend feed"
                     },
                     "friend_feed_menu_buttons": {
                         "name": "Friend Feed Menu Buttons",
@@ -956,11 +956,11 @@
                                     },
                                     "composer_console": {
                                         "name": "Composer Console",
-                                        "description": "Allows you to execute JavaScript code in Composer (arm64 only)"
+                                        "description": "Allows you to execute JavaScript code in Composer (ARM64 only)"
                                     },
                                     "composer_logs": {
                                         "name": "Composer Logs",
-                                        "description": "Redirects console logs of Composer to SnapEnhance"
+                                        "description": "Redirects console logs of Composer to SE Extended"
                                     }
                                 }
                             },
@@ -1132,7 +1132,7 @@
             },
             "scripting": {
                 "name": "Scripting",
-                "description": "Run custom scripts to extend SnapEnhance",
+                "description": "Run custom scripts to extend SE Extended",
                 "properties": {
                     "developer_mode": {
                         "name": "Developer Mode",
@@ -1181,10 +1181,44 @@
                 "always_dark": "Always Dark"
             },
             "custom_theme": {
-                "amoled_dark_mode": "Amoled Dark Mode",
+                "amoled_dark_mode": "AMOLED Dark Mode",
                 "custom": "Custom Themes (Use the Quick Actions to manage themes)",
                 "material_you_light": "Material You Light (Android 12+)",
-                "material_you_dark": "Material You Dark (Android 12+)"
+                "material_you_dark": "Material You Dark (Android 12+)",
+                "light_blue": "Light Blue",
+                "dark_blue": "Dark Blue",
+                "midnight_slate": "Midnight Slate",
+                "earthy_autumn": "Earthy Autumn",
+                "mint_chocolate": "Mint Chocolate",
+                "ginger_snap": "Ginger Snap",
+                "lemon_meringue": "Lemon Meringue",
+                "lava_flow": "Lava Flow",
+                "ocean_fog": "Ocean Fog",
+                "alien_landscape": "Alien Landscape",
+                "watercolor_wash": "Watercolor Wash",
+                "zesty_lemon": "Zesty Lemon",
+                "tropical_paradise": "Tropical Paradise",
+                "industrial_chic": "Industrial Chic",
+                "cherry_bomb": "Cherry Bomb",
+                "woodland_mystery": "Woodland Mystery",
+                "galaxy_glitter": "Galaxy Glitter",
+                "creamy_vanilla": "Creamy Vanilla",
+                "spicy_chili": "Spicy Chili",
+                "spring_meadow": "Spring Meadow",
+                "midnight_library": "Midnight Library",
+                "lemon_sorbet": "Lemon Sorbet",
+                "cosmic_night": "Cosmic Night",
+                "spicy_mustard": "Spicy Mustard",
+                "peppermint_candy": "Peppermint Candy",
+                "gingerbread_house": "Gingerbread House",
+                "art_deco_glam": "Art Deco Glam",
+                "ocean_depths": "Ocean Depths",
+                "bubblegum_pink": "Bubblegum Pink",
+                "firefly_night": "Firefly Night",
+                "apple_orchard": "Apple Orchard",
+                "lavender_field": "Lavender Field",
+                "lemon_drop": "Lemon Drop",
+                "modern_farmhouse": "Modern Farmhouse"
             },
             "friend_feed_menu_buttons": {
                 "auto_download": "\u2B07\uFE0F Auto Download",
@@ -1240,7 +1274,7 @@
                 "ORIGINAL": "Original Media",
                 "NOTE": "Audio Note",
                 "SNAP": "Snap",
-                "SAVEABLE_SNAP": "Saveable Snap"
+                "SAVABLE_SNAP": "Savable Snap"
             },
             "strip_media_metadata": {
                 "hide_caption_text": "Hide Caption Text",
@@ -1251,14 +1285,17 @@
             },
             "hide_ui_components": {
                 "hide_profile_call_buttons": "Remove Profile Call Buttons",
+                "hide_snap_create_group_buttons": "Remove Snap Create Group Buttons",
                 "hide_chat_call_buttons": "Remove Chat Call Buttons",
+                "hide_chat_camera_button": "Remove Chat Camera Button",
+                "hide_chat_gallery_button": "Remove Chat Gallery Button",
+                "hide_explorer_token_button": "Remove Explorer Token Button",
                 "hide_live_location_share_button": "Remove Live Location Share Button",
                 "hide_stickers_button": "Remove Stickers Button",
                 "hide_voice_record_button": "Remove Voice Record Button",
                 "hide_unread_chat_hint": "Remove Unread Chat Hint",
-                "hide_post_to_story_buttons": "Remove Post to Story buttons before sending a Snap",
-                "hide_billboard_prompt": "Remove Billboard Prompt In Friends Feed",
-                "hide_snapchat_plus_gift_reminders": "Remove Snapchat Plus gift reminders in conversations"
+                "hide_post_to_story_buttons": "Remove Post to Story Buttons",
+                "hide_gift_snapchat_plus_reminders": "Remove Gift Snapchat Plus Reminders"
             },
             "hide_story_suggestions": {
                 "hide_friend_suggestions": "Hide friend suggestions",
@@ -1299,7 +1336,7 @@
             },
             "auto_reload": {
                 "snapchat_only": "Snapchat Only",
-                "all": "All (Snapchat + SnapEnhance)"
+                "all": "All (Snapchat + SE Extended)"
             },
             "edit_text_override": {
                 "multi_line_chat_input": "Multi Line Chat Input",
@@ -1698,6 +1735,6 @@
         "sigColorStoryRingDiscoverTabThumbnailStoryRing": "Story Ring Discover Tab Thumbnail Story Ring Color"
     },
     "send_override_dialog": {
-        "title": "Send media as ..."
+        "title": "Send media as:"
     }
 }

@@ -32,18 +32,20 @@
             "logger_history": "Log geschiedenis",
             "logged_stories": "Gelogde Stories",
             "friend_tracker": "Vriendentracker",
-            "edit_rule": "Regel bewerken"
+            "edit_rule": "Regel bewerken",
+            "better_location": "Betere Locatie"
         },
         "sections": {
             "features": {
                 "disabled": "Uitgeschakeld",
                 "export_option": "Exporteer",
-                "import_option": "Impoteer",
+                "import_option": "Importeer",
                 "reset_option": "Opnieuw instellen",
                 "config_export_success_toast": "Config succesvol geëxporteerd",
                 "config_import_success_toast": "Config succesvol geïmporteerd",
                 "config_import_failure_toast": "Gefaald om config te importeren {error}",
-                "saved_config_snackbar": "Config opgeslagen"
+                "saved_config_snackbar": "Config opgeslagen",
+                "config_export_failure_toast": "Config exporteren gefaald {error}"
             },
             "social": {
                 "streaks_expiration_short": "{hours}u",
@@ -58,12 +60,18 @@
                 "remove_all_tasks_title": "Weet je zeker dat je alle taken wilt verwijderen?",
                 "merge_files_toast": "{count} bestand(en) samenvoegen",
                 "remove_selected_tasks_confirm": "{count} taken verwijderen?",
-                "delete_files_option": "Verwijderen ook bestanden"
+                "delete_files_option": "Ook bestanden verwijderen",
+                "failed_to_open_file": "Bestand openen mislukt"
             },
             "home": {
                 "update_title": "SnapEnhance Update",
-                "update_content": "Versie {versie} is beschikbaar!",
-                "update_button": "Download"
+                "update_content": "Versie {version} is beschikbaar!",
+                "update_button": "Download",
+                "version_title": "V{versionName} · Geforked door Jacob",
+                "debug_build_summary_title": "Je gebruikt een debug versie van SE Extended",
+                "debug_build_summary_content": "Versie {versionName} ({versionCode})",
+                "debug_build_summary_date": "Build datum: {date} ({days} dagen geleden)",
+                "quick_actions_title": "Snelle Acties"
             },
             "home_logs": {
                 "no_logs_hint": "Geen logs beschikbaar",
@@ -87,10 +95,10 @@
                 "logged_stories_button": "Toon gelogde verhalen",
                 "e2ee_title": "Eind-tot-eind encryptie",
                 "rules_title": "Regels",
-                "participants_text": "{aantal} deelnemers",
+                "participants_text": "{count} deelnemers",
                 "not_found": "Niet gevonden",
                 "streaks_title": "Reeksen",
-                "streaks_length_text": "Lengte: {lengte}",
+                "streaks_length_text": "Lengte: {length}",
                 "streaks_expiration_text": "Verloopt in {eta}",
                 "streaks_expiration_text_expired": "Verlopen",
                 "reminder_button": "Zet herinnering",

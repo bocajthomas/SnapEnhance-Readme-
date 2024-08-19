@@ -3,7 +3,8 @@
         "unknown_user": "অজানা ব্যবহাকারী",
         "streak_expiration": "{day} দিন {hour} ঘন্টা {minute} মিনিটে মেয়াদ শেষ হবে",
         "title": "পূর্বরূপ",
-        "total_messages": "মোট পাঠানো/প্রাপ্ত বার্তা: {count}"
+        "total_messages": "মোট পাঠানো/প্রাপ্ত বার্তা: {count}",
+        "no_messages": "কোনো বার্তা পাওয়া যায়নি!"
     },
     "profile_info": {
         "title": "প্রোফাইল তথ্য",
@@ -114,7 +115,8 @@
             "logger_history": "লগার ইতিহাস",
             "friend_tracker": "বন্ধু ট্র্যাকার",
             "edit_rule": "সম্পাদনার নিয়ম",
-            "file_imports": "ফাইল আমদানি"
+            "file_imports": "ফাইল আমদানি",
+            "better_location": "বেটার অবস্থান"
         },
         "sections": {
             "features": {
@@ -141,7 +143,8 @@
                 "remove_selected_tasks_title": "নিশ্চিত আপনি নির্বাচিত কাজগুলি সরাতে চান?",
                 "remove_all_tasks_title": "নিশ্চিত আপনি সব কাজ অপসারণ করতে চান?",
                 "remove_all_tasks_confirm": "সমস্ত কাজ মুছে ফেলুন?",
-                "merge_files_toast": "{count} ফাইল মিশ্রণ"
+                "merge_files_toast": "{count} ফাইল মিশ্রণ",
+                "failed_to_open_file": "ফাইল খুলতে ব্যর্থ"
             },
             "home_settings": {
                 "export_button": "রপ্তানি",
@@ -169,7 +172,12 @@
             "home": {
                 "update_content": "সংস্করণ {version} উপলব্ধ!",
                 "update_title": "স্ন্যাপএনহ্যান্স আপডেট",
-                "update_button": "ডাউনলোড"
+                "update_button": "ডাউনলোড",
+                "debug_build_summary_title": "আপনি এসই এক্সটেন্ডেড-এর একটি ডিবাগ বিল্ড চালাচ্ছেন",
+                "version_title": "V{versionName} · জ্যাকব দ্বারা ফর্কড",
+                "debug_build_summary_content": "সংস্করণ {versionName} ({versionCode})",
+                "debug_build_summary_date": "বিল্ডের তারিখ: {date} ({days} দিন আগে)",
+                "quick_actions_title": "দ্রুত ক্রিয়াকলাপ"
             },
             "home_logs": {
                 "no_logs_hint": "কোনও লগ উপলব্ধ নেই",
@@ -216,6 +224,26 @@
                 "file_not_found": "ফাইল পাওয়া যায়নি",
                 "file_import_failed": "ফাইল আমদানি ব্যর্থ হয়েছে: {error}",
                 "file_delete_failed": "ফাইল মুছে ফেলতে ব্যর্থ হয়েছে"
+            },
+            "better_location": {
+                "latitude_dialog_hint": "অক্ষাংশ",
+                "spoofed_coordinates_title": "অক্ষাংশ {latitude}, দ্রাঘিমাংশ {longitude}",
+                "saved_name_dialog_hint": "সংরক্ষিত নাম",
+                "save_coordinates_dialog_title": "স্থানাঙ্ক সংরক্ষণ করুন",
+                "longitude_dialog_hint": "দ্রাঘিমাংশ",
+                "save_dialog_button": "সংরক্ষণ করুন",
+                "choose_location_button": "অবস্থান নির্বাচন করুন",
+                "teleport_to_friend_button": "বন্ধুর কাছে টেলিপোর্ট করুন",
+                "spoof_location_toggle": "নকল অবস্থান",
+                "suspend_location_updates": "অবস্থান আপডেট স্থগিত করুন",
+                "saved_coordinates_title": "সংরক্ষিত স্থানাঙ্ক",
+                "search_bar": "অনুসন্ধান",
+                "no_saved_coordinates_hint": "কোনো সংরক্ষিত স্থানাঙ্ক নেই",
+                "delete_dialog_message": "আপনি কি নিশ্চিত এই সংরক্ষিত স্থানাঙ্ক মুছে ফেলতে চান?",
+                "delete_dialog_title": "সংরক্ষিত স্থানাঙ্ক মুছে ফেলুন",
+                "teleport_to_friend_title": "বন্ধুর কাছে টেলিপোর্ট করুন",
+                "no_friends_map": "মানচিত্রে কোনো বন্ধু নেই",
+                "no_friends_found": "কোনো বন্ধু পাওয়া যায়নি"
             }
         },
         "dialogs": {
@@ -346,6 +374,18 @@
         "change_language": {
             "name": "ভাষা পরিবর্তন করুন",
             "description": "স্ন্যাপএনহ্যান্সের ভাষা পরিবর্তন করুন"
+        },
+        "file_imports": {
+            "name": "ফাইল আমদানি",
+            "description": "স্ন্যাপচ্যাট-এ ব্যবহারের জন্য ফাইল আমদানি করুন"
+        },
+        "friend_tracker": {
+            "name": "বন্ধু ট্র্যাকার",
+            "description": "স্ন্যাপচ্যাট-এ আপনার বন্ধুদের ট্র্যাক করুন"
+        },
+        "logger_history": {
+            "name": "লগার ইতিহাস",
+            "description": "লগ করা বার্তার ইতিহাস দেখুন"
         }
     },
     "features": {
@@ -538,12 +578,24 @@
                                         "description": "স্ন্যাপচ্যাটের পটভূমির রঙ পরিবর্তন করে"
                                     },
                                     "friend_feed_conversations_line_color": {
-                                        "description": "বন্ধু ফিডে কথোপকথন ভাগ করে দেওয়া লাইনের রঙ পরিবর্তন করে ",
+                                        "description": "বন্ধু ফিডে কথোপকথন বিভাজক রেখার রঙ পরিবর্তন করে",
                                         "name": "কথোপকথনের লাইনের রঙ"
                                     },
                                     "action_menu_round_background_color": {
                                         "name": "অ্যাকশন মেনুর গোলাকার পটভূমির রঙ",
                                         "description": "স্ন্যাপচ্যাটের চ্যাট অ্যাকশন মেনুর গোলাকার পটভূমির রঙ পরিবর্তন করে"
+                                    },
+                                    "action_sheet_description_text_color": {
+                                        "name": "অ্যাকশন মেনু বর্ণনা টেক্সটের রঙ",
+                                        "description": "অ্যাকশন মেনুর বর্ণনার টেক্সটের রঙ পরিবর্তন করে"
+                                    },
+                                    "list_background_drawable": {
+                                        "name": "কথোপকথনের তালিকার পটভূমি ",
+                                        "description": "বন্ধুর ফিডে কথোপকথনের তালিকার পটভূমির রঙ পরিবর্তন করে\nএটি বন্ধুর ফিডের চেহারা নষ্ট করতে পারে"
+                                    },
+                                    "sig_color_icon_primary": {
+                                        "name": "অ্যাকশন মেনু আইকনের রঙ",
+                                        "description": "চ্যাট অ্যাকশন মেনু/বন্ধুর ফিড মেনুর আইকনের রঙ পরিবর্তন করে"
                                     }
                                 },
                                 "name": "কাস্টম রঙ",
@@ -552,6 +604,10 @@
                             "theme_picker": {
                                 "name": "থিম নির্বাচক",
                                 "description": "পূর্বনির্ধারিত স্ন্যাপচ্যাট থিমস"
+                            },
+                            "colors_debug": {
+                                "name": "রং ডিবাগ",
+                                "description": "লগ দ্য obtainStyledAttributes, যা Snapchat লোড হওয়ার সময় ব্যবহার করা হচ্ছে\nদ্রষ্টব্য: এটি আপনার লগের আকার উল্লেখযোগ্যভাবে বৃদ্ধি করবে"
                             }
                         },
                         "name": "রঙ",
@@ -591,7 +647,7 @@
                     },
                     "hide_settings_gear": {
                         "name": "সেটিংস গিয়ার লুকান",
-                        "description": "বন্ধু ফিডে স্ন্যাপএনহ্যান্স সেটিংস গিয়ার লুকায়"
+                        "description": "ফ্রেন্ড ফিডে SE এক্সটেন্ডেড সেটিংস গিয়ার লুকিয়ে রাখে"
                     },
                     "edit_text_override": {
                         "name": "টেক্সট সম্পাদনা ওভাররাইড",
@@ -608,6 +664,10 @@
                     "message_indicators": {
                         "name": "বার্তা সূচক",
                         "description": "বার্তাগুলিতে নির্দিষ্ট সূচক আইকন যোগ করে\nনোট: সূচকগুলি ১০০% সঠিক নাও হতে পারে"
+                    },
+                    "auto_close_friend_feed_menu": {
+                        "name": "অটো ক্লোজ ফ্রেন্ড ফিড মেনু",
+                        "description": "সেটিং বোতাম চাপার পরে স্বয়ংক্রিয়ভাবে ফ্রেন্ড ফিড মেনু বন্ধ হয়ে যায়"
                     }
                 },
                 "name": "ব্যবহারকারীর ইন্টারফেস"
@@ -713,6 +773,10 @@
                             "mark_as_read_and_save_in_chat": {
                                 "name": "পড়া হিসেবে চিহ্নিত এবং চ্যাটে সংরক্ষণ করুন",
                                 "description": "নোটিফিকেশনে পড়া হিসেবে চিহ্নিত এবং চ্যাটে সংরক্ষণ করার বোতাম যোগ করে"
+                            },
+                            "smart_replies": {
+                                "name": "স্মার্ট উত্তর",
+                                "description": "নোটিফিকেশনে সুপারিশ করা উত্তর যোগ করে (Android 10+). উত্তর বোতামের সাথে ব্যবহার করুন"
                             }
                         }
                     },
@@ -775,6 +839,14 @@
                     "bypass_message_retention_policy": {
                         "name": "বার্তা ধরে রাখার নীতি এড়িয়ে চলুন",
                         "description": "বার্তা দেখার পর তা মুছে ফেলা থেকে প্রতিরোধ করে"
+                    },
+                    "mark_snap_as_seen_button": {
+                        "name": "স্ন্যাপকে দেখা বোতাম হিসেবে চিহ্নিত করুন",
+                        "description": "একটি স্ন্যাপ দেখার সময় এটিকে দেখানো হিসাবে চিহ্নিত করতে একটি বোতাম যোগ করে।\nস্টিলথ মোড চালু থাকলেও এটি কাজ করবে"
+                    },
+                    "skip_when_marking_as_seen": {
+                        "name": "দেখা হিসাবে চিহ্নিত করার সময় এড়িয়ে যান",
+                        "description": "একটি স্ন্যাপকে দেখা হিসাবে চিহ্নিত করার সময় স্বয়ংক্রিয়ভাবে পরবর্তী স্ন্যাপ এ চলে যায়৷\nমার্ক স্ন্যাপ এর সাথে সেন বোতাম হিসেবে ব্যবহার করুন"
                     }
                 },
                 "description": "বন্ধুদের সাথে মিথস্ক্রিয়া পরিবর্তন করুন",
@@ -901,6 +973,10 @@
                     "disable_memories_snap_feed": {
                         "name": "মেমোরিজ স্ন্যাপ ফিড অক্ষম করুন",
                         "description": "ক্যামেরায় উপরে সোয়াইপ করলে স্ন্যাপচ্যাটকে সাম্প্রতিক মেমোরিজ দেখানো থেকে প্রতিরোধ করে"
+                    },
+                    "disable_telecom_framework": {
+                        "name": "টেলিকম ফ্রেমওয়ার্ক অক্ষম করুন",
+                        "description": "স্ন্যাপচ্যাট-কে অ্যান্ড্রয়েড টেলিকম ফ্রেমওয়ার্ক ব্যবহার থেকে বিরত রাখে\nএটি আপনাকে কলের সময় সঙ্গীত শোনার অনুমতি দেয়"
                     }
                 },
                 "description": "গ্লোবাল স্ন্যাপচ্যাট সেটিংস মোড়ান",
@@ -977,6 +1053,10 @@
                             "custom_emoji_font": {
                                 "description": "আপনাকে কাস্টম ইমোজি ফন্ট ব্যবহার করতে দেয়। শুধুমাত্র .ttf ফন্টগুলির সাথে কাজ করে",
                                 "name": "কাস্টম ইমোজি ফন্ট"
+                            },
+                            "remap_executable": {
+                                "description": "মেমরিতে এক্সিকিউটেবল অঞ্চল রিম্যাপ করে",
+                                "name": "রিম্যাপ এক্সিকিউটেবল"
                             }
                         },
                         "name": "নেটিভ হুকস",
@@ -1063,6 +1143,138 @@
                     "cof_experiments": {
                         "name": "COF পরীক্ষা-নিরীক্ষা",
                         "description": "অপ্রকাশিত/বেটা স্ন্যাপচ্যাট বৈশিষ্ট্যগুলি সক্রিয় করে"
+                    },
+                    "experimental_colors": {
+                        "properties": {
+                            "sig_color_icon_secondary": {
+                                "name": "সিগ রঙের আইকন সেকেন্ডারি",
+                                "description": "কিছু একটি জিনিসের রঙের সাথে কিছু করে ;)"
+                            },
+                            "box_background_color": {
+                                "name": "বক্সের পটভূমির রঙ",
+                                "description": "কিছু একটি জিনিসের রঙের সাথে কিছু করে ;)"
+                            },
+                            "status_bar_background": {
+                                "name": "স্ট্যাটাস বারের পটভূমি",
+                                "description": "কিছু একটি জিনিসের রঙের সাথে কিছু করে ;)"
+                            },
+                            "ring_color": {
+                                "name": "রিং এর রঙ",
+                                "description": "কিছু একটি জিনিসের রঙের সাথে কিছু করে ;)"
+                            },
+                            "item_shape_fill_color": {
+                                "name": "আইটেমের আকৃতির পূরণ রঙ",
+                                "description": "কিছু একটি জিনিসের রঙের সাথে কিছু করে ;)"
+                            },
+                            "ring_start_color": {
+                                "name": "রিং শুরুর রঙ",
+                                "description": "কিছু একটি জিনিসের রঙের সাথে কিছু করে ;)"
+                            },
+                            "sc_button_color": {
+                                "name": "Sc বোতামের রঙ",
+                                "description": "কিছু একটি জিনিসের রঙের সাথে কিছু করে ;)"
+                            },
+                            "recipient_pill_background_drawable": {
+                                "name": "প্রাপকের পিল পটভূমি অঙ্কনযোগ্য",
+                                "description": "কিছু একটি জিনিসের রঙের সাথে কিছু করে ;)"
+                            },
+                            "psts_indicator_color": {
+                                "description": "কিছু একটি জিনিসের রঙের সাথে কিছু করে ;)",
+                                "name": "Psts ইন্ডিকেটরের রঙ"
+                            },
+                            "sig_color_base_app_yellow": {
+                                "name": "সিগ রঙের বেস অ্যাপ হলুদ",
+                                "description": "কিছু একটি জিনিসের রঙের সাথে কিছু করে ;)"
+                            },
+                            "chip_background_color": {
+                                "description": "কিছু একটি জিনিসের রঙের সাথে কিছু করে ;)",
+                                "name": "চিপের পটভূমির রঙ"
+                            },
+                            "recipient_input_style": {
+                                "name": "প্রাপকের ইনপুট স্টাইল",
+                                "description": "কিছু একটি জিনিসের রঙের সাথে কিছু করে ;)"
+                            },
+                            "range_fill_color": {
+                                "name": "রেঞ্জ পূরণের রঙ",
+                                "description": "কিছু একটি জিনিসের রঙের সাথে কিছু করে ;)"
+                            },
+                            "tab_text_color": {
+                                "description": "কিছু একটি জিনিসের রঙের সাথে কিছু করে ;)",
+                                "name": "ট্যাব টেক্সটের রঙ"
+                            },
+                            "sig_color_layout_place_holder": {
+                                "name": "সিগ রঙের লেআউট প্লেস হোল্ডার",
+                                "description": "কিছু একটি জিনিসের রঙের সাথে কিছু করে ;)"
+                            },
+                            "edit_text_color": {
+                                "name": "এডিট টেক্সটের রঙ",
+                                "description": "কিছু একটি জিনিসের রঙের সাথে কিছু করে ;)"
+                            },
+                            "psts_tab_background": {
+                                "name": "Psts ট্যাবের পটভূমি",
+                                "description": "কিছু একটি জিনিসের রঙের সাথে কিছু করে ;)"
+                            },
+                            "story_replay_view_ring_color": {
+                                "name": "স্টোরি রিপ্লে ভিউ রিং এর রঙ",
+                                "description": "কিছু একটি জিনিসের রঙের সাথে কিছু করে ;)"
+                            },
+                            "psts_divider_color": {
+                                "name": "Psts ডিভাইডারের রঙ",
+                                "description": "কিছু একটি জিনিসের রঙের সাথে কিছু করে ;)"
+                            },
+                            "status_bar_foreground": {
+                                "name": "স্ট্যাটাস বারের পূর্বভূমি",
+                                "description": "কিছু একটি জিনিসের রঙের সাথে কিছু করে ;)"
+                            },
+                            "stroke_color": {
+                                "description": "কিছু একটি জিনিসের রঙের সাথে কিছু করে ;)",
+                                "name": "স্ট্রোকের রঙ"
+                            },
+                            "sig_color_button_primary": {
+                                "name": "সিগ রঙের বোতাম প্রাথমিক",
+                                "description": "কিছু একটি জিনিসের রঙের সাথে কিছু করে ;)"
+                            },
+                            "sig_color_background_surface_translucent": {
+                                "name": "রঙিন পটভূমি পৃষ্ঠ স্বচ্ছ",
+                                "description": "কোন কিছুর রঙে কিছু করে;)"
+                            },
+                            "sig_color_story_ring_friends_feed_story_ring": {
+                                "name": "কালার স্টোরিরিংফ্রেন্ডসফিডস্টোরিং",
+                                "description": "কোন কিছুর রঙে কিছু করে;)"
+                            },
+                            "sig_color_story_ring_discover_tab_thumbnail_story_ring": {
+                                "name": "কালার স্টোরি রিং ডিসকভারট্যাব থাম্বনেলস্টোরিং",
+                                "description": "কোন কিছুর রঙে কিছু করে;)"
+                            }
+                        },
+                        "name": "পরীক্ষামূলক রঙের অপশন",
+                        "description": "দ্রষ্টব্য: এই রঙের বৈশিষ্ট্যগুলি পরীক্ষামূলক এবং এটি আপনার স্ন্যাপচ্যাট-কে অদ্ভুত দেখাতে পারে,\nব্যবহারের জন্য থিম নির্বাচকে `কাস্টম রঙ` নির্বাচন করুন"
+                    },
+                    "context_menu_fix": {
+                        "name": "কনটেক্সট মেনু ঠিক করুন",
+                        "description": "ডিভাইস অফলাইন থাকলে বন্ধুর ফিড মেনু ঠিক করার চেষ্টা করুন কারণ এটি সঠিকভাবে প্রদর্শিত হয় না"
+                    },
+                    "better_transcript": {
+                        "name": "উন্নত ট্রান্সক্রিপ্ট",
+                        "properties": {
+                            "enhanced_transcript": {
+                                "description": "DeepL ব্যবহার করে ভয়েস নোটের ট্রান্সক্রিপ্ট উন্নত করে।\nএই বৈশিষ্ট্য ব্যবহারের আগে, অনুগ্রহ করে তাদের গোপনীয়তা নীতি পড়ে নিশ্চিত হন।",
+                                "name": "এনহ্যান্সড ট্রান্সক্রিপ্ট"
+                            },
+                            "force_transcription": {
+                                "name": "ভয়েস নোট ট্রান্সক্রিপশন জোর করে",
+                                "description": "সব ভয়েস নোট ট্রান্সক্রিপ্ট করার অনুমতি দেয়"
+                            },
+                            "preferred_transcription_lang": {
+                                "name": "পছন্দের ট্রান্সক্রিপশন ভাষা",
+                                "description": "ভয়েস নোট ট্রান্সক্রিপ্টের জন্য পছন্দের ভাষা (যেমন EN, ES, FR)"
+                            },
+                            "enhanced_transcript_in_notifications": {
+                                "name": "বিজ্ঞপ্তিতে উন্নত প্রতিলিপি",
+                                "description": "DeepL ব্যবহার করে বিজ্ঞপ্তিতে ভয়েস নোটগুলির প্রতিলিপি তৈরি করে। এর জন্য উন্নত বিজ্ঞপ্তি-এ চ্যাট প্রিভিউ বৈশিষ্ট্যটি সক্রিয় থাকতে হবে"
+                            }
+                        },
+                        "description": "ভয়েস নোটের ট্রান্সক্রিপ্ট উন্নত করে"
                     }
                 },
                 "description": "পরীক্ষামূলক বৈশিষ্ট্য",
@@ -1219,7 +1431,8 @@
             "disable_story_sections": {
                 "discover": "আবিষ্কার",
                 "friends": "বন্ধুরা",
-                "following": "অনুসরণ"
+                "following": "অনুসরণ",
+                "suggested_stories": "প্রস্তাবিত গল্পগুলি"
             },
             "old_bitmoji_selfie": {
                 "3d": "৩ডি বিটমোজি",
@@ -1260,7 +1473,13 @@
                 "hide_live_location_share_button": "লাইভ লোকেশন শেয়ার বোতাম অপসারণ করুন",
                 "hide_stickers_button": "স্টিকার বোতাম অপসারণ করুন",
                 "hide_voice_record_button": "ভয়েস রেকর্ড বোতাম অপসারণ করুন",
-                "hide_unread_chat_hint": "অপঠিত চ্যাটের সংকেত অপসারণ করুন"
+                "hide_unread_chat_hint": "অপঠিত চ্যাটের সংকেত অপসারণ করুন",
+                "hide_post_to_story_buttons": "স্টোরিতে পোস্ট করার বোতামগুলি সরান",
+                "hide_snap_create_group_buttons": "স্ন্যাপ গ্রুপ তৈরি বোতামগুলি সরান",
+                "hide_chat_camera_button": "চ্যাট ক্যামেরা বোতাম সরান",
+                "hide_explorer_token_button": "এক্সপ্লোরার টোকেন বোতাম সরান",
+                "hide_gift_snapchat_plus_reminders": "গিফট স্ন্যাপচ্যাট প্লাস অনুস্মারকগুলি সরান",
+                "hide_chat_gallery_button": "চ্যাট গ্যালারি বোতাম সরান"
             },
             "strip_media_metadata": {
                 "remove_audio_note_transcript_capability": "অডিও নোট ট্রান্সক্রিপ্ট ক্ষমতা অপসারণ করুন",
@@ -1323,7 +1542,32 @@
                 "lemon_meringue": "লেমন মেরিং",
                 "alien_landscape": "এলিয়েন ল্যান্ডস্কেপ",
                 "lava_flow": "লাভা ফ্লো",
-                "ocean_fog": "ওশান ফগ"
+                "ocean_fog": "ওশান ফগ",
+                "watercolor_wash": "জল রং ধোয়া",
+                "woodland_mystery": "উডল্যান্ড মিস্ট্রি",
+                "lemon_sorbet": "লেমন সোরবেট",
+                "cosmic_night": "কসমিক নাইট",
+                "gingerbread_house": "জিঞ্জারব্রেড হাউস",
+                "art_deco_glam": "আর্ট ডেকো গ্ল্যাম",
+                "zesty_lemon": "জেস্টি লেমন",
+                "tropical_paradise": "ট্রপিকাল প্যারাডাইস",
+                "industrial_chic": "ইন্ডাস্ট্রিয়াল চিক",
+                "cherry_bomb": "চেরি বম্ব",
+                "galaxy_glitter": "গ্যালাক্সি গ্লিটার",
+                "midnight_library": "মিডনাইট লাইব্রেরি",
+                "spicy_mustard": "স্পাইসি মাস্টার্ড",
+                "ocean_depths": "ওশান ডেপথস",
+                "creamy_vanilla": "ক্রিমি ভ্যানিলা",
+                "lavender_field": "ল্যাভেন্ডার ফিল্ড",
+                "spicy_chili": "স্পাইসি চিলি",
+                "firefly_night": "ফায়ারফ্লাই নাইট",
+                "apple_orchard": "অ্যাপল অরচার্ড",
+                "peppermint_candy": "পেপারমিন্ট ক্যান্ডি",
+                "spring_meadow": "স্প্রিং মেডো",
+                "bubblegum_pink": "বাবলগাম পিঙ্ক",
+                "lemon_drop": "লেমন ড্রপ",
+                "modern_farmhouse": "মডার্ন ফার্মহাউস",
+                "midnight_slate": "মিডনাইট স্লেট"
             },
             "app_appearance": {
                 "always_light": "সর্বদা লাইট",
@@ -1529,7 +1773,8 @@
         "edit_message": "বার্তা সম্পাদনা করুন",
         "convert_message": "বার্তা রূপান্তর করুন",
         "download_button": "ডাউনলোড",
-        "delete_logged_message_button": "লগ করা বার্তা মুছে ফেলুন"
+        "delete_logged_message_button": "লগ করা বার্তা মুছে ফেলুন",
+        "show_chat_edit_history": "চ্যাট সম্পাদনা ইতিহাস দেখান"
     },
     "mark_as_seen": {
         "seen_toast": "দেখা হিসেবে চিহ্নিত!",

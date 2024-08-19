@@ -73,6 +73,28 @@
             },
             "features": {
                 "disabled": "Disabilitato"
+            },
+            "home": {
+                "update_title": "Aggiornamento esteso SE",
+                "update_content": "La versione {versione} è disponibile!",
+                "update_button": "Scaricamento",
+                "debug_build_summary_title": "Stai eseguendo una build di debug di SE Extended",
+                "debug_build_summary_content": "Versione {versionName} ({versionCode})",
+                "debug_build_summary_date": "Data di creazione: {date} ({days} giorni fa)",
+                "quick_actions_title": "Azioni rapide",
+                "version_title": "V{versionName} · Biforcato da Jacob"
+            },
+            "home_logs": {
+                "no_logs_hint": "Nessun registro disponibile",
+                "clear_logs_button": "Cancella registri",
+                "export_logs_button": "Esporta registri",
+                "saving_logs_toast": "Salvataggio dei log, l'operazione potrebbe richiedere del tempo...",
+                "saved_logs_success_toast": "Registri salvati correttamente",
+                "saved_logs_failure_toast": "Impossibile salvare i registri"
+            },
+            "home_settings": {
+                "actions_title": "Azioni",
+                "message_logger_title": "Registratore di messaggi"
             }
         },
         "routes": {
@@ -84,7 +106,13 @@
             "messaging_preview": "Anteprima",
             "features": "Caratteristiche",
             "home": "Home",
-            "logger_history": "Cronologia Log"
+            "logger_history": "Cronologia Log",
+            "friend_tracker": "Localizzatore di amici",
+            "edit_rule": "Modifica regola",
+            "file_imports": "Importazioni di file",
+            "manage_scope": "Gestire l'ambito",
+            "scripts": "Copione",
+            "better_location": "Posizione migliore"
         }
     },
     "setup": {
@@ -105,5 +133,9 @@
             "display_over_other_apps": "Mostra sopra altre app",
             "request_button": "Richiedi"
         }
+    },
+    "scopes": {
+        "friend": "Amico",
+        "group": "Gruppo"
     }
 }

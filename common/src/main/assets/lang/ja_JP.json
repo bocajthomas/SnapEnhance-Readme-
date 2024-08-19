@@ -1,17 +1,197 @@
 {
     "setup": {
         "dialogs": {
-            "save_folder": "SnapEnhanceは、Snapchatからメディアをダウンロードして保存するためにストレージ許可が必要です。\nメディアをダウンロードする場所を選択してください。",
-            "select_save_folder_button": "フォルダを選択"
+            "save_folder": "SE Extendedは、Snapchatからメディアをダウンロードして保存するためにストレージ許可が必要です。\nメディアをダウンロードする場所を選択してください。",
+            "select_save_folder_button": "フォルダを選択",
+            "select_language": "言語を選択する"
         },
         "mappings": {
-            "dialog": "スナップチャットのさまざまなバージョンを動的にサポートするためには、SnapEnhanceが正常に機能するためには、マッピングが必要です。これには5秒以上かかりません。"
+            "dialog": "マッピングを生成しています。これには時間がかかる場合があります...",
+            "generate_failure": "マッピングを生成中にエラーが発生しました。もう一度お試しください。",
+            "generate_failure_no_snapchat": "SE Extended が Snapchat を検出できませんでした。Snapchat を再インストールしてみてください。"
+        },
+        "permissions": {
+            "notification_access": "通知へのアクセス",
+            "battery_optimization": "バッテリーの最適化",
+            "request_button": "リクエスト",
+            "dialog": "続行するには、次の要件を満たす必要があります。",
+            "display_over_other_apps": "他のアプリの上に重ねて表示"
         }
     },
     "manager": {
         "dialogs": {
             "scripting_warning": {
-                "content": "SnapEnhance にはスクリプト ツールが含まれており、デバイス上でユーザー定義のコードを実行できます。 細心の注意を払い、既知の信頼できるソースからのみモジュールをインストールしてください。 未承認または未検証のモジュールは、システムにセキュリティ上のリスクをもたらす可能性があります。"
+                "content": "SE Extended にはスクリプト ツールが含まれており、デバイス上でユーザー定義のコードを実行できます。 細心の注意を払い、既知の信頼できるソースからのみモジュールをインストールしてください。 未承認または未検証のモジュールは、システムにセキュリティ上のリスクをもたらす可能性があります。",
+                "title": "警告"
+            },
+            "add_friend": {
+                "search_hint": "検索",
+                "category_groups": "グループ",
+                "category_friends": "友達",
+                "title": "友達またはグループを追加",
+                "fetch_error": "データの取得に失敗しました"
+            },
+            "reset_config": {
+                "title": "設定をリセットする",
+                "success_toast": "構成が正常にリセットされました",
+                "content": "設定をリセットしてもよろしいですか?"
+            },
+            "messaging_action": {
+                "title": "処理するコンテンツ タイプの選択",
+                "select_all_button": "すべて選択"
+            },
+            "file_imports": {
+                "settings_select_file_hint": "インポートされたファイルを選択します",
+                "no_files_settings_hint": "ファイルが見つかりません。 「ファイルのインポート」セクションで必要なファイルがインポートされていることを確認してください"
+            },
+            "export_config": {
+                "title": "機密データをエクスポートしますか?",
+                "content": "機密データを含む構成をエクスポートしますか? (位置座標など)"
+            }
+        },
+        "routes": {
+            "tasks": "タスク",
+            "home": "家",
+            "home_logs": "ログ",
+            "logger_history": "ロガー履歴",
+            "social": "社交",
+            "manage_scope": "スコープの管理",
+            "better_location": "より良いロケーション",
+            "features": "特徴",
+            "home_settings": "設定",
+            "logged_stories": "記録されたストーリー",
+            "friend_tracker": "フレンドトラッカー",
+            "edit_rule": "ルールの編集",
+            "messaging_preview": "プレビュー",
+            "file_imports": "ファイルのインポート",
+            "scripts": "スクリプト"
+        },
+        "sections": {
+            "home": {
+                "version_title": "V{versionName} · Jacob によってフォークされました",
+                "update_title": "SE Extended アップデート",
+                "update_button": "ダウンロード",
+                "update_content": "バージョン {version} が利用可能です!",
+                "debug_build_summary_title": "SE Extended のデバッグ ビルドを実行しています",
+                "debug_build_summary_content": "バージョン {versionName} ({versionCode})",
+                "debug_build_summary_date": "ビルド日: {date} ({days} 日前)",
+                "quick_actions_title": "クイックアクション"
+            },
+            "home_logs": {
+                "saved_logs_success_toast": "ログは正常に保存されました",
+                "clear_logs_button": "ログをクリアする",
+                "no_logs_hint": "利用可能なログがありません",
+                "export_logs_button": "ログのエクスポート",
+                "saving_logs_toast": "ログを保存しています。これには時間がかかる場合があります...",
+                "saved_logs_failure_toast": "ログの保存に失敗しました"
+            },
+            "home_settings": {
+                "debug_title": "デバッグ",
+                "message_logger_summary": "{messageCount} メッセージ\n{storyCount} ストーリー",
+                "clear_button": "クリア",
+                "actions_title": "行動",
+                "message_logger_title": "メッセージロガー",
+                "success_toast": "終わり！",
+                "export_button": "輸出",
+                "view_logger_history_button": "ロガー履歴の表示"
+            },
+            "tasks": {
+                "no_tasks": "タスクがありません",
+                "failed_to_open_file": "ファイルを開けませんでした",
+                "merge_files_toast": "{count} ファイルを結合しています",
+                "delete_files_option": "ファイルも削除",
+                "remove_selected_tasks_title": "選択したタスクを削除してもよろしいですか?",
+                "remove_all_tasks_title": "すべてのタスクを削除してもよろしいですか?",
+                "remove_selected_tasks_confirm": "{count} 個のタスクを削除しますか?",
+                "remove_all_tasks_confirm": "すべてのタスクを削除しますか?"
+            },
+            "features": {
+                "disabled": "無効",
+                "export_option": "輸出",
+                "import_option": "輸入",
+                "reset_option": "リセット",
+                "config_import_failure_toast": "構成のインポートに失敗しました {error}",
+                "config_export_success_toast": "構成は正常にエクスポートされました",
+                "config_import_success_toast": "構成が正常にインポートされました",
+                "config_export_failure_toast": "構成のエクスポートに失敗しました {error}",
+                "saved_config_snackbar": "設定が保存されました"
+            },
+            "manage_scope": {
+                "participants_text": "{count} 人の参加者",
+                "not_found": "見つかりません",
+                "streaks_expiration_text": "{eta} で期限切れになります",
+                "streaks_expiration_text_expired": "期限切れ",
+                "streaks_title": "縞模様",
+                "logged_stories_button": "記録されたストーリーを表示",
+                "e2ee_title": "エンドツーエンドの暗号化",
+                "rules_title": "ルール",
+                "streaks_length_text": "長さ: {length}",
+                "delete_scope_confirm_dialog_title": "{scope} を削除してもよろしいですか?",
+                "reminder_button": "リマインダーを設定する"
+            },
+            "logged_stories": {
+                "story_failed_to_load": "読み込みに失敗しました",
+                "no_stories": "ストーリーが見つかりませんでした",
+                "save_from_cache_button": "キャッシュから保存"
+            },
+            "messaging_preview": {
+                "bridge_init_failed": "メッセージング ブリッジの初期化に失敗しました。 Snapchatがバックグラウンドで実行されていることを確認してください",
+                "save_all_option": "すべてを救う",
+                "unsave_selection_option": "選択範囲を保存しない",
+                "delete_all_option": "すべて削除",
+                "no_message_hint": "メッセージなし",
+                "save_selection_option": "選択範囲を保存",
+                "unsave_all_option": "すべて保存解除",
+                "mark_selection_as_seen_option": "選択したスナップを表示済みとしてマークします",
+                "mark_all_as_seen_option": "すべてのスナップを既読としてマークします",
+                "delete_selection_option": "選択範囲の削除",
+                "message_fetch_failed": "メッセージの取得に失敗しました",
+                "bridge_connection_failed": "ブリッジへの接続に失敗しました。 Snapchatがバックグラウンドで実行されていることを確認してください"
+            },
+            "logger_history": {
+                "list_friend_format": "友達 {name}",
+                "list_group_format": "グループ {name}",
+                "no_more_messages": "これ以上のメッセージはありません",
+                "reverse_order_checkbox": "逆順",
+                "chat_attachment": "アタッチメント {index}",
+                "empty_message": "空のチャットメッセージ",
+                "unknown_sender": "不明な送信者",
+                "download_attachment_failed_toast": "添付ファイルのダウンロードに失敗しました",
+                "message_parse_failed": "メッセージの解析に失敗しました"
+            },
+            "social": {
+                "friends_tab": "友達",
+                "empty_hint": "（空の）",
+                "groups_tab": "グループ",
+                "streaks_expiration_short": "{hours}h"
+            },
+            "file_imports": {
+                "import_file_button": "インポートファイル",
+                "file_not_found": "ファイルが見つかりません",
+                "file_import_failed": "ファイルのインポートに失敗しました: {error}",
+                "file_imported": "ファイルは正常にインポートされました",
+                "file_delete_failed": "ファイルの削除に失敗しました",
+                "no_files_hint": "ここでは、Snapchat で使用するファイルをインポートできます。ファイルをインポートするには、下のボタンを押してください。"
+            },
+            "better_location": {
+                "spoofed_coordinates_title": "緯度 {latitude}, ロング {longitude}",
+                "save_coordinates_dialog_title": "座標の保存",
+                "saved_name_dialog_hint": "保存された名前",
+                "latitude_dialog_hint": "緯度",
+                "longitude_dialog_hint": "経度",
+                "save_dialog_button": "保存",
+                "choose_location_button": "場所を選択してください",
+                "teleport_to_friend_button": "友達にテレポート",
+                "spoof_location_toggle": "位置情報の偽装",
+                "saved_coordinates_title": "保存された座標",
+                "delete_dialog_title": "保存された座標を削除",
+                "teleport_to_friend_title": "友達にテレポート",
+                "search_bar": "検索",
+                "suspend_location_updates": "位置情報の更新を一時停止する",
+                "no_saved_coordinates_hint": "座標が保存されていません",
+                "no_friends_map": "マップ上に友達がいない",
+                "delete_dialog_message": "この保存された座標を削除してもよろしいですか?",
+                "no_friends_found": "友達が見つかりませんでした"
             }
         }
     },
@@ -20,9 +200,300 @@
             "experimental": {
                 "properties": {
                     "account_switcher": {
-                        "description": "アカウントを切り替えることができますログアウトせずに Bitmoji プロフィールの横にある検索アイコンを長押ししてメニューを開きます 注: この機能は実験的なものであり、将来変更される可能性があります"
+                        "description": "ログアウトせずにアカウントを切り替えることができます\nBitmoji プロフィールの横にある検索アイコンを長押ししてメニューを開きます\n注: この機能は実験的なものであり、将来変更される可能性があります",
+                        "name": "アカウントスイッチャー",
+                        "properties": {
+                            "auto_backup_current_account": {
+                                "name": "現在のアカウントの自動バックアップ",
+                                "description": "ログアウトまたはアカウントの切り替え時に現在のアカウントを自動的にバックアップします"
+                            }
+                        }
+                    },
+                    "native_hooks": {
+                        "properties": {
+                            "disable_bitmoji": {
+                                "name": "Bitmoji を無効にする",
+                                "description": "友達のプロフィール Bitmoji を無効にする"
+                            },
+                            "custom_emoji_font": {
+                                "name": "カスタム絵文字フォント",
+                                "description": "カスタム絵文字フォントを使用できます。 .ttf フォントでのみ動作します"
+                            },
+                            "composer_hooks": {
+                                "properties": {
+                                    "composer_console": {
+                                        "name": "作曲者コンソール",
+                                        "description": "Composer で JavaScript コードを実行できるようにします (ARM64 のみ)"
+                                    },
+                                    "show_first_created_username": {
+                                        "name": "最初に作成されたユーザー名を表示",
+                                        "description": "プロフィール ページの現在のユーザー名の隣に、最初に作成されたユーザー名が表示されます"
+                                    },
+                                    "bypass_camera_roll_limit": {
+                                        "description": "カメラロールから送信できるメディアの最大量を増やします",
+                                        "name": "カメラロール制限をバイパスする"
+                                    },
+                                    "composer_logs": {
+                                        "name": "作曲家のログ",
+                                        "description": "Composer のコンソール ログを SE Extended にリダイレクトします"
+                                    }
+                                },
+                                "name": "作曲家フック",
+                                "description": "Composer クロスプラットフォーム UI フレームワークにコードを挿入します"
+                            },
+                            "remap_executable": {
+                                "name": "リマップ実行可能ファイル",
+                                "description": "メモリ内の実行可能領域を再マップします"
+                            }
+                        },
+                        "name": "ネイティブフック",
+                        "description": "Snapchatのネイティブコードにフックする安全でない機能"
+                    },
+                    "spoof": {
+                        "name": "スプーフィング",
+                        "properties": {
+                            "play_store_installer_package_name": {
+                                "name": "Play ストア インストーラー パッケージ名",
+                                "description": "インストーラー パッケージ名を com.android.vending にオーバーライドします"
+                            },
+                            "fingerprint": {
+                                "name": "デバイスの指紋",
+                                "description": "デバイスの指紋を偽装します"
+                            },
+                            "android_id": {
+                                "description": "Android ID を指定された値に偽装します",
+                                "name": "アンドロイドID"
+                            },
+                            "remove_mock_location_flag": {
+                                "name": "疑似ロケーションフラグを削除",
+                                "description": "Snapchat がモックの位置を検出できないようにします"
+                            },
+                            "remove_vpn_transport_flag": {
+                                "description": "Snapchat が VPN を検出できないようにします",
+                                "name": "VPN トランスポート フラグを削除する"
+                            },
+                            "randomize_persistent_device_token": {
+                                "name": "永続的なデバイストークンをランダム化する",
+                                "description": "各ログイン後にランダムなデバイストークンを生成します"
+                            }
+                        },
+                        "description": "あなたに関するさまざまな情報を偽装する"
+                    },
+                    "experimental_colors": {
+                        "properties": {
+                            "ring_start_color": {
+                                "name": "リング開始色",
+                                "description": "何かの色に何かをします ;)"
+                            },
+                            "recipient_pill_background_drawable": {
+                                "name": "受信者の錠剤の背景描画可能",
+                                "description": "何かの色に何かをします ;)"
+                            },
+                            "box_background_color": {
+                                "name": "ボックスの背景色",
+                                "description": "何かの色に何かをします ;)"
+                            },
+                            "edit_text_color": {
+                                "name": "テキストの色の編集",
+                                "description": "何かの色に何かをします ;)"
+                            },
+                            "chip_background_color": {
+                                "name": "チップの背景色",
+                                "description": "何かの色に何かをします ;)"
+                            },
+                            "range_fill_color": {
+                                "description": "何かの色に何かをします ;)",
+                                "name": "範囲の塗りつぶしの色"
+                            },
+                            "psts_indicator_color": {
+                                "name": "Psts インジケーターの色",
+                                "description": "何かの色に何かをします ;)"
+                            },
+                            "recipient_input_style": {
+                                "name": "受信者の入力スタイル",
+                                "description": "何かの色に何かをします ;)"
+                            },
+                            "sig_color_icon_secondary": {
+                                "name": "サインカラーアイコンセカンダリ",
+                                "description": "何かの色に何かをします ;)"
+                            },
+                            "item_shape_fill_color": {
+                                "name": "項目の形状の塗りつぶしの色",
+                                "description": "何かの色に何かをします ;)"
+                            },
+                            "ring_color": {
+                                "name": "リングカラー",
+                                "description": "何かの色に何かをします ;)"
+                            },
+                            "sig_color_layout_place_holder": {
+                                "name": "Sig カラー レイアウト プレース ホルダー",
+                                "description": "何かの色に何かをします ;)"
+                            },
+                            "sc_button_color": {
+                                "name": "SCボタンの色",
+                                "description": "何かの色に何かをします ;)"
+                            },
+                            "psts_tab_background": {
+                                "name": "[PST] タブの背景",
+                                "description": "何かの色に何かをします ;)"
+                            },
+                            "psts_divider_color": {
+                                "name": "Psts ディバイダーの色",
+                                "description": "何かの色に何かをします ;)"
+                            },
+                            "tab_text_color": {
+                                "description": "何かの色に何かをします ;)",
+                                "name": "タブのテキストの色"
+                            },
+                            "status_bar_background": {
+                                "name": "ステータスバーの背景",
+                                "description": "何かの色に何かをします ;)"
+                            },
+                            "stroke_color": {
+                                "name": "ストロークの色",
+                                "description": "何かの色に何かをします ;)"
+                            },
+                            "sig_color_background_surface_translucent": {
+                                "name": "sig色背景表面半透明",
+                                "description": "何かの色に何かをします ;)"
+                            },
+                            "status_bar_foreground": {
+                                "name": "ステータスバーの前景",
+                                "description": "何かの色に何かをします ;)"
+                            },
+                            "story_replay_view_ring_color": {
+                                "name": "ストーリーリプレイビューリングの色",
+                                "description": "何かの色に何かをします ;)"
+                            },
+                            "sig_color_base_app_yellow": {
+                                "name": "Sig カラーベース アプリ イエロー",
+                                "description": "何かの色に何かをします ;)"
+                            },
+                            "sig_color_story_ring_discover_tab_thumbnail_story_ring": {
+                                "description": "何かの色に何かをします ;)",
+                                "name": "sigカラーストーリーリング発見タブサムネイルストーリーリング"
+                            },
+                            "sig_color_button_primary": {
+                                "description": "何かの色に何かをします ;)",
+                                "name": "サインカラーボタンプライマリ"
+                            },
+                            "sig_color_story_ring_friends_feed_story_ring": {
+                                "name": "sigカラーストーリーリング友達フィードストーリーリング",
+                                "description": "何かの色に何かをします ;)"
+                            }
+                        },
+                        "name": "実験的な色のオプション",
+                        "description": "注: これらの色機能は実験的なものであるため、スナップチャットが奇妙に見える可能性があります。\n使用するテーマピッカーで「カスタムカラー」を選択します"
+                    },
+                    "story_logger": {
+                        "name": "ストーリーロガー",
+                        "description": "友達のストーリーの履歴を提供します"
+                    },
+                    "call_recorder": {
+                        "name": "電話の録音器",
+                        "description": "音声通話を自動的に録音します"
+                    },
+                    "better_transcript": {
+                        "name": "より良いトランスクリプト",
+                        "properties": {
+                            "force_transcription": {
+                                "description": "すべての音声メモを文字に起こすことができます",
+                                "name": "ボイスノートの文字起こしを強制する"
+                            },
+                            "preferred_transcription_lang": {
+                                "description": "音声メモのトランスクリプトに使用する優先言語 (例: EN、ES、FR)",
+                                "name": "優先される文字起こし言語"
+                            },
+                            "enhanced_transcript": {
+                                "description": "DeepL を使用して音声メモのトランスクリプトを改善します。\nこの機能を使用する前に、プライバシー ポリシーを必ずお読みください。",
+                                "name": "強化されたトランスクリプト"
+                            },
+                            "enhanced_transcript_in_notifications": {
+                                "description": "DeepL を使用して通知内の音声メモを文字に起こします。これには、Better Notices でチャット プレビュー機能を有効にする必要があります",
+                                "name": "通知のトランスクリプトの強化"
+                            }
+                        },
+                        "description": "音声メモのトランスクリプトを改善します"
+                    },
+                    "cof_experiments": {
+                        "name": "COF実験",
+                        "description": "未リリース/ベータ版の Snapchat 機能を有効にする"
+                    },
+                    "infinite_story_boost": {
+                        "description": "ストーリーブースト制限の遅延を回避する",
+                        "name": "無限のストーリーブースト"
+                    },
+                    "convert_message_locally": {
+                        "name": "メッセージをローカルで変換する",
+                        "description": "スナップをローカルでチャット外部メディアに変換します。これはチャットのダウンロード コンテキスト メニューに表示されます"
+                    },
+                    "media_file_picker": {
+                        "name": "メディア ファイル ピッカー",
+                        "description": "ギャラリーからビデオ/オーディオ ファイルを選択できます"
+                    },
+                    "context_menu_fix": {
+                        "description": "デバイスがオフラインの場合は正しく表示できないため、フレンド フィード メニューを修復してみます",
+                        "name": "コンテキストメニューの修正"
+                    },
+                    "app_lock": {
+                        "properties": {
+                            "lock_on_resume": {
+                                "name": "ロックオンレジューム",
+                                "description": "アプリを再度開くとロックします"
+                            }
+                        },
+                        "name": "アプリロック",
+                        "description": "パスコードなしでSnapchatにアクセスできないようにする"
+                    },
+                    "edit_message": {
+                        "name": "メッセージの編集",
+                        "description": "会話内のメッセージを編集できます"
+                    },
+                    "meo_passcode_bypass": {
+                        "description": "My Eyes Only パスコードをバイパスする\nこれは、パスコードが正しく入力されている場合にのみ機能します",
+                        "name": "My Eyes Only パスコード バイパス"
+                    },
+                    "no_friend_score_delay": {
+                        "name": "フレンドスコア遅延なし",
+                        "description": "フレンドスコアを表示する際の遅延を解消します"
+                    },
+                    "best_friend_pinning": {
+                        "name": "親友のピン留め",
+                        "description": "友人を一番の親友としてピン留めできます。注: ピン留めされた親友のみが表示されます"
+                    },
+                    "e2ee": {
+                        "properties": {
+                            "encrypted_message_indicator": {
+                                "name": "暗号化メッセージインジケーター",
+                                "description": "暗号化されたメッセージの横に 🔒 絵文字を追加します"
+                            },
+                            "force_message_encryption": {
+                                "name": "メッセージの暗号化を強制する",
+                                "description": "複数の会話が選択されている場合にのみ、E2E 暗号化が有効になっていない人に暗号化されたメッセージが送信されないようにする"
+                            }
+                        },
+                        "name": "エンドツーエンドの暗号化",
+                        "description": "共有秘密鍵を使用してメッセージを AES で暗号化する\n鍵を安全に保存してください!"
+                    },
+                    "add_friend_source_spoof": {
+                        "name": "友達を追加 ソース スプーフィング",
+                        "description": "友達リクエストの送信元を偽装する"
+                    },
+                    "hidden_snapchat_plus_features": {
+                        "name": "隠しSnapchat Plus機能",
+                        "description": "未リリース/ベータ版の Snapchat Plus 機能を有効にする\n古いバージョンの Snapchat では動作しない可能性があります"
+                    },
+                    "custom_streaks_expiration_format": {
+                        "name": "カスタムストリークの有効期限フォーマット",
+                        "description": "ストリークの有効期限の形式をカスタマイズします\n\n利用可能な変数:\n - %c: ストリーク数\n - %e: 砂時計の絵文字\n - %d: 日\n - %h: 時間\n - %m: 分\n - %s: 秒\n - %w: 残り時間"
+                    },
+                    "prevent_forced_logout": {
+                        "name": "強制ログアウトを防ぐ",
+                        "description": "別のデバイスでログインしたときに Snapchat がログアウトしないようにします"
                     }
-                }
+                },
+                "name": "実験的",
+                "description": "実験的な機能"
             },
             "user_interface": {
                 "properties": {
@@ -31,14 +502,1301 @@
                             "colors": {
                                 "properties": {
                                     "pending_sending_text_color": {
-                                        "description": "友達フィード上の ( 配信済み / 受信済み / 送信中 / 開封済み / タップしてチャット / 長押しして再生 / 再生済み / チャットに保存 / 通話中 ) のテキストの色を変更します。"
+                                        "description": "友達フィード上の ( 配信済み / 受信済み / 送信中 / 開封済み / タップしてチャット / 長押しして再生 / 再生済み / チャットに保存 / 通話中 ) のテキストの色を変更します。",
+                                        "name": "二次友人フィードのテキストの色"
+                                    },
+                                    "snap_with_sound_text_color": {
+                                        "name": "サウンドテキストカラー付きスナップ",
+                                        "description": "友達フィードの ( New Snap ) の文字色を変更します\n注: ビデオ スナップのみ"
+                                    },
+                                    "background_color": {
+                                        "name": "背景色",
+                                        "description": "Snapchatの背景色を変更します"
+                                    },
+                                    "action_menu_background_color": {
+                                        "description": "Snapchatのチャットアクションメニューの背景色を変更します",
+                                        "name": "アクションメニューの背景色"
+                                    },
+                                    "sig_color_icon_primary": {
+                                        "name": "アクションメニューのアイコンの色",
+                                        "description": "チャットアクションメニュー/フレンドフィードメニューのアイコンの色を変更します"
+                                    },
+                                    "camera_grid_lines": {
+                                        "name": "カメラのグリッド線の色",
+                                        "description": "カメラプレビュー上のSnapchatのグリッド線の色を変更します\n注: カメラ設定でグリッドを有効にします"
+                                    },
+                                    "text_color": {
+                                        "name": "メインテキストの色",
+                                        "description": "Snapchatのメインテキストの色を変更します"
+                                    },
+                                    "chat_chat_text_color": {
+                                        "name": "メインの友人フィードのテキストの色",
+                                        "description": "友達フィード上の ( 新しいチャット / 新しいスナップとチャット / タイピング / 通話中 / 不在着信 / 話す / 新しいボイスメモ ) のテキストの色を変更します"
+                                    },
+                                    "action_sheet_description_text_color": {
+                                        "name": "アクション メニューの説明 テキストの色",
+                                        "description": "アクションメニューの説明の文字色を変更します"
+                                    },
+                                    "background_color_surface": {
+                                        "description": "Snapchatの背景表面の色を変更します",
+                                        "name": "Snapchatの背景色を変更します"
+                                    },
+                                    "snap_without_sound_text_color": {
+                                        "name": "サウンドなしのスナップ テキストの色",
+                                        "description": "友達フィードの ( New Snap ) の文字色を変更します\n注: ビデオ スナップのみ"
+                                    },
+                                    "list_background_drawable": {
+                                        "description": "友達フィードの会話リストの背景色を変更します\nこれにより、友達フィードの外観が崩れる可能性があります",
+                                        "name": "会話リストの背景 "
+                                    },
+                                    "friend_feed_conversations_line_color": {
+                                        "name": "会話の線の色",
+                                        "description": "友達フィードの会話を分割する行の区切り線の色を変更します"
+                                    },
+                                    "action_menu_round_background_color": {
+                                        "name": "アクションメニューの丸い背景色",
+                                        "description": "Snapchatのチャットアクションメニューの丸い背景色を変更します"
                                     }
-                                }
+                                },
+                                "description": "個別の色をカスタマイズする\n注: 使用するテーマピッカーで「カスタムカラー」を選択してください",
+                                "name": "カスタムカラー"
+                            },
+                            "theme_picker": {
+                                "name": "テーマピッカー",
+                                "description": "プリセットされたSnapchatテーマ"
+                            },
+                            "colors_debug": {
+                                "name": "カラーのデバッグ",
+                                "description": "ログ Snapchat のロード時に使用される getStyledAttributes\n注: これにより、ログのサイズが大幅に増加します"
+                            }
+                        },
+                        "name": "色",
+                        "description": "Snapchatの色をカスタマイズする"
+                    },
+                    "enable_app_appearance": {
+                        "description": "非表示のアプリの外観設定を有効にします\n新しいSnapchatバージョンでは必要ない場合があります",
+                        "name": "アプリの外観設定を有効にする"
+                    },
+                    "friend_feed_message_preview": {
+                        "name": "フレンドフィードメッセージプレビュー",
+                        "description": "フレンドフィードの最後のメッセージのプレビューを表示します",
+                        "properties": {
+                            "amount": {
+                                "description": "プレビューするメッセージの量",
+                                "name": "株式について"
                             }
                         }
+                    },
+                    "snap_preview": {
+                        "name": "スナッププレビュー",
+                        "description": "チャット内の未表示のスナップの横に小さなプレビューを表示します"
+                    },
+                    "bootstrap_override": {
+                        "name": "ブートストラップオーバーライド",
+                        "properties": {
+                            "app_appearance": {
+                                "description": "永続的なアプリの外観を設定します",
+                                "name": "アプリの外観"
+                            },
+                            "home_tab": {
+                                "name": "「ホーム」タブ",
+                                "description": "Snapchatを開いたときに起動タブをオーバーライドします"
+                            }
+                        },
+                        "description": "ユーザーインターフェイスのブートストラップ設定をオーバーライドします"
+                    },
+                    "map_friend_nametags": {
+                        "name": "フレンドマップのネームタグの強化",
+                        "description": "スナップマップ上の友達のネームタグを改善します"
+                    },
+                    "streak_expiration_info": {
+                        "description": "ストリークカウンターの横にストリーク有効期限タイマーを表示します",
+                        "name": "連続有効期限情報を表示する"
+                    },
+                    "hide_friend_feed_entry": {
+                        "name": "友達のフィードエントリを非表示にする",
+                        "description": "友達フィードから特定の友達を非表示にします\nこの機能を管理するにはソーシャル タブを使用してください"
+                    },
+                    "hide_streak_restore": {
+                        "name": "ストリークの復元を隠す",
+                        "description": "友達フィードの「復元」ボタンを非表示にします"
+                    },
+                    "hide_story_suggestions": {
+                        "name": "ストーリーの提案を非表示にする",
+                        "description": "ストーリーページから提案を削除します"
+                    },
+                    "hide_ui_components": {
+                        "name": "UIコンポーネントを非表示にする",
+                        "description": "非表示にする UI コンポーネントを選択します"
+                    },
+                    "opera_media_quick_info": {
+                        "name": "Opera メディアのクイック情報",
+                        "description": "Opera Viewerのコンテキストメニューに作成日などのメディアの役立つ情報を表示します"
+                    },
+                    "old_bitmoji_selfie": {
+                        "name": "古い Bitmoji セルフィー",
+                        "description": "古いバージョンの Snapchat から Bitmoji セルフィーを復活させます"
+                    },
+                    "disable_spotlight": {
+                        "name": "スポットライトを無効にする",
+                        "description": "スポットライトページを無効にします"
+                    },
+                    "hide_settings_gear": {
+                        "name": "設定ギアを非表示にする",
+                        "description": "フレンドフィードでSE拡張設定ギアを非表示にします"
+                    },
+                    "friend_feed_menu_buttons": {
+                        "name": "フレンドフィードメニューボタン",
+                        "description": "フレンドフィードメニューに表示するボタンを選択します"
+                    },
+                    "vertical_story_viewer": {
+                        "name": "縦型ストーリービューア",
+                        "description": "すべてのストーリーに対して垂直ストーリー ビューアを有効にします"
+                    },
+                    "enable_friend_feed_menu_bar": {
+                        "description": "新しいフレンドフィードメニューバーを有効にします",
+                        "name": "フレンドフィードメニューバー"
+                    },
+                    "message_indicators": {
+                        "name": "新しいフレンドフィードメニューバーを有効にします",
+                        "description": "特定のインジケーターアイコンをメッセージに追加します\n注: インジケーターは 100% 正確ではない可能性があります"
+                    },
+                    "stealth_mode_indicator": {
+                        "name": "ステルスモードインジケーター",
+                        "description": "ステルスモードでの会話の横に👻絵文字を追加します"
+                    },
+                    "prevent_message_list_auto_scroll": {
+                        "name": "メッセージリストの自動スクロールを防止する",
+                        "description": "メッセージの送受信時にメッセージリストが下にスクロールしないようにします"
+                    },
+                    "hide_quick_add_friend_feed": {
+                        "name": "友達フィードのクイック追加を非表示にする",
+                        "description": "友達フィードのクイック追加セクションを非表示にします"
+                    },
+                    "edit_text_override": {
+                        "name": "テキストの上書き編集",
+                        "description": "テキストフィールドの動作をオーバーライドします"
+                    },
+                    "auto_close_friend_feed_menu": {
+                        "name": "自動親しい友達フィードメニュー",
+                        "description": "設定ボタンを押すとフレンドフィードメニューを自動的に閉じます"
+                    }
+                },
+                "description": "Snapchat の外観と操作性を変更する",
+                "name": "ユーザーインターフェース"
+            },
+            "downloader": {
+                "properties": {
+                    "save_folder": {
+                        "name": "保存フォルダー",
+                        "description": "すべてのメディアをダウンロードするディレクトリを選択します"
+                    },
+                    "auto_download_sources": {
+                        "name": "自動ダウンロードソース",
+                        "description": "自動的にダウンロードするソースを選択します"
+                    },
+                    "prevent_self_auto_download": {
+                        "name": "自己自動ダウンロードを防止する",
+                        "description": "自分のスナップが自動的にダウンロードされないようにします"
+                    },
+                    "path_format": {
+                        "name": "パスの形式",
+                        "description": "ファイルパス形式の指定"
+                    },
+                    "allow_duplicate": {
+                        "name": "重複を許可する",
+                        "description": "同じメディアを複数回ダウンロードできるようにします"
+                    },
+                    "force_voice_note_format": {
+                        "name": "ボイスノート形式を強制する",
+                        "description": "ボイスメモを指定された形式で強制的に保存します"
+                    },
+                    "download_profile_pictures": {
+                        "description": "プロフィールページからプロフィール写真をダウンロードできます",
+                        "name": "プロフィール写真をダウンロードする"
+                    },
+                    "download_context_menu": {
+                        "name": "ダウンロードコンテキストメニュー",
+                        "description": "コンテキスト メニューを使用して、会話またはストーリーからメッセージをダウンロード/プレビューできます。\nボタンを長押しすると強制的にダウンロードされます"
+                    },
+                    "ffmpeg_options": {
+                        "properties": {
+                            "constant_rate_factor": {
+                                "name": "定率係数",
+                                "description": "ビデオエンコーダの固定レート係数を設定します。\nlibx264 の場合は 0 ～ 51"
+                            },
+                            "audio_bitrate": {
+                                "name": "オーディオビットレート",
+                                "description": "音声ビットレート (kbps) を設定します"
+                            },
+                            "threads": {
+                                "name": "スレッド",
+                                "description": "使用するスレッドの量"
+                            },
+                            "video_bitrate": {
+                                "description": "ビデオのビットレート (kbps) を設定します",
+                                "name": "ビデオビットレート"
+                            },
+                            "preset": {
+                                "name": "プリセット",
+                                "description": "変換速度を設定する"
+                            },
+                            "custom_video_codec": {
+                                "name": "カスタムビデオコーデック",
+                                "description": "カスタム ビデオ コーデック (例: libx264) を設定します"
+                            },
+                            "custom_audio_codec": {
+                                "name": "カスタムオーディオコーデック",
+                                "description": "カスタム オーディオ コーデック (AAC など) を設定します"
+                            }
+                        },
+                        "description": "追加の FFmpeg オプションを指定する",
+                        "name": "FFmpeg オプション"
+                    },
+                    "opera_download_button": {
+                        "name": "Opera ダウンロード ボタン",
+                        "description": "スナップを表示しているときに右上隅にダウンロード ボタンを追加します。\nボタンを長押しすると強制的にダウンロードされます"
+                    },
+                    "merge_overlays": {
+                        "name": "オーバーレイを結合する",
+                        "description": "スナップのテキストとメディアを単一のファイルに結合します"
+                    },
+                    "force_image_format": {
+                        "description": "画像を指定された形式で強制的に保存します",
+                        "name": "画像フォーマットを強制する"
+                    },
+                    "logging": {
+                        "name": "ロギング",
+                        "description": "メディアのダウンロード中にトーストを表示します"
+                    },
+                    "custom_path_format": {
+                        "name": "カスタムパス形式",
+                        "description": "ダウンロードしたメディアのカスタム パス形式を指定する\n\n利用可能な変数:\n - %ユーザー名%\n - ％ソース％\n - %ハッシュ%\n - ％日付時刻％"
+                    }
+                },
+                "name": "ダウンローダー",
+                "description": "スナップチャットメディアをダウンロードする"
+            },
+            "messaging": {
+                "name": "メッセージング",
+                "description": "友達と交流する方法を変える",
+                "properties": {
+                    "anonymous_story_viewing": {
+                        "name": "匿名のストーリービュー",
+                        "description": "誰もが自分の物語を見たことを知ることを防ぐ"
+                    },
+                    "prevent_story_rewatch_indicator": {
+                        "name": "ストーリーのリウォッチの表示を防ぐ",
+                        "description": "ストーリーを再確認したことを知ることから誰がを防ぐ"
+                    },
+                    "hide_peek_a_peek": {
+                        "description": "チャットに半スワイプすると通知が送信されない",
+                        "name": "Peek-a-Peek を隠す"
+                    },
+                    "hide_bitmoji_presence": {
+                        "name": "Bitmojiのプレゼンスを隠す",
+                        "description": "チャット中にポップアップからBitmojiを防ぐ"
+                    },
+                    "hide_typing_notifications": {
+                        "name": "タイピング通知を非表示",
+                        "description": "誰がメッセージを入力しているかを知るのを防ぐ"
+                    },
+                    "unlimited_snap_view_time": {
+                        "name": "無制限のスナップビュー時間",
+                        "description": "スナップを表示するための時間制限を削除します"
+                    },
+                    "auto_mark_as_read": {
+                        "name": "読書として自動印",
+                        "description": "Stealth Modeが有効になっている場合でも、メッセージ/スナップを自動的に表示"
+                    },
+                    "loop_media_playback": {
+                        "name": "ループメディアプレイバック",
+                        "description": "スナップ/ストーリーを表示したときにメディア再生をループ"
+                    },
+                    "disable_replay_in_ff": {
+                        "description": "フレンドフィードから長いプレスで再生する能力を無効にします",
+                        "name": "FFで再生を無効にする"
+                    },
+                    "half_swipe_notifier": {
+                        "description": "相手が会話にスワイプしたときに通知する",
+                        "properties": {
+                            "min_duration": {
+                                "description": "ハーフスワイプの最小時間(秒)",
+                                "name": "最小限の期間"
+                            },
+                            "max_duration": {
+                                "name": "最高の持続期間",
+                                "description": "ハーフスワイプの最大持続時間(秒)"
+                            }
+                        },
+                        "name": "ハーフスワイプノッチ"
+                    },
+                    "call_start_confirmation": {
+                        "description": "呼び出し開始時に確認ダイアログが表示されます",
+                        "name": "通話開始確認"
+                    },
+                    "prevent_message_sending": {
+                        "name": "メッセージ送信を防ぐ",
+                        "description": "特定の種類のメッセージの送信を防ぐ"
+                    },
+                    "better_notifications": {
+                        "description": "受信した通知にさらに情報を追加します",
+                        "properties": {
+                            "group_notifications": {
+                                "name": "グループ通知",
+                                "description": "グループ通知を1つにまとめる"
+                            },
+                            "chat_preview": {
+                                "description": "通知で受信したメッセージのプレビューを表示します",
+                                "name": "チャットプレビュー"
+                            },
+                            "media_preview": {
+                                "name": "メディアプレビュー",
+                                "description": "通知で選択したメディアタイプのプレビューを表示します"
+                            },
+                            "friend_add_source": {
+                                "name": "フレンド ソースを追加",
+                                "description": "通知で友人のリクエストのソースを表示"
+                            },
+                            "reply_button": {
+                                "name": "応答ボタン",
+                                "description": "通知に返信ボタンを追加"
+                            },
+                            "mark_as_read_button": {
+                                "name": "読まれたボタンとして印",
+                                "description": "通知から読むようにメッセージをマークすることができます"
+                            },
+                            "stacked_media_messages": {
+                                "name": "スタックメディアメッセージ",
+                                "description": "プレビューできない場合、複数のメディア メッセージを 1 つのテキスト通知に結合します。チャットプレビューと組み合わせて使用する"
+                            },
+                            "media_caption": {
+                                "name": "メディアキャプション",
+                                "description": "通知にメディアの添付キャプションを表示"
+                            },
+                            "smart_replies": {
+                                "description": "通知に返信候補を追加します (Android 10 以降)。返信ボタンと組み合わせて使用する",
+                                "name": "スマート返信"
+                            },
+                            "mark_as_read_and_save_in_chat": {
+                                "name": "チャットで読むと保存としてマーク",
+                                "description": "通知にチャットボタンを読み込み、保存するマークを追加"
+                            },
+                            "download_button": {
+                                "name": "ダウンロードボタン",
+                                "description": "通知からメディアをダウンロードすることができます"
+                            }
+                        },
+                        "name": "より良い通知"
+                    },
+                    "remove_groups_locked_status": {
+                        "description": "キックされた後にグループ情報を表示できるようにします",
+                        "name": "グループロックされたステータスを削除します"
+                    },
+                    "bypass_screenshot_detection": {
+                        "name": "バイパススクリーンショット検出",
+                        "description": "スクリーンショットを撮るときにSnapchatが検出を防ぐ"
+                    },
+                    "mark_snap_as_seen_button": {
+                        "description": "表示されるようにスナップをマークするボタンを追加します。\nステルスモードが有効になっていても動作します",
+                        "name": "マークスナップ 参照ボタンとして"
+                    },
+                    "skip_when_marking_as_seen": {
+                        "name": "マークするときにスキップ",
+                        "description": "スナップをマークするときに自動的に次のスナップにスキップします。\n参照ボタンとしてマークスナップと組み合わせて使用"
+                    },
+                    "unlimited_conversation_pinning": {
+                        "name": "無制限の会話ピニング",
+                        "description": "ローカルで無制限の会話をピン留めできます"
+                    },
+                    "friend_mutation_notifier": {
+                        "description": "友人のプロフィールに何かが変更されたときに通知します",
+                        "name": "友人の Mutation の Notifier"
+                    },
+                    "notification_blacklist": {
+                        "description": "ブロックされるべき通知を選択します",
+                        "name": "通知ブラックリスト"
+                    },
+                    "message_logger": {
+                        "description": "削除されるメッセージを防ぐ",
+                        "properties": {
+                            "auto_purge": {
+                                "description": "指定された時間よりも古いキャッシュされたメッセージを自動的に削除します",
+                                "name": "自動パージ"
+                            },
+                            "message_filter": {
+                                "name": "メッセージフィルタ",
+                                "description": "どのメッセージが記録されるべきか選択して下さい(すべてのメッセージのための空)"
+                            },
+                            "keep_my_own_messages": {
+                                "name": "自分のメッセージを保持する",
+                                "description": "自分のメッセージが削除されるのを防ぐ"
+                            }
+                        },
+                        "name": "メッセージロガー"
+                    },
+                    "auto_save_messages_in_conversations": {
+                        "name": "メッセージを自動保存",
+                        "description": "すべてのメッセージを会話で自動的に保存"
+                    },
+                    "gallery_media_send_override": {
+                        "name": "ギャラリーメディア オーバーライドを送信",
+                        "description": "ギャラリーから送信する際にメディアソースをスプーフ"
+                    },
+                    "strip_media_metadata": {
+                        "description": "メッセージを送信する前に、メディアのメタデータを削除",
+                        "name": "ストリップメディアメタデータ"
+                    },
+                    "bypass_message_retention_policy": {
+                        "name": "バイパスメッセージ保持ポリシー",
+                        "description": "閲覧後にメッセージが削除されるのを防ぐ"
+                    },
+                    "bypass_message_action_restrictions": {
+                        "name": "メッセージアクション制限を回避",
+                        "description": "スナップを開かなくてもスナップに反応したり、保存できないメッセージを保存したりできます"
                     }
                 }
+            },
+            "global": {
+                "description": "グローバルSnapchat設定を調整する",
+                "properties": {
+                    "better_location": {
+                        "properties": {
+                            "spoof_location": {
+                                "name": "位置情報の偽装",
+                                "description": "指定した場所に位置をスプーフィス"
+                            },
+                            "coordinates": {
+                                "name": "コーディネート",
+                                "description": "台場の座標を設定"
+                            },
+                            "walk_radius": {
+                                "name": "ウォーク半径",
+                                "description": "この半径 (フィート) 内をランダムに歩き回ります"
+                            },
+                            "always_update_location": {
+                                "name": "常に更新の場所",
+                                "description": "GPS データを受信しない場合でも、Snapchat に強制的に位置情報を更新させる"
+                            },
+                            "suspend_location_updates": {
+                                "name": "位置情報の更新を一時停止する",
+                                "description": "あなたの場所が更新されるのを防ぎます"
+                            },
+                            "spoof_headphones": {
+                                "name": "スプーフヘッドフォン",
+                                "description": "地図上で音楽を聴く状態をスプーフィス"
+                            },
+                            "spoof_battery_level": {
+                                "name": "スプーフバッテリーレベル",
+                                "description": "地図上でデバイスのバッテリーレベルを偽装します\n値は0から100の間でなければなりません"
+                            }
+                        },
+                        "description": "Snapchatロケーションを強化",
+                        "name": "より良いロケーション"
+                    },
+                    "snapchat_plus": {
+                        "name": "Snapchatプラス",
+                        "description": "Snapchat Plus機能を有効にします\n一部のサーバー側機能が動作しない可能性があります"
+                    },
+                    "media_upload_quality": {
+                        "name": "メディアアップロードの品質",
+                        "properties": {
+                            "disable_image_compression": {
+                                "name": "Disable イメージの圧縮",
+                                "description": "メディアのアップロード時に画像圧縮を無効にします"
+                            },
+                            "force_video_upload_source_quality": {
+                                "name": "ビデオアップロードソースの品質を強制する",
+                                "description": "ビデオをアップロードするときにSnapchatにソース品質の使用を強制します\nこれによりメディアからメタデータが削除されない場合があることに注意してください"
+                            },
+                            "custom_image_upload_format": {
+                                "name": "カスタムイメージアップロード形式",
+                                "description": "カスタム画像アップロード形式を設定します\n最高の品質を得るにはロスレス形式 (PNG など) を選択してください"
+                            }
+                        },
+                        "description": "メディアのアップロード品質をオーバーライドします"
+                    },
+                    "disable_confirmation_dialogs": {
+                        "name": "無効な確認ダイアログ",
+                        "description": "選択したアクションを自動的に確認します"
+                    },
+                    "auto_updater": {
+                        "name": "自動更新装置",
+                        "description": "新しいアップデートを自動的にチェックします"
+                    },
+                    "disable_metrics": {
+                        "description": "特定の分析データをSnapchatに送信するのをブロックします",
+                        "name": "無効なメートル"
+                    },
+                    "disable_story_sections": {
+                        "name": "障がいのあるストーリーセクション",
+                        "description": "ストーリーページからセクションを削除します\n正しく動作するには更新が必要な場合があります"
+                    },
+                    "disable_permission_requests": {
+                        "name": "許可リクエストを無効にする",
+                        "description": "Snapchat が特定の権限を要求しないようにします"
+                    },
+                    "bypass_video_length_restriction": {
+                        "name": "ビデオの長さ制限を回避する",
+                        "description": "シングル: 単一のビデオを送信します\n分割: 編集後にビデオを分割します"
+                    },
+                    "default_video_playback_rate": {
+                        "name": "デフォルトのビデオ再生レート",
+                        "description": "ビデオのデフォルトの再生速度を設定します。\n値は 0.1 ～ 4.0 でなければなりません"
+                    },
+                    "video_playback_rate_slider": {
+                        "description": "Opera コンテキスト メニューにスライダーを追加して、ビデオの再生速度を変更します\n注: 変更は後続のビデオにのみ適用されます",
+                        "name": "ビデオ再生速度スライダー"
+                    },
+                    "disable_google_play_dialogs": {
+                        "description": "Google Play Services の可用性ダイアログが表示されないようにする",
+                        "name": "Google Play サービスのダイアログを無効にする"
+                    },
+                    "default_volume_controls": {
+                        "description": "Snapchatにシステムボリュームコントロールの使用を強制します",
+                        "name": "デフォルトのボリュームコントロール"
+                    },
+                    "disable_telecom_framework": {
+                        "name": "テレコムフレームワークを無効にする",
+                        "description": "Snapchat が Android Telecom フレームワークを使用できないようにします\nこれにより、通話中に音楽を聴くことができます"
+                    },
+                    "disable_snap_splitting": {
+                        "name": "スナップ分割を無効にする",
+                        "description": "スナップが複数の部分に分割されるのを防ぎます\n送った写真が動画になります"
+                    },
+                    "disable_custom_tabs": {
+                        "description": "Web ブラウザではなく、サポートされているアプリケーションでリンクを開きます",
+                        "name": "広告が表示されないようにする"
+                    },
+                    "disable_memories_snap_feed": {
+                        "name": "メモリーズスナップフィードを無効にする",
+                        "description": "カメラを上にスワイプしたときに Snapchat で最近の思い出が表示されないようにする"
+                    },
+                    "spotlight_comments_username": {
+                        "name": "スポットライト コメント ユーザー名",
+                        "description": "Spotlight コメントに作成者のユーザー名を表示します"
+                    },
+                    "hide_active_music": {
+                        "name": "アクティブな音楽を非表示にする",
+                        "description": "あなたが音楽を聴いていることをSnapchatが認識しないようにします\nこれにより、音楽を聴きながら音量調節ボタンを使用してスナップを撮影できるようになります"
+                    },
+                    "block_ads": {
+                        "name": "ブロック広告",
+                        "description": "広告が表示されないようにする"
+                    }
+                },
+                "name": "グローバル"
+            },
+            "rules": {
+                "name": "ルール",
+                "description": "個人向けの自動機能を管理する"
+            },
+            "camera": {
+                "description": "適切な設定を調整して完璧なスナップを実現します",
+                "properties": {
+                    "disable_cameras": {
+                        "name": "無効なカメラ",
+                        "description": "Snapchat が選択したカメラを使用できないようにします"
+                    },
+                    "black_photos": {
+                        "name": "黒写真",
+                        "description": "キャプチャした写真を黒い背景に置き換えます\n動画には影響ありません"
+                    },
+                    "override_front_resolution": {
+                        "name": "前面解像度をオーバーライドする",
+                        "description": "フロントカメラのカメラ解像度をオーバーライドします"
+                    },
+                    "override_back_resolution": {
+                        "name": "バック解像度をオーバーライドする",
+                        "description": "バックカメラのカメラ解像度を上書きします"
+                    },
+                    "custom_resolution": {
+                        "name": "カスタム解像度",
+                        "description": "カスタム カメラの解像度、幅 x 高さを設定します (例: 1920x1080)。\nカスタム解像度はデバイスでサポートされている必要があります"
+                    },
+                    "hevc_recording": {
+                        "description": "ビデオ録画には HEVC (H.265) コーデックを使用",
+                        "name": "HEVC録画"
+                    },
+                    "immersive_camera_preview": {
+                        "name": "没入型プレビュー",
+                        "description": "Snapchat がカメラのプレビューをトリミングしないようにします\nこれにより、一部のデバイスではカメラがちらつく可能性があります"
+                    },
+                    "front_custom_frame_rate": {
+                        "name": "フロントカスタムフレームレート",
+                        "description": "フロントカメラのフレームレートをオーバーライドします"
+                    },
+                    "back_custom_frame_rate": {
+                        "name": "戻る カスタム フレーム レート",
+                        "description": "バックカメラのフレームレートをオーバーライドします"
+                    },
+                    "force_camera_source_encoding": {
+                        "name": "カメラソースのエンコーディングを強制する",
+                        "description": "カメラソースエンコーディングを強制する"
+                    }
+                },
+                "name": "カメラ"
+            },
+            "streaks_reminder": {
+                "properties": {
+                    "interval": {
+                        "name": "インターバル",
+                        "description": "各リマインダーの間隔 (時間)"
+                    },
+                    "remaining_hours": {
+                        "name": "残り時間",
+                        "description": "通知が表示されるまでの残り時間 (時間)"
+                    },
+                    "group_notifications": {
+                        "name": "グループ通知",
+                        "description": "通知を 1 つにグループ化する"
+                    }
+                },
+                "name": "Streaksリマインダー",
+                "description": "ストリークについて定期的に通知します"
+            },
+            "friend_tracker": {
+                "name": "フレンドトラッカー",
+                "description": "Snapchatでの友人のアクティビティを記録します",
+                "properties": {
+                    "allow_running_in_background": {
+                        "name": "バックグラウンドでの実行を許可する",
+                        "description": "トラッカーをバックグラウンドで実行できるようにします。注: これにより、バッテリーが大幅に消耗します"
+                    },
+                    "auto_purge": {
+                        "name": "自動パージ",
+                        "description": "指定された期間より古いキャッシュされたイベントを自動的に削除します"
+                    },
+                    "record_messaging_events": {
+                        "name": "メッセージングイベントの記録",
+                        "description": "スナップを開く、メッセージを読むなどのメッセージング イベントを記録します。"
+                    }
+                }
+            },
+            "scripting": {
+                "name": "スクリプト作成",
+                "properties": {
+                    "module_folder": {
+                        "name": "モジュールフォルダ",
+                        "description": "スクリプトが配置されているフォルダー"
+                    },
+                    "auto_reload": {
+                        "name": "オートリロード",
+                        "description": "スクリプトが変更されると自動的に再ロードされます"
+                    },
+                    "developer_mode": {
+                        "name": "開発者モード",
+                        "description": "Snapchat の UI にデバッグ情報を表示します"
+                    },
+                    "integrated_ui": {
+                        "name": "統合されたUI",
+                        "description": "スクリプトでカスタム UI コンポーネントを Snapchat に追加できるようにします"
+                    },
+                    "disable_log_anonymization": {
+                        "name": "ログの匿名化を無効にする",
+                        "description": "ログの匿名化を無効にします"
+                    }
+                },
+                "description": "カスタム スクリプトを実行して SE Extended を拡張する"
+            }
+        },
+        "notices": {
+            "unstable": "⚠不安定",
+            "ban_risk": "⚠ この機能によりアクセス禁止が発生する可能性があります",
+            "require_native_hooks": "⚠ この機能が正しく動作するには、実験的なネイティブフックが必要です",
+            "internal_behavior": "⚠ これにより、Snapchat の内部動作が中断される可能性があります"
+        },
+        "options": {
+            "app_appearance": {
+                "always_light": "指定された期間より古いキャッシュされたイベントを自動的に削除します",
+                "always_dark": "常に暗い"
+            },
+            "theme_picker": {
+                "custom": "カスタムカラー",
+                "light_blue": "ライトブルー",
+                "dark_blue": "濃紺",
+                "earthy_autumn": "素朴な秋",
+                "mint_chocolate": "ミントチョコレート",
+                "ginger_snap": "ジンジャースナップ",
+                "lava_flow": "溶岩流",
+                "ocean_fog": "オーシャンフォグ",
+                "watercolor_wash": "水彩ウォッシュ",
+                "industrial_chic": "インダストリアルシック",
+                "cherry_bomb": "チェリーボム",
+                "woodland_mystery": "森の謎",
+                "creamy_vanilla": "クリーミーバニラ",
+                "midnight_library": "真夜中の図書館",
+                "lemon_sorbet": "レモンシャーベット",
+                "spicy_mustard": "スパイシーマスタード",
+                "peppermint_candy": "ペパーミントキャンディー",
+                "gingerbread_house": "ペパーミントキャンディー",
+                "art_deco_glam": "アールデコグラム",
+                "ocean_depths": "海の深さ",
+                "bubblegum_pink": "バブルガムピンク",
+                "firefly_night": "ホタルナイト",
+                "lavender_field": "ラベンダー畑",
+                "lemon_drop": "レモンドロップ",
+                "modern_farmhouse": "モダンな農家",
+                "material_you_dark": "マテリアル ユー ダーク (Android 12+)",
+                "amoled_dark_mode": "AMOLEDダークモード",
+                "material_you_light": "マテリアル ユー ライト (Android 12+)",
+                "lemon_meringue": "レモンメレンゲ",
+                "alien_landscape": "エイリアンの風景",
+                "zesty_lemon": "ピリッとしたレモン",
+                "tropical_paradise": "トロピカルパラダイス",
+                "galaxy_glitter": "ギャラクシーグリッター",
+                "spicy_chili": "スパイシーチリ",
+                "cosmic_night": "コズミックナイト",
+                "spring_meadow": "春の草原",
+                "apple_orchard": "リンゴ園",
+                "midnight_slate": "ミッドナイトスレート"
+            },
+            "friend_feed_menu_buttons": {
+                "auto_download": "⬇️ 自動ダウンロード",
+                "stealth": "👻ステルスモード",
+                "auto_save": "💬 メッセージを自動保存",
+                "unsaveable_messages": "⬇️ 保存できないメッセージ",
+                "auto_open_snaps": "📷 自動オープンスナップ",
+                "mark_snaps_as_seen": "👀 スナップを見たものとしてマーク",
+                "mark_stories_as_seen_locally": "👀 ローカルで見たストーリーをマークする",
+                "e2e_encryption": "🔒 E2E 暗号化を使用する",
+                "conversation_info": "👤 会話情報"
+            },
+            "strip_media_metadata": {
+                "hide_caption_text": "キャプションテキストを隠す",
+                "hide_snap_filters": "スナップフィルターを非表示にする",
+                "hide_extras": "追加情報 (メンションなど) を非表示にする",
+                "remove_audio_note_duration": "オーディオノートの長さを削除する",
+                "remove_audio_note_transcript_capability": "音声メモのトランスクリプト機能を削除"
+            },
+            "add_friend_source_spoof": {
+                "added_by_group_chat": "グループチャットによる",
+                "added_by_username": "ユーザー名別",
+                "added_by_mention": "言及により",
+                "added_by_qr_code": "QRコードで",
+                "added_by_quick_add": "クイック追加による (禁止されるリスクが高い)",
+                "added_by_community": "コミュニティ別"
+            },
+            "path_format": {
+                "create_author_folder": "著者ごとにフォルダを作成する",
+                "append_source": "ファイル名にメディアソースを追加します",
+                "append_date_time": "ファイル名に日付と時刻を追加します",
+                "append_hash": "ファイル名に一意のハッシュを追加する",
+                "create_source_folder": "メディアソースの種類ごとにフォルダーを作成する",
+                "append_username": "ファイル名にユーザー名を追加します"
+            },
+            "gallery_media_send_override": {
+                "ORIGINAL": "オリジナル",
+                "NOTE": "音声メモ",
+                "always_ask": "常に質問する",
+                "SNAP": "スナップ",
+                "SAVABLE_SNAP": "保存可能なスナップ"
+            },
+            "home_tab": {
+                "map": "地図",
+                "chat": "チャット",
+                "discover": "発見する",
+                "spotlight": "スポットライト",
+                "camera": "カメラ"
+            },
+            "notifications": {
+                "chat_screenshot": "スクリーンショット",
+                "chat_screen_record": "画面録画",
+                "snap_replay": "スナップリプレイ",
+                "camera_roll_save": "カメラロール保存",
+                "chat": "チャット",
+                "speaking": "話し中",
+                "chat_reaction": "DM反応",
+                "abandon_video": "ビデオ通話に失敗しました",
+                "group_chat_reaction": "集団反応",
+                "initiate_audio": "音声通話の着信",
+                "abandon_audio": "不在時の音声通話",
+                "initiate_video": "ビデオ通話の着信",
+                "chat_reply": "チャットの返信",
+                "snap": "スナップ",
+                "typing": "タイピング",
+                "stories": "ストーリー"
+            },
+            "hide_ui_components": {
+                "hide_voice_record_button": "音声録音ボタンを削除",
+                "hide_unread_chat_hint": "未読のチャットヒントを削除する",
+                "hide_post_to_story_buttons": "スナップを送信する前にストーリーに投稿ボタンを削除する",
+                "hide_profile_call_buttons": "プロファイル呼び出しボタンを削除する",
+                "hide_chat_call_buttons": "チャット通話ボタンを削除する",
+                "hide_live_location_share_button": "ライブロケーション共有ボタンを削除",
+                "hide_stickers_button": "ステッカーを削除ボタン"
+            },
+            "hide_story_suggestions": {
+                "hide_my_stories": "私のストーリーを隠す",
+                "hide_friend_suggestions": "友達の提案を非表示にする",
+                "hide_suggested_friend_stories": "提案された友達のストーリーを非表示にする"
+            },
+            "auto_download_sources": {
+                "friend_snaps": "友達のスナップ",
+                "friend_stories": "フレンドストーリー",
+                "public_stories": "公開ストーリー",
+                "spotlight": "スポットライト"
+            },
+            "logging": {
+                "failure": "失敗",
+                "started": "開始しました",
+                "success": "成功",
+                "progress": "進捗"
+            },
+            "bypass_video_length_restriction": {
+                "single": "単一メディア",
+                "split": "メディアを分割する"
+            },
+            "disable_confirmation_dialogs": {
+                "clear_conversation": "友達フィードから会話をクリアする",
+                "erase_message": "メッセージを消去",
+                "remove_friend": "友達を削除する",
+                "block_friend": "友達をブロックする",
+                "ignore_friend": "友達を無視する",
+                "hide_friend": "友達を隠す",
+                "hide_conversation": "会話を隠す"
+            },
+            "auto_reload": {
+                "snapchat_only": "スナップチャットのみ",
+                "all": "すべて (Snapchat + SE Extended)"
+            },
+            "old_bitmoji_selfie": {
+                "2d": "来てもいいよ",
+                "3d": "戻ってきて、来てください"
+            },
+            "edit_text_override": {
+                "bypass_text_input_limit": "テキスト入力制限をバイパスする",
+                "multi_line_chat_input": "複数行チャット入力"
+            },
+            "auto_purge": {
+                "1_hour": "1時間",
+                "3_months": "3ヶ月",
+                "never": "一度もない",
+                "6_hours": "6時間",
+                "1_month": "1ヶ月",
+                "3_hours": "3時間",
+                "3_days": "3日",
+                "1_week": "1週間",
+                "12_hours": "12時間",
+                "1_day": "1日",
+                "2_weeks": "2週間",
+                "6_months": "6ヵ月"
+            },
+            "disable_permission_requests": {
+                "read_media_images": "メディアイメージの読み取り",
+                "camera": "カメラ",
+                "microphone": "マイクロフォン",
+                "notifications": "通知",
+                "read_media_video": "メディアビデオを読む",
+                "location": "位置",
+                "read_contacts": "連絡先を読む",
+                "phone_calls": "電話",
+                "nearby_devices": "近くのデバイス"
+            },
+            "disable_cameras": {
+                "front": "フロントカメラ",
+                "back": "バックカメラ"
+            },
+            "disable_story_sections": {
+                "friends": "友達",
+                "following": "続く",
+                "discover": "発見する",
+                "suggested_stories": "おすすめのストーリー"
+            },
+            "auto_mark_as_read": {
+                "conversation_read": "メッセージを送信するときに会話を既読としてマークする",
+                "snap_reply": "スナップに返信するときに既読としてマークする"
+            },
+            "friend_mutation_notifier": {
+                "bitmoji_selfie_changes": "誰かが Bitmoji セルフィーを変更したときに通知する",
+                "bitmoji_avatar_changes": "誰かが Bitmoji アバターを変更したときに通知する",
+                "birthday_changes": "誰かの誕生日が変わったら通知する",
+                "bitmoji_scene_changes": "誰かが Bitmoji シーンを変更したときに通知する",
+                "bitmoji_background_changes": "誰かが Bitmoji の背景を変更したときに通知する",
+                "remove_friend": "誰かがあなたを友達から削除したときに通知する"
+            },
+            "message_indicators": {
+                "ovf_editor_indicator": "OVF エディターを使用してスナップが送信されたかどうかを示します",
+                "platform_indicator": "メディアの送信元のプラットフォーム アイコンを追加します (Android、iOS、Web など)",
+                "encryption_indicator": "あなただけに送信されたメッセージの横に 🔒 アイコンを追加します",
+                "director_mode_indicator": "ディレクター モードを使用してスナップが送信された場合、スナップに ✏️ アイコンを追加します。これを使用してギャラリー画像をスナップとして送信できます",
+                "location_indicator": "位置情報が有効になって送信されたスナップに 📍 アイコンを追加します"
             }
         }
+    },
+    "scopes": {
+        "friend": "友達",
+        "group": "グループ"
+    },
+    "rules": {
+        "properties": {
+            "auto_download": {
+                "description": "スナップを表示すると自動的にダウンロードされます",
+                "options": {
+                    "whitelist": "自動ダウンロード",
+                    "blacklist": "自動ダウンロードから除外する"
+                },
+                "name": "自動ダウンロード"
+            },
+            "stealth": {
+                "name": "ステルスモード",
+                "options": {
+                    "blacklist": "ステルスモードから除外する",
+                    "whitelist": "ステルスモード"
+                },
+                "description": "あなたがスナップ/チャットや会話を開いたことが他人に知られるのを防ぎます"
+            },
+            "auto_save": {
+                "name": "自動保存",
+                "description": "チャットメッセージを表示時に保存します",
+                "options": {
+                    "blacklist": "自動保存から除外する",
+                    "whitelist": "自動保存"
+                }
+            },
+            "unsaveable_messages": {
+                "description": "他の人がメッセージをチャットに保存できないようにします",
+                "options": {
+                    "blacklist": "保存できないメッセージから除外する",
+                    "whitelist": "保存できないメッセージ"
+                },
+                "name": "保存できないメッセージ"
+            },
+            "auto_open_snaps": {
+                "description": "スナップを受信すると自動的に開きます",
+                "name": "自動オープンスナップ",
+                "options": {
+                    "blacklist": "自動オープンスナップから除外する",
+                    "whitelist": "自動オープンスナップ"
+                }
+            },
+            "pin_conversation": {
+                "name": "ピンの会話"
+            },
+            "e2e_encryption": {
+                "name": "E2E 暗号化を使用する"
+            },
+            "hide_friend_feed": {
+                "name": "友達フィードから非表示にする"
+            }
+        },
+        "modes": {
+            "blacklist": "ブラックリストモード",
+            "whitelist": "ホワイトリストモード"
+        },
+        "toasts": {
+            "enabled": "{ruleName} が有効になりました",
+            "disabled": "{ruleName} が無効になっています"
+        }
+    },
+    "actions": {
+        "manage_friend_list": {
+            "name": "友達リストの管理",
+            "description": "バックアップ時に友達リストをインポート/エクスポートする"
+        },
+        "export_chat_messages": {
+            "description": "会話メッセージを JSON/HTML/TXT ファイルにエクスポートします",
+            "name": "チャットメッセージのエクスポート"
+        },
+        "export_memories": {
+            "name": "思い出をエクスポートする",
+            "description": "思い出をZIPファイルにエクスポートします"
+        },
+        "bulk_messaging_action": {
+            "name": "一括メッセージングアクション",
+            "description": "友達の削除や会話の一括削除などの操作を実行します"
+        },
+        "regen_mappings": {
+            "name": "マッピングを再生成する",
+            "description": "マッピングを手動で再生成する"
+        },
+        "change_language": {
+            "name": "言語を変えてください",
+            "description": "SE Extendedの言語を変更する"
+        },
+        "file_imports": {
+            "name": "ファイルのインポート",
+            "description": "Snapchatで使用するファイルをインポートする"
+        },
+        "friend_tracker": {
+            "name": "フレンドトラッカー",
+            "description": "Snapchat で友達を追跡する"
+        },
+        "clean_snapchat_cache": {
+            "name": "Snapchatキャッシュのクリーンアップ",
+            "description": "Snapchatキャッシュをクリーンアップします"
+        },
+        "logger_history": {
+            "name": "ロガー履歴",
+            "description": "ログに記録されたメッセージの履歴を表示する"
+        }
+    },
+    "content_type": {
+        "EXTERNAL_MEDIA": "外部メディア",
+        "LOCATION": "位置",
+        "STATUS_CONVERSATION_CAPTURE_SCREENSHOT": "スクリーンショット",
+        "STATUS_CONVERSATION_CAPTURE_RECORD": "画面録画",
+        "STATUS_CALL_MISSED_AUDIO": "不在時の音声通話",
+        "LIVE_LOCATION_SHARE": "ライブロケーションシェア",
+        "TINY_SNAP": "タイニースナップ",
+        "SNAP": "スナップ",
+        "NOTE": "音声メモ",
+        "STATUS": "状態",
+        "STATUS_CALL_MISSED_VIDEO": "ビデオ通話に失敗しました",
+        "STATUS_COUNTDOWN": "秒読み",
+        "MAP_REACTION": "マップ反応",
+        "CHAT": "チャット",
+        "FAMILY_CENTER_INVITE": "ファミリー センターへの招待",
+        "FAMILY_CENTER_ACCEPT": "ファミリーセンター同意",
+        "FAMILY_CENTER_LEAVE": "ファミリーセンター休暇",
+        "STATUS_PLUS_GIFT": "ステータスプラスギフト",
+        "SHARE": "共有",
+        "STICKER": "ステッカー",
+        "STATUS_SAVE_TO_CAMERA_ROLL": "カメラロールに保存されました",
+        "CREATIVE_TOOL_ITEM": "クリエイティブツールアイテム"
+    },
+    "media_download_source": {
+        "none": "なし",
+        "story": "話",
+        "public_story": "公開ストーリー",
+        "story_logger": "ストーリーロガー",
+        "merged": "合併しました",
+        "profile_picture": "プロフィールの写真",
+        "chat_media": "チャットメディア",
+        "spotlight": "スポットライト",
+        "pending": "保留中",
+        "voice_call": "音声電話",
+        "message_logger": "メッセージロガー"
+    },
+    "chat_action_menu": {
+        "edit_message": "メッセージの編集",
+        "download_button": "ダウンロード",
+        "preview_button": "プレビュー",
+        "delete_logged_message_button": "記録されたメッセージの削除",
+        "show_chat_edit_history": "チャット編集履歴を表示",
+        "convert_message": "メッセージの変換"
+    },
+    "opera_context_menu": {
+        "download": "メディアをダウンロードする",
+        "sent_at": "に送信されました {date}",
+        "created_at": "で作成されました {date}",
+        "expires_at": "有効期限は次のとおりです{date}",
+        "media_size": "メディアサイズ: {size}",
+        "media_duration": "メディアの長さ: {duration} ms",
+        "show_debug_info": "デバッグ情報を表示"
+    },
+    "mark_as_seen": {
+        "seen_toast": "見たとおりのマークが付いています！",
+        "unseen_toast": "未表示としてマークされています!",
+        "no_unseen_snaps_toast": "表示されていないスナップは見つかりませんでした !",
+        "already_unseen_toast": "すでに未表示としてマークされています!",
+        "already_seen_toast": "すでに既読としてマークされています!"
+    },
+    "profile_info": {
+        "hidden_birthday": "誕生日：非公開",
+        "add_source": "ソースの追加",
+        "first_created_username": "最初に作成されたユーザー名",
+        "mutable_username": "変更可能なユーザー名",
+        "friendship": "友情",
+        "snapchat_plus_state": {
+            "not_subscribed": "未購読",
+            "subscribed": "購読済み"
+        },
+        "added_date": "追加日",
+        "birthday": "誕生日 ：{month} {day}",
+        "title": "プロフィール情報",
+        "display_name": "表示名",
+        "snapchat_plus": "スナップチャットプラス"
+    },
+    "friendship_link_type": {
+        "suggested": "提案された",
+        "incoming": "着信",
+        "blocked": "ブロックされました",
+        "deleted": "削除されました",
+        "following": "続く",
+        "mutual": "共通の",
+        "outgoing": "発信",
+        "incoming_follower": "入ってくるフォロワー"
+    },
+    "bulk_messaging_action": {
+        "confirmation_dialog": {
+            "title": "本気ですか？",
+            "message": "これは選択したすべての友達に影響します。この操作は元に戻すことができません。"
+        },
+        "choose_action_title": "アクションを選択してください",
+        "progress_status": "処理 {index} の {total}",
+        "selection_dialog_continue_button": "続く",
+        "actions": {
+            "remove_friends": "友達を削除する",
+            "clear_conversations": "明確な会話"
+        }
+    },
+    "chat_export": {
+        "exporter_dialog": {
+            "select_conversations_title": "会話を選択する",
+            "text_field_selection": "{amount} 選択された",
+            "text_field_selection_all": "全て",
+            "export_file_format_title": "エクスポートファイル形式",
+            "download_medias_title": "メディアのダウンロード",
+            "message_type_filter_title": "タイプごとにメッセージをフィルタリングする",
+            "amount_of_messages_title": "メッセージの量 (すべて空白のままにしておきます)"
+        },
+        "exporting_chats": "チャットをエクスポートしています...",
+        "dialog_negative_button": "キャンセル",
+        "dialog_positive_button": "輸出",
+        "exported_to": "輸出先 {path}",
+        "processing_chats": "処理 {amount} 会話...",
+        "export_fail": "会話のエクスポートに失敗しました {conversation}",
+        "writing_output": "出力を書き込み中...",
+        "finished": "終わり！これで、このダイアログを閉じることができます。",
+        "no_messages_found": "メッセージが見つかりません!",
+        "exporting_message": "輸出中 {conversation}..."
+    },
+    "button": {
+        "ok": "わかりました",
+        "positive": "はい",
+        "cancel": "キャンセル",
+        "negative": "いいえ",
+        "open": "開ける",
+        "download": "ダウンロード"
+    },
+    "friend_menu_option": {
+        "stealth_mode": "ステルスモード",
+        "auto_download_blacklist": "ブラックリストの自動ダウンロード",
+        "mark_snaps_as_seen": "スナップを見たものとしてマークする",
+        "mark_stories_as_seen_locally": "ローカルで見たストーリーにマークを付ける",
+        "preview": "プレビュー",
+        "anti_auto_save": "アンチオートセーブ"
+    },
+    "conversation_preview": {
+        "unknown_user": "不明なユーザー",
+        "streak_expiration": "に有効期限が切れます {day} 日々{hour} 時間 {minute} 分",
+        "total_messages": "送信された合計/受信したメッセージ: {count}",
+        "title": "プレビュー",
+        "no_messages": "メッセージが見つかりません!"
+    },
+    "better_notifications": {
+        "button": {
+            "download": "ダウンロード",
+            "reply": "返事",
+            "mark_as_read": "既読にする"
+        }
+    },
+    "profile_picture_downloader": {
+        "avatar_option": "アバター",
+        "button": "プロフィール写真をダウンロード",
+        "title": "プロフィール画像ダウンローダー",
+        "background_option": "背景"
+    },
+    "half_swipe_notifier": {
+        "notification_channel_name": "ハーフスワイプ",
+        "notification_content_dm": "{friend} チャットに半分スワイプするだけで、{duration} 秒",
+        "notification_content_group": "{friend} 半分スワイプしただけです {group} のために {duration} 秒"
+    },
+    "modal_option": {
+        "profile_info": "プロフィール情報",
+        "close": "近い"
+    },
+    "gallery_media_send_override": {
+        "multiple_media_toast": "一度に送信できるメディアは 1 つだけです"
+    },
+    "call_start_confirmation": {
+        "dialog_message": "通話を開始してもよろしいですか?",
+        "dialog_title": "背景"
+    },
+    "download_processor": {
+        "attachment_type": {
+            "snap": "スナップ",
+            "sticker": "ステッカー",
+            "external_media": "外部メディア",
+            "gif": "GIF",
+            "note": "注記",
+            "original_story": "オリジナルストーリー"
+        },
+        "failed_no_longer_available_toast": "メディアは利用できなくなりました",
+        "download_toast": "ダウンロード中 {path}...",
+        "failed_generic_toast": "ダウンロードに失敗しました",
+        "processing_toast": "処理 {path}...",
+        "failed_processing_toast": "処理に失敗しました {error}",
+        "dash_dialog": {
+            "download_all": "すべてダウンロード",
+            "title": "ダッシュメディアをダウンロードする",
+            "segment_text": "セグメント {from} - {to}"
+        },
+        "select_attachments_title": "添付ファイルの選択",
+        "download_started_toast": "ダウンロードが開始されました",
+        "unsupported_content_type_toast": "サポートされていないコンテンツ タイプです!",
+        "no_attachments_toast": "添付ファイルが見つかりませんでした!",
+        "already_queued_toast": "メディアはすでにキューに入っています!",
+        "already_downloaded_toast": "メディアはすでにダウンロードされています!",
+        "saved_toast": "保存先 {path}",
+        "dash_no_chapter": "章が見つかりませんでした",
+        "failed_gallery_toast": "ギャラリーへの保存に失敗しました {error}",
+        "failed_to_create_preview_toast": "プレビューの作成に失敗しました"
+    },
+    "end_to_end_encryption": {
+        "accept_public_key_failure_toast": "公開キーの受け入れに失敗しました",
+        "outgoing_secret_message": "鍵交換応答",
+        "incoming_pk_message": "公開鍵リクエストを受け取りました。以下をクリックして同意してください。",
+        "incoming_secret_message": "あなたの友人はあなたの公開鍵を受け入れました。以下をクリックしてシークレットを受け入れます。",
+        "accept_secret_button": "シークレットを受け入れる",
+        "native_hooks_send_failure_toast": "送信できませんでした!設定でネイティブフックを有効にしてください。",
+        "accept_public_key_success_toast": "公開キーが正常に受け入れられました!",
+        "unencrypted_conversation_send_failure_toast": "暗号化されたコンテンツを暗号化された会話と暗号化されていない会話の両方に送信することはできません!",
+        "confirmation_dialogs": {
+            "title": "エンドツーエンドの暗号化",
+            "confirmation_1": "警告: これにより、既存のキーが上書きされます。この友人からのすべての暗号化されたメッセージにアクセスできなくなります。続行してもよろしいですか?",
+            "confirmation_2": "本当に続行してもよろしいですか?これが撤退する最後のチャンスです。"
+        },
+        "toolbox": {
+            "shared_key_fingerprint": "あなたの指紋は次のとおりです:\n\n{fingerprint}\n\n友達の指紋と一致するかどうかを必ず確認してください!",
+            "initiate_exchange_button": "鍵交換の開始",
+            "no_shared_key": "この友人との共有秘密はまだありません。新しいものを開始するには、下をクリックしてください。"
+        },
+        "outgoing_pk_message": "鍵交換リクエスト",
+        "accept_secret_key_failure_toast": "秘密キーの受け入れに失敗しました",
+        "accept_public_key_button": "公開キーを受け入れる",
+        "no_participants_to_encrypt_toast": "この会話にはメッセージを暗号化できる友達がいませ!",
+        "encryption_failed_toast": "メッセージの暗号化に失敗しました!詳細については、logcat を確認してください。",
+        "accept_secret_key_success_toast": "終わり！これで、この友人と暗号化されたメッセージを送受信できるようになります。"
+    },
+    "material3_strings": {
+        "date_range_input_invalid_range_input": "無効な日付範囲です",
+        "date_picker_switch_to_calendar_mode": "カレンダー",
+        "date_range_picker_scroll_to_next_month": "来月",
+        "date_range_picker_start_headline": "から",
+        "date_input_invalid_not_allowed": "無効な日付",
+        "date_picker_switch_to_input_mode": "Input",
+        "date_range_picker_scroll_to_previous_month": "前月",
+        "date_picker_today_description": "今日",
+        "date_range_picker_day_in_range": "選択済み",
+        "date_input_invalid_for_pattern": "無効な日付",
+        "date_input_invalid_year_range": "無効な年",
+        "date_range_picker_end_headline": "に",
+        "date_range_picker_title": "日付範囲を選択してください"
+    },
+    "auto_open_snaps": {
+        "title": "自動オープンスナップ",
+        "notification_content": "{count} スナップが開いた状態"
+    },
+    "friend_mutation_observer": {
+        "birthday_removed": "{username} 誕生日を削除しました ({birthday})",
+        "birthday_added": "{username} 誕生日を追加しました ({birthday})",
+        "bitmoji_selfie_changed": "{username} さんは Bitmoji セルフィーを変更しました",
+        "bitmoji_background_changed": "{username}さんが Bitmoji の背景を変更しました",
+        "friend_removed": "{username} あなたを友達から削除しました",
+        "birthday_changed": "{username} 誕生日をから変更しました {oldBirthday} に {newBirthday}",
+        "bitmoji_avatar_changed": "{username} Bitmoji アバターを変更しました",
+        "bitmoji_scene_changed": "{username} Bitmoji シーンを変えた",
+        "notification_channel_name": "スナップが開いた状態"
+    },
+    "biometric_auth": {
+        "title": "スナップチャットのロックを解除する",
+        "subtitle": "Snapchatのロックを解除するには認証してください",
+        "unlock_button": "ロックを解除する"
+    },
+    "streaks_reminder": {
+        "notification_title": "縞模様",
+        "notification_text": "次の場合は連続記録を失います {friend} で {hoursLeft} 時間"
     }
 }
