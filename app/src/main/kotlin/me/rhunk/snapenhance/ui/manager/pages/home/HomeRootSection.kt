@@ -310,15 +310,9 @@ class HomeRootSection : Routes.Route() {
                         onClick = { offset ->
                             buildSummary.getStringAnnotations(
                                 tag = "git_hash", start = offset, end = offset
-                            )
-                                .firstOrNull()?.let {
-                                    context.activity?.startActivity(
-                                        Intent(Intent.ACTION_VIEW).apply {
-                                            data = Uri.parse(
-                                                "https://github.com/bocajthomas/SE-Extended/commit/${it.item}"
-                                            )
-                                        })
-                                }
+                            ).firstOrNull()?.let {
+                                openExternalLink("https://github.com/bocajthomas/SE-Extended/commit/${it.item}")
+                            }
                         }
                     )
                     Text(

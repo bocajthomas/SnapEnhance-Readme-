@@ -230,12 +230,27 @@ class JSModule(
             }
         }
     }
+
     fun registerBindings(vararg bindings: AbstractBinding) {
         bindings.forEach {
             moduleBindings[it.name] = it.apply {
                 context = moduleBindingContext
             }
         }
+    }
+
+    fun onBridgeConnected(reloaded: Boolean = false) {
+        if (reloaded) {
+            moduleBindings.values.forEach { binding ->
+                runCatching {
+                    binding.onBridgeReloaded()
+                }.onFailure {
+                    scriptRuntime.logger.error("Failed to call onBridgeConnected for binding ${binding.name}", it)
+                }
+            }
+        }
+
+        callFunction("module.onBridgeConnected", reloaded)
     }
 
     @Suppress("UNCHECKED_CAST")

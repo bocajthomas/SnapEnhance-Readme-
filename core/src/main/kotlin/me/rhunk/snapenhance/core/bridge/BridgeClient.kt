@@ -44,9 +44,14 @@ class BridgeClient(
     private val onConnectedCallbacks = mutableListOf<suspend () -> Unit>()
     private var cacheSnapEnhanceApkPath: String? = null
 
-    fun addOnConnectedCallback(callback: suspend () -> Unit) {
+    fun addOnConnectedCallback(initNow: Boolean = false, callback: suspend () -> Unit) {
         synchronized(onConnectedCallbacks) {
             onConnectedCallbacks.add(callback)
+        }
+        initNow.takeIf { it && this::service.isInitialized }?.let {
+            runBlocking {
+                callback()
+            }
         }
     }
 

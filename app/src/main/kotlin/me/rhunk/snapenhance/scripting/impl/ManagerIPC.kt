@@ -19,8 +19,8 @@ class ManagerIPC(
         onBroadcast(context.moduleInfo.name, eventName, listener)
     }
 
-    override fun emit(eventName: String, vararg args: String?) {
-        emit(context.moduleInfo.name, eventName, *args)
+    override fun emit(eventName: String, vararg args: String?): Int {
+        return broadcast(context.moduleInfo.name, eventName, *args)
     }
 
     override fun onBroadcast(channel: String, eventName: String, listener: Listener) {
@@ -37,15 +37,18 @@ class ManagerIPC(
         })
     }
 
-    override fun broadcast(channel: String, eventName: String, vararg args: String?) {
+    override fun broadcast(channel: String, eventName: String, vararg args: String?): Int {
+        var dispatchCount = 0
         ipcListeners[channel]?.get(eventName)?.toList()?.forEach {
             try {
                 it.onMessage(args)
+                dispatchCount++
             } catch (doe: DeadObjectException) {
                 ipcListeners[channel]?.get(eventName)?.remove(it)
             } catch (t: Throwable) {
                 context.runtime.logger.error("Failed to send message for channel: $channel, event: $eventName", t, TAG)
             }
         }
+        return dispatchCount
     }
 }

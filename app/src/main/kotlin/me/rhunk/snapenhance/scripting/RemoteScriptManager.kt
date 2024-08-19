@@ -204,14 +204,17 @@ class RemoteScriptManager(
         ipcListeners.getOrPut(channel) { mutableMapOf() }.getOrPut(eventName) { mutableSetOf() }.add(listener)
     }
 
-    override fun sendIPCMessage(channel: String, eventName: String, args: Array<out String>) {
-        runCatching {
-            ipcListeners[channel]?.get(eventName)?.toList()?.forEach {
+    override fun sendIPCMessage(channel: String, eventName: String, args: Array<out String>): Int {
+        var dispatchCount = 0
+        ipcListeners[channel]?.get(eventName)?.toList()?.forEach {
+            runCatching {
                 it.onMessage(args)
+                dispatchCount++
+            }.onFailure {
+                context.log.error("Failed to send message for $eventName", it)
             }
-        }.onFailure {
-            context.log.error("Failed to send message for $eventName", it)
         }
+        return dispatchCount
     }
 
     override fun configTransaction(

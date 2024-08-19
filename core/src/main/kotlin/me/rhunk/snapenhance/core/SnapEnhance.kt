@@ -162,7 +162,7 @@ class SnapEnhance {
             //if mappings aren't loaded, we can't initialize features
             if (!mappings.isMappingsLoaded) return
             features.init()
-            scriptRuntime.connect(bridgeClient.getScriptingInterface())
+            scriptRuntime.init()
             scriptRuntime.eachModule { callFunction("module.onSnapApplicationLoad", androidContext) }
         }
     }
