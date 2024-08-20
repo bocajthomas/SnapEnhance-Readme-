@@ -1024,10 +1024,6 @@
                             "disable_bitmoji": {
                                 "name": "禁用 Bitmoji",
                                 "description": "禁用好友个人资料 Bitmoji"
-                            },
-                            "remap_executable": {
-                                "name": "重新映射可执行文件",
-                                "description": "重新映射内存中的可执行区域"
                             }
                         }
                     },

@@ -690,9 +690,6 @@
                                 "name": "Poista Bitmoji Käytöstä",
                                 "description": "Poista kavereiden profiili Bitmojit käytöstä"
                             },
-                            "remap_executable": {
-                                "name": "Remap executable"
-                            },
                             "composer_hooks": {
                                 "name": "Composer hooks",
                                 "properties": {

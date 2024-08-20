@@ -893,10 +893,6 @@
                             "custom_emoji_font": {
                                 "name": "Benutzerdefinierte Emoji Schriftart",
                                 "description": "Ermöglicht die Verwendung einer benutzerdefinierten Emoji Schriftart. Funktioniert nur mit .ttf Schriftarten"
-                            },
-                            "remap_executable": {
-                                "name": "Ausführbare Datei neu zuordnen",
-                                "description": "Ordnet ausführbare Bereiche im Speicher neu zu"
                             }
                         }
                     },

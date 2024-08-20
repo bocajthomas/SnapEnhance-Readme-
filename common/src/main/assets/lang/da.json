@@ -884,10 +884,6 @@
                             "custom_emoji_font": {
                                 "name": "Brugerdefineret Emoji-skrifttype",
                                 "description": "Giver dig mulighed for at bruge en brugerdefineret emoji-skrifttype. Virker kun med .ttf-skrifttyper"
-                            },
-                            "remap_executable": {
-                                "name": "Remap eksekverbar",
-                                "description": "Ommaper eksekverbare regioner i hukommelsen"
                             }
                         }
                     },

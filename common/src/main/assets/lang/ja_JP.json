@@ -240,10 +240,6 @@
                                 },
                                 "name": "作曲家フック",
                                 "description": "Composer クロスプラットフォーム UI フレームワークにコードを挿入します"
-                            },
-                            "remap_executable": {
-                                "name": "リマップ実行可能ファイル",
-                                "description": "メモリ内の実行可能領域を再マップします"
                             }
                         },
                         "name": "ネイティブフック",

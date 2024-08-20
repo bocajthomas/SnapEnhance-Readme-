@@ -881,10 +881,6 @@
                             "custom_emoji_font": {
                                 "name": "Özel Emoji Fontu",
                                 "description": "Özel bir emoji yazı tipi kullanmanızı sağlar. Yalnızca .ttf yazı tipleriyle çalışır"
-                            },
-                            "remap_executable": {
-                                "name": "Yürütülebiliri Yeniden Eşle",
-                                "description": "Bellekteki yürütülebilir bölgeleri yeniden eşler"
                             }
                         }
                     },

@@ -889,10 +889,6 @@
                             "custom_emoji_font": {
                                 "name": "Police Emoji personnalisée",
                                 "description": "Vous permet d'utiliser une police emoji personnalisée. Fonctionne uniquement avec les polices .ttf"
-                            },
-                            "remap_executable": {
-                                "name": "Remapper l'exécutable",
-                                "description": "Remappe les régions exécutables en mémoire"
                             }
                         },
                         "description": "Fonctionnalités non fiables qui se greffent au code natif de Snapchat"
