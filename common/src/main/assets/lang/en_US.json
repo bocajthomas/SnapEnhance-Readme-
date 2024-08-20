@@ -771,6 +771,10 @@
                             "spoof_headphones": {
                                 "name": "Spoof Headphones",
                                 "description": "Spoofs the status of listening to music on map"
+                            },
+                            "show_battery_level": {
+                                "name": "Show Battery Level",
+                                "description": "Shows the battery level of your friends on the map"
                             }
                         }
                     },
@@ -972,9 +976,9 @@
                                 "name": "Custom Emoji Font",
                                 "description": "Allows you to use a custom emoji font. Only works with .ttf fonts"
                             },
-                            "remap_executable": {
-                                "name": "Remap Executable",
-                                "description": "Remaps executable regions in memory"
+                            "custom_shared_library": {
+                                "name": "Custom Shared Library",
+                                "description": "Loads a custom shared library into Snapchat. This feature is only for testing purposes"
                             }
                         }
                     },

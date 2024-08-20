@@ -27,6 +27,7 @@ class Global : ConfigContainer() {
         val suspendLocationUpdates = boolean("suspend_location_updates")
         val spoofBatteryLevel = string("spoof_battery_level") { requireRestart(); inputCheck = { it.isEmpty() || it.toIntOrNull() in 0..100 } }
         val spoofHeadphones = boolean("spoof_headphones") { requireRestart() }
+        val showBatteryLevel = boolean("show_battery_level") { requireRestart() }
     }
 
     inner class MediaUploadQualityConfig : ConfigContainer() {

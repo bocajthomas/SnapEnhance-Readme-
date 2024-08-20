@@ -201,6 +201,9 @@ class ProtoReader(private val buffer: ByteArray) {
         return value
     }
 
+    @JSFunction
+    fun getFixed32(vararg ids: Int) = followPath(*ids, excludeLast = true)?.getFixed32(ids.last())
+
     private fun prettyPrint(tabSize: Int): String {
         val tabLine = "    ".repeat(tabSize)
         val stringBuilder = StringBuilder()
