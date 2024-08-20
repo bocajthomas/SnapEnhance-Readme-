@@ -222,6 +222,17 @@ class SnapEnhance {
             }
         }
 
+        appContext.config.experimental.nativeHooks.customSharedLibrary.get().takeIf { it.isNotEmpty() }?.let {
+            runCatching {
+                appContext.native.loadSharedLibrary(
+                    appContext.fileHandlerManager.getFileHandle(FileHandleScope.USER_IMPORT.key, it).toWrapper().readBytes()
+                )
+                appContext.log.verbose("loaded custom shared library")
+            }.onFailure {
+                appContext.log.error("Failed to load custom shared library", it)
+            }
+        }
+
         if (appContext.bridgeClient.getDebugProp("disable_sif", "false") != "true") {
             runCatching {
                 appContext.native.loadSharedLibrary(

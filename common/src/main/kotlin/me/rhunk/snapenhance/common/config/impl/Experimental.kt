@@ -40,6 +40,12 @@ class Experimental : ConfigContainer() {
             addFlags(ConfigFlag.USER_IMPORT)
             filenameFilter = { it.endsWith(".ttf") }
         }
+        val customSharedLibrary = string("custom_shared_library") {
+            requireRestart()
+            addNotices(FeatureNotice.INTERNAL_BEHAVIOR)
+            addFlags(ConfigFlag.USER_IMPORT)
+            filenameFilter = { it.endsWith(".so") }
+        }
     }
 
     class E2EEConfig : ConfigContainer(hasGlobalState = true) {
