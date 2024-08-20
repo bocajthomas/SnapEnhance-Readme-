@@ -154,9 +154,9 @@ class HomeSettings : Routes.Route() {
             RowAction(key = "change_language") {
                 context.checkForRequirements(Requirements.LANGUAGE)
             }
-            /*RowAction(key = "security_features") {
+            RowAction(key = "security_features") {
                 context.checkForRequirements(Requirements.SIF)
-            }*/
+            }
             RowTitle(title = translation["message_logger_title"])
             ShiftedRow {
                 Column(
@@ -287,9 +287,7 @@ class HomeSettings : Routes.Route() {
                 ) {
                     PreferenceToggle(context.sharedPreferences, key = "disable_feature_loading", text = "Disable Feature Loading")
                     PreferenceToggle(context.sharedPreferences, key = "disable_mapper", text = "Disable Auto Mapper")
-
-                    context.sharedPreferences.edit().putBoolean("disable_sif", true).apply()
-
+                    PreferenceToggle(context.sharedPreferences, key = "disable_sif", text = "Disable Security Features")
                 }
             }
             Spacer(modifier = Modifier.height(50.dp))
