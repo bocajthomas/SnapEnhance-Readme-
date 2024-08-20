@@ -187,6 +187,7 @@ class HomeRootSection : Routes.Route() {
                     .fillMaxWidth()
                     .padding(all = 10.dp)
             ) {
+
                 ExternalLinkIcon(
                     imageVector = ImageVector.vectorResource(id = R.drawable.ic_telegram),
                     link = "https://t.me/SE_Extended"
@@ -198,8 +199,8 @@ class HomeRootSection : Routes.Route() {
                 )
 
                 ExternalLinkIcon(
-                    size = 36.dp,
-                    modifier = Modifier.offset(y = (-2).dp),
+                    size = 38.dp,
+                    modifier = Modifier.offset(x = (-3).dp, y = (-3).dp),
                     imageVector = Icons.AutoMirrored.Default.Help,
                     link = "https://github.com/bocajthomas/SE-Extended/wiki"
                 )
@@ -305,15 +306,9 @@ class HomeRootSection : Routes.Route() {
                         onClick = { offset ->
                             buildSummary.getStringAnnotations(
                                 tag = "git_hash", start = offset, end = offset
-                            )
-                                .firstOrNull()?.let {
-                                    context.activity?.startActivity(
-                                        Intent(Intent.ACTION_VIEW).apply {
-                                            data = Uri.parse(
-                                                "https://github.com/bocajthomas/SE-Extended/commit/${it.item}"
-                                            )
-                                        })
-                                }
+                            ).firstOrNull()?.let {
+                                openLink("https://github.com/bocajthomas/SE-Extended/commit/${it.item}")
+                            }
                         }
                     )
                     Text(

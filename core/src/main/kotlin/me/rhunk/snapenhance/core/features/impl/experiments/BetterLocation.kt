@@ -29,6 +29,7 @@ import me.rhunk.snapenhance.core.util.RandomWalking
 import me.rhunk.snapenhance.core.util.hook.HookStage
 import me.rhunk.snapenhance.core.util.hook.hook
 import me.rhunk.snapenhance.core.util.ktx.getId
+import me.rhunk.snapenhance.core.util.ktx.getObjectField
 import me.rhunk.snapenhance.core.util.ktx.isDarkTheme
 import me.rhunk.snapenhance.mapper.impl.CallbackMapper
 import java.nio.ByteBuffer
@@ -40,7 +41,8 @@ data class FriendLocation(
     val longitude: Double,
     val lastUpdated: Long,
     val locality: String?,
-    val localityPieces: List<String>
+    val localityPieces: List<String>,
+    val batteryLevel: Float,
 )
 
 class BetterLocation : Feature("Better Location") {
@@ -137,7 +139,8 @@ class BetterLocation : Feature("Better Location") {
                         if (index != 11) return@forEach
                         it.add((wire.value as ByteArray).toString(Charsets.UTF_8) )
                     }
-                }
+                },
+                batteryLevel = getFixed32(7, 13)?.let { Float.fromBits(it) } ?: -1F,
             )
 
             locationHistory[userId] = friendCluster
@@ -180,6 +183,15 @@ class BetterLocation : Feature("Better Location") {
         }
 
         val mapFeaturesRootId = context.resources.getId("map_features_root")
+
+        if (context.config.global.betterLocation.showBatteryLevel.get()) {
+            findClass("snap.snap_maps_sdk.nano.SnapMapsSdk\$PublicUserInfo").hook("setDisplayName", HookStage.BEFORE) { param ->
+                val instance = param.thisObject<Any>()
+                val userId = instance.getObjectField("userId_") as? String ?: return@hook
+                val batteryLevel = locationHistory[userId]?.batteryLevel?.takeIf { it > -1F } ?: return@hook
+                param.setArg(0, param.arg<String>(0) + " (${(batteryLevel * 100).toInt()}%)")
+            }
+        }
 
         context.event.subscribe(AddViewEvent::class) { event ->
             if (event.view.id != mapFeaturesRootId) return@subscribe

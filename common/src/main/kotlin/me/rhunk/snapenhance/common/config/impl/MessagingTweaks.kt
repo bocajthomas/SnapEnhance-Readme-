@@ -90,7 +90,7 @@ class MessagingTweaks : ConfigContainer() {
         customOptionTranslationPath = "features.options.notifications"
     }
     val messageLogger = container("message_logger", MessageLoggerConfig()) { addNotices(FeatureNotice.UNSTABLE); requireRestart() }
-    val galleryMediaSendOverride = unique("gallery_media_send_override", "always_ask", "SNAP", "NOTE", "SAVABLE_SNAP") { requireRestart(); nativeHooks() }
+    val galleryMediaSendOverride = unique("gallery_media_send_override", "always_ask", "SNAP", "NOTE", "SAVEABLE_SNAP") { requireRestart(); nativeHooks() }
     val stripMediaMetadata = multiple("strip_media_metadata", "hide_caption_text", "hide_snap_filters", "hide_extras", "remove_audio_note_duration", "remove_audio_note_transcript_capability") { requireRestart() }
     val bypassMessageRetentionPolicy = boolean("bypass_message_retention_policy") { addNotices(FeatureNotice.UNSTABLE); requireRestart() }
     val bypassMessageActionRestrictions = boolean("bypass_message_action_restrictions") { requireRestart() }
