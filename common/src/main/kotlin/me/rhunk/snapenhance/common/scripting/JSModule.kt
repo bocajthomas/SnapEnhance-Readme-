@@ -2,6 +2,7 @@ package me.rhunk.snapenhance.common.scripting
 
 import android.os.Handler
 import android.widget.Toast
+import kotlinx.coroutines.*
 import me.rhunk.snapenhance.common.scripting.bindings.AbstractBinding
 import me.rhunk.snapenhance.common.scripting.bindings.BindingsContext
 import me.rhunk.snapenhance.common.scripting.impl.JavaInterfaces
@@ -14,10 +15,8 @@ import me.rhunk.snapenhance.common.scripting.ktx.scriptableObject
 import me.rhunk.snapenhance.common.scripting.type.ModuleInfo
 import me.rhunk.snapenhance.common.scripting.type.Permissions
 import me.rhunk.snapenhance.common.scripting.ui.InterfaceManager
+import org.mozilla.javascript.*
 import org.mozilla.javascript.Function
-import org.mozilla.javascript.ScriptableObject
-import org.mozilla.javascript.Undefined
-import org.mozilla.javascript.Wrapper
 import java.io.Reader
 import java.lang.reflect.Modifier
 import kotlin.reflect.KClass
@@ -27,13 +26,15 @@ class JSModule(
     val moduleInfo: ModuleInfo,
     private val reader: Reader,
 ) {
+    val coroutineScope = CoroutineScope(Dispatchers.IO)
     private val moduleBindings = mutableMapOf<String, AbstractBinding>()
     private lateinit var moduleObject: ScriptableObject
 
     private val moduleBindingContext by lazy {
         BindingsContext(
             moduleInfo = moduleInfo,
-            runtime = scriptRuntime
+            runtime = scriptRuntime,
+            module = this,
         )
     }
 
@@ -158,6 +159,42 @@ class JSModule(
                 Undefined.instance
             }
 
+            moduleObject.putFunction("setTimeout") {
+                val function = it?.get(0) as? Function ?: return@putFunction Undefined.instance
+                val time = it[1] as? Number ?: 0
+
+                return@putFunction coroutineScope.launch {
+                    delay(time.toLong())
+                    contextScope {
+                        function.call(this, this@putFunction, this@putFunction, emptyArray())
+                    }
+                }
+            }
+
+            moduleObject.putFunction("setInterval") {
+                val function = it?.get(0) as? Function ?: return@putFunction Undefined.instance
+                val time = it[1] as? Number ?: 0
+
+                return@putFunction coroutineScope.launch {
+                    while (true) {
+                        delay(time.toLong())
+                        contextScope {
+                            function.call(this, this@putFunction, this@putFunction, emptyArray())
+                        }
+                    }
+                }
+            }
+
+            arrayOf("clearInterval", "clearTimeout").forEach {
+                moduleObject.putFunction(it) { args ->
+                    val job = args?.get(0) as? Job ?: return@putFunction Undefined.instance
+                    runCatching {
+                        job.cancel()
+                    }
+                    Undefined.instance
+                }
+            }
+
             for (toastFunc in listOf("longToast", "shortToast")) {
                 moduleObject.putFunction(toastFunc) { args ->
                     Handler(scriptRuntime.androidContext.mainLooper).post {
@@ -205,6 +242,9 @@ class JSModule(
 
     fun unload() {
         callFunction("module.onUnload")
+        runCatching {
+            coroutineScope.cancel("Module unloaded")
+        }
         moduleBindings.entries.removeIf { (name, binding) ->
             runCatching {
                 binding.onDispose()
