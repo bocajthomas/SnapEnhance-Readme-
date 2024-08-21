@@ -20,6 +20,13 @@ class CoreMessaging(
     private val conversationManager get() = messaging.conversationManager
 
     @JSFunction
+    fun onConversationManagerReady(callback: () -> Unit) {
+        messaging.onConversationManagerReady {
+            callback()
+        }
+    }
+
+    @JSFunction
     fun isPresent() = conversationManager != null
 
     @JSFunction
