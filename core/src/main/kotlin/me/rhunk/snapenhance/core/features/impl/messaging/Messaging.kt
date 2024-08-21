@@ -40,6 +40,13 @@ class Messaging : Feature("Messaging") {
         private set
 
     private val feedCachedSnapMessages = EvictingMap<String, List<Long>>(100)
+    private val conversationManagerReadyListeners = mutableListOf<() -> Unit>()
+
+    fun onConversationManagerReady(listener: () -> Unit) {
+        synchronized(conversationManagerReadyListeners) {
+            conversationManager?.let { listener() } ?: conversationManagerReadyListeners.add(listener)
+        }
+    }
 
     fun resetLastFocusedConversation() {
         lastFocusedConversationId = null
@@ -49,13 +56,16 @@ class Messaging : Feature("Messaging") {
     override fun init() {
         val stealthMode = context.feature(StealthMode::class)
         context.classCache.conversationManager.hookConstructor(HookStage.BEFORE) { param ->
-            conversationManager = ConversationManager(context, param.thisObject())
-            context.messagingBridge.triggerSessionStart()
-            context.mainActivity?.takeIf { it.intent.getBooleanExtra(ReceiversConfig.MESSAGING_PREVIEW_EXTRA, false) }?.run {
-                startActivity(Intent().apply {
-                    setComponent(ComponentName(Constants.SE_PACKAGE_NAME, "me.rhunk.snapenhance.ui.manager.MainActivity"))
-                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                })
+            synchronized(conversationManagerReadyListeners) {
+                conversationManager = ConversationManager(context, param.thisObject())
+                context.messagingBridge.triggerSessionStart()
+                context.mainActivity?.takeIf { it.intent.getBooleanExtra(ReceiversConfig.MESSAGING_PREVIEW_EXTRA, false) }?.run {
+                    startActivity(Intent().apply {
+                        setComponent(ComponentName(Constants.SE_PACKAGE_NAME, "me.rhunk.snapenhance.ui.manager.MainActivity"))
+                        addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    })
+                }
+                conversationManagerReadyListeners.removeIf { it(); true }
             }
         }
 

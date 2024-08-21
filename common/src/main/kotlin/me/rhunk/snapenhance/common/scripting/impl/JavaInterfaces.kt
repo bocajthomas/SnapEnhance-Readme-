@@ -6,6 +6,7 @@ import me.rhunk.snapenhance.common.scripting.ktx.contextScope
 import me.rhunk.snapenhance.common.scripting.ktx.putFunction
 import me.rhunk.snapenhance.common.scripting.ktx.scriptableObject
 import java.lang.reflect.Proxy
+import kotlin.concurrent.thread
 
 class JavaInterfaces : AbstractBinding("java-interfaces", BindingSide.COMMON) {
     override fun getObject() = scriptableObject {
@@ -37,6 +38,21 @@ class JavaInterfaces : AbstractBinding("java-interfaces", BindingSide.COMMON) {
                         this@scriptableObject,
                         this@scriptableObject,
                         arrayOf(instance, method.name, (args ?: emptyArray<Any>()).toList())
+                    )
+                }
+            }
+        }
+
+        putFunction("thread") { arguments ->
+            val function = arguments?.get(0) as? org.mozilla.javascript.Function ?: return@putFunction null
+
+            thread(start = false) {
+                contextScope {
+                    function.call(
+                        this,
+                        this@scriptableObject,
+                        this@scriptableObject,
+                        emptyArray()
                     )
                 }
             }
