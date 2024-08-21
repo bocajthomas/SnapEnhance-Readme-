@@ -30,7 +30,12 @@
             "tasks": "Uppgifter",
             "logger_history": "Logger Historia",
             "manage_scope": "Hantera omfattning",
-            "messaging_preview": "Förhandsvisning"
+            "messaging_preview": "Förhandsvisning",
+            "theming": "tema",
+            "edit_theme": "Redigera tema",
+            "friend_tracker": "Vän spårare",
+            "edit_rule": "redigerings regel",
+            "file_imports": "fil importeringar"
         },
         "sections": {
             "features": {
