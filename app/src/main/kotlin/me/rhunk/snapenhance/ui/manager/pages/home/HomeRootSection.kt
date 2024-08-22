@@ -2,13 +2,15 @@ package me.rhunk.snapenhance.ui.manager.pages.home
 
 import android.content.Intent
 import android.net.Uri
+import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Help
+import androidx.compose.material.icons.filled.WatchLater
+import androidx.compose.material.icons.filled.Paid
 import androidx.compose.material.icons.filled.BugReport
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Settings
@@ -39,7 +41,6 @@ import me.rhunk.snapenhance.common.Constants
 import me.rhunk.snapenhance.common.action.EnumAction
 import me.rhunk.snapenhance.common.ui.rememberAsyncMutableState
 import me.rhunk.snapenhance.common.ui.rememberAsyncMutableStateList
-import me.rhunk.snapenhance.core.ui.Snapenhance
 import me.rhunk.snapenhance.storage.getQuickTiles
 import me.rhunk.snapenhance.storage.setQuickTiles
 import me.rhunk.snapenhance.ui.manager.Routes
@@ -92,15 +93,16 @@ class HomeRootSection : Routes.Route() {
         }
     }
 
-    private fun openExternalLink(link: String) {
+
+     private fun openLink(link: String) {
         kotlin.runCatching {
             context.activity?.startActivity(Intent(Intent.ACTION_VIEW).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 data = Uri.parse(link)
             })
         }.onFailure {
-            context.log.error("Failed to open external link", it)
-            context.shortToast("Failed to open external link. Check logs for more details.")
+            context.log.error("Couldn't open link", it)
+            context.shortToast("Couldn't open link. Check SE Extended logs for more details.")
         }
     }
 
@@ -118,10 +120,9 @@ class HomeRootSection : Routes.Route() {
             modifier = Modifier
                 .size(size)
                 .then(modifier)
-                .clickable { openExternalLink(link) }
+                .clickable { openLink(link) }
         )
     }
-
 
     override val init: () -> Unit = {
         activityLauncherHelper = ActivityLauncherHelper(context.activity!!)
@@ -143,20 +144,28 @@ class HomeRootSection : Routes.Route() {
 
     @OptIn(ExperimentalLayoutApi::class)
     override val content: @Composable (NavBackStackEntry) -> Unit = {
+         val avenirNextFontFamily = remember {
+             FontFamily(
+                Font(R.font.avenir_next_medium, FontWeight.Medium)
+             )
+        }
+         
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .verticalScroll(rememberScrollState())
+                .verticalScroll(ScrollState(0))
         ) {
-            Icon(
-                imageVector = Snapenhance, contentDescription = null,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(all = 8.dp)
-                    .align(Alignment.CenterHorizontally),
-                tint = MaterialTheme.colorScheme.onSurfaceVariant,
+            Text(
+                text = remember {
+                    intArrayOf(
+                        100, 101, 100, 110, 101, 116, 120, 69, 32, 69, 83
+                    ).map { it.toChar() }.joinToString("").reversed()
+                },
+                fontSize = 30.sp,
+                fontFamily = avenirNextFontFamily,
+                modifier = Modifier.align(Alignment.CenterHorizontally),
             )
-
+           
             Text(
                 text = translation.format(
                     "version_title",
@@ -178,26 +187,36 @@ class HomeRootSection : Routes.Route() {
                     .fillMaxWidth()
                     .padding(all = 10.dp)
             ) {
-                ExternalLinkIcon(
-                    imageVector = ImageVector.vectorResource(id = R.drawable.ic_codeberg),
-                    link = "https://codeberg.org/SnapEnhance/SnapEnhance"
-                )
 
                 ExternalLinkIcon(
                     imageVector = ImageVector.vectorResource(id = R.drawable.ic_telegram),
-                    link = "https://t.me/snapenhance"
+                    link = "https://t.me/SE_Extended"
                 )
 
                 ExternalLinkIcon(
                     imageVector = ImageVector.vectorResource(id = R.drawable.ic_github),
-                    link = "https://github.com/rhunk/SnapEnhance"
+                    link = "https://github.com/bocajthomas/SE-Extended"
                 )
 
                 ExternalLinkIcon(
                     size = 38.dp,
                     modifier = Modifier.offset(x = (-3).dp, y = (-3).dp),
                     imageVector = Icons.AutoMirrored.Default.Help,
-                    link = "https://github.com/rhunk/SnapEnhance/wiki"
+                    link = "https://github.com/bocajthomas/SE-Extended/wiki"
+                )
+
+                ExternalLinkIcon(
+                    size = 36.dp,
+                    modifier = Modifier.offset(y = (-2).dp),
+                    imageVector = Icons.Filled.WatchLater,
+                    link = "https://github.com/bocajthomas/SE-Extended/blob/dev/CHANGELOGS.md"
+                )
+
+                ExternalLinkIcon(
+                    size = 36.dp,
+                    modifier = Modifier.offset(y = (-2).dp),
+                    imageVector = Icons.Filled.Paid,
+                    link = "https://ko-fi.com/seextended"
                 )
             }
 
@@ -231,7 +250,9 @@ class HomeRootSection : Routes.Route() {
                             )
                         }
                         Button(onClick = {
-                            latestUpdate?.releaseUrl?.let { openExternalLink(it) }
+                            context.activity?.startActivity(Intent(Intent.ACTION_VIEW).apply {
+                                data = Uri.parse(latestUpdate?.releaseUrl)
+                            })
                         }, modifier = Modifier.height(40.dp)) {
                             Text(text = translation["update_button"])
                         }
@@ -286,7 +307,7 @@ class HomeRootSection : Routes.Route() {
                             buildSummary.getStringAnnotations(
                                 tag = "git_hash", start = offset, end = offset
                             ).firstOrNull()?.let {
-                                openExternalLink("https://codeberg.org/SnapEnhance/SnapEnhance/commit/${it.item}")
+                                openLink("https://github.com/bocajthomas/SE-Extended/commit/${it.item}")
                             }
                         }
                     )
@@ -393,12 +414,12 @@ class HomeRootSection : Routes.Route() {
                             Icon(
                                 imageVector = card.second, contentDescription = null,
                                 tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                                modifier = Modifier.size(50.dp)
+                                modifier = Modifier.size(45.dp)
                             )
                             Text(
                                 text = card.first,
                                 lineHeight = 16.sp,
-                                fontSize = 14.sp,
+                                fontSize = 11.sp,
                                 fontWeight = FontWeight.Bold,
                                 textAlign = TextAlign.Center,
                                 overflow = TextOverflow.Ellipsis,

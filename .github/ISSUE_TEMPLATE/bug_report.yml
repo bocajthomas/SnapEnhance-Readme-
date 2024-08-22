@@ -21,31 +21,31 @@ body:
         1. Go to `...`
         2. Click on `....`
         3. Scroll down to `....`
-        4. See error.
+        4. See Error.
     validations:
       required: true
   - type: textarea
     id: logs
     attributes:
       label: "Logs"
-      description: "Please copy and paste any relevant log output if available"
-      render: markdown
+      description: "Please Provide the .zip, By Exporting a log"
+      placeholder: "Press `Paste, drop, or click to add files` to add"
     validations:
       required: false
   - type: input
-    id: snapchat-version
+    id: Snapchat-Version
     attributes:
       label: "Snapchat Version"
       description: "On which Snapchat version is this happening?"
-      placeholder: "ex. 12.35.0.45"
+      placeholder: "e.g. 12.35.0.45"
     validations:
       required: true
   - type: input
-    id: snapenhance-version
+    id: SE-Extended-Version
     attributes:
-      label: "SnapEnhance Version"
-      description: "On which SnapEnhance version is this happening?"
-      placeholder: "ex. 1.2.5"
+      label: "SE Extended Version"
+      description: "On which SE Extended version is this happening?"
+      placeholder: "e.g. 1.0.0"
     validations:
       required: true
   - type: checkboxes

@@ -227,7 +227,7 @@
                     },
                     "prevent_self_auto_download": {
                         "description": "Hindrar dina egna snaps från att bli nedladdade automatiskt",
-                        "name": "Hindra automatisk nedladdning"
+                        "name": "Hindra automatisk nedladdning av eget material"
                     },
                     "save_folder": {
                         "name": "Spara Mapp",

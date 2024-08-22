@@ -32,10 +32,9 @@ class SecurityScreen : SetupScreen() {
         )
 
         DialogText(
-            "Since Snapchat has implemented additional security measures against third-party applications such as SnapEnhance, we offer a non-opensource solution that reduces the risk of banning and prevents Snapchat from detecting SnapEnhance. " +
-                    "\nPlease note that this solution does not provide a ban bypass or spoofer for anything, and does not take any personal data or communicate with the network." +
-                    "\nWe also encourage you to use official signed builds to avoid compromising the security of your account." +
-            "\nIf you're having trouble using the solution, or are experiencing crashes, join the Telegram Group for help: https://t.me/snapenhance_chat"
+            "Since Snapchat has implemented additional security measures against third-party applications such as SE Extended, we offer a non-opensource solution that reduces the risk of banning and prevents Snapchat from detecting SE Extended. " +
+                    "\nPlease note that this solution does not provide a ban bypass or A spoofer for anything, and does not take any personal data or communicate with the network." +
+            "\nIf you're having trouble using the solution, or are experiencing crashes, join the Telegram Group for help: https://t.me/SE_Extended_Chat"
         )
 
         var denyDialog by remember { mutableStateOf(false) }
@@ -46,7 +45,7 @@ class SecurityScreen : SetupScreen() {
                     denyDialog = false
                 },
                 text = {
-                    Text("Are you sure you don't want to use this solution? You can always change this later in the settings in the SnapEnhance app.")
+                    Text("Are you sure you don't want to use this solution? You can always change this later in the settings in the SE Extended app.")
                 },
                 dismissButton = {
                     Button(onClick = {

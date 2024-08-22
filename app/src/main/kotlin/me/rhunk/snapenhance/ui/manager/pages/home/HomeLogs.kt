@@ -75,7 +75,7 @@ class HomeLogs : Routes.Route() {
             })
 
             DropdownMenuItem(onClick = {
-                activityLauncherHelper.saveFile("snapenhance-logs-${System.currentTimeMillis()}.zip", "application/zip") { uri ->
+                activityLauncherHelper.saveFile("SE Extended-logs-${System.currentTimeMillis()}.zip", "application/zip") { uri ->
                     context.coroutineScope.launch {
                         context.shortToast(translation["saving_logs_toast"])
                         context.androidContext.contentResolver.openOutputStream(Uri.parse(uri))?.use {

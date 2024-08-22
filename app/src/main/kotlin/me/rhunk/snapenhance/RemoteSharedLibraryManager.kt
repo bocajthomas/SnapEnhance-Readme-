@@ -95,7 +95,7 @@ class RemoteSharedLibraryManager(
                 notificationManager.notify(
                     System.nanoTime().toInt(),
                     Notification.Builder(remoteSideContext.androidContext, channelId)
-                        .setContentTitle("SnapEnhance")
+                        .setContentTitle("SE Extended")
                         .setContentText("Security Features have been updated to version $latestVersion")
                         .setSmallIcon(android.R.drawable.stat_sys_download_done)
                         .setContentIntent(PendingIntent.getActivity(
@@ -103,7 +103,7 @@ class RemoteSharedLibraryManager(
                             0,
                             Intent().apply {
                                 action = Intent.ACTION_VIEW
-                                data = "https://codeberg.org/SnapEnhance/resources".toUri()
+                                data = "https://github.com/SE-Extended/SIF".toUri()
                                 flags = Intent.FLAG_ACTIVITY_NEW_TASK
                             },
                             PendingIntent.FLAG_UPDATE_CURRENT
