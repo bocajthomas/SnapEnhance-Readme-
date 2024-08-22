@@ -103,8 +103,8 @@ class OperaViewerIcons : AbstractMenu() {
                     override fun onViewDetachedFromWindow(v: View) {}
                 })
                 layoutParams = FrameLayout.LayoutParams(
-                    actionMenuIconSize,
-                    actionMenuIconSize
+                    (actionMenuIconSize * 1.4).toInt(),
+                    (actionMenuIconSize * 1.4).toInt()
                 ).apply {
                     setMargins(0, 0, 0, actionMenuIconMarginTop * 2 + (80 * context.resources.displayMetrics.density).toInt())
                     marginEnd = actionMenuIconMarginTop * 2
@@ -116,8 +116,8 @@ class OperaViewerIcons : AbstractMenu() {
                         coroutineScope.launch {
                             val (conversationId, clientMessageId) = getMessageId() ?: return@launch
                             val result = feature(AutoMarkAsRead::class).markSnapAsSeen(conversationId, clientMessageId.toLong())
-                            if (result == "DUPLICATEREQUEST") return@launch
-                            if (result == null) {
+
+                            if (result == "DUPLICATEREQUEST" || result == null) {
                                 if (config.messaging.skipWhenMarkingAsSeen.get()) {
                                     withContext(Dispatchers.Main) {
                                         parent.iterateParent {
@@ -126,6 +126,10 @@ class OperaViewerIcons : AbstractMenu() {
                                         }
                                     }
                                 }
+                            }
+
+                            if (result == "DUPLICATEREQUEST") return@launch
+                            if (result == null) {
                                 inAppOverlay.showStatusToast(
                                     Icons.Default.Info,
                                     translation["mark_as_seen.seen_toast"],
