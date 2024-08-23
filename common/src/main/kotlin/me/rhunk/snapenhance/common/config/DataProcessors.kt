@@ -19,7 +19,7 @@ object DataProcessors {
         CONTAINER,
     }
 
-    data class PropertyDataProcessor<T>
+    class PropertyDataProcessor<T>
     internal constructor(
         val type: Type,
         private val serialize: (T, exportSensitiveData: Boolean) -> JsonElement,
