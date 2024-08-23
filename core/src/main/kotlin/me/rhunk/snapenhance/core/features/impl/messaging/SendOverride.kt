@@ -180,7 +180,7 @@ class SendOverride : Feature("Send Override") {
                                                 addVarInt(12, 0)
                                                 addVarInt(15, 0)
                                             }
-                                            addVarInt(6, 0)
+                                            addVarInt(6, 1)
                                         }
                                         from(2) {}
                                     }
@@ -196,6 +196,7 @@ class SendOverride : Feature("Send Override") {
                         localMessageContent.content = ProtoEditor(localMessageContent.content!!).apply {
                             edit(11, 5, 2) {
                                 arrayOf(6, 7, 8).forEach { remove(it) }
+                                addVarInt(5, messageProtoReader.getVarInt(3, 3, 5, 2, 5) ?: messageProtoReader.getVarInt(11, 5, 2, 5) ?: 1)
                                 // set snap duration
                                 if (snapDurationMs != null) {
                                     addVarInt(8, snapDurationMs / 1000)
