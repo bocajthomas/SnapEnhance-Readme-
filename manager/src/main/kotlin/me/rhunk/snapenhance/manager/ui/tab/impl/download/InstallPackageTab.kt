@@ -146,7 +146,7 @@ class InstallPackageTab : Tab("install_app") {
         }
 
         fun uninstallPackageRoot(): Boolean {
-            val result = Shell.su("pm uninstall $appPackage").exec()
+            val result = Shell.cmd("pm uninstall $appPackage").exec()
             if (result.isSuccess) {
                 return true
             }
@@ -155,7 +155,7 @@ class InstallPackageTab : Tab("install_app") {
         }
 
         fun installPackageRoot(): Boolean {
-            val result = Shell.su(
+            val result = Shell.cmd(
                 "cp \"${downloadedFile!!.absolutePath}\" /data/local/tmp/",
                 "pm install -r \"/data/local/tmp/${downloadedFile!!.name}\"",
                 "rm /data/local/tmp/${downloadedFile!!.name}"
