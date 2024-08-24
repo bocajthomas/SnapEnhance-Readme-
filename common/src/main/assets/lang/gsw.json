@@ -216,12 +216,12 @@
     "setup": {
         "dialogs": {
             "select_language": "Sprach uswähle",
-            "save_folder": "SnapEnhance benötigt Speicherberächtigunge zum Abelade und Speichere vo Medie vo Snapchat.\nBitte wähl de Ort us wo d Medie sölled abeglade werde.",
+            "save_folder": "SE Extended benötigt Speicherberächtigunge zum Abelade und Speichere vo Medie vo Snapchat.\nBitte wähl de Ort us wo d Medie sölled abeglade werde.",
             "select_save_folder_button": "Ordner uswähle"
         },
         "mappings": {
             "dialog": "S generiere vo mappings chan es wiili duure ...",
-            "generate_failure_no_snapchat": "SnapEnhance hät Snapchat nöd chöne erkenne, bitte versueched Sie Snapchat neu z installiere.",
+            "generate_failure_no_snapchat": "SE Extended hät Snapchat nöd chöne erkenne, bitte versueched Sie Snapchat neu z installiere.",
             "generate_failure": "Bim Versuech mappings generiere isch en fehler ufträtte, bitte versueched Sies erneut."
         },
         "permissions": {
@@ -294,7 +294,7 @@
                 "delete_all_option": "Alli lösche"
             },
             "home": {
-                "update_title": "SnapEnhance Update",
+                "update_title": "SE Extended Update",
                 "update_content": "Version {version} isch verfüegbar!",
                 "update_button": "Abelade"
             },
@@ -332,7 +332,7 @@
             "home": "Heimat",
             "home_settings": "Settigs",
             "home_logs": "Logs",
-            "logger_history": "Logger-Verlauf",
+            "logger_history": "Logger Verlauf",
             "logged_stories": "Protokollierti Stories",
             "friend_tracker": "Friend erkenni",
             "edit_rule": "Edit Rulewe",
