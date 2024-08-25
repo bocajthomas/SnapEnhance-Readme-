@@ -3,8 +3,10 @@ package me.rhunk.snapenhance.core.ui
 import android.view.View
 import kotlin.random.Random
 
+fun randomTag() = Random.nextInt(0x7000000, 0x7FFFFFFF)
+
 class ViewTagState {
-    private val tag = Random.nextInt(0x7000000, 0x7FFFFFFF)
+    private val tag = randomTag()
 
     operator fun get(view: View) = hasState(view)
 

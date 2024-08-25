@@ -20,10 +20,8 @@ export default defineModule({
                         marginTop: 4,
                         marginLeft: 8,
                         marginRight: 12,
-                        objectFit: "contain",
-                        tint: "white"
                     }))
-                    jsx.setAttribute("src", assetCatalog.loadCatalog("share_sheet/res").downloadIcon)
+                    jsx.setAttribute("src", assetCatalog.loadCatalog("share_sheet/res").download)
                     jsx.setAttributeFunction("onTap", () => downloadLastOperaMedia(false))
                     jsx.setAttributeFunction("onLongPress", () => downloadLastOperaMedia(true))
                     jsx.endRender()

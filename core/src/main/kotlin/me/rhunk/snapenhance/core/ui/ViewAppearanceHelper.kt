@@ -26,13 +26,12 @@ import me.rhunk.snapenhance.core.util.ktx.getDimensFloat
 import me.rhunk.snapenhance.core.util.ktx.getIdentifier
 import me.rhunk.snapenhance.core.wrapper.impl.composer.ComposerContext
 import me.rhunk.snapenhance.core.wrapper.impl.composer.ComposerViewNode
-import kotlin.random.Random
 
 fun View.applyTheme(componentWidth: Int? = null, hasRadius: Boolean = false, isAmoled: Boolean = true) {
     ViewAppearanceHelper.applyTheme(this, componentWidth, hasRadius, isAmoled)
 }
 
-private val foregroundDrawableListTag = Random.nextInt(0x7000000, 0x7FFFFFFF)
+private val foregroundDrawableListTag = randomTag()
 
 @Suppress("UNCHECKED_CAST")
 private fun View.getForegroundDrawables(): MutableMap<String, Drawable> {

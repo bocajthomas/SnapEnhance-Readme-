@@ -6,12 +6,14 @@ import android.graphics.drawable.ShapeDrawable
 import android.graphics.drawable.shapes.Shape
 import androidx.core.content.res.use
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import me.rhunk.snapenhance.core.event.events.impl.BindViewEvent
 import me.rhunk.snapenhance.core.features.Feature
 import me.rhunk.snapenhance.core.features.impl.spying.StealthMode
 import me.rhunk.snapenhance.core.ui.addForegroundDrawable
+import me.rhunk.snapenhance.core.ui.randomTag
 import me.rhunk.snapenhance.core.ui.removeForegroundDrawable
 import me.rhunk.snapenhance.core.util.EvictingMap
 import me.rhunk.snapenhance.core.util.ktx.getDimens
@@ -21,14 +23,29 @@ class StealthModeIndicator : Feature("StealthModeIndicator") {
     private val stealthMode by lazy { context.feature(StealthMode::class) }
     private val listeners = EvictingMap<String, (Boolean) -> Unit>(100)
 
-    private fun fetchStealthState(conversationId: String, result: (Boolean) -> Unit) {
-        context.coroutineScope.launch {
-            val isStealth = stealthMode.getState(conversationId)
-            withContext(Dispatchers.Main) {
-                result(isStealth)
+    inner class UpdateHandler {
+        private var fetchJob: Job? = null
+        private var listener = { _: Boolean -> }
+
+        private fun requestUpdate(conversationId: String) {
+            fetchJob?.cancel()
+            fetchJob = context.coroutineScope.launch {
+                val isStealth = stealthMode.getState(conversationId)
+                withContext(Dispatchers.Main) {
+                    listener(isStealth)
+                }
             }
         }
+
+        fun subscribe(conversationId: String, onStateChange: (Boolean) -> Unit) {
+            listener = onStateChange.also {
+                listeners[conversationId] = it
+            }
+            requestUpdate(conversationId)
+        }
     }
+
+    private val stealthModeIndicatorTag = randomTag()
 
     override fun init() {
         if (!context.config.userInterface.stealthModeIndicator.get()) return
@@ -66,13 +83,23 @@ class StealthModeIndicator : Feature("StealthModeIndicator") {
                 }
 
                 event.friendFeedItem { conversationId ->
-                    listeners[conversationId] = addStateListener@{ stealth ->
-                        updateStealthIndicator(stealth)
+                    val updateHandler = event.view.getTag(stealthModeIndicatorTag) as? UpdateHandler ?: run {
+                        val handler = UpdateHandler()
+                        event.view.setTag(stealthModeIndicatorTag, handler)
+                        handler
                     }
-                    fetchStealthState(conversationId) { isStealth ->
-                        updateStealthIndicator(isStealth)
+
+                    event.view.post {
+                        synchronized(listeners) {
+                            updateHandler.subscribe(conversationId) { isStealth ->
+                                updateStealthIndicator(isStealth)
+                            }
+                        }
                     }
+                    return@subscribe
                 }
+
+                event.view.setTag(stealthModeIndicatorTag, null)
             }
         }
     }

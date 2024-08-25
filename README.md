@@ -32,6 +32,7 @@ Please note that this project is currently in development, So bugs and crashes m
   - `Merge Overlays`
   - `Force Image Format`
   - `Force Voice Note Format`
+  - `Auto Download Voice Notes`
   - `Download Profile Pictures`
   - `Opera Download Button`
   - `Download Context Menu`
@@ -77,7 +78,9 @@ Please note that this project is currently in development, So bugs and crashes m
   - `Hide Bitmoji Presence` 
   - `Hide Typing Notifications` 
   - `Unlimited Snap View Time`
-  - `Auto Mark As Read` 
+  - `Auto Mark As Read`
+  - `Mark Snap As Seen Button`
+  - `Skip When Marking As Seen`
   - `Loop Media PlayBack`
   - `Disable Replay In FF`
   - `Half Swipe Notifier`
@@ -158,13 +161,13 @@ Please note that this project is currently in development, So bugs and crashes m
   
   - `Native Hooks` (Custom Emoji Fonts, etc) 
   - `Spoof`
-  - `Experimental Color Options`
   - `Convert Message Locally`
   - `Media File Picker`
   - `Story Logger`
   - `Call Recorder`
   - `Account Switcher`
   - `Better Transcript`
+  - `Voice Note Auto Play`
   - `Edit Messages`
   - `Context Menu Fix`
   - `COF Experiments`
@@ -208,24 +211,27 @@ The [Wiki](https://github.com/bocajthomas/SE-Extended/wiki) is a place for all i
 Join our [Telegram Channel](https://t.me/SE_Extended) for Discussions, announcements, and releases!
 
 ## 💵 Donate
-SE Extended will always be free and open source for everyone, If you like it, Consider [Donating](https://ko-fi.com/seextended)
+SE Extended will always be free and open source for everyone, 
+Please Consider [Donating](https://ko-fi.com/seextended)
 
 ## 🤝 Contributing 
 Contributions are welcome!<br/>
 Thanks to everyone involved
 
 **Pull Requests:**
-- [suryadip2008](https://github.com/suryadip2008) - feat(core/ui_tweaks): multiple hide ui components [#106](https://github.com/bocajthomas/SE-Extended/pull/106)
+- [suryadip2008](https://github.com/suryadip2008)
+   - feat(core/ui_tweaks): multiple hide ui components [#106](https://github.com/bocajthomas/SE-Extended/pull/106)
+   - fix(core/ui_tweaks): infinite loading animation [#116](https://github.com/bocajthomas/SE-Extended/pull/116)
 
 **Translations:**
-- Bengali - [suryadip2008](https://github.com/suryadip2008) 
+- Bengali - [suryadip2008](https://github.com/suryadip2008)
 - Dutch - [BogusMosquito77](https://github.com/BogusMosquito7), [dnlweijers](https://github.com/dnlweijers)
 - Urdu - [Beingzain](https://github.com/Beingzain) 
 - Danish - [comradekingu](https://github.com/comradekingu), [MHaaning](https://github.com/MHaaning)
 - Japanese - [scrodingerspet](https://github.com/schrodingerspet) 
 - Hindi - [scrodingerspet](https://github.com/schrodingerspet) 
 - Norwegian Bokmål - [comradekingu](https://github.com/comradekingu)
-- Swedish - [comradekingu](https://github.com/comradekingu)
+- Swedish - [comradekingu](https://github.com/comradekingu), [ELLABRAHSIRI](https://github.com/ELLABRAHSIRI)
 - Italian - [vampskillz](https://github.com/vampskillz)
 - Finnish - [jollindeerus](https://github.com/jollindeerus)
 - French - [pyramyds](https://github.com/pyramyds), [Mizaruta](https://github.com/Mizaruta)

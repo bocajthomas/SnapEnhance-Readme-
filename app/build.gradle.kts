@@ -4,6 +4,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import org.gradle.configurationcache.extensions.capitalized
 import java.io.ByteArrayOutputStream
+import java.util.Locale
 
 plugins {
     alias(libs.plugins.androidApplication)
@@ -154,7 +155,7 @@ dependencies {
 }
 
 afterEvaluate {
-    properties["debug_flavor"]?.toString()?.let { tasks.findByName("install${it.capitalized()}Debug") }?.doLast {
+    properties["debug_flavor"]?.toString()?.let { tasks.findByName("install${it.uppercase(Locale.getDefault())}Debug") }?.doLast {
         runCatching {
             val devices = ByteArrayOutputStream().also {
                 exec {
