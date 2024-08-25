@@ -37,7 +37,8 @@
             "file_imports": "File Imports",
             "edit_theme": "Edit Theme",
             "theming": "Theming",
-            "manage_repos": "Manage Repositories"
+            "manage_repos": "Manage Repositories",
+            "manage_rule_feature": "Manage Rule Feature"
         },
         "sections": {
             "features": {
@@ -168,6 +169,16 @@
             },
             "theming": {
                 "no_themes_hint": "No themes found"
+            },
+            "manage_rule_feature": {
+                "disable_state_option": "Disabled",
+                "disable_state_subtext": "No friends/groups will be affected",
+                "whitelist_state_option": "No-one except ...",
+                "blacklist_state_subtext": "Everyone except {count} friends/groups will be affected by this rule",
+                "whitelist_state_subtext": "Only {count} friends/groups will be affected by this rule",
+                "whitelist_state_button": "Select allowed friends/groups",
+                "blacklist_state_option": "Everyone except ...",
+                "blacklist_state_button": "Select excluded friends/groups"
             }
         },
         "dialogs": {
