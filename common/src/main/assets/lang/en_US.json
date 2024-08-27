@@ -1278,7 +1278,7 @@
                 "ORIGINAL": "Original Media",
                 "NOTE": "Audio Note",
                 "SNAP": "Snap",
-                "SAVABLE_SNAP": "Savable Snap"
+                "SAVEABLE_SNAP": "Saveable Snap"
             },
             "strip_media_metadata": {
                 "hide_caption_text": "Hide Caption Text",
