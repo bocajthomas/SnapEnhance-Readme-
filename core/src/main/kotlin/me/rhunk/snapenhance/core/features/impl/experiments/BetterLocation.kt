@@ -26,8 +26,10 @@ import me.rhunk.snapenhance.core.event.events.impl.AddViewEvent
 import me.rhunk.snapenhance.core.event.events.impl.UnaryCallEvent
 import me.rhunk.snapenhance.core.features.Feature
 import me.rhunk.snapenhance.core.util.RandomWalking
+import me.rhunk.snapenhance.core.util.dataBuilder
 import me.rhunk.snapenhance.core.util.hook.HookStage
 import me.rhunk.snapenhance.core.util.hook.hook
+import me.rhunk.snapenhance.core.util.hook.hookConstructor
 import me.rhunk.snapenhance.core.util.ktx.getId
 import me.rhunk.snapenhance.core.util.ktx.getObjectField
 import me.rhunk.snapenhance.core.util.ktx.isDarkTheme
@@ -190,6 +192,17 @@ class BetterLocation : Feature("Better Location") {
                 val userId = instance.getObjectField("userId_") as? String ?: return@hook
                 val batteryLevel = locationHistory[userId]?.batteryLevel?.takeIf { it > -1F } ?: return@hook
                 param.setArg(0, param.arg<String>(0) + " (${(batteryLevel * 100).toInt()}%)")
+            }
+
+            findClass("com.snap.map_friend_focus_view.MapFocusViewFriendSectionDataModel").hookConstructor(HookStage.AFTER) { param ->
+                val instance = param.thisObject<Any>()
+                val userId = instance.getObjectField("_userId") as? String ?: return@hookConstructor
+                val batteryLevel = locationHistory[userId]?.batteryLevel?.takeIf { it > -1F } ?: return@hookConstructor
+
+                param.thisObject<Any>().dataBuilder {
+                    val prevText = get<String?>("_lastSeen")?.let { " - $it" } ?: ""
+                    set("_lastSeen", "(${(batteryLevel * 100).toInt()}%)$prevText")
+                }
             }
         }
 
