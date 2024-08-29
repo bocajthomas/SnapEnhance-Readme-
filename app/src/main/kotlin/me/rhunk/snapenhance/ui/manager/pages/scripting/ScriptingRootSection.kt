@@ -321,7 +321,13 @@ class ScriptingRootSection : Routes.Route() {
                         .padding(end = 8.dp)
                 ) {
                     Text(text = script.displayName ?: script.name, fontSize = 20.sp)
-                    Text(text = script.description ?: "No description", fontSize = 14.sp)
+                    if (!script.description.isNullOrEmpty()) {
+                        Text(text = script.description.let { "$it" }, fontSize = 13.sp)
+                    }
+                    Text(text = script.author.let { "By: $it" }, fontSize = 13.sp)
+                    Text(text = script.version.let { "Version: $it" }, fontSize = 13.sp)
+
+
                     latestUpdate?.let {
                         Text(text = "Update available: ${it.version}", fontSize = 14.sp, fontStyle = FontStyle.Italic, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     }

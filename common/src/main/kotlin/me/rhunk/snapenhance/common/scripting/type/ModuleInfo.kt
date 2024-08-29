@@ -50,7 +50,7 @@ fun BufferedReader.readModuleInfo(): ModuleInfo {
         displayName = properties["displayName"],
         description = properties["description"],
         updateUrl = properties["updateUrl"],
-        author = properties["author"],
+        author = properties["author"] ?: throw Exception("Missing module author"),
         minSnapchatVersion = properties["minSnapchatVersion"]?.toLongOrNull(),
         minSEVersion = properties["minSEVersion"]?.toLongOrNull(),
         grantedPermissions = properties["permissions"]?.split(",")?.map { it.trim() } ?: emptyList(),
