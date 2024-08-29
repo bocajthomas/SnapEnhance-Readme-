@@ -326,8 +326,9 @@ class ScriptingRootSection : Routes.Route() {
                     }
                     Text(text = script.author.let { "By: $it" }, fontSize = 13.sp)
                     Text(text = script.version.let { "Version: $it" }, fontSize = 13.sp)
-
-
+                    if (!script.note.isNullOrEmpty()) {
+                        Text(text = script.note.let { "Note: $it" }, fontSize = 13.sp)
+                    }
                     latestUpdate?.let {
                         Text(text = "Update available: ${it.version}", fontSize = 14.sp, fontStyle = FontStyle.Italic, color = MaterialTheme.colorScheme.onSurfaceVariant)
                     }
