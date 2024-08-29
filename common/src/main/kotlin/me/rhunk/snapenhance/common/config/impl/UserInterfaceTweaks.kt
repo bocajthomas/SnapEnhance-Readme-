@@ -87,7 +87,8 @@ class UserInterfaceTweaks : ConfigContainer() {
         "hide_post_to_story_buttons",
         "hide_snap_create_group_buttons",
         "hide_explorer_token_button",
-        "hide_gift_snapchat_plus_reminders"
+        "hide_gift_snapchat_plus_reminders",
+        "hide_map_reactions"
     ) { requireRestart() }
     val operaMediaQuickInfo = boolean("opera_media_quick_info") { requireRestart() }
     val oldBitmojiSelfie = unique("old_bitmoji_selfie", "2d", "3d") { requireCleanCache() }

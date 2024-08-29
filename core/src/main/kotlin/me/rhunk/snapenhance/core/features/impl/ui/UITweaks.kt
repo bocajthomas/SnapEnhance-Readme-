@@ -207,6 +207,10 @@ class UITweaks : Feature("UITweaks") {
                 }
             }
 
+            if (event.parent.id == getId("map_reactions_layout", "id") && hiddenElements.contains("hide_map_reactions")) {
+                hideView(view)
+            }
+
             if (
                 ((viewId == getId("post_tool", "id") || viewId == getId("story_button", "id")) && hiddenElements.contains("hide_post_to_story_buttons")) ||
                 ((viewId == getId("below_header_message_banner_text", "id") || viewId == getId("below_header_message_banner", "id")) && hiddenElements.contains("hide_gift_snapchat_plus_reminders")) ||

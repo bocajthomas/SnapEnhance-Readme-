@@ -1299,7 +1299,8 @@
                 "hide_voice_record_button": "Remove Voice Record Button",
                 "hide_unread_chat_hint": "Remove Unread Chat Hint",
                 "hide_post_to_story_buttons": "Remove Post to Story Buttons",
-                "hide_gift_snapchat_plus_reminders": "Remove Gift Snapchat Plus Reminders"
+                "hide_gift_snapchat_plus_reminders": "Remove Gift Snapchat Plus Reminders",
+                "hide_map_reactions": "Remove Map Reactions"
             },
             "hide_story_suggestions": {
                 "hide_friend_suggestions": "Hide friend suggestions",

@@ -129,23 +129,33 @@ class BetterLocation : Feature("Better Location") {
 
     private fun onLocationEvent(protoReader: ProtoReader) {
         protoReader.eachBuffer(3, 1) {
-            val userId = UUID(getFixed64(1, 1) ?: return@eachBuffer, getFixed64(1, 2) ?: return@eachBuffer).toString()
-            val friendCluster = FriendLocation(
-                userId = userId,
-                latitude = Float.fromBits(getFixed32(4)).toDouble(),
-                longitude = Float.fromBits(getFixed32(5)).toDouble(),
-                lastUpdated = getVarInt(7, 2) ?: -1L,
-                locality = getString(10),
-                localityPieces = mutableListOf<String>().also {
-                    forEach { index, wire ->
-                        if (index != 11) return@forEach
-                        it.add((wire.value as ByteArray).toString(Charsets.UTF_8) )
-                    }
-                },
-                batteryLevel = getFixed32(7, 13)?.let { Float.fromBits(it) } ?: -1F,
-            )
+            val clusterId = UUID(getFixed64(1, 1) ?: return@eachBuffer, getFixed64(1, 2) ?: return@eachBuffer).toString()
 
-            locationHistory[userId] = friendCluster
+            val latitude = getFixed32(4)?.let { Float.fromBits(it) }?.toDouble() ?: return@eachBuffer
+            val longitude = getFixed32(5)?.let { Float.fromBits(it) }?.toDouble() ?: return@eachBuffer
+
+            val locality = getString(10)
+            val localityPieces = mutableListOf<String>().also {
+                forEach { index, wire ->
+                    if (index != 11) return@forEach
+                    it.add((wire.value as ByteArray).toString(Charsets.UTF_8) )
+                }
+            }
+
+            eachBuffer(7) friend@{
+                val userId = if (contains(1)) UUID(getFixed64(1, 1) ?: return@friend, getFixed64(1, 2) ?: return@friend).toString() else clusterId
+                val friendLocation = FriendLocation(
+                    userId = userId,
+                    latitude = latitude,
+                    longitude = longitude,
+                    lastUpdated = getVarInt(2) ?: -1L,
+                    locality = locality,
+                    localityPieces = localityPieces,
+                    batteryLevel = getFixed32(13)?.let { Float.fromBits(it) } ?: -1F,
+                )
+
+                locationHistory[userId] = friendLocation
+            }
         }
     }
 
