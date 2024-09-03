@@ -167,6 +167,10 @@ class UITweaks : Feature("UITweaks") {
                 }
             }
 
+            if (event.parent.id == getId("map_reactions_layout", "id") && hiddenElements.contains("hide_map_reactions")) {
+                hideView(view)
+            }
+
             if (
                 ((viewId == getId("post_tool", "id") || viewId == getId("story_button", "id")) && hiddenElements.contains("hide_post_to_story_buttons")) ||
                 (viewId == chatNoteRecordButton && hiddenElements.contains("hide_voice_record_button")) ||

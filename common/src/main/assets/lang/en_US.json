@@ -1262,7 +1262,8 @@
                 "hide_unread_chat_hint": "Remove Unread Chat Hint",
                 "hide_post_to_story_buttons": "Remove Post to Story buttons before sending a Snap",
                 "hide_billboard_prompt": "Remove Billboard Prompt In Friends Feed",
-                "hide_snapchat_plus_gift_reminders": "Remove Snapchat Plus gift reminders in conversations"
+                "hide_snapchat_plus_gift_reminders": "Remove Snapchat Plus gift reminders in conversations",
+                "hide_map_reactions": "Remove Map Reactions"
             },
             "hide_story_suggestions": {
                 "hide_friend_suggestions": "Hide friend suggestions",

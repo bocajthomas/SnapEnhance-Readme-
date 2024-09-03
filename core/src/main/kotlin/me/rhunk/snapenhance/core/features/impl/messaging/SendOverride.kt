@@ -35,61 +35,15 @@ import kotlin.time.toDuration
 
 class SendOverride : Feature("Send Override") {
     private var selectedType by mutableStateOf("SNAP")
-    private var customDuration by mutableStateOf(10f)
+    private var customDuration by mutableFloatStateOf(10f)
 
     @OptIn(ExperimentalLayoutApi::class)
     override fun init() {
-        val stripSnapMetadata = context.config.messaging.stripMediaMetadata.get()
+        val stripMediaMetadata = context.config.messaging.stripMediaMetadata.get()
         var postSavePolicy: Int? = null
 
-        context.event.subscribe(SendMessageWithContentEvent::class, {
-            stripSnapMetadata.isNotEmpty()
-        }) { event ->
-            val contentType = event.messageContent.contentType ?: return@subscribe
-
-            val newMessageContent = ProtoEditor(event.messageContent.content!!).apply {
-                when (contentType) {
-                    ContentType.SNAP, ContentType.EXTERNAL_MEDIA -> {
-                        edit(*(if (contentType == ContentType.SNAP) intArrayOf(11) else intArrayOf(3, 3))) {
-                            if (stripSnapMetadata.contains("hide_caption_text")) {
-                                edit(5) {
-                                    editEach(1) {
-                                        remove(2)
-                                    }
-                                }
-                            }
-                            if (stripSnapMetadata.contains("hide_snap_filters")) {
-                                remove(9)
-                                remove(11)
-                            }
-                            if (stripSnapMetadata.contains("hide_extras")) {
-                                remove(13)
-                                edit(5, 1) {
-                                    remove(2)
-                                }
-                            }
-                        }
-                    }
-                    ContentType.NOTE -> {
-                        if (stripSnapMetadata.contains("remove_audio_note_duration")) {
-                            edit(6, 1, 1) {
-                                remove(13)
-                            }
-                        }
-                        if (stripSnapMetadata.contains("remove_audio_note_transcript_capability")) {
-                            edit(6, 1) {
-                                remove(3)
-                            }
-                        }
-                    }
-                    else -> return@subscribe
-                }
-            }.toByteArray()
-
-            event.messageContent.content = newMessageContent
-        }
-
-        val configOverrideType = context.config.messaging.galleryMediaSendOverride.getNullable() ?: return
+        val configOverrideType = context.config.messaging.galleryMediaSendOverride.getNullable()
+        if (configOverrideType == null && stripMediaMetadata.isEmpty()) return
 
         context.event.subscribe(MediaUploadEvent::class) { event ->
             ProtoReader(event.localMessageContent.content!!).followPath(11, 5)?.let { snapDocPlayback ->
@@ -115,6 +69,45 @@ class SendOverride : Feature("Send Override") {
                             }
                         }
 
+                        if (stripMediaMetadata.isNotEmpty()) {
+                            when (result.messageContent.contentType) {
+                                ContentType.SNAP, ContentType.EXTERNAL_MEDIA -> {
+                                    edit(*(if (result.messageContent.contentType == ContentType.SNAP) intArrayOf(11) else intArrayOf(3, 3))) {
+                                        if (stripMediaMetadata.contains("hide_caption_text")) {
+                                            edit(5) {
+                                                editEach(1) {
+                                                    remove(2)
+                                                }
+                                            }
+                                        }
+                                        if (stripMediaMetadata.contains("hide_snap_filters")) {
+                                            remove(9)
+                                            remove(11)
+                                        }
+                                        if (stripMediaMetadata.contains("hide_extras")) {
+                                            remove(13)
+                                            edit(5, 1) {
+                                                remove(2)
+                                            }
+                                        }
+                                    }
+                                }
+                                ContentType.NOTE -> {
+                                    if (stripMediaMetadata.contains("remove_audio_note_duration")) {
+                                        edit(6, 1, 1) {
+                                            remove(13)
+                                        }
+                                    }
+                                    if (stripMediaMetadata.contains("remove_audio_note_transcript_capability")) {
+                                        edit(6, 1) {
+                                            remove(3)
+                                        }
+                                    }
+                                }
+                                else -> {}
+                            }
+                        }
+
                         edit(11, 5, 2) {
                             remove(99)
                         }
@@ -122,6 +115,8 @@ class SendOverride : Feature("Send Override") {
                 }
             }
         }
+
+        if (configOverrideType == null) return
 
         context.event.subscribe(NativeUnaryCallEvent::class) { event ->
             if (event.uri != "/messagingcoreservice.MessagingCoreService/CreateContentMessage") return@subscribe
@@ -338,6 +333,7 @@ class SendOverride : Feature("Send Override") {
                                     )
                                     Slider(
                                         modifier = Modifier.fillMaxWidth(),
+                                        enabled = selectedType != "SAVEABLE_SNAP",
                                         value = customDuration,
                                         onValueChange = {
                                             customDuration = it
@@ -360,7 +356,7 @@ class SendOverride : Feature("Send Override") {
                             }
                             Button(onClick = {
                                 alertDialog.dismiss()
-                                if (sendMedia(selectedType, convertDuration(customDuration))) {
+                                if (sendMedia(selectedType, if (selectedType != "SAVEABLE_SNAP" ) convertDuration(customDuration) else null)) {
                                     event.invokeOriginal()
                                 }
                             }) {

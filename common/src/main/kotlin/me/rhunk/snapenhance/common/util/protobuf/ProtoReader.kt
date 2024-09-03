@@ -192,8 +192,8 @@ class ProtoReader(private val buffer: ByteArray) {
 
 
     @JSFunction
-    fun getFixed32(id: Int): Int {
-        val bytes = getByteArray(id) ?: return 0
+    fun getFixed32(id: Int): Int? {
+        val bytes = getByteArray(id) ?: return null
         var value = 0
         for (i in 0..3) {
             value = value or ((bytes[i].toInt() and 0xFF) shl (i * 8))

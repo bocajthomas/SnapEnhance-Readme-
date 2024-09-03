@@ -50,7 +50,8 @@ class UserInterfaceTweaks : ConfigContainer() {
         "hide_unread_chat_hint",
         "hide_post_to_story_buttons",
         "hide_billboard_prompt",
-        "hide_snapchat_plus_gift_reminders"
+        "hide_snapchat_plus_gift_reminders",
+        "hide_map_reactions",
     ) { requireRestart() }
     val operaMediaQuickInfo = boolean("opera_media_quick_info") { requireRestart() }
     val oldBitmojiSelfie = unique("old_bitmoji_selfie", "2d", "3d") { requireCleanCache() }
