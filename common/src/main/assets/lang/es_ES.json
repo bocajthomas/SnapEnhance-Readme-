@@ -47,7 +47,7 @@
                 "update_button": "Descargar",
                 "debug_build_summary_date": "Fecha de desarrollo: {date} (hace{days} día(s))",
                 "quick_actions_title": "Acciones rápidas",
-                "version_title": "v{versionName} · por rhunk",
+                "version_title": "v{versionName} · bifurcación de bocajthomas",
                 "debug_build_summary_title": "Estás ejecutando una versión de depuración de SnapEnhance",
                 "debug_build_summary_content": "Versión {versionName} ({versionCode})"
             },
