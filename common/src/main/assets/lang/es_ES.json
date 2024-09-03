@@ -1292,7 +1292,8 @@
                 "always_ask": "Preguntar siempre",
                 "ORIGINAL": "Medios originales",
                 "NOTE": "Nota de voz",
-                "SNAP": "Snap"
+                "SNAP": "Snap",
+                "SAVEABLE_SNAP": "Snap guardable"
             },
             "strip_media_metadata": {
                 "hide_caption_text": "Ocultar texto de subtítulos",
@@ -1390,7 +1391,8 @@
                 "spring_meadow": "Pradera de primavera",
                 "cosmic_night": "Noche cósmica",
                 "modern_farmhouse": "Casa de campo moderna",
-                "alien_landscape": "Paisaje extraterrestre"
+                "alien_landscape": "Paisaje extraterrestre",
+                "midnight_library": "Biblioteca de medianoche"
             }
         }
     },
