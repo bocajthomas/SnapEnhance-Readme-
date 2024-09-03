@@ -73,7 +73,7 @@
                 "update_button": "Download",
                 "update_content": "Version {version} is Available!",
                 "debug_build_summary_title": "You are running a debug build of SE Extended",
-                "version_title": "V{versionName} · Forked by Jacob",
+                "version_title": "V{versionName} · Forked by bocajthomas",
                 "debug_build_summary_date": "Build date: {date} ({days} days ago)",
                 "debug_build_summary_content": "Version {versionName} ({versionCode})",
                 "quick_actions_title": "Quick Actions"
@@ -178,7 +178,9 @@
                 "whitelist_state_subtext": "Only {count} friends/groups will be affected by this rule",
                 "whitelist_state_button": "Select allowed friends/groups",
                 "blacklist_state_option": "Everyone except ...",
-                "blacklist_state_button": "Select excluded friends/groups"
+                "blacklist_state_button": "Select excluded friends/groups",
+                "clear_list_button": "Clear friends/groups list",
+                "dialog_clear_confirmation_text": "Are you sure you want to clear the list?"
             }
         },
         "dialogs": {
@@ -323,7 +325,7 @@
             "description": "Customize the look and feel of Snapchat"
         },
         "security_features": {
-            "description": "Access security features",
+            "description": "Change security features preferences",
             "name": "Security Features"
         }
     },
@@ -422,6 +424,10 @@
                     "custom_path_format": {
                         "name": "Custom Path Format",
                         "description": "Specify a custom path format for downloaded media\n\nAvailable variables:\n - %username%\n - %source%\n - %hash%\n - %date_time%"
+                    },
+                    "auto_download_voice_notes": {
+                        "name": "Auto Download Voice Notes",
+                        "description": "Automatically downloads voice notes when playing them"
                     }
                 },
                 "name": "Downloader",
@@ -760,6 +766,10 @@
                             "walk_radius": {
                                 "name": "Walk Radius",
                                 "description": "Randomly walk around within this radius (ft)"
+                            },
+                            "show_battery_level": {
+                                "name": "Show Battery Level",
+                                "description": "Shows the battery level of your friends on the map"
                             }
                         }
                     },
@@ -956,6 +966,10 @@
                             "custom_emoji_font": {
                                 "description": "Allows you to use a custom emoji font. Only works with .ttf fonts",
                                 "name": "Custom Emoji Font"
+                            },
+                            "custom_shared_library": {
+                                "name": "Custom Shared Library",
+                                "description": "Loads a custom shared library into Snapchat. This feature is only for testing purposes"
                             }
                         }
                     },
@@ -1245,7 +1259,8 @@
                 "ORIGINAL": "Original Media",
                 "NOTE": "Audio Note",
                 "SNAP": "Snap",
-                "always_ask": "Always Ask"
+                "always_ask": "Always Ask",
+                "SAVEABLE_SNAP": "Saveable Snap"
             },
             "strip_media_metadata": {
                 "hide_caption_text": "Hide Caption Text",
@@ -1266,7 +1281,8 @@
                 "hide_chat_gallery_button": "Remove Chat Gallery Button",
                 "hide_explorer_token_button": "Remove Explorer Token Button",
                 "hide_gift_snapchat_plus_reminders": "Remove Gift Snapchat Plus Reminders",
-                "hide_chat_camera_button": "Remove Chat Camera Button"
+                "hide_chat_camera_button": "Remove Chat Camera Button",
+                "hide_map_reactions": "Remove Map Reactions"
             },
             "hide_story_suggestions": {
                 "hide_friend_suggestions": "Hide friend suggestions",
@@ -1597,7 +1613,8 @@
         "negative": "No",
         "cancel": "Cancel",
         "open": "Open",
-        "download": "Download"
+        "download": "Download",
+        "send": "Send"
     },
     "half_swipe_notifier": {
         "notification_channel_name": "Half Swipe",
@@ -1693,6 +1710,9 @@
         "sigColorBackgroundSurfaceTranslucent": "Translucent Background Surface Colour"
     },
     "send_override_dialog": {
-        "title": "Send media as: "
+        "title": "Send media as {type}",
+        "unlimited_duration": "Unlimited",
+        "duration": "Duration: {duration}",
+        "saveable_snap_hint": "Make Snap saveable in the chat"
     }
 }
