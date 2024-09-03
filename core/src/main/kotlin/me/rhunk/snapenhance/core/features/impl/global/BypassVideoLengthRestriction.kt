@@ -5,6 +5,7 @@ import android.os.FileObserver
 import com.google.gson.JsonParser
 import me.rhunk.snapenhance.core.event.events.impl.SendMessageWithContentEvent
 import me.rhunk.snapenhance.core.features.Feature
+import me.rhunk.snapenhance.core.util.dataBuilder
 import me.rhunk.snapenhance.core.util.hook.HookStage
 import me.rhunk.snapenhance.core.util.hook.hookConstructor
 import me.rhunk.snapenhance.core.util.ktx.setObjectField
@@ -47,9 +48,11 @@ class BypassVideoLengthRestriction :
                 }
 
                 context.mappings.useMapper(DefaultMediaItemMapper::class) {
-                    defaultMediaItem.getAsClass()?.hookConstructor(HookStage.BEFORE) { param ->
+                    defaultMediaItemClass.getAsClass()?.hookConstructor(HookStage.AFTER) { param ->
                         //set the video length argument
-                        param.setArg(5, -1L)
+                        param.thisObject<Any>().dataBuilder {
+                            set(defaultMediaItemDurationMsField.getAsString()!!, -1L)
+                        }
                     }
                 }
             }

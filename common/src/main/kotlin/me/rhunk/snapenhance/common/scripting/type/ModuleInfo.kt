@@ -13,6 +13,7 @@ data class ModuleInfo(
     val minSEVersion: Long? = null,
     val grantedPermissions: List<String>,
     val executionSides: List<String>? = null,
+    val note: String? = null,
 ) {
     fun ensurePermissionGranted(permission: Permissions) {
         if (!grantedPermissions.contains(permission.key)) {
@@ -50,10 +51,11 @@ fun BufferedReader.readModuleInfo(): ModuleInfo {
         displayName = properties["displayName"],
         description = properties["description"],
         updateUrl = properties["updateUrl"],
-        author = properties["author"],
+        author = properties["author"] ?: throw Exception("Missing module author"),
         minSnapchatVersion = properties["minSnapchatVersion"]?.toLongOrNull(),
         minSEVersion = properties["minSEVersion"]?.toLongOrNull(),
         grantedPermissions = properties["permissions"]?.split(",")?.map { it.trim() } ?: emptyList(),
         executionSides = properties["executionSides"]?.lowercase()?.split(",")?.map { it.trim() },
+        note = properties["note"],
     )
 }

@@ -1,9 +1,9 @@
 import { getConfig, log } from "./imports";
-import { Module, modules } from "./types";
+import { modules } from "./types";
 
-import  "./modules/operaDownloadButton";
-import  "./modules/firstCreatedUsername";
-import  "./modules/bypassCameraRollSelectionLimit";
+import "./modules/operaDownloadButton";
+import "./modules/firstCreatedUsername";
+import "./modules/bypassCameraRollSelectionLimit";
 
 
 try {

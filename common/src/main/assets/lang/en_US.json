@@ -48,7 +48,7 @@
         },
         "sections": {
             "home": {
-                "version_title": "V{versionName} · Forked by Jacob",
+                "version_title": "V{versionName} · Forked by bocajthomas",
                 "update_title": "SE Extended Update",
                 "update_content": "Version {version} is available!",
                 "update_button": "Download",
@@ -1278,7 +1278,7 @@
                 "ORIGINAL": "Original Media",
                 "NOTE": "Audio Note",
                 "SNAP": "Snap",
-                "SAVABLE_SNAP": "Savable Snap"
+                "SAVEABLE_SNAP": "Saveable Snap"
             },
             "strip_media_metadata": {
                 "hide_caption_text": "Hide Caption Text",
@@ -1299,7 +1299,8 @@
                 "hide_voice_record_button": "Remove Voice Record Button",
                 "hide_unread_chat_hint": "Remove Unread Chat Hint",
                 "hide_post_to_story_buttons": "Remove Post to Story Buttons",
-                "hide_gift_snapchat_plus_reminders": "Remove Gift Snapchat Plus Reminders"
+                "hide_gift_snapchat_plus_reminders": "Remove Gift Snapchat Plus Reminders",
+                "hide_map_reactions": "Remove Map Reactions"
             },
             "hide_story_suggestions": {
                 "hide_friend_suggestions": "Hide friend suggestions",
