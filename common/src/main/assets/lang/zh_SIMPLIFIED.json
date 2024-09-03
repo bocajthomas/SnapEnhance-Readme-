@@ -121,7 +121,7 @@
                 "update_content": "版本 {version} 可用！",
                 "update_title": "SnapEnhance 更新",
                 "quick_actions_title": "快速行动",
-                "version_title": "V{versionName} · 由雅各布分叉",
+                "version_title": "V{versionName} · 分叉者博卡伊托马斯",
                 "debug_build_summary_title": "您正在运行 SE Extended 的调试版本",
                 "debug_build_summary_content": "版本 {versionName} ({versionCode)}",
                 "debug_build_summary_date": "构建日期：{date}（{days} 天前)"
@@ -246,7 +246,16 @@
                 "no_themes_hint": "没有找到主题"
             },
             "manage_rule_feature": {
-                "disable_state_option": "残疾人"
+                "disable_state_option": "残疾人",
+                "dialog_clear_confirmation_text": "您确实要清除列表吗？",
+                "disable_state_subtext": "任何好友/群组均不会受到影响",
+                "whitelist_state_option": "没有人除了...",
+                "whitelist_state_subtext": "仅 {count} 个好友/群组会受到此规则的影响",
+                "whitelist_state_button": "选择允许的好友/群组",
+                "blacklist_state_option": "每个人除了...",
+                "blacklist_state_subtext": "除 {count} 之外的所有人好友/群组将受到此规则的影响",
+                "blacklist_state_button": "选择排除的好友/群组",
+                "clear_list_button": "清除好友/群组列表"
             }
         },
         "dialogs": {
@@ -384,7 +393,7 @@
         },
         "security_features": {
             "name": "安全特性",
-            "description": "访问安全功能"
+            "description": "更改安全功能偏好"
         },
         "theming": {
             "name": "主题化",
@@ -487,6 +496,10 @@
                     "logging": {
                         "description": "下载媒体时显示 toast",
                         "name": "记录"
+                    },
+                    "auto_download_voice_notes": {
+                        "description": "播放语音笔记时自动下载",
+                        "name": "自动下载语音笔记"
                     }
                 },
                 "description": "下载 Snapchat 媒体"
@@ -823,6 +836,10 @@
                             "always_update_location": {
                                 "description": "即使没有收到 GPS 数据，也强制 Snapchat 更新位置",
                                 "name": "始终更新位置"
+                            },
+                            "show_battery_level": {
+                                "name": "显示电池电量",
+                                "description": "在地图上显示好友的电池电量"
                             }
                         }
                     },
