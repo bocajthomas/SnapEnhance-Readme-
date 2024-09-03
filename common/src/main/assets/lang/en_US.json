@@ -48,7 +48,7 @@
         },
         "sections": {
             "home": {
-                "version_title": "V{versionName} · Forked by Jacob",
+                "version_title": "V{versionName} · Forked by bocajthomas",
                 "update_title": "SE Extended Update",
                 "update_content": "Version {version} is available!",
                 "update_button": "Download",
