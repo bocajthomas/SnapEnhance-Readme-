@@ -1245,8 +1245,7 @@
                 "ORIGINAL": "Original Media",
                 "NOTE": "Audio Note",
                 "SNAP": "Snap",
-                "always_ask": "Always Ask",
-                "SAVABLE_SNAP": "Savable Snap"
+                "always_ask": "Always Ask"
             },
             "strip_media_metadata": {
                 "hide_caption_text": "Hide Caption Text",

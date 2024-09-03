@@ -1300,8 +1300,7 @@
                 "always_ask": "সর্বদা জিজ্ঞাসা করুন",
                 "NOTE": "অডিও নোট",
                 "SNAP": "স্ন্যাপ",
-                "ORIGINAL": "মূল মিডিয়া",
-                "SAVABLE_SNAP": "সংরক্ষণযোগ্য স্ন্যাপ"
+                "ORIGINAL": "মূল মিডিয়া"
             },
             "hide_ui_components": {
                 "hide_profile_call_buttons": "প্রোফাইল কল বোতামগুলি অপসারণ করুন",
