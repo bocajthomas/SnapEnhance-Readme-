@@ -64,11 +64,15 @@
             "edit_rule": "ルールの編集",
             "messaging_preview": "プレビュー",
             "file_imports": "ファイルのインポート",
-            "scripts": "スクリプト"
+            "scripts": "スクリプト",
+            "theming": "テーマ設定",
+            "edit_theme": "テーマを編集",
+            "manage_repos": "リポジトリの管理",
+            "manage_rule_feature": "ルール管理機能"
         },
         "sections": {
             "home": {
-                "version_title": "V{versionName} · Jacob によってフォークされました",
+                "version_title": "V{versionName} · bocajthomasによってフォークされました",
                 "update_title": "SE Extended アップデート",
                 "update_button": "ダウンロード",
                 "update_content": "バージョン {version} が利用可能です!",
@@ -192,6 +196,12 @@
                 "no_friends_map": "マップ上に友達がいない",
                 "delete_dialog_message": "この保存された座標を削除してもよろしいですか?",
                 "no_friends_found": "友達が見つかりませんでした"
+            },
+            "manage_rule_feature": {
+                "disable_state_option": "無効",
+                "disable_state_subtext": "友達やグループには影響はありません",
+                "whitelist_state_option": "...を除いて誰もいません",
+                "whitelist_state_subtext": "このルールの影響を受けるのは{count}人の友達/グループだけです"
             }
         }
     },
