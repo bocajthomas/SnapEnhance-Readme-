@@ -223,6 +223,8 @@ Thanks to everyone involved
 - [suryadip2008](https://github.com/suryadip2008)
    - feat(core/ui_tweaks): multiple hide ui components [#106](https://github.com/bocajthomas/SE-Extended/pull/106)
    - fix(core/ui_tweaks): infinite loading animation [#116](https://github.com/bocajthomas/SE-Extended/pull/116)
+- [CanerKaraca23](https://github.com/CanerKaraca23)
+   - chore: update dependencies [#127](https://github.com/bocajthomas/SE-Extended/pull/127)
 
 **Translations:**
 - Bengali - [suryadip2008](https://github.com/suryadip2008)
