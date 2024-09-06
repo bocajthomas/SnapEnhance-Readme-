@@ -312,6 +312,10 @@
             "name": "Change Language",
             "description": "Change the language of SE Extended"
         },
+        "disclaimer_statement": {
+            "name": "Disclaimer Statement",
+            "description": "Read the disclaimer statement"
+        },
         "security_features": {
             "name": "Security Features",
             "description": "Change security features preferences"

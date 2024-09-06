@@ -154,6 +154,9 @@ class HomeSettings : Routes.Route() {
             RowAction(key = "change_language") {
                 context.checkForRequirements(Requirements.LANGUAGE)
             }
+            RowAction(key = "disclaimer_statement") {
+                context.checkForRequirements(Requirements.DISCLAIMER)
+            }
             RowAction(key = "security_features") {
                 context.checkForRequirements(Requirements.SIF)
             }

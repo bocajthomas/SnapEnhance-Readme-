@@ -66,6 +66,9 @@ class SetupActivity : ComponentActivity() {
             if (isFirstRun || hasRequirement(Requirements.MAPPINGS)) {
                 add(MappingsScreen().apply { route = "mappings" })
             }
+            if (isFirstRun || hasRequirement(Requirements.DISCLAIMER)) {
+                add(DisclaimerScreen().apply { route = "disclaimer" })
+            }
             if (isFirstRun || hasRequirement(Requirements.SIF)) {
                 add(SecurityScreen().apply { route = "security" })
             }
