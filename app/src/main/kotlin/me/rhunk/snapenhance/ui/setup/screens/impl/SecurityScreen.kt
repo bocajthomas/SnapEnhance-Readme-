@@ -31,11 +31,7 @@ class SecurityScreen : SetupScreen() {
                 .size(30.dp),
         )
 
-        DialogText(
-            "Since Snapchat has implemented additional security measures against third-party applications such as SE Extended, we offer a non-opensource solution that reduces the risk of banning and prevents Snapchat from detecting SE Extended. " +
-                    "\nPlease note that this solution does not provide a ban bypass or A spoofer for anything, and does not take any personal data or communicate with the network." +
-            "\nIf you're having trouble using the solution, or are experiencing crashes, join the Telegram Group for help: https://t.me/SE_Extended_Chat"
-        )
+        DialogText("SnapEnhance is currently testing SIF for device compatibility exclusively for its users."+"\nCurrently, due to technical limitations related to app signing keys, SIF is not accessible to forks like SE Extended."+"\nAttempting to use SIF on these alternative apps will result in an error message indicating device incompatibility.")
 
         var denyDialog by remember { mutableStateOf(false) }
 
@@ -45,7 +41,7 @@ class SecurityScreen : SetupScreen() {
                     denyDialog = false
                 },
                 text = {
-                    Text("Are you sure you don't want to use this solution? You can always change this later in the settings in the SE Extended app.")
+                    Text("Are you sure you want to disable security features?")
                 },
                 dismissButton = {
                     Button(onClick = {
@@ -116,7 +112,7 @@ class SecurityScreen : SetupScreen() {
                     newDownloadJob()
                 }
             ) {
-                Text("Accept and continue", fontSize = 18.sp, fontWeight = FontWeight.Bold)
+                Text("Enable security features", fontSize = 18.sp, fontWeight = FontWeight.Bold)
             }
             Button(
                 colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.error),
@@ -124,7 +120,7 @@ class SecurityScreen : SetupScreen() {
                     denyDialog = true
                 }
             ) {
-                Text("I don't want to use this solution")
+                Text("Disable security features")
             }
         }
     }
