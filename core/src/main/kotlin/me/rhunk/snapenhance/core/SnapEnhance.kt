@@ -123,7 +123,7 @@ class SnapEnhance {
 
                 hookMainActivity("onResume") {
                     if (appContext.isMainActivityPaused.also {
-                            appContext.isMainActivityPaused = false
+                        appContext.isMainActivityPaused = false
                         }) {
                         appContext.reloadConfig()
                         appContext.executeAsync {
