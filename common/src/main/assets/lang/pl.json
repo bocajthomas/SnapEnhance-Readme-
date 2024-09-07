@@ -2,13 +2,13 @@
     "setup": {
         "dialogs": {
             "select_language": "Wybierz język",
-            "save_folder": "SnapEnhance wymaga uprawnień do przechowywania danych w celu pobierania i zapisywania mediów ze Snapchata.\nProszę wybrać lokalizację, do której powinny być pobierane media.",
+            "save_folder": "SE Extended wymaga uprawnień do przechowywania danych w celu pobierania i zapisywania mediów ze Snapchata.\nProszę wybrać lokalizację, do której powinny być pobierane media.",
             "select_save_folder_button": "Wybierz Folder"
         },
         "mappings": {
-            "dialog": "Trwa mapowanie Snapchata, to może chwilę potrwać ...",
-            "generate_failure_no_snapchat": "Nie wykryto Snapchata, spróbuj go ponownie zainstalować.",
-            "generate_failure": "Wystąpił błąd podczas próby mapowania, spróbuj ponownie."
+            "dialog": "Generowanie mapowań może chwilę potrwać...",
+            "generate_failure_no_snapchat": "SE Extended nie mógł wykryć Snapchata. Spróbuj ponownie zainstalować Snapchata.",
+            "generate_failure": "Wystąpił błąd podczas próby wygenerowania mapowań. Spróbuj ponownie."
         },
         "permissions": {
             "dialog": "Aby kontynuować, musisz spełnić poniższe wymagania:",
@@ -20,7 +20,7 @@
     },
     "manager": {
         "routes": {
-            "features": "Funkcje",
+            "features": "cecha",
             "home": "Strona główna",
             "home_settings": "Ustawienia",
             "home_logs": "Logi",
@@ -43,7 +43,7 @@
                 "config_export_success_toast": "Konfiguracja została pomyślnie wyeksportowana"
             },
             "home": {
-                "update_title": "Aktualizacja SnapEnchance",
+                "update_title": "Aktualizacja SE Extended",
                 "update_content": "Wersja {version} jest dostępna!",
                 "update_button": "Pobierz",
                 "debug_build_summary_date": "Data kompilacji: {date} ({days} dni temu)",
