@@ -2,13 +2,13 @@
     "setup": {
         "dialogs": {
             "select_language": "Wybierz język",
-            "save_folder": "SnapEnhance wymaga uprawnień do przechowywania danych w celu pobierania i zapisywania mediów z Snapchat.\nProszę wybrać lokalizację, do której media powinny być pobierane.",
+            "save_folder": "SnapEnhance wymaga uprawnień do przechowywania danych w celu pobierania i zapisywania mediów ze Snapchata.\nProszę wybrać lokalizację, do której powinny być pobierane media.",
             "select_save_folder_button": "Wybierz Folder"
         },
         "mappings": {
-            "dialog": "Aby dynamicznie obsługiwać szeroki zakres wersji Snapchat, konieczne są mapowania, aby SnapEnhance działał poprawnie. To nie powinno zająć więcej niż 5 sekund.",
-            "generate_failure_no_snapchat": "SnapEnhance nie było w stanie wykryć Snapchata, spróbuj ponownie zainstalować Snapchat.",
-            "generate_failure": "Wystąpił błąd podczas próby generowania mapowań, spróbuj ponownie."
+            "dialog": "Trwa mapowanie Snapchata, to może chwilę potrwać ...",
+            "generate_failure_no_snapchat": "Nie wykryto Snapchata, spróbuj go ponownie zainstalować.",
+            "generate_failure": "Wystąpił błąd podczas próby mapowania, spróbuj ponownie."
         },
         "permissions": {
             "dialog": "Aby kontynuować, musisz spełnić poniższe wymagania:",
@@ -20,38 +20,61 @@
     },
     "manager": {
         "routes": {
-            "features": "Cechy",
+            "features": "Funkcje",
             "home": "Strona główna",
             "home_settings": "Ustawienia",
             "home_logs": "Logi",
             "social": "Społeczność",
             "scripts": "Skrypty",
             "messaging_preview": "Podgląd",
-            "tasks": "Zadania"
+            "tasks": "Zadania",
+            "better_location": "Lepsza Lokalizacja"
         },
         "sections": {
             "features": {
-                "disabled": "Wyłączony"
+                "disabled": "Wyłączony",
+                "config_import_success_toast": "Konfiguracja została pomyślnie zaimportowana",
+                "config_import_failure_toast": "Nie udało się zaimportować konfiguracji {error}",
+                "config_export_failure_toast": "Nie udało się wyeksportować konfiguracji {error}",
+                "saved_config_snackbar": "Konfiguracja zapisana",
+                "export_option": "Eksportuj",
+                "import_option": "Importuj",
+                "reset_option": "Zresetuj",
+                "config_export_success_toast": "Konfiguracja została pomyślnie wyeksportowana"
             },
             "home": {
                 "update_title": "Aktualizacja SnapEnchance",
                 "update_content": "Wersja {version} jest dostępna!",
-                "update_button": "Pobierz"
+                "update_button": "Pobierz",
+                "debug_build_summary_date": "Data kompilacji: {date} ({days} dni temu)",
+                "debug_build_summary_content": "Wersja {versionName} ({versionCode})"
             },
             "home_logs": {
                 "no_logs_hint": "Brak Dostępnych Logów",
                 "clear_logs_button": "Wyczyść Logi",
                 "export_logs_button": "Eksportuj Logi",
-                "saved_logs_success_toast": "Logi Zapisane Pomyślnie",
-                "saved_logs_failure_toast": "Nie udało zapisać sie logów",
-                "saving_logs_toast": "Zapisywanie logów, To może chwile potrwać ..."
+                "saved_logs_success_toast": "Logi zapisane pomyślnie",
+                "saved_logs_failure_toast": "Nie udało sie zapisać logów",
+                "saving_logs_toast": "Zapisywanie logów, To może chwilę potrwać ..."
             },
             "home_settings": {
-                "message_logger_summary": "{messageCount} Wiadomości\n{storyCount} Story",
+                "message_logger_summary": "{messageCount} wiadomości\n{storyCount} stories",
                 "success_toast": "Gotowe!",
-                "export_button": "Eksport",
-                "actions_title": "Akcja",
-                "clear_button": "Czysto"
+                "export_button": "Eksportuj",
+                "actions_title": "Akcje",
+                "clear_button": "Wyczyść",
+                "message_logger_title": "Zapisywanie Wiadomości",
+                "debug_title": "Debug"
+            },
+            "tasks": {
+                "remove_selected_tasks_title": "Czy na pewno chcesz usunąć wybrane zadania?",
+                "failed_to_open_file": "Nie udało się otworzyć pliku",
+                "merge_files_toast": "Łączenie {count} plików",
+                "no_tasks": "Brak zadań",
+                "remove_all_tasks_title": "Czy na pewno chcesz usunąć wszystkie zadania?",
+                "delete_files_option": "Usuń też pliki",
+                "remove_selected_tasks_confirm": "Usunąć {count} zadań?",
+                "remove_all_tasks_confirm": "Usunąć wszystkie zadania?"
             }
         },
         "dialogs": {
