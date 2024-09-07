@@ -327,6 +327,10 @@
         "security_features": {
             "description": "Change security features preferences",
             "name": "Security Features"
+        },
+        "disclaimer_statement": {
+            "name": "Disclaimer Statement",
+            "description": "Read the disclaimer statement"
         }
     },
     "features": {
