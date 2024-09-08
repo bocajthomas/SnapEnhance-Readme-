@@ -28,7 +28,17 @@
             "scripts": "Skrypty",
             "messaging_preview": "Podgląd",
             "tasks": "Zadania",
-            "better_location": "Lepsza Lokalizacja"
+            "better_location": "Lepsza Lokalizacja",
+            "edit_theme": "Edytuj motyw",
+            "theming": "Motyw",
+            "manage_rule_feature": "Zarządzaj funkcją zasad",
+            "logger_history": "Historia rejestru",
+            "file_imports": "Zaimportowane pliki",
+            "manage_repos": "Zarządzaj repozytoriami",
+            "logged_stories": "Zarejestrowane Stories",
+            "manage_scope": "Zarządzaj zakresami",
+            "friend_tracker": "Śledzenie znajomych",
+            "edit_rule": "Edytuj reguły"
         },
         "sections": {
             "features": {
@@ -47,7 +57,10 @@
                 "update_content": "Wersja {version} jest dostępna!",
                 "update_button": "Pobierz",
                 "debug_build_summary_date": "Data kompilacji: {date} ({days} dni temu)",
-                "debug_build_summary_content": "Wersja {versionName} ({versionCode})"
+                "debug_build_summary_content": "Wersja {versionName} ({versionCode})",
+                "quick_actions_title": "Szybkie akcje",
+                "version_title": "V{versionName} · Forked by bocajthomas",
+                "debug_build_summary_title": "Używasz wersji debug SE Extended"
             },
             "home_logs": {
                 "no_logs_hint": "Brak Dostępnych Logów",
@@ -64,7 +77,8 @@
                 "actions_title": "Akcje",
                 "clear_button": "Wyczyść",
                 "message_logger_title": "Zapisywanie Wiadomości",
-                "debug_title": "Debug"
+                "debug_title": "Debug",
+                "view_logger_history_button": "Wyświetl historię rejestru"
             },
             "tasks": {
                 "remove_selected_tasks_title": "Czy na pewno chcesz usunąć wybrane zadania?",
@@ -75,6 +89,95 @@
                 "delete_files_option": "Usuń też pliki",
                 "remove_selected_tasks_confirm": "Usunąć {count} zadań?",
                 "remove_all_tasks_confirm": "Usunąć wszystkie zadania?"
+            },
+            "manage_scope": {
+                "participants_text": "{count} Uczestnicy",
+                "delete_scope_confirm_dialog_title": "Jesteś pewien że chcesz usunąć {scope}?",
+                "e2ee_title": "Szyfrowanie End-to-End",
+                "rules_title": "Reguły",
+                "streaks_expiration_text_expired": "Wygasła",
+                "not_found": "Nie znaleziono",
+                "logged_stories_button": "Pokaż zarejestrowane Stories",
+                "streaks_title": "Snapassa",
+                "streaks_length_text": "Długość:{length}",
+                "streaks_expiration_text": "Wygasa za {eta}",
+                "reminder_button": "Ustaw przypomnienie"
+            },
+            "logged_stories": {
+                "no_stories": "Nie znaleziono stories",
+                "save_from_cache_button": "Zapisz z pamięci tymczasowej",
+                "story_failed_to_load": "Błąd ładowania"
+            },
+            "logger_history": {
+                "chat_attachment": "Załącznik {index}",
+                "message_parse_failed": "Nie udało się zanalizować wiadomości",
+                "unknown_sender": "Nieznany nadawca",
+                "download_attachment_failed_toast": "Błąd pobierania załącznika",
+                "empty_message": "Pusty czat wiadomości",
+                "list_friend_format": "Znajomy {Imię}",
+                "list_group_format": "Grupy {name}"
+            },
+            "better_location": {
+                "spoof_location_toggle": "Pozoruj lokalizacje",
+                "teleport_to_friend_button": "Teleporuj do znajomego",
+                "teleport_to_friend_title": "Teleporuj do znajomego",
+                "search_bar": "Wyszukaj",
+                "no_friends_map": "Żadnych znajomych na mapie",
+                "no_friends_found": "Nie znaleziono znajomych",
+                "no_saved_coordinates_hint": "Brak zapisanych lokalizacji",
+                "delete_dialog_title": "Usuń Zapisane Lokalizacje",
+                "delete_dialog_message": "Jesteś pewien że chcesz usunąć te zapisane koordynaty?",
+                "save_dialog_button": "Zapisz",
+                "spoofed_coordinates_title": "Szer {latitude}, Dł {longitude}",
+                "save_coordinates_dialog_title": "Zapisz koordynaty",
+                "saved_name_dialog_hint": "Zapisane Imiona",
+                "latitude_dialog_hint": "Szerokość",
+                "longitude_dialog_hint": "Długość",
+                "choose_location_button": "Wybierz lokacje",
+                "suspend_location_updates": "Przerwij aktualizacje lokalizacji",
+                "saved_coordinates_title": "Zapisane Lokalizacje"
+            },
+            "theming": {
+                "no_themes_hint": "Nie znaleziono motywów"
+            },
+            "social": {
+                "groups_tab": "Grupy",
+                "empty_hint": "(puste)",
+                "friends_tab": "Znajomi",
+                "streaks_expiration_short": "{hours}g"
+            },
+            "manage_rule_feature": {
+                "blacklist_state_button": "Wybierz wykluczonych znajomych/grupy",
+                "clear_list_button": "Wyczyść listę znajomych/grup",
+                "blacklist_state_subtext": "Każdy oprócz {count} znajomych/grup będzie objęty tą zasadą",
+                "dialog_clear_confirmation_text": "Jesteś pewien że chcesz wyczyścić tą listę?",
+                "disable_state_option": "Wyłączone",
+                "whitelist_state_option": "Nikt oprócz ...",
+                "whitelist_state_subtext": "Tylko {count} znajomi/grupy będą objęte tą zasadą",
+                "blacklist_state_option": "Wszyscy oprócz...",
+                "disable_state_subtext": "Żadni znajomi/grupy nie będą objęte",
+                "whitelist_state_button": "Wybierz dozwolonych znajomych/grupy"
+            },
+            "messaging_preview": {
+                "no_message_hint": "Brak wiadomości",
+                "delete_selection_option": "Usuń wybór",
+                "bridge_connection_failed": "Nie udało się połączyć z mostkami. Upewnij się że Snapchat działa w tle",
+                "message_fetch_failed": "Błąd wydobycia wiadomości",
+                "mark_selection_as_seen_option": "Oznacz wybranego snapa jako odczytanego",
+                "bridge_init_failed": "Nie udało się zainicjować mostku komunikacyjnego. Upewnij się, że Snapchat działa w tle",
+                "unsave_selection_option": "Usuń zapisane wybory",
+                "mark_all_as_seen_option": "Oznacz wszystkie Snapy jako przeczytane",
+                "delete_all_option": "Usuń wszystko",
+                "save_selection_option": "Zapisz wybór",
+                "save_all_option": "Zapisz wszystko"
+            },
+            "file_imports": {
+                "file_delete_failed": "Nie udało się usunąć pliku",
+                "no_files_hint": "Tutaj możesz importować pliki do użycia w Snapchacie. Kliknij poniżej żeby importować plik.",
+                "import_file_button": "Importuj plik",
+                "file_imported": "Pomyślnie impotowano plik",
+                "file_not_found": "Nie znaleziono pliku",
+                "file_import_failed": "Błąd importowania pliku: {error}"
             }
         },
         "dialogs": {
@@ -98,6 +201,13 @@
             "messaging_action": {
                 "select_all_button": "Zaznacz wszystko",
                 "title": "Wybierz typy treści do przetworzenia"
+            },
+            "add_friend": {
+                "title": "Dodaj znajomego lub grupę",
+                "category_groups": "Grupy",
+                "category_friends": "Znajomi",
+                "search_hint": "Wyszukaj",
+                "fetch_error": "Nie udało się wydobyć danych"
             }
         }
     },
@@ -204,7 +314,8 @@
                     "whitelist": "Automatyczne Otwieranie Snapów",
                     "blacklist": "Wyklucz z automatycznie otwieranych Snapów"
                 },
-                "description": "Automatycznie otwiera Snapy po ich otrzymaniu"
+                "description": "Automatycznie otwiera Snapy po ich otrzymaniu",
+                "name": "Automatyczne Otwieranie Snapów"
             },
             "pin_conversation": {
                 "name": "Przypnij konwersacje"
@@ -269,12 +380,40 @@
         "bulk_messaging_action": {
             "description": "Wykonuje operacje takie jak usuwanie znajomych czy masowe usuwanie rozmów",
             "name": "Akcja przesyłania wiadomości zbiorczych"
+        },
+        "theming": {
+            "name": "Tematyka",
+            "description": "Dostosuj wygląd Snapchata"
+        },
+        "security_features": {
+            "description": "Zmień preferencje funkcji bezpieczeństwa",
+            "name": "Funkcje bezpieczeństwa"
         }
     },
     "features": {
         "notices": {
             "unstable": "⚠ Niestabilny",
-            "ban_risk": "⚠ Ta funkcja może powodować bany"
+            "ban_risk": "⚠ Ta funkcja może powodować bany",
+            "internal_behavior": "⚠ To może zepsuć wewnętrzne zachowanie Snapchata"
+        },
+        "properties": {
+            "downloader": {
+                "properties": {
+                    "save_folder": {
+                        "description": "Wybierz ścieżkę do której będą zapisywane wszystkie media",
+                        "name": "Zapisz Folder"
+                    },
+                    "path_format": {
+                        "description": "Określ format ścieżki plików",
+                        "name": "Format ścieżki"
+                    },
+                    "auto_download_sources": {
+                        "name": "Automatycznie pobieraj źródła"
+                    }
+                },
+                "description": "Pobierz Media ze Snapchata",
+                "name": "Pobieranie"
+            }
         }
     }
 }
