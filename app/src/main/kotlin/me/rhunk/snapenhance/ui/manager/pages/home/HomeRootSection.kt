@@ -5,7 +5,6 @@ import android.net.Uri
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.verticalScroll
@@ -57,7 +56,6 @@ class HomeRootSection : Routes.Route() {
 
     private lateinit var activityLauncherHelper: ActivityLauncherHelper
 
-
     private val cards by lazy {
         EnumQuickActions.entries.map {
             (context.translation["actions.${it.key}.name"] to it.icon) to it.action
@@ -95,8 +93,7 @@ class HomeRootSection : Routes.Route() {
         }
     }
 
-
-     private fun openLink(link: String) {
+    private fun openLink(link: String) {
         kotlin.runCatching {
             context.activity?.startActivity(Intent(Intent.ACTION_VIEW).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK
@@ -147,12 +144,12 @@ class HomeRootSection : Routes.Route() {
 
     @OptIn(ExperimentalLayoutApi::class)
     override val content: @Composable (NavBackStackEntry) -> Unit = {
-         val avenirNextFontFamily = remember {
-             FontFamily(
+        val avenirNextFontFamily = remember {
+            FontFamily(
                 Font(R.font.avenir_next_medium, FontWeight.Medium)
-             )
+            )
         }
-         
+
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -168,7 +165,7 @@ class HomeRootSection : Routes.Route() {
                 fontFamily = avenirNextFontFamily,
                 modifier = Modifier.align(Alignment.CenterHorizontally),
             )
-           
+
             Text(
                 text = translation.format(
                     "version_title",
@@ -260,182 +257,183 @@ class HomeRootSection : Routes.Route() {
                                 data = Uri.parse(latestUpdate?.releaseUrl)
                             })
                         }, modifier = Modifier.height(40.dp)) {
-                        Button(
-                            modifier = Modifier.height(40.dp),
-                            onClick = {
-                                latestUpdate?.releaseUrl?.let { openExternalLink(it) }
+                            Button(
+                                modifier = Modifier.height(40.dp),
+                                onClick = {
+                                    latestUpdate?.releaseUrl?.let { openLink(it) }
+                                }
+                            ) {
+                                Text(text = translation["update_button"])
                             }
-                        ) {
-                            Text(text = translation["update_button"])
                         }
                     }
                 }
-            }
 
-            if (BuildConfig.DEBUG) {
-                Spacer(modifier = Modifier.height(10.dp))
-                InfoCard {
-                    Text(
-                        text = translation["debug_build_summary_title"],
-                        fontSize = 14.sp,
-                        fontWeight = FontWeight.Bold,
-                    )
-                    val buildSummary = buildAnnotatedString {
-                        withStyle(
-                            style = SpanStyle(
-                                fontSize = 13.sp,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                fontWeight = FontWeight.Light
-                            )
-                        ) {
-                            append(
-                                remember {
-                                    translation.format(
-                                        "debug_build_summary_content",
-                                        "versionName" to BuildConfig.VERSION_NAME,
-                                        "versionCode" to BuildConfig.VERSION_CODE.toString(),
-                                    )
-                                }
-                            )
-                            append(" - ")
-                        }
-                        pushStringAnnotation(
-                            tag = "git_hash",
-                            annotation = BuildConfig.GIT_HASH
+                if (BuildConfig.DEBUG) {
+                    Spacer(modifier = Modifier.height(10.dp))
+                    InfoCard {
+                        Text(
+                            text = translation["debug_build_summary_title"],
+                            fontSize = 14.sp,
+                            fontWeight = FontWeight.Bold,
                         )
-                        withStyle(
-                            style = SpanStyle(
-                                fontSize = 13.sp, fontWeight = FontWeight.Bold,
-                                color = MaterialTheme.colorScheme.primary
-                            )
-                        ) {
-                            append(BuildConfig.GIT_HASH.substring(0, 7))
-                        }
-                        pop()
-                    }
-                    ClickableText(
-                        text = buildSummary,
-                        onClick = { offset ->
-                            buildSummary.getStringAnnotations(
-                                tag = "git_hash", start = offset, end = offset
-                            ).firstOrNull()?.let {
-                                openLink("https://github.com/bocajthomas/SE-Extended/commit/${it.item}")
+                        val buildSummary = buildAnnotatedString {
+                            withStyle(
+                                style = SpanStyle(
+                                    fontSize = 13.sp,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    fontWeight = FontWeight.Light
+                                )
+                            ) {
+                                append(
+                                    remember {
+                                        translation.format(
+                                            "debug_build_summary_content",
+                                            "versionName" to BuildConfig.VERSION_NAME,
+                                            "versionCode" to BuildConfig.VERSION_CODE.toString(),
+                                        )
+                                    }
+                                )
+                                append(" - ")
                             }
+                            pushStringAnnotation(
+                                tag = "git_hash",
+                                annotation = BuildConfig.GIT_HASH
+                            )
+                            withStyle(
+                                style = SpanStyle(
+                                    fontSize = 13.sp, fontWeight = FontWeight.Bold,
+                                    color = MaterialTheme.colorScheme.primary
+                                )
+                            ) {
+                                append(BuildConfig.GIT_HASH.substring(0, 7))
+                            }
+                            pop()
                         }
-                    )
+                        ClickableText(
+                            text = buildSummary,
+                            onClick = { offset ->
+                                buildSummary.getStringAnnotations(
+                                    tag = "git_hash", start = offset, end = offset
+                                ).firstOrNull()?.let {
+                                    openLink("https://github.com/bocajthomas/SE-Extended/commit/${it.item}")
+                                }
+                            }
+                        )
+                        Text(
+                            fontSize = 12.sp,
+                            text = remember {
+                                translation.format(
+                                    "debug_build_summary_date",
+                                    "date" to DateFormat.getDateTimeInstance()
+                                        .format(BuildConfig.BUILD_TIMESTAMP),
+                                    "days" to ((System.currentTimeMillis() - BuildConfig.BUILD_TIMESTAMP) / 86400000).toInt()
+                                        .toString()
+                                )
+                            },
+                            lineHeight = 20.sp,
+                            fontWeight = FontWeight.Light
+                        )
+                    }
+                }
+
+                var showQuickActionsMenu by remember { mutableStateOf(false) }
+
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = 20.dp, end = 10.dp, top = 5.dp),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
                     Text(
-                        fontSize = 12.sp,
-                        text = remember {
-                            translation.format(
-                                "debug_build_summary_date",
-                                "date" to DateFormat.getDateTimeInstance()
-                                    .format(BuildConfig.BUILD_TIMESTAMP),
-                                "days" to ((System.currentTimeMillis() - BuildConfig.BUILD_TIMESTAMP) / 86400000).toInt()
-                                    .toString()
-                            )
-                        },
-                        lineHeight = 20.sp,
-                        fontWeight = FontWeight.Light
+                        translation["quick_actions_title"], fontSize = 20.sp,
+                        modifier = Modifier.weight(1f)
                     )
-                }
-            }
-
-            var showQuickActionsMenu by remember { mutableStateOf(false) }
-
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 20.dp, end = 10.dp, top = 5.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(
-                    translation["quick_actions_title"], fontSize = 20.sp,
-                    modifier = Modifier.weight(1f)
-                )
-                Box {
-                    IconButton(
-                        onClick = { showQuickActionsMenu = !showQuickActionsMenu },
-                    ) {
-                        Icon(Icons.Default.MoreVert, contentDescription = null)
-                    }
-                    DropdownMenu(
-                        expanded = showQuickActionsMenu,
-                        onDismissRequest = { showQuickActionsMenu = false }
-                    ) {
-                        cards.forEach { (card, _) ->
-                            fun toggle(state: Boolean? = null) {
-                                if (state?.let { !it } ?: selectedTiles.contains(card.first)) {
-                                    selectedTiles.remove(card.first)
-                                } else {
-                                    selectedTiles.add(0, card.first)
+                    Box {
+                        IconButton(
+                            onClick = { showQuickActionsMenu = !showQuickActionsMenu },
+                        ) {
+                            Icon(Icons.Default.MoreVert, contentDescription = null)
+                        }
+                        DropdownMenu(
+                            expanded = showQuickActionsMenu,
+                            onDismissRequest = { showQuickActionsMenu = false }
+                        ) {
+                            cards.forEach { (card, _) ->
+                                fun toggle(state: Boolean? = null) {
+                                    if (state?.let { !it } ?: selectedTiles.contains(card.first)) {
+                                        selectedTiles.remove(card.first)
+                                    } else {
+                                        selectedTiles.add(0, card.first)
+                                    }
+                                    context.coroutineScope.launch {
+                                        context.database.setQuickTiles(selectedTiles)
+                                    }
                                 }
-                                context.coroutineScope.launch {
-                                    context.database.setQuickTiles(selectedTiles)
-                                }
+
+                                DropdownMenuItem(onClick = { toggle() }, text = {
+                                    Row(
+                                        verticalAlignment = Alignment.CenterVertically,
+                                        modifier = Modifier.padding(all = 5.dp)
+                                    ) {
+                                        Checkbox(
+                                            checked = selectedTiles.contains(card.first),
+                                            onCheckedChange = {
+                                                toggle(it)
+                                            }
+                                        )
+                                        Text(text = card.first)
+                                    }
+                                })
                             }
-
-                            DropdownMenuItem(onClick = { toggle() }, text = {
-                                Row(
-                                    verticalAlignment = Alignment.CenterVertically,
-                                    modifier = Modifier.padding(all = 5.dp)
-                                ) {
-                                    Checkbox(
-                                        checked = selectedTiles.contains(card.first),
-                                        onCheckedChange = {
-                                            toggle(it)
-                                        }
-                                    )
-                                    Text(text = card.first)
-                                }
-                            })
                         }
                     }
                 }
-            }
 
-            FlowRow(
-                modifier = Modifier
-                    .padding(all = cardMargin)
-                    .fillMaxWidth(),
-                maxItemsInEachRow = 3,
-                horizontalArrangement = Arrangement.SpaceEvenly,
-            ) {
-                val tileHeight = LocalDensity.current.run {
-                    remember { (context.androidContext.resources.displayMetrics.widthPixels / 3).toDp() - cardMargin / 2 }
-                }
-
-                remember(selectedTiles.size, context.translation.loadedLocale) {
-                    selectedTiles.mapNotNull {
-                        cards.entries.find { entry -> entry.key.first == it }
+                FlowRow(
+                    modifier = Modifier
+                        .padding(all = cardMargin)
+                        .fillMaxWidth(),
+                    maxItemsInEachRow = 3,
+                    horizontalArrangement = Arrangement.SpaceEvenly,
+                ) {
+                    val tileHeight = LocalDensity.current.run {
+                        remember { (context.androidContext.resources.displayMetrics.widthPixels / 3).toDp() - cardMargin / 2 }
                     }
-                }.forEach { (card, action) ->
-                    ElevatedCard(
-                        modifier = Modifier
-                            .height(tileHeight)
-                            .weight(1f)
-                            .padding(all = 6.dp),
-                        onClick = { action(routes) }
-                    ) {
-                        Column(
+
+                    remember(selectedTiles.size, context.translation.loadedLocale) {
+                        selectedTiles.mapNotNull {
+                            cards.entries.find { entry -> entry.key.first == it }
+                        }
+                    }.forEach { (card, action) ->
+                        ElevatedCard(
                             modifier = Modifier
-                                .fillMaxSize()
-                                .padding(all = 5.dp),
-                            horizontalAlignment = Alignment.CenterHorizontally,
-                            verticalArrangement = Arrangement.SpaceEvenly,
+                                .height(tileHeight)
+                                .weight(1f)
+                                .padding(all = 6.dp),
+                            onClick = { action(routes) }
                         ) {
-                            Icon(
-                                imageVector = card.second, contentDescription = null,
-                                tint = MaterialTheme.colorScheme.onSurfaceVariant,
-                                modifier = Modifier.size(45.dp)
-                            )
-                            Text(
-                                text = card.first,
-                                lineHeight = 16.sp,
-                                fontSize = 11.sp,
-                                fontWeight = FontWeight.Bold,
-                                textAlign = TextAlign.Center,
-                                overflow = TextOverflow.Ellipsis,
-                            )
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxSize()
+                                    .padding(all = 5.dp),
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                verticalArrangement = Arrangement.SpaceEvenly,
+                            ) {
+                                Icon(
+                                    imageVector = card.second, contentDescription = null,
+                                    tint = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    modifier = Modifier.size(45.dp)
+                                )
+                                Text(
+                                    text = card.first,
+                                    lineHeight = 16.sp,
+                                    fontSize = 11.sp,
+                                    fontWeight = FontWeight.Bold,
+                                    textAlign = TextAlign.Center,
+                                    overflow = TextOverflow.Ellipsis,
+                                )
+                            }
                         }
                     }
                 }
