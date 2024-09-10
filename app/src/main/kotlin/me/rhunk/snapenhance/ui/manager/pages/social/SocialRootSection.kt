@@ -51,10 +51,9 @@ class SocialRootSection : Routes.Route() {
 
         LazyColumn(
             modifier = Modifier
-                .padding(2.dp)
-                .fillMaxWidth()
-                .fillMaxHeight(),
-            contentPadding = PaddingValues(bottom = 110.dp),
+                .fillMaxSize(),
+            contentPadding = PaddingValues(top = 10.dp, bottom = 110.dp, start = 8.dp, end = 8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             //check if scope list is empty
             val listSize = when (scope) {
@@ -80,15 +79,14 @@ class SocialRootSection : Routes.Route() {
 
                 ElevatedCard(
                     modifier = Modifier
-                        .padding(10.dp)
                         .fillMaxWidth()
-                        .height(80.dp)
-                        .clickable {
-                            routes.manageScope.navigate {
-                                put("id", id)
-                                put("scope", scope.key)
-                            }
-                        },
+                        .height(70.dp),
+                    onClick = {
+                        routes.manageScope.navigate {
+                            put("id", id)
+                            put("scope", scope.key)
+                        }
+                    }
                 ) {
                     Row(
                         modifier = Modifier
@@ -101,7 +99,7 @@ class SocialRootSection : Routes.Route() {
                                 val group = groupList[index]
                                 Column(
                                     modifier = Modifier
-                                        .padding(7.dp)
+                                        .padding(start = 7.dp)
                                         .fillMaxWidth()
                                         .weight(1f)
                                 ) {
@@ -127,9 +125,10 @@ class SocialRootSection : Routes.Route() {
                                         BitmojiSelfie.BitmojiSelfieType.THREE_D
                                     )
                                 )
+
                                 Column(
                                     modifier = Modifier
-                                        .padding(7.dp)
+                                        .padding(start = 7.dp)
                                         .fillMaxWidth()
                                         .weight(1f)
                                 ) {

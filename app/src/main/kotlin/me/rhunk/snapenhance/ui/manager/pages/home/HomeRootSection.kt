@@ -5,6 +5,8 @@ import android.net.Uri
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -18,6 +20,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.vectorResource
@@ -37,7 +40,6 @@ import kotlinx.coroutines.launch
 import me.rhunk.snapenhance.R
 import me.rhunk.snapenhance.action.EnumQuickActions
 import me.rhunk.snapenhance.common.BuildConfig
-import me.rhunk.snapenhance.common.Constants
 import me.rhunk.snapenhance.common.action.EnumAction
 import me.rhunk.snapenhance.common.ui.rememberAsyncMutableState
 import me.rhunk.snapenhance.common.ui.rememberAsyncMutableStateList
@@ -76,7 +78,7 @@ class HomeRootSection : Routes.Route() {
     ) {
         OutlinedCard(
             modifier = Modifier
-                .padding(all = cardMargin)
+                .padding(start = cardMargin, end = cardMargin)
                 .fillMaxWidth(),
             colors = CardDefaults.cardColors(
                 containerColor = MaterialTheme.colorScheme.surfaceVariant,
@@ -86,7 +88,7 @@ class HomeRootSection : Routes.Route() {
             Column(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(all = 15.dp)
+                    .padding(all = 10.dp)
             ) {
                 content()
             }
@@ -119,6 +121,7 @@ class HomeRootSection : Routes.Route() {
             tint = MaterialTheme.colorScheme.onSurfaceVariant,
             modifier = Modifier
                 .size(size)
+                .clip(RoundedCornerShape(50))
                 .then(modifier)
                 .clickable { openLink(link) }
         )
@@ -183,9 +186,11 @@ class HomeRootSection : Routes.Route() {
             Row(
                 horizontalArrangement = Arrangement.spacedBy(
                     15.dp, Alignment.CenterHorizontally
-                ), modifier = Modifier
+                ),
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
                     .fillMaxWidth()
-                    .padding(all = 10.dp)
+                    .padding(all = 5.dp)
             ) {
 
                 ExternalLinkIcon(
@@ -199,8 +204,8 @@ class HomeRootSection : Routes.Route() {
                 )
 
                 ExternalLinkIcon(
-                    size = 38.dp,
-                    modifier = Modifier.offset(x = (-3).dp, y = (-3).dp),
+                    modifier = Modifier.offset(x = (-3).dp),
+                    size = 40.dp,
                     imageVector = Icons.AutoMirrored.Default.Help,
                     link = "https://github.com/bocajthomas/SE-Extended/wiki"
                 )
@@ -224,9 +229,7 @@ class HomeRootSection : Routes.Route() {
                 context.database.getQuickTiles()
             }
 
-            val latestUpdate by rememberAsyncMutableState(defaultValue = null) {
-                if (!BuildConfig.DEBUG) Updater.latestRelease else null
-            }
+            val latestUpdate by rememberAsyncMutableState(defaultValue = null) { Updater.latestRelease }
 
             if (latestUpdate != null) {
                 Spacer(modifier = Modifier.height(10.dp))
@@ -243,10 +246,13 @@ class HomeRootSection : Routes.Route() {
                                 fontWeight = FontWeight.Bold,
                             )
                             Text(
-                                fontSize = 12.sp, text = translation.format(
+                                fontSize = 12.sp,
+                                text = translation.format(
                                     "update_content",
                                     "version" to (latestUpdate?.versionName ?: "unknown")
-                                ), lineHeight = 20.sp
+                                ),
+                                lineHeight = 20.sp,
+                                overflow = TextOverflow.Ellipsis,
                             )
                         }
                         Button(onClick = {
@@ -254,6 +260,12 @@ class HomeRootSection : Routes.Route() {
                                 data = Uri.parse(latestUpdate?.releaseUrl)
                             })
                         }, modifier = Modifier.height(40.dp)) {
+                        Button(
+                            modifier = Modifier.height(40.dp),
+                            onClick = {
+                                latestUpdate?.releaseUrl?.let { openExternalLink(it) }
+                            }
+                        ) {
                             Text(text = translation["update_button"])
                         }
                     }
@@ -333,7 +345,7 @@ class HomeRootSection : Routes.Route() {
             Row(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(start = 20.dp, end = 10.dp, top = 20.dp),
+                    .padding(start = 20.dp, end = 10.dp, top = 5.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
@@ -401,8 +413,8 @@ class HomeRootSection : Routes.Route() {
                         modifier = Modifier
                             .height(tileHeight)
                             .weight(1f)
-                            .clickable { action(routes) }
                             .padding(all = 6.dp),
+                        onClick = { action(routes) }
                     ) {
                         Column(
                             modifier = Modifier

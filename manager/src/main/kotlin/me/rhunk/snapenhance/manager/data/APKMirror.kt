@@ -52,11 +52,8 @@ class APKMirror {
             ).execute().use { response2 ->
                 if (!response2.isSuccessful) return null
                 val document = Jsoup.parse(response2.body.string())
-                val downloadForm = document.getElementById("filedownload") ?: return null
-                val arguments = downloadForm.childNodes().mapNotNull {
-                    (it.attr("name") to it.attr("value")).takeIf { pair -> pair.second.isNotEmpty() }
-                }
-                return BASE_URL + downloadForm.attr("action") + "?" + arguments.joinToString("&") { "${it.first}=${it.second}" }
+                val downloadLink = document.getElementById("download-link")?.attr("href") ?: return null
+                return BASE_URL + downloadLink
             }
         }
     }

@@ -27,12 +27,37 @@ object Updater {
         val latestVersion = latestRelease.getAsJsonPrimitive("tag_name").asString
         if (latestVersion.removePrefix("v") == BuildConfig.VERSION_NAME) return@runCatching null
 
-        LatestRelease(latestVersion, endpoint.url.toString().replace("api.", "").replace("repos/", ""))
+        LatestRelease(
+            versionName = latestVersion,
+            releaseUrl = endpoint.url.toString().replace("api.", "").replace("repos/", "")
+        )
     }.onFailure {
         AbstractLogger.directError("Failed to fetch latest release", it)
     }.getOrNull()
 
+    private fun fetchLatestDebugCI() = runCatching {
+        val actionRuns = OkHttpClient().newCall(Request.Builder().url("https://api.github.com/repos/rhunk/SnapEnhance/actions/runs?event=workflow_dispatch").build()).execute().use {
+            if (!it.isSuccessful) throw Throwable("Failed to fetch CI runs: ${it.code}")
+            JsonParser.parseString(it.body.string()).asJsonObject
+        }
+        val debugRuns = actionRuns.getAsJsonArray("workflow_runs")?.mapNotNull { it.asJsonObject }?.filter { run ->
+            run.get("conclusion")?.takeIf { it.isJsonPrimitive }?.asString == "success" && run.getAsJsonPrimitive("path")?.asString == ".github/workflows/debug.yml"
+        } ?: throw Throwable("No debug CI runs found")
+
+        val latestRun = debugRuns.firstOrNull() ?: throw Throwable("No debug CI runs found")
+        val headSha = latestRun.getAsJsonPrimitive("head_sha")?.asString ?: throw Throwable("No head sha found")
+
+        if (headSha == BuildConfig.GIT_HASH) return@runCatching null
+
+        LatestRelease(
+            versionName = headSha.substring(0, headSha.length.coerceAtMost(7)) + "-debug",
+            releaseUrl = latestRun.getAsJsonPrimitive("html_url")?.asString?.replace("github.com", "nightly.link") ?: return@runCatching null
+        )
+    }.onFailure {
+        AbstractLogger.directError("Failed to fetch latest debug CI", it)
+    }.getOrNull()
+
     val latestRelease by lazy {
-        fetchLatestRelease()
+        if (BuildConfig.DEBUG) fetchLatestDebugCI() else fetchLatestRelease()
     }
 }
