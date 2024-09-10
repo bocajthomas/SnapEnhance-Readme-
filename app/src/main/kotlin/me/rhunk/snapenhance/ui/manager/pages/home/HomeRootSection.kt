@@ -96,7 +96,7 @@ class HomeRootSection : Routes.Route() {
     }
 
 
-     private fun openLink(link: String) {
+    private fun openLink(link: String) {
         kotlin.runCatching {
             context.activity?.startActivity(Intent(Intent.ACTION_VIEW).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK
@@ -147,12 +147,12 @@ class HomeRootSection : Routes.Route() {
 
     @OptIn(ExperimentalLayoutApi::class)
     override val content: @Composable (NavBackStackEntry) -> Unit = {
-         val avenirNextFontFamily = remember {
-             FontFamily(
+        val avenirNextFontFamily = remember {
+            FontFamily(
                 Font(R.font.avenir_next_medium, FontWeight.Medium)
-             )
+            )
         }
-         
+
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -168,7 +168,7 @@ class HomeRootSection : Routes.Route() {
                 fontFamily = avenirNextFontFamily,
                 modifier = Modifier.align(Alignment.CenterHorizontally),
             )
-           
+
             Text(
                 text = translation.format(
                     "version_title",
@@ -211,15 +211,15 @@ class HomeRootSection : Routes.Route() {
                 )
 
                 ExternalLinkIcon(
-                    size = 36.dp,
-                    modifier = Modifier.offset(y = (-2).dp),
+                    size = 40.dp,
+                    modifier = Modifier.offset(x = (-3).dp),
                     imageVector = Icons.Filled.WatchLater,
                     link = "https://github.com/bocajthomas/SE-Extended/blob/dev/CHANGELOGS.md"
                 )
 
                 ExternalLinkIcon(
-                    size = 36.dp,
-                    modifier = Modifier.offset(y = (-2).dp),
+                    size = 40.dp,
+                    modifier = Modifier.offset(x = (-3).dp),
                     imageVector = Icons.Filled.Paid,
                     link = "https://ko-fi.com/seextended"
                 )
@@ -255,15 +255,10 @@ class HomeRootSection : Routes.Route() {
                                 overflow = TextOverflow.Ellipsis,
                             )
                         }
-                        Button(onClick = {
-                            context.activity?.startActivity(Intent(Intent.ACTION_VIEW).apply {
-                                data = Uri.parse(latestUpdate?.releaseUrl)
-                            })
-                        }, modifier = Modifier.height(40.dp)) {
                         Button(
                             modifier = Modifier.height(40.dp),
                             onClick = {
-                                latestUpdate?.releaseUrl?.let { openExternalLink(it) }
+                                latestUpdate?.releaseUrl?.let { openLink(it) }
                             }
                         ) {
                             Text(text = translation["update_button"])
