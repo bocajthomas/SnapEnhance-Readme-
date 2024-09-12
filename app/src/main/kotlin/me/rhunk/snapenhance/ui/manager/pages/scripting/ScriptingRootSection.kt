@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.text.font.FontStyle
@@ -328,6 +329,18 @@ class ScriptingRootSection : Routes.Route() {
                     Text(text = script.version.let { "Version: $it" }, fontSize = 13.sp)
                     if (!script.note.isNullOrEmpty()) {
                         Text(text = script.note.let { "Note: $it" }, fontSize = 13.sp)
+                    }
+                    if (script.notice.isNotEmpty()) {
+                        for (notice in script.notice) {
+                            when (notice) {
+                                "unstable" -> Text(text = "\u26A0 Unstable", fontSize = 12.sp, color = Color(0xFFFFFB87))
+                                "ban_risk" -> Text(text = "\u26A0 This script may cause bans", fontSize = 12.sp, color = Color(0xFFFF8585))
+                                "internal_behavior" -> Text(text = "\u26A0 This script may break Snapchat's internal behavior", fontSize = 12.sp, color = Color(0xFFFFFB87))
+                                else -> {
+                                    context.log.error("notice: $notice is not supported")
+                                }
+                            }
+                        }
                     }
                     latestUpdate?.let {
                         Text(text = "Update available: ${it.version}", fontSize = 14.sp, fontStyle = FontStyle.Italic, color = MaterialTheme.colorScheme.onSurfaceVariant)

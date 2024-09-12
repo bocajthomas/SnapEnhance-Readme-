@@ -14,6 +14,7 @@ data class ModuleInfo(
     val grantedPermissions: List<String>,
     val executionSides: List<String>? = null,
     val note: String? = null,
+    val notice: List<String>,
 ) {
     fun ensurePermissionGranted(permission: Permissions) {
         if (!grantedPermissions.contains(permission.key)) {
@@ -57,5 +58,6 @@ fun BufferedReader.readModuleInfo(): ModuleInfo {
         grantedPermissions = properties["permissions"]?.split(",")?.map { it.trim() } ?: emptyList(),
         executionSides = properties["executionSides"]?.lowercase()?.split(",")?.map { it.trim() },
         note = properties["note"],
+        notice = properties["notice"]?.split(",")?.map { it.trim() } ?: emptyList(),
     )
 }
