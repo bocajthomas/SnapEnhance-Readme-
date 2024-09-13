@@ -47,6 +47,7 @@ import me.rhunk.snapenhance.common.util.ktx.copyToClipboard
 import me.rhunk.snapenhance.common.util.snap.BitmojiSelfie
 import me.rhunk.snapenhance.core.action.AbstractAction
 import me.rhunk.snapenhance.core.features.impl.experiments.AddFriendSourceSpoof
+import me.rhunk.snapenhance.core.features.impl.experiments.BetterLocation
 import me.rhunk.snapenhance.core.features.impl.messaging.Messaging
 import me.rhunk.snapenhance.core.ui.ViewAppearanceHelper
 import me.rhunk.snapenhance.core.util.EvictingMap
@@ -66,6 +67,7 @@ class BulkMessagingAction : AbstractAction() {
         STREAK_LENGTH,
         MOST_MESSAGES_SENT,
         MOST_RECENT_MESSAGE,
+        NEAREST_LOCATION
     }
 
     enum class Filter {
@@ -78,9 +80,11 @@ class BulkMessagingAction : AbstractAction() {
         BUSINESS_ACCOUNTS,
         STREAKS,
         NON_STREAKS,
+        LOCATION_ON_MAP
     }
 
     private val translation by lazy { context.translation.getCategory("bulk_messaging_action") }
+    private val betterLocation by lazy { context.feature(BetterLocation::class) }
 
     private fun removeAction(
         ctx: Context,
@@ -156,6 +160,7 @@ class BulkMessagingAction : AbstractAction() {
             "b42f1f70-5a8b-4c53-8c25-34e7ec9e6781", // myai
             "84ee8839-3911-492d-8b94-72dd80f3713a", // teamsnapchat
         )
+
         return friends.filter { friend ->
             friend.userId !in userIdBlacklist && when (filter) {
                 Filter.ALL -> true
@@ -167,6 +172,7 @@ class BulkMessagingAction : AbstractAction() {
                 Filter.BUSINESS_ACCOUNTS -> friend.businessCategory > 0
                 Filter.STREAKS -> friend.friendLinkType == FriendLinkType.MUTUAL.value && friend.addedTimestamp > 0 && friend.streakLength != 0
                 Filter.NON_STREAKS -> friend.friendLinkType == FriendLinkType.MUTUAL.value&& friend.addedTimestamp > 0 && friend.streakLength == 0
+                Filter.LOCATION_ON_MAP -> betterLocation.locationHistory.contains(friend.userId)
             } && nameFilter.takeIf { it.isNotBlank() }?.let { name ->
                 friend.mutableUsername?.contains(
                     name,
@@ -198,6 +204,8 @@ class BulkMessagingAction : AbstractAction() {
         var nameFilter by remember { mutableStateOf("") }
 
         suspend fun refreshList(clearSelected: Boolean = true) {
+            val myLocation = betterLocation.locationHistory[context.database.myUserId]
+
             withContext(Dispatchers.IO) {
                 val newFriends = context.database.getAllFriends().let { friends ->
                     filterFriends(friends, filter, nameFilter)
@@ -213,6 +221,14 @@ class BulkMessagingAction : AbstractAction() {
                     }
                     SortBy.MOST_RECENT_MESSAGE -> newFriends.sortByDescending {
                         getDMLastMessage(it.userId)?.creationTimestamp
+                    }
+                    SortBy.NEAREST_LOCATION -> {
+                        if (myLocation != null) {
+                            newFriends.sortBy {
+                                betterLocation.locationHistory[it.userId]?.distanceTo(myLocation)
+                                    ?: Double.MAX_VALUE
+                            }
+                        }
                     }
                 }
                 if (sortReverseOrder) newFriends.reverse()
@@ -436,7 +452,14 @@ class BulkMessagingAction : AbstractAction() {
                                     }
                                     lastMessage?.let {
                                         append("\nSent messages: ${it.serverMessageId}")
-                                        append("\nLast message date: ${DateFormat.getDateTimeInstance().format(Date(it.creationTimestamp))}")
+                                        append("\nLast message: ${DateFormat.getDateTimeInstance().format(Date(it.creationTimestamp))}")
+                                    }
+                                    betterLocation.locationHistory[context.database.myUserId]?.let { myLocation ->
+                                        betterLocation.locationHistory[friendInfo.userId]?.let {
+                                            append("\n${myLocation.distanceTo(it).let { distance ->
+                                                if (distance < 1) "${(distance * 1000).toInt()} m" else "${distance.toInt()} km"
+                                            } } away")
+                                        }
                                     }
                                 }
                             }

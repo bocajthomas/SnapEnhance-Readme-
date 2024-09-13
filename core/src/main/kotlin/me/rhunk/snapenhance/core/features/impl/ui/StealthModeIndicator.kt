@@ -9,6 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import me.rhunk.snapenhance.common.data.RuleState
 import me.rhunk.snapenhance.core.event.events.impl.BindViewEvent
 import me.rhunk.snapenhance.core.features.Feature
 import me.rhunk.snapenhance.core.features.impl.spying.StealthMode
@@ -30,7 +31,7 @@ class StealthModeIndicator : Feature("StealthModeIndicator") {
         private fun requestUpdate(conversationId: String) {
             fetchJob?.cancel()
             fetchJob = context.coroutineScope.launch {
-                val isStealth = stealthMode.getState(conversationId)
+                val isStealth = stealthMode.canUseRule(conversationId)
                 withContext(Dispatchers.Main) {
                     listener(isStealth)
                 }
@@ -58,7 +59,7 @@ class StealthModeIndicator : Feature("StealthModeIndicator") {
 
             stealthMode.addStateListener { conversationId, state ->
                 runCatching {
-                    listeners[conversationId]?.invoke(state)
+                    listeners[conversationId]?.invoke(stealthMode.getRuleState()?.let { if (it == RuleState.BLACKLIST) !state else state } ?: state)
                 }.onFailure {
                     context.log.error("Failed to update stealth mode indicator", it)
                 }

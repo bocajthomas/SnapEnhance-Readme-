@@ -34,11 +34,14 @@ import me.rhunk.snapenhance.common.ui.AppMaterialTheme
 import me.rhunk.snapenhance.common.ui.createComposeView
 import me.rhunk.snapenhance.common.util.ktx.copyToClipboard
 import me.rhunk.snapenhance.core.ModContext
+import me.rhunk.snapenhance.core.SnapEnhance
 import me.rhunk.snapenhance.core.util.hook.HookStage
 import me.rhunk.snapenhance.core.util.hook.Hooker
+import me.rhunk.snapenhance.core.util.hook.hook
 import me.rhunk.snapenhance.core.util.ktx.isDarkTheme
 import kotlin.math.roundToInt
 import kotlin.random.Random
+import kotlin.system.exitProcess
 
 typealias CustomComposable = @Composable BoxScope.() -> Unit
 
@@ -47,11 +50,20 @@ class InAppOverlay(
 ) {
     companion object {
         fun showCrashOverlay(content: String, throwable: Throwable? = null) {
+            // deny network requests
+            SnapEnhance.classCache.apply {
+                unifiedGrpcService.hook("unaryCall", HookStage.BEFORE) { param ->
+                    param.setResult(null)
+                }
+                networkApi.hook("submit", HookStage.BEFORE) { param ->
+                    param.setResult(null)
+                }
+            }
+
             Hooker.ephemeralHook(Activity::class.java, "onPostCreate", HookStage.AFTER) { param ->
                 val contentView = param.thisObject<Activity>().findViewById<FrameLayout>(android.R.id.content)
                 contentView.children().forEach { it.visibility = View.GONE }
-                lateinit var screenView: View
-                screenView = createComposeView(param.thisObject()) {
+                val screenView = createComposeView(param.thisObject()) {
                     AppMaterialTheme(isDarkTheme = true) {
                         Surface(
                             color = MaterialTheme.colorScheme.surface
@@ -88,10 +100,9 @@ class InAppOverlay(
                                             }
                                         }
                                         Button(onClick = {
-                                            contentView.children().forEach { it.visibility = View.VISIBLE }
-                                            contentView.removeView(screenView)
+                                            exitProcess(1)
                                         }) {
-                                            Text("Ignore")
+                                            Text("Exit")
                                         }
                                     }
                                 }

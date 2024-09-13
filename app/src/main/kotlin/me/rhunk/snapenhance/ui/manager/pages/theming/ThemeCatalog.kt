@@ -12,6 +12,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -38,7 +39,7 @@ fun ThemeCatalog(root: ThemingRoot) {
     val context = remember { root.context }
     val coroutineScope = rememberCoroutineScope { Dispatchers.IO }
 
-    fun fetchRepoIndexes(): Map<String, RepositoryIndex>? {
+    fun fetchRepoIndexes(): Map<String, RepositoryIndex> {
         val indexes = mutableMapOf<String, RepositoryIndex>()
 
         context.database.getRepositories().forEach { rootUri ->
@@ -91,7 +92,7 @@ fun ThemeCatalog(root: ThemingRoot) {
         isRefreshing = true
         coroutineScope {
             launch(Dispatchers.IO) {
-                fetchRepoIndexes()?.let {
+                fetchRepoIndexes().let {
                     context.log.verbose("Fetched ${it.size} theme indexes")
                     it.forEach { (t, u) ->
                         context.log.verbose("Fetched theme index from $t with ${u.themes.size} themes")
@@ -146,7 +147,8 @@ fun ThemeCatalog(root: ThemingRoot) {
             modifier = Modifier
                 .fillMaxSize()
                 .pullRefresh(pullRefreshState),
-            contentPadding = PaddingValues(8.dp)
+            contentPadding = PaddingValues(8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
             item {
                 if (remoteThemes.isEmpty()) {
@@ -192,32 +194,32 @@ fun ThemeCatalog(root: ThemingRoot) {
                         Icon(Icons.Default.Palette, contentDescription = null, modifier = Modifier.padding(16.dp))
                         Column(
                             modifier = Modifier.weight(1f),
-                            verticalArrangement = Arrangement.Center
                         ) {
-                            Row(
-                                horizontalArrangement = Arrangement.spacedBy(4.dp),
-                                verticalAlignment = Alignment.Bottom
-                            ) {
+                            Text(
+                                text = themeManifest.name,
+                                maxLines = 1,
+                                fontSize = 16.sp,
+                                lineHeight = 10.sp,
+                                overflow = TextOverflow.Ellipsis,
+                                fontWeight = FontWeight.Bold,
+                            )
+                            themeManifest.author?.let {
                                 Text(
-                                    text = themeManifest.name,
+                                    text = "by $it",
                                     maxLines = 1,
-                                    overflow = TextOverflow.Ellipsis,
+                                    fontSize = 10.sp,
+                                    lineHeight = 16.sp,
+                                    textDecoration = TextDecoration.Underline,
+                                    fontWeight = FontWeight.Light,
+                                    overflow = TextOverflow.Visible,
                                 )
-                                themeManifest.author?.let {
-                                    Text(
-                                        text = "by $it",
-                                        maxLines = 1,
-                                        fontSize = 10.sp,
-                                        fontWeight = FontWeight.Light,
-                                        overflow = TextOverflow.Ellipsis,
-                                    )
-                                }
                             }
                             themeManifest.description?.let {
                                 Text(
                                     text = it,
                                     fontSize = 12.sp,
                                     maxLines = 3,
+                                    lineHeight = 16.sp,
                                     overflow = TextOverflow.Ellipsis,
                                 )
                             }
@@ -260,6 +262,9 @@ fun ThemeCatalog(root: ThemingRoot) {
                         }
                     }
                 }
+            }
+            item {
+                Spacer(modifier = Modifier.height(80.dp))
             }
         }
 

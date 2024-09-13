@@ -304,9 +304,9 @@ class ThemingRoot: Routes.Route() {
 
         LazyColumn(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(2.dp),
-            verticalArrangement = Arrangement.spacedBy(5.dp)
+                .fillMaxSize(),
+            contentPadding = PaddingValues(8.dp),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
         ) {
             item {
                 if (themes.isEmpty()) {
@@ -326,13 +326,12 @@ class ThemingRoot: Routes.Route() {
 
                 ElevatedCard(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .clickable {
-                            routes.editTheme.navigate {
-                                this["theme_id"] = theme.id.toString()
-                            }
+                        .fillMaxWidth(),
+                    onClick = {
+                        routes.editTheme.navigate {
+                            this["theme_id"] = theme.id.toString()
                         }
-                        .padding(8.dp)
+                    }
                 ) {
                     Row(
                         modifier = Modifier
@@ -408,7 +407,7 @@ class ThemingRoot: Routes.Route() {
                 }
             }
             item {
-                Spacer(modifier = Modifier.height(100.dp))
+                Spacer(modifier = Modifier.height(200.dp))
             }
         }
     }

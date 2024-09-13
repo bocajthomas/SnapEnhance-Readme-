@@ -73,6 +73,6 @@ object LSPatchUpdater {
 
         context.longToast("SE Extended Updated!")
         context.log.verbose("updated", TAG)
-        context.forceCloseApp()
+        context.softRestartApp()
     }
 }

@@ -36,6 +36,10 @@ import me.rhunk.snapenhance.core.util.ktx.isDarkTheme
 import me.rhunk.snapenhance.mapper.impl.CallbackMapper
 import java.nio.ByteBuffer
 import java.util.UUID
+import kotlin.math.atan2
+import kotlin.math.cos
+import kotlin.math.sin
+import kotlin.math.sqrt
 
 data class FriendLocation(
     val userId: String,
@@ -45,10 +49,21 @@ data class FriendLocation(
     val locality: String?,
     val localityPieces: List<String>,
     val batteryLevel: Float,
-)
+) {
+    fun distanceTo(other: FriendLocation): Double {
+        val deltaLat = Math.toRadians(other.latitude - this.latitude)
+        val deltaLong = Math.toRadians(other.longitude - this.longitude)
+
+        val a = sin(deltaLat / 2) * sin(deltaLat / 2) +
+                cos(Math.toRadians(this.latitude)) * cos(Math.toRadians(other.latitude)) *
+                sin(deltaLong / 2) * sin(deltaLong / 2)
+
+        return 6371 * 2 * atan2(sqrt(a), sqrt(1 - a))
+    }
+}
 
 class BetterLocation : Feature("Better Location") {
-    private val locationHistory = mutableMapOf<String, FriendLocation>()
+    val locationHistory = mutableMapOf<String, FriendLocation>()
 
     private val walkRadius by lazy {
         context.config.global.betterLocation.walkRadius.getNullable()

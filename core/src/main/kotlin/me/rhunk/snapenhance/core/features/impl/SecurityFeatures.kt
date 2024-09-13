@@ -4,7 +4,8 @@ import android.system.Os
 import me.rhunk.snapenhance.core.features.Feature
 
 class SecurityFeatures : Feature("Security Features") {
-    private fun transact(option: Int, option2: Long) = kotlin.runCatching { Os.prctl(option, option2, 0, 0, 0) }.getOrNull()
+    private fun transact(option: Int, option2: Long) =
+        kotlin.runCatching { Os.prctl(option, option2, 0, 0, 0) }.getOrNull()
 
     private val token by lazy {
         transact(0, 0)
