@@ -323,6 +323,10 @@
         "theming": {
             "name": "Temática",
             "description": "Personaliza el aspecto de Snapchat"
+        },
+        "disclaimer_statement": {
+            "name": "Declaración de exención de responsabilidad",
+            "description": "Lea la declaración de exención de responsabilidad"
         }
     },
     "scopes": {
@@ -1202,7 +1206,8 @@
                 "hide_chat_camera_button": "Quitar el botón de la cámara del chat",
                 "hide_chat_gallery_button": "Eliminar el botón de la galería de chat",
                 "hide_explorer_token_button": "Botón para eliminar el token del explorador",
-                "hide_gift_snapchat_plus_reminders": "Eliminar recordatorios de regalos de Snapchat Plus"
+                "hide_gift_snapchat_plus_reminders": "Eliminar recordatorios de regalos de Snapchat Plus",
+                "hide_map_reactions": "Eliminar reacciones del mapa"
             },
             "hide_story_suggestions": {
                 "hide_friend_suggestions": "Ocultar sugestiones de amistad",
@@ -1392,7 +1397,8 @@
                 "cosmic_night": "Noche cósmica",
                 "modern_farmhouse": "Casa de campo moderna",
                 "alien_landscape": "Paisaje extraterrestre",
-                "midnight_library": "Biblioteca de medianoche"
+                "midnight_library": "Biblioteca de medianoche",
+                "watercolor_wash": "Acuarela"
             }
         }
     },
@@ -1668,6 +1674,7 @@
     "theming_attributes": {
         "sigColorChatChat": "Color del texto del feed del amigo principal",
         "sigColorBackgroundSurface": "Color del fondo",
-        "sigColorTextPrimary": "Color del texto principal"
+        "sigColorTextPrimary": "Color del texto principal",
+        "sigColorChatPendingSending": "Color del feed del texto de amigos secundarios"
     }
 }
