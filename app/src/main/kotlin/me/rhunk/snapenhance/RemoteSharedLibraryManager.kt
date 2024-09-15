@@ -106,7 +106,7 @@ class RemoteSharedLibraryManager(
                                 data = "https://github.com/SE-Extended/SIF".toUri()
                                 flags = Intent.FLAG_ACTIVITY_NEW_TASK
                             },
-                            PendingIntent.FLAG_UPDATE_CURRENT
+                            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
                         )).build()
                 )
             }
