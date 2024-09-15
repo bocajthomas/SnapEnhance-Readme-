@@ -50,19 +50,24 @@ pub fn lock_database(mut env: JNIEnv, _: *mut c_void, filename: JString, runnabl
     let database_filename = get_jni_string(&mut env, filename).expect("Failed to get database filename");
     let mutex = SQLITE3_MUTEX_MAP.lock().unwrap().get(&database_filename).map(|mutex| *mutex);
 
+    let call_runnable = || {
+        env.call_method(runnable, "run", "()V", &[]).expect("Failed to call run method");
+    };
+
     if let Some(mut mutex) = mutex {
         if unsafe { libc::pthread_mutex_lock(addr_of_mut!(mutex)) } != 0 {
             error!("pthread_mutex_lock failed");
             return;
         }
 
-        env.call_method(runnable, "run", "()V", &[]).expect("Failed to call run method");
+        call_runnable();
 
         if unsafe { libc::pthread_mutex_unlock(addr_of_mut!(mutex)) } != 0 {
             error!("pthread_mutex_unlock failed");
         }
     } else {
         warn!("No mutex found for database: {}", database_filename);
+        call_runnable();
     }
 }
 
