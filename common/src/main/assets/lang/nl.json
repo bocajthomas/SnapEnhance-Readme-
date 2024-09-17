@@ -37,7 +37,8 @@
             "edit_theme": "Wijzig Thema",
             "manage_repos": "Beheer Repositories",
             "theming": "Thema",
-            "file_imports": "Bestand Imports"
+            "file_imports": "Bestand Imports",
+            "manage_rule_feature": "Beheer regelfunctie"
         },
         "sections": {
             "features": {
@@ -168,6 +169,18 @@
             },
             "theming": {
                 "no_themes_hint": "Geen themas gevonden"
+            },
+            "manage_rule_feature": {
+                "disable_state_subtext": "Geen vrienden/groepen zullen worden beïnvloed",
+                "disable_state_option": "Uitgeschakeld",
+                "dialog_clear_confirmation_text": "Weet je zeker dat je je lijst wilt opruimen?",
+                "whitelist_state_option": "Niemand behalve ...",
+                "whitelist_state_button": "Selecteer toegestane vrienden/groepen",
+                "blacklist_state_option": "Iedereen behalve ...",
+                "whitelist_state_subtext": "Alleen {count} vrienden/groepen zullen beïnvloed worden door deze regel",
+                "blacklist_state_subtext": "Iedereen behalve {coung} vrienden/groepen zullen worden beïnvloed bij deze regel",
+                "blacklist_state_button": "Selecteer uitgesloten vrienden/groepen",
+                "clear_list_button": "Ruim vrienden/groepen lijst op"
             }
         },
         "dialogs": {
@@ -358,6 +371,10 @@
                     "opera_download_button": {
                         "name": "Opera-downloadknop",
                         "description": "Voegt een downloadknop toe in de rechterbovenhoek wanneer je een Snap bekijkt.\nAls u lang op de knoppen drukt, wordt het downloaden geforceerd"
+                    },
+                    "auto_download_voice_notes": {
+                        "name": "Automatisch spraakberichten downloaden",
+                        "description": "Download automatisch bij het spelen van spraakberichten"
                     }
                 },
                 "description": "Snapchat-media downloaden"
@@ -541,7 +558,24 @@
             "description": "Mappings Handmatig Regenereren"
         },
         "security_features": {
-            "name": "Beveiliging functies"
+            "name": "Beveiliging functies",
+            "description": "Verander beveiliging functies voorkeuren"
+        },
+        "file_imports": {
+            "description": "Importeer bestanden voor gebruik in snapchat",
+            "name": "Bestand geïmporteerd"
+        },
+        "friend_tracker": {
+            "description": "Volg je vrienden op Snapchat",
+            "name": "Vrienden volger"
+        },
+        "theming": {
+            "description": "Thematiseer de kijk en voel van Snapchat",
+            "name": "Thematisering"
+        },
+        "disclaimer_statement": {
+            "name": "Disclaimer verklaring",
+            "description": "Lees de disclaimer verklaring"
         }
     },
     "friend_menu_option": {
