@@ -2,12 +2,12 @@
     "setup": {
         "dialogs": {
             "select_language": "Vælg sprog",
-            "save_folder": "SnapEnhance kræver Lagringstilladelser til at downloade og gemme medier fra Snapchat.\nVælg venligst det sted, hvor medierne skal downloades til.",
+            "save_folder": "SE Extended kræver Lagringstilladelser til at downloade og gemme medier fra Snapchat.\nVælg venligst det sted, hvor medierne skal downloades til.",
             "select_save_folder_button": "Vælg Mappe"
         },
         "mappings": {
             "dialog": "Generering af maps, dette kan tage et stykke tid, overvej at bruge tiden fornuftigt, drik noget eller lav en toast...",
-            "generate_failure_no_snapchat": "SnapEnhance kunne ikke detektere Snapchat, prøv at geninstallere Snapchat.",
+            "generate_failure_no_snapchat": "SE Extended kunne ikke detektere Snapchat, prøv at geninstallere Snapchat.",
             "generate_failure": "Der opstod en fejl under forsøget på at generere mappings, prøv venligst igen."
         },
         "permissions": {
@@ -173,7 +173,7 @@
             },
             "scripting_warning": {
                 "title": "Advarsel",
-                "content": "SnapEnhance inkluderer et scriptværktøj, der tillader udførelse af brugerdefineret kode på din enhed. Vær ekstrem forsigtig og installer kun moduler fra kendte, pålidelige kilder. Uautoriserede eller uverificerede moduler kan udgøre sikkerhedsrisici for dit system."
+                "content": "SE Extended inkluderer et scriptværktøj, der tillader udførelse af brugerdefineret kode på din enhed. Vær ekstrem forsigtig og installer kun moduler fra kendte, pålidelige kilder. Uautoriserede eller uverificerede moduler kan udgøre sikkerhedsrisici for dit system."
             },
             "reset_config": {
                 "title": "Nulstil konfiguration",
@@ -1082,97 +1082,12 @@
                     "best_friend_pinning": {
                         "description": "Tillader dig at fastgøre en ven som din bedste ven nummer ét. Bemærk: Kun du kan se din fastgjorte bedste ven",
                         "name": "Pinning af bedste ven"
-                    },
-                    "experimental_colors": {
-                        "name": "Eksperimentelle farveindstillinger",
-                        "properties": {
-                            "ring_color": {
-                                "description": "Gør et eller andet ved farven på noget ;)",
-                                "name": "Ring farve"
-                            },
-                            "sig_color_icon_secondary": {
-                                "name": "Sig farveikon sekundært",
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "sig_color_layout_place_holder": {
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "sc_button_color": {
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "recipient_pill_background_drawable": {
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "box_background_color": {
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "recipient_input_style": {
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "psts_indicator_color": {
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "psts_divider_color": {
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "status_bar_foreground": {
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "status_bar_background": {
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "sig_color_background_surface_translucent": {
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "sig_color_story_ring_friends_feed_story_ring": {
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "sig_color_story_ring_discover_tab_thumbnail_story_ring": {
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "story_replay_view_ring_color": {
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "sig_color_button_primary": {
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "item_shape_fill_color": {
-                                "name": "Emne Form Fyld Farve",
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "ring_start_color": {
-                                "name": "Ring start farve",
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "edit_text_color": {
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "chip_background_color": {
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "range_fill_color": {
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "psts_tab_background": {
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "tab_text_color": {
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "stroke_color": {
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            },
-                            "sig_color_base_app_yellow": {
-                                "description": "Gør et eller andet ved farven på noget ;)"
-                            }
-                        },
-                        "description": "Bemærk: Disse farvefunktioner er eksperimentelle og kan derfor få din snapchat til at se mærkelig ud,\nVælg \"Brugerdefinerede farver\" på temavælgeren for at bruge"
                     }
                 }
             },
             "scripting": {
                 "name": "Scripting",
-                "description": "Kør brugerdefinerede scripts for at udvide SnapEnhance",
+                "description": "Kør brugerdefinerede scripts for at udvide SE Extended",
                 "properties": {
                     "developer_mode": {
                         "name": "Udviklertilstand",
@@ -1353,7 +1268,7 @@
             },
             "auto_reload": {
                 "snapchat_only": "Kun Snapchat",
-                "all": "Alle (Snapchat + SnapEnhance)"
+                "all": "Alle (Snapchat + SE Extended)"
             },
             "edit_text_override": {
                 "multi_line_chat_input": "Extra mange linjer chat input",
@@ -1554,7 +1469,7 @@
         },
         "change_language": {
             "name": "Skift sprog",
-            "description": "Skift sproget for SnapEnhance"
+            "description": "Skift sproget for SE Extended"
         },
         "file_imports": {
             "name": "Fil import",
