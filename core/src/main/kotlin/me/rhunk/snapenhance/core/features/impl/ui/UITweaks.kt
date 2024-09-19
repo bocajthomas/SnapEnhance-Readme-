@@ -3,7 +3,6 @@ package me.rhunk.snapenhance.core.features.impl.ui
 import android.content.res.Resources
 import android.util.Size
 import android.view.View
-import android.view.ViewGroup
 import android.view.ViewGroup.MarginLayoutParams
 import android.widget.FrameLayout
 import me.rhunk.snapenhance.common.util.ktx.findFieldsToString
@@ -38,45 +37,13 @@ class UITweaks : Feature("UITweaks") {
     private fun hideView(view: View) {
         view.apply {
             visibility = View.GONE
-            isEnabled = false
-            alpha = 0f
-            scaleX = 0f
-            scaleY = 0f
-            translationX = -10000f
-            translationY = -10000f
-            setWillNotDraw(true)
-            layoutParams?.apply {
-                width = 0
-                height = 0
-            }
-            (this as? ViewGroup)?.removeAllViews()
-            setOnClickListener(null)
             post {
-                visibility = View.GONE
                 isEnabled = false
-                alpha = 0f
+                visibility = View.GONE
+                setWillNotDraw(true)
             }
-            addOnLayoutChangeListener { v, _, _, _, _, _, _, _, _ ->
-                v.post { 
-                    v.visibility = View.GONE
-                    v.isEnabled = false
-                    v.alpha = 0f
-                }
-            }
-        }
-    }
-
-    private fun hideLoadingSpinner(root: View) {
-        if (root is ViewGroup) {
-            for (i in 0 until root.childCount) {
-                val child = root.getChildAt(i)
-                if (child.javaClass.simpleName == "LoadingSpinnerView" || 
-                    child.javaClass.simpleName == "LoadingIndicatorView" ||
-                    child.javaClass.simpleName == "PausableLoadingSpinnerView") {
-                    hideView(child)
-                } else if (child is ViewGroup) {
-                    hideLoadingSpinner(child)
-                }
+            addOnLayoutChangeListener { view, _, _, _, _, _, _, _, _ ->
+                view.post { view.visibility = View.GONE }
             }
         }
     }
@@ -172,26 +139,19 @@ class UITweaks : Feature("UITweaks") {
             val viewId = event.view.id
             val view = event.view
 
-            view.postDelayed(object : Runnable {
-                override fun run() {
-                    hideLoadingSpinner(view)
-                    view.postDelayed(this, 100)
-                }
-            }, 100)
-
             if (blockAds && viewId == getId("df_promoted_story", "id")) {
                 hideStorySection(event)
             }
 
             if (isImmersiveCamera) {
-                if (viewId == getId("edits_container", "id")) {
+                if (view.id == getId("edits_container", "id")) {
                     Hooker.hookObjectMethod(View::class.java, view, "layout", HookStage.BEFORE) {
                         val width = it.arg(2) as Int
                         val realHeight = (width / deviceAspectRatio).toInt()
                         it.setArg(3, realHeight)
                     }
                 }
-                if (viewId == getId("full_screen_surface_view", "id")) {
+                if (view.id == getId("full_screen_surface_view", "id")) {
                     Hooker.hookObjectMethod(View::class.java, view, "layout", HookStage.BEFORE) {
                         it.setArg(1, 1)
                         it.setArg(3, displayMetrics.heightPixels)
