@@ -2,12 +2,12 @@
     "setup": {
         "dialogs": {
             "select_language": "Vælg sprog",
-            "save_folder": "SnapEnhance kræver Lagringstilladelser til at downloade og gemme medier fra Snapchat.\nVælg venligst det sted, hvor medierne skal downloades til.",
+            "save_folder": "SE Extended kræver Lagringstilladelser til at downloade og gemme medier fra Snapchat.\nVælg venligst det sted, hvor medierne skal downloades til.",
             "select_save_folder_button": "Vælg Mappe"
         },
         "mappings": {
             "dialog": "Generering af maps, dette kan tage et stykke tid, overvej at bruge tiden fornuftigt, drik noget eller lav en toast...",
-            "generate_failure_no_snapchat": "SnapEnhance kunne ikke detektere Snapchat, prøv at geninstallere Snapchat.",
+            "generate_failure_no_snapchat": "SE Extended kunne ikke detektere Snapchat, prøv at geninstallere Snapchat.",
             "generate_failure": "Der opstod en fejl under forsøget på at generere mappings, prøv venligst igen."
         },
         "permissions": {
@@ -173,7 +173,7 @@
             },
             "scripting_warning": {
                 "title": "Advarsel",
-                "content": "SnapEnhance inkluderer et scriptværktøj, der tillader udførelse af brugerdefineret kode på din enhed. Vær ekstrem forsigtig og installer kun moduler fra kendte, pålidelige kilder. Uautoriserede eller uverificerede moduler kan udgøre sikkerhedsrisici for dit system."
+                "content": "SE Extended inkluderer et scriptværktøj, der tillader udførelse af brugerdefineret kode på din enhed. Vær ekstrem forsigtig og installer kun moduler fra kendte, pålidelige kilder. Uautoriserede eller uverificerede moduler kan udgøre sikkerhedsrisici for dit system."
             },
             "reset_config": {
                 "title": "Nulstil konfiguration",
@@ -1007,7 +1007,7 @@
             },
             "scripting": {
                 "name": "Scripting",
-                "description": "Kør brugerdefinerede scripts for at udvide SnapEnhance",
+                "description": "Kør brugerdefinerede scripts for at udvide SE Extended",
                 "properties": {
                     "developer_mode": {
                         "name": "Udviklertilstand",
@@ -1187,7 +1187,7 @@
             },
             "auto_reload": {
                 "snapchat_only": "Kun Snapchat",
-                "all": "Alle (Snapchat + SnapEnhance)"
+                "all": "Alle (Snapchat + SE Extended)"
             },
             "edit_text_override": {
                 "multi_line_chat_input": "Extra mange linjer chat input",
@@ -1373,7 +1373,7 @@
         },
         "change_language": {
             "name": "Skift sprog",
-            "description": "Skift sproget for SnapEnhance"
+            "description": "Skift sproget for SE Extended"
         },
         "file_imports": {
             "name": "Fil import",
