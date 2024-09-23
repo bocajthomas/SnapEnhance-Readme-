@@ -200,8 +200,17 @@
             "manage_rule_feature": {
                 "disable_state_option": "無効",
                 "disable_state_subtext": "友達やグループには影響はありません",
-                "whitelist_state_option": "...を除いて誰もいません",
-                "whitelist_state_subtext": "このルールの影響を受けるのは{count}人の友達/グループだけです"
+                "whitelist_state_option": "を除いて誰もいません...",
+                "whitelist_state_subtext": "このルールの影響を受けるのは{count}人の友達/グループだけです",
+                "whitelist_state_button": "許可する友達/グループを選択してください",
+                "blacklist_state_button": "除外された友達/グループを選択してください",
+                "blacklist_state_subtext": "除く全員{count}友達/グループはこのルールの影響を受けます",
+                "clear_list_button": "友達/グループリストをクリアする",
+                "dialog_clear_confirmation_text": "リストをクリアしてもよろしいですか?",
+                "blacklist_state_option": "を除く全員..."
+            },
+            "theming": {
+                "no_themes_hint": "テーマが見つかりませんでした"
             }
         }
     },
@@ -250,6 +259,10 @@
                                 },
                                 "name": "作曲家フック",
                                 "description": "Composer クロスプラットフォーム UI フレームワークにコードを挿入します"
+                            },
+                            "custom_shared_library": {
+                                "name": "カスタム共有ライブラリ",
+                                "description": "カスタム共有ライブラリを Snapchat にロードします。この機能はテストのみを目的としています"
                             }
                         },
                         "name": "ネイティブフック",
@@ -390,6 +403,10 @@
                     "prevent_forced_logout": {
                         "name": "強制ログアウトを防ぐ",
                         "description": "別のデバイスでログインしたときに Snapchat がログアウトしないようにします"
+                    },
+                    "voice_note_auto_play": {
+                        "name": "ボイスメモ自動再生",
+                        "description": "現在の音声ノートが終了した後、次の音声ノートを自動的に再生します"
                     }
                 },
                 "name": "実験的",
@@ -504,6 +521,10 @@
                     "auto_close_friend_feed_menu": {
                         "name": "自動親しい友達フィードメニュー",
                         "description": "設定ボタンを押すとフレンドフィードメニューを自動的に閉じます"
+                    },
+                    "custom_theme": {
+                        "description": "Snapchatの色をカスタマイズする\n注: ダーク テーマ (AMOLED など) を選択した場合、より良い結果を得るには、アプリの外観設定でダーク モードを有効にする必要がある場合があります",
+                        "name": "ボイスメモを再生すると自動的にダウンロードされます"
                     }
                 },
                 "description": "Snapchat の外観と操作性を変更する",
@@ -596,6 +617,10 @@
                     "custom_path_format": {
                         "name": "カスタムパス形式",
                         "description": "ダウンロードしたメディアのカスタム パス形式を指定する\n\n利用可能な変数:\n - %ユーザー名%\n - ％ソース％\n - %ハッシュ%\n - ％日付時刻％"
+                    },
+                    "auto_download_voice_notes": {
+                        "name": "ボイスメモの自動ダウンロード",
+                        "description": "ボイスメモを再生すると自動的にダウンロードされます"
                     }
                 },
                 "name": "ダウンローダー",
@@ -813,6 +838,10 @@
                             "spoof_battery_level": {
                                 "name": "スプーフバッテリーレベル",
                                 "description": "地図上でデバイスのバッテリーレベルを偽装します\n値は0から100の間でなければなりません"
+                            },
+                            "show_battery_level": {
+                                "description": "友達のバッテリー残量を地図上に表示します",
+                                "name": "バッテリー残量を表示"
                             }
                         },
                         "description": "Snapchatロケーションを強化",
@@ -1073,7 +1102,8 @@
                 "ORIGINAL": "オリジナル",
                 "NOTE": "音声メモ",
                 "always_ask": "常に質問する",
-                "SNAP": "スナップ"
+                "SNAP": "スナップ",
+                "SAVEABLE_SNAP": "保存可能なスナップ"
             },
             "home_tab": {
                 "map": "地図",
@@ -1107,7 +1137,10 @@
                 "hide_profile_call_buttons": "プロファイル呼び出しボタンを削除する",
                 "hide_chat_call_buttons": "チャット通話ボタンを削除する",
                 "hide_live_location_share_button": "ライブロケーション共有ボタンを削除",
-                "hide_stickers_button": "ステッカーを削除ボタン"
+                "hide_stickers_button": "ステッカーを削除ボタン",
+                "hide_chat_camera_button": "チャットカメラボタンを削除",
+                "hide_snap_create_group_buttons": "スナップグループ作成ボタンの削除",
+                "hide_chat_gallery_button": "チャットギャラリーボタンを削除"
             },
             "hide_story_suggestions": {
                 "hide_my_stories": "私のストーリーを隠す",
@@ -1204,6 +1237,46 @@
                 "encryption_indicator": "あなただけに送信されたメッセージの横に 🔒 アイコンを追加します",
                 "director_mode_indicator": "ディレクター モードを使用してスナップが送信された場合、スナップに ✏️ アイコンを追加します。これを使用してギャラリー画像をスナップとして送信できます",
                 "location_indicator": "位置情報が有効になって送信されたスナップに 📍 アイコンを追加します"
+            },
+            "custom_theme": {
+                "earthy_autumn": "素朴な秋",
+                "peppermint_candy": "ペパーミントキャンディー",
+                "bubblegum_pink": "バブルガムピンク",
+                "modern_farmhouse": "モダンな農家",
+                "amoled_dark_mode": "AMOLEDダークモード",
+                "material_you_dark": "マテリアル ユー ダーク (Android 12+)",
+                "light_blue": "水色",
+                "dark_blue": "ダークブルー",
+                "midnight_slate": "ミッドナイトスレート",
+                "mint_chocolate": "素朴な秋",
+                "ginger_snap": "ジンジャースナップ",
+                "lemon_meringue": "レモンメレンゲ",
+                "lava_flow": "溶岩流",
+                "ocean_fog": "オーシャンフォグ",
+                "alien_landscape": "エイリアンの風景",
+                "midnight_library": "真夜中の図書館",
+                "lemon_sorbet": "レモンシャーベット",
+                "firefly_night": "ホタルナイト",
+                "lavender_field": "ラベンダー畑",
+                "lemon_drop": "レモンドロップ",
+                "gingerbread_house": "ジンジャーブレッドハウス",
+                "art_deco_glam": "アールデコグラム",
+                "custom": "カスタム テーマ (クイック アクションを使用してテーマを管理)",
+                "material_you_light": "マテリアル ユー ライト (Android 12+)",
+                "zesty_lemon": "ピリッとしたレモン",
+                "tropical_paradise": "トロピカルパラダイス",
+                "woodland_mystery": "森の謎",
+                "industrial_chic": "インダストリアルシック",
+                "galaxy_glitter": "ギャラクシーグリッター",
+                "creamy_vanilla": "クリーミーバニラ",
+                "spicy_chili": "スパイシーチリ",
+                "spring_meadow": "春の草原",
+                "cosmic_night": "コズミックナイト",
+                "spicy_mustard": "スパイシーマスタード",
+                "watercolor_wash": "水彩ウォッシュ",
+                "cherry_bomb": "チェリーボム",
+                "ocean_depths": "海の深さ",
+                "apple_orchard": "リンゴ園"
             }
         }
     },
@@ -1312,6 +1385,18 @@
         "logger_history": {
             "name": "ロガー履歴",
             "description": "ログに記録されたメッセージの履歴を表示する"
+        },
+        "security_features": {
+            "name": "セキュリティ機能",
+            "description": "セキュリティ機能の設定を変更する"
+        },
+        "disclaimer_statement": {
+            "name": "免責事項",
+            "description": "免責事項をお読みください"
+        },
+        "theming": {
+            "name": "テーマ設定",
+            "description": "Snapchat の外観と操作性をカスタマイズする"
         }
     },
     "content_type": {
