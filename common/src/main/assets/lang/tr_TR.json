@@ -34,7 +34,11 @@
             "friend_tracker": "Arkadaş Takibi",
             "edit_rule": "Kuralı Düzenle",
             "file_imports": "Dosya İçe Aktarımları",
-            "better_location": "Daha İyi Konum"
+            "better_location": "Daha İyi Konum",
+            "edit_theme": "Temayı Düzenle",
+            "manage_repos": "Depoları Yönet",
+            "theming": "Temalandırma",
+            "manage_rule_feature": "Kural Yönetme Özelliği"
         },
         "sections": {
             "features": {
@@ -162,6 +166,21 @@
                 "longitude_dialog_hint": "Boylam",
                 "latitude_dialog_hint": "Enlem",
                 "suspend_location_updates": "Konum Güncellemelerini Askıya Al"
+            },
+            "theming": {
+                "no_themes_hint": "Tema bulunamadı"
+            },
+            "manage_rule_feature": {
+                "disable_state_subtext": "Hiçbir arkadaş/grup etkilenmeyecektir",
+                "whitelist_state_option": "Kimse hariç ...",
+                "whitelist_state_subtext": "Bu kuraldan yalnızca {count} arkadaş/grup etkilenecektir",
+                "whitelist_state_button": "İzin verilen arkadaşları/grupları seçin",
+                "blacklist_state_option": "Herkes hariç...",
+                "blacklist_state_subtext": "Bu kuraldan {count} arkadaş/grup dışındaki herkes etkilenecektir",
+                "blacklist_state_button": "Hariç tutulan arkadaşları/grupları seçin",
+                "clear_list_button": "Arkadaş/grup listesini temizle",
+                "dialog_clear_confirmation_text": "Listeyi temizlemek istediğinizden emin misiniz?",
+                "disable_state_option": "Devre dışı"
             }
         },
         "dialogs": {
@@ -353,6 +372,10 @@
                     "download_context_menu": {
                         "name": "İndirme Bağlam Menüsü",
                         "description": "Bağlam menüsünü kullanarak bir sohbetten veya hikayeden mesajları indirmenize/önizlemenize olanak tanır.\nDüğmelere uzun basmak indirmeye zorlar"
+                    },
+                    "auto_download_voice_notes": {
+                        "name": "Sesli Notları Otomatik İndir",
+                        "description": "Sesli notları oynatırken otomatik olarak indirir"
                     }
                 }
             },
@@ -464,65 +487,13 @@
                         "name": "Mesaj Göstergeleri",
                         "description": "Mesajlara belirli gösterge simgeleri ekler\nNot: Göstergeler %100 doğru olmayabilir"
                     },
-                    "customize_ui": {
-                        "description": "Snapchat'in Renklerini Özelleştirme",
-                        "name": "Renkler",
-                        "properties": {
-                            "theme_picker": {
-                                "name": "Tema Seçici",
-                                "description": "Önceden Ayarlanmış Snapchat Temaları"
-                            },
-                            "colors": {
-                                "name": "Özel Renkler",
-                                "description": "Renkleri özelleştirin\nNot: Kullanmak için Tema Seçici'de Özel Renkler'i seçin",
-                                "properties": {
-                                    "text_color": {
-                                        "name": "Ana Metin Rengi",
-                                        "description": "Snapchat'in ana metin rengini değiştirir"
-                                    },
-                                    "chat_chat_text_color": {
-                                        "name": "Arkadaş Akışı Ana Metin Rengi",
-                                        "description": "Arkadaş akışındaki ( Yeni Sohbet / Yeni Snap ve Sohbetler / Yazma / Arama / Cevapsız arama / Konuşma / Yeni Sesli Not ) metin rengini değiştirir"
-                                    },
-                                    "pending_sending_text_color": {
-                                        "name": "Arkadaş Akışı İkincil Metin Rengi",
-                                        "description": "Arkadaş akışındaki ( Teslim Edildi / Alındı / Gönderiliyor / Açıldı / Sohbet Etmek İçin Dokun / Tekrar Oynatmak İçin Beklet / Tekrar Oynatıldı / Sohbete Kaydedildi / Arandı ) metin rengini değiştirir"
-                                    },
-                                    "snap_with_sound_text_color": {
-                                        "name": "Sesli Snap'ler Metin Rengi",
-                                        "description": "Arkadaş akışındaki ( Yeni Snap ) metin rengini değiştirir\nNot: Yalnızca Video Snap'leri"
-                                    },
-                                    "snap_without_sound_text_color": {
-                                        "name": "Sessiz Snap'ler Metin Rengi",
-                                        "description": "Arkadaş akışındaki ( Yeni Snap ) metin rengini değiştirir\nNot: Yalnızca Video Snap'leri"
-                                    },
-                                    "background_color": {
-                                        "name": "Arkaplan Rengi",
-                                        "description": "Snapchat'in arkaplan rengini değiştirir"
-                                    },
-                                    "background_color_surface": {
-                                        "name": "Arkaplan Yüzey Rengi",
-                                        "description": "Snapchat'in arkaplan yüzey rengini değiştirir"
-                                    },
-                                    "action_menu_background_color": {
-                                        "name": "Eylem Menüsü Arkaplan Rengi",
-                                        "description": "Snapchat'in sohbet eylem menüsü arkaplan rengini değiştirir"
-                                    },
-                                    "action_menu_round_background_color": {
-                                        "name": "Eylem Menüsü Yuvarlak Arkaplan Rengi",
-                                        "description": "Snapchat'in sohbet eylem menüsü yuvarlak arkaplan rengini değiştirir"
-                                    },
-                                    "camera_grid_lines": {
-                                        "name": "Kamera Izgara Çizgileri Rengi",
-                                        "description": "Snapchat'in Kamera Önizlemesinde Izgara Çizgileri rengini değiştirir\nNot: Kameram ayarlarında ızgarayı etkinleştirin"
-                                    },
-                                    "friend_feed_conversations_line_color": {
-                                        "name": "Sohbetler Çizgi Rengi",
-                                        "description": "Arkadaş akışındaki Konuşmaları bölen çizgi bölücü rengini değiştirir "
-                                    }
-                                }
-                            }
-                        }
+                    "auto_close_friend_feed_menu": {
+                        "name": "Arkadaş Akışı Menüsünü Otomatik Olarak Kapat",
+                        "description": "Bir ayar düğmesine basıldıktan sonra Arkadaş Akışı Menüsünü otomatik olarak kapatır"
+                    },
+                    "custom_theme": {
+                        "name": "Özel Tema",
+                        "description": "Snapchat'in Renklerini Özelleştirme\nNot: Koyu bir tema seçerseniz (Amoled gibi), daha iyi sonuçlar için Snapchat ayarlarında karanlık modu etkinleştirmeniz gerekebilir"
                     }
                 }
             },
@@ -800,6 +771,10 @@
                             "walk_radius": {
                                 "name": "Yürüyüş Yarıçapı",
                                 "description": "Bu yarıçap (ft) içinde haritada rastgele dolaşın"
+                            },
+                            "show_battery_level": {
+                                "name": "Pil Seviyesini Göster",
+                                "description": "Arkadaşlarınızın pil seviyesini haritada gösterir"
                             }
                         },
                         "name": "Daha İyi Konum"
@@ -942,9 +917,9 @@
                                 "name": "Özel Emoji Fontu",
                                 "description": "Özel bir emoji yazı tipi kullanmanızı sağlar. Yalnızca .ttf yazı tipleriyle çalışır"
                             },
-                            "remap_executable": {
-                                "name": "Yürütülebiliri Yeniden Eşle",
-                                "description": "Bellekteki yürütülebilir bölgeleri yeniden eşler"
+                            "custom_shared_library": {
+                                "name": "Özel Paylaşımlı Kütüphane",
+                                "description": "Snapchat'e özel bir paylaşımlı kütüphane yükler. Bu özellik yalnızca test amaçlıdır"
                             }
                         }
                     },
@@ -1085,10 +1060,18 @@
                             "enhanced_transcript": {
                                 "name": "Geliştirilmiş Transkript",
                                 "description": "DeepL adresini kullanarak sesli not dökümünü iyileştirir.\nBu özelliği kullanmadan önce lütfen gizlilik politikasını okuduğunuzdan emin olun."
+                            },
+                            "enhanced_transcript_in_notifications": {
+                                "description": "DeepL adresini kullanarak bildirimlerdeki sesli notları yazıya döker. Bu, Sohbet Önizleme özelliğinin Daha İyi Bildirimler'de etkinleştirilmesini gerektirir",
+                                "name": "Bildirimlerde Geliştirilmiş Transkript"
                             }
                         },
                         "name": "Daha İyi Transkript",
                         "description": "Sesli not transkriptini iyileştirir"
+                    },
+                    "voice_note_auto_play": {
+                        "name": "Sesli Not Otomatik Oynatma",
+                        "description": "Geçerli sesli not bittikten sonra otomatik olarak bir sonraki sesli notu çalar"
                     }
                 }
             },
@@ -1192,11 +1175,11 @@
                 "speaking": "Konuşma"
             },
             "gallery_media_send_override": {
-                "ORIGINAL": "Orijinal",
+                "ORIGINAL": "Orijinal Medya",
                 "NOTE": "Sesli Not",
                 "SNAP": "Snap",
-                "SAVABLE_SNAP": "Kaydedilebilir Snap",
-                "always_ask": "Her Zaman Sor"
+                "always_ask": "Her Zaman Sor",
+                "SAVEABLE_SNAP": "Kaydedilebilir Snap"
             },
             "hide_ui_components": {
                 "hide_profile_call_buttons": "Profil Arama Düğmelerini Kaldır",
@@ -1205,7 +1188,10 @@
                 "hide_stickers_button": "Çıkartmalar Butonunu Kaldır",
                 "hide_voice_record_button": "Ses Kayıt Butonunu Kaldır",
                 "hide_unread_chat_hint": "Okunmamış Sohbet İpucunu Kaldır",
-                "hide_post_to_story_buttons": "Snap göndermeden önce Hikayeye Gönder düğmelerini kaldırın"
+                "hide_post_to_story_buttons": "Snap göndermeden önce Hikayeye Gönder düğmelerini kaldırın",
+                "hide_billboard_prompt": "Arkadaş Akışındaki Reklam Panolarını Kaldır",
+                "hide_snapchat_plus_gift_reminders": "Sohbetlerdeki Snapchat Plus hediye hatırlatıcılarını kaldır",
+                "hide_map_reactions": "Harita Tepkilerini Kaldır"
             },
             "home_tab": {
                 "map": "Harita",
@@ -1276,7 +1262,8 @@
             "disable_story_sections": {
                 "friends": "Arkadaşlar",
                 "discover": "Keşfet",
-                "following": "Takip Edilen"
+                "following": "Takip Edilen",
+                "suggested_stories": "Önerilen Hikayeler"
             },
             "disable_cameras": {
                 "front": "Ön Kamera",
@@ -1312,18 +1299,9 @@
                 "birthday_changes": "Birisi doğum gününü değiştirdiğinde bildir",
                 "bitmoji_background_changes": "Birisi Bitmoji arka planını değiştirdiğinde bildir"
             },
-            "theme_picker": {
-                "custom": "Özel Renkler",
-                "light_blue": "Açık Mavi",
-                "earthy_autumn": "Topraksı Sonbahar",
-                "mint_chocolate": "Naneli Çikolata",
-                "ginger_snap": "Zencefilli Snap",
-                "lemon_meringue": "Limonlu Beze",
-                "lava_flow": "Lav Akışı",
-                "ocean_fog": "Okyanus Sisi",
-                "alien_landscape": "Uzaylı Manzarası",
-                "amoled_dark_mode": "AMOLED Karanlık Mod",
-                "dark_blue": "Koyu Mavi",
+            "custom_theme": {
+                "amoled_dark_mode": "Amoled Karanlık Mod",
+                "custom": "Özel Temalar (Temaları yönetmek için Hızlı Eylemleri kullanın)",
                 "material_you_light": "Material You Aydınlık (Android 12+)",
                 "material_you_dark": "Material You Karanlık (Android 12+)"
             }
@@ -1411,7 +1389,8 @@
         "negative": "Hayır",
         "cancel": "İptal",
         "open": "Aç",
-        "download": "İndir"
+        "download": "İndir",
+        "send": "Gönder"
     },
     "profile_picture_downloader": {
         "button": "Profil Resmini İndir",
@@ -1591,6 +1570,14 @@
         "file_imports": {
             "name": "Dosya İçe Aktarımları",
             "description": "Snapchat'te kullanmak için dosyaları içe aktarma"
+        },
+        "security_features": {
+            "name": "Güvenlik Özellikleri",
+            "description": "Güvenlik özellikleri tercihlerini değiştir"
+        },
+        "theming": {
+            "name": "Temalandırma",
+            "description": "Snapchat'in görünümünü ve hissini özelleştirin"
         }
     },
     "scopes": {
@@ -1642,5 +1629,53 @@
         "bitmoji_selfie_changed": "{username} Bitmoji selfie'sini değiştirdi",
         "bitmoji_background_changed": "{username} Bitmoji arka planını değiştirdi",
         "bitmoji_scene_changed": "{username} Bitmoji sahnesini değiştirdi"
+    },
+    "theming_attributes": {
+        "sigColorTextPrimary": "Ana Metin Rengi",
+        "sigColorChatChat": "Ana Arkadaş Besleme Metin Rengi",
+        "sigColorChatPendingSending": "İkincil Arkadaş Besleme Metin Rengi",
+        "sigColorChatSnapWithSound": "Sesli Metin Renkli Snapler",
+        "sigColorChatSnapWithoutSound": "Sesli Metin Rengi Olmayan Snapler",
+        "actionSheetDescriptionTextColor": "Eylem Menüsü Açıklama Metin Rengi",
+        "sigColorBackgroundMain": "Arkaplan Rengi",
+        "listBackgroundDrawable": "Konuşma listesi Arkaplanı",
+        "sigColorChatConversationsLine": "Konuşmalar Çizgi Rengi",
+        "actionSheetBackgroundDrawable": "Eylem Menüsü Arkaplan Rengi",
+        "actionSheetRoundedBackgroundDrawable": "Eylem Menüsü Yuvarlak Arkaplan Rengi",
+        "sigColorBackgroundSurface": "Arkaplan Yüzey Rengi",
+        "sigColorIconPrimary": "Eylem Menüsü Simge Rengi",
+        "sigExceptionColorCameraGridLines": "Kamera Izgara Çizgileri Rengi",
+        "listDivider": "Liste Bölücü Rengi",
+        "sigColorIconSecondary": "İkincil Simge Rengi",
+        "itemShapeFillColor": "Ürün Şekli Dolgu Rengi",
+        "ringColor": "Halka Rengi",
+        "ringStartColor": "Halka Başlangıç Rengi",
+        "sigColorLayoutPlaceholder": "Düzen Yer Tutucu Rengi",
+        "scButtonColor": "Snapchat Buton Rengi",
+        "recipientPillBackgroundDrawable": "Alıcı Hap Arkaplanı",
+        "boxBackgroundColor": "Kutu Arkaplan Rengi",
+        "editTextColor": "Metin Rengini Düzenle",
+        "chipBackgroundColor": "Çip Arkaplan Rengi",
+        "recipientInputStyle": "Alıcı Giriş Stili",
+        "rangeFillColor": "Aralık Dolgu Rengi",
+        "pstsIndicatorColor": "PSTS Gösterge Rengi",
+        "pstsTabBackground": "PSTS Sekme Arkaplanı",
+        "pstsDividerColor": "PSTS Bölücü Rengi",
+        "tabTextColor": "Sekme Metin Rengi",
+        "statusBarForeground": "Durum Çubuğu Önplan Rengi",
+        "statusBarBackground": "Durum Çubuğu Arkaplan Rengi",
+        "strokeColor": "Vuruş Rengi",
+        "storyReplayViewRingColor": "Hikaye Tekrarı Görünüm Daire Rengi",
+        "sigColorButtonPrimary": "Birincil Düğme Rengi",
+        "sigColorBaseAppYellow": "Temel Uygulama Sarı Renk",
+        "sigColorBackgroundSurfaceTranslucent": "Yarı Saydam Arkaplan Yüzey Rengi",
+        "sigColorStoryRingDiscoverTabThumbnailStoryRing": "Hikaye Halkası Keşfet Sekmesi Küçük Resim Hikaye Halkası Rengi",
+        "sigColorStoryRingFriendsFeedStoryRing": "Hikaye Halkası Arkadaş Beslemesi Hikaye Halkası Rengi"
+    },
+    "send_override_dialog": {
+        "title": "Medyayı {type} olarak gönder",
+        "duration": "Süre: {duration}",
+        "saveable_snap_hint": "Snap'i sohbette kaydedilebilir hale getirin",
+        "unlimited_duration": "Sınırsız"
     }
 }

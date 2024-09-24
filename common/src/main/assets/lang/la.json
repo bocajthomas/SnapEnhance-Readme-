@@ -141,29 +141,6 @@
             },
             "user_interface": {
                 "properties": {
-                    "customize_ui": {
-                        "properties": {
-                            "colors": {
-                                "properties": {
-                                    "snap_with_sound_text_color": {
-                                        "description": "Mutat textum colorem (New Snap) in amico feed\nNota: Video snaps Tantum"
-                                    },
-                                    "snap_without_sound_text_color": {
-                                        "description": "Mutat textum colorem (New Snap) in amico feed\nNota: Video snaps Tantum"
-                                    },
-                                    "pending_sending_text_color": {
-                                        "description": "Mutat textum colorem (Tradidit / Accepit / Mittens / Patefecit / Tap Ad Chat / Habe replay / Replayed / Servatum in Chat / Vocatur) in amico feed"
-                                    },
-                                    "chat_chat_text_color": {
-                                        "description": "Mutat textum colorem (Novum Chat/Novum Snap Et Sermones / Typing / Vocans / Missed call / Loquens / Novae Voice Nota) in amico feed"
-                                    },
-                                    "camera_grid_lines": {
-                                        "description": "Mutationes Snapchats Gridlines color in Camera Praevius\nNota: Potestatem eget in mea camera occasus\nNota: Video snaps Tantum"
-                                    }
-                                }
-                            }
-                        }
-                    },
                     "hide_friend_feed_entry": {
                         "description": "Amicus certus in amicum ab amico Feed\nUtere socialis tab administrare haec factura"
                     }
