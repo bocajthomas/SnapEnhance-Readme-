@@ -36,7 +36,7 @@
             "file_imports": "Importations de fichiers",
             "better_location": "Localisation Améliorée",
             "theming": "Thèmes",
-            "edit_theme": "Éditer le thème",
+            "edit_theme": "Modifier le thème",
             "manage_repos": "Gérer les dépôts",
             "manage_rule_feature": "Gérer la règle de la fonctionnalité"
         },
@@ -476,7 +476,11 @@
                         "description": "Ajoute des icônes d'indicateurs spécifiques aux messages\nRemarque : les indicateurs peuvent ne pas être à 100% précis"
                     },
                     "custom_theme": {
-                        "description": "Personnaliser les couleurs de Snapchat\nNote : si vous choisissez un thème sombre (comme AMOLED), vous devrez peut-être activer le mode sombre dans les paramètres d'apparence pour obtenir de meilleurs résultats"
+                        "description": "Personnaliser les couleurs de Snapchat\nNote : si vous choisissez un thème sombre (comme AMOLED), vous devrez peut-être activer le mode sombre dans les paramètres d'apparence pour obtenir de meilleurs résultats",
+                        "name": "Thème personnalisé"
+                    },
+                    "auto_close_friend_feed_menu": {
+                        "description": "Ferme automatiquement le menu Friend Feed après avoir appuyé sur un bouton de réglage"
                     }
                 }
             },
@@ -1289,7 +1293,9 @@
                 "woodland_mystery": "Mystère des bois",
                 "creamy_vanilla": "Vanille crémeuse",
                 "lava_flow": "Coulée de lave",
-                "amoled_dark_mode": "Mode sombre AMOLED"
+                "amoled_dark_mode": "Mode sombre AMOLED",
+                "galaxy_glitter": "Galaxie Paillettes",
+                "cherry_bomb": "Bombe cerise"
             }
         }
     },
