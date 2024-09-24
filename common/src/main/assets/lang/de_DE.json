@@ -35,9 +35,9 @@
             "edit_rule": "Regel bearbeiten",
             "file_imports": "Dateiimporte",
             "better_location": "Bessere Lage",
-            "manage_repos": "Repository bearbeiten",
+            "manage_repos": "Repositorys verwalten",
             "edit_theme": "Design ändern",
-            "theming": "Design"
+            "theming": "Thematisierung"
         },
         "sections": {
             "features": {
@@ -1524,10 +1524,12 @@
             "description": "Sehen Sie sich den Verlauf der protokollierten Nachrichten an"
         },
         "security_features": {
-            "name": "Sicherheitsfunktionen"
+            "name": "Sicherheitsfunktionen",
+            "description": "Ändern Sie die Einstellungen für Sicherheitsfunktionen"
         },
         "theming": {
-            "name": "Designs"
+            "name": "Designs",
+            "description": "Passen Sie das Erscheinungsbild von Snapchat an"
         }
     },
     "mark_as_seen": {
