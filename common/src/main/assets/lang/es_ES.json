@@ -35,10 +35,10 @@
             "edit_rule": "Editar regla",
             "file_imports": "Importación de archivos",
             "better_location": "Mejor ubicación",
-            "theming": "Temática",
-            "edit_theme": "Editar tema",
-            "manage_repos": "Administrar repositorios",
-            "manage_rule_feature": "Gestionar las reglas"
+            "edit_theme": "Editar el tema",
+            "manage_repos": "Gestionar repositorios",
+            "manage_rule_feature": "Gestión de reglas",
+            "theming": "Temática"
         },
         "sections": {
             "home": {
@@ -47,7 +47,7 @@
                 "update_button": "Descargar",
                 "debug_build_summary_date": "Fecha de desarrollo: {date} (hace{days} día(s))",
                 "quick_actions_title": "Acciones rápidas",
-                "version_title": "v{versionName} · por rhunk",
+                "version_title": "v{versionName} · bifurcación de bocajthomas",
                 "debug_build_summary_title": "Estás ejecutando una versión de depuración de SnapEnhance",
                 "debug_build_summary_content": "Versión {versionName} ({versionCode})"
             },
@@ -168,19 +168,19 @@
                 "suspend_location_updates": "Suspender las actualizaciones de ubicación"
             },
             "theming": {
-                "no_themes_hint": "No se encontraron temas"
+                "no_themes_hint": "Ningún tema encontrado"
             },
             "manage_rule_feature": {
-                "whitelist_state_button": "Seleccionar amig@s/grupos permitidos",
-                "blacklist_state_option": "Todo el mundo excepto ...",
-                "blacklist_state_subtext": "Todos excepto {count} amig@s/grupos se verán afectados por esta regla",
-                "blacklist_state_button": "Seleccionar amig@s/grupos excluidos",
-                "clear_list_button": "Borrar la lista de amig@s/grupos",
                 "disable_state_option": "Desactivado",
-                "disable_state_subtext": "Ningun@s amig@s/grupos se verán afectados",
-                "dialog_clear_confirmation_text": "¿Seguro que quieres borrar la lista?",
-                "whitelist_state_option": "Nadie excepto...",
-                "whitelist_state_subtext": "Solo {count} amig@s/grupos se verán afectados por esta regla"
+                "disable_state_subtext": "Ningún amigo/grupo se verá afectado",
+                "whitelist_state_option": "Nadie excepto ...",
+                "whitelist_state_subtext": "Solo {count} amigos/grupos se verán afectados por esta regla",
+                "whitelist_state_button": "Seleccionar amigos/grupos permitidos",
+                "blacklist_state_option": "Todo el mundo excepto ...",
+                "blacklist_state_subtext": "Todos excepto {count} amigos/grupos se verán afectados por esta regla",
+                "blacklist_state_button": "Seleccionar amigos/grupos excluidos",
+                "clear_list_button": "Borrar lista de amigos/grupos",
+                "dialog_clear_confirmation_text": "¿Seguro que quieres borrar la lista?"
             }
         },
         "dialogs": {
@@ -316,13 +316,17 @@
             "description": "Ver el historial de mensajes guardados",
             "name": "Historial del registro"
         },
-        "theming": {
-            "description": "Personaliza la apariencia de Snapchat",
-            "name": "Temática"
-        },
         "security_features": {
             "name": "Características de seguridad",
             "description": "Cambiar las preferencias de las funciones de seguridad"
+        },
+        "theming": {
+            "name": "Temática",
+            "description": "Personaliza el aspecto de Snapchat"
+        },
+        "disclaimer_statement": {
+            "name": "Declaración de exención de responsabilidad",
+            "description": "Lea la declaración de exención de responsabilidad"
         }
     },
     "scopes": {
@@ -437,13 +441,13 @@
                         "name": "Editar anulación de texto",
                         "description": "Anula el comportamiento de entradas de texto"
                     },
-                    "auto_close_friend_feed_menu": {
-                        "name": "Menú de feed de amigos cercanos automáticos",
-                        "description": "Cierra automáticamente el menú de Feed de amigos después de presionar un botón de configuración"
-                    },
                     "custom_theme": {
                         "name": "Tema personalizado",
-                        "description": "Personalizar los colores de Snapchat\nNota: si eliges un tema oscuro (como Amoled), es posible que tengas que activar el modo oscuro en los ajustes de Snapchat para obtener mejores resultados"
+                        "description": "Personalizar los colores de Snapchat\nNota: si eliges un tema oscuro (como AMOLED), es posible que tengas que activar el modo oscuro en los ajustes de Apariencia de la aplicación para obtener mejores resultados"
+                    },
+                    "auto_close_friend_feed_menu": {
+                        "name": "Menú de feed de amigos cerrado automáticamente",
+                        "description": "Cierra automáticamente el menú Friend Feed después de pulsar un botón de configuración"
                     }
                 },
                 "name": "Interfaz de usuario",
@@ -538,8 +542,8 @@
                         "description": "Obliga que los imágenes se guardan en un formato especificado"
                     },
                     "auto_download_voice_notes": {
-                        "description": "Descarga automáticamente las notas de voz al reproducirlas",
-                        "name": "Descarga automática de notas de voz"
+                        "name": "Descarga automática de notas de voz",
+                        "description": "Descarga automáticamente las notas de voz al reproducirlas"
                     }
                 },
                 "description": "Descargar multimedios de Snapchat",
@@ -714,12 +718,12 @@
                         "description": "Te permite ver información del grupo después de ser expulsada/o"
                     },
                     "mark_snap_as_seen_button": {
-                        "description": "Agrega un botón para marcar un Snap como visto al visualizarlo.\nEsto funcionará incluso cuando el modo oculto esté habilitado",
-                        "name": "Botón Marcar Snap como visto"
+                        "name": "Marcar como visto",
+                        "description": "Añade un botón para marcar un Snap como visto al visualizarlo.\nEsto funcionará incluso cuando el modo oculto esté activado"
                     },
                     "skip_when_marking_as_seen": {
-                        "description": "Salta automáticamente al siguiente Snap al marcar un Snap como visto.\nUsar en combinación con el botón Marcar como visto",
-                        "name": "Saltar al marcar como visto"
+                        "name": "Omitir al marcar como visto",
+                        "description": "Saltar automáticamente a la siguiente instantánea al marcar una instantánea como vista.\nUtilízalo en combinación con el botón Marcar instantánea como vista"
                     }
                 },
                 "name": "mensajería",
@@ -770,8 +774,8 @@
                                 "description": "Falsifica el estado de escuchar a música en el mapa"
                             },
                             "show_battery_level": {
-                                "name": "Mostrar nivel de bateria",
-                                "description": "Muestta el nivel de bateria de tu amigos en el mapa"
+                                "name": "Mostrar nivel de batería",
+                                "description": "Muestra el nivel de batería de tus amigos en el mapa"
                             }
                         },
                         "name": "Mejor ubicación",
@@ -964,8 +968,8 @@
                                 "description": "Te permite utilizar una fuente para los emoji personalizada. Sólo funciona con fuentes .ttf"
                             },
                             "custom_shared_library": {
-                                "name": "Libreria compartida customizada",
-                                "description": "Carga una biblioteca compartida personalizada en Snapchat. Esta función es solo para fines de prueba."
+                                "name": "Biblioteca compartida personalizada",
+                                "description": "Carga una biblioteca compartida personalizada en Snapchat. Esta función es solo para fines de prueba"
                             }
                         },
                         "description": "Funciones inseguras que se integran al código nativo de Snapchat"
@@ -1095,30 +1099,30 @@
                         "name": "Corrección del menú contextual"
                     },
                     "better_transcript": {
+                        "name": "Mejor transcripción",
+                        "description": "Mejora la transcripción de notas de voz",
                         "properties": {
-                            "enhanced_transcript": {
-                                "description": "Mejora la transcripción de notas de voz usando DeepL.\nAntes de utilizar esta función, asegúrese de haber leído su política de privacidad.",
-                                "name": "Transcripción mejorada"
-                            },
                             "enhanced_transcript_in_notifications": {
-                                "name": "Transcripción mejorada en las notificaciones",
-                                "description": "Transcribe notas de voz en notificaciones utilizando la dirección DeepL. Esto requiere que la función Vista previa del chat esté habilitada en Mejores notificaciones"
+                                "description": "Transcribe notas de voz en las notificaciones utilizando DeepL. Esto requiere que la función de la vista previa del chat esté activada en Mejores notificaciones",
+                                "name": "Transcripción mejorada en las notificaciones"
                             },
                             "force_transcription": {
-                                "description": "Permitir transcribir todas las notas de voz",
+                                "description": "Permite transcribir todas las notas de voz",
                                 "name": "Forzar transcripción de notas de voz"
                             },
+                            "enhanced_transcript": {
+                                "name": "Transcripción mejorada",
+                                "description": "Mejora la transcripción de notas de voz mediante DeepL.\nAntes de utilizar esta función, asegúrate de haber leído su política de privacidad."
+                            },
                             "preferred_transcription_lang": {
-                                "name": "Idioma prefiero para la transcripción",
-                                "description": "El idioma preferido para la transcripción de la nota de voz (por ejemplo EN, ES, FR)"
+                                "name": "Idioma de transcripción preferido",
+                                "description": "El idioma preferido para la transcripción de la nota de voz (por ejemplo, EN, ES, FR)"
                             }
-                        },
-                        "description": "Mejora la transcripción de notas de voz",
-                        "name": "Mejor transcripción"
+                        }
                     },
                     "voice_note_auto_play": {
-                        "description": "Reproducir automáticamente la siguiente nota de voz después de que finalice la actual",
-                        "name": "Reproducir automáticamente las notas de voz"
+                        "name": "Reproducción automática de notas de voz",
+                        "description": "Reproduce automáticamente la siguiente nota de voz cuando termina la actual"
                     }
                 },
                 "name": "Experimental"
@@ -1197,6 +1201,12 @@
                 "hide_voice_record_button": "Quitar botón de Grabar voz",
                 "hide_unread_chat_hint": "Quitar indicación de chat no leído",
                 "hide_chat_call_buttons": "Quitar botones de llamada de chat",
+                "hide_post_to_story_buttons": "Eliminar botones de publicación en historias",
+                "hide_snap_create_group_buttons": "Eliminar los botones de creación de grupos de snap",
+                "hide_chat_camera_button": "Quitar el botón de la cámara del chat",
+                "hide_chat_gallery_button": "Eliminar el botón de la galería de chat",
+                "hide_explorer_token_button": "Botón para eliminar el token del explorador",
+                "hide_gift_snapchat_plus_reminders": "Eliminar recordatorios de regalos de Snapchat Plus",
                 "hide_post_to_story_buttons": "Eliminar los botones Publicar en la historia antes de enviar un Snap",
                 "hide_billboard_prompt": "Eliminar el aviso de la página principal en el feed de amigos",
                 "hide_snapchat_plus_gift_reminders": "Eliminar los recordatorios de regalo de Snapchat Plus en las conversaciones",
@@ -1288,7 +1298,7 @@
             },
             "gallery_media_send_override": {
                 "always_ask": "Preguntar siempre",
-                "ORIGINAL": "Archivo multimedia original",
+                "ORIGINAL": "Medios originales",
                 "NOTE": "Nota de voz",
                 "SNAP": "Snap",
                 "SAVEABLE_SNAP": "Snap guardable"
@@ -1335,7 +1345,7 @@
                 "discover": "Descubrir",
                 "friends": "Amigxs",
                 "following": "Siguiendo",
-                "suggested_stories": "Historias recomendadas"
+                "suggested_stories": "Historias sugeridas"
             },
             "disable_cameras": {
                 "front": "Cámara frontal",
@@ -1354,10 +1364,44 @@
                 "bitmoji_scene_changes": "Notificar si alguien cambia su escena de Bitmoji"
             },
             "custom_theme": {
-                "custom": "Temas personalizados (utilice las acciones rápidas para gestionar los temas)",
-                "material_you_dark": "Material You oscuro (Android 12+)",
-                "amoled_dark_mode": "Modo oscuro Amoled",
-                "material_you_light": "Material You claro (Android 12+)"
+                "light_blue": "Azul claro",
+                "material_you_light": "Material You Claro (Android 12+)",
+                "midnight_slate": "Pizarra medianoche",
+                "cherry_bomb": "Bomba de cereza",
+                "earthy_autumn": "Colores de otoño",
+                "mint_chocolate": "Chocolate con menta",
+                "amoled_dark_mode": "Modo oscuro AMOLED",
+                "ocean_fog": "Niebla del océano",
+                "spicy_mustard": "Mostaza picante",
+                "peppermint_candy": "Caramelo de menta",
+                "gingerbread_house": "Casa de jengibre",
+                "art_deco_glam": "Art Decó Glam",
+                "ocean_depths": "Profundidades del océano",
+                "bubblegum_pink": "Rosa chicle",
+                "firefly_night": "Noche de luciérnagas",
+                "apple_orchard": "Huerto de manzanas",
+                "lavender_field": "Campo de lavanda",
+                "lemon_drop": "Gota de limón",
+                "custom": "Temas personalizados (utiliza las acciones rápidas para gestionar los temas)",
+                "ginger_snap": "Galletas de jengibre",
+                "material_you_dark": "Material You Oscuro (Android 12+)",
+                "dark_blue": "Azul oscuro",
+                "lemon_meringue": "Merengue de limón",
+                "lava_flow": "Flujo de lava",
+                "zesty_lemon": "Limón picante",
+                "tropical_paradise": "Paraíso tropical",
+                "industrial_chic": "Estilo industrial elegante",
+                "woodland_mystery": "Misterio del bosque",
+                "galaxy_glitter": "Brillo de galaxia",
+                "creamy_vanilla": "Crema de vainilla",
+                "spicy_chili": "Chile picante",
+                "lemon_sorbet": "Sorbete de limón",
+                "spring_meadow": "Pradera de primavera",
+                "cosmic_night": "Noche cósmica",
+                "modern_farmhouse": "Casa de campo moderna",
+                "alien_landscape": "Paisaje extraterrestre",
+                "midnight_library": "Biblioteca de medianoche",
+                "watercolor_wash": "Acuarela"
             }
         }
     },

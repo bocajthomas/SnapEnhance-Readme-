@@ -32,7 +32,12 @@
             "manage_scope": "Muokkaa laajuutta",
             "messaging_preview": "Esikatsoa",
             "friend_tracker": "Kavereiden Seuranta",
-            "edit_rule": "Muokkaa Sääntöä"
+            "edit_rule": "Muokkaa Sääntöä",
+            "theming": "Teemat",
+            "edit_theme": "Muokkaa Teemaa",
+            "manage_repos": "Hallinnoi arkistoja",
+            "file_imports": "Tiedostojen Tuonti",
+            "better_location": "Tarkempi Sijainti"
         },
         "sections": {
             "features": {
@@ -72,7 +77,12 @@
             "home": {
                 "update_title": "SnapEnchance päivitys",
                 "update_content": "Versio {version} on saatavilla!",
-                "update_button": "Lataa"
+                "update_button": "Lataa",
+                "debug_build_summary_date": "Kasattu: {date} ({days} days ago)",
+                "debug_build_summary_content": "Versio {versionName} ({versionCode})",
+                "version_title": "V{versionName} · Forked by Jacob.",
+                "debug_build_summary_title": "Käytössäsi on SE Extendedin Debug versio",
+                "quick_actions_title": "Nopeat toiminnot"
             },
             "tasks": {
                 "no_tasks": "Ei tehtäviä",
@@ -81,7 +91,8 @@
                 "remove_all_tasks_title": "Oletko varma että haluat poistaa kaikki tehtävät?",
                 "delete_files_option": "Myös poista tiedostot",
                 "remove_selected_tasks_confirm": "Poista tehtävät?",
-                "remove_all_tasks_confirm": "Poista kaikki tehtävät?"
+                "remove_all_tasks_confirm": "Poista kaikki tehtävät?",
+                "failed_to_open_file": "Tiedoston avaaminen epäonnistui"
             },
             "manage_scope": {
                 "logged_stories_button": "Näytä logatut tarinat",
@@ -125,6 +136,37 @@
                 "bridge_init_failed": "Viesti sillan käyttöönotto epäonnistui",
                 "message_fetch_failed": "Viestien haku epäonnistui",
                 "no_message_hint": "Ei viestiä"
+            },
+            "better_location": {
+                "latitude_dialog_hint": "Leveysaste",
+                "longitude_dialog_hint": "Pituusaste",
+                "save_dialog_button": "Tallenna",
+                "spoofed_coordinates_title": "Leveysaste {latitude}, Pituusaste {longitude}",
+                "save_coordinates_dialog_title": "Tallenna koordinaatit",
+                "saved_name_dialog_hint": "Tallennettu Nimi",
+                "suspend_location_updates": "Keskeytä sijaintipäivitykset",
+                "saved_coordinates_title": "Tallennetut koordinaatit",
+                "choose_location_button": "Valitse Sijainti",
+                "teleport_to_friend_button": "Hyppää kaverin luokse",
+                "spoof_location_toggle": "Väärennä sijainti",
+                "search_bar": "Hae",
+                "no_friends_map": "Ei ystäviä kartalla",
+                "no_friends_found": "Ystäviä ei löytynyt",
+                "no_saved_coordinates_hint": "Ei tallennettuja koordinaatteja",
+                "delete_dialog_title": "Poista tallennettu koordinaatti",
+                "delete_dialog_message": "Haluatko varmasti poistaa tämän tallennetun koordinaatin?",
+                "teleport_to_friend_title": "Hyppää kaverin luokse"
+            },
+            "theming": {
+                "no_themes_hint": "Teemoja ei löytynyt"
+            },
+            "file_imports": {
+                "file_delete_failed": "Tiedoston poistaminen epäonnistui",
+                "no_files_hint": "Täältä voit tuoda tiedostoja käytettäväksi Snapchatissa. Tuo tiedosto painamalla alla olevaa painiketta.",
+                "import_file_button": "Tuo tiedosto",
+                "file_not_found": "Tiedostoa ei löytynyt",
+                "file_import_failed": "Tiedoston tuonti epäonnistui: {error}",
+                "file_imported": "Tiedoston tuonti onnistui"
             }
         },
         "dialogs": {
@@ -147,6 +189,13 @@
             "scripting_warning": {
                 "title": "Varoitus",
                 "content": "SnapEnhance sisältää skriptityökalun, joka mahdollistaa käyttäjän määrittämän koodin suorittamisen. Ole erittäin varovainen ja asenna moduuleja vain tunnetuista ja luotettavista lähteistä. Luottamattomat moduulit voivat aiheuttaa tietoturvariskejä järjestelmällesi."
+            },
+            "export_config": {
+                "title": "Viedäänkö arkaluonteisia tietoja?",
+                "content": "Haluatko viedä configuraation arkaluontoisilla tiedoilla? (Kuten sijaintikoordinaatit jne.)"
+            },
+            "file_imports": {
+                "settings_select_file_hint": "Valitse tuotu tiedosto"
             }
         }
     },
@@ -165,7 +214,7 @@
                 }
             },
             "stealth": {
-                "name": "",
+                "name": "Stealth mode",
                 "description": "Estää ketään tietämästä, että olet avannut heidän snäpin tai chatin",
                 "options": {
                     "blacklist": "Sulje pois haamutilasta",
@@ -374,6 +423,48 @@
                     "enable_friend_feed_menu_bar": {
                         "name": "Ystäväsyötteen valikkopalkki",
                         "description": "Ottaa käyttöön uuden ystäväsyötteen valikkopalkin"
+                    },
+                    "snap_preview": {
+                        "description": "Näyttää pienen esikatselun näkemättömien Snappien vieressä chatissa",
+                        "name": "Snap preview"
+                    },
+                    "prevent_message_list_auto_scroll": {
+                        "description": "Estää viestiluetteloa menemästä alas viestiä lähetettäessä/vastaanotettaessa",
+                        "name": "Estä viestiluettelon automaattinen vieritys"
+                    },
+                    "hide_story_suggestions": {
+                        "name": "Piilota tarinaehdotukset",
+                        "description": "Poistaa ehdotukset Stories-sivulta"
+                    },
+                    "edit_text_override": {
+                        "description": "Ohittaa tekstikentän toiminnan",
+                        "name": "Muokkaa tekstin ohitusta"
+                    },
+                    "custom_theme": {
+                        "name": "Mukautettu Teema",
+                        "description": "Mukauta Snapchatin värejä\nHuomautus: jos valitset tumman teeman (kuten AMOLED), saatat joutua ottamaan tumman tilan käyttöön sovelluksen ulkoasuasetuksissa varmistaaksesi oikein toimivuuden"
+                    },
+                    "hide_quick_add_friend_feed": {
+                        "name": "Piilota Quick Add ystäväsyötteessä",
+                        "description": "Piilottaa Quick Add osion ystäväsyötteestä"
+                    },
+                    "opera_media_quick_info": {
+                        "name": "Opera Media pikatiedot",
+                        "description": "Näyttää hyödyllisiä tietoja mediasta, kuten luontipäivämäärän Opera-katseluohjelman kontekstivalikossa"
+                    },
+                    "old_bitmoji_selfie": {
+                        "name": "Vanha Bitmoji-selfie",
+                        "description": "Tuo takaisin Bitmoji-selfiet vanhemmista Snapchat-versioista"
+                    },
+                    "hide_settings_gear": {
+                        "name": "Piilota Asetukset Nappula",
+                        "description": "Piilottaa SE Extended Settings Gearin kaverisyötteessä"
+                    },
+                    "auto_close_friend_feed_menu": {
+                        "name": "Sulje kaverisyötevalikko automaattisesti"
+                    },
+                    "stealth_mode_indicator": {
+                        "description": "Lisää 👻-emojin Stealth modessa käytyjen keskustelujen viereen"
                     }
                 }
             },
@@ -407,7 +498,30 @@
                     },
                     "better_notifications": {
                         "name": "Paremmat ilmoitukset",
-                        "description": "Antaa enemmän tietoja vastaanotetuissa ilmoituksissa"
+                        "description": "Antaa enemmän tietoja vastaanotetuissa ilmoituksissa",
+                        "properties": {
+                            "media_preview": {
+                                "name": "Median esikatselu"
+                            },
+                            "smart_replies": {
+                                "name": "Älykkäät vastaukset"
+                            },
+                            "group_notifications": {
+                                "name": "Ryhmän ilmoitukset"
+                            },
+                            "chat_preview": {
+                                "name": "Chatin esikatselu"
+                            },
+                            "download_button": {
+                                "name": "Lataa-painike"
+                            },
+                            "reply_button": {
+                                "name": "Vastaa-painike"
+                            },
+                            "media_caption": {
+                                "name": "Median kuvateksti"
+                            }
+                        }
                     },
                     "notification_blacklist": {
                         "name": "Ilmoitusten Esto Lista",
@@ -415,7 +529,15 @@
                     },
                     "message_logger": {
                         "name": "Viestiloki",
-                        "description": "Estää viestien poistamisen"
+                        "description": "Estää viestien poistamisen",
+                        "properties": {
+                            "auto_purge": {
+                                "name": "Automaattinen puhdistus"
+                            },
+                            "message_filter": {
+                                "name": "Viestisuodatin"
+                            }
+                        }
                     },
                     "auto_save_messages_in_conversations": {
                         "name": "Automaattinen Viestien Tallennus",
@@ -424,6 +546,39 @@
                     "gallery_media_send_override": {
                         "name": "Gallerian Medialähetyksen Ohitus",
                         "description": "Väärennä median lähde lähetettäessä galleriasta"
+                    },
+                    "mark_snap_as_seen_button": {
+                        "description": "Lisää painikkeen, joka merkitsee Snapin sellaisena kuin se näkyy sitä katseltaessa.\nTämä toimii myös silloin, kun Stealth Mode on käytössä",
+                        "name": "Merkitse Snap nähdyksi"
+                    },
+                    "bypass_screenshot_detection": {
+                        "name": "Ohita kuvakaappaus tunnistus",
+                        "description": "Estää Snapchatia havaitsemasta, kun otat kuvakaappauksen"
+                    },
+                    "prevent_story_rewatch_indicator": {
+                        "name": "Estä tarinan uudelleenkatselun indikaattori",
+                        "description": "Estää ketään tietämästä, että olet katsonut heidän tarinansa uudelleen"
+                    },
+                    "hide_peek_a_peek": {
+                        "name": "Piilota Peek-a-Peek",
+                        "description": "Estää ilmoituksen lähettämisen, kun pyyhkäiset puoliksi keskusteluun"
+                    },
+                    "auto_mark_as_read": {
+                        "name": "Merkitse automaattisesti luetuksi",
+                        "description": "Merkitsee viestit/napsautukset automaattisesti luetuiksi, vaikka Stealth Mode olisi käytössä"
+                    },
+                    "skip_when_marking_as_seen": {
+                        "name": "Ohita, kun merkitset nähdyksi"
+                    },
+                    "half_swipe_notifier": {
+                        "properties": {
+                            "min_duration": {
+                                "name": "Minimikesto"
+                            },
+                            "max_duration": {
+                                "name": "Enimmäiskesto"
+                            }
+                        }
                     }
                 }
             },
@@ -458,6 +613,20 @@
                     "disable_snap_splitting": {
                         "name": "Poista Snäppien katkominen käytöstä",
                         "description": "Estää Snäppejä jakautumasta useisiin osiin\nLähettämäsi kuvat muuttuvat videoiksi"
+                    },
+                    "better_location": {
+                        "properties": {
+                            "walk_radius": {
+                                "name": "Kävelysäde"
+                            },
+                            "spoof_location": {
+                                "name": "Väärennä sijainti"
+                            },
+                            "spoof_headphones": {
+                                "name": "Väärennä Kuulokkeet"
+                            }
+                        },
+                        "name": "Tarkempi Sijainti"
                     }
                 }
             },
@@ -476,6 +645,18 @@
                     "force_camera_source_encoding": {
                         "name": "Pakota kameran lähdekoodaus",
                         "description": "Pakottaa kameran lähdekoodauksen"
+                    },
+                    "black_photos": {
+                        "name": "Mustat valokuvat"
+                    },
+                    "disable_cameras": {
+                        "name": "Poista kamerat käytöstä"
+                    },
+                    "custom_resolution": {
+                        "name": "Mukautettu resoluutio"
+                    },
+                    "hevc_recording": {
+                        "name": "HEVC-Nauhoitus"
                     }
                 }
             },
@@ -508,12 +689,31 @@
                             "disable_bitmoji": {
                                 "name": "Poista Bitmoji Käytöstä",
                                 "description": "Poista kavereiden profiili Bitmojit käytöstä"
+                            },
+                            "composer_hooks": {
+                                "name": "Composer hooks",
+                                "properties": {
+                                    "composer_console": {
+                                        "name": "Composer Konsoli"
+                                    },
+                                    "composer_logs": {
+                                        "name": "Composer Lokit"
+                                    }
+                                }
                             }
                         }
                     },
                     "spoof": {
                         "name": "Väärennä",
-                        "description": "Väärennä erinäisiä tietoja sinusta"
+                        "description": "Väärennä erinäisiä tietoja sinusta",
+                        "properties": {
+                            "fingerprint": {
+                                "name": "Laitteen sormenjälki"
+                            },
+                            "android_id": {
+                                "name": "Androidin ID"
+                            }
+                        }
                     },
                     "infinite_story_boost": {
                         "name": "Loputon Tarinan Tehostus",
@@ -548,6 +748,32 @@
                     "hidden_snapchat_plus_features": {
                         "name": "Piilotetut Snapchat Plus -ominaisuudet",
                         "description": "Ottaa käyttöön julkaisemattomat/beta Snapchat Plus -ominaisuudet\nEi ehkä toimi vanhemmissa Snapchat-versioissa"
+                    },
+                    "better_transcript": {
+                        "properties": {
+                            "enhanced_transcript": {
+                                "name": "Parannettu transkriptio"
+                            }
+                        },
+                        "name": "Parempi transkriptio"
+                    },
+                    "app_lock": {
+                        "name": "Sovelluksen lukitus"
+                    },
+                    "cof_experiments": {
+                        "name": "COF experiments"
+                    },
+                    "edit_message": {
+                        "name": "Muokkaa viestejä"
+                    },
+                    "story_logger": {
+                        "name": "Tarinoiden Tallentaja"
+                    },
+                    "call_recorder": {
+                        "name": "Puhelun tallennin"
+                    },
+                    "account_switcher": {
+                        "name": "Tilinvaihtaja"
                     }
                 }
             },
@@ -562,6 +788,20 @@
                     "module_folder": {
                         "name": "Moduulin kansio",
                         "description": "Kansio, jossa komentosarjat sijaitsevat"
+                    },
+                    "auto_reload": {
+                        "name": "Automaattinen uudelleenlataus"
+                    },
+                    "integrated_ui": {
+                        "name": "Integroitu käyttöliittymä"
+                    }
+                }
+            },
+            "friend_tracker": {
+                "name": "Ystävä Tracker",
+                "properties": {
+                    "auto_purge": {
+                        "name": "Automaattinen puhdistus"
                     }
                 }
             }
@@ -618,7 +858,8 @@
             "gallery_media_send_override": {
                 "ORIGINAL": "Alkuperäinen",
                 "NOTE": "Ääniviesti",
-                "SNAP": "Snap"
+                "SNAP": "Snap",
+                "always_ask": "Kysy aina"
             },
             "hide_ui_components": {
                 "hide_profile_call_buttons": "Poista Profiilin Soittopainikkeet",
@@ -644,6 +885,37 @@
             "bypass_video_length_restriction": {
                 "single": "Yksittäinen media",
                 "split": "Jaettu media"
+            },
+            "auto_purge": {
+                "3_months": "3 Kuukautta",
+                "6_months": "6 Kuukautta",
+                "3_hours": "3 Tuntia",
+                "6_hours": "6 Tuntia",
+                "12_hours": "12 Tuntia",
+                "1_day": "1 Päivä",
+                "3_days": "3 Päivää",
+                "1_week": "1 Viikko",
+                "2_weeks": "2 Viikkoa",
+                "1_month": "1 kuukausi",
+                "1_hour": "1 Tunti"
+            },
+            "disable_story_sections": {
+                "suggested_stories": "Ehdotetut tarinat"
+            },
+            "disable_confirmation_dialogs": {
+                "remove_friend": "Poista ystävä",
+                "block_friend": "Estä ystävä",
+                "ignore_friend": "Ignoraa ystävä",
+                "hide_friend": "Piilota ystävä",
+                "hide_conversation": "Piilota keskustelu",
+                "erase_message": "Poista viesti"
+            },
+            "old_bitmoji_selfie": {
+                "2d": "2D bitmoji",
+                "3d": "3D bitmoji"
+            },
+            "auto_reload": {
+                "snapchat_only": "Vain Snapchat"
             }
         }
     },
@@ -748,7 +1020,8 @@
     },
     "actions": {
         "bulk_messaging_action": {
-            "description": "Tee operaatiota kuten kavereiden poistaminen tai useiden keskuteluiden poisto"
+            "description": "Tee operaatiota kuten kavereiden poistaminen tai useiden keskuteluiden poisto",
+            "name": "Joukkoviestintätoiminto"
         },
         "regen_mappings": {
             "name": "Tee uudelleen Kartoitus",
@@ -773,6 +1046,32 @@
         "clean_snapchat_cache": {
             "name": "Puhdista Snapchatin Välimuisti",
             "description": "Puhdistaa Snapchatin Välimuistin"
+        },
+        "security_features": {
+            "description": "Käytä suojausominaisuuksia",
+            "name": "Suojausominaisuudet"
+        },
+        "theming": {
+            "name": "Teema",
+            "description": "Mukauta Snapchatin ulkoasua ja tuntumaa"
+        },
+        "friend_tracker": {
+            "description": "Seuraa ystäviäsi Snapchatissa",
+            "name": "Ystävä Tracker"
+        },
+        "file_imports": {
+            "name": "Tiedostojen tuonti",
+            "description": "Tuo tiedostot käytettäväksi Snapchatissa"
+        },
+        "logger_history": {
+            "description": "Tarkastele kirjattujen viestien historiaa",
+            "name": "Kirjaajan historia"
         }
+    },
+    "material3_strings": {
+        "date_picker_switch_to_calendar_mode": "Kalenteri",
+        "date_picker_switch_to_input_mode": "Syöte",
+        "date_picker_today_description": "Tänään",
+        "date_range_picker_day_in_range": "Valittu"
     }
 }

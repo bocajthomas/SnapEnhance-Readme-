@@ -36,8 +36,8 @@
             "file_imports": "Importations de fichiers",
             "better_location": "Localisation Améliorée",
             "theming": "Thèmes",
-            "edit_theme": "Modifier le thème",
-            "manage_repos": "Gérer les dépots",
+            "edit_theme": "Éditer le thème",
+            "manage_repos": "Gérer les dépôts"
             "manage_rule_feature": "Gérer la règle de la fonctionnalité"
         },
         "sections": {
@@ -169,18 +169,6 @@
             },
             "theming": {
                 "no_themes_hint": "Aucun thème trouvé"
-            },
-            "manage_rule_feature": {
-                "disable_state_option": "Désactivé",
-                "disable_state_subtext": "Aucun ami/groupe ne sera concerné",
-                "whitelist_state_option": "Personne sauf ...",
-                "blacklist_state_option": "Tout le monde sauf ...",
-                "blacklist_state_button": "Sélectionner les amis/groupes exclus",
-                "clear_list_button": "Effacer la liste des amis/groupes",
-                "dialog_clear_confirmation_text": "Êtes-vous sûr de vouloir effacer la liste ?",
-                "whitelist_state_button": "Sélectionner les amis/groupes autorisés",
-                "whitelist_state_subtext": "Seuls {count} amis/groupes seront affectés par cette règle",
-                "blacklist_state_subtext": "Tout le monde, sauf {count} amis/groupes, seront concernés par cette règle"
             }
         },
         "dialogs": {
@@ -487,13 +475,8 @@
                         "name": "Indicateur de messages",
                         "description": "Ajoute des icônes d'indicateurs spécifiques aux messages\nRemarque : les indicateurs peuvent ne pas être à 100% précis"
                     },
-                    "auto_close_friend_feed_menu": {
-                        "name": "Menu de fermeture automatique du fil d'amis",
-                        "description": "Ferme automatiquement le menu liste d'amis après avoir appuyé sur un bouton de réglage"
-                    },
                     "custom_theme": {
-                        "description": "Personnalisez les couleurs de Snapchat\nRemarque : si vous choisissez un thème sombre (comme Amoled), vous devrez peut-être activer le mode sombre dans les paramètres de Snapchat pour de meilleurs résultats",
-                        "name": "Thème personnalisé"
+                        "description": "Personnaliser les couleurs de Snapchat\nNote : si vous choisissez un thème sombre (comme AMOLED), vous devrez peut-être activer le mode sombre dans les paramètres d'apparence pour obtenir de meilleurs résultats"
                     }
                 }
             },
@@ -915,10 +898,6 @@
                             "custom_emoji_font": {
                                 "name": "Police Emoji personnalisée",
                                 "description": "Vous permet d'utiliser une police emoji personnalisée. Fonctionne uniquement avec les polices .ttf"
-                            },
-                            "custom_shared_library": {
-                                "name": "Bibliothèque partagée personnalisée",
-                                "description": "Charge une bibliothèque partagée personnalisée dans Snapchat. Cette fonctionnalité est uniquement à des fins de test"
                             }
                         },
                         "description": "Fonctionnalités non fiables qui se greffent au code natif de Snapchat"
@@ -1063,15 +1042,15 @@
                             },
                             "enhanced_transcript_in_notifications": {
                                 "name": "Transcription améliorée dans les notifications",
-                                "description": "Transcrit les notes vocales dans les notifications à l'aide de DeepL. Cela nécessite que la fonctionnalité Aperçu du chat soit activée dans Meilleur Notifications"
+                                "description": "Transcrit les notes vocales dans les notifications à l'aide de DeepL. Pour ce faire, la fonction de prévisualisation du chat doit être activée dans Meilleures notifications"
                             }
                         },
                         "name": "Meilleure transcription",
                         "description": "Améliore la transcription des notes vocales"
                     },
                     "voice_note_auto_play": {
-                        "name": "Lecture automatique des notes vocales",
-                        "description": "Joue automatiquement la note vocale suivante une fois la note actuelle terminée"
+                        "name": "Note vocale Lecture automatique",
+                        "description": "Lecture automatique de la note vocale suivante après la fin de la note en cours"
                     }
                 }
             },
@@ -1300,10 +1279,19 @@
                 "bitmoji_scene_changes": "Vous averti lorsque quelqu'un change sa scène Bitmoji"
             },
             "custom_theme": {
-                "amoled_dark_mode": "Mode sombre Amoled",
-                "custom": "Thèmes personnalisés (utilisez les actions rapides pour gérer les thèmes)",
-                "material_you_light": "Material You Light (Android 12+)",
-                "material_you_dark": "Materiel You Light (Android 12+)"
+                "mint_chocolate": "Chocolat à la menthe",
+                "ginger_snap": "­Tarte au gingembre",
+                "lemon_meringue": "Meringue au citron",
+                "ocean_fog": "Brume de l'océan",
+                "alien_landscape": "Paysage extraterrestre",
+                "watercolor_wash": "Peinture à l'eau",
+                "zesty_lemon": "­Zeste de citron",
+                "tropical_paradise": "Paradis tropical",
+                "industrial_chic": "Chic industriel",
+                "woodland_mystery": "Mystère des bois",
+                "creamy_vanilla": "Vanille crémeuse",
+                "lava_flow": "Coulée de lave",
+                "amoled_dark_mode": "Mode sombre AMOLED"
             }
         }
     },
@@ -1565,12 +1553,12 @@
             "description": "Traquer vos amis sur Snapchat"
         },
         "security_features": {
-            "name": "Fonctions de sécurité",
-            "description": "Modifier les préférences des fonctionnalités de sécurité"
+            "name": "Options de sécurité",
+            "description": "Accéder aux options de sécurité"
         },
         "theming": {
             "name": "Thèmes",
-            "description": "Personnalisez l'apparence de Snapchat"
+            "description": "Personnaliser l'apparence de Snapchat"
         }
     },
     "mark_as_seen": {
@@ -1630,6 +1618,9 @@
         "birthday_added": "{username} a ajouté son anniversaire ({birthday})",
         "bitmoji_scene_changed": "{username} a changé sa scène Bitmoji"
     },
+    "send_override_dialog": {
+        "title": "Envoyer média en tant que: "
+  
     "theming_attributes": {
         "listBackgroundDrawable": "Liste de conversations",
         "sigColorChatConversationsLine": "Couleur de la ligne de conversation",

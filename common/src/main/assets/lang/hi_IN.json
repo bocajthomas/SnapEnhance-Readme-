@@ -33,7 +33,11 @@
             "logged_stories": "प्रचालेखित कि गई स्टोरी",
             "friend_tracker": "मित्र ट्रैकर",
             "edit_rule": "नियम संपादित करें",
-            "file_imports": "फ़ाइल आयात"
+            "file_imports": "फ़ाइल आयात",
+            "theming": "थीम",
+            "manage_repos": "रिपॉजिटरी प्रबंधित करें",
+            "edit_theme": "थीम संपादित करें",
+            "better_location": "बेहतर स्थान"
         },
         "sections": {
             "features": {
@@ -65,12 +69,13 @@
             },
             "home": {
                 "update_content": "वर्जन {वर्जन} उपलब्ध है!",
-                "update_title": "SnapEnhance अपडेट",
+                "update_title": "SE Extended अपडेट",
                 "update_button": "डाऊनलोड",
                 "debug_build_summary_title": "आप एसई एक्सटेंडेड का डिबग बिल्ड चला रहे हैं",
                 "debug_build_summary_date": "निर्माण की तारीख: {date} ({days} days ago)",
                 "quick_actions_title": "त्वरित कार्रवाई",
-                "debug_build_summary_content": "संस्करण {versionName} ({versionCode})"
+                "debug_build_summary_content": "संस्करण {versionName} ({versionCode})",
+                "version_title": "V{versionName} ·जैकब द्वारा फोर्क किया गया"
             },
             "home_logs": {
                 "no_logs_hint": "logs उपलब्ध नहीं",
@@ -471,34 +476,6 @@
                     "enable_app_appearance": {
                         "name": "ऐप उपस्थिति सेटिंग्स सक्षम करें",
                         "description": "छिपी हुई ऐप उपस्थिति सेटिंग को सक्षम करता है\nनए स्नैपचैट संस्करणों पर इसकी आवश्यकता नहीं हो सकती है"
-                    },
-                    "customize_ui": {
-                        "name": "रंग की",
-                        "properties": {
-                            "theme_picker": {
-                                "description": "प्रीसेट स्नैपचैट थीम्स",
-                                "name": "थीम पिकर"
-                            },
-                            "colors": {
-                                "name": "रीति रिवाजों के रंग",
-                                "description": "व्यक्तिगत रंग अनुकूलित करें\nनोट: उपयोग करने के लिए थीम पिकर पर `कस्टम रंग` चुनें",
-                                "properties": {
-                                    "text_color": {
-                                        "name": "मुख्य पाठ का रंग",
-                                        "description": "स्नैपचैट के मुख्य टेक्स्ट का रंग बदलता है"
-                                    },
-                                    "chat_chat_text_color": {
-                                        "name": "मुख्य मित्र फ़ीड टेक्स्ट रंग",
-                                        "description": "मित्र फ़ीड पर (नया चैट/नया स्नैप और चैट/टाइपिंग/कॉलिंग/मिस्ड कॉल/स्पीकिंग/नया वॉयस नोट) का टेक्स्ट रंग बदलता है"
-                                    },
-                                    "pending_sending_text_color": {
-                                        "name": "द्वितीयक मित्र फ़ीड टेक्स्ट रंग",
-                                        "description": "मित्र फ़ीड पर टेक्स्ट का रंग बदलता है (डिलीवर किया गया / प्राप्त किया गया / भेजा गया / खोला गया / चैट करने के लिए टैप करें / दोबारा चलाने के लिए दबाए रखें / दोबारा चलाया गया / चैट में सेव किया गया / कॉल किया गया)"
-                                    }
-                                }
-                            }
-                        },
-                        "description": "स्नैपचैट रंग अनुकूलित करें"
                     }
                 },
                 "description": "स्नैपचैट का स्वरूप और अनुभव बदलें"

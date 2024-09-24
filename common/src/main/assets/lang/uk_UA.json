@@ -2,13 +2,72 @@
     "setup": {
         "dialogs": {
             "select_language": "Оберіть мову",
-            "save_folder": "SnapEnhance вимагає дозволів на зберігання для завантаження та збереження медіафайлів із Snapchat.\nБудь ласка, виберіть місце, куди потрібно завантажити медіа.",
+            "save_folder": "SE Extended вимагає дозволів на зберігання для завантаження та збереження медіафайлів із Snapchat.\nБудь ласка, виберіть місце, куди потрібно завантажити медіа.",
             "select_save_folder_button": "Виберіть папку"
         },
         "mappings": {
-            "dialog": "Щоб динамічно підтримувати широкий діапазон версій Snapchat, для належної роботи SnapEnhance необхідні зіставлення, це не повинно тривати більше 5 секунд.",
-            "generate_failure_no_snapchat": "SnapEnhance не вдалося виявити Snapchat, спробуйте перевстановити Snapchat.",
+            "dialog": "Створення зіставлень, це може зайняти деякий час...",
+            "generate_failure_no_snapchat": "SE Extended не вдалося виявити Snapchat, спробуйте перевстановити Snapchat.",
             "generate_failure": "Під час створення зіставлення сталася помилка. Повторіть спробу."
+        },
+        "permissions": {
+            "dialog": "Щоб продовжити, потрібно відповідати наступним вимогам:",
+            "notification_access": "Доступ до сповіщень",
+            "battery_optimization": "Оптимізація батареї",
+            "display_over_other_apps": "Відображення поверх інших програм",
+            "request_button": "запит"
         }
+    },
+    "manager": {
+        "routes": {
+            "theming": "Тематизація",
+            "edit_theme": "Редагувати тему",
+            "messaging_preview": "Попередній перегляд",
+            "scripts": "Сценарії",
+            "manage_rule_feature": "Керувати функцією правила",
+            "logged_stories": "Зареєстровані історії",
+            "friend_tracker": "Відстеження друзів",
+            "edit_rule": "Редагувати правило",
+            "file_imports": "Імпорт файлів",
+            "manage_repos": "Керування репозиторіями",
+            "social": "Соціальний",
+            "manage_scope": "Керувати обсягом",
+            "better_location": "Краще розташування",
+            "logger_history": "Історія реєстратора",
+            "tasks": "завдання",
+            "features": "особливості",
+            "home": "додому",
+            "home_settings": "Налаштування",
+            "home_logs": "Журнали"
+        },
+        "sections": {
+            "home": {
+                "version_title": "В{versionName} · Роздвоєний bocajthomas",
+                "update_title": "SE Extended оновлення",
+                "update_button": "Завантажити",
+                "update_content": "Версія {version} є в наявності!",
+                "debug_build_summary_title": "Ви використовуєте збірку для налагодження SE Extended",
+                "quick_actions_title": "Швидкі дії",
+                "debug_build_summary_content": "Версія {versionName} ({versionCode})",
+                "debug_build_summary_date": "Дата збірки: {date} ({days днів тому}"
+            },
+            "home_logs": {
+                "export_logs_button": "Експорт журналів",
+                "saved_logs_failure_toast": "Не вдалося зберегти журнали",
+                "clear_logs_button": "Очистити журнали",
+                "saving_logs_toast": "Зберігання журналів, це може зайняти деякий час...",
+                "no_logs_hint": "Журнали відсутні",
+                "saved_logs_success_toast": "Журнали успішно збережено"
+            },
+            "home_settings": {
+                "debug_title": "Налагодження",
+                "message_logger_title": "Реєстратор повідомлень",
+                "actions_title": "Дії"
+            }
+        }
+    },
+    "scopes": {
+        "friend": "Друг",
+        "group": "Група"
     }
 }

@@ -104,7 +104,7 @@
                 "not_found": "نہیں ملا",
                 "streaks_title": "سٹریکس",
                 "streaks_length_text": "لمبائی: {length}",
-                "streaks_expiration_text": "{eta} میں ایکسپائر  ہو جائے گا",
+                "streaks_expiration_text": "{eta} میں ایکسپائر ہو جائے گا",
                 "streaks_expiration_text_expired": "ایکسپائرڈ",
                 "reminder_button": "سیٹ ریمائنڈر",
                 "delete_scope_confirm_dialog_title": "کیا آپ واقعی ایک {scope} کو ڈیلیٹ کرنا چاہتے ہیں؟"
@@ -409,82 +409,6 @@
                     "enable_app_appearance": {
                         "name": "ایپ کی ظاہری شکل کی ترتیبات کو فعال کریں",
                         "description": "پوشیدہ ایپ ظاہری ترتیب کو فعال کرتا ہے۔\nاسنیپ چیٹ کے نئے ورژنز پر اس کی ضرورت نہیں ہوسکتی ہے"
-                    },
-                    "customize_ui": {
-                        "name": "رنگ",
-                        "description": "اسنیپ چیٹس کے رنگوں کو حسب ضرورت بنائیں",
-                        "properties": {
-                            "theme_picker": {
-                                "name": "تھیم چننے والا",
-                                "description": "پرسیت اسنیپ چیٹ تھیمز"
-                            },
-                            "colors": {
-                                "name": "کسٹم کلرز",
-                                "description": "‮انفرادی رنگوں کو اپنی مرضی کے مطابق بنائیں\nنوٹ: استعمال کرنے کے لیے تھیم چننے والے پر 'اپنی مرضی کے رنگ' منتخب کریں",
-                                "properties": {
-                                    "text_color": {
-                                        "name": "بنیادی متن کا رنگ",
-                                        "description": "Snapchats کے مرکزی متن کا رنگ تبدیل کرتا ہے"
-                                    },
-                                    "chat_chat_text_color": {
-                                        "name": "مین فرینڈ فیڈ ٹیکسٹ کلر",
-                                        "description": "فرینڈ فیڈ پر (نئی چیٹ / نیو اسنیپ اور چیٹس / ٹائپنگ / کالنگ / مسڈ کال / سپیکنگ / نیا وائس نوٹ) کے متن کا رنگ تبدیل کرتا ہے"
-                                    },
-                                    "pending_sending_text_color": {
-                                        "name": "سیکنڈری فرینڈ فیڈ ٹیکسٹ کلر",
-                                        "description": "فرینڈ فیڈ پر ( ڈیلیور / موصول / بھیجنا / کھولا / چیٹ کرنے کے لئے تھپتھپائیں / دوبارہ چلانے کے لئے ہولڈ / دوبارہ چلایا / چیٹ میں محفوظ / کال کیا گیا) کے متن کا رنگ تبدیل کرتا ہے"
-                                    },
-                                    "snap_with_sound_text_color": {
-                                        "name": "صوتی متن کے رنگ کے ساتھ سنیپ",
-                                        "description": "فرینڈ فیڈ پر ( New Snap ) کے متن کا رنگ تبدیل کرتا ہے۔\nنوٹ: صرف ویڈیو سنیپ"
-                                    },
-                                    "snap_without_sound_text_color": {
-                                        "name": "صوتی متن کے رنگ کے بغیر تصاویر",
-                                        "description": "فرینڈ فیڈ پر ( New Snap ) کے متن کا رنگ تبدیل کرتا ہے۔\nنوٹ: صرف ویڈیو سنیپ"
-                                    },
-                                    "action_sheet_description_text_color": {
-                                        "name": "ایکشن مینو کی تفصیل متن کا رنگ",
-                                        "description": "ایکشن مینو پر تفصیل کے متن کا رنگ تبدیل کرتا ہے"
-                                    },
-                                    "background_color": {
-                                        "name": "بیک گرائونڈ کا رنگ",
-                                        "description": "Snapchats کے پس منظر کا رنگ تبدیل کرتا ہے"
-                                    },
-                                    "background_color_surface": {
-                                        "name": "بیگ گرائونڈ کی سطح کا رنگ",
-                                        "description": "Snapchats کے بیگ گرائونڈ کی سطح کا رنگ تبدیل کرتا ہے۔"
-                                    },
-                                    "list_background_drawable": {
-                                        "name": "گفتگو کی فہرست بیگ گرائونڈ ",
-                                        "description": "فرینڈ فیڈ پر گفتگو کی فہرست کے پس منظر کا رنگ تبدیل کرتا ہے۔\nاس سے دوست کی نظر ٹوٹ سکتی ہے"
-                                    },
-                                    "friend_feed_conversations_line_color": {
-                                        "name": "بات چیت کی لکیر کا رنگ",
-                                        "description": "لائن ڈیوائیڈر کا رنگ تبدیل کرتا ہے جو فرینڈ فیڈ پر گفتگو کو الگ کرتا ہے"
-                                    },
-                                    "action_menu_background_color": {
-                                        "name": "ایکشن مینو کے پس منظر کا رنگ",
-                                        "description": "Snapchats چیٹ ایکشن مینو کے پس منظر کا رنگ تبدیل کرتا ہے"
-                                    },
-                                    "action_menu_round_background_color": {
-                                        "name": "ایکشن مینو گول پس منظر کا رنگ",
-                                        "description": "اسنیپ چیٹس چیٹ ایکشن مینو کے گول پس منظر کا رنگ تبدیل کرتا ہے"
-                                    },
-                                    "sig_color_icon_primary": {
-                                        "name": "ایکشن مینو آئیکن کا رنگ",
-                                        "description": "چیٹ ایکشن مینو/فرینڈ فیڈ مینو پر شبیہیں کا رنگ تبدیل کرتا ہے"
-                                    },
-                                    "camera_grid_lines": {
-                                        "name": "‮کیمرہ گرڈ لائنز کا رنگ",
-                                        "description": "کیمرہ پیش نظارہ پر اسنیپ چیٹس گرڈ لائنز کا رنگ تبدیل کرتا ہے۔\nنوٹ: میرے کیمرے کی ترتیبات پر گرڈ کو فعال کریں"
-                                    }
-                                }
-                            },
-                            "colors_debug": {
-                                "name": "رنگ ڈیبگ",
-                                "description": "لاگز The obtainStyledAttributes، جو اسنیپ چیٹ کے لوڈ ہونے پر استعمال ہوتے ہیں۔\nنوٹ: اس سے آپ کے لاگز کے سائز میں نمایاں اضافہ ہوگا"
-                            }
-                        }
                     },
                     "friend_feed_message_preview": {
                         "name": "فرینڈ فیڈ میسج کا پیش نظارہ",
@@ -1003,10 +927,6 @@
                             "custom_emoji_font": {
                                 "name": "حسب ضرورت ایموجی فونٹ",
                                 "description": "آپ کو حسب ضرورت ایموجی فونٹ استعمال کرنے کی اجازت دیتا ہے۔ صرف .ttf فونٹس کے ساتھ کام کرتا ہے"
-                            },
-                            "remap_executable": {
-                                "name": "ری میپ ایگزیکیوٹیبل",
-                                "description": "میموری میں قابل عمل علاقوں کو دوبارہ نقشہ بناتا ہے"
                             }
                         }
                     },
@@ -1040,291 +960,177 @@
                             }
                         }
                     },
-                    "experimental_colors": {
-                        "name": "تجرباتی رنگ کے اختیارات",
-                        "description": "نوٹ: یہ رنگ کی خصوصیات تجرباتی ہیں اور اس وجہ سے آپ کی اسنیپ چیٹ کو عجیب لگ سکتا ہے، استعمال کرنے کے لیے تھیم چننے والے پر 'اپنی مرضی کے رنگ' منتخب کریں",
-                        "properties": {
-                            "ring_color": {
-                                "name": "رنگ کا رنگ",
-                                "description": "‮کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
-                            },
-                            "sig_color_icon_secondary": {
-                                "name": "سگ کلر آئیکن سیکنڈری",
-                                "description": ""
-                            },
-                            "item_shape_fill_color": {
-                                "name": "",
-                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
-                            },
-                            "ring_start_color": {
-                                "name": "",
-                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
-                            },
-                            "sig_color_layout_place_holder": {
-                                "name": "",
-                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
-                            },
-                            "sc_button_color": {
-                                "name": "",
-                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
-                            },
-                            "recipient_pill_background_drawable": {
-                                "name": "",
-                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
-                            },
-                            "box_background_color": {
-                                "name": "",
-                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
-                            },
-                            "edit_text_color": {
-                                "name": "",
-                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
-                            },
-                            "chip_background_color": {
-                                "name": "",
-                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
-                            },
-                            "recipient_input_style": {
-                                "name": "",
-                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
-                            },
-                            "range_fill_color": {
-                                "name": "",
-                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
-                            },
-                            "psts_indicator_color": {
-                                "name": "",
-                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
-                            },
-                            "psts_tab_background": {
-                                "name": "",
-                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
-                            },
-                            "psts_divider_color": {
-                                "name": "",
-                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
-                            },
-                            "tab_text_color": {
-                                "name": "",
-                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
-                            },
-                            "status_bar_foreground": {
-                                "name": "",
-                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
-                            },
-                            "status_bar_background": {
-                                "name": "",
-                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
-                            },
-                            "stroke_color": {
-                                "name": "",
-                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
-                            },
-                            "story_replay_view_ring_color": {
-                                "name": "",
-                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
-                            },
-                            "sig_color_button_primary": {
-                                "name": "",
-                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
-                            },
-                            "sig_color_base_app_yellow": {
-                                "name": "",
-                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
-                            },
-                            "sig_color_background_surface_translucent": {
-                                "name": "",
-                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
-                            },
-                            "sig_color_story_ring_friends_feed_story_ring": {
-                                "name": "",
-                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
-                            },
-                            "sig_color_story_ring_discover_tab_thumbnail_story_ring": {
-                                "name": "",
-                                "description": "کسی چیز کے رنگ میں کچھ کرتا ہے؛)"
-                            }
-                        }
-                    },
                     "convert_message_locally": {
-                        "name": "",
-                        "description": ""
+                        "name": "پیغام کو مقامی طور پر تبدیل کریں",
+                        "description": "اسنیپ کو مقامی طور پر بیرونی میڈیا چیٹ میں تبدیل کرتا ہے۔ یہ چیٹ ڈاؤن لوڈ سیاق و سباق کے مینو میں ظاہر ہوتا ہے"
                     },
                     "media_file_picker": {
-                        "name": "",
-                        "description": ""
+                        "name": "میڈیا فائل چنندہ",
+                        "description": "آپ کو گیلری سے کوئی بھی ویڈیو/آڈیو فائل لینے کی اجازت دیتا ہے"
                     },
                     "story_logger": {
-                        "name": "",
-                        "description": ""
+                        "name": "سٹوری لاگر",
+                        "description": "دوستوں کی کہانیوں کی تاریخ فراہم کرتا ہے"
                     },
                     "call_recorder": {
-                        "name": "",
-                        "description": ""
+                        "name": "کال ریکارڈر",
+                        "description": "‬خودکار طور پر آڈیو کالز ریکارڈ کرتا ہے"
                     },
                     "account_switcher": {
-                        "name": "",
-                        "description": "",
+                        "name": "اکاؤنٹ سوئچر",
+                        "description": "آپ کو لاگ آؤٹ کیے بغیر اکاؤنٹس کے درمیان سوئچ کرنے کی اجازت دیتا ہے۔\nمینو کو کھولنے کے لیے اپنے Bitmoji پروفائل کے آگے تلاش کے آئیکن پر دیر تک دبائیں۔\nنوٹ: یہ خصوصیت تجرباتی ہے اور مستقبل میں اس میں تبدیلی کا امکان ہے",
                         "properties": {
                             "auto_backup_current_account": {
-                                "name": "",
-                                "description": ""
+                                "name": "آٹو بیک اپ کرنٹ اکاؤنٹ",
+                                "description": "لاگ آؤٹ کرنے یا اکاؤنٹس تبدیل کرنے پر خودکار طور پر موجودہ اکاؤنٹ کا بیک اپ لے لیتا ہے"
                             }
                         }
                     },
                     "better_transcript": {
-                        "name": "",
-                        "description": "",
+                        "name": "بہتر ٹرانسکرپٹ",
+                        "description": "وائس نوٹ کی نقل کو بہتر بناتا ہے",
                         "properties": {
                             "force_transcription": {
-                                "name": "",
-                                "description": ""
+                                "name": "وائس نوٹ کی نقل پر زور دیں",
+                                "description": "تمام وائس نوٹوں کو نقل کرنے کی اجازت دیتا ہے"
                             },
                             "preferred_transcription_lang": {
-                                "name": "",
-                                "description": ""
+                                "name": "ترجیحی نقل کی زبان",
+                                "description": "وائس نوٹ کی نقل کے لیے ترجیحی زبان (مثلاً EN، ES، FR)"
                             },
                             "enhanced_transcript": {
-                                "name": "",
-                                "description": ""
+                                "name": "بہتر ٹرانسکرپٹ",
+                                "description": "ڈیپ ایل کا استعمال کرتے ہوئے صوتی نوٹ کی نقل کو بہتر بناتا ہے۔\nاس خصوصیت کو استعمال کرنے سے پہلے، براہ کرم یقینی بنائیں کہ آپ نے ان کی رازداری کی پالیسی کو پڑھ لیا ہے."
+                            },
+                            "enhanced_transcript_in_notifications": {
+                                "name": "اطلاعات میں بہتر ٹرانسکرپٹ",
+                                "description": "ڈیپ ایل کا استعمال کرتے ہوئے اطلاعات میں صوتی نوٹوں کو نقل کرتا ہے۔ اس کے لیے بہتر اطلاعات میں چیٹ پیش نظارہ کی خصوصیت کو فعال کرنے کی ضرورت ہے"
                             }
                         }
                     },
                     "cof_experiments": {
-                        "name": "",
-                        "description": ""
+                        "name": "COF تجربات",
+                        "description": "غیر ریلیز شدہ/بیٹا اسنیپ چیٹ خصوصیات کو فعال کرتا ہے"
                     },
                     "edit_message": {
-                        "name": "",
-                        "description": ""
+                        "name": "پیغامات میں ترمیم کریں",
+                        "description": "آپ کو بات چیت میں پیغامات میں ترمیم کرنے کی اجازت دیتا ہے"
                     },
                     "context_menu_fix": {
-                        "name": "",
-                        "description": ""
+                        "name": "سیاق و سباق کا مینو درست کریں",
+                        "description": "فرینڈ فیڈ مینو کو ٹھیک کرنے کی کوشش کریں کیونکہ ڈیوائس آف لائن ہونے پر اسے صحیح طریقے سے ڈسپلے نہیں کیا جا سکتا"
                     },
                     "app_lock": {
-                        "name": "",
-                        "description": "",
+                        "name": "ایپ لاک",
+                        "description": "پاس کوڈ کے بغیر سنیپ چیٹ تک رسائی کو روکتا ہے",
                         "properties": {
                             "lock_on_resume": {
-                                "name": "",
-                                "description": ""
+                                "name": "دوبارہ شروع پر لاک کریں",
+                                "description": "ایپ کو دوبارہ کھولنے پر اسے لاک کر دیتا ہے"
                             }
                         }
                     },
                     "infinite_story_boost": {
-                        "name": "",
-                        "description": ""
+                        "name": "لامحدود کہانی کو فروغ دینا",
+                        "description": "اسٹوری بوسٹ کی حد میں تاخیر کو نظرانداز کریں"
                     },
                     "meo_passcode_bypass": {
-                        "name": "",
-                        "description": ""
+                        "name": "میری آنکھیں صرف پاس کوڈ بائی پاس",
+                        "description": "میری آنکھوں کے صرف پاس کوڈ کو نظرانداز کریں۔\nیہ صرف اس صورت میں کام کرے گا جب پاس کوڈ پہلے صحیح طریقے سے درج کیا گیا ہو"
                     },
                     "no_friend_score_delay": {
-                        "name": "",
-                        "description": ""
+                        "name": "کوئی فرینڈ سکور میں تاخیر نہیں",
+                        "description": "فرینڈز اسکور دیکھتے وقت تاخیر کو دور کرتا ہے"
                     },
                     "best_friend_pinning": {
-                        "name": "",
-                        "description": ""
+                        "name": "بہترین دوست پننگ",
+                        "description": "آپ کو ایک دوست کو اپنے نمبر ایک بہترین دوست کے طور پر پن کرنے کی اجازت دیتا ہے۔ نوٹ: صرف آپ اپنے بہترین دوست کو دیکھ سکتے ہیں"
                     },
                     "e2ee": {
-                        "name": "",
-                        "description": "",
+                        "name": "آخر تا آخر خفیہ رکھنا",
+                        "description": "مشترکہ خفیہ کلید کا استعمال کرتے ہوئے آپ کے پیغامات کو AES کے ساتھ خفیہ کرتا ہے۔\nاپنی چابی کو کسی محفوظ جگہ پر محفوظ کرنا یقینی بنائیں!",
                         "properties": {
                             "encrypted_message_indicator": {
-                                "name": "",
-                                "description": ""
+                                "name": "انکرپٹڈ میسج انڈیکیٹر",
+                                "description": "خفیہ کردہ پیغامات کے آگے ایک 🔒 ایموجی شامل کرتا ہے"
                             },
                             "force_message_encryption": {
-                                "name": "",
-                                "description": ""
+                                "name": "زبردستی پیغام کی خفیہ کاری",
+                                "description": "ان لوگوں کو انکرپٹڈ پیغامات بھیجنے سے روکتا ہے جن کے پاس E2E انکرپشن فعال نہیں ہے صرف اس وقت جب متعدد بات چیت کا انتخاب کیا جاتا ہے"
                             }
                         }
                     },
                     "add_friend_source_spoof": {
-                        "name": "",
-                        "description": ""
+                        "name": "‮فرینڈ سورس سپوف شامل کریں",
+                        "description": "فرینڈ ریکوئسٹ کے ماخذ کو دھوکہ دیتا ہے"
                     },
                     "hidden_snapchat_plus_features": {
-                        "name": "",
-                        "description": ""
+                        "name": "پوشیدہ سنیپ چیٹ پلس خصوصیات",
+                        "description": "غیر ریلیز شدہ/بیٹا Snapchat Plus خصوصیات کو فعال کرتا ہے۔\nپرانے Snapchat ورژن پر کام نہیں کر سکتا"
                     },
                     "custom_streaks_expiration_format": {
-                        "name": "",
-                        "description": ""
+                        "name": "کسٹم اسٹریکس کی میعاد ختم ہونے کی شکل",
+                        "description": "Streaks ایکسپائریشن فارمیٹ کو حسب ضرورت بناتا ہے۔\n\nدستیاب متغیرات:\n - %c: لکیریں شمار\n - %e: ہور گلاس ایموجی\n - %d: دن\n - %h: گھنٹے\n - %m: منٹ\n - %s: سیکنڈز\n - %w: باقی وقت"
                     },
                     "prevent_forced_logout": {
-                        "name": "",
-                        "description": ""
+                        "name": "جبری لاگ آؤٹ کو روکیں",
+                        "description": "جب آپ کسی دوسرے آلے پر لاگ ان ہوتے ہیں تو Snapchat کو آپ کو لاگ آؤٹ کرنے سے روکتا ہے"
+                    },
+                    "voice_note_auto_play": {
+                        "name": "وائس نوٹ آٹو پلے",
+                        "description": "موجودہ وائس نوٹ ختم ہونے کے بعد خود بخود اگلا صوتی نوٹ چلاتا ہے"
                     }
                 }
             },
             "scripting": {
-                "name": "",
-                "description": "",
+                "name": "اسکرپٹنگ",
+                "description": "SE Extended کو بڑھانے کے لیے حسب ضرورت اسکرپٹ چلائیں",
                 "properties": {
                     "developer_mode": {
-                        "name": "",
-                        "description": ""
+                        "name": "‭ڈویلپر موڈ",
+                        "description": "Snapchat کے UI پر ڈیبگ کی معلومات دکھاتا ہے"
                     },
                     "module_folder": {
-                        "name": "",
-                        "description": ""
+                        "name": "ماڈیول فولڈر",
+                        "description": "وہ فولڈر جہاں اسکرپٹس واقع ہیں"
                     },
                     "auto_reload": {
-                        "name": "",
-                        "description": ""
+                        "name": "آٹو دوبارہ لوڈ کریں",
+                        "description": "اسکرپٹس کے تبدیل ہونے پر خودکار طور پر دوبارہ لوڈ ہوجاتا ہے"
                     },
                     "integrated_ui": {
-                        "name": "",
-                        "description": ""
+                        "name": "مربوط UI",
+                        "description": "اسکرپٹ کو Snapchat میں حسب ضرورت UI اجزاء شامل کرنے کی اجازت دیتا ہے"
                     },
                     "disable_log_anonymization": {
-                        "name": "",
-                        "description": ""
+                        "name": "لاگ گمنامی کو غیر فعال کریں",
+                        "description": "‬لاگز کی گمنامی کو غیر فعال کرتا ہے"
                     }
                 }
             },
             "friend_tracker": {
-                "name": "",
-                "description": "",
+                "name": "فرینڈ ٹریکر",
+                "description": "Snapchat پر دوست کی سرگرمی کو ریکارڈ کرتا ہے",
                 "properties": {
                     "record_messaging_events": {
-                        "name": "",
-                        "description": ""
+                        "name": "پیغام رسانی کے واقعات کو ریکارڈ کریں",
+                        "description": "پیغام رسانی کے واقعات کو ریکارڈ کرتا ہے جیسے سنیپ کھولنا، پیغام پڑھنا وغیرہ."
                     },
                     "allow_running_in_background": {
-                        "name": "",
-                        "description": ""
+                        "name": "پس منظر میں چلنے کی اجازت دیں",
+                        "description": "ٹریکر کو پس منظر میں چلنے کی اجازت دیتا ہے۔ نوٹ: اس سے آپ کی بیٹری نمایاں طور پر ختم ہو جائے گی"
                     },
                     "auto_purge": {
-                        "name": "",
-                        "description": ""
+                        "name": "آٹو صاف کرنا",
+                        "description": "کیشڈ ایونٹس کو خود بخود حذف کر دیتا ہے جو مقررہ وقت سے زیادہ پرانے ہوتے ہیں"
                     }
                 }
             }
         },
         "options": {
             "app_appearance": {
-                "always_light": "",
-                "always_dark": ""
-            },
-            "theme_picker": {
-                "amoled_dark_mode": "",
-                "custom": "",
-                "material_you_light": "",
-                "material_you_dark": "",
-                "light_blue": "",
-                "dark_blue": "",
-                "earthy_autumn": "",
-                "mint_chocolate": "",
-                "ginger_snap": "",
-                "lemon_meringue": "",
-                "lava_flow": "",
-                "ocean_fog": "",
-                "alien_landscape": "",
-                "watercolor_wash": ""
+                "always_light": "ہمیشہ لائیٹ",
+                "always_dark": "ہمیشہ تاریک"
             },
             "friend_feed_menu_buttons": {
                 "auto_download": "",
@@ -1379,8 +1185,7 @@
                 "always_ask": "",
                 "ORIGINAL": "",
                 "NOTE": "",
-                "SNAP": "",
-                "SAVABLE_SNAP": ""
+                "SNAP": ""
             },
             "strip_media_metadata": {
                 "hide_caption_text": "",
@@ -1495,6 +1300,33 @@
                 "bitmoji_avatar_changes": "",
                 "bitmoji_background_changes": "",
                 "bitmoji_scene_changes": ""
+            },
+            "custom_theme": {
+                "amoled_dark_mode": "AMOLED ڈارک موڈ",
+                "dark_blue": "ڈارک بلیو",
+                "lemon_meringue": "لیموں میرنگو",
+                "lava_flow": "لاوا فلو",
+                "ocean_fog": "سمندری دھند",
+                "alien_landscape": "ایلین لینڈ سکیپ",
+                "watercolor_wash": "واٹر کلر واش",
+                "zesty_lemon": "زیسٹی لیمن",
+                "woodland_mystery": "ووڈ لینڈ مسٹری",
+                "spring_meadow": "اسپرنگ میڈو",
+                "custom": "حسب ضرورت تھیمز (تھیمز کو منظم کرنے کے لیے فوری ایکشن استعمال کریں)",
+                "material_you_light": "میٹریل یو لائٹ (Android 12+)",
+                "material_you_dark": "مٹیریل یو ڈارک (Android 12+)",
+                "light_blue": "لائیٹ بلیو",
+                "midnight_slate": "مڈ نائٹ سلیٹ",
+                "mint_chocolate": "پودینہ چاکلیٹ",
+                "ginger_snap": "ادرک سنیپ",
+                "creamy_vanilla": "کریمی ونیلا",
+                "spicy_chili": "اسپائسی چلی",
+                "midnight_library": "مڈ نائٹ لائبریری",
+                "earthy_autumn": "زمینی خزاں",
+                "tropical_paradise": "اشنکٹبندیی جنت",
+                "galaxy_glitter": "‮گلیکسی گلیٹر",
+                "industrial_chic": "صنعتی وضع دار",
+                "cherry_bomb": "چیری بم"
             }
         }
     },

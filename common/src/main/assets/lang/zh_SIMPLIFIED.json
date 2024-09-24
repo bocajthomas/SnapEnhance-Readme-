@@ -109,7 +109,11 @@
             "friend_tracker": "好友追踪器",
             "edit_rule": "编辑规则",
             "file_imports": "文件导入",
-            "better_location": "更好的位置"
+            "better_location": "更好的位置",
+            "theming": "主题化",
+            "edit_theme": "编辑主题",
+            "manage_repos": "管理存储库",
+            "manage_rule_feature": "管理规则功能"
         },
         "sections": {
             "home": {
@@ -117,7 +121,7 @@
                 "update_content": "版本 {version} 可用！",
                 "update_title": "SnapEnhance 更新",
                 "quick_actions_title": "快速行动",
-                "version_title": "V{versionName} · 由雅各布分叉",
+                "version_title": "V{versionName} · 分叉者博卡伊托马斯",
                 "debug_build_summary_title": "您正在运行 SE Extended 的调试版本",
                 "debug_build_summary_content": "版本 {versionName} ({versionCode)}",
                 "debug_build_summary_date": "构建日期：{date}（{days} 天前)"
@@ -237,6 +241,21 @@
                 "teleport_to_friend_title": "传送到朋友身边",
                 "no_friends_map": "地图上没有好友",
                 "no_friends_found": "没有找到好友"
+            },
+            "theming": {
+                "no_themes_hint": "没有找到主题"
+            },
+            "manage_rule_feature": {
+                "disable_state_option": "残疾人",
+                "dialog_clear_confirmation_text": "您确实要清除列表吗？",
+                "disable_state_subtext": "任何好友/群组均不会受到影响",
+                "whitelist_state_option": "没有人除了...",
+                "whitelist_state_subtext": "仅 {count} 个好友/群组会受到此规则的影响",
+                "whitelist_state_button": "选择允许的好友/群组",
+                "blacklist_state_option": "每个人除了...",
+                "blacklist_state_subtext": "除 {count} 之外的所有人好友/群组将受到此规则的影响",
+                "blacklist_state_button": "选择排除的好友/群组",
+                "clear_list_button": "清除好友/群组列表"
             }
         },
         "dialogs": {
@@ -371,6 +390,14 @@
         "logger_history": {
             "name": "记录器历史记录",
             "description": "查看记录消息的历史记录"
+        },
+        "security_features": {
+            "name": "安全特性",
+            "description": "更改安全功能偏好"
+        },
+        "theming": {
+            "name": "主题化",
+            "description": "自定义 Snapchat 的外观和风格"
         }
     },
     "features": {
@@ -469,88 +496,16 @@
                     "logging": {
                         "description": "下载媒体时显示 toast",
                         "name": "记录"
+                    },
+                    "auto_download_voice_notes": {
+                        "description": "播放语音笔记时自动下载",
+                        "name": "自动下载语音笔记"
                     }
                 },
                 "description": "下载 Snapchat 媒体"
             },
             "user_interface": {
                 "properties": {
-                    "customize_ui": {
-                        "properties": {
-                            "colors": {
-                                "properties": {
-                                    "text_color": {
-                                        "name": "主要文字颜色",
-                                        "description": "更改 Snapchat 主要文本颜色"
-                                    },
-                                    "friend_feed_conversations_line_color": {
-                                        "name": "对话线条颜色",
-                                        "description": "更改分隔朋友提要上的对话的分隔线颜色"
-                                    },
-                                    "pending_sending_text_color": {
-                                        "name": "次要好友提要文本颜色",
-                                        "description": "更改好友源上的（已发送/已接收/正在发送/已打开/点击聊天/按住重播/已重播/已保存在聊天中/已呼叫）的文本颜色"
-                                    },
-                                    "chat_chat_text_color": {
-                                        "name": "主要好友提要文本颜色",
-                                        "description": "更改朋友源上的（新聊天/新快照和聊天/打字/呼叫/未接来电/讲话/新语音注释）的文本颜色"
-                                    },
-                                    "snap_with_sound_text_color": {
-                                        "name": "带有声音文本颜色的快照",
-                                        "description": "更改朋友提要上（新快照）的文本颜色\n注意：仅限视频快照"
-                                    },
-                                    "snap_without_sound_text_color": {
-                                        "name": "没有声音的快照文本颜色",
-                                        "description": "更改朋友提要上（新快照）的文本颜色\n注意：仅限视频快照"
-                                    },
-                                    "action_sheet_description_text_color": {
-                                        "description": "更改操作菜单上描述的文本颜色",
-                                        "name": "操作菜单说明文本颜色"
-                                    },
-                                    "camera_grid_lines": {
-                                        "description": "更改相机预览上的 Snapchat 网格线颜色\n注意：在我的相机设置中启用网格",
-                                        "name": "相机网格线颜色"
-                                    },
-                                    "background_color": {
-                                        "name": "背景颜色",
-                                        "description": "更改 Snapchat 背景颜色"
-                                    },
-                                    "background_color_surface": {
-                                        "name": "背景表面颜色",
-                                        "description": "更改 Snapchat 背景表面颜色"
-                                    },
-                                    "action_menu_round_background_color": {
-                                        "name": "操作菜单圆形背景颜色",
-                                        "description": "更改 Snapchat 聊天操作菜单圆形背景颜色"
-                                    },
-                                    "sig_color_icon_primary": {
-                                        "name": "操作菜单图标颜色",
-                                        "description": "更改聊天操作菜单/好友提要菜单上图标的颜色"
-                                    },
-                                    "list_background_drawable": {
-                                        "name": "对话列表背景 ",
-                                        "description": "更改好友动态中对话列表的背景颜色\n这可能会破坏好友动态的外观"
-                                    },
-                                    "action_menu_background_color": {
-                                        "name": "操作菜单背景颜色",
-                                        "description": "更改 Snapchat 聊天操作菜单背景颜色"
-                                    }
-                                },
-                                "name": "定制颜色",
-                                "description": "定制个性化颜色\n注意：在主题选择器上选择“自定义颜色”即可使用"
-                            },
-                            "colors_debug": {
-                                "name": "颜色调试",
-                                "description": "日志 acquireStyledAttributes，加载 Snapchat 时正在使用\n注意：这将显着增加日志的大小"
-                            },
-                            "theme_picker": {
-                                "name": "主题选择器",
-                                "description": "预设 Snapchat 主题"
-                            }
-                        },
-                        "name": "颜色",
-                        "description": "自定义 Snapchat 颜色"
-                    },
                     "friend_feed_message_preview": {
                         "name": "好友动态消息预览",
                         "description": "显示好友动态中最新消息的预览",
@@ -658,6 +613,10 @@
                     "auto_close_friend_feed_menu": {
                         "name": "自动关闭好友提要菜单",
                         "description": "按下设置按钮后自动关闭好友动态菜单"
+                    },
+                    "custom_theme": {
+                        "name": "自定义主题",
+                        "description": "自定义 Snapchat 的颜色\n注意: 如果您选择深色主题（如 AMOLED), 您可能需要在应用程序外观设置中启用深色模式以获得更好的效果"
                     }
                 },
                 "description": "更改 Snapchat 的外观和风格",
@@ -877,6 +836,10 @@
                             "always_update_location": {
                                 "description": "即使没有收到 GPS 数据，也强制 Snapchat 更新位置",
                                 "name": "始终更新位置"
+                            },
+                            "show_battery_level": {
+                                "name": "显示电池电量",
+                                "description": "在地图上显示好友的电池电量"
                             }
                         }
                     },
@@ -1078,10 +1041,6 @@
                             "disable_bitmoji": {
                                 "name": "禁用 Bitmoji",
                                 "description": "禁用好友个人资料 Bitmoji"
-                            },
-                            "remap_executable": {
-                                "name": "重新映射可执行文件",
-                                "description": "重新映射内存中的可执行区域"
                             }
                         }
                     },
@@ -1114,112 +1073,6 @@
                                 "description": "每次登录后生成随机设备令牌"
                             }
                         }
-                    },
-                    "experimental_colors": {
-                        "name": "实验颜色选项",
-                        "properties": {
-                            "ring_color": {
-                                "name": "戒指颜色",
-                                "description": "对某物的颜色做某事;）"
-                            },
-                            "sig_color_icon_secondary": {
-                                "name": "Sig 颜色图标次要",
-                                "description": "对某物的颜色做某事；）"
-                            },
-                            "item_shape_fill_color": {
-                                "description": "对某物的颜色做某事；）",
-                                "name": "项目形状填充颜色"
-                            },
-                            "ring_start_color": {
-                                "name": "环起始颜色",
-                                "description": "对某物的颜色做某事；）"
-                            },
-                            "sig_color_layout_place_holder": {
-                                "description": "对某物的颜色做某事；）",
-                                "name": "Sig 颜色布局占位符"
-                            },
-                            "sc_button_color": {
-                                "name": "Sc 按钮颜色",
-                                "description": "对某物的颜色做某事；）"
-                            },
-                            "box_background_color": {
-                                "name": "框背景颜色",
-                                "description": "对某物的颜色做某事；）"
-                            },
-                            "edit_text_color": {
-                                "name": "编辑文字颜色",
-                                "description": "对某物的颜色做某事；）"
-                            },
-                            "chip_background_color": {
-                                "name": "芯片背景颜色",
-                                "description": "对某物的颜色做某事；）"
-                            },
-                            "recipient_input_style": {
-                                "name": "收件人输入方式",
-                                "description": "对某物的颜色做某事；）"
-                            },
-                            "psts_indicator_color": {
-                                "name": "Psts 指示器颜色",
-                                "description": "对某物的颜色做某事；）"
-                            },
-                            "psts_tab_background": {
-                                "name": "Psts 选项卡背景",
-                                "description": "对某物的颜色做某事；）"
-                            },
-                            "psts_divider_color": {
-                                "description": "对某物的颜色做某事；）",
-                                "name": "Psts 分隔线颜色"
-                            },
-                            "status_bar_foreground": {
-                                "name": "状态栏前景",
-                                "description": "对某物的颜色做某事；）"
-                            },
-                            "story_replay_view_ring_color": {
-                                "name": "故事重播视图 戒指颜色",
-                                "description": "对某物的颜色做某事；）"
-                            },
-                            "sig_color_button_primary": {
-                                "name": "Sig 颜色按钮主要",
-                                "description": "对某物的颜色做某事；）"
-                            },
-                            "sig_color_base_app_yellow": {
-                                "name": "Sig Color Base 应用程序黄色",
-                                "description": "对某物的颜色做某事；）"
-                            },
-                            "sig_color_background_surface_translucent": {
-                                "name": "sig 颜色背景表面半透明",
-                                "description": "对某物的颜色做某事；）"
-                            },
-                            "sig_color_story_ring_discover_tab_thumbnail_story_ring": {
-                                "name": "sig 彩色故事环 发现选项卡缩略图 故事环",
-                                "description": "对某物的颜色做某事；）"
-                            },
-                            "recipient_pill_background_drawable": {
-                                "name": "受药丸背景可绘制",
-                                "description": "对某物的颜色做某事；）"
-                            },
-                            "status_bar_background": {
-                                "description": "对某物的颜色做某事；）",
-                                "name": "状态栏背景"
-                            },
-                            "range_fill_color": {
-                                "name": "范围填充颜色",
-                                "description": "对某物的颜色做某事；）"
-                            },
-                            "tab_text_color": {
-                                "description": "对某物的颜色做某事；）",
-                                "name": "选项卡文本颜色"
-                            },
-                            "stroke_color": {
-                                "name": "描边颜色",
-                                "description": "对某物的颜色做某事；）"
-                            },
-                            "sig_color_story_ring_friends_feed_story_ring": {
-                                "name": "sig 彩色故事戒指 朋友饲料故事戒指",
-                                "description": "对某物的颜色做某事；）"
-                            }
-                        },
-                        "description": "注意：这些颜色功能是实验性的，因此可能会导致您的 Snapchat 看起来很奇怪，\n在主题选择器上选择“自定义颜色”以使用"
                     },
                     "convert_message_locally": {
                         "description": "将快照转换为本地聊天外部媒体。这出现在聊天下载上下文菜单中",
@@ -1336,6 +1189,10 @@
                     "custom_streaks_expiration_format": {
                         "name": "自定义条纹到期格式",
                         "description": "自定义Streaks过期格式\n\n可用变量：\n- %c：条纹计数\n- %e：沙漏表情符号\n- %d：天\n- %h：小时\n- %m：分钟\n- %s：秒\n- %w：剩余时间"
+                    },
+                    "voice_note_auto_play": {
+                        "name": "语音笔记自动播放",
+                        "description": "当前语音注释结束后自动播放下一个语音注释"
                     }
                 }
             },
@@ -1388,46 +1245,6 @@
             "app_appearance": {
                 "always_light": "永远轻盈",
                 "always_dark": "永远黑暗"
-            },
-            "theme_picker": {
-                "custom": "定制颜色",
-                "light_blue": "浅蓝色",
-                "material_you_light": "材质你轻 (Android 12+）",
-                "material_you_dark": "材质你黑暗 (Android 12+)",
-                "amoled_dark_mode": "AMOLED 深色模式",
-                "dark_blue": "深蓝",
-                "earthy_autumn": "土色的秋天",
-                "mint_chocolate": "薄荷巧克力",
-                "ginger_snap": "姜片",
-                "lemon_meringue": "柠檬酥皮",
-                "watercolor_wash": "水彩水洗",
-                "midnight_slate": "午夜石板",
-                "lava_flow": "熔岩流",
-                "ocean_fog": "海洋雾",
-                "alien_landscape": "外星风景",
-                "zesty_lemon": "柠檬味",
-                "tropical_paradise": "热带天堂",
-                "industrial_chic": "工业时尚",
-                "cherry_bomb": "樱桃炸弹",
-                "woodland_mystery": "林地之谜",
-                "galaxy_glitter": "银河闪光",
-                "creamy_vanilla": "奶油香草",
-                "spicy_chili": "辣辣椒",
-                "spring_meadow": "春天的草地",
-                "midnight_library": "午夜图书馆",
-                "lemon_sorbet": "柠檬冰糕",
-                "cosmic_night": "宇宙之夜",
-                "peppermint_candy": "薄荷糖",
-                "gingerbread_house": "姜饼屋",
-                "spicy_mustard": "辣芥末",
-                "art_deco_glam": "装饰艺术魅力",
-                "ocean_depths": "海洋深处",
-                "bubblegum_pink": "泡泡糖粉红",
-                "firefly_night": "萤火虫之夜",
-                "apple_orchard": "苹果园",
-                "lavender_field": "薰衣草田",
-                "lemon_drop": "柠檬滴",
-                "modern_farmhouse": "现代农舍"
             },
             "auto_purge": {
                 "12_hours": "12小时",
@@ -1496,8 +1313,7 @@
                 "always_ask": "总是问",
                 "ORIGINAL": "原来的",
                 "NOTE": "音频笔记",
-                "SNAP": "折断",
-                "SAVABLE_SNAP": "可保存的快照"
+                "SNAP": "折断"
             },
             "strip_media_metadata": {
                 "hide_caption_text": "隐藏标题文本",
@@ -1599,6 +1415,42 @@
             "auto_mark_as_read": {
                 "conversation_read": "将对话标记为已读发送消息时",
                 "snap_reply": "回复时将快照标记为已读"
+            },
+            "custom_theme": {
+                "custom": "自定义主题（使用快速操作来管理主题）",
+                "earthy_autumn": "土色的秋天",
+                "mint_chocolate": "薄荷巧克力",
+                "tropical_paradise": "热带天堂",
+                "material_you_light": "材料 你 光 (安卓 12+)",
+                "amoled_dark_mode": "AMOLED 深色模式",
+                "material_you_dark": "材料 你 黑暗的 (安卓 12+)",
+                "light_blue": "浅蓝色",
+                "dark_blue": "深蓝",
+                "midnight_slate": "午夜石板",
+                "ginger_snap": "姜片",
+                "lemon_meringue": "柠檬酥皮",
+                "ocean_fog": "海洋雾",
+                "alien_landscape": "外星风景",
+                "zesty_lemon": "柠檬味",
+                "lava_flow": "熔岩流",
+                "watercolor_wash": "水彩水洗",
+                "industrial_chic": "工业时尚",
+                "cherry_bomb": "樱桃炸弹",
+                "spicy_chili": "辣辣椒",
+                "spicy_mustard": "辣芥末",
+                "lemon_sorbet": "柠檬冰糕",
+                "cosmic_night": "宇宙之夜",
+                "art_deco_glam": "装饰艺术魅力",
+                "woodland_mystery": "林地之谜",
+                "creamy_vanilla": "奶油香草",
+                "peppermint_candy": "薄荷糖",
+                "ocean_depths": "海洋深处",
+                "bubblegum_pink": "泡泡糖粉红",
+                "firefly_night": "萤火虫之夜",
+                "galaxy_glitter": "银河闪光",
+                "spring_meadow": "春天的草地",
+                "midnight_library": "午夜图书馆",
+                "gingerbread_house": "姜饼屋"
             }
         }
     },
