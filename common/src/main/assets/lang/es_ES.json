@@ -42,7 +42,7 @@
         },
         "sections": {
             "home": {
-                "update_title": "Actualización de SnapEnhance",
+                "update_title": "Actualización de SE Extended",
                 "update_content": "¡Versión {version} está disponible!",
                 "update_button": "Descargar",
                 "debug_build_summary_date": "Fecha de desarrollo: {date} (hace{days} día(s))",
