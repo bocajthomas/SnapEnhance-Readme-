@@ -37,7 +37,7 @@
             "better_location": "Localisation Améliorée",
             "theming": "Thèmes",
             "edit_theme": "Éditer le thème",
-            "manage_repos": "Gérer les dépôts"
+            "manage_repos": "Gérer les dépôts",
             "manage_rule_feature": "Gérer la règle de la fonctionnalité"
         },
         "sections": {
@@ -1618,9 +1618,6 @@
         "birthday_added": "{username} a ajouté son anniversaire ({birthday})",
         "bitmoji_scene_changed": "{username} a changé sa scène Bitmoji"
     },
-    "send_override_dialog": {
-        "title": "Envoyer média en tant que: "
-  
     "theming_attributes": {
         "listBackgroundDrawable": "Liste de conversations",
         "sigColorChatConversationsLine": "Couleur de la ligne de conversation",
@@ -1666,7 +1663,7 @@
     "send_override_dialog": {
         "title": "Envoyer des médias en tant que {type}",
         "saveable_snap_hint": "Rendre Snap enregistrable dans le chat",
-        "duration": "Durée : {duration}",
+        "duration": "Durée: {duration}",
         "unlimited_duration": "Illimité"
     }
 }
