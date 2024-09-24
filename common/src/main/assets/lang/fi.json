@@ -374,26 +374,6 @@
                     "enable_friend_feed_menu_bar": {
                         "name": "Ystäväsyötteen valikkopalkki",
                         "description": "Ottaa käyttöön uuden ystäväsyötteen valikkopalkin"
-                    },
-                    "customize_ui": {
-                        "properties": {
-                            "theme_picker": {
-                                "description": "Valmiit Snapchat Teemat",
-                                "name": "Teeman Valinta"
-                            },
-                            "colors": {
-                                "description": "Kustomoi yksittyisiä värejä\nHuom: Valitse Kustomoidut värit Teeman valitsijalla käyttääksesi",
-                                "name": "Kustomoidut Värit",
-                                "properties": {
-                                    "text_color": {
-                                        "name": "Pää Tekstin Väri",
-                                        "description": "Vaihtaa Snapchatin pää tekstin värin"
-                                    }
-                                }
-                            }
-                        },
-                        "name": "Värit",
-                        "description": "Muokkaa Snapchatin Värejä"
                     }
                 }
             },
@@ -638,8 +618,7 @@
             "gallery_media_send_override": {
                 "ORIGINAL": "Alkuperäinen",
                 "NOTE": "Ääniviesti",
-                "SNAP": "Snap",
-                "SAVABLE_SNAP": "Tallennettava Snap"
+                "SNAP": "Snap"
             },
             "hide_ui_components": {
                 "hide_profile_call_buttons": "Poista Profiilin Soittopainikkeet",

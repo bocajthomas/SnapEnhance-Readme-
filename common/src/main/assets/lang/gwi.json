@@ -457,66 +457,6 @@
             "user_interface": {
                 "name": "Benutzeroberfläche",
                 "properties": {
-                    "customize_ui": {
-                        "properties": {
-                            "colors": {
-                                "properties": {
-                                    "snap_with_sound_text_color": {
-                                        "name": "Snaps mit Tontextfarbe",
-                                        "description": "Ändert die Textfarbe von ( Neuer Snap ) im Freundesfeed\nNotiz: Nur Videosnaps"
-                                    },
-                                    "friend_feed_conversations_line_color": {
-                                        "name": "Konversationslinienfarbe",
-                                        "description": "Ändert die Farbe der Linie, welche die Konversationen im Freundesfeed teilt "
-                                    },
-                                    "action_menu_round_background_color": {
-                                        "description": "Ändert die runde Hintergrundfarbe des Snapchat-Chat-Aktionsmenüs",
-                                        "name": "Aktionsmenü, runde Hintergrundfarbe"
-                                    },
-                                    "text_color": {
-                                        "name": "primäre Textfarbe",
-                                        "description": "Ändert Snapchats primäre Textfarbe"
-                                    },
-                                    "chat_chat_text_color": {
-                                        "name": "primäre Freundfeedtextfarbe",
-                                        "description": "Ändert die Textfarbe von (Neuer Chat / Neuer Snap und Chats / Tippen / Anrufen / Verpasster Anruf / Sprechen / Neue Sprachnotiz) im Freundes-Feed"
-                                    },
-                                    "pending_sending_text_color": {
-                                        "name": "sekundäre Freundfeedtextfarbe",
-                                        "description": "Ändert die Textfarbe von (Zugestellt / Empfangen / Senden / Geöffnet / Zum Chatten antippen / Zur Wiedergabe gedrückt halten / Wiedergegeben / Im Chat gespeichert / Angerufen) im Freundes-Feed"
-                                    },
-                                    "snap_without_sound_text_color": {
-                                        "name": "Snaps ohne Ton Textfarbe",
-                                        "description": "Ändert die Textfarbe von ( Neuer Snap ) im Freundesfeed\nNotiz: Nur Videosnaps"
-                                    },
-                                    "background_color": {
-                                        "name": "Hintergrundfarbe",
-                                        "description": "Ändert Snapchats Hintergrundfarbe"
-                                    },
-                                    "background_color_surface": {
-                                        "name": "Hintergrundflächenfarbe",
-                                        "description": "Ändert Snapchats Hintergrundflächenfarbe"
-                                    },
-                                    "action_menu_background_color": {
-                                        "name": "Aktionsmenuhintergrundfarbe",
-                                        "description": "Ändert Snapchats Chataktionsmenuhintergrundfarbe"
-                                    },
-                                    "camera_grid_lines": {
-                                        "name": "Kameragitterlinienfarbe",
-                                        "description": "Ändert Snapchats Kameragitterlinienfarbe in der Kameravorschau\nNotiz: Aktiviert die Kameragitterlinien in den Kameraeinstellungen"
-                                    }
-                                },
-                                "name": "Benutzerdefinierte Farben",
-                                "description": "Individuelle Farben anpassen\nNotiz: Wähle individuelle Farben im Theme-Picker"
-                            },
-                            "theme_picker": {
-                                "name": "Theme Wähler",
-                                "description": "Voreingestellte Snapchatthemes"
-                            }
-                        },
-                        "name": "Farben",
-                        "description": "Snapchats Farben anpassen"
-                    },
                     "friend_feed_message_preview": {
                         "name": "Freund Feed Nachrichten Vorschau",
                         "description": "Zeigt eine Vorschau der letzten Nachrichten im Freundes-Feed",
@@ -1140,21 +1080,6 @@
             }
         },
         "options": {
-            "theme_picker": {
-                "lemon_meringue": "Zitronenmeringue",
-                "lava_flow": "Lava Fließend",
-                "ocean_fog": "Meeresnebel",
-                "alien_landscape": "Fremde Landschaften",
-                "amoled_dark_mode": "AMOLED Dunkler Modus",
-                "custom": "Benutzerdefinierte Farben",
-                "material_you_light": "Material You Lite (Android 12+)",
-                "material_you_dark": "Material You dunkel (Android 12+)",
-                "light_blue": "Hellblau",
-                "earthy_autumn": "Erdiger Herbst",
-                "dark_blue": "Dunkelblau",
-                "mint_chocolate": "Minzschokolade",
-                "ginger_snap": "Roter Snap"
-            },
             "friend_feed_menu_buttons": {
                 "auto_download": "⬇️ Auto-Download",
                 "auto_save": "💬 Auto-Nachricht-Speichern",
@@ -1226,8 +1151,7 @@
                 "always_ask": "Immer Fragen",
                 "ORIGINAL": "Original",
                 "NOTE": "Audio-Notiz",
-                "SNAP": "Snap",
-                "SAVABLE_SNAP": "Speicherbarer Snap"
+                "SNAP": "Snap"
             },
             "strip_media_metadata": {
                 "hide_caption_text": "Bildunterschriftstext ausblenden",

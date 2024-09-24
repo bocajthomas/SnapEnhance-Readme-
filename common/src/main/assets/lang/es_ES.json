@@ -34,7 +34,11 @@
             "friend_tracker": "Rastreador de amigos",
             "edit_rule": "Editar regla",
             "file_imports": "Importación de archivos",
-            "better_location": "Mejor ubicación"
+            "better_location": "Mejor ubicación",
+            "theming": "Temática",
+            "edit_theme": "Editar tema",
+            "manage_repos": "Administrar repositorios",
+            "manage_rule_feature": "Gestionar las reglas"
         },
         "sections": {
             "home": {
@@ -162,6 +166,21 @@
                 "latitude_dialog_hint": "Latitud",
                 "longitude_dialog_hint": "Longitud",
                 "suspend_location_updates": "Suspender las actualizaciones de ubicación"
+            },
+            "theming": {
+                "no_themes_hint": "No se encontraron temas"
+            },
+            "manage_rule_feature": {
+                "whitelist_state_button": "Seleccionar amig@s/grupos permitidos",
+                "blacklist_state_option": "Todo el mundo excepto ...",
+                "blacklist_state_subtext": "Todos excepto {count} amig@s/grupos se verán afectados por esta regla",
+                "blacklist_state_button": "Seleccionar amig@s/grupos excluidos",
+                "clear_list_button": "Borrar la lista de amig@s/grupos",
+                "disable_state_option": "Desactivado",
+                "disable_state_subtext": "Ningun@s amig@s/grupos se verán afectados",
+                "dialog_clear_confirmation_text": "¿Seguro que quieres borrar la lista?",
+                "whitelist_state_option": "Nadie excepto...",
+                "whitelist_state_subtext": "Solo {count} amig@s/grupos se verán afectados por esta regla"
             }
         },
         "dialogs": {
@@ -296,6 +315,14 @@
         "logger_history": {
             "description": "Ver el historial de mensajes guardados",
             "name": "Historial del registro"
+        },
+        "theming": {
+            "description": "Personaliza la apariencia de Snapchat",
+            "name": "Temática"
+        },
+        "security_features": {
+            "name": "Características de seguridad",
+            "description": "Cambiar las preferencias de las funciones de seguridad"
         }
     },
     "scopes": {
@@ -319,66 +346,6 @@
                         },
                         "name": "Anular Bootstrap",
                         "description": "Anula los ajustes de bootstrap de la interfaz de usuario"
-                    },
-                    "customize_ui": {
-                        "properties": {
-                            "colors": {
-                                "properties": {
-                                    "snap_without_sound_text_color": {
-                                        "name": "Color de texto de Snaps sin sonido",
-                                        "description": "Cambia el color de texto de (Snap nuevo) en la lista de amigxs\nTen en cuenta: Solo Snaps de vídeo"
-                                    },
-                                    "background_color": {
-                                        "name": "Color del fondo",
-                                        "description": "Cambia el color del fondo de Snapchat"
-                                    },
-                                    "text_color": {
-                                        "name": "Color de texto principal",
-                                        "description": "Cambia el color de texto principal de Snapchat"
-                                    },
-                                    "chat_chat_text_color": {
-                                        "description": "Cambia el color de texto de (Chats nuevos/ Snaps y chats nuevos/ Escribiendo/ Llamando/ Llamada perdida/ Hablando/ Nota de voz nueva) en la lista de amigxs",
-                                        "name": "Color de texto principal de la lista de amigxs"
-                                    },
-                                    "pending_sending_text_color": {
-                                        "name": "Color del texto secundario de la lista de amigxs",
-                                        "description": "Cambia el color de (Entregado/ Recibido/ Enviando/ Abierto/ Pulsa para chatear/ Mantén pulsado para repetir/ Repetido/ Guardado en el chat/ Llamado) en la lista de amigxs"
-                                    },
-                                    "snap_with_sound_text_color": {
-                                        "name": "Color de texto de Snaps con sonido",
-                                        "description": "Cambia el color de texto de (Snap nuevo) en la lista de amigxs\nTen en cuenta: Solo Snaps de vídeo"
-                                    },
-                                    "background_color_surface": {
-                                        "name": "Color de la superficie del fondo",
-                                        "description": "Cambia el color de la superficie del fondo de Snapchat"
-                                    },
-                                    "action_menu_background_color": {
-                                        "name": "Color de fondo del Menú de acciones",
-                                        "description": "Cambia el color de fondo del menú de acciones de Snapchat"
-                                    },
-                                    "action_menu_round_background_color": {
-                                        "name": "Color de fondo redondo del menú de acciones",
-                                        "description": "Cambia el color de fondo redondo del menú de acciones de Snapchat"
-                                    },
-                                    "camera_grid_lines": {
-                                        "name": "Color de la cuadricula de la cámara",
-                                        "description": "Cambia el color de la cuadricula en la prevista de la cámara de Snapchat\nTen en cuenta: habilita la cuadricula en los ajustes de la cámara"
-                                    },
-                                    "friend_feed_conversations_line_color": {
-                                        "name": "Color de línea en conversaciones",
-                                        "description": "Cambia el color de las líneas que separan conversaciones en la lista de amigxs "
-                                    }
-                                },
-                                "name": "Colores personalizados",
-                                "description": "Personaliza colores individuos\nTen en cuenta: Elige colores personalizados en el selector de temas para usar"
-                            },
-                            "theme_picker": {
-                                "name": "selector de temas",
-                                "description": "Temas de Snapchat preestablecidos"
-                            }
-                        },
-                        "name": "Colores",
-                        "description": "Personaliza Colores de Snapchat"
                     },
                     "enable_app_appearance": {
                         "name": "Habilitar ajustes de apariencia de la app",
@@ -469,6 +436,14 @@
                     "edit_text_override": {
                         "name": "Editar anulación de texto",
                         "description": "Anula el comportamiento de entradas de texto"
+                    },
+                    "auto_close_friend_feed_menu": {
+                        "name": "Menú de feed de amigos cercanos automáticos",
+                        "description": "Cierra automáticamente el menú de Feed de amigos después de presionar un botón de configuración"
+                    },
+                    "custom_theme": {
+                        "name": "Tema personalizado",
+                        "description": "Personalizar los colores de Snapchat\nNota: si eliges un tema oscuro (como Amoled), es posible que tengas que activar el modo oscuro en los ajustes de Snapchat para obtener mejores resultados"
                     }
                 },
                 "name": "Interfaz de usuario",
@@ -561,6 +536,10 @@
                     "force_image_format": {
                         "name": "Forzar formato de imagen",
                         "description": "Obliga que los imágenes se guardan en un formato especificado"
+                    },
+                    "auto_download_voice_notes": {
+                        "description": "Descarga automáticamente las notas de voz al reproducirlas",
+                        "name": "Descarga automática de notas de voz"
                     }
                 },
                 "description": "Descargar multimedios de Snapchat",
@@ -733,6 +712,14 @@
                     "remove_groups_locked_status": {
                         "name": "Elimina el estatus de grupos bloqueados",
                         "description": "Te permite ver información del grupo después de ser expulsada/o"
+                    },
+                    "mark_snap_as_seen_button": {
+                        "description": "Agrega un botón para marcar un Snap como visto al visualizarlo.\nEsto funcionará incluso cuando el modo oculto esté habilitado",
+                        "name": "Botón Marcar Snap como visto"
+                    },
+                    "skip_when_marking_as_seen": {
+                        "description": "Salta automáticamente al siguiente Snap al marcar un Snap como visto.\nUsar en combinación con el botón Marcar como visto",
+                        "name": "Saltar al marcar como visto"
                     }
                 },
                 "name": "mensajería",
@@ -781,6 +768,10 @@
                             "spoof_headphones": {
                                 "name": "Falsificar auriculares",
                                 "description": "Falsifica el estado de escuchar a música en el mapa"
+                            },
+                            "show_battery_level": {
+                                "name": "Mostrar nivel de bateria",
+                                "description": "Muestta el nivel de bateria de tu amigos en el mapa"
                             }
                         },
                         "name": "Mejor ubicación",
@@ -971,6 +962,10 @@
                             "custom_emoji_font": {
                                 "name": "Fuente de los emoji personalizada",
                                 "description": "Te permite utilizar una fuente para los emoji personalizada. Sólo funciona con fuentes .ttf"
+                            },
+                            "custom_shared_library": {
+                                "name": "Libreria compartida customizada",
+                                "description": "Carga una biblioteca compartida personalizada en Snapchat. Esta función es solo para fines de prueba."
                             }
                         },
                         "description": "Funciones inseguras que se integran al código nativo de Snapchat"
@@ -1098,6 +1093,32 @@
                     "context_menu_fix": {
                         "description": "Intente reparar el menú Friend Feed ya que cuando el dispositivo está sin conexión no se mostraba correctamente",
                         "name": "Corrección del menú contextual"
+                    },
+                    "better_transcript": {
+                        "properties": {
+                            "enhanced_transcript": {
+                                "description": "Mejora la transcripción de notas de voz usando DeepL.\nAntes de utilizar esta función, asegúrese de haber leído su política de privacidad.",
+                                "name": "Transcripción mejorada"
+                            },
+                            "enhanced_transcript_in_notifications": {
+                                "name": "Transcripción mejorada en las notificaciones",
+                                "description": "Transcribe notas de voz en notificaciones utilizando la dirección DeepL. Esto requiere que la función Vista previa del chat esté habilitada en Mejores notificaciones"
+                            },
+                            "force_transcription": {
+                                "description": "Permitir transcribir todas las notas de voz",
+                                "name": "Forzar transcripción de notas de voz"
+                            },
+                            "preferred_transcription_lang": {
+                                "name": "Idioma prefiero para la transcripción",
+                                "description": "El idioma preferido para la transcripción de la nota de voz (por ejemplo EN, ES, FR)"
+                            }
+                        },
+                        "description": "Mejora la transcripción de notas de voz",
+                        "name": "Mejor transcripción"
+                    },
+                    "voice_note_auto_play": {
+                        "description": "Reproducir automáticamente la siguiente nota de voz después de que finalice la actual",
+                        "name": "Reproducir automáticamente las notas de voz"
                     }
                 },
                 "name": "Experimental"
@@ -1176,7 +1197,10 @@
                 "hide_voice_record_button": "Quitar botón de Grabar voz",
                 "hide_unread_chat_hint": "Quitar indicación de chat no leído",
                 "hide_chat_call_buttons": "Quitar botones de llamada de chat",
-                "hide_post_to_story_buttons": "Eliminar los botones Publicar en la historia antes de enviar un Snap"
+                "hide_post_to_story_buttons": "Eliminar los botones Publicar en la historia antes de enviar un Snap",
+                "hide_billboard_prompt": "Eliminar el aviso de la página principal en el feed de amigos",
+                "hide_snapchat_plus_gift_reminders": "Eliminar los recordatorios de regalo de Snapchat Plus en las conversaciones",
+                "hide_map_reactions": "Eliminar reacciones del mapa"
             },
             "hide_story_suggestions": {
                 "hide_friend_suggestions": "Ocultar sugestiones de amistad",
@@ -1224,21 +1248,6 @@
                 "single": "Archivo de Media único",
                 "split": "Archivos de media divididos"
             },
-            "theme_picker": {
-                "amoled_dark_mode": "Modo oscuro AMOLED",
-                "custom": "Colores personalizados",
-                "light_blue": "Azul claro",
-                "dark_blue": "Azul oscuro",
-                "earthy_autumn": "Otoño terroso",
-                "mint_chocolate": "Chocolate de menta",
-                "ginger_snap": "Snap jengibre",
-                "lemon_meringue": "Merengue Limón",
-                "lava_flow": "Flujo de magma",
-                "ocean_fog": "Niebla oceánica",
-                "alien_landscape": "Paisaje extraterrestre",
-                "material_you_light": "Material You claro (Android 12+)",
-                "material_you_dark": "Material You oscuro (Android 12+)"
-            },
             "path_format": {
                 "append_username": "Añadir el usuario al nombre del archivo",
                 "create_author_folder": "Crear carpeta para cada autor",
@@ -1279,10 +1288,10 @@
             },
             "gallery_media_send_override": {
                 "always_ask": "Preguntar siempre",
-                "ORIGINAL": "Original",
+                "ORIGINAL": "Archivo multimedia original",
                 "NOTE": "Nota de voz",
                 "SNAP": "Snap",
-                "SAVABLE_SNAP": "Snap guardable"
+                "SAVEABLE_SNAP": "Snap guardable"
             },
             "strip_media_metadata": {
                 "hide_caption_text": "Ocultar texto de subtítulos",
@@ -1325,7 +1334,8 @@
             "disable_story_sections": {
                 "discover": "Descubrir",
                 "friends": "Amigxs",
-                "following": "Siguiendo"
+                "following": "Siguiendo",
+                "suggested_stories": "Historias recomendadas"
             },
             "disable_cameras": {
                 "front": "Cámara frontal",
@@ -1342,6 +1352,12 @@
                 "bitmoji_avatar_changes": "Notificar si alguien cambia su avatar de Bitmoji",
                 "bitmoji_background_changes": "Notificar si alguien cambia el fondo de su Bitmoji",
                 "bitmoji_scene_changes": "Notificar si alguien cambia su escena de Bitmoji"
+            },
+            "custom_theme": {
+                "custom": "Temas personalizados (utilice las acciones rápidas para gestionar los temas)",
+                "material_you_dark": "Material You oscuro (Android 12+)",
+                "amoled_dark_mode": "Modo oscuro Amoled",
+                "material_you_light": "Material You claro (Android 12+)"
             }
         }
     },
@@ -1416,7 +1432,8 @@
         "open": "Abrir",
         "positive": "Sí",
         "negative": "No",
-        "ok": "Vale"
+        "ok": "Vale",
+        "send": "Enviar"
     },
     "better_notifications": {
         "button": {
@@ -1612,5 +1629,51 @@
     "streaks_reminder": {
         "notification_title": "Rachas",
         "notification_text": "Perderás tu racha con {friend} en {hoursLeft} horas"
+    },
+    "theming_attributes": {
+        "sigColorTextPrimary": "Color principal del texto",
+        "sigColorBackgroundSurface": "Color del fondo",
+        "sigColorChatSnapWithSound": "Color del contenido de los Snaps de voz",
+        "sigColorChatSnapWithoutSound": "Color del contenido de los Snaps de texto",
+        "sigColorBackgroundMain": "Color de fondo",
+        "actionSheetBackgroundDrawable": "Color de fondo del Menú de acciones",
+        "actionSheetRoundedBackgroundDrawable": "Color de fondo redondeado del menú de acciones",
+        "sigExceptionColorCameraGridLines": "Color de las cuadrículas de la cámara",
+        "listDivider": "Color del separador de las listas",
+        "actionSheetDescriptionTextColor": "Color del texto de la descripción",
+        "listBackgroundDrawable": "Fondo de lista de la conversación",
+        "sigColorIconSecondary": "Color secundario del icono",
+        "sigColorChatConversationsLine": "Color de la línea de la conversación",
+        "sigColorIconPrimary": "Color del icono del menú de acciones",
+        "itemShapeFillColor": "Color de relleno de la forma del elemento",
+        "boxBackgroundColor": "Color de fondo del cuadro",
+        "recipientInputStyle": "Forma de entrada del destinatario",
+        "rangeFillColor": "Color de relleno para el rango",
+        "statusBarForeground": "Color en primer plano de la barra de estado",
+        "statusBarBackground": "Color en segundo plano de la barra de estado",
+        "sigColorButtonPrimary": "Color del botón principal",
+        "editTextColor": "Editar color del texto",
+        "pstsTabBackground": "Fondo de la pestaña PSTS",
+        "pstsDividerColor": "Color del divisor PSTS",
+        "tabTextColor": "Color del texto de la pestaña",
+        "pstsIndicatorColor": "Color del indicador PSTS",
+        "strokeColor": "Color del trazo",
+        "scButtonColor": "Color del botón de Snapchat",
+        "sigColorBaseAppYellow": "Aplicación principal de color amarillo",
+        "sigColorBackgroundSurfaceTranslucent": "Color del fondo translúcido",
+        "sigColorChatChat": "Color del texto del feed del amigo principal",
+        "sigColorChatPendingSending": "Color del texto del feed para otros amigos",
+        "ringColor": "Color del anillo",
+        "sigColorLayoutPlaceholder": "Color del marcador de posición",
+        "chipBackgroundColor": "Color de fondo del chip",
+        "ringStartColor": "Color inicial del anillo",
+        "storyReplayViewRingColor": "Repetición del historial Ver el color del círculo",
+        "sigColorStoryRingFriendsFeedStoryRing": "Color del círculo del feed de los amigos y las historias"
+    },
+    "send_override_dialog": {
+        "title": "Enviar medios como {type}",
+        "unlimited_duration": "Ilimitado",
+        "duration": "Duración: {duration}",
+        "saveable_snap_hint": "Hacer que Snap se pueda guardar en el chat"
     }
 }

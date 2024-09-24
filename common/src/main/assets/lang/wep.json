@@ -278,66 +278,6 @@
                         "name": "Aktiviert die App Darstellungseinstellungen",
                         "description": "Aktiviert die versteckte App-Erscheinungsbild Einstellung,\nbei neueren Snapchat-Versionen möglicherweise nicht erforderlich"
                     },
-                    "customize_ui": {
-                        "name": "Farben",
-                        "description": "Snapchats Farben anpassen",
-                        "properties": {
-                            "theme_picker": {
-                                "name": "Theme Wähler",
-                                "description": "Voreingestellte Snapchatthemes"
-                            },
-                            "colors": {
-                                "name": "Benutzerdefinierte Farben",
-                                "description": "Individuelle Farben anpassen\nNotiz: Wähle individuelle Farben im Theme-Picker",
-                                "properties": {
-                                    "text_color": {
-                                        "name": "primäre Textfarbe",
-                                        "description": "Ändert Snapchats primäre Textfarbe"
-                                    },
-                                    "chat_chat_text_color": {
-                                        "name": "primäre Freundfeedtextfarbe",
-                                        "description": "Ändert die Textfarbe von (Neuer Chat / Neuer Snap und Chats / Tippen / Anrufen / Verpasster Anruf / Sprechen / Neue Sprachnotiz) im Freundes-Feed"
-                                    },
-                                    "pending_sending_text_color": {
-                                        "name": "sekundäre Freundfeedtextfarbe",
-                                        "description": "Ändert die Textfarbe von (Zugestellt / Empfangen / Senden / Geöffnet / Zum Chatten antippen / Zur Wiedergabe gedrückt halten / Wiedergegeben / Im Chat gespeichert / Angerufen) im Freundes-Feed"
-                                    },
-                                    "snap_with_sound_text_color": {
-                                        "name": "Snaps mit Tontextfarbe",
-                                        "description": "Ändert die Textfarbe von ( Neuer Snap ) im Freundesfeed\nNotiz: Nur Videosnaps"
-                                    },
-                                    "snap_without_sound_text_color": {
-                                        "name": "Snaps ohne Ton Textfarbe",
-                                        "description": "Ändert die Textfarbe von ( Neuer Snap ) im Freundesfeed\nNotiz: Nur Videosnaps"
-                                    },
-                                    "background_color": {
-                                        "name": "Hintergrundfarbe",
-                                        "description": "Ändert Snapchats Hintergrundfarbe"
-                                    },
-                                    "background_color_surface": {
-                                        "name": "Hintergrundflächenfarbe",
-                                        "description": "Ändert Snapchats Hintergrundflächenfarbe"
-                                    },
-                                    "friend_feed_conversations_line_color": {
-                                        "name": "Konversationslinienfarbe",
-                                        "description": "Ändert die Farbe der Linie, welche die Konversationen im Freundesfeed teilt "
-                                    },
-                                    "action_menu_background_color": {
-                                        "name": "Aktionsmenuhintergrundfarbe",
-                                        "description": "Ändert Snapchats Chataktionsmenuhintergrundfarbe"
-                                    },
-                                    "action_menu_round_background_color": {
-                                        "name": "Aktionsmenü, runde Hintergrundfarbe",
-                                        "description": "Ändert die runde Hintergrundfarbe des Snapchat-Chat-Aktionsmenüs"
-                                    },
-                                    "camera_grid_lines": {
-                                        "name": "Kameragitterlinienfarbe",
-                                        "description": "Ändert Snapchats Kameragitterlinienfarbe in der Kameravorschau\nNotiz: Aktiviert die Kameragitterlinien in den Kameraeinstellungen"
-                                    }
-                                }
-                            }
-                        }
-                    },
                     "friend_feed_message_preview": {
                         "name": "Freund Feed Nachrichten Vorschau",
                         "description": "Zeigt eine Vorschau der letzten Nachrichten im Freundes-Feed",
@@ -930,21 +870,6 @@
             }
         },
         "options": {
-            "theme_picker": {
-                "amoled_dark_mode": "AMOLED Dunkler Modus",
-                "custom": "Benutzerdefinierte Farben",
-                "material_you_light": "Material You Lite (Android 12+)",
-                "material_you_dark": "Material You dunkel (Android 12+)",
-                "light_blue": "Hellblau",
-                "dark_blue": "Dunkelblau",
-                "earthy_autumn": "Erdiger Herbst",
-                "mint_chocolate": "Minzschokolade",
-                "ginger_snap": "Roter Snap",
-                "lemon_meringue": "Zitronenmeringue",
-                "lava_flow": "Lava Fließend",
-                "ocean_fog": "Meeresnebel",
-                "alien_landscape": "Fremde Landschaften"
-            },
             "auto_reload": {
                 "snapchat_only": "Nur Snapchat",
                 "all": "Alles (Snapchat + SnapEnhance)"
@@ -990,7 +915,6 @@
             "gallery_media_send_override": {
                 "NOTE": "Audio-Notiz",
                 "SNAP": "Snap",
-                "SAVABLE_SNAP": "Speicherbarer Snap",
                 "always_ask": "Immer Fragen",
                 "ORIGINAL": "Original"
             },
