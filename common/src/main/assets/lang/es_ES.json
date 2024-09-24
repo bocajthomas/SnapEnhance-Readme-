@@ -1675,6 +1675,7 @@
         "sigColorChatChat": "Color del texto del feed del amigo principal",
         "sigColorBackgroundSurface": "Color del fondo",
         "sigColorTextPrimary": "Color del texto principal",
-        "sigColorChatPendingSending": "Color del feed del texto de amigos secundarios"
+        "sigColorChatPendingSending": "Color del feed del texto de amigos secundarios",
+        "sigColorChatSnapWithSound": "Snaps con color de texto de sonido"
     }
 }
