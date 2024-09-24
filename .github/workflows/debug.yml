@@ -1,12 +1,12 @@
 name: Debug CI
 on:
   workflow_dispatch:
-      inputs:
-        ci_upload:
-          description: 'Upload to CI channel'
-          required: false
-          type: boolean
-          
+    inputs:
+      ci_upload:
+        description: 'Upload to CI channel'
+        required: false
+        type: boolean
+
 jobs:
   job_armv8:
     runs-on: macos-latest
@@ -53,7 +53,7 @@ jobs:
           cd app/build/outputs/apk/armv8/debug/
           shopt -s extglob
           rm -rf !(*-signed*)
-          
+
       - name: Build Version
         run: ./gradlew getVersion
 
@@ -76,7 +76,7 @@ jobs:
         with:
           name: SE-Extended-ARMV8-Debug
           path: app/build/outputs/apk/armv8/debug/*.apk
-          
+
   job_armv7:
     runs-on: macos-latest
     steps:
@@ -122,7 +122,7 @@ jobs:
           cd app/build/outputs/apk/armv7/debug/
           shopt -s extglob
           rm -rf !(*-signed*)
-          
+
       - name: Build Version
         run: ./gradlew getVersion
 
@@ -191,7 +191,7 @@ jobs:
           cd app/build/outputs/apk/all/debug/
           shopt -s extglob
           rm -rf !(*-signed*)
-          
+
       - name: Build Version
         run: ./gradlew getVersion
 

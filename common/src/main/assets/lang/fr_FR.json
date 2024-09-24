@@ -15,7 +15,7 @@
             "notification_access": "Accès aux notifications",
             "battery_optimization": "Optimisation de la batterie",
             "display_over_other_apps": "Superposer aux autres applis",
-            "request_button": "Autorisation"
+            "request_button": "Autoriser"
         }
     },
     "manager": {
@@ -23,11 +23,11 @@
             "features": "Fonctionnalités",
             "home": "Accueil",
             "home_settings": "Paramètres",
-            "home_logs": "Logs",
+            "home_logs": "Journaux",
             "social": "Social",
             "scripts": "Scripts",
             "tasks": "Tâches",
-            "logger_history": "Historique des logs",
+            "logger_history": "Historique du journal",
             "logged_stories": "Stories enregistrées",
             "manage_scope": "Gérer le champ d'application",
             "messaging_preview": "Aperçu",
@@ -38,6 +38,7 @@
             "theming": "Thèmes",
             "edit_theme": "Éditer le thème",
             "manage_repos": "Gérer les dépôts"
+            "manage_rule_feature": "Gérer la règle de la fonctionnalité"
         },
         "sections": {
             "features": {
@@ -69,12 +70,12 @@
             },
             "home": {
                 "update_content": "La version {version} est disponible !",
-                "update_button": "Téléchargement",
+                "update_button": "Télécharger",
                 "update_title": "Mise à jour SnapEnhance",
                 "version_title": "v{versionName} · par rhunk",
                 "debug_build_summary_title": "Vous utilisez une version de debug de SnapEnhance",
                 "debug_build_summary_content": "Version {versionName} ({versionCode})",
-                "debug_build_summary_date": "Date de création : {date} (Il y a {days} jours)",
+                "debug_build_summary_date": "Date de création: {date} (Il y a {days} jours)",
                 "quick_actions_title": "Actions rapides"
             },
             "manage_scope": {
@@ -84,7 +85,7 @@
                 "participants_text": "{count} participant(s)",
                 "not_found": "Pas trouvé",
                 "streaks_title": "Flammes",
-                "streaks_length_text": "Longueur : {length}",
+                "streaks_length_text": "Longueur: {length}",
                 "streaks_expiration_text": "Expire dans {eta}",
                 "streaks_expiration_text_expired": "Expiré",
                 "reminder_button": "Définir un rappel",
@@ -103,7 +104,7 @@
                 "message_logger_title": "Loggeur de messages",
                 "debug_title": "Déboguer",
                 "success_toast": "Succès !",
-                "message_logger_summary": "{messageCount} message(s)\n{storyCount} histoire(s)",
+                "message_logger_summary": "{messageCount} message(s)\n{storyCount} stories",
                 "export_button": "Exporter",
                 "clear_button": "Vider",
                 "view_logger_history_button": "Afficher l'historique de l'enregistreur"
@@ -140,7 +141,7 @@
             },
             "file_imports": {
                 "no_files_hint": "Ici, vous pouvez importer des fichiers à utiliser dans Snapchat. Appuyez sur le bouton ci-dessous pour importer un fichier.",
-                "import_file_button": "Importer le fichier",
+                "import_file_button": "Importer un fichier",
                 "file_not_found": "Fichier introuvable",
                 "file_import_failed": "Échec de l'importation du fichier : {error}",
                 "file_imported": "Fichier importé avec succès",
@@ -192,7 +193,7 @@
                 "success_toast": "La configuration a été réinitialisée avec succès"
             },
             "file_imports": {
-                "no_files_settings_hint": "Aucun fichier trouvé. Assurez-vous d'avoir importé les fichiers requis dans la section Importations de fichiers.",
+                "no_files_settings_hint": "Aucun fichier trouvé. Assurez-vous d'avoir importé les fichiers requis dans la section Importations de fichiers",
                 "settings_select_file_hint": "Sélectionnez un fichier importé"
             },
             "export_config": {
@@ -359,6 +360,10 @@
                     "download_context_menu": {
                         "name": "Menu de téléchargement contextuel",
                         "description": "Vous permet de télécharger/voir les messages a partir d'une conversation ou d'une story a partir du menu contextuel.\nUne pression longue sur ce bouton forcera le téléchargement"
+                    },
+                    "auto_download_voice_notes": {
+                        "name": "Téléchargement automatique des messages vocaux",
+                        "description": "Télécharge automatiquement les messages vocaux lors de leur lecture"
                     }
                 }
             },
@@ -741,6 +746,10 @@
                             "walk_radius": {
                                 "name": "Rayon de marche",
                                 "description": "Déplacer de manière aléatoire à l'intérieur de ce rayon (en pieds)"
+                            },
+                            "show_battery_level": {
+                                "description": "Affiche le niveau de batterie de vos amis sur la carte",
+                                "name": "Afficher le niveau de la batterie"
                             }
                         },
                         "description": "Améliore la localisation sur Snapchat"
@@ -781,7 +790,7 @@
                     },
                     "disable_telecom_framework": {
                         "name": "Désactiver le cadre de télécommunications",
-                        "description": "Empêche Snapchat d'utiliser le framework Android Telecom Cela vous permet d'écouter de la musique pendant un appel"
+                        "description": "Empêche Snapchat d'utiliser le framework Android Telecom\nCela vous permet d'écouter de la musique pendant un appel"
                     }
                 }
             },
@@ -1145,10 +1154,11 @@
                 "speaking": "En train de parler"
             },
             "gallery_media_send_override": {
-                "ORIGINAL": "Originale",
+                "ORIGINAL": "Media Originale",
                 "NOTE": "Vocal",
                 "SNAP": "Snap",
-                "always_ask": "Demandez toujours"
+                "always_ask": "Demandez toujours",
+                "SAVEABLE_SNAP": "Snap enregistrable"
             },
             "auto_reload": {
                 "snapchat_only": "Snapchat uniquement",
@@ -1210,7 +1220,10 @@
                 "hide_chat_call_buttons": "Supprimer les boutons d'appel dans le chat",
                 "hide_live_location_share_button": "Supprimer le bouton de partage de la localisation en direct",
                 "hide_profile_call_buttons": "Supprimer les boutons d'appel sur le profil",
-                "hide_post_to_story_buttons": "Supprimez les boutons Publier dans votre Story avant d'envoyer un Snap"
+                "hide_post_to_story_buttons": "Supprimez les boutons Publier dans votre Story avant d'envoyer un Snap",
+                "hide_billboard_prompt": "Supprimer la fenêtre publicitaire dans le fil des amis",
+                "hide_snapchat_plus_gift_reminders": "Supprimer les rappels de cadeaux de Snapchat Plus dans les conversations",
+                "hide_map_reactions": "Supprimer les réactions de la carte"
             },
             "edit_text_override": {
                 "bypass_text_input_limit": "Contourner la limite de saisie de texte",
@@ -1223,7 +1236,8 @@
             "disable_story_sections": {
                 "discover": "Découverte",
                 "friends": "Amis",
-                "following": "Suivis"
+                "following": "Suivis",
+                "suggested_stories": "Storys suggérées"
             },
             "hide_story_suggestions": {
                 "hide_suggested_friend_stories": "Cacher les stories d'amis suggérées",
@@ -1298,7 +1312,7 @@
         "show_chat_edit_history": "Afficher l'historique des modifications du chat"
     },
     "opera_context_menu": {
-        "download": "Télécharger",
+        "download": "Télécharger les médias",
         "media_duration": "Durée du média : {duration} ms",
         "show_debug_info": "Afficher les informations de débogage",
         "expires_at": "Expire le {date}",
@@ -1363,7 +1377,8 @@
         "negative": "Non",
         "cancel": "Annuler",
         "open": "Ouvrir",
-        "download": "Télécharger"
+        "download": "Télécharger",
+        "send": "Envoyer"
     },
     "profile_picture_downloader": {
         "button": "Télécharger les photos de profil",
@@ -1542,6 +1557,7 @@
             "description": "Accéder aux options de sécurité"
         },
         "theming": {
+            "name": "Thèmes",
             "description": "Personnaliser l'apparence de Snapchat"
         }
     },
@@ -1604,5 +1620,53 @@
     },
     "send_override_dialog": {
         "title": "Envoyer média en tant que: "
+  
+    "theming_attributes": {
+        "listBackgroundDrawable": "Liste de conversations",
+        "sigColorChatConversationsLine": "Couleur de la ligne de conversation",
+        "actionSheetBackgroundDrawable": "Couleur d’arrière-plan du menu d’action",
+        "actionSheetRoundedBackgroundDrawable": "Couleur d'arrière-plan ronde du menu d'action",
+        "sigColorIconPrimary": "Couleur d'arrière-plan ronde du menu d'action",
+        "sigExceptionColorCameraGridLines": "Couleur du quadrillage de la caméra",
+        "rangeFillColor": "Couleur de remplissage de plage",
+        "pstsIndicatorColor": "Couleur de l’indicateur PSTS",
+        "pstsTabBackground": "Arrière-plan de l'onglet PSTS",
+        "pstsDividerColor": "Couleur du séparateur PSTS",
+        "statusBarBackground": "Couleur d'arrière-plan de la barre d'état",
+        "strokeColor": "Couleur du trait",
+        "storyReplayViewRingColor": "Voir la rediffusion de l'histoire Couleur de la bague",
+        "sigColorButtonPrimary": "Couleur du bouton principal",
+        "sigColorBaseAppYellow": "Couleur jaune de l'application de base",
+        "sigColorBackgroundSurfaceTranslucent": "Couleur de la surface de fond translucide",
+        "sigColorStoryRingFriendsFeedStoryRing": "Bague d'histoire Flux d'amis Couleur de la bague d'histoire",
+        "sigColorStoryRingDiscoverTabThumbnailStoryRing": "Story Ring Onglet Découverte Vignette Story Ring Couleur",
+        "sigColorTextPrimary": "Couleur du texte principal",
+        "sigColorChatChat": "Couleur du texte du flux d'amis principal",
+        "sigColorBackgroundSurface": "Couleur de la surface d'arrière-plan",
+        "sigColorChatPendingSending": "Couleur du texte du fil d’ami secondaire",
+        "sigColorChatSnapWithSound": "Snaps avec la couleur du texte sonore",
+        "sigColorChatSnapWithoutSound": "Snaps sans couleur de texte sonore",
+        "actionSheetDescriptionTextColor": "Action Menu Description Couleur du texte",
+        "sigColorBackgroundMain": "Couleur de l'arrière plan",
+        "recipientPillBackgroundDrawable": "Fond de pilule du destinataire",
+        "boxBackgroundColor": "Couleur d'arrière-plan de la boîte",
+        "editTextColor": "Modifier la couleur du texte",
+        "chipBackgroundColor": "Couleur d'arrière-plan de la puce",
+        "listDivider": "Couleur du séparateur de liste",
+        "sigColorIconSecondary": "Couleur de l’icône secondaire",
+        "recipientInputStyle": "Style de saisie du destinataire",
+        "itemShapeFillColor": "Couleur de remplissage de la forme de l'élément",
+        "ringColor": "Couleur de la bague",
+        "ringStartColor": "Couleur de début de sonnerie",
+        "sigColorLayoutPlaceholder": "Couleur de l'espace réservé à la mise en page",
+        "scButtonColor": "Couleur du bouton Snapchat",
+        "tabTextColor": "Couleur du texte de l'onglet",
+        "statusBarForeground": "Couleur de premier plan de la barre d'état"
+    },
+    "send_override_dialog": {
+        "title": "Envoyer des médias en tant que {type}",
+        "saveable_snap_hint": "Rendre Snap enregistrable dans le chat",
+        "duration": "Durée : {duration}",
+        "unlimited_duration": "Illimité"
     }
 }

@@ -1207,6 +1207,9 @@
                 "hide_chat_gallery_button": "Eliminar el botón de la galería de chat",
                 "hide_explorer_token_button": "Botón para eliminar el token del explorador",
                 "hide_gift_snapchat_plus_reminders": "Eliminar recordatorios de regalos de Snapchat Plus",
+                "hide_post_to_story_buttons": "Eliminar los botones Publicar en la historia antes de enviar un Snap",
+                "hide_billboard_prompt": "Eliminar el aviso de la página principal en el feed de amigos",
+                "hide_snapchat_plus_gift_reminders": "Eliminar los recordatorios de regalo de Snapchat Plus en las conversaciones",
                 "hide_map_reactions": "Eliminar reacciones del mapa"
             },
             "hide_story_suggestions": {
@@ -1672,10 +1675,49 @@
         "notification_text": "Perderás tu racha con {friend} en {hoursLeft} horas"
     },
     "theming_attributes": {
-        "sigColorChatChat": "Color del texto del feed del amigo principal",
+        "sigColorTextPrimary": "Color principal del texto",
         "sigColorBackgroundSurface": "Color del fondo",
-        "sigColorTextPrimary": "Color del texto principal",
-        "sigColorChatPendingSending": "Color del feed del texto de amigos secundarios",
-        "sigColorChatSnapWithSound": "Snaps con color de texto de sonido"
+        "sigColorChatSnapWithSound": "Color del contenido de los Snaps de voz",
+        "sigColorChatSnapWithoutSound": "Color del contenido de los Snaps de texto",
+        "sigColorBackgroundMain": "Color de fondo",
+        "actionSheetBackgroundDrawable": "Color de fondo del Menú de acciones",
+        "actionSheetRoundedBackgroundDrawable": "Color de fondo redondeado del menú de acciones",
+        "sigExceptionColorCameraGridLines": "Color de las cuadrículas de la cámara",
+        "listDivider": "Color del separador de las listas",
+        "actionSheetDescriptionTextColor": "Color del texto de la descripción",
+        "listBackgroundDrawable": "Fondo de lista de la conversación",
+        "sigColorIconSecondary": "Color secundario del icono",
+        "sigColorChatConversationsLine": "Color de la línea de la conversación",
+        "sigColorIconPrimary": "Color del icono del menú de acciones",
+        "itemShapeFillColor": "Color de relleno de la forma del elemento",
+        "boxBackgroundColor": "Color de fondo del cuadro",
+        "recipientInputStyle": "Forma de entrada del destinatario",
+        "rangeFillColor": "Color de relleno para el rango",
+        "statusBarForeground": "Color en primer plano de la barra de estado",
+        "statusBarBackground": "Color en segundo plano de la barra de estado",
+        "sigColorButtonPrimary": "Color del botón principal",
+        "editTextColor": "Editar color del texto",
+        "pstsTabBackground": "Fondo de la pestaña PSTS",
+        "pstsDividerColor": "Color del divisor PSTS",
+        "tabTextColor": "Color del texto de la pestaña",
+        "pstsIndicatorColor": "Color del indicador PSTS",
+        "strokeColor": "Color del trazo",
+        "scButtonColor": "Color del botón de Snapchat",
+        "sigColorBaseAppYellow": "Aplicación principal de color amarillo",
+        "sigColorBackgroundSurfaceTranslucent": "Color del fondo translúcido",
+        "sigColorChatChat": "Color del texto del feed del amigo principal",
+        "sigColorChatPendingSending": "Color del texto del feed para otros amigos",
+        "ringColor": "Color del anillo",
+        "sigColorLayoutPlaceholder": "Color del marcador de posición",
+        "chipBackgroundColor": "Color de fondo del chip",
+        "ringStartColor": "Color inicial del anillo",
+        "storyReplayViewRingColor": "Repetición del historial Ver el color del círculo",
+        "sigColorStoryRingFriendsFeedStoryRing": "Color del círculo del feed de los amigos y las historias"
+    },
+    "send_override_dialog": {
+        "title": "Enviar medios como {type}",
+        "unlimited_duration": "Ilimitado",
+        "duration": "Duración: {duration}",
+        "saveable_snap_hint": "Hacer que Snap se pueda guardar en el chat"
     }
 }

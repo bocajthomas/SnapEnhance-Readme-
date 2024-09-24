@@ -6,7 +6,7 @@
             "select_save_folder_button": "Выберите папку"
         },
         "mappings": {
-            "dialog": "Для динамической поддержки широкого диапазона версий Snapchat, для корректной работы SnapEnhance необходимо сопоставление параметров, это не должно занять более 5 секунд.",
+            "dialog": "Составление карт, это может занять некоторое время ...",
             "generate_failure_no_snapchat": "SnapEnhance не удалось обнаружить Snapchat, попробуйте переустановить Snapchat.",
             "generate_failure": "Произошла ошибка при генерации сопоставлений, пожалуйста, попробуйте еще раз."
         },
@@ -27,7 +27,8 @@
                 "delete_files_option": "Также удалить файлы",
                 "remove_selected_tasks_confirm": "Удалить {count} задач?",
                 "remove_all_tasks_confirm": "Убрать все задачи?",
-                "merge_files_toast": "Объединение {count} файла"
+                "merge_files_toast": "Объединение {count} файла",
+                "failed_to_open_file": "Не удалось открыть файл"
             },
             "home_logs": {
                 "clear_logs_button": "Очистить логи",
@@ -50,7 +51,12 @@
             "home": {
                 "update_title": "Обновить SnapEnchance",
                 "update_content": "Версия {version} доступна!",
-                "update_button": "Скачать"
+                "update_button": "Скачать",
+                "debug_build_summary_content": "Версия {названиеВерсии} ({кодВерсии})",
+                "debug_build_summary_title": "Вы используете устранение ошибок от SnapEnhance",
+                "version_title": "v(названиеВерсии) · создал rhunk",
+                "debug_build_summary_date": "Назначить дату: {дата} ({дни} дней назад)",
+                "quick_actions_title": "Быстрые Действия"
             },
             "features": {
                 "disabled": "Отключенно",
@@ -60,7 +66,8 @@
                 "config_import_success_toast": "Конфигурация успешно импортирована",
                 "config_import_failure_toast": "Не удалось импортировать конфигурацию {error}",
                 "saved_config_snackbar": "Конфигурация сохранена",
-                "reset_option": "Сброс"
+                "reset_option": "Сброс",
+                "config_export_failure_toast": "Не удалось экспортировать конфигурацию {ошибка}"
             },
             "manage_scope": {
                 "logged_stories_button": "Показать сохранённые истории",
@@ -110,6 +117,12 @@
                 "unknown_sender": "Неизвестный отправитель",
                 "download_attachment_failed_toast": "Не удалось загрузить вложение",
                 "empty_message": "Пустой чат"
+            },
+            "manage_rule_feature": {
+                "disable_state_option": "Выведенный из строя",
+                "disable_state_subtext": "Друзья/группы не будут изменены",
+                "whitelist_state_option": "Ни одного исключения ...",
+                "whitelist_state_subtext": "Только {число} друзей/групп будет изменено этим правилом"
             }
         },
         "routes": {
@@ -123,7 +136,15 @@
             "messaging_preview": "Предварительный просмотр",
             "logged_stories": "Сохранённые истории",
             "manage_scope": "Управление область",
-            "social": "Соц. сети"
+            "social": "Соц. сети",
+            "better_location": "Улучшенная Локация",
+            "manage_rule_feature": "Изменить настройки",
+            "file_imports": "Импорт файлов",
+            "friend_tracker": "Остлеживание друга",
+            "edit_rule": "Изменить правила",
+            "theming": "Интерфейс",
+            "edit_theme": "Изменть Тему",
+            "manage_repos": "Управлять Хранилищами"
         },
         "dialogs": {
             "scripting_warning": {
