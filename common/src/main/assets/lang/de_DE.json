@@ -36,7 +36,8 @@
             "file_imports": "Dateiimporte",
             "better_location": "Bessere Lage",
             "manage_repos": "Repository bearbeiten",
-            "edit_theme": "Design ändern"
+            "edit_theme": "Design ändern",
+            "theming": "Design"
         },
         "sections": {
             "features": {
