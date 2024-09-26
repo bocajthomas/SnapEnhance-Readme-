@@ -398,6 +398,10 @@
         "theming": {
             "name": "主题化",
             "description": "自定义 Snapchat 的外观和风格"
+        },
+        "disclaimer_statement": {
+            "name": "免责声明",
+            "description": "阅读免责声明"
         }
     },
     "features": {
@@ -1041,6 +1045,10 @@
                             "disable_bitmoji": {
                                 "name": "禁用 Bitmoji",
                                 "description": "禁用好友个人资料 Bitmoji"
+                            },
+                            "custom_shared_library": {
+                                "description": "将自定义共享库加载到 Snapchat 中. 此功能仅用于测试目的",
+                                "name": "自定义共享库"
                             }
                         }
                     },
@@ -1311,9 +1319,10 @@
             },
             "gallery_media_send_override": {
                 "always_ask": "总是问",
-                "ORIGINAL": "原来的",
+                "ORIGINAL": "原创媒体",
                 "NOTE": "音频笔记",
-                "SNAP": "折断"
+                "SNAP": "折断",
+                "SAVEABLE_SNAP": "可保存的快照"
             },
             "strip_media_metadata": {
                 "hide_caption_text": "隐藏标题文本",
@@ -1329,7 +1338,12 @@
                 "hide_stickers_button": "删除贴纸按钮",
                 "hide_voice_record_button": "删除录音按钮",
                 "hide_unread_chat_hint": "删除未读聊天提示",
-                "hide_post_to_story_buttons": "在发送快照之前删除“发布到故事按钮"
+                "hide_post_to_story_buttons": "删除发布到故事按钮",
+                "hide_chat_camera_button": "删除聊天相机按钮",
+                "hide_chat_gallery_button": "删除聊天库按钮",
+                "hide_gift_snapchat_plus_reminders": "删除礼品 Snapchat Plus 提醒",
+                "hide_explorer_token_button": "删除资源管理器令牌按钮",
+                "hide_snap_create_group_buttons": "删除捕捉创建组按钮"
             },
             "hide_story_suggestions": {
                 "hide_suggested_friend_stories": "隐藏建议的朋友故事",
@@ -1450,7 +1464,11 @@
                 "galaxy_glitter": "银河闪光",
                 "spring_meadow": "春天的草地",
                 "midnight_library": "午夜图书馆",
-                "gingerbread_house": "姜饼屋"
+                "gingerbread_house": "姜饼屋",
+                "lavender_field": "薰衣草田",
+                "lemon_drop": "柠檬滴",
+                "modern_farmhouse": "现代农舍",
+                "apple_orchard": "苹果园"
             }
         }
     },
