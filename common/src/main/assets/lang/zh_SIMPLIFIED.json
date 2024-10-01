@@ -7,7 +7,7 @@
         },
         "mappings": {
             "dialog": "生成映射，这可能需要一段时间......",
-            "generate_failure_no_snapchat": "SnapEnhance 无法检测到 Snapchat，请尝试重新安装 Snapchat",
+            "generate_failure_no_snapchat": "SE Extended 无法检测到 Snapchat，请尝试重新安装 Snapchat.",
             "generate_failure": "尝试生成映射时出错，请重试。"
         },
         "permissions": {
@@ -64,7 +64,7 @@
         "hidden_birthday": "生日: 隐藏",
         "friendship": "友谊",
         "add_source": "添加来源",
-        "snapchat_plus": "Snapchat Plus",
+        "snapchat_plus": "Snapchat 加",
         "snapchat_plus_state": {
             "subscribed": "已订阅",
             "not_subscribed": "未订阅"
@@ -148,7 +148,7 @@
             "home_settings": {
                 "debug_title": "调试",
                 "message_logger_title": "消息记录器",
-                "success_toast": "完毕",
+                "success_toast": "完毕!",
                 "clear_button": "清除",
                 "view_logger_history_button": "查看记录器历史记录",
                 "actions_title": "行动",
@@ -245,7 +245,7 @@
                 "delete_dialog_title": "删除保存的坐标",
                 "search_bar": "搜索",
                 "suspend_location_updates": "暂停位置更新",
-                "delete_dialog_message": "您确定要删除此保存的坐标吗",
+                "delete_dialog_message": "您确定要删除此保存的坐标吗?",
                 "spoof_location_toggle": "恶搞位置",
                 "teleport_to_friend_button": "传送到朋友身边",
                 "choose_location_button": "选择地点",
@@ -859,7 +859,7 @@
                         }
                     },
                     "snapchat_plus": {
-                        "name": "Snapchat Plus",
+                        "name": "Snapchat 加",
                         "description": "启用 Snapchat Plus 功能\n某些服务器端功能可能无法使用"
                     },
                     "media_upload_quality": {
