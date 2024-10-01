@@ -80,14 +80,25 @@
         "writing_output": "正在写入输出...",
         "finished": "完成了！您现在可以关闭此对话框。",
         "no_messages_found": "未找到消息！",
-        "exporting_message": "正在导出 {conversation}..."
+        "exporting_message": "正在导出 {conversation}...",
+        "exporter_dialog": {
+            "select_conversations_title": "选择对话",
+            "text_field_selection": "{amount} 已选择",
+            "text_field_selection_all": "全部",
+            "export_file_format_title": "导出文件格式",
+            "message_type_filter_title": "按类型过滤消息",
+            "amount_of_messages_title": "消息数量 (全部留空)",
+            "download_medias_title": "下载媒体"
+        }
     },
     "button": {
         "ok": "确定",
         "positive": "是",
         "negative": "否",
         "cancel": "取消",
-        "open": "打开"
+        "open": "打开",
+        "download": "下载",
+        "send": "发送"
     },
     "scopes": {
         "friend": "朋友",
@@ -1343,7 +1354,8 @@
                 "hide_chat_gallery_button": "删除聊天库按钮",
                 "hide_gift_snapchat_plus_reminders": "删除礼品 Snapchat Plus 提醒",
                 "hide_explorer_token_button": "删除资源管理器令牌按钮",
-                "hide_snap_create_group_buttons": "删除捕捉创建组按钮"
+                "hide_snap_create_group_buttons": "删除捕捉创建组按钮",
+                "hide_map_reactions": "删除地图反应"
             },
             "hide_story_suggestions": {
                 "hide_suggested_friend_stories": "隐藏建议的朋友故事",
@@ -1538,7 +1550,59 @@
             "message": "这将影响所有选定的好友.此操作无法撤消."
         },
         "actions": {
-            "remove_friends": "删除好友"
+            "remove_friends": "删除好友",
+            "clear_conversations": "清晰的对话"
         }
+    },
+    "download_processor": {
+        "attachment_type": {
+            "original_story": "本事",
+            "gif": "动图",
+            "external_media": "外部媒体",
+            "note": "笔记",
+            "snap": "折断",
+            "sticker": "贴纸"
+        },
+        "select_attachments_title": "选择附件",
+        "failed_no_longer_available_toast": "媒体不再可用",
+        "no_attachments_toast": "没有找到附件！",
+        "already_queued_toast": "媒体已经在排队了!",
+        "already_downloaded_toast": "媒体已下载!",
+        "saved_toast": "保存至 {path}",
+        "processing_toast": "加工 {path}...",
+        "failed_generic_toast": "下载失败",
+        "failed_to_create_preview_toast": "创建预览失败",
+        "failed_processing_toast": "处理失败 {error}",
+        "dash_no_chapter": "没有找到章节",
+        "dash_dialog": {
+            "download_all": "下载全部",
+            "title": "下载破折号媒体"
+        },
+        "download_started_toast": "下载开始",
+        "failed_gallery_toast": "保存到图库失败 {error}",
+        "unsupported_content_type_toast": "不支持的内容类型！",
+        "download_toast": "正在下载 {path}..."
+    },
+    "better_notifications": {
+        "button": {
+            "reply": "回复",
+            "download": "下载",
+            "mark_as_read": "标记为已读"
+        }
+    },
+    "profile_picture_downloader": {
+        "background_option": "背景",
+        "button": "下载个人资料图片",
+        "title": "个人资料图片下载器",
+        "avatar_option": "阿凡达"
+    },
+    "call_start_confirmation": {
+        "dialog_message": "您确定要开始通话吗？",
+        "dialog_title": "开始通话"
+    },
+    "half_swipe_notifier": {
+        "notification_content_dm": "{friend} 只需半滑进入您的聊天室即可 {duration} 秒",
+        "notification_channel_name": "半扫",
+        "notification_content_group": "{friend} 刚刚半滑入 {group} 为了{duration} 秒"
     }
 }
