@@ -10,11 +10,19 @@ import android.os.VibrationEffect
 import android.os.Vibrator
 import androidx.core.graphics.ColorUtils
 import me.rhunk.snapenhance.common.Constants
+import me.rhunk.snapenhance.common.logger.AbstractLogger
 
+val notFoundCache = mutableSetOf<String>()
 
 @SuppressLint("DiscouragedApi")
 fun Resources.getIdentifier(name: String, type: String): Int {
-    return getIdentifier(name, type, Constants.SNAPCHAT_PACKAGE_NAME)
+    return getIdentifier(name, type, Constants.SNAPCHAT_PACKAGE_NAME).also { id ->
+        if (id != 0) return@also
+        "$type#$name".takeIf { it !in notFoundCache}?.let {
+            AbstractLogger.directDebug("Resource not found: $it")
+            notFoundCache.add(it)
+        }
+    }
 }
 
 fun Resources.getId(name: String): Int {
@@ -48,11 +56,10 @@ fun Context.vibrateLongPress() {
     getSystemService(Vibrator::class.java).vibrate(VibrationEffect.createOneShot(50, VibrationEffect.DEFAULT_AMPLITUDE))
 }
 
-@SuppressLint("DiscouragedApi")
 fun Context.isDarkTheme(): Boolean {
     return theme.obtainStyledAttributes(
-        intArrayOf(resources.getIdentifier("sigColorTextPrimary", "attr", packageName))
+        intArrayOf(android.R.attr.colorPrimary)
     ).getColor(0, 0).let {
-        ColorUtils.calculateLuminance(it) > 0.5
+        ColorUtils.calculateLuminance(it) < 0.5
     }
 }

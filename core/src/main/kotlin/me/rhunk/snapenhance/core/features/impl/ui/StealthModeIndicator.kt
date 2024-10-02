@@ -52,11 +52,6 @@ class StealthModeIndicator : Feature("StealthModeIndicator") {
         if (!context.config.userInterface.stealthModeIndicator.get()) return
 
         onNextActivityCreate {
-            val secondaryTextSize = context.resources.getDimens("ff_feed_cell_secondary_text_size").toFloat()
-            val sigColorTextPrimary = context.mainActivity!!.obtainStyledAttributes(
-                intArrayOf(context.resources.getIdentifier("sigColorTextPrimary", "attr"))
-            ).use { it.getColor(0, 0) }
-
             stealthMode.addStateListener { conversationId, state ->
                 runCatching {
                     listeners[conversationId]?.invoke(stealthMode.getRuleState()?.let { if (it == RuleState.BLACKLIST) !state else state } ?: state)
@@ -71,8 +66,9 @@ class StealthModeIndicator : Feature("StealthModeIndicator") {
                     if (!isStealth || !event.view.isAttachedToWindow) return
                     event.view.addForegroundDrawable("stealthModeIndicator", ShapeDrawable(object : Shape() {
                         override fun draw(canvas: Canvas, paint: Paint) {
+                            val secondaryTextSize = context.userInterface.dpToPx(10).toFloat()
                             paint.textSize = secondaryTextSize
-                            paint.color = sigColorTextPrimary
+                            paint.color = context.userInterface.colorPrimary
                             canvas.drawText(
                                 "\uD83D\uDC7B",
                                 0f,

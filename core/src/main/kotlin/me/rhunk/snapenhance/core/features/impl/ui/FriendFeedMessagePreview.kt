@@ -8,7 +8,6 @@ import android.graphics.drawable.shapes.Shape
 import android.text.TextPaint
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.res.use
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
@@ -22,25 +21,15 @@ import me.rhunk.snapenhance.core.features.impl.experiments.EndToEndEncryption
 import me.rhunk.snapenhance.core.ui.addForegroundDrawable
 import me.rhunk.snapenhance.core.ui.removeForegroundDrawable
 import me.rhunk.snapenhance.core.util.EvictingMap
-import me.rhunk.snapenhance.core.util.ktx.getDimens
 import me.rhunk.snapenhance.core.util.ktx.getId
-import me.rhunk.snapenhance.core.util.ktx.getIdentifier
 import me.rhunk.snapenhance.core.wrapper.impl.getMessageText
 import java.util.WeakHashMap
 import kotlin.math.absoluteValue
 
 class FriendFeedMessagePreview : Feature("FriendFeedMessagePreview") {
-    private val endToEndEncryption by lazy { context.feature(EndToEndEncryption::class) }
     @OptIn(ExperimentalCoroutinesApi::class)
     private val coroutineDispatcher = Dispatchers.IO.limitedParallelism(1)
     private val setting get() = context.config.userInterface.friendFeedMessagePreview
-    private val hasE2EE get() = context.config.experimental.e2eEncryption.globalState == true
-
-    private val sigColorTextPrimary by lazy {
-        context.mainActivity!!.theme.obtainStyledAttributes(
-            intArrayOf(context.resources.getIdentifier("sigColorTextPrimary", "attr"))
-        ).use { it.getColor(0, 0) }
-    }
 
     private val cachedLayouts = WeakHashMap<String, View>()
     private val messageCache = EvictingMap<String, List<String>>(100)
@@ -52,7 +41,7 @@ class FriendFeedMessagePreview : Feature("FriendFeedMessagePreview") {
                 message.messageContent
                     ?.let { ProtoReader(it) }
                     ?.followPath(4, 4)?.let {
-                        if (hasE2EE) endToEndEncryption.decryptDatabaseMessage(message) else it
+                        if (context.config.experimental.e2eEncryption.globalState == true) context.feature(EndToEndEncryption::class).decryptDatabaseMessage(message) else it
                     }
                     ?: return@mapNotNull null
 
@@ -79,17 +68,21 @@ class FriendFeedMessagePreview : Feature("FriendFeedMessagePreview") {
         onNextActivityCreate {
             val ffItemId = context.resources.getId("ff_item")
 
-            val secondaryTextSize = context.resources.getDimens("ff_feed_cell_secondary_text_size").toFloat()
-            val ffSdlAvatarMargin = context.resources.getDimens("ff_sdl_avatar_margin")
-            val ffSdlAvatarSize = context.resources.getDimens("ff_sdl_avatar_size")
-            val ffSdlPrimaryTextStartMargin = context.resources.getDimens("ff_sdl_primary_text_start_margin").toFloat()
+            val density = context.resources.displayMetrics.density
 
-            val feedEntryHeight = ffSdlAvatarSize + ffSdlAvatarMargin * 2 + (4 * context.resources.displayMetrics.density).toInt()
-            val separatorHeight = (context.resources.displayMetrics.density * 2).toInt()
-            val avenirNextMedium = context.resources.getFont(context.resources.getIdentifier("avenir_next_medium", "font"))
+            val secondaryTextSize = 10 * density
+            val ffSdlAvatarMargin = (7 * density).toInt()
+            val ffSdlAvatarSize = (43 * density).toInt()
+            val ffSdlPrimaryTextStartMargin = 6 * density
+
+            val feedEntryHeight = ffSdlAvatarSize + ffSdlAvatarMargin * 2 + (4 * density).toInt()
+            val separatorHeight = (density * 2).toInt()
             val textPaint = TextPaint().apply {
                 textSize = secondaryTextSize
-                typeface = avenirNextMedium
+            }
+
+            val typeface by lazy {
+                context.userInterface.avenirNextTypeface
             }
 
             context.event.subscribe(BuildMessageEvent::class) { param ->
@@ -138,8 +131,8 @@ class FriendFeedMessagePreview : Feature("FriendFeedMessagePreview") {
                                 override fun draw(canvas: Canvas, paint: Paint) {
                                     val offsetY = canvas.height.toFloat() - previewContainerHeight
                                     paint.textSize = secondaryTextSize
-                                    paint.color = sigColorTextPrimary
-                                    paint.typeface = avenirNextMedium
+                                    paint.color = context.userInterface.colorPrimary
+                                    paint.typeface = typeface
 
                                     messageCache[conversationId]?.forEachIndexed { index, messageString ->
                                         canvas.drawText(messageString,

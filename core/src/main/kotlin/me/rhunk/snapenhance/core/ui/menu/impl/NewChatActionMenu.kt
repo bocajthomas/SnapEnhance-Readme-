@@ -300,7 +300,7 @@ class NewChatActionMenu : AbstractMenu() {
             val primaryColor = remember { if (event.view.context.isDarkTheme()) Color.White else Color.Black }
             val avenirNextMediumFont = remember {
                 FontFamily(
-                    Font(context.resources.getIdentifier("avenir_next_medium", "font"), FontWeight.Medium)
+                    Font(context.userInterface.getFontResource(600) ?: throw IllegalStateException("Font not found"), FontWeight.Medium)
                 )
             }
 

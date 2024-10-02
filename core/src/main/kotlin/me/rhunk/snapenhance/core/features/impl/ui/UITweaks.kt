@@ -3,19 +3,34 @@ package me.rhunk.snapenhance.core.features.impl.ui
 import android.content.res.Resources
 import android.util.Size
 import android.view.View
+import android.view.ViewGroup
 import android.view.ViewGroup.MarginLayoutParams
 import android.widget.FrameLayout
+import android.widget.LinearLayout
 import me.rhunk.snapenhance.common.util.ktx.findFieldsToString
 import me.rhunk.snapenhance.core.event.events.impl.AddViewEvent
 import me.rhunk.snapenhance.core.event.events.impl.BindViewEvent
-import me.rhunk.snapenhance.core.event.events.impl.LayoutInflateEvent
 import me.rhunk.snapenhance.core.features.Feature
-import me.rhunk.snapenhance.core.ui.getComposerContext
+import me.rhunk.snapenhance.core.ui.*
 import me.rhunk.snapenhance.core.util.dataBuilder
 import me.rhunk.snapenhance.core.util.hook.HookStage
 import me.rhunk.snapenhance.core.util.hook.Hooker
 import me.rhunk.snapenhance.core.util.hook.hook
 import me.rhunk.snapenhance.core.util.ktx.getIdentifier
+
+fun getChatInputBar(event: AddViewEvent): Lazy<ViewGroup?>? {
+    if (!event.parent.javaClass.name.endsWith("ChatInputLayout") || !event.viewClassName.endsWith("ViewSwitcher")) return null
+
+    return lazy {
+        // get the first linear layout in the view switcher
+        val firstLinearLayout = (event.view as ViewGroup).children()
+            .firstOrNull { it is LinearLayout } as? ViewGroup ?: return@lazy null
+        // get the first linear layout with at least 3 children
+        firstLinearLayout.children()
+            .firstOrNull { v -> v is LinearLayout && v.childCount > 2 } as? LinearLayout
+            ?: return@lazy null
+    }
+}
 
 class UITweaks : Feature("UITweaks") {
     private val identifierCache = mutableMapOf<String, Int>()
@@ -57,29 +72,11 @@ class UITweaks : Feature("UITweaks") {
         val displayMetrics = context.resources.displayMetrics
         val deviceAspectRatio = displayMetrics.widthPixels.toFloat() / displayMetrics.heightPixels.toFloat()
 
-        val callButtonsStub = getId("call_buttons_stub", "id")
-        val callButton1 = getId("friend_action_button3", "id")
-        val callButton2 = getId("friend_action_button4", "id")
-
         val chatNoteRecordButton = getId("chat_note_record_button", "id")
         val unreadHintButton = getId("unread_hint_button", "id")
         val friendCardFrame = getId("friend_card_frame", "id")
 
-        View::class.java.hook("setVisibility", HookStage.BEFORE) { methodParam ->
-            val viewId = (methodParam.thisObject() as View).id
-            if (viewId == callButton1 || viewId == callButton2) {
-                if (!hiddenElements.contains("hide_profile_call_buttons")) return@hook
-                methodParam.setArg(0, View.GONE)
-            }
-        }
-
-        context.event.subscribe(LayoutInflateEvent::class) { event ->
-            if (event.layoutId == getId("chat_input_bar_sharing_drawer_button", "layout") && hiddenElements.contains("hide_live_location_share_button")) {
-                hideView(event.view ?: return@subscribe)
-            }
-        }
-
-        Resources::class.java.methods.first { it.name == "getDimensionPixelSize" }.hook(
+        Resources::class.java.methods.first { it.name == "getDimensionPixelSize"}.hook(
             HookStage.AFTER,
             { isImmersiveCamera }
         ) { param ->
@@ -92,22 +89,24 @@ class UITweaks : Feature("UITweaks") {
 
         var friendCardFrameSize: Size? = null
 
-        val fourDp by lazy {
-            (4 * context.androidContext.resources.displayMetrics.density).toInt()
-        }
-
         context.event.subscribe(BindViewEvent::class, { hideStorySuggestions.isNotEmpty() }) { event ->
             if (event.view is FrameLayout) {
+                fun removeView() {
+                    event.view.layoutParams = event.view.layoutParams?.apply {
+                        width = 0; height = 0
+                    } ?: return
+                }
+
                 val viewModelString = event.prevModel.toString()
                 val isSuggestedFriend by lazy { viewModelString.startsWith("DFFriendSuggestionCardViewModel") }
                 val isMyStory by lazy { viewModelString.let { it.startsWith("CircularItemViewModel") && it.contains("storyId=") }}
 
-                if ((hideStorySuggestions.contains("hide_friend_suggestions") && isSuggestedFriend) ||
-                    (hideStorySuggestions.contains("hide_my_stories") && isMyStory)) {
-                    event.view.layoutParams.apply {
-                        width = 0; height = 0
-                        if (this is MarginLayoutParams) setMargins(-fourDp, 0, -fourDp, 0)
-                    }
+                if (hideStorySuggestions.contains("hide_friend_suggestions") && isSuggestedFriend) {
+                    removeView()
+                    return@subscribe
+                }
+                if (hideStorySuggestions.contains("hide_my_stories") && isMyStory) {
+                    removeView()
                     return@subscribe
                 }
             }
@@ -167,25 +166,58 @@ class UITweaks : Feature("UITweaks") {
                 }
             }
 
-            if (event.parent.id == getId("map_reactions_layout", "id") && hiddenElements.contains("hide_map_reactions")) {
-                hideView(view)
+            if (event.parent.javaClass.name.endsWith("ConstraintLayout") && event.view is LinearLayout && hiddenElements.contains("hide_map_reactions")) {
+                val viewGroup = event.view as ViewGroup
+                val children = viewGroup.children()
+
+                // hide image views in the reaction bar
+                if (children.takeIf { it.count() == 5 }?.all { it.javaClass.name.endsWith("SnapImageView") } == true) {
+                    children.forEach { imageView ->
+                        imageView.hideViewCompletely()
+                    }
+                }
+            }
+            if (event.parent.javaClass.name.endsWith("PreviewBottomToolbarView") && hiddenElements.contains("hide_post_to_story_buttons")) {
+                if (event.parent.childCount == 1) {
+                    event.view.hideViewCompletely()
+                }
             }
 
-            if (
-                ((viewId == getId("post_tool", "id") || viewId == getId("story_button", "id")) && hiddenElements.contains("hide_post_to_story_buttons")) ||
-                ((viewId == getId("below_header_message_banner_text", "id") || viewId == getId("below_header_message_banner", "id")) && hiddenElements.contains("hide_gift_snapchat_plus_reminders")) ||
-                ((viewId == getId("explorer_action_icon", "id") || viewId == getId("explorer_action_text", "id")) && hiddenElements.contains("hide_explorer_token_button")) ||
-                (viewId == getId("chat_input_bar_sticker", "id") && hiddenElements.contains("hide_stickers_button")) ||
-                (viewId == getId("chat_input_bar_sharing_drawer_button", "id") && hiddenElements.contains("hide_live_location_share_button")) ||
-                (viewId == getId("chat_input_bar_camera", "id") && hiddenElements.contains("hide_chat_camera_button")) ||
-                (viewId == getId("chat_input_bar_gallery", "id") && hiddenElements.contains("hide_chat_gallery_button")) ||
-                (viewId == getId("send_to_recipient_bar_new_group_button", "id") && hiddenElements.contains("hide_snap_create_group_buttons")) ||
-                (viewId == chatNoteRecordButton && hiddenElements.contains("hide_voice_record_button")) ||
-                (viewId == callButtonsStub && hiddenElements.contains("hide_chat_call_buttons"))
-            ) {
-                hideView(view)
+            if (viewId == getId("send_btn", "id") && hiddenElements.contains("hide_post_to_story_buttons")) {
+                // hide previous view
+                if (event.parent.childCount > 0) {
+                    val lastChild = event.parent.getChildAt(event.parent.childCount - 1)?.takeIf { it is LinearLayout } ?: return@subscribe
+                    context.log.verbose("Hiding post to story button")
+                    lastChild.hideViewCompletely()
+                }
             }
 
+            getChatInputBar(event)?.let { lazyChatInputBar ->
+                val chatInputBar by lazyChatInputBar
+
+                if (hiddenElements.contains("hide_live_location_share_button")) {
+                    chatInputBar?.onLayoutChange {
+                        chatInputBar!!.children().lastOrNull { it.javaClass.name.endsWith("AppCompatImageButton") && runCatching { it.resources.getResourceName(it.id) }.getOrNull() == null }
+                            ?.hideViewCompletely()
+                    }
+                }
+
+                if (hiddenElements.contains("hide_stickers_button")) {
+                    chatInputBar
+                        ?.children()
+                        ?.lastOrNull { layout ->
+                            layout is FrameLayout && layout.children().all {
+                                it.javaClass.name.endsWith("SnapImageView")
+                            }
+                        }
+                        ?.hideViewCompletely()
+                }
+            }
+
+            if (viewId == chatNoteRecordButton && hiddenElements.contains("hide_voice_record_button")) {
+                view.hideViewCompletely()
+            }
+            
             if (viewId == unreadHintButton && hiddenElements.contains("hide_unread_chat_hint")) {
                 event.canceled = true
             }

@@ -28,13 +28,26 @@ class BypassVideoLengthRestriction :
 
                     fileObserver = (object : FileObserver(postedStorySnapFolder, MOVED_TO) {
                         override fun onEvent(event: Int, path: String?) {
-                            if (event != MOVED_TO || path?.endsWith("posted_story_snap.2") != true) return
-                            fileObserver.stopWatching()
+                            if (event != MOVED_TO || path?.contains("posted_story_snap.") != true) return
 
-                            val file = File(postedStorySnapFolder, path)
                             runCatching {
-                                val fileContent = JsonParser.parseReader(file.reader()).asJsonObject
-                                if (fileContent["timerOrDuration"].asLong < 0) file.delete()
+                                val file = File(postedStorySnapFolder, path)
+                                file.bufferedReader().use { bufferedReader ->
+                                    bufferedReader.mark(1)
+                                    if (bufferedReader.read() != 123) {
+                                        context.log.verbose("Ignoring non-JSON file: $path")
+                                        return@use
+                                    }
+                                    bufferedReader.reset()
+                                    val fileContent = JsonParser.parseReader(bufferedReader).asJsonObject
+                                    if ((fileContent["timerOrDuration"]?.also {
+                                            fileObserver.stopWatching()
+                                    }?.takeIf { !it.isJsonNull }?.asLong ?: 1) <= 0) {
+                                        context.log.verbose("Deleting $path")
+                                        file.delete()
+                                    }
+                                }
+
                             }.onFailure {
                                 context.log.error("Failed to read story metadata file", it)
                             }

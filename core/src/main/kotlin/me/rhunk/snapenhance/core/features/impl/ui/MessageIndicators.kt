@@ -41,8 +41,8 @@ class MessageIndicators : Feature("Message Indicators") {
 
             context.event.subscribe(BindViewEvent::class) { event ->
                 event.chatMessage { _, _ ->
-                    val parentLinearLayout = event.view.parent as? ViewGroup ?: return@subscribe
-                    parentLinearLayout.findViewWithTag<View>(messageInfoTag)?.let { parentLinearLayout.removeView(it) }
+                    val view = event.view as? ViewGroup ?: return@subscribe
+                    view.findViewWithTag<View>(messageInfoTag)?.let { view.removeView(it) }
 
                     event.view.removeForegroundDrawable("messageIndicators")
 
@@ -138,7 +138,7 @@ class MessageIndicators : Feature("Message Indicators") {
                             LinearLayout.LayoutParams.MATCH_PARENT,
                             LinearLayout.LayoutParams.WRAP_CONTENT
                         )
-                        parentLinearLayout.addView(this)
+                        view.addView(this)
                     }
                 }
             }

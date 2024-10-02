@@ -1,19 +1,16 @@
 package me.rhunk.snapenhance.core.event.events.impl
 
 import android.view.View
+import android.view.ViewGroup
+import android.widget.LinearLayout
 import me.rhunk.snapenhance.common.database.impl.ConversationMessage
 import me.rhunk.snapenhance.core.event.Event
-import me.rhunk.snapenhance.core.util.ktx.getId
 
 class BindViewEvent(
     val prevModel: Any,
     val nextModel: Any?,
     var view: View
 ): Event() {
-    val chatMessageContentContainerId by lazy {
-        view.resources.getId("chat_message_content_container")
-    }
-
     val databaseMessage by lazy {
         var message: ConversationMessage? = null
         chatMessage { _, messageId ->
@@ -25,8 +22,8 @@ class BindViewEvent(
     inline fun chatMessage(block: (conversationId: String, messageId: String) -> Unit) {
         val modelToString = prevModel.toString()
         if (!modelToString.startsWith("ChatViewModel")) return
-        if (view.id != chatMessageContentContainerId) {
-            view = view.findViewById(chatMessageContentContainerId) ?: return
+        if (view !is LinearLayout) {
+            view = (view as ViewGroup).getChildAt(0)
         }
         modelToString.substringAfter("messageId=").substringBefore(",").split(":").apply {
             if (size != 3) return

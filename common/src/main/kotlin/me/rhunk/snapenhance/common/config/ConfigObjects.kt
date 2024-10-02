@@ -35,6 +35,38 @@ enum class ConfigFlag {
     val id = 1 shl ordinal
 }
 
+data class VersionCheck(
+    // Pair<versionString, versionCode>
+    val minVersion: Pair<String, Long>? = null,
+    val maxVersion: Pair<String, Long>? = null,
+    val isDisabled: Boolean = false,
+)  {
+    fun checkVersion(versionCode: Long): Pair<Pair<String, Long>, VersionRequirement>? {
+        minVersion?.let {
+            if (versionCode <= it.second) {
+                return minVersion to VersionRequirement.NEWER_REQUIRED
+            }
+        }
+
+        maxVersion?.let {
+            if (versionCode >= it.second) {
+                return maxVersion to VersionRequirement.OLDER_REQUIRED
+            }
+        }
+
+        return null
+    }
+}
+
+enum class VersionRequirement(
+    val key: String
+) {
+    OLDER_REQUIRED("older_required"),
+    NEWER_REQUIRED("newer_required");
+
+    val id = 1 shl ordinal
+}
+
 class ConfigParams(
     private var _flags: Int? = null,
     private var _notices: Int? = null,
@@ -45,6 +77,7 @@ class ConfigParams(
     var customOptionTranslationPath: String? = null,
     var inputCheck: ((String) -> Boolean)? = { true },
     var filenameFilter: ((String) -> Boolean)? = null,
+    var versionCheck: VersionCheck? = null,
 ) {
     val notices get() = _notices?.let { FeatureNotice.entries.filter { flag -> it and flag.id != 0 } } ?: emptyList()
     val flags get() = _flags?.let { ConfigFlag.entries.filter { flag -> it and flag.id != 0 } } ?: emptyList()

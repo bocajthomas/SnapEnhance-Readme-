@@ -31,6 +31,7 @@ import me.rhunk.snapenhance.core.messaging.CoreMessagingBridge
 import me.rhunk.snapenhance.core.messaging.MessageSender
 import me.rhunk.snapenhance.core.scripting.CoreScriptRuntime
 import me.rhunk.snapenhance.core.ui.InAppOverlay
+import me.rhunk.snapenhance.core.ui.UserInterface
 import me.rhunk.snapenhance.core.util.media.HttpServer
 import me.rhunk.snapenhance.nativelib.NativeConfig
 import me.rhunk.snapenhance.nativelib.NativeLib
@@ -69,6 +70,7 @@ class ModContext(
     val scriptRuntime by lazy { CoreScriptRuntime(this, log) }
     val messagingBridge = CoreMessagingBridge(this)
     val inAppOverlay = InAppOverlay(this)
+    val userInterface = UserInterface(this)
 
     val isDeveloper by lazy { config.scripting.developerMode.get() }
 
