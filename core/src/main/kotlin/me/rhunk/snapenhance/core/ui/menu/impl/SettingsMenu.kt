@@ -31,7 +31,7 @@ class SettingsMenu : AbstractMenu() {
                 }
 
                 if (param.argNullable<String>(0) == ngsChatLabel) {
-                    param.setArg(0, "SnapEnhance")
+                    param.setArg(0, "SE Extended")
                 }
             }
         }
