@@ -1604,5 +1604,8 @@
         "notification_content_dm": "{friend} 只需半滑进入您的聊天室即可 {duration} 秒",
         "notification_channel_name": "半扫",
         "notification_content_group": "{friend} 刚刚半滑入 {group} 为了{duration} 秒"
+    },
+    "biometric_auth": {
+        "unlock_button": "未锁定"
     }
 }
