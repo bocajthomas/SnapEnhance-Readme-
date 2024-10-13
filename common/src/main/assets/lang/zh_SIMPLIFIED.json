@@ -597,10 +597,6 @@
                         "name": "禁用聚光灯",
                         "description": "禁用 Spotlight 页面"
                     },
-                    "hide_settings_gear": {
-                        "name": "隐藏设置齿轮",
-                        "description": "在好友动态中隐藏 SE Extended 设置装备"
-                    },
                     "friend_feed_menu_buttons": {
                         "name": "好友动态菜单按钮",
                         "description": "选择要在好友动态菜单中显示的按钮"

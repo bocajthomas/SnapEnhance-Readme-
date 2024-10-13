@@ -421,10 +421,6 @@
                         "name": "Deshabilitar Spotlight",
                         "description": "Deshabilita la página de Spotlight"
                     },
-                    "hide_settings_gear": {
-                        "name": "Ocultar el engranaje de ajustes",
-                        "description": "Oculta el engranaje de los ajustes de SnapEnhance en la lista de amigxs"
-                    },
                     "friend_feed_menu_buttons": {
                         "name": "Botones de menú de la lista de amigxs",
                         "description": "Elige que botones mostrar en el menú de la lista de amigxs"

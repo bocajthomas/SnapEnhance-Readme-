@@ -427,10 +427,6 @@
                         "description": "Active la nouvelle barre de menu de flux d'amis",
                         "name": "Barre du menu du fil d'amis"
                     },
-                    "hide_settings_gear": {
-                        "name": "Masquer la roue des paramètres",
-                        "description": "Masque la roue des paramètres SnapEnhance dans le fil d'amis"
-                    },
                     "opera_media_quick_info": {
                         "description": "Affiche des informations utiles sur les médias, telles que la date de création, dans le menu contextuel de la visionneuse d'Opera",
                         "name": "Informations rapides des médias Opera"

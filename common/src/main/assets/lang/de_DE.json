@@ -426,10 +426,6 @@
                         "name": "Freunde Feed Menüleiste",
                         "description": "Aktiviert die neue Freunde Feed Menüleiste"
                     },
-                    "hide_settings_gear": {
-                        "name": "Symbol für Einstellungen ausblenden",
-                        "description": "Blendet das SE Extended Einstellungssymbol im Chat Tab aus"
-                    },
                     "opera_media_quick_info": {
                         "description": "Zeigt nützliche Informationen zu Medien wie das Erstellungsdatum im Kontextmenü der Snap-Ansicht an",
                         "name": "Medien Schnellinfo"

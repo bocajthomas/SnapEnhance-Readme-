@@ -443,10 +443,6 @@
                         "name": "Arkadaş Akışı Menü Çubuğu",
                         "description": "Yeni Arkadaş Akışı Menüsü Çubuğunu etkinleştirir"
                     },
-                    "hide_settings_gear": {
-                        "name": "Ayarlar Dişlisini Gizle",
-                        "description": "Arkadaş akışındaki SnapEnhance Ayarları Dişlisini gizler"
-                    },
                     "opera_media_quick_info": {
                         "description": "Opera görüntüleyici içerik menüsünde oluşturma tarihi gibi medyanın yararlı bilgilerini gösterir",
                         "name": "Opera Medya Hızlı Bilgi"
