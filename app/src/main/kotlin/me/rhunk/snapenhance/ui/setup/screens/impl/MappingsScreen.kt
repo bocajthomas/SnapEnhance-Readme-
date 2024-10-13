@@ -10,7 +10,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import me.rhunk.snapenhance.ui.setup.screens.SetupScreen
 import me.rhunk.snapenhance.ui.util.AlertDialogs
 
@@ -22,12 +21,14 @@ class MappingsScreen : SetupScreen() {
         var isGenerating by remember { mutableStateOf(false) }
 
         if (infoText != null) {
-            Dialog(onDismissRequest = {
+            fun dismiss() {
                 infoText = null
-            }) {
+                goNext()
+            }
+
+            Dialog(onDismissRequest = { dismiss() }) {
                 remember { AlertDialogs(context.translation) }.InfoDialog(title = infoText!!) {
-                    infoText = null
-                    goNext()
+                    dismiss()
                 }
             }
         }
@@ -40,10 +41,17 @@ class MappingsScreen : SetupScreen() {
                     if (context.installationSummary.snapchatInfo == null) {
                         throw Exception(context.translation["setup.mappings.generate_failure_no_snapchat"])
                     }
-                    context.mappings.refresh()
-                    withContext(Dispatchers.Main) {
-                        goNext()
+                    val warnings = context.mappings.refresh()
+
+                    if (warnings.isNotEmpty()) {
+                        isGenerating = false
+                        infoText = "${warnings.size} warning(s) occurred while generating mappings:\n\n${warnings.joinToString("\n")}".also {
+                            context.log.warn(it)
+                        }
+                        return@launch
                     }
+
+                    goNext()
                 }.onFailure {
                     isGenerating = false
                     infoText = context.translation["setup.mappings.generate_failure"] + "\n\n" + it.message

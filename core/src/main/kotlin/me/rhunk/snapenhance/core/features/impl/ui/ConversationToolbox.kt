@@ -18,7 +18,9 @@ import androidx.compose.material.icons.filled.KeyboardArrowUp
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateMapOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
@@ -35,7 +37,6 @@ import me.rhunk.snapenhance.common.ui.createComposeAlertDialog
 import me.rhunk.snapenhance.core.event.events.impl.AddViewEvent
 import me.rhunk.snapenhance.core.features.Feature
 import me.rhunk.snapenhance.core.features.impl.messaging.Messaging
-import me.rhunk.snapenhance.core.util.ktx.getId
 
 
 data class ComposableMenu(
@@ -57,13 +58,12 @@ class ConversationToolbox : Feature("Conversation Toolbox") {
     @SuppressLint("SetTextI18n")
     override fun init() {
         onNextActivityCreate {
-            val defaultInputBarId = context.resources.getId("default_input_bar")
-
             context.event.subscribe(AddViewEvent::class) { event ->
-                if (event.view.id != defaultInputBarId) return@subscribe
                 if (composableList.isEmpty()) return@subscribe
 
-                (event.view as ViewGroup).addView(FrameLayout(event.view.context).apply {
+                val chatInputBar by getChatInputBar(event) ?: return@subscribe
+
+                chatInputBar?.addView(FrameLayout(event.view.context).apply {
                     layoutParams = LinearLayout.LayoutParams(
                         ViewGroup.LayoutParams.WRAP_CONTENT,
                         (52 * context.resources.displayMetrics.density).toInt(),

@@ -94,7 +94,9 @@
                 "config_import_success_toast": "Config imported successfully",
                 "config_import_failure_toast": "Failed to import config {error}",
                 "config_export_failure_toast": "Failed to export config {error}",
-                "saved_config_snackbar": "Config saved"
+                "saved_config_snackbar": "Config saved",
+                "older_required": "This feature requires Snapchat v{version} or older to work correctly",
+                "newer_required": "This feature requires Snapchat v{version} or newer to work correctly"
             },
             "manage_rule_feature": {
                 "disable_state_option": "Disabled",
@@ -525,10 +527,6 @@
                     "disable_spotlight": {
                         "name": "Disable Spotlight",
                         "description": "Disables the Spotlight page"
-                    },
-                    "hide_settings_gear": {
-                        "name": "Hide Settings Gear",
-                        "description": "Hides the SE Extended Settings Gear in friend feed"
                     },
                     "friend_feed_menu_buttons": {
                         "name": "Friend Feed Menu Buttons",

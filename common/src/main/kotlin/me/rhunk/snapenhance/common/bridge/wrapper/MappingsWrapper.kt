@@ -67,7 +67,7 @@ class MappingsWrapper(
         isMappingsLoaded = true
     }
 
-    fun refresh() {
+    fun refresh(): List<String> {
         mappingUniqueHash = getUniqueBuildId()
 
         // reset native signature cache
@@ -87,6 +87,8 @@ class MappingsWrapper(
             }
             writeBytes(result.toString().toByteArray())
         }
+
+        return classMapper.getWarns()
     }
 
     @Suppress("UNCHECKED_CAST")

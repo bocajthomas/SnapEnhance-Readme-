@@ -139,7 +139,7 @@ class AlertDialogs(
             if (message != null) {
                 Text(
                     text = message,
-                    style = MaterialTheme.typography.bodyMedium,
+                    style = MaterialTheme.typography.bodySmall,
                     modifier = Modifier.padding(bottom = 15.dp)
                 )
             }

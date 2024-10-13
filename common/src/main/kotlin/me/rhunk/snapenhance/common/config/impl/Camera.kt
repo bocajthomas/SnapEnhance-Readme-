@@ -4,10 +4,7 @@ import android.content.Context
 import android.hardware.camera2.CameraCharacteristics
 import android.hardware.camera2.CameraManager
 import me.rhunk.snapenhance.common.Constants
-import me.rhunk.snapenhance.common.config.ConfigContainer
-import me.rhunk.snapenhance.common.config.ConfigFlag
-import me.rhunk.snapenhance.common.config.FeatureNotice
-import me.rhunk.snapenhance.common.config.PropertyValue
+import me.rhunk.snapenhance.common.config.*
 import me.rhunk.snapenhance.common.logger.AbstractLogger
 
 class Camera : ConfigContainer() {
@@ -51,7 +48,7 @@ class Camera : ConfigContainer() {
     }
 
     val disableCameras = multiple("disable_cameras", "front", "back") { addNotices(FeatureNotice.INTERNAL_BEHAVIOR); requireRestart() }
-    val immersiveCameraPreview = boolean("immersive_camera_preview") { addNotices(FeatureNotice.UNSTABLE) }
+    val immersiveCameraPreview = boolean("immersive_camera_preview") { addNotices(FeatureNotice.UNSTABLE); versionCheck = RES_OBF_VERSION_CHECK.copy(isDisabled = true) }
     val blackPhotos = boolean("black_photos")
     val frontCustomFrameRate = unique("front_custom_frame_rate", *customFrameRates) { requireRestart(); addFlags(ConfigFlag.NO_TRANSLATE) }
     val backCustomFrameRate = unique("back_custom_frame_rate", *customFrameRates) { requireRestart(); addFlags(ConfigFlag.NO_TRANSLATE) }

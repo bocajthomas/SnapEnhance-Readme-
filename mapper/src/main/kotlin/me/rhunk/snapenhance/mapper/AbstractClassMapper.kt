@@ -83,7 +83,8 @@ abstract class AbstractClassMapper(
         }
     }
 
-    fun writeFromJson(json: JsonObject) {
+    fun writeFromJson(json: JsonObject): List<String> {
+        val warns = mutableListOf<String>()
         values.forEach { (key, value) ->
             runCatching {
                 when (value) {
@@ -95,7 +96,11 @@ abstract class AbstractClassMapper(
             }.onFailure {
                 Log.e("Mapper","Failed to serialize property $key")
             }
+            if (json.get(key).let { it.isJsonNull || (it.isJsonPrimitive && it.asString == "null") }) {
+                warns.add("Failed to serialize property $key in $mapperName")
+            }
         }
+        return warns
     }
 
     fun mapper(task: MapperContext.() -> Unit) {

@@ -10,7 +10,7 @@ android {
     namespace = rootProject.ext["applicationId"].toString() + ".nativelib"
     compileSdk = 34
     buildToolsVersion = "34.0.0"
-    ndkVersion = "26.3.11579264"
+    ndkVersion = "27.1.12297006"
 
     buildFeatures {
         buildConfig = true

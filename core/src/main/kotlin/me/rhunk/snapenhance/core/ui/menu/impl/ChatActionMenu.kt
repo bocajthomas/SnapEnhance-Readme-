@@ -1,5 +1,9 @@
 package me.rhunk.snapenhance.core.ui.menu.impl
 
+import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
+import android.graphics.drawable.ShapeDrawable
+import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.MarginLayoutParams
@@ -11,31 +15,41 @@ import me.rhunk.snapenhance.core.features.impl.experiments.ConvertMessageLocally
 import me.rhunk.snapenhance.core.features.impl.messaging.Messaging
 import me.rhunk.snapenhance.core.features.impl.spying.MessageLogger
 import me.rhunk.snapenhance.core.ui.ViewTagState
-import me.rhunk.snapenhance.core.ui.applyTheme
 import me.rhunk.snapenhance.core.ui.menu.AbstractMenu
 import me.rhunk.snapenhance.core.ui.triggerCloseTouchEvent
 import me.rhunk.snapenhance.core.util.hook.HookStage
 import me.rhunk.snapenhance.core.util.hook.hook
-import me.rhunk.snapenhance.core.util.ktx.getDimens
 import me.rhunk.snapenhance.core.util.ktx.vibrateLongPress
 
 
 class ChatActionMenu : AbstractMenu() {
     private val viewTagState = ViewTagState()
-    private val defaultGap by lazy { context.resources.getDimens("default_gap") }
-    private val chatActionMenuItemMargin by lazy { context.resources.getDimens("chat_action_menu_item_margin") }
-    private val actionMenuItemHeight by lazy { context.resources.getDimens("action_menu_item_height") }
+    private val defaultGap by lazy { context.userInterface.dpToPx(8) }
+    private val chatActionMenuItemMargin by lazy { context.userInterface.dpToPx(15) }
+    private val actionMenuItemHeight by lazy { context.userInterface.dpToPx(45) }
+
+    private fun createRoundedBackground(color: Int, radius: Float, hasRadius: Boolean): Drawable {
+        if (!hasRadius) return ColorDrawable(color)
+        return ShapeDrawable().apply {
+            paint.color = color
+            shape = android.graphics.drawable.shapes.RoundRectShape(
+                floatArrayOf(radius, radius, radius, radius, radius, radius, radius, radius),
+                null,
+                null
+            )
+        }
+    }
 
     private fun createContainer(viewGroup: ViewGroup): LinearLayout {
-        val parent = viewGroup.parent.parent as ViewGroup
-
         return LinearLayout(viewGroup.context).apply layout@{
             orientation = LinearLayout.VERTICAL
             layoutParams = MarginLayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
             ).apply {
-                applyTheme(parent.width, true)
+                this@ChatActionMenu.context.userInterface.apply {
+                    background = createRoundedBackground(actionSheetBackground, 16F, true)
+                }
                 setMargins(chatActionMenuItemMargin, 0, chatActionMenuItemMargin, defaultGap)
             }
         }
@@ -84,11 +98,24 @@ class ChatActionMenu : AbstractMenu() {
             }
 
             with(button) {
-                applyTheme(viewGroup.width, true)
+                this@ChatActionMenu.context.userInterface.apply {
+                    background = createRoundedBackground(actionSheetBackground, 16F, true)
+                    setTextColor(colorPrimary)
+                    typeface = resources.getFont(getFontResource(600) ?: throw IllegalStateException("Avenir Next not loaded"))
+                }
+                isAllCaps = false
+                setShadowLayer(0F, 0F, 0F, 0)
+                setPadding(chatActionMenuItemMargin, 0, 0, 0)
+
+                gravity = Gravity.CENTER_VERTICAL
+
                 layoutParams = MarginLayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT
                 ).apply {
+                    post {
+                        width = viewGroup.width
+                    }
                     height = actionMenuItemHeight + defaultGap
                 }
                 buttonContainer.addView(this)
