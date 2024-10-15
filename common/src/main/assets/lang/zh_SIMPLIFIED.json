@@ -164,7 +164,8 @@
                 "disabled": "残疾人",
                 "config_import_success_toast": "配置导入成功",
                 "reset_option": "重置",
-                "config_export_failure_toast": "导出配置失败 {error}"
+                "config_export_failure_toast": "导出配置失败 {error}",
+                "older_required": "此功能需要 Snapchat v{version} 或更早版本才能正常工作"
             },
             "tasks": {
                 "no_tasks": "没有任务",
