@@ -6,11 +6,7 @@ import android.widget.LinearLayout
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Android
-import androidx.compose.material.icons.filled.Edit
-import androidx.compose.material.icons.filled.Laptop
-import androidx.compose.material.icons.filled.LocationOn
-import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.Text
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -27,7 +23,6 @@ import me.rhunk.snapenhance.common.util.protobuf.ProtoReader
 import me.rhunk.snapenhance.core.event.events.impl.BindViewEvent
 import me.rhunk.snapenhance.core.features.Feature
 import me.rhunk.snapenhance.core.ui.AppleLogo
-import me.rhunk.snapenhance.core.ui.removeForegroundDrawable
 import kotlin.random.Random
 
 class MessageIndicators : Feature("Message Indicators") {
@@ -43,8 +38,6 @@ class MessageIndicators : Feature("Message Indicators") {
                 event.chatMessage { _, _ ->
                     val view = event.view as? ViewGroup ?: return@subscribe
                     view.findViewWithTag<View>(messageInfoTag)?.let { view.removeView(it) }
-
-                    event.view.removeForegroundDrawable("messageIndicators")
 
                     val message = event.databaseMessage ?: return@chatMessage
                     if (message.contentType != ContentType.SNAP.id && message.contentType != ContentType.EXTERNAL_MEDIA.id) return@chatMessage

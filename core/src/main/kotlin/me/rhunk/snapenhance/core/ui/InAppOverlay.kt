@@ -255,11 +255,12 @@ class InAppOverlay(
         text: String,
         durationMs: Int = 2000,
         showDuration: Boolean = true,
+        maxLines: Int = 3
     ) {
         showToast(
             icon = { Icon(icon, contentDescription = "icon", modifier = Modifier.size(32.dp)) },
             text = {
-                Text(text, modifier = Modifier.fillMaxWidth(), maxLines = 3, overflow = TextOverflow.Ellipsis, lineHeight = 15.sp, fontSize = 15.sp)
+                Text(text, modifier = Modifier.fillMaxWidth(), maxLines = maxLines, overflow = TextOverflow.Ellipsis, lineHeight = 15.sp, fontSize = 15.sp)
             },
             durationMs = durationMs,
             showDuration = showDuration

@@ -19,7 +19,7 @@ class UserInterface(
     val actionSheetBackground get() = if (context.androidContext.isDarkTheme()) 0xff1e1e1e.toInt() else 0xffffffff.toInt()
 
     val avenirNextTypeface: Typeface by lazy {
-        fontMap[600]?.let { context.resources.getFont(it) } ?: throw IllegalStateException("Avenir Next not loaded")
+        fontMap[600]?.let { context.resources.getFont(it) } ?: Typeface.MONOSPACE
     }
 
     fun dpToPx(dp: Int): Int {
