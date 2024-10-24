@@ -1604,5 +1604,22 @@
     },
     "biometric_auth": {
         "unlock_button": "未锁定"
+    },
+    "end_to_end_encryption": {
+        "confirmation_dialogs": {
+            "title": "端对端加密",
+            "confirmation_2": "您是否确定要继续？这将是您最后一次退出的机会。"
+        },
+        "native_hooks_send_failure_toast": "发送失败了！请去设置里开启原生钩子。",
+        "encryption_failed_toast": "加密消息失败！请查看日志了解更多详细信息。",
+        "accept_public_key_success_toast": "公钥已成功接收！",
+        "outgoing_pk_message": "密钥交换请求",
+        "outgoing_secret_message": "密钥交换响应",
+        "incoming_pk_message": "您刚刚收到一个公钥请求。点击下面接受这个请求。",
+        "incoming_secret_message": "您的好友刚刚接受了您的公钥。点击下面接受密码。",
+        "accept_secret_key_success_toast": "完成了！你现在可以与这位朋友传输加密信息了。",
+        "accept_public_key_failure_toast": "无法接收公钥",
+        "accept_secret_key_failure_toast": "无法接受密钥。",
+        "accept_public_key_button": "接收公钥"
     }
 }
