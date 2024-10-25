@@ -101,7 +101,7 @@ class ChatActionMenu : AbstractMenu() {
                 this@ChatActionMenu.context.userInterface.apply {
                     background = createRoundedBackground(actionSheetBackground, 16F, true)
                     setTextColor(colorPrimary)
-                    typeface = resources.getFont(getFontResource(600) ?: throw IllegalStateException("Avenir Next not loaded"))
+                    typeface = this@ChatActionMenu.context.userInterface.avenirNextTypeface
                 }
                 isAllCaps = false
                 setShadowLayer(0F, 0F, 0F, 0)

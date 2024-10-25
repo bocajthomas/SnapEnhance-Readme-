@@ -18,7 +18,6 @@ import androidx.compose.ui.window.Dialog
 import androidx.core.net.toUri
 import androidx.navigation.NavBackStackEntry
 import kotlinx.coroutines.launch
-import me.rhunk.snapenhance.common.Constants
 import me.rhunk.snapenhance.common.action.EnumAction
 import me.rhunk.snapenhance.common.bridge.InternalFileHandleType
 import me.rhunk.snapenhance.common.ui.rememberAsyncMutableState
@@ -60,7 +59,7 @@ class HomeSettings : Routes.Route() {
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(text = text)
+            Text(text = text, modifier = Modifier.padding(end = 16.dp), fontSize = 14.sp)
             Switch(checked = value, onCheckedChange = {
                 value = it
                 sharedPreferences.edit().putBoolean(realKey, it).apply()
@@ -291,6 +290,7 @@ class HomeSettings : Routes.Route() {
                     PreferenceToggle(context.sharedPreferences, key = "disable_feature_loading", text = "Disable Feature Loading")
                     PreferenceToggle(context.sharedPreferences, key = "disable_mapper", text = "Disable Auto Mapper")
                     PreferenceToggle(context.sharedPreferences, key = "disable_sif", text = "Disable Security Features")
+                    PreferenceToggle(context.sharedPreferences, key = "disable_mod_detection_version_check", text = "Disable Mod Detection Version Check")
                 }
             }
             Spacer(modifier = Modifier.height(50.dp))

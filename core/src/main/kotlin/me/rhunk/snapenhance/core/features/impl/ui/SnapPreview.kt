@@ -5,6 +5,7 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.graphics.drawable.ShapeDrawable
 import android.graphics.drawable.shapes.Shape
+import android.view.ViewGroup
 import me.rhunk.snapenhance.common.data.ContentType
 import me.rhunk.snapenhance.common.util.protobuf.ProtoReader
 import me.rhunk.snapenhance.core.event.events.impl.BindViewEvent
@@ -57,7 +58,8 @@ class SnapPreview : Feature("SnapPreview") {
 
             context.event.subscribe(BindViewEvent::class) { event ->
                 event.chatMessage { _, _ ->
-                    event.view.removeForegroundDrawable("snapPreview")
+                    val messageLinearLayout = (event.view as ViewGroup).getChildAt(0) as? ViewGroup ?: return@subscribe
+                    messageLinearLayout.removeForegroundDrawable("snapPreview")
 
                     val message = event.databaseMessage ?: return@chatMessage
                     val messageReader = ProtoReader(message.messageContent ?: return@chatMessage)
@@ -67,7 +69,7 @@ class SnapPreview : Feature("SnapPreview") {
 
                     val mediaIdKey = messageReader.getString(4, 5, 1, 3, 2, 2) ?: return@chatMessage
 
-                    event.view.addForegroundDrawable("snapPreview", ShapeDrawable(object: Shape() {
+                    messageLinearLayout.addForegroundDrawable("snapPreview", ShapeDrawable(object: Shape() {
                         override fun draw(canvas: Canvas, paint: Paint) {
                             val bitmap = mediaFileCache[mediaIdKey]?.let { decodeMedia(it) } ?: return
 
