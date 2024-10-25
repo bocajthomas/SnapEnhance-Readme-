@@ -260,7 +260,7 @@ class InAppOverlay(
         showToast(
             icon = { Icon(icon, contentDescription = "icon", modifier = Modifier.size(32.dp)) },
             text = {
-                Text(text, modifier = Modifier.fillMaxWidth(), maxLines = maxLines, overflow = TextOverflow.Ellipsis, lineHeight = 15.sp, fontSize = 15.sp)
+                Text(text, modifier = Modifier.fillMaxWidth(), maxLines = maxLines, overflow = TextOverflow.Ellipsis, lineHeight = 15.sp, fontSize = 13.sp)
             },
             durationMs = durationMs,
             showDuration = showDuration
@@ -280,7 +280,7 @@ class InAppOverlay(
             composable = {
                 ElevatedCard(
                     modifier = Modifier
-                        .padding(16.dp)
+                        .padding(12.dp)
                         .shadow(8.dp, RoundedCornerShape(8.dp))
                         .fillMaxWidth()
                         .clip(RoundedCornerShape(8.dp))
@@ -290,7 +290,7 @@ class InAppOverlay(
                         verticalAlignment = Alignment.CenterVertically,
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(16.dp)
+                            .padding(12.dp)
                     ) {
                         icon()
                         text()

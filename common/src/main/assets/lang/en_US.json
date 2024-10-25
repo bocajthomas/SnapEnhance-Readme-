@@ -1614,7 +1614,7 @@
         "no_attachments_toast": "No attachments found!",
         "already_queued_toast": "Media already in queue!",
         "already_downloaded_toast": "Media already downloaded!",
-        "saved_toast": "Saved to {path}",
+        "content_saved_toast": "Saved!",
         "download_toast": "Downloading {path}...",
         "processing_toast": "Processing {path}...",
         "failed_generic_toast": "Failed to download",
