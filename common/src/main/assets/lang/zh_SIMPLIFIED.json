@@ -1565,7 +1565,6 @@
         "no_attachments_toast": "没有找到附件！",
         "already_queued_toast": "媒体已经在排队了!",
         "already_downloaded_toast": "媒体已下载!",
-        "saved_toast": "保存至 {path}",
         "processing_toast": "加工 {path}...",
         "failed_generic_toast": "下载失败",
         "failed_to_create_preview_toast": "创建预览失败",

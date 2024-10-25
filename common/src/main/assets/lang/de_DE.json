@@ -1369,7 +1369,6 @@
         "no_attachments_toast": "Keine Anhänge gefunden!",
         "already_queued_toast": "Datei wird bereits bearbeitet!",
         "already_downloaded_toast": "Datei wurde bereits heruntergeladen!",
-        "saved_toast": "Gespeichert unter {path}",
         "download_toast": "{path} wird heruntergeladen...",
         "processing_toast": "Verarbeite {path}...",
         "failed_generic_toast": "Download fehlgeschlagen",

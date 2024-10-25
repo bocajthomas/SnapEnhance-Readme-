@@ -1497,7 +1497,6 @@
         "failed_no_longer_available_toast": "Archivos de media ya no disponibles",
         "no_attachments_toast": "¡No se han encontrado atajos!",
         "already_queued_toast": "¡Archivo de media ya en cola!",
-        "saved_toast": "Guardado a {path}",
         "download_toast": "Descargando {path}...",
         "processing_toast": "Procesando {path}...",
         "failed_generic_toast": "Error al descargar",

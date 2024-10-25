@@ -256,7 +256,6 @@
         "failed_no_longer_available_toast": "यह मीडिया अब उपलब्ध नहीं है",
         "already_queued_toast": "मीडिया पहले से कतार में है!",
         "already_downloaded_toast": "मीडिया पहले से डाउनलोड हो चुका है!",
-        "saved_toast": "सवेड तु {path}",
         "download_toast": "डोनलोडिंग टू {path}...",
         "processing_toast": "प्रोसेसिंग {path}...",
         "failed_generic_toast": "डाउनलोड करने में असफल",

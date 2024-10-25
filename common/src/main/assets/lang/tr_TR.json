@@ -1408,7 +1408,6 @@
         "no_attachments_toast": "Ek bulunamadı!",
         "already_queued_toast": "Medya zaten sırada!",
         "already_downloaded_toast": "Medya zaten indirildi!",
-        "saved_toast": "{path}'a kaydedildi",
         "download_toast": "{path} indiriliyor...",
         "processing_toast": "{path} işleniyor...",
         "failed_generic_toast": "İndirme başarısız oldu",

@@ -998,7 +998,6 @@
         "no_attachments_toast": "Liitteitä ei löytynyt!",
         "already_queued_toast": "Media on jo jonossa!",
         "already_downloaded_toast": "Media on jo ladattu!",
-        "saved_toast": "Tallennettu sijaintiin {path}",
         "download_toast": "Ladataan {path}...",
         "processing_toast": "Käsitellään {path}...",
         "failed_generic_toast": "Lataus epäonnistui",

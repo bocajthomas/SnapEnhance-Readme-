@@ -1402,7 +1402,6 @@
         "no_attachments_toast": "Aucune pièce jointe trouvée !",
         "already_queued_toast": "Média déjà en file d'attente !",
         "already_downloaded_toast": "Média déjà téléchargé !",
-        "saved_toast": "Enregistré dans {path}",
         "download_toast": "Téléchargement {path}...",
         "processing_toast": "Traitement de {path}...",
         "failed_generic_toast": "Échec du téléchargement",

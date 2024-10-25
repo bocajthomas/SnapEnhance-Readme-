@@ -1130,7 +1130,6 @@
         "select_attachments_title": "Anhänge auswählen",
         "download_started_toast": "Download gestartet",
         "no_attachments_toast": "Keine Anhänge gefunden!",
-        "saved_toast": "Gespeichert unter {path}",
         "download_toast": "{path} wird heruntergeladen...",
         "processing_toast": "Verarbeite {path}...",
         "failed_generic_toast": "Download fehlgeschlagen",

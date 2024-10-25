@@ -57,7 +57,6 @@
         "failed_no_longer_available_toast": "মিডিয়া আর পাওয়া যাচ্ছে না",
         "already_queued_toast": "মিডিয়া ইতিমধ্যে কিউতে আছে!",
         "already_downloaded_toast": "মিডিয়া ইতোমধ্যে ডাউনলোড হয়েছে!",
-        "saved_toast": "সংরক্ষিত হয়েছে {path}",
         "download_toast": "ডাউনলোড হচ্ছে {path}...",
         "processing_toast": "প্রসেসিং হচ্ছে {path}...",
         "failed_generic_toast": "ডাউনলোড করতে সক্ষম হয়নি",

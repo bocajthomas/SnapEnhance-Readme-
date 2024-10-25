@@ -71,7 +71,6 @@
         "failed_no_longer_available_toast": "Media nu mai e valabilă",
         "already_queued_toast": "Media este deja în așteptare!",
         "already_downloaded_toast": "Media deja descărcată!",
-        "saved_toast": "Salvat în {path}",
         "download_toast": "Se descarcă {path}...",
         "processing_toast": "Se procesează {path}...",
         "failed_generic_toast": "Descărcarea a eșuat",

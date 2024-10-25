@@ -1324,7 +1324,6 @@
         "no_attachments_toast": "Ingen vedhæftning fundet!",
         "already_queued_toast": "Medie allerede i kø!",
         "already_downloaded_toast": "Medier er allerede downloadet!",
-        "saved_toast": "Gemt i {path}",
         "download_toast": "Downloader {path}...",
         "processing_toast": "Behandler {path}...",
         "failed_generic_toast": "Kunne ikke downloade",

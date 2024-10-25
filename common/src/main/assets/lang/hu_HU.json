@@ -1325,7 +1325,6 @@
         "no_attachments_toast": "Nem találhatóak csatolmányok!",
         "already_queued_toast": "A média már várólistán van!",
         "already_downloaded_toast": "Ez már le lett töltve!",
-        "saved_toast": "Lementve {path}",
         "download_toast": "Letöltés {path}...",
         "processing_toast": "Feldolgozás {path}...",
         "failed_generic_toast": "Letöltés sikertelen",

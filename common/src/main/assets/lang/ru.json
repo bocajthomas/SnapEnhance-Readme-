@@ -1202,7 +1202,6 @@
         "no_attachments_toast": "Вложений не найдено!",
         "already_queued_toast": "СМИ уже в очереди!",
         "already_downloaded_toast": "Медиа уже загружено!",
-        "saved_toast": "Сохранено в {path}",
         "download_toast": "Загрузка {path}...",
         "processing_toast": "Обработка {path}...",
         "failed_generic_toast": "Не удалось скачать",

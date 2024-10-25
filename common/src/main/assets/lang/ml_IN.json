@@ -924,7 +924,6 @@
         "no_attachments_toast": "അറ്റാച്ചുമെന്റുകളൊന്നും കണ്ടെത്തിയില്ല!",
         "already_queued_toast": "മാധ്യമങ്ങൾ ഇതിനകം ക്യൂവിലാണ്!",
         "already_downloaded_toast": "മീഡിയ ഇതിനകം ഡൗൺലോഡ് ചെയ്‌തു!",
-        "saved_toast": "{path}-ലേക്ക് സംരക്ഷിച്ചു",
         "download_toast": "{path} ഡൗൺലോഡ് ചെയ്യുന്നു...",
         "failed_generic_toast": "ഡൗൺലോഡ് ചെയ്യാനായില്ല",
         "failed_to_create_preview_toast": "പ്രിവ്യൂ സൃഷ്ടിക്കുന്നതിൽ പരാജയപ്പെട്ടു",
