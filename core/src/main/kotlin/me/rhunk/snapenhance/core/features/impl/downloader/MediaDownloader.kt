@@ -11,10 +11,7 @@ import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.CheckCircle
-import androidx.compose.material.icons.outlined.Error
-import androidx.compose.material.icons.outlined.Info
-import androidx.compose.material.icons.outlined.Warning
+import androidx.compose.material.icons.outlined.*
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import me.rhunk.snapenhance.bridge.DownloadCallback
@@ -111,8 +108,9 @@ class MediaDownloader : MessagingRuleFeature("MediaDownloader", MessagingRuleTyp
                     if (!downloadLogging.contains("success")) return
                     context.log.verbose("onSuccess: outputFile=$outputFile")
                     context.inAppOverlay.showStatusToast(
-                        icon = Icons.Outlined.CheckCircle,
-                        text = translations.format("saved_toast", "path" to outputFile.split("/").takeLast(2).joinToString("/")).also {
+                        icon = Icons.Outlined.DownloadDone,
+                        durationMs = 1300,
+                        text = translations["content_saved_toast"].also {
                             if (context.isMainActivityPaused) {
                                 context.shortToast(it)
                             }
@@ -125,6 +123,7 @@ class MediaDownloader : MessagingRuleFeature("MediaDownloader", MessagingRuleTyp
                     context.log.verbose("onProgress: message=$message")
                     context.inAppOverlay.showStatusToast(
                         icon = Icons.Outlined.Info,
+                        durationMs = 1300,
                         text = message,
                     )
                     if (context.isMainActivityPaused) {
@@ -148,6 +147,7 @@ class MediaDownloader : MessagingRuleFeature("MediaDownloader", MessagingRuleTyp
 
                     context.inAppOverlay.showStatusToast(
                         icon = Icons.Outlined.Warning,
+                        durationMs = 1300,
                         text = message,
                     )
                 }

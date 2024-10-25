@@ -63,9 +63,17 @@ class SendOverride : Feature("Send Override") {
                             }
 
                             // set back the original snap duration
-                            remove(2)
                             snapDocPlayback.getByteArray(2)?.let {
+                                val originalHasSound = firstOrNull(2)?.toReader()?.getVarInt(5)
+                                remove(2)
                                 addBuffer(2, it)
+
+                                originalHasSound?.let { hasSound ->
+                                    edit(2) {
+                                        remove(5)
+                                        addVarInt(5, hasSound)
+                                    }
+                                }
                             }
                         }
 
