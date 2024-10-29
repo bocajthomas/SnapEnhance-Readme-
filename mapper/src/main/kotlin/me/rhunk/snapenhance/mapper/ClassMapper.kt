@@ -33,7 +33,6 @@ class ClassMapper(
             ScoreUpdateMapper(),
             FriendRelationshipChangerMapper(),
             ViewBinderMapper(),
-            FriendingDataSourcesMapper(),
             OperaViewerParamsMapper(),
             MemoriesPresenterMapper(),
             StreaksExpirationMapper(),

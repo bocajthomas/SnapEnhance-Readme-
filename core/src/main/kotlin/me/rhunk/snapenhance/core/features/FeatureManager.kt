@@ -102,7 +102,7 @@ class FeatureManager(
             FriendFeedMessagePreview(),
             HideStreakRestore(),
             HideFriendFeedEntry(),
-            HideQuickAddFriendFeed(),
+            HideQuickAddSuggestions(),
             CallButtonsOverride(),
             SnapPreview(),
             BypassScreenshotDetection(),
