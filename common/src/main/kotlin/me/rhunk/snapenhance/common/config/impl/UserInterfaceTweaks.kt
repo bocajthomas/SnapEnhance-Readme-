@@ -74,8 +74,8 @@ class UserInterfaceTweaks : ConfigContainer() {
     val streakExpirationInfo = boolean("streak_expiration_info") { requireRestart() }
     val hideFriendFeedEntry = boolean("hide_friend_feed_entry") { requireRestart() }
     val hideStreakRestore = boolean("hide_streak_restore") { requireRestart() }
-    val hideQuickAddFriendFeed = boolean("hide_quick_add_friend_feed") { requireRestart() }
-    val hideStorySuggestions = multiple("hide_story_suggestions", "hide_friend_suggestions", "hide_suggested_friend_stories", "hide_my_stories") { requireRestart() }
+    val hideQuickAddSuggestions = boolean("hide_quick_add_suggestions") { requireRestart() }
+    val hideStorySuggestions = multiple("hide_story_suggestions", "hide_suggested_friend_stories", "hide_my_stories") { requireRestart() }
     val hideUiComponents = multiple("hide_ui_components",
         "hide_voice_record_button",
         "hide_stickers_button",

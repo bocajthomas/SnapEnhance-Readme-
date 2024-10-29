@@ -98,13 +98,9 @@ class UITweaks : Feature("UITweaks") {
                 }
 
                 val viewModelString = event.prevModel.toString()
-                val isSuggestedFriend by lazy { viewModelString.startsWith("DFFriendSuggestionCardViewModel") }
-                val isMyStory by lazy { viewModelString.let { it.startsWith("CircularItemViewModel") && it.contains("storyId=") }}
+                val isMyStory by lazy { viewModelString.let { it.startsWith("CircularItemViewModel") && it.contains("storyId=")} }
 
-                if (hideStorySuggestions.contains("hide_friend_suggestions") && isSuggestedFriend) {
-                    removeView()
-                    return@subscribe
-                }
+
                 if (hideStorySuggestions.contains("hide_my_stories") && isMyStory) {
                     removeView()
                     return@subscribe
