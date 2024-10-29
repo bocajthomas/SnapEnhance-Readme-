@@ -8,5 +8,6 @@ class Scripting : ConfigContainer() {
     val moduleFolder = string("module_folder", "modules") { addFlags(ConfigFlag.FOLDER, ConfigFlag.SENSITIVE); requireRestart()  }
     val autoReload = unique("auto_reload", "snapchat_only", "all")
     val integratedUI = boolean("integrated_ui", false) { requireRestart() }
+    val oldToolBoxAddView = boolean("old_tool_box_add_view", false) { requireRestart() }
     val disableLogAnonymization = boolean("disable_log_anonymization", false) { requireRestart() }
 }
