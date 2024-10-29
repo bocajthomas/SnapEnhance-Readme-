@@ -291,6 +291,7 @@ class HomeSettings : Routes.Route() {
                     PreferenceToggle(context.sharedPreferences, key = "disable_mapper", text = "Disable Auto Mapper")
                     PreferenceToggle(context.sharedPreferences, key = "disable_sif", text = "Disable Security Features")
                     PreferenceToggle(context.sharedPreferences, key = "disable_mod_detection_version_check", text = "Disable Mod Detection Version Check")
+                    PreferenceToggle(context.sharedPreferences, key = "tool_box_test_fix", text = "Tool Box Test Fix")
                 }
             }
             Spacer(modifier = Modifier.height(50.dp))

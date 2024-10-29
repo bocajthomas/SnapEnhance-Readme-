@@ -37,6 +37,7 @@ import me.rhunk.snapenhance.common.ui.createComposeAlertDialog
 import me.rhunk.snapenhance.core.event.events.impl.AddViewEvent
 import me.rhunk.snapenhance.core.features.Feature
 import me.rhunk.snapenhance.core.features.impl.messaging.Messaging
+import me.rhunk.snapenhance.core.util.ktx.getId
 
 
 data class ComposableMenu(
@@ -58,34 +59,66 @@ class ConversationToolbox : Feature("Conversation Toolbox") {
     @SuppressLint("SetTextI18n")
     override fun init() {
         onNextActivityCreate {
-            context.event.subscribe(AddViewEvent::class) { event ->
-                if (composableList.isEmpty()) return@subscribe
+            val toggleDisabled = context.bridgeClient.getDebugProp("tool_box_test_fix", "false") != "true"
+            if (toggleDisabled) {
+                context.event.subscribe(AddViewEvent::class) { event ->
+                    if (composableList.isEmpty()) return@subscribe
+                    val chatInputBar by getChatInputBar(event) ?: return@subscribe
 
-                val chatInputBar by getChatInputBar(event) ?: return@subscribe
-
-                chatInputBar?.addView(FrameLayout(event.view.context).apply {
-                    layoutParams = LinearLayout.LayoutParams(
-                        ViewGroup.LayoutParams.WRAP_CONTENT,
-                        (52 * context.resources.displayMetrics.density).toInt(),
-                    ).apply {
-                        gravity = Gravity.BOTTOM
-                    }
-                    setPadding(25, 0, 25, 0)
-
-                    addView(TextView(event.view.context).apply {
-                        layoutParams = FrameLayout.LayoutParams(
+                    chatInputBar?.addView(FrameLayout(event.view.context).apply {
+                        layoutParams = LinearLayout.LayoutParams(
                             ViewGroup.LayoutParams.WRAP_CONTENT,
-                            ViewGroup.LayoutParams.WRAP_CONTENT,
+                            (52 * context.resources.displayMetrics.density).toInt(),
                         ).apply {
-                            gravity = Gravity.CENTER_VERTICAL
+                            gravity = Gravity.BOTTOM
                         }
-                        setOnClickListener {
-                            openToolbox()
-                        }
-                        textSize = 21f
-                        text = "\uD83E\uDDF0"
+                        setPadding(25, 0, 25, 0)
+
+                        addView(TextView(event.view.context).apply {
+                            layoutParams = FrameLayout.LayoutParams(
+                                ViewGroup.LayoutParams.WRAP_CONTENT,
+                                ViewGroup.LayoutParams.WRAP_CONTENT,
+                            ).apply {
+                                gravity = Gravity.CENTER_VERTICAL
+                            }
+                            setOnClickListener {
+                                openToolbox()
+                            }
+                            textSize = 21f
+                            text = "\uD83E\uDDF0"
+                        })
                     })
-                })
+                }
+            } else {
+                val defaultInputBarId = context.resources.getId("default_input_bar")
+                context.event.subscribe(AddViewEvent::class) { event ->
+                    if (event.view.id != defaultInputBarId) return@subscribe
+                    if (composableList.isEmpty()) return@subscribe
+
+                    (event.view as ViewGroup).addView(FrameLayout(event.view.context).apply {
+                        layoutParams = LinearLayout.LayoutParams(
+                            ViewGroup.LayoutParams.WRAP_CONTENT,
+                            (52 * context.resources.displayMetrics.density).toInt(),
+                        ).apply {
+                            gravity = Gravity.BOTTOM
+                        }
+                        setPadding(25, 0, 25, 0)
+
+                        addView(TextView(event.view.context).apply {
+                            layoutParams = FrameLayout.LayoutParams(
+                                ViewGroup.LayoutParams.WRAP_CONTENT,
+                                ViewGroup.LayoutParams.WRAP_CONTENT,
+                            ).apply {
+                                gravity = Gravity.CENTER_VERTICAL
+                            }
+                            setOnClickListener {
+                                openToolbox()
+                            }
+                            textSize = 21f
+                            text = "\uD83E\uDDF0"
+                        })
+                    })
+                }
             }
 
             context.scriptRuntime.eachModule {
