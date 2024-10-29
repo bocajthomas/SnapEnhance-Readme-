@@ -439,10 +439,6 @@
                         "name": "Ancien Selfie Bitmoji",
                         "description": "Restaurer les selfies Bitmoji des anciennes versions de Snapchat"
                     },
-                    "hide_quick_add_friend_feed": {
-                        "description": "Masque la section Ajout rapide dans le fil d'amis",
-                        "name": "Masquer l'ajout rapide dans le fil d'amis"
-                    },
                     "prevent_message_list_auto_scroll": {
                         "name": "Empêcher le défilement automatique de la liste des messages",
                         "description": "Empêche le défilement de la liste des messages vers le bas lors de l'envoi ou de la réception d'un message"
@@ -1239,7 +1235,6 @@
             },
             "hide_story_suggestions": {
                 "hide_suggested_friend_stories": "Cacher les stories d'amis suggérées",
-                "hide_friend_suggestions": "Cacher les suggestions d'ami",
                 "hide_my_stories": "Cacher Ma Story"
             },
             "disable_cameras": {

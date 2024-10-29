@@ -578,10 +578,6 @@
                         "name": "快照预览",
                         "description": "在聊天中看不见的快照旁边显示一个小预览"
                     },
-                    "hide_quick_add_friend_feed": {
-                        "description": "隐藏好友动态中的“快速添加”部分",
-                        "name": "隐藏好友动态中的快速添加"
-                    },
                     "prevent_message_list_auto_scroll": {
                         "description": "发送/接收消息时防止消息列表滚动到底部",
                         "name": "防止消息列表自动滚动"
@@ -1356,7 +1352,6 @@
             },
             "hide_story_suggestions": {
                 "hide_suggested_friend_stories": "隐藏建议的朋友故事",
-                "hide_friend_suggestions": "隐藏好友建议",
                 "hide_my_stories": "隐藏我的故事"
             },
             "home_tab": {

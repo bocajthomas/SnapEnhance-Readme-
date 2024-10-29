@@ -403,10 +403,6 @@
                         "name": "Mostrar información de caducidad de la racha",
                         "description": "Muestra un temporizador de caducidad al lado del contador de racha"
                     },
-                    "hide_quick_add_friend_feed": {
-                        "name": "Ocultar añadido fácil en la lista de amigxs",
-                        "description": "Oculta el añadido fácil en la lista de amigxs"
-                    },
                     "hide_story_suggestions": {
                         "name": "Ocultar sugerencias de historias",
                         "description": "Elimina las sugerencias de la página de historias"
@@ -1208,7 +1204,6 @@
                 "hide_map_reactions": "Eliminar reacciones del mapa"
             },
             "hide_story_suggestions": {
-                "hide_friend_suggestions": "Ocultar sugestiones de amistad",
                 "hide_my_stories": "Ocultar mis historias",
                 "hide_suggested_friend_stories": "Ocultar historias de amigxs sugeridas"
             },

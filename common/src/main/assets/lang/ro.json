@@ -361,10 +361,6 @@
                         "description": "Împiedică derularea listei de mesaje în jos la trimiterea/primirea unui mesaj",
                         "name": "Preveniți derularea automată a listei de mesaje"
                     },
-                    "hide_quick_add_friend_feed": {
-                        "name": "Ascundeți adăugarea rapidă în fluxul prietenilor",
-                        "description": "Ascunde secțiunea Adăugare rapidă din fluxul prietenilor"
-                    },
                     "hide_ui_components": {
                         "description": "Selectați ce componente ale interfeței de utilizator să ascundeți",
                         "name": "Ascundeți componentele interfeței de utilizator"
@@ -1091,7 +1087,6 @@
                 "hide_voice_record_button": "Eliminați butonul de înregistrare vocală"
             },
             "hide_story_suggestions": {
-                "hide_friend_suggestions": "Ascundeți sugestiile de prieteni",
                 "hide_suggested_friend_stories": "Ascunde poveștile prietenilor sugerați",
                 "hide_my_stories": "Ascunde-mi poveștile"
             },

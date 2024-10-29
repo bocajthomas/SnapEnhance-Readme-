@@ -465,10 +465,6 @@
                         "name": "اسٹریک کی بحالی کو چھپائیں",
                         "description": "فرینڈ فیڈ میں ریسٹور بٹن کو چھپاتا ہے"
                     },
-                    "hide_quick_add_friend_feed": {
-                        "name": "فرینڈ فیڈ میں کوئیک ایڈ چھپائیں",
-                        "description": "فرینڈ فیڈ میں کوئیک ایڈ سیکشن چھپاتا ہے"
-                    },
                     "hide_story_suggestions": {
                         "name": "کہانی کی تجاویز چھپائیں",
                         "description": "کہانیوں کے صفحہ سے تجاویز کو ہٹاتا ہے"
@@ -1207,7 +1203,6 @@
                 "hide_post_to_story_buttons": ""
             },
             "hide_story_suggestions": {
-                "hide_friend_suggestions": "",
                 "hide_suggested_friend_stories": "",
                 "hide_my_stories": ""
             },

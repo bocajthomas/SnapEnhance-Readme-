@@ -431,10 +431,6 @@
                         "description": "Hozzáad egy 👻 emojit a rejtett módban lévő beszélgetések mellé",
                         "name": "Rejtőzködő üzemmód jelzője"
                     },
-                    "hide_quick_add_friend_feed": {
-                        "description": "Elrejti a Gyors hozzáadás szekciót a Friend feedben",
-                        "name": "Gyors hozzáadás elrejtése a Friend Feedben"
-                    },
                     "edit_text_override": {
                         "name": "Szöveg szerkesztése felülírása",
                         "description": "Felülírja a szövegmező viselkedését"
@@ -1170,7 +1166,6 @@
                 "ovf_editor_indicator": "Jelzi, ha egy snapet küldtek az OVF szerkesztő segítségével"
             },
             "hide_story_suggestions": {
-                "hide_friend_suggestions": "Barát javaslatok elrejtése",
                 "hide_my_stories": "Sztorijaim elrejtése",
                 "hide_suggested_friend_stories": "Javasolt barát sztorik elrejtése"
             },

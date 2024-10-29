@@ -511,10 +511,6 @@
                         "description": "Hides the Restore button in the friend feed",
                         "name": "Hide Streak Restore"
                     },
-                    "hide_quick_add_friend_feed": {
-                        "name": "Hide Quick Add in Friend Feed",
-                        "description": "Hides the Quick Add section in the friend feed"
-                    },
                     "hide_story_suggestions": {
                         "name": "Hide Story Suggestions",
                         "description": "Removes suggestions from the Stories page"
@@ -1285,7 +1281,6 @@
                 "hide_map_reactions": "Remove Map Reactions"
             },
             "hide_story_suggestions": {
-                "hide_friend_suggestions": "Hide friend suggestions",
                 "hide_suggested_friend_stories": "Hide suggested friend stories",
                 "hide_my_stories": "Hide My Stories"
             },

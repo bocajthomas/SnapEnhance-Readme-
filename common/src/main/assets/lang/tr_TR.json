@@ -455,10 +455,6 @@
                         "name": "Eski Bitmoji Selfie'si",
                         "description": "Eski Snapchat sürümlerindeki Bitmoji Selfie'lerini geri getirir"
                     },
-                    "hide_quick_add_friend_feed": {
-                        "description": "Arkadaş akışındaki Hızlı Ekleme bölümünü gizler",
-                        "name": "Arkadaş Akışında Hızlı Eklemeyi Gizle"
-                    },
                     "prevent_message_list_auto_scroll": {
                         "name": "Mesaj Listesi Otomatik Kaydırmayı Önle",
                         "description": "Mesaj gönderirken/alırken mesaj listesinin en alta kaymasını engeller"
@@ -1249,7 +1245,6 @@
                 "3d": "3D Bitmoji"
             },
             "hide_story_suggestions": {
-                "hide_friend_suggestions": "Arkadaş önerilerini gizle",
                 "hide_suggested_friend_stories": "Önerilen arkadaş hikayelerini gizle",
                 "hide_my_stories": "Hikayelerimi Gizle"
             },

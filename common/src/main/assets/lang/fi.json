@@ -444,10 +444,6 @@
                         "name": "Mukautettu Teema",
                         "description": "Mukauta Snapchatin värejä\nHuomautus: jos valitset tumman teeman (kuten AMOLED), saatat joutua ottamaan tumman tilan käyttöön sovelluksen ulkoasuasetuksissa varmistaaksesi oikein toimivuuden"
                     },
-                    "hide_quick_add_friend_feed": {
-                        "name": "Piilota Quick Add ystäväsyötteessä",
-                        "description": "Piilottaa Quick Add osion ystäväsyötteestä"
-                    },
                     "opera_media_quick_info": {
                         "name": "Opera Media pikatiedot",
                         "description": "Näyttää hyödyllisiä tietoja mediasta, kuten luontipäivämäärän Opera-katseluohjelman kontekstivalikossa"

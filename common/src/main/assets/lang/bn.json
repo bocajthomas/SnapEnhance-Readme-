@@ -562,10 +562,6 @@
                         "name": "স্ট্রিক পুনরুদ্ধার লুকান",
                         "description": "বন্ধু ফিডে পুনরুদ্ধার বোতাম লুকায়"
                     },
-                    "hide_quick_add_friend_feed": {
-                        "description": "বন্ধু ফিডে কুইক অ্যাড অংশ লুকায়",
-                        "name": "বন্ধু ফিডে কুইক অ্যাড লুকান"
-                    },
                     "friend_feed_menu_buttons": {
                         "name": "বন্ধু ফিড মেনু বোতাম",
                         "description": "বন্ধু ফিড মেনুতে কোন বোতামগুলি দেখানো হবে তা নির্বাচন করুন"
@@ -1365,7 +1361,6 @@
             },
             "hide_story_suggestions": {
                 "hide_suggested_friend_stories": "প্রস্তাবিত বন্ধুর গল্পগুলি লুকান",
-                "hide_friend_suggestions": "বন্ধু পরামর্শগুলি লুকান",
                 "hide_my_stories": "আমার গল্প লুকান"
             },
             "home_tab": {
