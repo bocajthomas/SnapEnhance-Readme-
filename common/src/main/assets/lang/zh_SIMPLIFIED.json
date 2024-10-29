@@ -1628,7 +1628,8 @@
     },
     "theming_attributes": {
         "sigColorChatChat": "主要好友提要文本颜色",
-        "sigColorTextPrimary": "主要文字颜色"
+        "sigColorTextPrimary": "主要文字颜色",
+        "ringStartColor": "开始"
     },
     "material3_strings": {
         "date_range_picker_start_headline": "摘自",
