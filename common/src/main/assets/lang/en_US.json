@@ -1156,6 +1156,10 @@
                         "name": "Integrated UI",
                         "description": "Allows scripts to add custom UI components to Snapchat"
                     },
+                    "old_tool_box_add_view": {
+                        "name": "Old Tool Box Add View",
+                        "description": "Uses the old add view to add the tool box to snapchat.\nNote: This feature is temporary"
+                    },
                     "disable_log_anonymization": {
                         "name": "Disable Log Anonymization",
                         "description": "Disables the anonymization of logs"
