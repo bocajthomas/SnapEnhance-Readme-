@@ -165,7 +165,8 @@
                 "config_import_success_toast": "配置导入成功",
                 "reset_option": "重置",
                 "config_export_failure_toast": "导出配置失败 {error}",
-                "older_required": "此功能需要 Snapchat v{version} 或更早版本才能正常工作"
+                "older_required": "此功能需要 Snapchat v{version} 或更早版本才能正常工作",
+                "newer_required": "此功能要求Snapchat v{version}或更新版本才能正确工作"
             },
             "tasks": {
                 "no_tasks": "没有任务",
@@ -625,6 +626,10 @@
                     "custom_theme": {
                         "name": "自定义主题",
                         "description": "自定义 Snapchat 的颜色\n注意: 如果您选择深色主题（如 AMOLED), 您可能需要在应用程序外观设置中启用深色模式以获得更好的效果"
+                    },
+                    "hide_quick_add_suggestions": {
+                        "name": "隐藏快速建议",
+                        "description": "删除快速添加好友建议"
                     }
                 },
                 "description": "更改 Snapchat 的外观和风格",
@@ -1231,6 +1236,9 @@
                     "disable_log_anonymization": {
                         "description": "禁用日志匿名化",
                         "name": "禁用日志匿名化"
+                    },
+                    "old_tool_box_add_view": {
+                        "description": "使用旧的添加视图将工具箱添加到snapchat。\n注意：此功能是暂时的"
                     }
                 }
             },
