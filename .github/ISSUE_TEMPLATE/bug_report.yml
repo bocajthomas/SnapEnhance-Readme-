@@ -28,7 +28,7 @@ body:
     id: logs
     attributes:
       label: "Logs"
-      description: "Please Provide the .zip, By Exporting a log"
+      description: "Please Provide the .zip, By Exporting a log. (THIS IS REQUIRED)"
       placeholder: "Press `Paste, drop, or click to add files` to add"
     validations:
       required: false
