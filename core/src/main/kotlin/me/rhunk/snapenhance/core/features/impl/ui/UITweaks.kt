@@ -19,12 +19,17 @@ import me.rhunk.snapenhance.core.util.hook.hook
 import me.rhunk.snapenhance.core.util.ktx.getIdentifier
 
 fun getChatInputBar(event: AddViewEvent): Lazy<ViewGroup?>? {
-    if (!event.parent.javaClass.name.endsWith("ChatInputLayout") || !event.viewClassName.endsWith("ViewSwitcher")) return null
+    if (!event.parent.javaClass.name.endsWith("ChatInputLayout")) return null
+    val isViewSwitcher = event.viewClassName.endsWith("ViewSwitcher")
 
     return lazy {
         // get the first linear layout in the view switcher
-        val firstLinearLayout = (event.view as ViewGroup).children()
-            .firstOrNull { it is LinearLayout } as? ViewGroup ?: return@lazy null
+        val firstLinearLayout = if (isViewSwitcher) {
+            (event.view as ViewGroup).children()
+                .firstOrNull { it is LinearLayout } as? ViewGroup ?: return@lazy null
+        } else {
+            event.view as? ViewGroup ?: return@lazy null
+        }
         // get the first linear layout with at least 3 children
         firstLinearLayout.children()
             .firstOrNull { v -> v is LinearLayout && v.childCount > 2 } as? LinearLayout
