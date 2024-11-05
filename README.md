@@ -1,4 +1,4 @@
-<div align="center">
+ <div align="center">
   <img src="https://raw.githubusercontent.com/bocajthomas/SE-Extended/dev/images/logo/SE%20Extended%20Logo.png" height="240" />
 
 [![Debug CI](https://github.com/bocajthomas/SE-Extended/actions/workflows/debug.yml/badge.svg)](https://github.com/bocajthomas/SE-Extended/actions/workflows/debug.yml) [![Translation status](https://hosted.weblate.org/widget/se-extended/se-extended/svg-badge.svg)](https://hosted.weblate.org/engage/se-extended/)
@@ -56,7 +56,7 @@ Please note that this project is currently in development, So bugs and crashes m
 - `Show Streak Expiration Info`
 - `Hide Friend Feed Entry`
 - `Hide Streak Restore`
-- `Hide Quick Add In Friend Feed`
+- `Hide Quick Add Suggestions`
 - `Hide Story Suggestions`
 - `Hide UI Components` (Voice Record button, Call Buttons, Etc)
 - `Opera Media Quick Info`
@@ -191,6 +191,7 @@ Please note that this project is currently in development, So bugs and crashes m
 - `Module Folder`
 - `Auto Reload`
 - `Integated UI`
+- `Old Tool Box Add View`
 - `Disable Log Anonymization`
 </details>
 
@@ -238,6 +239,7 @@ Thanks to everyone involved
 - Finnish - [jollindeerus](https://github.com/jollindeerus)
 - French - [pyramyds](https://github.com/pyramyds), [Mizaruta](https://github.com/Mizaruta)
 - Polish - [tekkenkkk](https://github.com/tekkenkkk), [Red1N-Q](https://github.com/Red1N-Q)
+- Chinese (Simplified) - [fa1seut0pia](https://github.com/fa1seut0pia), [Kobayashi-classmate](https://github.com/Kobayashi-classmate), [RWDai](https://github.com/RWDai)
 
 You can help translate SE Extended on [Hosted Weblate](https://hosted.weblate.org/projects/se-extended/se-extended/).
 
