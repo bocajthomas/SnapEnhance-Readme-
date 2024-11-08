@@ -89,7 +89,7 @@ class FriendFeedInfoMenu : AbstractMenu() {
                     BitmojiSelfie.getBitmojiSelfie(
                         profile.bitmojiSelfieId.toString(),
                         profile.bitmojiAvatarId.toString(),
-                        BitmojiSelfie.BitmojiSelfieType.THREE_D
+                        BitmojiSelfie.BitmojiSelfieType.NEW_THREE_D
                     )!!
                 )
             }

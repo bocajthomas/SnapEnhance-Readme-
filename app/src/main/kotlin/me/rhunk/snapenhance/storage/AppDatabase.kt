@@ -102,6 +102,10 @@ class AppDatabase(
             "repositories" to listOf(
                 "url VARCHAR PRIMARY KEY",
             ),
+            "notes" to listOf(
+                "id CHAR(36) PRIMARY KEY",
+                "content TEXT",
+            ),
         ))
     }
 }

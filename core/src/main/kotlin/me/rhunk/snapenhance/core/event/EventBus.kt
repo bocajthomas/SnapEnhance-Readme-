@@ -1,6 +1,7 @@
 package me.rhunk.snapenhance.core.event
 
 import me.rhunk.snapenhance.core.ModContext
+import java.util.concurrent.ConcurrentHashMap
 import kotlin.reflect.KClass
 
 abstract class Event {
@@ -15,7 +16,7 @@ interface IListener<T> {
 class EventBus(
     val context: ModContext
 ) {
-    private val subscribers = mutableMapOf<KClass<out Event>, MutableMap<Int, IListener<out Event>>>()
+    private val subscribers = ConcurrentHashMap<KClass<out Event>, MutableMap<Int, IListener<out Event>>>()
 
     fun <T : Event> subscribe(event: KClass<T>, listener: IListener<T>, priority: Int? = null) {
         synchronized(subscribers) {

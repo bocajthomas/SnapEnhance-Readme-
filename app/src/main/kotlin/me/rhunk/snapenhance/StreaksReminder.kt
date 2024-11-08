@@ -74,7 +74,7 @@ class StreaksReminder(
 
         notifyFriendList.forEach { (streaks, friend) ->
             remoteSideContext.coroutineScope.launch {
-                val bitmojiUrl = BitmojiSelfie.getBitmojiSelfie(friend.selfieId, friend.bitmojiId, BitmojiSelfie.BitmojiSelfieType.THREE_D)
+                val bitmojiUrl = BitmojiSelfie.getBitmojiSelfie(friend.selfieId, friend.bitmojiId, BitmojiSelfie.BitmojiSelfieType.NEW_THREE_D)
                 val bitmojiImage = remoteSideContext.imageLoader.execute(
                     ImageRequestHelper.newBitmojiImageRequest(ctx, bitmojiUrl)
                 )
