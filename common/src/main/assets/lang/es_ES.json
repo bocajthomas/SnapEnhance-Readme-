@@ -109,7 +109,8 @@
                 "logged_stories_button": "Mostrar historias en el registro",
                 "delete_scope_confirm_dialog_title": "¿Segura/o de que quieres borrar un {scope}?",
                 "e2ee_title": "Cifrado de extremo a extremo",
-                "streaks_title": "Rachas"
+                "streaks_title": "Rachas",
+                "notes_placeholder": "Haga clic para añadir una nota"
             },
             "logged_stories": {
                 "story_failed_to_load": "Error al cargar",
@@ -442,6 +443,10 @@
                     "auto_close_friend_feed_menu": {
                         "name": "Menú de feed de amigos cerrado automáticamente",
                         "description": "Cierra automáticamente el menú Friend Feed después de pulsar un botón de configuración"
+                    },
+                    "hide_quick_add_suggestions": {
+                        "name": "Ocultar rápido Añadir sugerencias",
+                        "description": "Eliminación rápida, adicionar sugerencia de amigos"
                     }
                 },
                 "name": "Interfaz de usuario",
@@ -1117,6 +1122,10 @@
                     "voice_note_auto_play": {
                         "name": "Reproducción automática de notas de voz",
                         "description": "Reproduce automáticamente la siguiente nota de voz cuando termina la actual"
+                    },
+                    "friend_notes": {
+                        "name": "Notas de amigos",
+                        "description": "Permite añadir notas a los perfiles de amigos"
                     }
                 },
                 "name": "Experimental"
