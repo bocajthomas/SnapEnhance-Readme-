@@ -122,7 +122,7 @@ class SocialRootSection : Routes.Route() {
                                     url = BitmojiSelfie.getBitmojiSelfie(
                                         friend.selfieId,
                                         friend.bitmojiId,
-                                        BitmojiSelfie.BitmojiSelfieType.THREE_D
+                                        BitmojiSelfie.BitmojiSelfieType.NEW_THREE_D
                                     )
                                 )
 

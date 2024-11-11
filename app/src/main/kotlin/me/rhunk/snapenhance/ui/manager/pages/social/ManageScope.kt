@@ -10,18 +10,22 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.compose.currentBackStackEntryAsState
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import me.rhunk.snapenhance.common.data.FriendStreaks
 import me.rhunk.snapenhance.common.data.MessagingFriendInfo
 import me.rhunk.snapenhance.common.data.MessagingGroupInfo
 import me.rhunk.snapenhance.common.data.MessagingRuleType
 import me.rhunk.snapenhance.common.data.SocialScope
+import me.rhunk.snapenhance.common.ui.AutoClearKeyboardFocus
+import me.rhunk.snapenhance.common.ui.EditNoteTextField
 import me.rhunk.snapenhance.common.ui.rememberAsyncMutableState
 import me.rhunk.snapenhance.common.ui.rememberAsyncMutableStateList
 import me.rhunk.snapenhance.common.util.snap.BitmojiSelfie
@@ -89,6 +93,9 @@ class ManageScope: Routes.Route() {
                 .verticalScroll(rememberScrollState())
                 .fillMaxSize()
         ) {
+            var bottomComposable by remember {
+                mutableStateOf(null as (@Composable () -> Unit)?)
+            }
             var hasScope by remember {
                 mutableStateOf(null as Boolean?)
             }
@@ -103,7 +110,7 @@ class ManageScope: Routes.Route() {
                         }
                     }
                     friend?.let {
-                        Friend(id, it, streaks)
+                        Friend(id, it, streaks) { bottomComposable = it }
                     }
                 }
                 SocialScope.GROUP -> {
@@ -113,13 +120,17 @@ class ManageScope: Routes.Route() {
                         }
                     }
                     group?.let {
-                        Group(it)
+                        Group(it) { bottomComposable = it }
                     }
                 }
             }
             if (hasScope == true) {
+                if (context.config.root.experimental.friendNotes.get()) {
+                    NotesCard(id)
+                }
                 RulesCard(id)
             }
+            bottomComposable?.invoke()
             if (hasScope == false) {
                 Column(
                     modifier = Modifier.fillMaxSize(),
@@ -136,6 +147,33 @@ class ManageScope: Routes.Route() {
         }
     }
 
+    @Composable
+    private fun NotesCard(
+        id: String
+    ) {
+        val coroutineScope = rememberCoroutineScope { Dispatchers.IO }
+        var scopeNotes by rememberAsyncMutableState(null) {
+            context.database.getScopeNotes(id)
+        }
+
+        AutoClearKeyboardFocus()
+
+        EditNoteTextField(
+            modifier = Modifier.padding(8.dp),
+            primaryColor = Color.White,
+            translation = context.translation,
+            content = scopeNotes,
+            setContent = { scopeNotes = it }
+        )
+
+        DisposableEffect(Unit) {
+            onDispose {
+                coroutineScope.launch {
+                    context.database.setScopeNotes(id, scopeNotes)
+                }
+            }
+        }
+    }
 
     @Composable
     private fun RulesCard(
@@ -183,7 +221,7 @@ class ManageScope: Routes.Route() {
 
     @Composable
     private fun ContentCard(modifier: Modifier = Modifier, content: @Composable () -> Unit) {
-        Card(
+        ElevatedCard(
             modifier = Modifier
                 .padding(10.dp)
                 .fillMaxWidth()
@@ -244,26 +282,105 @@ class ManageScope: Routes.Route() {
     private fun Friend(
         id: String,
         friend: MessagingFriendInfo,
-        streaks: FriendStreaks?
+        streaks: FriendStreaks?,
+        setBottomComposable: ((@Composable () -> Unit)?) -> Unit = {}
     ) {
+        LaunchedEffect(Unit) {
+            setBottomComposable {
+                Spacer(modifier = Modifier.height(16.dp))
+
+                if (context.config.root.experimental.e2eEncryption.globalState == true) {
+                    SectionTitle(translation["e2ee_title"])
+                    var hasSecretKey by rememberAsyncMutableState(defaultValue = false) {
+                        context.e2eeImplementation.friendKeyExists(friend.userId)
+                    }
+                    var importDialog by remember { mutableStateOf(false) }
+
+                    if (importDialog) {
+                        Dialog(
+                            onDismissRequest = { importDialog = false }
+                        ) {
+                            dialogs.RawInputDialog(onDismiss = { importDialog = false  }, onConfirm = { newKey ->
+                                importDialog = false
+                                runCatching {
+                                    val key = Base64.decode(newKey)
+                                    if (key.size != 32) {
+                                        context.longToast("Invalid key size (must be 32 bytes)")
+                                        return@runCatching
+                                    }
+
+                                    context.coroutineScope.launch {
+                                        context.e2eeImplementation.storeSharedSecretKey(friend.userId, key)
+                                        context.longToast("Successfully imported key")
+                                    }
+
+                                    hasSecretKey = true
+                                }.onFailure {
+                                    context.longToast("Failed to import key: ${it.message}")
+                                    context.log.error("Failed to import key", it)
+                                }
+                            })
+                        }
+                    }
+
+                    ContentCard {
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(10.dp)
+                        ) {
+                            if (hasSecretKey) {
+                                OutlinedButton(onClick = {
+                                    context.coroutineScope.launch {
+                                        val secretKey = Base64.encode(context.e2eeImplementation.getSharedSecretKey(friend.userId) ?: return@launch)
+                                        //TODO: fingerprint auth
+                                        context.activity!!.startActivity(Intent.createChooser(Intent().apply {
+                                            action = Intent.ACTION_SEND
+                                            putExtra(Intent.EXTRA_TEXT, secretKey)
+                                            type = "text/plain"
+                                        }, "").apply {
+                                            putExtra(Intent.EXTRA_INITIAL_INTENTS, arrayOf(
+                                                Intent().apply {
+                                                    putExtra(Intent.EXTRA_TEXT, secretKey)
+                                                    putExtra(Intent.EXTRA_SUBJECT, secretKey)
+                                                })
+                                            )
+                                        })
+                                    }
+                                }) {
+                                    Text(
+                                        text = "Export Base64",
+                                        maxLines = 1
+                                    )
+                                }
+                            }
+
+                            OutlinedButton(onClick = { importDialog = true }) {
+                                Text(
+                                    text = "Import Base64",
+                                    maxLines = 1
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+        }
         Column(
             modifier = Modifier
-                .padding(10.dp)
+                .padding(5.dp)
                 .fillMaxWidth(),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             val bitmojiUrl = BitmojiSelfie.getBitmojiSelfie(
-                friend.selfieId, friend.bitmojiId, BitmojiSelfie.BitmojiSelfieType.THREE_D
+                friend.selfieId, friend.bitmojiId, BitmojiSelfie.BitmojiSelfieType.NEW_THREE_D
             )
-            BitmojiImage(context = context, url = bitmojiUrl, size = 100)
-            Spacer(modifier = Modifier.height(16.dp))
+            BitmojiImage(context = context, url = bitmojiUrl, size = 120)
             Text(
                 text = friend.displayName ?: friend.mutableUsername,
                 maxLines = 1,
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold
             )
-            Spacer(modifier = Modifier.height(5.dp))
             Text(
                 text = friend.mutableUsername,
                 maxLines = 1,
@@ -271,8 +388,6 @@ class ManageScope: Routes.Route() {
                 fontWeight = FontWeight.Light
             )
         }
-
-        Spacer(modifier = Modifier.height(16.dp))
 
         if (context.config.root.experimental.storyLogger.get()) {
             Row(
@@ -332,87 +447,14 @@ class ManageScope: Routes.Route() {
                     }
                 }
             }
-            Spacer(modifier = Modifier.height(16.dp))
-
-            if (context.config.root.experimental.e2eEncryption.globalState == true) {
-                SectionTitle(translation["e2ee_title"])
-                var hasSecretKey by rememberAsyncMutableState(defaultValue = false) {
-                    context.e2eeImplementation.friendKeyExists(friend.userId)
-                }
-                var importDialog by remember { mutableStateOf(false) }
-
-                if (importDialog) {
-                    Dialog(
-                        onDismissRequest = { importDialog = false }
-                    ) {
-                        dialogs.RawInputDialog(onDismiss = { importDialog = false  }, onConfirm = { newKey ->
-                            importDialog = false
-                            runCatching {
-                                val key = Base64.decode(newKey)
-                                if (key.size != 32) {
-                                    context.longToast("Invalid key size (must be 32 bytes)")
-                                    return@runCatching
-                                }
-
-                                context.coroutineScope.launch {
-                                    context.e2eeImplementation.storeSharedSecretKey(friend.userId, key)
-                                    context.longToast("Successfully imported key")
-                                }
-
-                                hasSecretKey = true
-                            }.onFailure {
-                                context.longToast("Failed to import key: ${it.message}")
-                                context.log.error("Failed to import key", it)
-                            }
-                        })
-                    }
-                }
-
-                ContentCard {
-                    Row(
-                        verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(10.dp)
-                    ) {
-                        if (hasSecretKey) {
-                            OutlinedButton(onClick = {
-                                context.coroutineScope.launch {
-                                    val secretKey = Base64.encode(context.e2eeImplementation.getSharedSecretKey(friend.userId) ?: return@launch)
-                                    //TODO: fingerprint auth
-                                    context.activity!!.startActivity(Intent.createChooser(Intent().apply {
-                                        action = Intent.ACTION_SEND
-                                        putExtra(Intent.EXTRA_TEXT, secretKey)
-                                        type = "text/plain"
-                                    }, "").apply {
-                                        putExtra(Intent.EXTRA_INITIAL_INTENTS, arrayOf(
-                                            Intent().apply {
-                                                putExtra(Intent.EXTRA_TEXT, secretKey)
-                                                putExtra(Intent.EXTRA_SUBJECT, secretKey)
-                                            })
-                                        )
-                                    })
-                                }
-                            }) {
-                                Text(
-                                    text = "Export Base64",
-                                    maxLines = 1
-                                )
-                            }
-                        }
-
-                        OutlinedButton(onClick = { importDialog = true }) {
-                            Text(
-                                text = "Import Base64",
-                                maxLines = 1
-                            )
-                        }
-                    }
-                }
-            }
         }
     }
 
     @Composable
-    private fun Group(group: MessagingGroupInfo) {
+    private fun Group(
+        group: MessagingGroupInfo,
+        setBottomComposable: ((@Composable () -> Unit)?) -> Unit = {}
+    ) {
         Column(
             modifier = Modifier
                 .padding(10.dp)
@@ -422,7 +464,6 @@ class ManageScope: Routes.Route() {
             Text(
                 text = group.name, maxLines = 1, fontSize = 20.sp, fontWeight = FontWeight.Bold
             )
-            Spacer(modifier = Modifier.height(5.dp))
             Text(
                 text = translation.format(
                     "participants_text", "count" to group.participantsCount.toString()

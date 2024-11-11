@@ -71,6 +71,10 @@ interface BridgeInterface {
     */
     oneway void passGroupsAndFriends(in List<String> groups, in List<String> friends);
 
+    @nullable String getScopeNotes(String id);
+
+    oneway void setScopeNotes(String id, String content);
+
     IScripting getScriptingInterface();
 
     E2eeInterface getE2eeInterface();

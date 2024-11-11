@@ -251,6 +251,10 @@ class BridgeClient(
         service.setRule(targetUuid, type.key, state)
     }
 
+    fun getScopeNotes(id: String): String? = safeServiceCall { service.getScopeNotes(id) }
+
+    fun setScopeNotes(id: String, content: String?) = safeServiceCall { service.setScopeNotes(id, content) }
+
     fun getScriptingInterface(): IScripting = safeServiceCall { service.scriptingInterface }
 
     fun getE2eeInterface(): E2eeInterface = safeServiceCall { service.e2eeInterface }

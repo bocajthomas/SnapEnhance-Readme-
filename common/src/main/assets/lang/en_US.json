@@ -127,7 +127,8 @@
                 "streaks_expiration_text": "Expires in {eta}",
                 "streaks_expiration_text_expired": "Expired",
                 "reminder_button": "Set Reminder",
-                "delete_scope_confirm_dialog_title": "Are you sure you want to delete a {scope}?"
+                "delete_scope_confirm_dialog_title": "Are you sure you want to delete a {scope}?",
+                "notes_placeholder": "Click to add a note"
             },
             "logged_stories": {
                 "story_failed_to_load": "Failed to load",
@@ -1065,6 +1066,10 @@
                     "voice_note_auto_play": {
                         "name": "Voice Note Auto Play",
                         "description": "Automatically plays the next voice note after the current one finishes"
+                    },
+                    "friend_notes": {
+                        "name": "Friend Notes",
+                        "description": "Allows you to add notes to friends profiles"
                     },
                     "cof_experiments": {
                         "name": "COF Experiments",

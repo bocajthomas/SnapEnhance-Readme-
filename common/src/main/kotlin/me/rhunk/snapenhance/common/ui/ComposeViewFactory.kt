@@ -31,8 +31,12 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 // https://github.com/tberghuis/FloatingCountdownTimer/blob/master/app/src/main/java/xyz/tberghuis/floatingtimer/service/overlayViewFactory.kt
-fun createComposeView(context: Context, content: @Composable () -> Unit) = ComposeView(context).apply {
-    setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
+fun createComposeView(
+    context: Context,
+    viewCompositionStrategy: ViewCompositionStrategy = ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed,
+    content: @Composable () -> Unit
+) = ComposeView(context).apply {
+    setViewCompositionStrategy(viewCompositionStrategy)
     val lifecycleOwner = OverlayLifecycleOwner().apply {
         performRestore(null)
         handleLifecycleEvent(Lifecycle.Event.ON_CREATE)
