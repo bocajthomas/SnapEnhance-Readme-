@@ -139,7 +139,8 @@
                 "streaks_length_text": "Länge: {length}",
                 "streaks_expiration_text": "Läuft ab in {eta}",
                 "streaks_expiration_text_expired": "Abgelaufen",
-                "reminder_button": "Erinnerung erstellen"
+                "reminder_button": "Erinnerung erstellen",
+                "notes_placeholder": "Klicken um eine Notiz hinzuzufügen"
             },
             "file_imports": {
                 "import_file_button": "Datei importieren",
@@ -175,7 +176,8 @@
             "manage_rule_feature": {
                 "disable_state_option": "Deaktiviert",
                 "whitelist_state_subtext": "Nur {count} Freude/Gruppen werden von dieser Regel betroffen sein",
-                "whitelist_state_option": "Niemand, außer ..."
+                "whitelist_state_option": "Niemand, außer ...",
+                "dialog_clear_confirmation_text": "Möchtest du die Liste wirklich löschen?"
             }
         },
         "dialogs": {
@@ -367,6 +369,10 @@
                     "download_context_menu": {
                         "name": "Download Kontext Menü",
                         "description": "Ermöglicht es, Nachrichten oder eine Story herunterzuladen/vorher anzuschauen mithilfe des Kontext Menüs.\nLanges Drücken des Knopfes erzwingt den Download"
+                    },
+                    "auto_download_voice_notes": {
+                        "name": "Automatisches herunterladen von Audio-Nachrichten",
+                        "description": "Lädt automatisch Sprachnotizen beim abspielen herunter"
                     }
                 }
             },
@@ -475,7 +481,8 @@
                         "description": "Schließt das Freunde-Feed-Menü automatisch, nachdem eine Einstellungstaste gedrückt wurde"
                     },
                     "custom_theme": {
-                        "name": "Benutzerdefiniertes Design"
+                        "name": "Benutzerdefiniertes Design",
+                        "description": "Anpassung der Farben in Snapchat\nNotiz: Wenn du ein dunkles Thema (wie AMOLED) auswählst, musst du möglicherweise den dunklen Modus in den App-Einstellungen aktivieren, um ein besseres Ergebniss zu erhalten"
                     }
                 }
             },
@@ -1528,6 +1535,9 @@
         "theming": {
             "name": "Designs",
             "description": "Passen Sie das Erscheinungsbild von Snapchat an"
+        },
+        "disclaimer_statement": {
+            "description": "Ließ den Disclaimer"
         }
     },
     "mark_as_seen": {
