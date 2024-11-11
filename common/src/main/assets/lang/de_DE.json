@@ -37,7 +37,8 @@
             "better_location": "Bessere Lage",
             "manage_repos": "Repositorys verwalten",
             "edit_theme": "Design ändern",
-            "theming": "Thematisierung"
+            "theming": "Thematisierung",
+            "manage_rule_feature": "Regelfunktion verwalten"
         },
         "sections": {
             "features": {
@@ -49,7 +50,9 @@
                 "config_import_success_toast": "Einstellungen erfolgreich importiert",
                 "config_import_failure_toast": "Einstellungen konnten nicht importiert werden {error}",
                 "saved_config_snackbar": "Einstellungen gespeichert",
-                "config_export_failure_toast": "Konfiguration konnte nicht exportiert werden {error}"
+                "config_export_failure_toast": "Konfiguration konnte nicht exportiert werden {error}",
+                "older_required": "Dieses Feature benötigt Snapchat v{version} oder älter um ordnungsgemäß zu funktionieren",
+                "newer_required": "Dieses Feature benötigt Snapchat v{version} oder neuer um ordnungsgemäß zu funktionieren"
             },
             "social": {
                 "streaks_expiration_short": "{hours}h",
@@ -71,7 +74,7 @@
                 "update_title": "SnapEnhance Update",
                 "update_content": "Version {version} ist verfügbar!",
                 "update_button": "Herunterladen",
-                "version_title": "V{versionName} · Gegabelt von Jacob",
+                "version_title": "V{versionName} · Ein Fork von Jacob",
                 "quick_actions_title": "Schnelle Aktionen",
                 "debug_build_summary_title": "Sie führen einen debug build von SE Extended",
                 "debug_build_summary_content": "Ausführung {versionName} ({versionCode})",
@@ -168,6 +171,11 @@
             },
             "theming": {
                 "no_themes_hint": "Keine Designs gefunden"
+            },
+            "manage_rule_feature": {
+                "disable_state_option": "Deaktiviert",
+                "whitelist_state_subtext": "Nur {count} Freude/Gruppen werden von dieser Regel betroffen sein",
+                "whitelist_state_option": "Niemand, außer ..."
             }
         },
         "dialogs": {
