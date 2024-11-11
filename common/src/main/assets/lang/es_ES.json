@@ -445,7 +445,7 @@
                         "description": "Cierra automáticamente el menú Friend Feed después de pulsar un botón de configuración"
                     },
                     "hide_quick_add_suggestions": {
-                        "name": "Ocultar rápido Añadir sugerencias",
+                        "name": "Ocultar sugerencias de adición rápida",
                         "description": "Eliminación rápida, adicionar sugerencia de amigos"
                     }
                 },
@@ -1152,6 +1152,9 @@
                     "disable_log_anonymization": {
                         "description": "Deshabilita la anonimización de los registros",
                         "name": "Deshabilitar anonimización de reegistros"
+                    },
+                    "old_tool_box_add_view": {
+                        "description": "Utiliza la vista de adición antigua para agregar el cuadro de herramientas a snapchat.\nNota: Esta característica es temporal"
                     }
                 },
                 "name": "Codificando"
@@ -1512,7 +1515,8 @@
             "title": "Descargar archivos de media del tablero",
             "download_all": "Descargar todo",
             "segment_text": "Segmento {from} - {to}"
-        }
+        },
+        "content_saved_toast": "¡Guardado!"
     },
     "biometric_auth": {
         "subtitle": "Por favor, autentícate para desbloquear Snapchat",
