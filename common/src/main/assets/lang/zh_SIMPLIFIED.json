@@ -195,7 +195,8 @@
                 "not_found": "未找到",
                 "streaks_title": "条纹",
                 "streaks_length_text": "长度: {length}",
-                "delete_scope_confirm_dialog_title": "您确定要删除 {scope}?"
+                "delete_scope_confirm_dialog_title": "您确定要删除 {scope}?",
+                "notes_placeholder": "添加备注"
             },
             "messaging_preview": {
                 "no_message_hint": "没有消息",
