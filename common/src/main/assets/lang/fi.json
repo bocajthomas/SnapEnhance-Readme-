@@ -444,10 +444,6 @@
                         "name": "Mukautettu Teema",
                         "description": "Mukauta Snapchatin värejä\nHuomautus: jos valitset tumman teeman (kuten AMOLED), saatat joutua ottamaan tumman tilan käyttöön sovelluksen ulkoasuasetuksissa varmistaaksesi oikein toimivuuden"
                     },
-                    "hide_quick_add_friend_feed": {
-                        "name": "Piilota Quick Add ystäväsyötteessä",
-                        "description": "Piilottaa Quick Add osion ystäväsyötteestä"
-                    },
                     "opera_media_quick_info": {
                         "name": "Opera Media pikatiedot",
                         "description": "Näyttää hyödyllisiä tietoja mediasta, kuten luontipäivämäärän Opera-katseluohjelman kontekstivalikossa"
@@ -455,10 +451,6 @@
                     "old_bitmoji_selfie": {
                         "name": "Vanha Bitmoji-selfie",
                         "description": "Tuo takaisin Bitmoji-selfiet vanhemmista Snapchat-versioista"
-                    },
-                    "hide_settings_gear": {
-                        "name": "Piilota Asetukset Nappula",
-                        "description": "Piilottaa SE Extended Settings Gearin kaverisyötteessä"
                     },
                     "auto_close_friend_feed_menu": {
                         "name": "Sulje kaverisyötevalikko automaattisesti"
@@ -1002,7 +994,6 @@
         "no_attachments_toast": "Liitteitä ei löytynyt!",
         "already_queued_toast": "Media on jo jonossa!",
         "already_downloaded_toast": "Media on jo ladattu!",
-        "saved_toast": "Tallennettu sijaintiin {path}",
         "download_toast": "Ladataan {path}...",
         "processing_toast": "Käsitellään {path}...",
         "failed_generic_toast": "Lataus epäonnistui",

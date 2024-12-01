@@ -482,10 +482,6 @@
                         "name": "スポットライトを無効にする",
                         "description": "スポットライトページを無効にします"
                     },
-                    "hide_settings_gear": {
-                        "name": "設定ギアを非表示にする",
-                        "description": "フレンドフィードでSE拡張設定ギアを非表示にします"
-                    },
                     "friend_feed_menu_buttons": {
                         "name": "フレンドフィードメニューボタン",
                         "description": "フレンドフィードメニューに表示するボタンを選択します"
@@ -509,10 +505,6 @@
                     "prevent_message_list_auto_scroll": {
                         "name": "メッセージリストの自動スクロールを防止する",
                         "description": "メッセージの送受信時にメッセージリストが下にスクロールしないようにします"
-                    },
-                    "hide_quick_add_friend_feed": {
-                        "name": "友達フィードのクイック追加を非表示にする",
-                        "description": "友達フィードのクイック追加セクションを非表示にします"
                     },
                     "edit_text_override": {
                         "name": "テキストの上書き編集",
@@ -1144,7 +1136,6 @@
             },
             "hide_story_suggestions": {
                 "hide_my_stories": "私のストーリーを隠す",
-                "hide_friend_suggestions": "友達の提案を非表示にする",
                 "hide_suggested_friend_stories": "提案された友達のストーリーを非表示にする"
             },
             "auto_download_sources": {
@@ -1597,7 +1588,6 @@
         "no_attachments_toast": "添付ファイルが見つかりませんでした!",
         "already_queued_toast": "メディアはすでにキューに入っています!",
         "already_downloaded_toast": "メディアはすでにダウンロードされています!",
-        "saved_toast": "保存先 {path}",
         "dash_no_chapter": "章が見つかりませんでした",
         "failed_gallery_toast": "ギャラリーへの保存に失敗しました {error}",
         "failed_to_create_preview_toast": "プレビューの作成に失敗しました"

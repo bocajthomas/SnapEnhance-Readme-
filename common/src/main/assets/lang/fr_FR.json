@@ -36,7 +36,7 @@
             "file_imports": "Importations de fichiers",
             "better_location": "Localisation Améliorée",
             "theming": "Thèmes",
-            "edit_theme": "Éditer le thème",
+            "edit_theme": "Modifier le thème",
             "manage_repos": "Gérer les dépôts",
             "manage_rule_feature": "Gérer la règle de la fonctionnalité"
         },
@@ -427,10 +427,6 @@
                         "description": "Active la nouvelle barre de menu de flux d'amis",
                         "name": "Barre du menu du fil d'amis"
                     },
-                    "hide_settings_gear": {
-                        "name": "Masquer la roue des paramètres",
-                        "description": "Masque la roue des paramètres SnapEnhance dans le fil d'amis"
-                    },
                     "opera_media_quick_info": {
                         "description": "Affiche des informations utiles sur les médias, telles que la date de création, dans le menu contextuel de la visionneuse d'Opera",
                         "name": "Informations rapides des médias Opera"
@@ -442,10 +438,6 @@
                     "old_bitmoji_selfie": {
                         "name": "Ancien Selfie Bitmoji",
                         "description": "Restaurer les selfies Bitmoji des anciennes versions de Snapchat"
-                    },
-                    "hide_quick_add_friend_feed": {
-                        "description": "Masque la section Ajout rapide dans le fil d'amis",
-                        "name": "Masquer l'ajout rapide dans le fil d'amis"
                     },
                     "prevent_message_list_auto_scroll": {
                         "name": "Empêcher le défilement automatique de la liste des messages",
@@ -476,7 +468,11 @@
                         "description": "Ajoute des icônes d'indicateurs spécifiques aux messages\nRemarque : les indicateurs peuvent ne pas être à 100% précis"
                     },
                     "custom_theme": {
-                        "description": "Personnaliser les couleurs de Snapchat\nNote : si vous choisissez un thème sombre (comme AMOLED), vous devrez peut-être activer le mode sombre dans les paramètres d'apparence pour obtenir de meilleurs résultats"
+                        "description": "Personnaliser les couleurs de Snapchat\nNote : si vous choisissez un thème sombre (comme AMOLED), vous devrez peut-être activer le mode sombre dans les paramètres d'apparence pour obtenir de meilleurs résultats",
+                        "name": "Thème personnalisé"
+                    },
+                    "auto_close_friend_feed_menu": {
+                        "description": "Ferme automatiquement le menu Friend Feed après avoir appuyé sur un bouton de réglage"
                     }
                 }
             },
@@ -1221,8 +1217,6 @@
                 "hide_live_location_share_button": "Supprimer le bouton de partage de la localisation en direct",
                 "hide_profile_call_buttons": "Supprimer les boutons d'appel sur le profil",
                 "hide_post_to_story_buttons": "Supprimez les boutons Publier dans votre Story avant d'envoyer un Snap",
-                "hide_billboard_prompt": "Supprimer la fenêtre publicitaire dans le fil des amis",
-                "hide_snapchat_plus_gift_reminders": "Supprimer les rappels de cadeaux de Snapchat Plus dans les conversations",
                 "hide_map_reactions": "Supprimer les réactions de la carte"
             },
             "edit_text_override": {
@@ -1241,7 +1235,6 @@
             },
             "hide_story_suggestions": {
                 "hide_suggested_friend_stories": "Cacher les stories d'amis suggérées",
-                "hide_friend_suggestions": "Cacher les suggestions d'ami",
                 "hide_my_stories": "Cacher Ma Story"
             },
             "disable_cameras": {
@@ -1291,7 +1284,9 @@
                 "woodland_mystery": "Mystère des bois",
                 "creamy_vanilla": "Vanille crémeuse",
                 "lava_flow": "Coulée de lave",
-                "amoled_dark_mode": "Mode sombre AMOLED"
+                "amoled_dark_mode": "Mode sombre AMOLED",
+                "galaxy_glitter": "Galaxie Paillettes",
+                "cherry_bomb": "Bombe cerise"
             }
         }
     },
@@ -1402,7 +1397,6 @@
         "no_attachments_toast": "Aucune pièce jointe trouvée !",
         "already_queued_toast": "Média déjà en file d'attente !",
         "already_downloaded_toast": "Média déjà téléchargé !",
-        "saved_toast": "Enregistré dans {path}",
         "download_toast": "Téléchargement {path}...",
         "processing_toast": "Traitement de {path}...",
         "failed_generic_toast": "Échec du téléchargement",

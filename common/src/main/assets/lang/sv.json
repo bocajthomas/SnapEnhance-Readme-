@@ -352,10 +352,6 @@
                         "description": "Döljer knappen Återställ i vänflödet",
                         "name": "Göm Streak-Återställning"
                     },
-                    "hide_quick_add_friend_feed": {
-                        "name": "Dölj Lägg till snabbt i vänflödet",
-                        "description": "Döljer Lägg till snabbt-sektionen i vänflödet"
-                    },
                     "hide_ui_components": {
                         "name": "Dölj komponenter i användargränssnittet",
                         "description": "Välj vilka UI-komponenter som ska döljas"
@@ -389,10 +385,6 @@
                     "old_bitmoji_selfie": {
                         "name": "Gamla Bitmoji-selfien",
                         "description": "Återinför Bitmoji-selfies från äldre Snapchat-versioner"
-                    },
-                    "hide_settings_gear": {
-                        "name": "Dölj inställningar-ikonen",
-                        "description": "Döljer SnapEnhance-inställningsikonen i vänflödet"
                     },
                     "hide_story_suggestions": {
                         "name": "Dölj Story-förslag",
@@ -831,7 +823,6 @@
                 "map": "Karta"
             },
             "hide_story_suggestions": {
-                "hide_friend_suggestions": "Dölj vänförslag",
                 "hide_suggested_friend_stories": "Dölj föreslagna vänberättelser",
                 "hide_my_stories": "Dölj mina berättelser"
             },

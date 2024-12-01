@@ -35,8 +35,10 @@
             "edit_rule": "Regel bearbeiten",
             "file_imports": "Dateiimporte",
             "better_location": "Bessere Lage",
-            "manage_repos": "Repository bearbeiten",
-            "edit_theme": "Design ändern"
+            "manage_repos": "Repositorys verwalten",
+            "edit_theme": "Design ändern",
+            "theming": "Thematisierung",
+            "manage_rule_feature": "Regelfunktion verwalten"
         },
         "sections": {
             "features": {
@@ -48,7 +50,9 @@
                 "config_import_success_toast": "Einstellungen erfolgreich importiert",
                 "config_import_failure_toast": "Einstellungen konnten nicht importiert werden {error}",
                 "saved_config_snackbar": "Einstellungen gespeichert",
-                "config_export_failure_toast": "Konfiguration konnte nicht exportiert werden {error}"
+                "config_export_failure_toast": "Konfiguration konnte nicht exportiert werden {error}",
+                "older_required": "Dieses Feature benötigt Snapchat v{version} oder älter um ordnungsgemäß zu funktionieren",
+                "newer_required": "Dieses Feature benötigt Snapchat v{version} oder neuer um ordnungsgemäß zu funktionieren"
             },
             "social": {
                 "streaks_expiration_short": "{hours}h",
@@ -70,7 +74,7 @@
                 "update_title": "SnapEnhance Update",
                 "update_content": "Version {version} ist verfügbar!",
                 "update_button": "Herunterladen",
-                "version_title": "V{versionName} · Gegabelt von Jacob",
+                "version_title": "V{versionName} · Ein Fork von Jacob",
                 "quick_actions_title": "Schnelle Aktionen",
                 "debug_build_summary_title": "Sie führen einen debug build von SE Extended",
                 "debug_build_summary_content": "Ausführung {versionName} ({versionCode})",
@@ -135,7 +139,8 @@
                 "streaks_length_text": "Länge: {length}",
                 "streaks_expiration_text": "Läuft ab in {eta}",
                 "streaks_expiration_text_expired": "Abgelaufen",
-                "reminder_button": "Erinnerung erstellen"
+                "reminder_button": "Erinnerung erstellen",
+                "notes_placeholder": "Klicken um eine Notiz hinzuzufügen"
             },
             "file_imports": {
                 "import_file_button": "Datei importieren",
@@ -167,6 +172,12 @@
             },
             "theming": {
                 "no_themes_hint": "Keine Designs gefunden"
+            },
+            "manage_rule_feature": {
+                "disable_state_option": "Deaktiviert",
+                "whitelist_state_subtext": "Nur {count} Freude/Gruppen werden von dieser Regel betroffen sein",
+                "whitelist_state_option": "Niemand, außer ...",
+                "dialog_clear_confirmation_text": "Möchtest du die Liste wirklich löschen?"
             }
         },
         "dialogs": {
@@ -358,6 +369,10 @@
                     "download_context_menu": {
                         "name": "Download Kontext Menü",
                         "description": "Ermöglicht es, Nachrichten oder eine Story herunterzuladen/vorher anzuschauen mithilfe des Kontext Menüs.\nLanges Drücken des Knopfes erzwingt den Download"
+                    },
+                    "auto_download_voice_notes": {
+                        "name": "Automatisches herunterladen von Audio-Nachrichten",
+                        "description": "Lädt automatisch Sprachnotizen beim abspielen herunter"
                     }
                 }
             },
@@ -425,10 +440,6 @@
                         "name": "Freunde Feed Menüleiste",
                         "description": "Aktiviert die neue Freunde Feed Menüleiste"
                     },
-                    "hide_settings_gear": {
-                        "name": "Symbol für Einstellungen ausblenden",
-                        "description": "Blendet das SE Extended Einstellungssymbol im Chat Tab aus"
-                    },
                     "opera_media_quick_info": {
                         "description": "Zeigt nützliche Informationen zu Medien wie das Erstellungsdatum im Kontextmenü der Snap-Ansicht an",
                         "name": "Medien Schnellinfo"
@@ -453,10 +464,6 @@
                         "name": "Snap-Vorschau",
                         "description": "Zeigt eine kleine Vorschau neben ungesehenen Snaps im Chat an"
                     },
-                    "hide_quick_add_friend_feed": {
-                        "description": "Blendet den Abschnitt Schnelles Hinzufügen im Freundes-Feed aus",
-                        "name": "Schnelles Hinzufügen im Friend Feed ausblenden"
-                    },
                     "hide_story_suggestions": {
                         "name": "Story Vorschläge ausblenden",
                         "description": "Entfernt Empfehlungen von der Story‐Seite"
@@ -474,7 +481,8 @@
                         "description": "Schließt das Freunde-Feed-Menü automatisch, nachdem eine Einstellungstaste gedrückt wurde"
                     },
                     "custom_theme": {
-                        "name": "Benutzerdefiniertes Design"
+                        "name": "Benutzerdefiniertes Design",
+                        "description": "Anpassung der Farben in Snapchat\nNotiz: Wenn du ein dunkles Thema (wie AMOLED) auswählst, musst du möglicherweise den dunklen Modus in den App-Einstellungen aktivieren, um ein besseres Ergebniss zu erhalten"
                     }
                 }
             },
@@ -1220,7 +1228,6 @@
                 "3d": "3D Bitmoji"
             },
             "hide_story_suggestions": {
-                "hide_friend_suggestions": "Freundschaftsvorschläge ausblenden",
                 "hide_suggested_friend_stories": "Empfohlene Stories von Freunden ausblenden",
                 "hide_my_stories": "Meine Stories verbergen"
             },
@@ -1372,7 +1379,6 @@
         "no_attachments_toast": "Keine Anhänge gefunden!",
         "already_queued_toast": "Datei wird bereits bearbeitet!",
         "already_downloaded_toast": "Datei wurde bereits heruntergeladen!",
-        "saved_toast": "Gespeichert unter {path}",
         "download_toast": "{path} wird heruntergeladen...",
         "processing_toast": "Verarbeite {path}...",
         "failed_generic_toast": "Download fehlgeschlagen",
@@ -1523,10 +1529,15 @@
             "description": "Sehen Sie sich den Verlauf der protokollierten Nachrichten an"
         },
         "security_features": {
-            "name": "Sicherheitsfunktionen"
+            "name": "Sicherheitsfunktionen",
+            "description": "Ändern Sie die Einstellungen für Sicherheitsfunktionen"
         },
         "theming": {
-            "name": "Designs"
+            "name": "Designs",
+            "description": "Passen Sie das Erscheinungsbild von Snapchat an"
+        },
+        "disclaimer_statement": {
+            "description": "Ließ den Disclaimer"
         }
     },
     "mark_as_seen": {

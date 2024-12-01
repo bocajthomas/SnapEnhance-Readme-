@@ -50,7 +50,9 @@
                 "reset_option": "Reset",
                 "config_export_success_toast": "Config exported Successfully",
                 "saved_config_snackbar": "Config saved",
-                "config_export_failure_toast": "Failed to export config {error}"
+                "config_export_failure_toast": "Failed to export config {error}",
+                "older_required": "This feature requires Snapchat v{version} or older to work correctly",
+                "newer_required": "This feature requires Snapchat v{version} or newer to work correctly"
             },
             "tasks": {
                 "no_tasks": "No Tasks",
@@ -107,7 +109,8 @@
                 "delete_scope_confirm_dialog_title": "Are you sure You want to Delete a {scope}?",
                 "rules_title": "Rules",
                 "streaks_expiration_text_expired": "Expired",
-                "reminder_button": "Set Reminder"
+                "reminder_button": "Set Reminder",
+                "notes_placeholder": "Click to add a note"
             },
             "logged_stories": {
                 "story_failed_to_load": "Failed to load",
@@ -511,10 +514,6 @@
                         "description": "Hides the Restore button in the friend feed",
                         "name": "Hide Streak Restore"
                     },
-                    "hide_quick_add_friend_feed": {
-                        "name": "Hide Quick Add in Friend Feed",
-                        "description": "Hides the Quick Add section in the friend feed"
-                    },
                     "hide_story_suggestions": {
                         "name": "Hide Story Suggestions",
                         "description": "Removes suggestions from the Stories page"
@@ -531,10 +530,6 @@
                         "name": "Disable Spotlight",
                         "description": "Disables the Spotlight page"
                     },
-                    "hide_settings_gear": {
-                        "name": "Hide Settings Gear",
-                        "description": "Hides the SE Extended Settings Gear in The friend feed"
-                    },
                     "enable_friend_feed_menu_bar": {
                         "name": "Friend Feed Menu Bar",
                         "description": "Enables the new Friend Feed Menu Bar"
@@ -550,6 +545,10 @@
                     "custom_theme": {
                         "name": "Custom Theme",
                         "description": "Customize Snapchat's Colors\nNote: if you choose a dark theme (like AMOLED), You may need to enable the dark mode on the App Appearance settings for better results"
+                    },
+                    "hide_quick_add_suggestions": {
+                        "description": "Removes quick add friend suggestions",
+                        "name": "Hide Quick Add Suggestions"
                     }
                 },
                 "name": "User Interface",
@@ -1126,6 +1125,10 @@
                     "voice_note_auto_play": {
                         "description": "Automatically plays the next voice note after the current one finishes",
                         "name": "Voice Note Auto Play"
+                    },
+                    "friend_notes": {
+                        "description": "Allows you to add notes to friends profiles",
+                        "name": "Friend Notes"
                     }
                 }
             },
@@ -1156,6 +1159,10 @@
                     "auto_reload": {
                         "name": "Auto Reload",
                         "description": "Automatically reloads scripts when they change"
+                    },
+                    "old_tool_box_add_view": {
+                        "description": "Uses the old add view to add the tool box to snapchat.\nNote: This feature is temporary",
+                        "name": "Old Tool Box Add View"
                     }
                 }
             },
@@ -1289,7 +1296,6 @@
                 "hide_map_reactions": "Remove Map Reactions"
             },
             "hide_story_suggestions": {
-                "hide_friend_suggestions": "Hide friend suggestions",
                 "hide_suggested_friend_stories": "Hide suggested friend stories",
                 "hide_my_stories": "Hide My Stories"
             },
@@ -1478,8 +1484,8 @@
             "segment_text": "Segment {from} - {to}",
             "download_all": "Download All"
         },
-        "saved_toast": "Saved to {path}",
-        "download_toast": "Downloading {path}..."
+        "download_toast": "Downloading {path}...",
+        "content_saved_toast": "Saved!"
     },
     "streaks_reminder": {
         "notification_title": "Streaks",

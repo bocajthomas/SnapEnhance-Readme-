@@ -71,7 +71,6 @@
         "failed_no_longer_available_toast": "Media nu mai e valabilă",
         "already_queued_toast": "Media este deja în așteptare!",
         "already_downloaded_toast": "Media deja descărcată!",
-        "saved_toast": "Salvat în {path}",
         "download_toast": "Se descarcă {path}...",
         "processing_toast": "Se procesează {path}...",
         "failed_generic_toast": "Descărcarea a eșuat",
@@ -125,7 +124,15 @@
             "social": "Social",
             "manage_scope": "Gestionează Scopul",
             "messaging_preview": "Previzualizează",
-            "logged_stories": "Povești înregistrate"
+            "logged_stories": "Povești înregistrate",
+            "theming": "Tema",
+            "friend_tracker": "Locator de prieteni",
+            "edit_rule": "Editați regulile",
+            "file_imports": "Importă fișiere",
+            "better_location": "Locație mai bună",
+            "edit_theme": "Editează Temele",
+            "manage_repos": "Gestionați depozitele",
+            "manage_rule_feature": "Gestionati regulile"
         },
         "sections": {
             "social": {
@@ -141,7 +148,8 @@
                 "delete_files_option": "De asemenea șterge fișierele",
                 "remove_selected_tasks_confirm": "Eliminați {count} sarcini?",
                 "remove_all_tasks_confirm": "Eliminați toate sarcinile?",
-                "remove_all_tasks_title": "Sigur doriți să eliminați toate sarcinile?"
+                "remove_all_tasks_title": "Sigur doriți să eliminați toate sarcinile?",
+                "failed_to_open_file": "Nu s-a putut deschide fișierul"
             },
             "features": {
                 "disabled": "Dezactivat",
@@ -151,7 +159,10 @@
                 "reset_option": "Resetează",
                 "config_export_success_toast": "Configurația a fost exportată cu succes",
                 "saved_config_snackbar": "Configurația a fost salvată",
-                "config_import_failure_toast": "Nu s-a putut importa configurația {error}"
+                "config_import_failure_toast": "Nu s-a putut importa configurația {error}",
+                "config_export_failure_toast": "Nu s-a putut exporta configurația {error}",
+                "older_required": "Această funcție necesită Snapchat v{version} sau mai veche pentru a funcționa corect",
+                "newer_required": "Această funcție necesită Snapchat v{version} sau mai nouă pentru a funcționa corect"
             },
             "logger_history": {
                 "list_group_format": "Grup {name}",
@@ -177,7 +188,12 @@
             "home": {
                 "update_content": "Versiunea {version} este disponibilă!",
                 "update_button": "Descarcă",
-                "update_title": "Actualizare SnapEnhance"
+                "update_title": "Actualizare SnapEnhance Extended",
+                "debug_build_summary_title": "Rulezi o versiune de depanare a SE Extended",
+                "debug_build_summary_content": "Versiune {versionName} ({versionCode})",
+                "version_title": "V{versionName} · Bifurcat de bocajthomas",
+                "debug_build_summary_date": "Dată Build {date} ({days} days ago)",
+                "quick_actions_title": "Acțiuni Rapide"
             },
             "messaging_preview": {
                 "bridge_init_failed": "Nu s-a inițializat puntea de mesagerie",
@@ -218,6 +234,49 @@
                 "story_failed_to_load": "Încărcarea a eșuat",
                 "no_stories": "Nu s-au găsit povești",
                 "save_from_cache_button": "Salvați din Cache(memoria temporară)"
+            },
+            "file_imports": {
+                "import_file_button": "Importă fișierul",
+                "file_not_found": "Fișier negăsit",
+                "file_delete_failed": "Nu s-a șters fișierul",
+                "no_files_hint": "Aici puteți importa fișiere pentru utilizare în Snapchat. Apăsați butonul de mai jos pentru a importa un fișier.",
+                "file_import_failed": "Nu s-a putut importa fișierul: {error}",
+                "file_imported": "Fișier importat cu succes"
+            },
+            "better_location": {
+                "spoof_location_toggle": "Spoof Locație",
+                "no_friends_found": "Nu s-au găsit prieteni",
+                "latitude_dialog_hint": "Latitudine",
+                "save_dialog_button": "Salvează",
+                "longitude_dialog_hint": "Longitudine",
+                "choose_location_button": "Alege Locația",
+                "suspend_location_updates": "Suspendați actualizările locației",
+                "teleport_to_friend_button": "Teleportează-te la Prieten",
+                "saved_coordinates_title": "Coordonate salvate",
+                "teleport_to_friend_title": "Teleportează-te Ia Prieten",
+                "no_friends_map": "Niciun prieten pe hartă",
+                "delete_dialog_message": "Sigur doriți să ștergeți această coordonată salvată?",
+                "search_bar": "Căutare",
+                "spoofed_coordinates_title": "Lat {latitude}, Lng {longitude}",
+                "no_saved_coordinates_hint": "Nicio coordonată salvată",
+                "delete_dialog_title": "Ștergeți coordonatele salvate",
+                "save_coordinates_dialog_title": "Salvează Coordonatele",
+                "saved_name_dialog_hint": "Numele"
+            },
+            "manage_rule_feature": {
+                "disable_state_subtext": "Niciun prieten/grup nu va fi afectat",
+                "blacklist_state_option": "Toți, cu excepția...",
+                "blacklist_state_subtext": "Toți, cu excepția {count} prieteni/grupuri, vor fi afectați de această regulă",
+                "whitelist_state_subtext": "Numai {count} prieteni/grupuri vor fi afectate de această regulă",
+                "whitelist_state_button": "Selectează prietenii/grupurile permise",
+                "dialog_clear_confirmation_text": "Sigur doriți să ștergeți lista?",
+                "disable_state_option": "Dezactivat",
+                "whitelist_state_option": "Nimeni în afară de...",
+                "clear_list_button": "Șterge lista de prieteni/grupuri",
+                "blacklist_state_button": "Selectează prietenii/grupurile excluse"
+            },
+            "theming": {
+                "no_themes_hint": "Nu s-au găsit teme"
             }
         },
         "dialogs": {
@@ -240,6 +299,14 @@
             "messaging_action": {
                 "title": "Alegeți tipurile de conținut de procesat",
                 "select_all_button": "Selectează tot"
+            },
+            "export_config": {
+                "title": "Exportați date sensibile?",
+                "content": "Doriți să exportați configurația cu date sensibile? (cum ar fi coordonatele locației etc.)"
+            },
+            "file_imports": {
+                "no_files_settings_hint": "Nu s-au găsit fișiere. Asigurați-vă că ați importat fișierele necesare în secțiunea Importuri de fișiere",
+                "settings_select_file_hint": "Selectați un fișier importat"
             }
         }
     },
@@ -362,10 +429,6 @@
                         "description": "Împiedică derularea listei de mesaje în jos la trimiterea/primirea unui mesaj",
                         "name": "Preveniți derularea automată a listei de mesaje"
                     },
-                    "hide_quick_add_friend_feed": {
-                        "name": "Ascundeți adăugarea rapidă în fluxul prietenilor",
-                        "description": "Ascunde secțiunea Adăugare rapidă din fluxul prietenilor"
-                    },
                     "hide_ui_components": {
                         "description": "Selectați ce componente ale interfeței de utilizator să ascundeți",
                         "name": "Ascundeți componentele interfeței de utilizator"
@@ -381,10 +444,6 @@
                     "disable_spotlight": {
                         "name": "Dezactivați Spotlight",
                         "description": "Dezactivează pagina Spotlight"
-                    },
-                    "hide_settings_gear": {
-                        "description": "Ascunde butonul cu setările SnapEnhance în fluxul prietenilor",
-                        "name": "Ascunde Butonul Setări"
                     },
                     "friend_feed_message_preview": {
                         "properties": {
@@ -411,6 +470,18 @@
                     "hide_story_suggestions": {
                         "name": "Ascundeți sugestiile de povești",
                         "description": "Elimină sugestiile din pagina Povestiri"
+                    },
+                    "custom_theme": {
+                        "name": "Tema personalizată",
+                        "description": "Personalizați culorile Snapchat\nNotă: dacă alegeți o temă întunecată (cum ar fi AMOLED), poate fi necesar să activați modul întunecat în setările Aspectul aplicației pentru rezultate mai bune"
+                    },
+                    "auto_close_friend_feed_menu": {
+                        "name": "Meniu Auto Close Friend Feed",
+                        "description": "Închide automat meniul Friend Feed după apăsarea unui buton de setare"
+                    },
+                    "hide_quick_add_suggestions": {
+                        "name": "Ascundeți sugestiile de adăugare rapidă",
+                        "description": "Elimină sugestiile de adăugare rapidă de prieteni"
                     }
                 },
                 "name": "Interfața cu utilizatorul",
@@ -474,7 +545,17 @@
                     },
                     "better_notifications": {
                         "description": "Adaugă mai multe informații în notificările primite",
-                        "name": "Notificări mai bune"
+                        "name": "Notificări mai bune",
+                        "properties": {
+                            "group_notifications": {
+                                "description": "Grupați notificările într-una singură",
+                                "name": "Notificări de grup"
+                            },
+                            "chat_preview": {
+                                "description": "Afișează o previzualizare a mesajelor primite în notificare",
+                                "name": "Previzualizare chat"
+                            }
+                        }
                     },
                     "message_logger": {
                         "name": "Înregistrare mesaje",
@@ -533,6 +614,18 @@
                     "friend_mutation_notifier": {
                         "name": "Notificator de modificări la lista de prieteni",
                         "description": "Te anunță când se schimbă ceva în profilul unui prieten"
+                    },
+                    "unlimited_conversation_pinning": {
+                        "description": "Vă permite să fixați un număr nelimitat de conversații la nivel local",
+                        "name": "Fixare nelimitată a conversației"
+                    },
+                    "mark_snap_as_seen_button": {
+                        "name": "Buton Marcați Snap ca Văzut",
+                        "description": "Adaugă un buton pentru a marca un Snap cum este văzut când îl vizualizați.\nAcest lucru va funcționa chiar și atunci când modul Stealth este activat"
+                    },
+                    "skip_when_marking_as_seen": {
+                        "name": "Omiteți când marcați ca văzut",
+                        "description": "Trece automat la următorul Snap atunci când marcați un Snap ca văzut.\nUtilizați în combinație cu Buttonul Mark Snap ca Văzut"
                     }
                 },
                 "description": "Schimbă cum te interacționezi cu prietenii",
@@ -733,6 +826,10 @@
                     "auto_download_sources": {
                         "name": "Surse de descărcare automată",
                         "description": "Selectați sursele din care să descărcați automat"
+                    },
+                    "auto_download_voice_notes": {
+                        "name": "Descărcare automată a notelor vocale",
+                        "description": "Descărcă automat notele vocale când le redați"
                     }
                 },
                 "description": "Descarcă conținut media de pe Snapchat",
@@ -1096,7 +1193,6 @@
                 "hide_voice_record_button": "Eliminați butonul de înregistrare vocală"
             },
             "hide_story_suggestions": {
-                "hide_friend_suggestions": "Ascundeți sugestiile de prieteni",
                 "hide_suggested_friend_stories": "Ascunde poveștile prietenilor sugerați",
                 "hide_my_stories": "Ascunde-mi poveștile"
             },
@@ -1198,6 +1294,30 @@
         "change_language": {
             "name": "Schimbă limba",
             "description": "Schimbați limba SnapEnhance"
+        },
+        "security_features": {
+            "name": "Caracteristici de securitate",
+            "description": "Schimbați preferințele caracteristicilor de securitate"
+        },
+        "friend_tracker": {
+            "description": "Localizează prietenii in Snapchat",
+            "name": "Locator de prieteni"
+        },
+        "logger_history": {
+            "name": "Istoricul loggerului",
+            "description": "Vizualizați istoricul mesajelor înregistrate"
+        },
+        "theming": {
+            "name": "Tematică",
+            "description": "Personalizați aspectul și senzația Snapchat"
+        },
+        "disclaimer_statement": {
+            "name": "Declarație de declinare a responsabilităților",
+            "description": "Citiți declarația de declinare a răspunderii"
+        },
+        "file_imports": {
+            "name": "Importuri de fișiere",
+            "description": "Importați fișiere pentru utilizare în Snapchat"
         }
     },
     "content_type": {

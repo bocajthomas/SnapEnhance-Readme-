@@ -42,7 +42,7 @@
         },
         "sections": {
             "home": {
-                "update_title": "Actualización de SnapEnhance",
+                "update_title": "Actualización de SE Extended",
                 "update_content": "¡Versión {version} está disponible!",
                 "update_button": "Descargar",
                 "debug_build_summary_date": "Fecha de desarrollo: {date} (hace{days} día(s))",
@@ -88,7 +88,9 @@
                 "config_import_success_toast": "Configuración importada con éxito",
                 "config_import_failure_toast": "Error al importar la configuración {error}",
                 "saved_config_snackbar": "Configuración guardada",
-                "config_export_failure_toast": "No se pudo exportar la configuración {error}"
+                "config_export_failure_toast": "No se pudo exportar la configuración {error}",
+                "older_required": "Esta función requiere Snapchat v{version} o anterior para funcionar correctamente",
+                "newer_required": "Esta función requiere Snapchat v{version} o posterior para funcionar correctamente"
             },
             "social": {
                 "friends_tab": "Amigxs",
@@ -107,7 +109,8 @@
                 "logged_stories_button": "Mostrar historias en el registro",
                 "delete_scope_confirm_dialog_title": "¿Segura/o de que quieres borrar un {scope}?",
                 "e2ee_title": "Cifrado de extremo a extremo",
-                "streaks_title": "Rachas"
+                "streaks_title": "Rachas",
+                "notes_placeholder": "Haga clic para añadir una nota"
             },
             "logged_stories": {
                 "story_failed_to_load": "Error al cargar",
@@ -401,10 +404,6 @@
                         "name": "Mostrar información de caducidad de la racha",
                         "description": "Muestra un temporizador de caducidad al lado del contador de racha"
                     },
-                    "hide_quick_add_friend_feed": {
-                        "name": "Ocultar añadido fácil en la lista de amigxs",
-                        "description": "Oculta el añadido fácil en la lista de amigxs"
-                    },
                     "hide_story_suggestions": {
                         "name": "Ocultar sugerencias de historias",
                         "description": "Elimina las sugerencias de la página de historias"
@@ -420,10 +419,6 @@
                     "disable_spotlight": {
                         "name": "Deshabilitar Spotlight",
                         "description": "Deshabilita la página de Spotlight"
-                    },
-                    "hide_settings_gear": {
-                        "name": "Ocultar el engranaje de ajustes",
-                        "description": "Oculta el engranaje de los ajustes de SnapEnhance en la lista de amigxs"
                     },
                     "friend_feed_menu_buttons": {
                         "name": "Botones de menú de la lista de amigxs",
@@ -448,6 +443,10 @@
                     "auto_close_friend_feed_menu": {
                         "name": "Menú de feed de amigos cerrado automáticamente",
                         "description": "Cierra automáticamente el menú Friend Feed después de pulsar un botón de configuración"
+                    },
+                    "hide_quick_add_suggestions": {
+                        "name": "Ocultar sugerencias de adición rápida",
+                        "description": "Eliminación rápida, adicionar sugerencia de amigos"
                     }
                 },
                 "name": "Interfaz de usuario",
@@ -1123,6 +1122,10 @@
                     "voice_note_auto_play": {
                         "name": "Reproducción automática de notas de voz",
                         "description": "Reproduce automáticamente la siguiente nota de voz cuando termina la actual"
+                    },
+                    "friend_notes": {
+                        "name": "Notas de amigos",
+                        "description": "Permite añadir notas a los perfiles de amigos"
                     }
                 },
                 "name": "Experimental"
@@ -1149,6 +1152,9 @@
                     "disable_log_anonymization": {
                         "description": "Deshabilita la anonimización de los registros",
                         "name": "Deshabilitar anonimización de reegistros"
+                    },
+                    "old_tool_box_add_view": {
+                        "description": "Utiliza la vista de adición antigua para agregar el cuadro de herramientas a snapchat.\nNota: Esta característica es temporal"
                     }
                 },
                 "name": "Codificando"
@@ -1207,11 +1213,9 @@
                 "hide_chat_gallery_button": "Eliminar el botón de la galería de chat",
                 "hide_explorer_token_button": "Botón para eliminar el token del explorador",
                 "hide_gift_snapchat_plus_reminders": "Eliminar recordatorios de regalos de Snapchat Plus",
-                "hide_billboard_prompt": "Eliminar el aviso de la página principal en el feed de amigos",
                 "hide_map_reactions": "Eliminar reacciones del mapa"
             },
             "hide_story_suggestions": {
-                "hide_friend_suggestions": "Ocultar sugestiones de amistad",
                 "hide_my_stories": "Ocultar mis historias",
                 "hide_suggested_friend_stories": "Ocultar historias de amigxs sugeridas"
             },
@@ -1500,7 +1504,6 @@
         "failed_no_longer_available_toast": "Archivos de media ya no disponibles",
         "no_attachments_toast": "¡No se han encontrado atajos!",
         "already_queued_toast": "¡Archivo de media ya en cola!",
-        "saved_toast": "Guardado a {path}",
         "download_toast": "Descargando {path}...",
         "processing_toast": "Procesando {path}...",
         "failed_generic_toast": "Error al descargar",
@@ -1512,7 +1515,8 @@
             "title": "Descargar archivos de media del tablero",
             "download_all": "Descargar todo",
             "segment_text": "Segmento {from} - {to}"
-        }
+        },
+        "content_saved_toast": "¡Guardado!"
     },
     "biometric_auth": {
         "subtitle": "Por favor, autentícate para desbloquear Snapchat",
