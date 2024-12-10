@@ -482,6 +482,10 @@
                             "home_tab": {
                                 "name": "Home Tab",
                                 "description": "Overrides the startup tab when opening Snapchat"
+                            },
+                            "simple_snapchat":{
+                                "name": "Simple Snapchat",
+                                "description": "Enables a simplified version of Snapchat"
                             }
                         }
                     },
@@ -1324,6 +1328,10 @@
                 "discover": "Discover",
                 "spotlight": "Spotlight"
             },
+            "simple_snapchat": {
+                "always_enabled": "Always Enabled",
+                "always_disabled": "Always Disabled"
+            },
             "add_friend_source_spoof": {
                 "added_by_username": "By Username",
                 "added_by_mention": "By Mention",
@@ -1410,6 +1418,11 @@
                 "bitmoji_avatar_changes": "Notify when someone changes their Bitmoji avatar",
                 "bitmoji_background_changes": "Notify when someone changes their Bitmoji background",
                 "bitmoji_scene_changes": "Notify when someone changes their Bitmoji scene"
+            },
+            "snapchat_plus":{
+                "not_subscribed": "Not Subscribed",
+                "basic": "Basic",
+                "ad_free": "Ad Free"
             }
         }
     },

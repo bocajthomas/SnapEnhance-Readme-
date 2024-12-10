@@ -1,6 +1,8 @@
 package me.rhunk.snapenhance.core.features.impl.ui
 
 import me.rhunk.snapenhance.common.config.impl.UserInterfaceTweaks
+import me.rhunk.snapenhance.common.util.protobuf.ProtoEditor
+import me.rhunk.snapenhance.common.util.protobuf.ProtoWriter
 import me.rhunk.snapenhance.core.features.Feature
 import java.io.File
 
@@ -28,8 +30,26 @@ class ClientBootstrapOverride: Feature("ClientBootstrapOverride") {
             appearanceStartupConfigFile.writeBytes(byteArrayOf(0, 0, 0, state))
         }
 
-        bootstrapOverrideConfig.homeTab.getNullable()?.also { currentTab ->
-            plusFile.writeBytes(byteArrayOf(8, (UserInterfaceTweaks.BootstrapOverride.tabs.indexOf(currentTab) + 1).toByte()))
+        val homeTab = bootstrapOverrideConfig.homeTab.getNullable()
+        val simpleSnapchat = bootstrapOverrideConfig.simpleSnapchat.getNullable()
+
+        if (homeTab != null || simpleSnapchat != null) {
+            val plusFileBytes = plusFile.exists().let { if (it) plusFile.readBytes() else ProtoWriter().toByteArray() }
+
+            plusFile.writeBytes(
+                ProtoEditor(plusFileBytes).apply {
+                    edit {
+                        homeTab?.let { currentTab ->
+                            remove(1)
+                            addVarInt(1, UserInterfaceTweaks.BootstrapOverride.tabs.indexOf(currentTab) + 1)
+                        }
+                        simpleSnapchat?.let { simpleSnapchat ->
+                            remove(2)
+                            addVarInt(2, if (simpleSnapchat == "always_enabled") 1 else 0)
+                        }
+                    }
+                }.toByteArray()
+            )
         }
     }
 }

@@ -31,7 +31,7 @@ class COFOverride : Feature("COF Override") {
                     setBooleanResult(true)
                 }
 
-                if (configId == "ANDROID_ACTION_MENU_V2" && result == true) {
+                if ((configId == "ANDROID_ACTION_MENU_V2" || configId == "ANDROID_ACTION_MENU_ADJUST_MESSAGE_POSITION") && result == true) {
                     hasActionMenuV2 = true
                 }
             }

@@ -172,7 +172,7 @@ class ComposerHooks: Feature("ComposerHooks") {
             context.native.setComposerLoader("""
                 const i = setInterval(() => {
                     try {
-                        require('composer_core/src/DeviceBridge').toString();
+                        require('composer_core/src/DeviceBridge').getDisplayWidth();
                         clearInterval(i);
                         (() => { const _getImportsFunctionName = "$getImportsFunctionName"; $loaderScript })();
                     } catch (e) {}

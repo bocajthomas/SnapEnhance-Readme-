@@ -81,10 +81,6 @@ class FriendFeedMessagePreview : Feature("FriendFeedMessagePreview") {
                 textSize = secondaryTextSize
             }
 
-            val typeface by lazy {
-                context.userInterface.avenirNextTypeface
-            }
-
             context.event.subscribe(BuildMessageEvent::class) { param ->
                 val conversationId = param.message.messageDescriptor?.conversationId?.toString() ?: return@subscribe
                 val cachedView = cachedLayouts[conversationId] ?: return@subscribe
@@ -132,7 +128,7 @@ class FriendFeedMessagePreview : Feature("FriendFeedMessagePreview") {
                                     val offsetY = canvas.height.toFloat() - previewContainerHeight
                                     paint.textSize = secondaryTextSize
                                     paint.color = context.userInterface.colorPrimary
-                                    paint.typeface = typeface
+                                    paint.typeface = context.userInterface.avenirNextTypeface
 
                                     messageCache[conversationId]?.forEachIndexed { index, messageString ->
                                         canvas.drawText(messageString,
