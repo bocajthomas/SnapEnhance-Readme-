@@ -63,12 +63,12 @@ fun AppDatabase.syncFriend(friend: MessagingFriendInfo) {
                 )
             )
             //sync streaks
-            friend.streaks?.takeIf { it.length > 0 }?.let {
+            friend.streaks?.takeIf { it.length > 0 }?.also {
                 val streaks = getFriendStreaks(friend.userId)
 
                 database.execSQL("INSERT OR REPLACE INTO streaks (id, notify, expirationTimestamp, length) VALUES (?, ?, ?, ?)", arrayOf(
                     friend.userId,
-                    streaks?.notify ?: true,
+                    streaks?.notify != false,
                     it.expirationTimestamp,
                     it.length
                 ))

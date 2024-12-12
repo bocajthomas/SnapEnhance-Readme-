@@ -13,20 +13,25 @@ class SnapchatPlus: Feature("SnapchatPlus") {
     private val expirationTimeMillis = (System.currentTimeMillis() + 15552000000L)
 
     override fun init() {
-        if (!context.config.global.snapchatPlus.get()) return
+        val snapchatPlusTier = context.config.global.snapchatPlus.getNullable()
 
-        context.mappings.useMapper(PlusSubscriptionMapper::class) {
-            classReference.get()?.hookConstructor(HookStage.AFTER) { param ->
-                val instance = param.thisObject<Any>()
-                val tier = instance.getObjectField(tierField.getAsString()!!)
-                if (tier == 2) return@hookConstructor
-                //subscription tier
-                instance.setObjectField(tierField.getAsString()!!, 2)
-                //subscription status
-                instance.setObjectField(statusField.getAsString()!!, 2)
+        if (snapchatPlusTier != null) {
+            context.mappings.useMapper(PlusSubscriptionMapper::class) {
+                classReference.get()?.hookConstructor(HookStage.AFTER) { param ->
+                    val instance = param.thisObject<Any>()
+                    //subscription tier
+                    instance.setObjectField(tierField.getAsString()!!, when (snapchatPlusTier) {
+                        "not_subscribed" -> 1
+                        "basic" -> 2
+                        "ad_free" -> 3
+                        else -> 2
+                    })
+                    //subscription status
+                    instance.setObjectField(statusField.getAsString()!!, 2)
 
-                instance.setObjectField(originalSubscriptionTimeMillisField.getAsString()!!, originalSubscriptionTime)
-                instance.setObjectField(expirationTimeMillisField.getAsString()!!, expirationTimeMillis)
+                    instance.setObjectField(originalSubscriptionTimeMillisField.getAsString()!!, originalSubscriptionTime)
+                    instance.setObjectField(expirationTimeMillisField.getAsString()!!, expirationTimeMillis)
+                }
             }
         }
 

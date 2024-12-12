@@ -51,7 +51,6 @@ import me.rhunk.snapenhance.core.ui.debugEditText
 import me.rhunk.snapenhance.core.ui.iterateParent
 import me.rhunk.snapenhance.core.ui.menu.AbstractMenu
 import me.rhunk.snapenhance.core.ui.triggerCloseTouchEvent
-import me.rhunk.snapenhance.core.util.ktx.getIdentifier
 import me.rhunk.snapenhance.core.util.ktx.isDarkTheme
 import me.rhunk.snapenhance.core.util.ktx.setObjectField
 import me.rhunk.snapenhance.core.util.ktx.vibrateLongPress
@@ -300,7 +299,7 @@ class NewChatActionMenu : AbstractMenu() {
             val primaryColor = remember { if (event.view.context.isDarkTheme()) Color.White else Color.Black }
             val avenirNextMediumFont = remember {
                 FontFamily(
-                    Font(context.userInterface.getFontResource(600) ?: throw IllegalStateException("Font not found"), FontWeight.Medium)
+                    Font(context.userInterface.avenirNextFontId, FontWeight.Medium)
                 )
             }
 

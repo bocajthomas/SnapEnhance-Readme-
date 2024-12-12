@@ -37,7 +37,7 @@ class Global : ConfigContainer() {
     }
 
     val betterLocation = container("better_location", BetterLocationConfig())
-    val snapchatPlus = boolean("snapchat_plus") { requireRestart() }
+    val snapchatPlus = unique("snapchat_plus", "not_subscribed", "basic", "ad_free") { requireRestart() }
     val mediaUploadQualityConfig = container("media_upload_quality", MediaUploadQualityConfig())
     val disableConfirmationDialogs = multiple("disable_confirmation_dialogs", "erase_message", "remove_friend", "block_friend", "ignore_friend", "hide_friend", "hide_conversation", "clear_conversation") { requireRestart() }
     val disableMetrics = boolean("disable_metrics") { requireRestart() }
