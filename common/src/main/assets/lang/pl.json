@@ -59,7 +59,7 @@
                 "debug_build_summary_date": "Data kompilacji: {date} ({days} dni temu)",
                 "debug_build_summary_content": "Wersja {versionName} ({versionCode})",
                 "quick_actions_title": "Szybkie akcje",
-                "version_title": "V{versionName} · Forked by bocajthomas",
+                "version_title": "V{versionName} · Fork stworzony przez bocajthomas",
                 "debug_build_summary_title": "Używasz wersji debug SE Extended"
             },
             "home_logs": {
