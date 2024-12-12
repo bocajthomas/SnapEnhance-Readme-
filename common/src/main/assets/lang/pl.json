@@ -241,8 +241,8 @@
     "profile_info": {
         "title": "Info o profilu",
         "display_name": "Wyświetl nazwę",
-        "added_date": "Dodaj datę",
-        "birthday": "Urodziny : {month} {day}"
+        "added_date": "Data dodania",
+        "birthday": "Urodziny : {day} {month}"
     },
     "chat_export": {
         "dialog_negative_button": "Anuluj",
