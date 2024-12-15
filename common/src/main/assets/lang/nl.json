@@ -50,7 +50,9 @@
                 "config_import_success_toast": "Config succesvol geïmporteerd",
                 "config_import_failure_toast": "Gefaald om config te importeren {error}",
                 "saved_config_snackbar": "Config opgeslagen",
-                "config_export_failure_toast": "Config exporteren gefaald {error}"
+                "config_export_failure_toast": "Config exporteren gefaald {error}",
+                "older_required": "Deze functie heeft Snapchat v{version} nodig om correct te werken",
+                "newer_required": "Deze functie heeft Snapchat v{version} of nieuwer nodig om correct te werken"
             },
             "social": {
                 "streaks_expiration_short": "{hours}u",
@@ -72,7 +74,7 @@
                 "update_title": "SnapEnhance Update",
                 "update_content": "Versie {version} is beschikbaar!",
                 "update_button": "Download",
-                "version_title": "V{versionName} · Geforked door Jacob",
+                "version_title": "V{versionName} · Geforked door bocajthomas",
                 "debug_build_summary_title": "Je gebruikt een debug versie van SE Extended",
                 "debug_build_summary_content": "Versie {versionName} ({versionCode})",
                 "debug_build_summary_date": "Build datum: {date} ({days} dagen geleden)",
@@ -107,7 +109,8 @@
                 "streaks_expiration_text": "Verloopt in {eta}",
                 "streaks_expiration_text_expired": "Verlopen",
                 "reminder_button": "Zet herinnering",
-                "delete_scope_confirm_dialog_title": "Weet u zeker dat u {scope} wilt verwijderen?"
+                "delete_scope_confirm_dialog_title": "Weet u zeker dat u {scope} wilt verwijderen?",
+                "notes_placeholder": "Klik om een notitie toe te voegen"
             },
             "logged_stories": {
                 "story_failed_to_load": "Gefaald om te laden",
@@ -407,6 +410,10 @@
                             "home_tab": {
                                 "name": "Startpagina tabblad",
                                 "description": "Overschrijft het starttabblad bij het openen van Snapchat"
+                            },
+                            "simple_snapchat": {
+                                "name": "Simpele snapchat",
+                                "description": "Stelt een simpelere versie van Snapchat in"
                             }
                         }
                     },
@@ -433,9 +440,140 @@
                     "disable_spotlight": {
                         "name": "Spotlight uitschakelen",
                         "description": "Schakelt de Spotlight pagina uit"
+                    },
+                    "custom_theme": {
+                        "name": "Aangepaste thema",
+                        "description": "Pas de snapchat kleuren aan\nPs: als je een donkere thema kiest (zoals AMOLED), moet je misschien donkere modus aandoen in de App Uiterlijk instellingen voor betere resultaten"
+                    },
+                    "prevent_message_list_auto_scroll": {
+                        "description": "Voorkomt het bericht van naar beneden scrollen wanneer je een bericht verstuurd/krijgt",
+                        "name": "Voorkomt Bericht Lijst Auto Scroll"
+                    },
+                    "opera_media_quick_info": {
+                        "description": "Toont nuttige informatie van media zoals datum van aanmaak in de opera kijker context menu",
+                        "name": "Opera Media Snelle Info"
+                    },
+                    "stealth_mode_indicator": {
+                        "name": "Sluip Modus Indicatie",
+                        "description": "Voegt een 👻 emoji naast de conversatie in sluip modus"
+                    },
+                    "hide_story_suggestions": {
+                        "name": "Verstop Verhaal Suggesties",
+                        "description": "Verwijdert suggesties van de Verhalen pagina"
+                    },
+                    "old_bitmoji_selfie": {
+                        "name": "Oude Bitmoji Selfie",
+                        "description": "Brengt de Bitmoji selfies van ouder snapchat versies terug"
+                    },
+                    "friend_feed_menu_buttons": {
+                        "name": "Vrienden Feed Menu Knoppen",
+                        "description": "Selecteer welke knoppen te laten zien in de Vrienden Feed Menu"
+                    },
+                    "auto_close_friend_feed_menu": {
+                        "name": "Auto Sluit Vrienden Feed Menu",
+                        "description": "Sluit de Vrienden Feed Menu automatisch nadat de instellingen knop is ingedrukt"
+                    },
+                    "vertical_story_viewer": {
+                        "name": "Verticale Verhalen Kijker",
+                        "description": "Stelt de verticale verhalen kijker in voor alle verhalen"
+                    },
+                    "enable_friend_feed_menu_bar": {
+                        "name": "Vrienden Feed Menu Bar",
+                        "description": "Stelt de nieuwe Vrienden Feed Menu Bar in"
+                    },
+                    "message_indicators": {
+                        "name": "Berichten indicators",
+                        "description": "Voegt specifieke indicatie iconen bij het bericht\nPs: indicaties kunnen niet 100% accuraat zijn"
+                    },
+                    "snap_preview": {
+                        "name": "Snap voorvertoning",
+                        "description": "Laat een kleine voortvertoning zien bij nog niet bekeken snaps in de chat"
+                    },
+                    "edit_text_override": {
+                        "name": "Bewerk Text Overschrijven",
+                        "description": "Overschrijft text veld gedrag"
+                    },
+                    "hide_quick_add_suggestions": {
+                        "name": "Verstop Quick Add suggesties",
+                        "description": "Verwijdert quick add vriend suggesties"
                     }
                 },
                 "name": "Gebruikersomgeving"
+            },
+            "messaging": {
+                "properties": {
+                    "hide_typing_notifications": {
+                        "name": "Verstop Aan Het Typen Notificatie",
+                        "description": "Voorkomt iedereen van zien dat je aan het typen bent"
+                    },
+                    "mark_snap_as_seen_button": {
+                        "name": "Markeer Snap als Gezien Knop",
+                        "description": "Voegt a knop toe om een snap te markeren wanneer je deze bekijkt\nDit zal zelfs werken als Sluip Modus aanstaat"
+                    },
+                    "loop_media_playback": {
+                        "name": "Herhaalt Media Afspelen",
+                        "description": "Herhaalt de media afspelen wanneer je Snaps/Verhalen bekijkt"
+                    },
+                    "call_start_confirmation": {
+                        "name": "Start Bellen Bevestiging",
+                        "description": "Laat een bevestigings dialoog zien wanneer je een gesprek start"
+                    },
+                    "bypass_screenshot_detection": {
+                        "name": "Omzeil Screenshot Detectie",
+                        "description": "Voorkomt Snapchat van het detecteren wanneer je een screenshot neemt"
+                    },
+                    "half_swipe_notifier": {
+                        "properties": {
+                            "min_duration": {
+                                "description": "De minimale duratie van de half swipe (in seconden)",
+                                "name": "Minimale Duratie"
+                            },
+                            "max_duration": {
+                                "name": "Maximale duratie",
+                                "description": "De maximale duratie van de half swipe (in seconden)"
+                            }
+                        },
+                        "name": "Half Swipe Melder",
+                        "description": "Informeert je wanneer iemand half swiped in je conversatie"
+                    },
+                    "anonymous_story_viewing": {
+                        "description": "Voorkomt iedereen van weten dat jij hun verhaal hebt bekeken",
+                        "name": "Anoniem Verhalen Bekijken"
+                    },
+                    "prevent_story_rewatch_indicator": {
+                        "name": "Voorkom Verhaal Opnieuw Bekeken Indicatie",
+                        "description": "Voorkomt iedereen van weten dat jij hun verhaal opnieuw hebt bekeken"
+                    },
+                    "hide_peek_a_peek": {
+                        "description": "Voorkomt de notificatie van verstuurd worden wanneer je in een chat half swiped",
+                        "name": "Verstop Peek-a-Peek"
+                    },
+                    "auto_mark_as_read": {
+                        "description": "Markeerd berichten/snaps automatisch als gelezen zelfs a Sluip Modus aanstaat",
+                        "name": "Markeer als Gelezen Automatisch"
+                    },
+                    "skip_when_marking_as_seen": {
+                        "name": "Sla Over Wanneer je Markeert als Gezien",
+                        "description": "Slaat automatisch over naar de volgende Snap wanneer als je een Snap markeert als gezien\nGebruik in combinatie met de Markeer als Gezien Knop"
+                    },
+                    "disable_replay_in_ff": {
+                        "name": "Schakel Herhaling Uit in FF",
+                        "description": "Zet de vaardigheid uit om opnieuw te kunnen afspelen in de Vrienden Feed"
+                    },
+                    "unlimited_snap_view_time": {
+                        "name": "Oneindige Snap Bekijk Tijd",
+                        "description": "Verwijdert de Tijdslimiet voor het bekijken van Snaps"
+                    },
+                    "hide_bitmoji_presence": {
+                        "name": "Verstop Bitmoji Aanwezigheid",
+                        "description": "Voorkomt je Bitmoji van opduiken wanneer je in de chat bent"
+                    },
+                    "unlimited_conversation_pinning": {
+                        "name": "Pin Oneindig Veel Conversaties"
+                    }
+                },
+                "description": "Verander hoe je interacteerd met je vrienden",
+                "name": "Berichten"
             }
         },
         "options": {
@@ -578,7 +716,8 @@
             "description": "Lees de disclaimer verklaring"
         },
         "logger_history": {
-            "name": "Loggergeschiedenis"
+            "name": "Loggergeschiedenis",
+            "description": "Zie de geschiedenis van geregistreerde berichten"
         }
     },
     "friend_menu_option": {
