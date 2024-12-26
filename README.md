@@ -24,7 +24,7 @@ Please note that this project is currently in development, So bugs and crashes m
 ## 📖 Main Features
 <details closed>
   <summary>⬇️ Media Downloader</summary>
-
+ 
 - `Save Folder`
 - `Auto Download Sources`
 - `Prevent Self Auto Download`
@@ -240,6 +240,9 @@ Thanks to everyone involved
 - French - [pyramyds](https://github.com/pyramyds), [Mizaruta](https://github.com/Mizaruta)
 - Polish - [tekkenkkk](https://github.com/tekkenkkk), [Red1N-Q](https://github.com/Red1N-Q)
 - Chinese (Simplified) - [fa1seut0pia](https://github.com/fa1seut0pia), [Kobayashi-classmate](https://github.com/Kobayashi-classmate), [RWDai](https://github.com/RWDai)
+- German - [Brokoli5191](https://github.com/Brokoli5191)
+- English (UK) - [JJGatchalian](https://github.com/JJGatchalian)
+- Spanish [Lorena-trad](https://github.com/Lorena-trad)
 
 You can help translate SE Extended on [Hosted Weblate](https://hosted.weblate.org/projects/se-extended/se-extended/).
 
