@@ -4,7 +4,7 @@ import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.WarningAmber
+import androidx.compose.material.icons.rounded.WarningAmber
 import com.google.gson.JsonObject
 import me.rhunk.snapenhance.common.data.FriendLinkType
 import me.rhunk.snapenhance.common.database.impl.FriendInfo
@@ -50,7 +50,7 @@ class FriendMutationObserver: Feature("FriendMutationObserver") {
         )
 
         context.inAppOverlay.showStatusToast(
-            Icons.Default.WarningAmber,
+            Icons.Rounded.WarningAmber,
             contentText,
             durationMs = 7000
         )

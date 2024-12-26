@@ -17,11 +17,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.outlined.Message
-import androidx.compose.material.icons.filled.CheckCircleOutline
-import androidx.compose.material.icons.filled.Info
-import androidx.compose.material.icons.filled.NotInterested
-import androidx.compose.material.icons.outlined.*
+import androidx.compose.material.icons.automirrored.rounded.Message
+import androidx.compose.material.icons.rounded.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -250,9 +247,9 @@ class FriendFeedInfoMenu : AbstractMenu() {
                             modifier = Modifier.weight(1f),
                         ) {
                             friendInfo?.let { friendInfo ->
-                                Entry(Icons.Outlined.Person, friendInfo.displayName?.let { "$it (${friendInfo.usernameForSorting})" } ?: friendInfo.usernameForSorting, true)
+                                Entry(Icons.Rounded.Person, friendInfo.displayName?.let { "$it (${friendInfo.usernameForSorting})" } ?: friendInfo.usernameForSorting, true)
                                 friendInfo.streakExpirationTimestamp.takeIf { it > 0L && friendInfo.streakLength > 0 && System.currentTimeMillis() < it }?.let { timestamp ->
-                                    Entry(Icons.Outlined.LocalFireDepartment, context.translation.format("conversation_preview.streak_expiration",
+                                    Entry(Icons.Rounded.LocalFireDepartment, context.translation.format("conversation_preview.streak_expiration",
                                         "day" to ((timestamp - System.currentTimeMillis()) / 1000 / 60 / 60 / 24).toString(),
                                         "hour" to ((timestamp - System.currentTimeMillis()) / 1000 / 60 / 60 % 24).toString(),
                                         "minute" to ((timestamp - System.currentTimeMillis()) / 1000 / 60 % 60).toString()
@@ -260,9 +257,9 @@ class FriendFeedInfoMenu : AbstractMenu() {
                                 }
                             }
                             conversationInfo?.let {
-                                Entry(Icons.Outlined.Group, (it.feedDisplayName ?: it.key).toString(), true)
+                                Entry(Icons.Rounded.Group, (it.feedDisplayName ?: it.key).toString(), true)
                             }
-                            Entry(Icons.AutoMirrored.Outlined.Message, context.translation.format("conversation_preview.total_messages", "count" to totalMessages.toString()), false)
+                            Entry(Icons.AutoMirrored.Rounded.Message, context.translation.format("conversation_preview.total_messages", "count" to totalMessages.toString()), false)
                         }
                         friendInfo?.let {
                             IconButton(
@@ -270,7 +267,7 @@ class FriendFeedInfoMenu : AbstractMenu() {
                                     coroutineScope.launch(Dispatchers.IO) { showProfileInfo(it) }
                                 }
                             ) {
-                                Icon(Icons.Outlined.MoreVert, contentDescription = null)
+                                Icon(Icons.Rounded.MoreVert, contentDescription = null)
                             }
                         }
                     }
@@ -448,7 +445,7 @@ class FriendFeedInfoMenu : AbstractMenu() {
                 if (friendFeedMenuOptions.contains("conversation_info")) {
                     MenuElement(
                         remember { elementIndex++ },
-                        Icons.Outlined.RemoveRedEye,
+                        Icons.Rounded.RemoveRedEye,
                         translation["preview"],
                         onClick = {
                             context.coroutineScope.launch {
@@ -468,7 +465,7 @@ class FriendFeedInfoMenu : AbstractMenu() {
                         state = !ruleFeature.getState(conversationId)
                         ruleFeature.setState(conversationId, state)
                         context.inAppOverlay.showStatusToast(
-                            if (state) Icons.Default.CheckCircleOutline else Icons.Default.NotInterested,
+                            if (state) Icons.Rounded.CheckCircleOutline else Icons.Rounded.NotInterested,
                             context.translation.format("rules.toasts.${if (state) "enabled" else "disabled"}", "ruleName" to context.translation[ruleFeature.ruleType.translateOptionKey(ruleState.key)]),
                             durationMs = 1500
                         )
@@ -496,7 +493,7 @@ class FriendFeedInfoMenu : AbstractMenu() {
                 if (friendFeedMenuOptions.contains("mark_snaps_as_seen")) {
                     MenuElement(
                         remember { elementIndex++ },
-                        Icons.Outlined.EditNote,
+                        Icons.Rounded.EditNote,
                         translation["mark_snaps_as_seen"],
                         onClick = {
                             context.apply {
@@ -512,13 +509,13 @@ class FriendFeedInfoMenu : AbstractMenu() {
 
                     MenuElement(
                         remember { elementIndex++ },
-                        Icons.Outlined.RemoveRedEye,
+                        Icons.Rounded.RemoveRedEye,
                         translation["mark_stories_as_seen_locally"],
                         onClick = {
                             context.apply {
                                 closeMenu()
                                 inAppOverlay.showStatusToast(
-                                    Icons.Default.Info,
+                                    Icons.Rounded.Info,
                                     if (database.setStoriesViewedState(targetUser!!, true)) markAsSeenTranslation["seen_toast"]
                                     else markAsSeenTranslation["already_seen_toast"],
                                     durationMs = 2500
@@ -530,7 +527,7 @@ class FriendFeedInfoMenu : AbstractMenu() {
                                 context.apply {
                                     closeMenu()
                                     inAppOverlay.showStatusToast(
-                                        Icons.Default.Info,
+                                        Icons.Rounded.Info,
                                         if (database.setStoriesViewedState(targetUser!!, false)) markAsSeenTranslation["unseen_toast"]
                                         else markAsSeenTranslation["already_unseen_toast"],
                                         durationMs = 2500

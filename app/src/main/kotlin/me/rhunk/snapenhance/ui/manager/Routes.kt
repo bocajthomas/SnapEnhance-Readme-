@@ -2,7 +2,7 @@ package me.rhunk.snapenhance.ui.manager
 
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.rounded.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavBackStackEntry
@@ -35,7 +35,7 @@ import me.rhunk.snapenhance.ui.manager.pages.tracker.FriendTrackerManagerRoot
 data class RouteInfo(
     val id: String,
     val key: String = id,
-    val icon: ImageVector = Icons.Default.Home,
+    val icon: ImageVector = Icons.Rounded.Home,
     val primary: Boolean = false,
     val showInNavBar: Boolean = primary,
 ) {
@@ -50,12 +50,12 @@ class Routes(
     lateinit var navController: NavController
     private val routes = mutableListOf<Route>()
 
-    val tasks = route(RouteInfo("tasks", icon = Icons.Default.TaskAlt, primary = true), TasksRootSection())
+    val tasks = route(RouteInfo("tasks", icon = Icons.Rounded.TaskAlt, primary = true), TasksRootSection())
 
-    val features = route(RouteInfo("features", icon = Icons.Default.Stars, primary = true), FeaturesRootSection())
+    val features = route(RouteInfo("features", icon = Icons.Rounded.Stars, primary = true), FeaturesRootSection())
     val manageRuleFeature = route(RouteInfo("manage_rule_feature/?rule_type={rule_type}"), ManageRuleFeature()).parent(features)
 
-    val home = route(RouteInfo("home", icon = Icons.Default.Home, primary = true), HomeRootSection())
+    val home = route(RouteInfo("home", icon = Icons.Rounded.Home, primary = true), HomeRootSection())
     val settings = route(RouteInfo("home_settings"), HomeSettings()).parent(home)
     val homeLogs = route(RouteInfo("home_logs"), HomeLogs()).parent(home)
     val loggerHistory = route(RouteInfo("logger_history"), LoggerHistoryRoot()).parent(home)
@@ -67,12 +67,12 @@ class Routes(
     val editTheme = route(RouteInfo("edit_theme/?theme_id={theme_id}"), EditThemeSection())
     val manageRepos = route(RouteInfo("manage_repos"), ManageReposSection())
 
-    val social = route(RouteInfo("social", icon = Icons.Default.Group, primary = true), SocialRootSection())
+    val social = route(RouteInfo("social", icon = Icons.Rounded.Group, primary = true), SocialRootSection())
     val manageScope = route(RouteInfo("manage_scope/?scope={scope}&id={id}"), ManageScope()).parent(social)
     val messagingPreview = route(RouteInfo("messaging_preview/?scope={scope}&id={id}"), MessagingPreview()).parent(social)
     val loggedStories = route(RouteInfo("logged_stories/?id={id}"), LoggedStories()).parent(social)
 
-    val scripting = route(RouteInfo("scripts", icon = Icons.Filled.DataObject, primary = true), ScriptingRootSection())
+    val scripting = route(RouteInfo("scripts", icon = Icons.Rounded.DataObject, primary = true), ScriptingRootSection())
 
     val betterLocation = route(RouteInfo("better_location", showInNavBar = false, primary = true), BetterLocationRoot())
 

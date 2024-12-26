@@ -12,8 +12,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.OpenInNew
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.automirrored.rounded.OpenInNew
+import androidx.compose.material.icons.rounded.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -212,7 +212,7 @@ class FeaturesRootSection : Routes.Route() {
                                     .padding(5.dp),
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
-                                Icon(Icons.Filled.AttachFile, contentDescription = null, modifier = Modifier.padding(5.dp))
+                                Icon(Icons.Rounded.AttachFile, contentDescription = null, modifier = Modifier.padding(5.dp))
                                 Text(
                                     text = file.name,
                                     modifier = Modifier
@@ -222,7 +222,7 @@ class FeaturesRootSection : Routes.Route() {
                                     lineHeight = 16.sp
                                 )
                                 if (selectedFile == file.name) {
-                                    Icon(Icons.Filled.Check, contentDescription = null, modifier = Modifier.padding(5.dp))
+                                    Icon(Icons.Rounded.Check, contentDescription = null, modifier = Modifier.padding(5.dp))
                                 }
                             }
                         }
@@ -230,7 +230,7 @@ class FeaturesRootSection : Routes.Route() {
                 }
             }
 
-            Icon(Icons.Filled.AttachFile, contentDescription = null)
+            Icon(Icons.Rounded.AttachFile, contentDescription = null)
             return
         }
 
@@ -242,7 +242,7 @@ class FeaturesRootSection : Routes.Route() {
                     }
                 }
             }.let { { it.invoke(true) } }) {
-                Icon(Icons.Filled.FolderOpen, contentDescription = null)
+                Icon(Icons.Rounded.FolderOpen, contentDescription = null)
             }
             return
         }
@@ -319,7 +319,7 @@ class FeaturesRootSection : Routes.Route() {
                         }
                     } else {
                         IconButton(onClick = it) {
-                            Icon(Icons.AutoMirrored.Filled.OpenInNew, contentDescription = null)
+                            Icon(Icons.AutoMirrored.Rounded.OpenInNew, contentDescription = null)
                         }
                     }
                 }
@@ -538,8 +538,8 @@ class FeaturesRootSection : Routes.Route() {
             }
         }) {
             Icon(
-                imageVector = if (showSearchBar) Icons.Filled.Close
-                else Icons.Filled.Search,
+                imageVector = if (showSearchBar) Icons.Rounded.Close
+                else Icons.Rounded.Search,
                 contentDescription = null
             )
         }
@@ -647,7 +647,7 @@ class FeaturesRootSection : Routes.Route() {
         if (context.activity != null) {
             IconButton(onClick = { showExportDropdownMenu = !showExportDropdownMenu}) {
                 Icon(
-                    imageVector = Icons.Filled.MoreVert,
+                    imageVector = Icons.Rounded.MoreVert,
                     contentDescription = null
                 )
             }

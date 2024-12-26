@@ -5,7 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.WarningAmber
+import androidx.compose.material.icons.rounded.WarningAmber
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -24,7 +24,7 @@ class SecurityScreen : SetupScreen() {
     @Composable
     override fun Content() {
         Icon(
-            imageVector = Icons.Default.WarningAmber,
+            imageVector = Icons.Rounded.WarningAmber,
             contentDescription = null,
             modifier = Modifier
                 .padding(16.dp)

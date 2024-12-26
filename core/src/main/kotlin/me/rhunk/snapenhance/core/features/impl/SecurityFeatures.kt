@@ -3,7 +3,7 @@ package me.rhunk.snapenhance.core.features.impl
 import android.annotation.SuppressLint
 import android.system.Os
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.NotInterested
+import androidx.compose.material.icons.rounded.NotInterested
 import me.rhunk.snapenhance.common.config.MOD_DETECTION_VERSION_CHECK
 import me.rhunk.snapenhance.common.config.VersionRequirement
 import me.rhunk.snapenhance.core.features.Feature
@@ -36,7 +36,7 @@ class SecurityFeatures : Feature("Security Features") {
         if (canCheckVersion && MOD_DETECTION_VERSION_CHECK.checkVersion(snapchatVersionCode)?.second == VersionRequirement.OLDER_REQUIRED && (status == null || status < 2)) {
             onNextActivityCreate {
                 context.inAppOverlay.showStatusToast(
-                    icon = Icons.Filled.NotInterested,
+                    icon = Icons.Rounded.NotInterested,
                     text = "SE Extended is not compatible with this version of Snapchat and will result in a ban.\nUse Snapchat ${MOD_DETECTION_VERSION_CHECK.maxVersion?.first ?: "0.0.0"} or older to avoid detections or use test accounts.",
                     durationMs = 10000,
                     maxLines = 6

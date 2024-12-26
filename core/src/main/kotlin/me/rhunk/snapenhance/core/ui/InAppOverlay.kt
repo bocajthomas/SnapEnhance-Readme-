@@ -15,7 +15,7 @@ import androidx.compose.foundation.gestures.anchoredDraggable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Warning
+import androidx.compose.material.icons.rounded.Warning
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -269,7 +269,7 @@ class InAppOverlay(
 
     private fun showToast(
         icon: @Composable () -> Unit = {
-            Icon(Icons.Outlined.Warning, contentDescription = "icon", modifier = Modifier.size(32.dp))
+            Icon(Icons.Rounded.Warning, contentDescription = "icon", modifier = Modifier.size(32.dp))
         },
         text: @Composable () -> Unit = {},
         durationMs: Int = 3000,

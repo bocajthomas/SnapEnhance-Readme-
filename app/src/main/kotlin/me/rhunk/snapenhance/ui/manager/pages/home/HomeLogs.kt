@@ -9,13 +9,13 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.KeyboardDoubleArrowDown
-import androidx.compose.material.icons.filled.KeyboardDoubleArrowUp
-import androidx.compose.material.icons.filled.MoreVert
-import androidx.compose.material.icons.outlined.BugReport
-import androidx.compose.material.icons.outlined.Info
-import androidx.compose.material.icons.outlined.Report
-import androidx.compose.material.icons.outlined.Warning
+import androidx.compose.material.icons.rounded.KeyboardDoubleArrowDown
+import androidx.compose.material.icons.rounded.KeyboardDoubleArrowUp
+import androidx.compose.material.icons.rounded.MoreVert
+import androidx.compose.material.icons.rounded.Info
+import androidx.compose.material.icons.rounded.Report
+import androidx.compose.material.icons.rounded.Warning
+import androidx.compose.material.icons.rounded.BugReport
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -56,7 +56,7 @@ class HomeLogs : Routes.Route() {
         IconButton(onClick = {
             showDropDown = true
         }) {
-            Icon(Icons.Filled.MoreVert, contentDescription = null)
+            Icon(Icons.Rounded.MoreVert, contentDescription = null)
         }
 
         DropdownMenu(
@@ -187,11 +187,11 @@ class HomeLogs : Routes.Route() {
                                 if (!expand) {
                                     Icon(
                                         imageVector = when (line.logLevel) {
-                                            LogLevel.DEBUG -> Icons.Outlined.BugReport
-                                            LogLevel.ERROR, LogLevel.ASSERT -> Icons.Outlined.Report
-                                            LogLevel.INFO, LogLevel.VERBOSE -> Icons.Outlined.Info
-                                            LogLevel.WARN -> Icons.Outlined.Warning
-                                            else -> Icons.Outlined.Info
+                                            LogLevel.DEBUG -> Icons.Rounded.BugReport
+                                            LogLevel.ERROR, LogLevel.ASSERT -> Icons.Rounded.Report
+                                            LogLevel.INFO, LogLevel.VERBOSE -> Icons.Rounded.Info
+                                            LogLevel.WARN -> Icons.Rounded.Warning
+                                            else -> Icons.Rounded.Info
                                         },
                                         contentDescription = null,
                                     )
@@ -246,7 +246,7 @@ class HomeLogs : Routes.Route() {
                 },
                 enabled = firstVisibleItem != 0
             ) {
-                Icon(Icons.Filled.KeyboardDoubleArrowUp, contentDescription = null)
+                Icon(Icons.Rounded.KeyboardDoubleArrowUp, contentDescription = null)
             }
 
             FilledIconButton(
@@ -257,7 +257,7 @@ class HomeLogs : Routes.Route() {
                 },
                 enabled = layoutInfo.visibleItemsInfo.lastOrNull()?.index != layoutInfo.totalItemsCount - 1
             ) {
-                Icon(Icons.Filled.KeyboardDoubleArrowDown, contentDescription = null)
+                Icon(Icons.Rounded.KeyboardDoubleArrowDown, contentDescription = null)
             }
         }
     }

@@ -9,7 +9,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.EditLocation
+import androidx.compose.material.icons.rounded.EditLocation
 import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButtonDefaults
@@ -253,7 +253,7 @@ class BetterLocation : Feature("Better Location") {
                                 ),
                                 onClick = { openManagementOverlay() }
                             ) {
-                                Icon(Icons.Default.EditLocation, contentDescription = null)
+                                Icon(Icons.Rounded.EditLocation, contentDescription = null)
                             }
                         }
                     }.apply {

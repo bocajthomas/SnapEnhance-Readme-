@@ -10,8 +10,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Delete
-import androidx.compose.material.icons.filled.SaveAlt
+import androidx.compose.material.icons.rounded.Delete
+import androidx.compose.material.icons.rounded.SaveAlt
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -144,12 +144,12 @@ class AccountSwitcher: Feature("Account Switcher") {
                                         requestCode
                                     )
                                 }) {
-                                    Icon(Icons.Default.SaveAlt, contentDescription = "Export account")
+                                    Icon(Icons.Rounded.SaveAlt, contentDescription = "Export account")
                                 }
                                 FilledIconButton(onClick = {
                                     removeAccountPopup = true
                                 }) {
-                                    Icon(Icons.Default.Delete, contentDescription = "Remove account")
+                                    Icon(Icons.Rounded.Delete, contentDescription = "Remove account")
                                 }
                             }
                         }

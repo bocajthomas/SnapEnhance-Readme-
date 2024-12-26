@@ -13,7 +13,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.*
+import androidx.compose.material.icons.rounded.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -336,11 +336,11 @@ class NewChatActionMenu : AbstractMenu() {
                 modifier = Modifier.fillMaxWidth(),
             ) {
                 if (context.config.downloader.downloadContextMenu.get()) {
-                    ListButton(icon = Icons.Outlined.RemoveRedEye, text = context.translation["chat_action_menu.preview_button"], modifier = Modifier.clickable {
+                    ListButton(icon = Icons.Rounded.RemoveRedEye, text = context.translation["chat_action_menu.preview_button"], modifier = Modifier.clickable {
                         closeActionMenu()
                         mediaDownloader.onMessageActionMenu(true)
                     })
-                    ListButton(icon = Icons.Outlined.Download, text = context.translation["chat_action_menu.download_button"], modifier = Modifier.pointerInput(Unit) {
+                    ListButton(icon = Icons.Rounded.Download, text = context.translation["chat_action_menu.download_button"], modifier = Modifier.pointerInput(Unit) {
                         detectTapGestures(
                             onTap = {
                                 closeActionMenu()
@@ -355,7 +355,7 @@ class NewChatActionMenu : AbstractMenu() {
                 }
 
                 if (context.config.experimental.editMessage.get() && messaging.conversationManager?.isEditMessageSupported() == true) {
-                    ListButton(icon = Icons.Outlined.Edit, text = context.translation["chat_action_menu.edit_message"], modifier = Modifier.clickable {
+                    ListButton(icon = Icons.Rounded.Edit, text = context.translation["chat_action_menu.edit_message"], modifier = Modifier.clickable {
                         editCurrentMessage(event.view.context) {
                             context.runOnUiThread {
                                 closeActionMenu()
@@ -373,13 +373,13 @@ class NewChatActionMenu : AbstractMenu() {
                     }
 
                     if (chatEdits != null && chatEdits?.isNotEmpty() == true) {
-                        ListButton(icon = Icons.Outlined.History, text = context.translation["chat_action_menu.show_chat_edit_history"], modifier = Modifier.clickable {
+                        ListButton(icon = Icons.Rounded.History, text = context.translation["chat_action_menu.show_chat_edit_history"], modifier = Modifier.clickable {
                             closeActionMenu()
                             showChatEditHistory(chatEdits!!)
                         })
                     }
 
-                    ListButton(icon = Icons.Outlined.BookmarkRemove, text = context.translation["chat_action_menu.delete_logged_message_button"], modifier = Modifier.clickable {
+                    ListButton(icon = Icons.Rounded.BookmarkRemove, text = context.translation["chat_action_menu.delete_logged_message_button"], modifier = Modifier.clickable {
                         closeActionMenu()
                         context.executeAsync {
                             messageLogger.deleteMessage(messaging.openedConversationUUID.toString(), messaging.lastFocusedMessageId)
@@ -388,7 +388,7 @@ class NewChatActionMenu : AbstractMenu() {
                 }
 
                 if (context.config.experimental.convertMessageLocally.get()) {
-                    ListButton(icon = Icons.Outlined.Image, text = context.translation["chat_action_menu.convert_message"], modifier = Modifier.clickable {
+                    ListButton(icon = Icons.Rounded.Image, text = context.translation["chat_action_menu.convert_message"], modifier = Modifier.clickable {
                         closeActionMenu()
                         messaging.conversationManager?.fetchMessage(
                             messaging.openedConversationUUID.toString(),

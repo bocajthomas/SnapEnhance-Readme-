@@ -5,7 +5,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Palette
+import androidx.compose.material.icons.rounded.Palette
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -191,7 +191,7 @@ fun ThemeCatalog(root: ThemingRoot) {
                             .padding(8.dp),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Icon(Icons.Default.Palette, contentDescription = null, modifier = Modifier.padding(16.dp))
+                        Icon(Icons.Rounded.Palette, contentDescription = null, modifier = Modifier.padding(16.dp))
                         Column(
                             modifier = Modifier.weight(1f),
                         ) {

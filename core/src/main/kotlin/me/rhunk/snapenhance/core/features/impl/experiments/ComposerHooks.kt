@@ -4,7 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.BugReport
+import androidx.compose.material.icons.rounded.BugReport
 import androidx.compose.material3.*
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -190,7 +190,7 @@ class ComposerHooks: Feature("ComposerHooks") {
                     },
                     modifier = Modifier.align(Alignment.TopEnd).padding(top = 100.dp, end = 16.dp)
                 ) {
-                    Icon(Icons.Default.BugReport, contentDescription = "Debug Console")
+                    Icon(Icons.Rounded.BugReport, contentDescription = "Debug Console")
                 }
             }
         }

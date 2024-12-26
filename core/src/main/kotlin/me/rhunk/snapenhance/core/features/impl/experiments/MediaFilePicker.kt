@@ -17,10 +17,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.CheckCircleOutline
-import androidx.compose.material.icons.filled.Crop
-import androidx.compose.material.icons.filled.Error
-import androidx.compose.material.icons.filled.Upload
+import androidx.compose.material.icons.rounded.CheckCircleOutline
+import androidx.compose.material.icons.rounded.Crop
+import androidx.compose.material.icons.rounded.Error
+import androidx.compose.material.icons.rounded.Upload
 import androidx.compose.material3.FilledIconButton
 import androidx.compose.material3.Icon
 import androidx.compose.ui.Modifier
@@ -108,7 +108,7 @@ class MediaFilePicker : Feature("Media File Picker") {
 
                 if (firstVideoId == null) {
                     context.inAppOverlay.showStatusToast(
-                        Icons.Default.Upload,
+                        Icons.Rounded.Upload,
                         "Must have a video in gallery to upload."
                     )
                     return@subscribe
@@ -146,7 +146,7 @@ class MediaFilePicker : Feature("Media File Picker") {
                             }
                         }
 
-                        context.inAppOverlay.showStatusToast(Icons.Default.Crop, "Converting media...", durationMs = 3000)
+                        context.inAppOverlay.showStatusToast(Icons.Rounded.Crop, "Converting media...", durationMs = 3000)
                         val pfd = context.bridgeClient.convertMedia(
                             context.androidContext.contentResolver.openFileDescriptor(event.intent.data!!, "r")!!,
                             "m4a",
@@ -156,11 +156,11 @@ class MediaFilePicker : Feature("Media File Picker") {
                         )
 
                         if (pfd == null) {
-                            context.inAppOverlay.showStatusToast(Icons.Default.Error, "Failed to convert media.")
+                            context.inAppOverlay.showStatusToast(Icons.Rounded.Error, "Failed to convert media.")
                             return@launch
                         }
 
-                        context.inAppOverlay.showStatusToast(Icons.Default.CheckCircleOutline, "Media converted successfully.")
+                        context.inAppOverlay.showStatusToast(Icons.Rounded.CheckCircleOutline, "Media converted successfully.")
 
                         runCatching {
                             mediaInputStream = ParcelFileDescriptor.AutoCloseInputStream(pfd)
@@ -168,7 +168,7 @@ class MediaFilePicker : Feature("Media File Picker") {
                         }.onFailure {
                             mediaInputStream = null
                             context.log.error(it)
-                            context.inAppOverlay.showStatusToast(Icons.Default.Error, "Failed to send media.")
+                            context.inAppOverlay.showStatusToast(Icons.Rounded.Error, "Failed to send media.")
                         }
                     }
                 }
@@ -216,7 +216,7 @@ class MediaFilePicker : Feature("Media File Picker") {
                                             requestCode!!
                                         )
                                     }) {
-                                        Icon(Icons.Default.Upload, "Upload media")
+                                        Icon(Icons.Rounded.Upload, "Upload media")
                                     }
                                 }
                             }.apply {

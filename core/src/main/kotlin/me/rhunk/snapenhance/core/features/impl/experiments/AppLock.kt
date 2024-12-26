@@ -16,7 +16,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Lock
+import androidx.compose.material.icons.rounded.Lock
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -78,7 +78,7 @@ class AppLock : Feature("AppLock") {
                             verticalArrangement = Arrangement.spacedBy(10.dp)
                         ) {
                             Image(
-                                imageVector = Icons.Default.Lock,
+                                imageVector = Icons.Rounded.Lock,
                                 contentDescription = "Lock",
                                 modifier = Modifier.size(100.dp),
                                 colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface)

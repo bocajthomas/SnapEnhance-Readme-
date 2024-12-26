@@ -5,8 +5,8 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.LibraryBooks
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.automirrored.rounded.LibraryBooks
+import androidx.compose.material.icons.rounded.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -160,7 +160,7 @@ class ScriptingRootSection : Routes.Route() {
                 val actions = remember {
                     mutableMapOf<Pair<String, ImageVector>, suspend () -> Unit>().apply {
                         if (canUpdate) {
-                            put("Update Module" to Icons.Default.Download) {
+                            put("Update Module" to Icons.Rounded.Download) {
                                 dismiss()
                                 context.shortToast("Updating script ${script.name}...")
                                 runCatching {
@@ -179,7 +179,7 @@ class ScriptingRootSection : Routes.Route() {
                             }
                         }
 
-                        put("Edit Module" to Icons.Default.Edit) {
+                        put("Edit Module" to Icons.Rounded.Edit) {
                             runCatching {
                                 val modulePath = context.scriptManager.getModulePath(script.name)!!
                                 context.androidContext.startActivity(
@@ -196,7 +196,7 @@ class ScriptingRootSection : Routes.Route() {
                                 context.shortToast("Failed to open module file. Check logs for more details")
                             }
                         }
-                        put("Clear Module Data" to Icons.Default.Save) {
+                        put("Clear Module Data" to Icons.Rounded.Save) {
                             runCatching {
                                 context.scriptManager.getModuleDataFolder(script.name)
                                     .deleteRecursively()
@@ -207,7 +207,7 @@ class ScriptingRootSection : Routes.Route() {
                                 context.shortToast("Failed to clear module data. Check logs for more details")
                             }
                         }
-                        put("Delete Module" to Icons.Default.DeleteOutline) {
+                        put("Delete Module" to Icons.Rounded.DeleteOutline) {
                             context.scriptManager.apply {
                                 runCatching {
                                     val modulePath = getModulePath(script.name)!!
@@ -308,7 +308,7 @@ class ScriptingRootSection : Routes.Route() {
             ) {
                 if (enabled) {
                     Icon(
-                        imageVector = if (openSettings) Icons.Default.ExpandLess else Icons.Default.ExpandMore,
+                        imageVector = if (openSettings) Icons.Rounded.ExpandLess else Icons.Rounded.ExpandMore,
                         contentDescription = null,
                         modifier = Modifier
                             .padding(end = 8.dp)
@@ -349,7 +349,7 @@ class ScriptingRootSection : Routes.Route() {
                 IconButton(onClick = {
                     openActions = !openActions
                 }) {
-                    Icon(imageVector = Icons.Default.Build, contentDescription = "Actions")
+                    Icon(imageVector = Icons.Rounded.Build, contentDescription = "Actions")
                 }
                 Switch(
                     checked = enabled,
@@ -417,7 +417,7 @@ class ScriptingRootSection : Routes.Route() {
                 onClick = {
                     showImportDialog = true
                 },
-                icon = { Icon(imageVector = Icons.Default.Link, contentDescription = "Link") },
+                icon = { Icon(imageVector = Icons.Rounded.Link, contentDescription = "Link") },
                 text = {
                     Text(text = "Import from URL")
                 },
@@ -435,7 +435,7 @@ class ScriptingRootSection : Routes.Route() {
                 },
                 icon = {
                     Icon(
-                        imageVector = Icons.Default.FolderOpen,
+                        imageVector = Icons.Rounded.FolderOpen,
                         contentDescription = "Folder"
                     )
                 },
@@ -603,7 +603,7 @@ class ScriptingRootSection : Routes.Route() {
             })
         }) {
             Icon(
-                imageVector = Icons.AutoMirrored.Default.LibraryBooks,
+                imageVector = Icons.AutoMirrored.Rounded.LibraryBooks,
                 contentDescription = "Documentation"
             )
         }

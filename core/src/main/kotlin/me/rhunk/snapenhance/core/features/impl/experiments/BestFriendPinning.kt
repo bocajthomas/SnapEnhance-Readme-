@@ -1,7 +1,7 @@
 package me.rhunk.snapenhance.core.features.impl.experiments
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material.icons.rounded.FavoriteBorder
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import kotlinx.coroutines.Dispatchers
@@ -43,7 +43,7 @@ class BestFriendPinning: BridgeFileFeature("Best Friend Pinning", InternalFileHa
             val username = context.database.getFriendInfo(userId)?.mutableUsername ?: "Unknown"
 
             context.inAppOverlay.showStatusToast(
-                icon = Icons.Default.FavoriteBorder,
+                icon = Icons.Rounded.FavoriteBorder,
                 "Pinned $username as best friend! Please restart the app to apply changes.",
                 durationMs = 5000
             )

@@ -3,10 +3,10 @@ package me.rhunk.snapenhance.core.features.impl.messaging
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.MusicNote
-import androidx.compose.material.icons.filled.Photo
-import androidx.compose.material.icons.filled.PhotoCamera
-import androidx.compose.material.icons.filled.WarningAmber
+import androidx.compose.material.icons.rounded.MusicNote
+import androidx.compose.material.icons.rounded.Photo
+import androidx.compose.material.icons.rounded.PhotoCamera
+import androidx.compose.material.icons.rounded.WarningAmber
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -161,7 +161,7 @@ class SendOverride : Feature("Send Override") {
             fun sendMedia(overrideType: String, snapDurationMs: Int?): Boolean {
                 if (overrideType != "ORIGINAL" && (messageProtoReader.followPath(3)?.getCount(3) ?: 0) > 1) {
                     context.inAppOverlay.showStatusToast(
-                        icon = Icons.Default.WarningAmber,
+                        icon = Icons.Rounded.WarningAmber,
                         context.translation["gallery_media_send_override.multiple_media_toast"]
                     )
                     return false
@@ -289,14 +289,14 @@ class SendOverride : Feature("Send Override") {
                             modifier = Modifier.fillMaxWidth(),
                             horizontalArrangement = Arrangement.SpaceEvenly
                         ) {
-                            ActionTile(selected = selectedType == "ORIGINAL", icon = Icons.Filled.Photo, title =
+                            ActionTile(selected = selectedType == "ORIGINAL", icon = Icons.Rounded.Photo, title =
                             translation["ORIGINAL"]) {
                                 selectedType = "ORIGINAL"
                             }
-                            ActionTile(selected = selectedType == "SNAP" || selectedType == "SAVEABLE_SNAP", icon = Icons.Filled.PhotoCamera, title = translation["SNAP"]) {
+                            ActionTile(selected = selectedType == "SNAP" || selectedType == "SAVEABLE_SNAP", icon = Icons.Rounded.PhotoCamera, title = translation["SNAP"]) {
                                 selectedType = "SNAP"
                             }
-                            ActionTile(selected = selectedType == "NOTE", icon = Icons.Filled.MusicNote, title = translation["NOTE"]) {
+                            ActionTile(selected = selectedType == "NOTE", icon = Icons.Rounded.MusicNote, title = translation["NOTE"]) {
                                 selectedType = "NOTE"
                             }
                         }
