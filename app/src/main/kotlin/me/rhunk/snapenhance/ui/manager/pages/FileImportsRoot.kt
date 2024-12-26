@@ -6,9 +6,9 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AttachFile
-import androidx.compose.material.icons.filled.DeleteOutline
-import androidx.compose.material.icons.filled.Upload
+import androidx.compose.material.icons.rounded.AttachFile
+import androidx.compose.material.icons.rounded.DeleteOutline
+import androidx.compose.material.icons.rounded.Upload
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.ExtendedFloatingActionButton
 import androidx.compose.material3.Icon
@@ -47,7 +47,7 @@ class FileImportsRoot: Routes.Route() {
         Row {
             ExtendedFloatingActionButton(
                 icon = {
-                    Icon(Icons.Default.Upload, contentDescription = null)
+                    Icon(Icons.Rounded.Upload, contentDescription = null)
                 },
                 text = {
                     Text(translation["import_file_button"])
@@ -122,7 +122,7 @@ class FileImportsRoot: Routes.Route() {
                             .fillMaxWidth(),
                         verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Icon(Icons.Default.AttachFile, contentDescription = null, modifier = Modifier.padding(5.dp))
+                        Icon(Icons.Rounded.AttachFile, contentDescription = null, modifier = Modifier.padding(5.dp))
                         Column(
                             modifier = Modifier.weight(1f).padding(8.dp),
                         ) {
@@ -144,7 +144,7 @@ class FileImportsRoot: Routes.Route() {
                                     }
                                 }
                             }) {
-                                Icon(Icons.Default.DeleteOutline, contentDescription = null)
+                                Icon(Icons.Rounded.DeleteOutline, contentDescription = null)
                             }
                         }
                     }

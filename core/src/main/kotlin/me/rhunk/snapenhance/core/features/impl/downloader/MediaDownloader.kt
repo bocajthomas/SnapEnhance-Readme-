@@ -11,7 +11,7 @@ import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.*
+import androidx.compose.material.icons.rounded.*
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import me.rhunk.snapenhance.bridge.DownloadCallback
@@ -108,7 +108,7 @@ class MediaDownloader : MessagingRuleFeature("MediaDownloader", MessagingRuleTyp
                     if (!downloadLogging.contains("success")) return
                     context.log.verbose("onSuccess: outputFile=$outputFile")
                     context.inAppOverlay.showStatusToast(
-                        icon = Icons.Outlined.DownloadDone,
+                        icon = Icons.Rounded.DownloadDone,
                         durationMs = 1300,
                         text = translations["content_saved_toast"].also {
                             if (context.isMainActivityPaused) {
@@ -122,7 +122,7 @@ class MediaDownloader : MessagingRuleFeature("MediaDownloader", MessagingRuleTyp
                     if (!downloadLogging.contains("progress")) return
                     context.log.verbose("onProgress: message=$message")
                     context.inAppOverlay.showStatusToast(
-                        icon = Icons.Outlined.Info,
+                        icon = Icons.Rounded.Info,
                         durationMs = 1300,
                         text = message,
                     )
@@ -139,14 +139,14 @@ class MediaDownloader : MessagingRuleFeature("MediaDownloader", MessagingRuleTyp
                     }
                     throwable?.let { t ->
                         context.inAppOverlay.showStatusToast(
-                            icon = Icons.Outlined.Error,
+                            icon = Icons.Rounded.Error,
                             text = message + t.takeIf { it.isNotEmpty() }?.let { " $it" }.orEmpty(),
                         )
                         return
                     }
 
                     context.inAppOverlay.showStatusToast(
-                        icon = Icons.Outlined.Warning,
+                        icon = Icons.Rounded.Warning,
                         durationMs = 1300,
                         text = message,
                     )

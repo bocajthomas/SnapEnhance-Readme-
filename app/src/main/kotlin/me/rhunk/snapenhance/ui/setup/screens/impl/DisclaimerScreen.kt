@@ -3,7 +3,7 @@ package me.rhunk.snapenhance.ui.setup.screens.impl
 import android.annotation.SuppressLint
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.PriorityHigh
+import androidx.compose.material.icons.rounded.PriorityHigh
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -18,7 +18,7 @@ class DisclaimerScreen : SetupScreen() {
     @Composable
     override fun Content() {
         Icon(
-            imageVector = Icons.Default.PriorityHigh,
+            imageVector = Icons.Rounded.PriorityHigh,
             contentDescription = null,
             modifier = Modifier
                 .padding(16.dp)

@@ -1,7 +1,6 @@
 package me.rhunk.snapenhance.core.features.impl
 
 import me.rhunk.snapenhance.core.features.Feature
-
 import me.rhunk.snapenhance.core.util.dataBuilder
 import me.rhunk.snapenhance.core.util.hook.HookStage
 import me.rhunk.snapenhance.core.util.hook.hook

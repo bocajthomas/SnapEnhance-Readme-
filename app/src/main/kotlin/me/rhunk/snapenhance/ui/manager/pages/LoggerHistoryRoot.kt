@@ -6,9 +6,9 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.Download
-import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.rounded.Close
+import androidx.compose.material.icons.rounded.Download
+import androidx.compose.material.icons.rounded.Search
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -189,7 +189,7 @@ class LoggerHistoryRoot : Routes.Route() {
                                                 }
                                             }) {
                                                 Icon(
-                                                    imageVector = Icons.Default.Download,
+                                                    imageVector = Icons.Rounded.Download,
                                                     contentDescription = "Download",
                                                     modifier = Modifier.padding(end = 4.dp)
                                                 )
@@ -387,8 +387,8 @@ class LoggerHistoryRoot : Routes.Route() {
             stringFilter = ""
         }) {
             Icon(
-                imageVector = if (showSearchTextField) Icons.Filled.Close
-                else Icons.Filled.Search,
+                imageVector = if (showSearchTextField) Icons.Rounded.Close
+                else Icons.Rounded.Search,
                 contentDescription = null
             )
         }

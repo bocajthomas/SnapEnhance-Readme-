@@ -10,12 +10,11 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.Help
-import androidx.compose.material.icons.filled.WatchLater
-import androidx.compose.material.icons.filled.Paid
-import androidx.compose.material.icons.filled.BugReport
-import androidx.compose.material.icons.filled.MoreVert
-import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.automirrored.rounded.Help
+import androidx.compose.material.icons.rounded.Paid
+import androidx.compose.material.icons.rounded.BugReport
+import androidx.compose.material.icons.rounded.MoreVert
+import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -135,12 +134,12 @@ class HomeRootSection : Routes.Route() {
         IconButton(onClick = {
             routes.homeLogs.navigate()
         }) {
-            Icon(Icons.Filled.BugReport, contentDescription = null)
+            Icon(Icons.Rounded.BugReport, contentDescription = null)
         }
         IconButton(onClick = {
             routes.settings.navigate()
         }) {
-            Icon(Icons.Filled.Settings, contentDescription = null)
+            Icon(Icons.Rounded.Settings, contentDescription = null)
         }
     }
 
@@ -206,21 +205,14 @@ class HomeRootSection : Routes.Route() {
                 ExternalLinkIcon(
                     modifier = Modifier.offset(x = (-3).dp),
                     size = 40.dp,
-                    imageVector = Icons.AutoMirrored.Default.Help,
+                    imageVector = Icons.AutoMirrored.Rounded.Help,
                     link = "https://github.com/bocajthomas/SE-Extended/wiki"
                 )
 
                 ExternalLinkIcon(
                     size = 40.dp,
                     modifier = Modifier.offset(x = (-3).dp),
-                    imageVector = Icons.Filled.WatchLater,
-                    link = "https://github.com/bocajthomas/SE-Extended/blob/dev/CHANGELOGS.md"
-                )
-
-                ExternalLinkIcon(
-                    size = 40.dp,
-                    modifier = Modifier.offset(x = (-3).dp),
-                    imageVector = Icons.Filled.Paid,
+                    imageVector = Icons.Rounded.Paid,
                     link = "https://ko-fi.com/seextended"
                 )
             }
@@ -351,7 +343,7 @@ class HomeRootSection : Routes.Route() {
                     IconButton(
                         onClick = { showQuickActionsMenu = !showQuickActionsMenu },
                     ) {
-                        Icon(Icons.Default.MoreVert, contentDescription = null)
+                        Icon(Icons.Rounded.MoreVert, contentDescription = null)
                     }
                     DropdownMenu(
                         expanded = showQuickActionsMenu,

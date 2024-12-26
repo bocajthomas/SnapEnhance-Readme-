@@ -77,21 +77,7 @@ class UserInterfaceTweaks : ConfigContainer() {
     val hideStreakRestore = boolean("hide_streak_restore") { requireRestart() }
     val hideQuickAddSuggestions = boolean("hide_quick_add_suggestions") { requireRestart() }
     val hideStorySuggestions = multiple("hide_story_suggestions", "hide_suggested_friend_stories", "hide_my_stories") { requireRestart() }
-    val hideUiComponents = multiple("hide_ui_components",
-        "hide_voice_record_button",
-        "hide_stickers_button",
-        "hide_live_location_share_button",
-        "hide_chat_call_buttons",
-        "hide_chat_camera_button",
-        "hide_chat_gallery_button",
-        "hide_profile_call_buttons",
-        "hide_unread_chat_hint",
-        "hide_post_to_story_buttons",
-        "hide_snap_create_group_buttons",
-        "hide_explorer_token_button",
-        "hide_gift_snapchat_plus_reminders",
-        "hide_map_reactions"
-    ) { requireRestart(); versionCheck = RES_OBF_VERSION_CHECK }
+    val hideUiComponents = multiple("hide_ui_components", "hide_voice_record_button", "hide_stickers_button", "hide_live_location_share_button", "hide_chat_call_buttons", "hide_chat_camera_button", "hide_chat_gallery_button", "hide_profile_call_buttons", "hide_unread_chat_hint", "hide_post_to_story_buttons", "hide_snap_create_group_buttons", "hide_explorer_token_button", "hide_gift_snapchat_plus_reminders", "hide_map_reactions") { requireRestart(); versionCheck = RES_OBF_VERSION_CHECK }
     val operaMediaQuickInfo = boolean("opera_media_quick_info") { requireRestart() }
     val oldBitmojiSelfie = unique("old_bitmoji_selfie", "2d", "3d") { requireCleanCache() }
     val disableSpotlight = boolean("disable_spotlight") { requireRestart() }

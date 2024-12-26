@@ -13,8 +13,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.KeyboardArrowDown
-import androidx.compose.material.icons.filled.KeyboardArrowUp
+import androidx.compose.material.icons.rounded.KeyboardArrowDown
+import androidx.compose.material.icons.rounded.KeyboardArrowUp
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -178,7 +178,7 @@ class ConversationToolbox : Feature("Conversation Toolbox") {
                             verticalAlignment = Alignment.CenterVertically,
                         ) {
                             Image(
-                                imageVector = if (expandedComposableCache[title] == true) Icons.Filled.KeyboardArrowDown else Icons.Filled.KeyboardArrowUp,
+                                imageVector = if (expandedComposableCache[title] == true) Icons.Rounded.KeyboardArrowDown else Icons.Rounded.KeyboardArrowUp,
                                 contentDescription = null,
                                 colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
                             )

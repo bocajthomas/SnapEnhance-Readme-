@@ -11,7 +11,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.rounded.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -154,7 +154,7 @@ class TasksRootSection : Routes.Route() {
                         taskSelection.clear()
                     }.map { it.first to it.second!! })
                 }) {
-                    Icon(Icons.Filled.Merge, contentDescription = "Merge")
+                    Icon(Icons.Rounded.Merge, contentDescription = "Merge")
                 }
             }
         }
@@ -162,7 +162,7 @@ class TasksRootSection : Routes.Route() {
         IconButton(onClick = {
             showConfirmDialog = true
         }) {
-            Icon(Icons.Filled.Delete, contentDescription = "Clear tasks")
+            Icon(Icons.Rounded.Delete, contentDescription = "Clear tasks")
         }
 
         if (showConfirmDialog) {
@@ -367,17 +367,17 @@ class TasksRootSection : Routes.Route() {
                             )
                         } else {
                             when {
-                                !isDocumentFileReadable -> Icon(Icons.Filled.DeleteOutline, contentDescription = "File not found")
-                                documentFileMimeType.contains("image") -> Icon(Icons.Filled.Image, contentDescription = "Image")
-                                documentFileMimeType.contains("video") -> Icon(Icons.Filled.Videocam, contentDescription = "Video")
-                                documentFileMimeType.contains("audio") -> Icon(Icons.Filled.MusicNote, contentDescription = "Audio")
-                                else -> Icon(Icons.Filled.FileCopy, contentDescription = "File")
+                                !isDocumentFileReadable -> Icon(Icons.Rounded.DeleteOutline, contentDescription = "File not found")
+                                documentFileMimeType.contains("image") -> Icon(Icons.Rounded.Image, contentDescription = "Image")
+                                documentFileMimeType.contains("video") -> Icon(Icons.Rounded.Videocam, contentDescription = "Video")
+                                documentFileMimeType.contains("audio") -> Icon(Icons.Rounded.MusicNote, contentDescription = "Audio")
+                                else -> Icon(Icons.Rounded.FileCopy, contentDescription = "File")
                             }
                         }
                     } ?: run {
                         when (task.type) {
-                            TaskType.DOWNLOAD -> Icon(Icons.Filled.Download, contentDescription = "Download")
-                            TaskType.CHAT_ACTION -> Icon(Icons.Filled.ChatBubble, contentDescription = "Chat Action")
+                            TaskType.DOWNLOAD -> Icon(Icons.Rounded.Download, contentDescription = "Download")
+                            TaskType.CHAT_ACTION -> Icon(Icons.Rounded.ChatBubble, contentDescription = "Chat Action")
                         }
                     }
                 }
@@ -430,13 +430,13 @@ class TasksRootSection : Routes.Route() {
                                 context.log.error("Failed to cancel task $pendingTask", throwable)
                             }
                         }) {
-                            Icon(Icons.Filled.Close, contentDescription = "Cancel")
+                            Icon(Icons.Rounded.Close, contentDescription = "Cancel")
                         }
                     } else {
                         when (taskStatus) {
-                            TaskStatus.SUCCESS -> Icon(Icons.Filled.Check, contentDescription = "Success", tint = MaterialTheme.colorScheme.primary)
-                            TaskStatus.FAILURE -> Icon(Icons.Filled.Error, contentDescription = "Failure", tint = MaterialTheme.colorScheme.error)
-                            TaskStatus.CANCELLED -> Icon(Icons.Filled.Cancel, contentDescription = "Cancelled", tint = MaterialTheme.colorScheme.error)
+                            TaskStatus.SUCCESS -> Icon(Icons.Rounded.Check, contentDescription = "Success", tint = MaterialTheme.colorScheme.primary)
+                            TaskStatus.FAILURE -> Icon(Icons.Rounded.Error, contentDescription = "Failure", tint = MaterialTheme.colorScheme.error)
+                            TaskStatus.CANCELLED -> Icon(Icons.Rounded.Cancel, contentDescription = "Cancelled", tint = MaterialTheme.colorScheme.error)
                             else -> {}
                         }
                     }
@@ -490,7 +490,7 @@ class TasksRootSection : Routes.Route() {
                         verticalArrangement = Arrangement.Center
                     ) {
                         translation["no_tasks"].let {
-                            Icon(Icons.Filled.CheckCircle, contentDescription = it, tint = MaterialTheme.colorScheme.primary)
+                            Icon(Icons.Rounded.CheckCircle, contentDescription = it, tint = MaterialTheme.colorScheme.primary)
                             Text(it, style = MaterialTheme.typography.bodyLarge)
                         }
                     }

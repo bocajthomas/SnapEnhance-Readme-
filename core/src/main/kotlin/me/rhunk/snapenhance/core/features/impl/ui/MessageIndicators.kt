@@ -6,7 +6,7 @@ import android.widget.LinearLayout
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.rounded.*
 import androidx.compose.material3.Text
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -77,7 +77,7 @@ class MessageIndicators : Feature("Message Indicators") {
                             ) {
                                 if (sentWithLocation && messageIndicatorsConfig.contains("location_indicator")) {
                                     Image(
-                                        imageVector = Icons.Default.LocationOn,
+                                        imageVector = Icons.Rounded.LocationOn,
                                         colorFilter = ColorFilter.tint(Color.Green),
                                         contentDescription = null,
                                         modifier = Modifier.size(15.dp)
@@ -86,9 +86,9 @@ class MessageIndicators : Feature("Message Indicators") {
                                 if (messageIndicatorsConfig.contains("platform_indicator")) {
                                     Image(
                                         imageVector = when {
-                                            sentFromWebApp -> Icons.Default.Laptop
+                                            sentFromWebApp -> Icons.Rounded.Laptop
                                             sentFromIosDevice -> appleLogo
-                                            else -> Icons.Default.Android
+                                            else -> Icons.Rounded.Android
                                         },
                                         colorFilter = ColorFilter.tint(Color.Green),
                                         contentDescription = null,
@@ -97,7 +97,7 @@ class MessageIndicators : Feature("Message Indicators") {
                                 }
                                 if (hasEncryption && messageIndicatorsConfig.contains("encryption_indicator")) {
                                     Image(
-                                        imageVector = Icons.Default.Lock,
+                                        imageVector = Icons.Rounded.Lock,
                                         colorFilter = ColorFilter.tint(Color.Green),
                                         contentDescription = null,
                                         modifier = Modifier.size(15.dp)
@@ -105,7 +105,7 @@ class MessageIndicators : Feature("Message Indicators") {
                                 }
                                 if (sentUsingDirectorMode && messageIndicatorsConfig.contains("director_mode_indicator")) {
                                     Image(
-                                        imageVector = Icons.Default.Edit,
+                                        imageVector = Icons.Rounded.Edit,
                                         colorFilter = ColorFilter.tint(Color.Red),
                                         contentDescription = null,
                                         modifier = Modifier.size(15.dp)

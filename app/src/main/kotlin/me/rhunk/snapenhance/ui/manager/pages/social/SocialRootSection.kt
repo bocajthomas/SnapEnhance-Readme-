@@ -8,7 +8,7 @@ import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.RemoveRedEye
+import androidx.compose.material.icons.rounded.RemoveRedEye
 import androidx.compose.material.icons.rounded.Add
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -174,7 +174,7 @@ class SocialRootSection : Routes.Route() {
                                 put("scope", scope.key)
                             }
                         }) {
-                            Icon(imageVector = Icons.Filled.RemoveRedEye, contentDescription = null)
+                            Icon(imageVector = Icons.Rounded.RemoveRedEye, contentDescription = null)
                         }
                     }
                 }

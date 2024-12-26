@@ -5,7 +5,7 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Info
+import androidx.compose.material.icons.rounded.Info
 import me.rhunk.snapenhance.common.Constants
 import me.rhunk.snapenhance.common.data.*
 import me.rhunk.snapenhance.common.util.lazyBridge
@@ -99,7 +99,7 @@ class FriendTracker : Feature("Friend Tracker") {
                     sendInfoNotification(text = "$authorName $eventType in $conversationName")
                 }
                 TrackerRuleAction.IN_APP_NOTIFICATION -> context.inAppOverlay.showStatusToast(
-                    icon = Icons.Default.Info,
+                    icon = Icons.Rounded.Info,
                     text = "$authorName $eventType in $conversationName"
                 )
                 TrackerRuleAction.LOG -> context.bridgeClient.getMessageLogger().logTrackerEvent(
