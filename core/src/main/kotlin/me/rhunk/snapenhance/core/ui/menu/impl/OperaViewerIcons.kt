@@ -7,9 +7,11 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.Info
-import androidx.compose.material.icons.rounded.RemoveRedEye
-import androidx.compose.material.icons.rounded.Download
+import androidx.compose.material.icons.rounded.*
+import androidx.compose.material.icons.outlined.*
+import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.sharp.*
+import androidx.compose.material.icons.twotone.*
 import androidx.compose.material3.Icon
 import androidx.compose.ui.graphics.Color
 import kotlinx.coroutines.Dispatchers
@@ -45,6 +47,23 @@ class OperaViewerIcons : AbstractMenu() {
 
     private fun inject(parent: ViewGroup) {
         val mediaDownloader = context.feature(MediaDownloader::class)
+        val getIconStyle = context.config.userInterface.iconStyle.get()
+
+        val downloadIconStyle = when (getIconStyle) {
+            "outlined" -> Icons.Outlined.Download
+            "filled" -> Icons.Filled.Download
+            "sharp" -> Icons.Sharp.Download
+            "two-tone" -> Icons.TwoTone.Download
+            else -> Icons.Rounded.Download
+        }
+
+        val removeRedEyeIconStyle = when (getIconStyle) {
+            "outlined" -> Icons.Outlined.RemoveRedEye
+            "filled" -> Icons.Filled.RemoveRedEye
+            "sharp" -> Icons.Sharp.RemoveRedEye
+            "two-tone" -> Icons.TwoTone.RemoveRedEye
+            else -> Icons.Rounded.RemoveRedEye
+        }
 
         if (context.config.downloader.operaDownloadButton.get()) {
             parent.addView(LinearLayout(parent.context).apply {
@@ -73,7 +92,7 @@ class OperaViewerIcons : AbstractMenu() {
 
                 addView(createComposeView(parent.context) {
                     Icon(
-                        imageVector = Icons.Rounded.Download,
+                        imageVector = downloadIconStyle,
                         tint = Color.White,
                         contentDescription = null
                     )
@@ -107,7 +126,7 @@ class OperaViewerIcons : AbstractMenu() {
 
             parent.addView(createComposeView(parent.context)  {
                 Icon(
-                    imageVector = Icons.Rounded.RemoveRedEye,
+                    imageVector = removeRedEyeIconStyle,
                     tint = Color.White,
                     contentDescription = null
                 )
