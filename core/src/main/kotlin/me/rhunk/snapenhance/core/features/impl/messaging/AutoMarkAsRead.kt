@@ -2,7 +2,7 @@ package me.rhunk.snapenhance.core.features.impl.messaging
 
 import android.widget.ProgressBar
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.WarningAmber
+import androidx.compose.material.icons.rounded.WarningAmber
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -48,7 +48,7 @@ class AutoMarkAsRead : Feature("Auto Mark As Read") {
         val messaging = context.feature(Messaging::class)
         val messageIds = messaging.getFeedCachedMessageIds(conversationId)?.takeIf { it.isNotEmpty() } ?: run {
             context.inAppOverlay.showStatusToast(
-                Icons.Default.WarningAmber,
+                Icons.Rounded.WarningAmber,
                 context.translation["mark_as_seen.no_unseen_snaps_toast"]
             )
             return

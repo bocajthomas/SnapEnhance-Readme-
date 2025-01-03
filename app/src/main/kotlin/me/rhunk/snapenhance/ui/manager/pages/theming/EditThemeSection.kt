@@ -6,7 +6,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.rounded.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -70,7 +70,7 @@ class EditThemeSection: Routes.Route() {
             IconButton(onClick = {
                 deleteConfirmationDialog = true
             }) {
-                Icon(Icons.Default.Delete, contentDescription = null)
+                Icon(Icons.Rounded.Delete, contentDescription = null)
             }
         }
     }
@@ -151,14 +151,14 @@ class EditThemeSection: Routes.Route() {
             FloatingActionButton(onClick = {
                 addAttributeDialog = true
             }) {
-                Icon(Icons.Default.Add, contentDescription = null)
+                Icon(Icons.Rounded.Add, contentDescription = null)
             }
 
             saveCallback?.let {
                 FloatingActionButton(onClick = {
                     it()
                 }) {
-                    Icon(Icons.Default.Save, contentDescription = null)
+                    Icon(Icons.Rounded.Save, contentDescription = null)
                 }
             }
         }
@@ -281,7 +281,7 @@ class EditThemeSection: Routes.Route() {
                         moreOptionsExpanded = !moreOptionsExpanded
                     }
                 ) {
-                    Icon(if (moreOptionsExpanded) Icons.Default.KeyboardArrowUp else Icons.Default.KeyboardArrowDown, contentDescription = null)
+                    Icon(if (moreOptionsExpanded) Icons.Rounded.KeyboardArrowUp else Icons.Rounded.KeyboardArrowDown, contentDescription = null)
                 }
             }
 
@@ -347,7 +347,7 @@ class EditThemeSection: Routes.Route() {
                                 .fillMaxWidth(),
                             verticalAlignment = Alignment.CenterVertically
                         ) {
-                            Icon(Icons.Default.Colorize, contentDescription = null, modifier = Modifier.padding(8.dp))
+                            Icon(Icons.Rounded.Colorize, contentDescription = null, modifier = Modifier.padding(8.dp))
                             Column(
                                 modifier = Modifier.weight(1f)
                             ) {

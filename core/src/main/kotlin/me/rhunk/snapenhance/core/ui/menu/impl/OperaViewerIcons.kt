@@ -7,9 +7,9 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Info
-import androidx.compose.material.icons.filled.RemoveRedEye
-import androidx.compose.material.icons.outlined.Download
+import androidx.compose.material.icons.rounded.Info
+import androidx.compose.material.icons.rounded.RemoveRedEye
+import androidx.compose.material.icons.rounded.Download
 import androidx.compose.material3.Icon
 import androidx.compose.ui.graphics.Color
 import kotlinx.coroutines.Dispatchers
@@ -73,7 +73,7 @@ class OperaViewerIcons : AbstractMenu() {
 
                 addView(createComposeView(parent.context) {
                     Icon(
-                        imageVector = Icons.Outlined.Download,
+                        imageVector = Icons.Rounded.Download,
                         tint = Color.White,
                         contentDescription = null
                     )
@@ -107,7 +107,7 @@ class OperaViewerIcons : AbstractMenu() {
 
             parent.addView(createComposeView(parent.context)  {
                 Icon(
-                    imageVector = Icons.Default.RemoveRedEye,
+                    imageVector = Icons.Rounded.RemoveRedEye,
                     tint = Color.White,
                     contentDescription = null
                 )
@@ -132,13 +132,13 @@ class OperaViewerIcons : AbstractMenu() {
                             if (result == "DUPLICATEREQUEST") return@launch
                             if (result == null) {
                                 inAppOverlay.showStatusToast(
-                                    Icons.Default.Info,
+                                    Icons.Rounded.Info,
                                     translation["mark_as_seen.seen_toast"],
                                     durationMs = 800
                                 )
                             } else {
                                 inAppOverlay.showStatusToast(
-                                    Icons.Default.Info,
+                                    Icons.Rounded.Info,
                                     "Failed to mark as seen: $result",
                                 )
                             }

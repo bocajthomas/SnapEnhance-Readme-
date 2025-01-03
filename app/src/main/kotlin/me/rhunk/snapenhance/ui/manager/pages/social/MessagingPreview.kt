@@ -11,8 +11,8 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Close
-import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material.icons.rounded.Close
+import androidx.compose.material.icons.rounded.MoreVert
 import androidx.compose.material.icons.rounded.BookmarkAdded
 import androidx.compose.material.icons.rounded.BookmarkBorder
 import androidx.compose.material.icons.rounded.DeleteForever
@@ -272,12 +272,12 @@ class MessagingPreview: Routes.Route() {
         }
 
         IconButton(onClick = { taskSelectionDropdown = !taskSelectionDropdown }) {
-            Icon(imageVector = Icons.Filled.MoreVert, contentDescription = null)
+            Icon(imageVector = Icons.Rounded.MoreVert, contentDescription = null)
         }
 
         if (selectedMessages.isNotEmpty()) {
             IconButton(onClick = { selectedMessages.clear() }) {
-                Icon(imageVector = Icons.Filled.Close, contentDescription = "Close")
+                Icon(imageVector = Icons.Rounded.Close, contentDescription = "Close")
             }
         }
 

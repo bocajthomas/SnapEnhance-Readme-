@@ -8,7 +8,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.rounded.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -170,7 +170,7 @@ class ThemingRoot: Routes.Route() {
             IconButton(onClick = {
                 showSearchBar = !showSearchBar
             }) {
-                Icon(if (showSearchBar) Icons.Default.Close else Icons.Default.Search, contentDescription = null)
+                Icon(if (showSearchBar) Icons.Rounded.Close else Icons.Rounded.Search, contentDescription = null)
             }
         }
     }
@@ -241,7 +241,7 @@ class ThemingRoot: Routes.Route() {
                             routes.editTheme.navigate()
                         },
                         icon = {
-                            Icon(Icons.Default.Add, contentDescription = null)
+                            Icon(Icons.Rounded.Add, contentDescription = null)
                         },
                         text = {
                             Text("New theme")
@@ -253,7 +253,7 @@ class ThemingRoot: Routes.Route() {
                             importTheme()
                         },
                         icon = {
-                            Icon(Icons.Default.Upload, contentDescription = null)
+                            Icon(Icons.Rounded.Upload, contentDescription = null)
                         },
                         text = {
                             Text("Import from file")
@@ -263,7 +263,7 @@ class ThemingRoot: Routes.Route() {
                     ExtendedFloatingActionButton(
                         onClick = { showImportFromUrlDialog = true },
                         icon = {
-                            Icon(Icons.Default.Link, contentDescription = null)
+                            Icon(Icons.Rounded.Link, contentDescription = null)
                         },
                         text = {
                             Text("Import from URL")
@@ -276,7 +276,7 @@ class ThemingRoot: Routes.Route() {
                             routes.manageRepos.navigate()
                         },
                         icon = {
-                            Icon(Icons.Default.Public, contentDescription = null)
+                            Icon(Icons.Rounded.Public, contentDescription = null)
                         },
                         text = {
                             Text("Manage repositories")
@@ -340,7 +340,7 @@ class ThemingRoot: Routes.Route() {
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Icon(
-                            Icons.Default.Palette, contentDescription = null, modifier = Modifier.padding(5.dp))
+                            Icons.Rounded.Palette, contentDescription = null, modifier = Modifier.padding(5.dp))
                         Column(
                             modifier = Modifier
                                 .weight(1f)
@@ -360,7 +360,7 @@ class ThemingRoot: Routes.Route() {
                             IconButton(onClick = {
                                 showSettings = true
                             }) {
-                                Icon(Icons.Default.Settings, contentDescription = null)
+                                Icon(Icons.Rounded.Settings, contentDescription = null)
                             }
 
                             Switch(checked = state, onCheckedChange = {
@@ -374,8 +374,8 @@ class ThemingRoot: Routes.Route() {
                 if (showSettings) {
                     val actionsRow = remember {
                         mapOf(
-                            ("Duplicate" to Icons.Default.ContentCopy) to { duplicateTheme(theme) },
-                            ("Export" to Icons.Default.Download) to { exportTheme(theme) }
+                            ("Duplicate" to Icons.Rounded.ContentCopy) to { duplicateTheme(theme) },
+                            ("Export" to Icons.Rounded.Download) to { exportTheme(theme) }
                         )
                     }
                     AlertDialog(

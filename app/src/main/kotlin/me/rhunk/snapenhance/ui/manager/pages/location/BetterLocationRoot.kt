@@ -5,9 +5,9 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
-import androidx.compose.material.icons.filled.DeleteOutline
-import androidx.compose.material.icons.filled.Edit
+import androidx.compose.material.icons.rounded.Add
+import androidx.compose.material.icons.rounded.DeleteOutline
+import androidx.compose.material.icons.rounded.Edit
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -326,7 +326,7 @@ class BetterLocationRoot : Routes.Route() {
                                 addSavedCoordinateDialog = true
                             }
                         ) {
-                            Icon(Icons.Default.Add, contentDescription = "Add")
+                            Icon(Icons.Rounded.Add, contentDescription = "Add")
                         }
                     }
                 }
@@ -447,13 +447,13 @@ class BetterLocationRoot : Routes.Route() {
                             FilledIconButton(onClick = {
                                 showEditDialog = true
                             }) {
-                                Icon(Icons.Default.Edit, contentDescription = "Delete")
+                                Icon(Icons.Rounded.Edit, contentDescription = "Delete")
                             }
                             Spacer(modifier = Modifier.width(4.dp))
                             FilledIconButton(onClick = {
                                 showDeleteDialog = true
                             }) {
-                                Icon(Icons.Default.DeleteOutline, contentDescription = "Delete")
+                                Icon(Icons.Rounded.DeleteOutline, contentDescription = "Delete")
                             }
                         }
                     }

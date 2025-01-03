@@ -12,7 +12,7 @@ import android.os.PowerManager
 import android.provider.Settings
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Check
+import androidx.compose.material.icons.rounded.Check
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedCard
@@ -51,7 +51,7 @@ class PermissionsScreen : SetupScreen() {
     @Composable
     private fun GrantedIcon() {
         Icon(
-            imageVector = Icons.Filled.Check,
+            imageVector = Icons.Rounded.Check,
             contentDescription = null,
             modifier = Modifier
                 .size(24.dp)
