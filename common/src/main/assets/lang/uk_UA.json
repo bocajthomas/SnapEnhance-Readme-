@@ -62,7 +62,117 @@
             "home_settings": {
                 "debug_title": "Налагодження",
                 "message_logger_title": "Реєстратор повідомлень",
-                "actions_title": "Дії"
+                "actions_title": "Дії",
+                "clear_button": "Очистити",
+                "success_toast": "Готово!",
+                "view_logger_history_button": "Переглянути історію реєстратора",
+                "message_logger_summary": "{messageCount} повідомлення\n{storyCount} історій",
+                "export_button": "Експорт"
+            },
+            "manage_scope": {
+                "rules_title": "Правила",
+                "logged_stories_button": "Показати зареєстровані історії",
+                "e2ee_title": "Наскрізне шифрування",
+                "participants_text": "{count} учасників",
+                "streaks_expiration_text_expired": "Термін дії минув",
+                "reminder_button": "Встановити нагадування",
+                "notes_placeholder": "Натисніть, щоб додати примітку",
+                "not_found": "Не знайдено",
+                "streaks_title": "Смуги",
+                "streaks_length_text": "Довжина: {length}",
+                "streaks_expiration_text": "Термін дії закінчується через {eta}",
+                "delete_scope_confirm_dialog_title": "Ви впевнені, що бажаєте видалити {scope}?"
+            },
+            "tasks": {
+                "no_tasks": "Завдань немає",
+                "failed_to_open_file": "Не вдалося відкрити файл",
+                "merge_files_toast": "Об’єднання {count} файлів",
+                "remove_selected_tasks_title": "Ви впевнені, що бажаєте видалити вибрані завдання?",
+                "remove_all_tasks_title": "Ви впевнені, що хочете видалити всі завдання?",
+                "delete_files_option": "Також видалити файли",
+                "remove_selected_tasks_confirm": "Видалити {count} завдань?",
+                "remove_all_tasks_confirm": "Видалити всі завдання?"
+            },
+            "features": {
+                "config_export_success_toast": "Конфігурацію успішно експортовано",
+                "config_import_success_toast": "Конфігурацію успішно імпортовано",
+                "config_import_failure_toast": "Не вдалося імпортувати конфігурацію {помилка}",
+                "config_export_failure_toast": "Не вдалося експортувати конфігурацію {помилка}",
+                "saved_config_snackbar": "Конфігурацію збережено",
+                "disabled": "Вимкнено",
+                "export_option": "Експорт",
+                "import_option": "Імпорт",
+                "reset_option": "Скинути",
+                "newer_required": "Для правильної роботи цієї функції потрібен Snapchat версії {версії} або новішої",
+                "older_required": "Для правильної роботи цієї функції потрібен Snapchat версії {версії} або старішої"
+            },
+            "social": {
+                "friends_tab": "Друзі",
+                "streaks_expiration_short": "{hours} год",
+                "groups_tab": "Групи",
+                "empty_hint": "(порожній)"
+            },
+            "logged_stories": {
+                "story_failed_to_load": "Не вдалося завантажити",
+                "save_from_cache_button": "Зберегти з кешу",
+                "no_stories": "Історій не знайдено"
+            },
+            "messaging_preview": {
+                "bridge_connection_failed": "Не вдалося підключитися до мосту. Переконайтеся, що Snapchat працює у фоновому режимі",
+                "unsave_all_option": "Скасувати збереження всіх",
+                "mark_selection_as_seen_option": "Позначити вибране зображення як видиме",
+                "mark_all_as_seen_option": "Позначити всі знімки як видимі",
+                "delete_all_option": "Видалити все",
+                "unsave_selection_option": "Скасувати збереження виділеного",
+                "save_selection_option": "Зберегти вибране",
+                "save_all_option": "Зберегти все",
+                "delete_selection_option": "Видалити виділення",
+                "bridge_init_failed": "Не вдалося ініціалізувати міст обміну повідомленнями. Переконайтеся, що Snapchat працює у фоновому режимі",
+                "message_fetch_failed": "Не вдалося отримати повідомлення",
+                "no_message_hint": "Немає повідомлення"
+            },
+            "logger_history": {
+                "reverse_order_checkbox": "Зворотний порядок",
+                "chat_attachment": "Вкладений файл {index}",
+                "empty_message": "Порожнє повідомлення чату",
+                "message_parse_failed": "Не вдалося проаналізувати повідомлення",
+                "unknown_sender": "Невідомий відправник",
+                "download_attachment_failed_toast": "Не вдалося завантажити вкладений файл",
+                "list_friend_format": "Друг {name}",
+                "list_group_format": "Група {name}",
+                "no_more_messages": "Більше жодних повідомлень"
+            },
+            "better_location": {
+                "suspend_location_updates": "Призупинити оновлення місцезнаходження",
+                "spoofed_coordinates_title": "Широта {широта}, Lng {довгота}",
+                "save_coordinates_dialog_title": "Зберегти координати",
+                "saved_name_dialog_hint": "Збережена назва",
+                "latitude_dialog_hint": "Широта",
+                "longitude_dialog_hint": "Довгота",
+                "teleport_to_friend_button": "Телепорт до друга",
+                "choose_location_button": "Виберіть Розташування",
+                "save_dialog_button": "Зберегти",
+                "spoof_location_toggle": "Локація підробки"
+            },
+            "manage_rule_feature": {
+                "whitelist_state_button": "Виберіть дозволених друзів/групи",
+                "blacklist_state_subtext": "Це правило стосуватиметься всіх, крім {count} друзів/груп",
+                "disable_state_option": "Вимкнено",
+                "disable_state_subtext": "Це не вплине на друзів/групи",
+                "whitelist_state_option": "Ніхто, крім...",
+                "whitelist_state_subtext": "Це правило стосуватиметься лише {count} друзів/груп",
+                "blacklist_state_button": "Виберіть виключених друзів/групи",
+                "clear_list_button": "Очистити список друзів/груп",
+                "blacklist_state_option": "Всі, крім...",
+                "dialog_clear_confirmation_text": "Ви впевнені, що бажаєте очистити список?"
+            },
+            "file_imports": {
+                "import_file_button": "Імпорт файлу",
+                "file_imported": "Файл успішно імпортовано",
+                "file_delete_failed": "Не вдалося видалити файл",
+                "file_not_found": "Файл не знайдено",
+                "file_import_failed": "Не вдалося імпортувати файл: {помилка}",
+                "no_files_hint": "Тут ви можете імпортувати файли для використання в Snapchat. Натисніть кнопку нижче, щоб імпортувати файл."
             }
         }
     },
