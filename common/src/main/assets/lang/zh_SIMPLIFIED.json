@@ -1648,11 +1648,13 @@
         "accept_secret_key_failure_toast": "无法接受密钥。",
         "accept_public_key_button": "接收公钥",
         "toolbox": {
-            "initiate_exchange_button": "发起密钥交换"
+            "initiate_exchange_button": "发起密钥交换",
+            "no_shared_key": "您尚未与该好友共享秘密. 点击下方即可创建新秘密."
         }
     },
     "streaks_reminder": {
-        "notification_title": "条纹"
+        "notification_title": "条纹",
+        "notification_text": "您将在 {hoursLeft} 小时内失去与 {friend} 的连胜"
     },
     "theming_attributes": {
         "sigColorChatChat": "主要好友提要文本颜色",
