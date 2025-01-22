@@ -1649,8 +1649,12 @@
         "accept_public_key_button": "接收公钥",
         "toolbox": {
             "initiate_exchange_button": "发起密钥交换",
-            "no_shared_key": "您尚未与该好友共享秘密. 点击下方即可创建新秘密."
-        }
+            "no_shared_key": "您尚未与该好友共享秘密. 点击下方即可创建新秘密.",
+            "shared_key_fingerprint": "您的指纹是: \n\n{fingerprint}\n\n定要检查它是否与你朋友的指纹匹配!"
+        },
+        "no_participants_to_encrypt_toast": "您在此对话中没有任何可以与其加密消息的好友!",
+        "accept_secret_button": "接受秘密",
+        "unencrypted_conversation_send_failure_toast": "您不能向加密和未加密的对话发送加密内容!"
     },
     "streaks_reminder": {
         "notification_title": "条纹",
