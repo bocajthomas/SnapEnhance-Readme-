@@ -1681,5 +1681,11 @@
     },
     "auto_open_snaps": {
         "title": "自动打开 snaps"
+    },
+    "friend_mutation_observer": {
+        "birthday_removed": "{username} 移除了他的生日 ({birthday})",
+        "birthday_added": "{username} 添加了他的生日 ({birthday})",
+        "birthday_changed": "{username} 把他的生日从 ({oldBirthday}) 改成了 ({newBirthday})",
+        "friend_removed": "{username} 把你从好友列表移除了"
     }
 }
