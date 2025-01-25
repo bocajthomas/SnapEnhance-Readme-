@@ -466,6 +466,10 @@
                             "home_tab": {
                                 "name": "Home Tab",
                                 "description": "Overrides the startup tab when opening Snapchat"
+                            },
+                            "simple_snapchat": {
+                                "description": "Enables a simplified version of Snapchat",
+                                "name": "Simple Snapchat"
                             }
                         },
                         "name": "Bootstrap Override"
@@ -1405,6 +1409,15 @@
                 "lemon_drop": "Lemon Drop",
                 "modern_farmhouse": "Modern Farmhouse",
                 "material_you_dark": "Material You Dark (Android 12+)"
+            },
+            "snapchat_plus": {
+                "basic": "Basic",
+                "ad_free": "Ad Free",
+                "not_subscribed": "Not Subscribed"
+            },
+            "simple_snapchat": {
+                "always_enabled": "Always Enabled",
+                "always_disabled": "Always Disabled"
             }
         }
     },

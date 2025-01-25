@@ -196,7 +196,7 @@
                 "streaks_title": "条纹",
                 "streaks_length_text": "长度: {length}",
                 "delete_scope_confirm_dialog_title": "您确定要删除 {scope}?",
-                "notes_placeholder": "添加备注"
+                "notes_placeholder": "单击添加注释"
             },
             "messaging_preview": {
                 "no_message_hint": "没有消息",
@@ -559,6 +559,10 @@
                             "app_appearance": {
                                 "name": "应用程序外观",
                                 "description": "设置持久的应用程序外观"
+                            },
+                            "simple_snapchat": {
+                                "description": "启用简化版 Snapchat",
+                                "name": "简单的快照"
                             }
                         },
                         "name": "引导程序覆盖",
@@ -1211,6 +1215,10 @@
                     "voice_note_auto_play": {
                         "name": "语音笔记自动播放",
                         "description": "当前语音注释结束后自动播放下一个语音注释"
+                    },
+                    "friend_notes": {
+                        "name": "朋友备注",
+                        "description": "允许您向好友个人资料添加注释"
                     }
                 }
             },
@@ -1239,7 +1247,8 @@
                         "name": "禁用日志匿名化"
                     },
                     "old_tool_box_add_view": {
-                        "description": "使用旧的添加视图将工具箱添加到snapchat。\n注意：此功能是暂时的"
+                        "description": "使用旧的添加视图将工具箱添加到snapchat。\n注意：此功能是暂时的",
+                        "name": "旧工具箱添加视图"
                     }
                 }
             },
@@ -1482,6 +1491,15 @@
                 "lemon_drop": "柠檬滴",
                 "modern_farmhouse": "现代农舍",
                 "apple_orchard": "苹果园"
+            },
+            "simple_snapchat": {
+                "always_disabled": "始终禁用",
+                "always_enabled": "始终启用"
+            },
+            "snapchat_plus": {
+                "not_subscribed": "未订阅",
+                "basic": "基本的",
+                "ad_free": "无广告"
             }
         }
     },
@@ -1576,7 +1594,8 @@
         "dash_no_chapter": "没有找到章节",
         "dash_dialog": {
             "download_all": "下载全部",
-            "title": "下载破折号媒体"
+            "title": "下载破折号媒体",
+            "segment_text": "部分 {from} - {to}"
         },
         "download_started_toast": "下载开始",
         "failed_gallery_toast": "保存到图库失败 {error}",
@@ -1629,11 +1648,17 @@
         "accept_secret_key_failure_toast": "无法接受密钥。",
         "accept_public_key_button": "接收公钥",
         "toolbox": {
-            "initiate_exchange_button": "发起密钥交换"
-        }
+            "initiate_exchange_button": "发起密钥交换",
+            "no_shared_key": "您尚未与该好友共享秘密. 点击下方即可创建新秘密.",
+            "shared_key_fingerprint": "您的指纹是: \n\n{fingerprint}\n\n定要检查它是否与你朋友的指纹匹配!"
+        },
+        "no_participants_to_encrypt_toast": "您在此对话中没有任何可以与其加密消息的好友!",
+        "accept_secret_button": "接受秘密",
+        "unencrypted_conversation_send_failure_toast": "您不能向加密和未加密的对话发送加密内容!"
     },
     "streaks_reminder": {
-        "notification_title": "条纹"
+        "notification_title": "条纹",
+        "notification_text": "您将在 {hoursLeft} 小时内失去与 {friend} 的连胜"
     },
     "theming_attributes": {
         "sigColorChatChat": "主要好友提要文本颜色",
@@ -1656,5 +1681,11 @@
     },
     "auto_open_snaps": {
         "title": "自动打开 snaps"
+    },
+    "friend_mutation_observer": {
+        "birthday_removed": "{username} 移除了他的生日 ({birthday})",
+        "birthday_added": "{username} 添加了他的生日 ({birthday})",
+        "birthday_changed": "{username} 把他的生日从 ({oldBirthday}) 改成了 ({newBirthday})",
+        "friend_removed": "{username} 把你从好友列表移除了"
     }
 }

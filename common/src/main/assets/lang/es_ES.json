@@ -349,6 +349,10 @@
                             "home_tab": {
                                 "name": "Pestaña de inicio",
                                 "description": "Anula la pestaña en la que se abre la app al abrir Snapchat"
+                            },
+                            "simple_snapchat": {
+                                "name": "Snapchat sencillo",
+                                "description": "Permite una versión simplificada de Snapchat"
                             }
                         },
                         "name": "Anular Bootstrap",
@@ -1404,6 +1408,15 @@
                 "alien_landscape": "Paisaje extraterrestre",
                 "midnight_library": "Biblioteca de medianoche",
                 "watercolor_wash": "Acuarela"
+            },
+            "simple_snapchat": {
+                "always_enabled": "Siempre habilitado",
+                "always_disabled": "Siempre deshabilitado"
+            },
+            "snapchat_plus": {
+                "not_subscribed": "No suscrito",
+                "basic": "Básico",
+                "ad_free": "Sin publicidad"
             }
         }
     },
