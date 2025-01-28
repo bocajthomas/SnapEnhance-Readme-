@@ -47,30 +47,36 @@ class OperaViewerIcons : AbstractMenu() {
 
     private fun inject(parent: ViewGroup) {
         val mediaDownloader = context.feature(MediaDownloader::class)
-        val getIconStyle = context.config.userInterface.iconStyle.get()
+        val getIconStyle = context.config.userInterface.iconStyle.getNullable()
 
-        val downloadIconStyle = if (getIconStyle == "null") {
-            Icons.Rounded.Download
-        } else {
+        val downloadIconStyle = if (getIconStyle != null) {
             when (getIconStyle) {
                 "outlined" -> Icons.Outlined.Download
                 "filled" -> Icons.Filled.Download
                 "sharp" -> Icons.Sharp.Download
                 "two-tone" -> Icons.TwoTone.Download
-                else -> Icons.Rounded.Download
+                else -> {
+                    context.log.warn("Error setting icon style $getIconStyle")
+                    Icons.Rounded.Download
+                }
             }
+        } else {
+            Icons.Rounded.Download
         }
 
-        val removeRedEyeIconStyle = if (getIconStyle == "null") {
-            Icons.Rounded.Download
-        } else {
+        val removeRedEyeIconStyle = if (getIconStyle != null) {
             when (getIconStyle) {
-                "outlined" -> Icons.Outlined.Download
-                "filled" -> Icons.Filled.Download
-                "sharp" -> Icons.Sharp.Download
-                "two-tone" -> Icons.TwoTone.Download
-                else -> Icons.Rounded.Download
+                "outlined" -> Icons.Outlined.RemoveRedEye
+                "filled" -> Icons.Filled.RemoveRedEye
+                "sharp" -> Icons.Sharp.RemoveRedEye
+                "two-tone" -> Icons.TwoTone.RemoveRedEye
+                else -> {
+                    context.log.warn("Error setting icon style $getIconStyle")
+                    Icons.Rounded.RemoveRedEye
+                }
             }
+        } else {
+            Icons.Rounded.RemoveRedEye
         }
 
         if (context.config.downloader.operaDownloadButton.get()) {
