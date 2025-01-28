@@ -49,20 +49,28 @@ class OperaViewerIcons : AbstractMenu() {
         val mediaDownloader = context.feature(MediaDownloader::class)
         val getIconStyle = context.config.userInterface.iconStyle.get()
 
-        val downloadIconStyle = when (getIconStyle) {
-            "outlined" -> Icons.Outlined.Download
-            "filled" -> Icons.Filled.Download
-            "sharp" -> Icons.Sharp.Download
-            "two-tone" -> Icons.TwoTone.Download
-            else -> Icons.Rounded.Download
+        val downloadIconStyle = if (getIconStyle == "null") {
+            Icons.Rounded.Download
+        } else {
+            when (getIconStyle) {
+                "outlined" -> Icons.Outlined.Download
+                "filled" -> Icons.Filled.Download
+                "sharp" -> Icons.Sharp.Download
+                "two-tone" -> Icons.TwoTone.Download
+                else -> Icons.Rounded.Download
+            }
         }
 
-        val removeRedEyeIconStyle = when (getIconStyle) {
-            "outlined" -> Icons.Outlined.RemoveRedEye
-            "filled" -> Icons.Filled.RemoveRedEye
-            "sharp" -> Icons.Sharp.RemoveRedEye
-            "two-tone" -> Icons.TwoTone.RemoveRedEye
-            else -> Icons.Rounded.RemoveRedEye
+        val removeRedEyeIconStyle = if (getIconStyle == "null") {
+            Icons.Rounded.Download
+        } else {
+            when (getIconStyle) {
+                "outlined" -> Icons.Outlined.Download
+                "filled" -> Icons.Filled.Download
+                "sharp" -> Icons.Sharp.Download
+                "two-tone" -> Icons.TwoTone.Download
+                else -> Icons.Rounded.Download
+            }
         }
 
         if (context.config.downloader.operaDownloadButton.get()) {
