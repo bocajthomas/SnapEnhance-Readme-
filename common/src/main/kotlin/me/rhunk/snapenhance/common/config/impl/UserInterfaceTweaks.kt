@@ -68,6 +68,7 @@ class UserInterfaceTweaks : ConfigContainer() {
         "modern_farmhouse",
     ) { addNotices(FeatureNotice.UNSTABLE); requireRestart(); versionCheck = RES_OBF_VERSION_CHECK.copy(isDisabled = true)  }
     val friendFeedMessagePreview = container("friend_feed_message_preview", FriendFeedMessagePreview()) { requireRestart() }
+    val customChatLabel = string("custom_chat_label") { addNotices(FeatureNotice.UNSTABLE); requireRestart() }
     val iconStyle = unique("icon_style","outlined", "filled", "sharp", "two-tone") { addNotices(FeatureNotice.UNSTABLE); requireRestart() }
     val snapPreview = boolean("snap_preview") { addNotices(FeatureNotice.UNSTABLE); requireRestart() }
     val bootstrapOverride = container("bootstrap_override", BootstrapOverride()) { requireRestart() }
