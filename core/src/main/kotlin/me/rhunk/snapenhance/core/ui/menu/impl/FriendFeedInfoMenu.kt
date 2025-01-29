@@ -75,8 +75,6 @@ import java.util.Date
 import java.util.Locale
 
 class FriendFeedInfoMenu : AbstractMenu() {
-    private val getIconStyle = context.config.userInterface.iconStyle.getNullable()
-
     private fun getImageDrawable(url: String): Drawable {
         val connection = URL(url).openConnection() as HttpURLConnection
         connection.connect()
@@ -154,6 +152,7 @@ class FriendFeedInfoMenu : AbstractMenu() {
         targetUser: String?,
         conversationId: String
     ) {
+        val getIconStyle = context.config.userInterface.iconStyle.getNullable()
         val friendInfo = targetUser?.let { context.database.getFriendInfo(it) }
         val conversationInfo = conversationId.takeIf { targetUser == null }?.let { context.database.getFeedEntryByConversationId(it) }
         val participants by lazy {
@@ -211,6 +210,7 @@ class FriendFeedInfoMenu : AbstractMenu() {
             when (getIconStyle) {
                 "outlined" -> Icons.AutoMirrored.Outlined.Message
                 "filled" -> Icons.AutoMirrored.Filled.Message
+
                 "sharp" -> Icons.AutoMirrored.Sharp.Message
                 "two-tone" -> Icons.AutoMirrored.TwoTone.Message
                 else -> {
@@ -506,6 +506,7 @@ class FriendFeedInfoMenu : AbstractMenu() {
 
     private fun injectIntoActionSheetItems(actionSheetItemsContainer: View, viewConsumer: ((View) -> Unit)) {
         val friendFeedMenuOptions by context.config.userInterface.friendFeedMenuButtons
+        val getIconStyle = context.config.userInterface.iconStyle.getNullable()
         if (friendFeedMenuOptions.isEmpty()) return
 
         val removeRedEyeIconStyle = if (getIconStyle != null) {
