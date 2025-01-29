@@ -35,7 +35,7 @@ class FriendMutationObserver: Feature("FriendMutationObserver") {
         }
     }
 
-    private val getIconStyle = context.config.userInterface.iconStyle.getNullable()
+    /*private val getIconStyle = context.config.userInterface.iconStyle.getNullable()
 
     private val warningAmberIconStyle = if (getIconStyle != null) {
         when (getIconStyle) {
@@ -50,7 +50,7 @@ class FriendMutationObserver: Feature("FriendMutationObserver") {
         }
     } else {
         Icons.Rounded.WarningAmber
-    }
+    }*/
 
     fun getFriendAddSource(userId: String): String? {
         return addSourceCache[userId]
@@ -70,7 +70,7 @@ class FriendMutationObserver: Feature("FriendMutationObserver") {
         )
 
         context.inAppOverlay.showStatusToast(
-            warningAmberIconStyle,
+            Icons.Rounded.WarningAmber,
             contentText,
             durationMs = 7000
         )
