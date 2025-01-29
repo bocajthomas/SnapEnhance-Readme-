@@ -17,8 +17,16 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.rounded.Message
+import androidx.compose.material.icons.automirrored.rounded.*
+import androidx.compose.material.icons.automirrored.outlined.*
+import androidx.compose.material.icons.automirrored.filled.*
+import androidx.compose.material.icons.automirrored.sharp.*
+import androidx.compose.material.icons.automirrored.twotone.*
 import androidx.compose.material.icons.rounded.*
+import androidx.compose.material.icons.outlined.*
+import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.sharp.*
+import androidx.compose.material.icons.twotone.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -67,6 +75,8 @@ import java.util.Date
 import java.util.Locale
 
 class FriendFeedInfoMenu : AbstractMenu() {
+    private val getIconStyle = context.config.userInterface.iconStyle.getNullable()
+
     private fun getImageDrawable(url: String): Drawable {
         val connection = URL(url).openConnection() as HttpURLConnection
         connection.connect()
@@ -150,6 +160,81 @@ class FriendFeedInfoMenu : AbstractMenu() {
             context.database.getConversationParticipants(conversationId)!!
                 .map { context.database.getFriendInfo(it)!! }
                 .associateBy { it.userId!! }
+        }
+
+        val personIconStyle = if (getIconStyle != null) {
+            when (getIconStyle) {
+                "outlined" -> Icons.Outlined.Person
+                "filled" -> Icons.Filled.Person
+                "sharp" -> Icons.Sharp.Person
+                "two-tone" -> Icons.TwoTone.Person
+                else -> {
+                    context.log.warn("Error setting icon style $getIconStyle")
+                    Icons.Rounded.Person
+                }
+            }
+        } else {
+            Icons.Rounded.Person
+        }
+
+        val localFireDepartmentIconStyle = if (getIconStyle != null) {
+            when (getIconStyle) {
+                "outlined" -> Icons.Outlined.LocalFireDepartment
+                "filled" -> Icons.Filled.LocalFireDepartment
+                "sharp" -> Icons.Sharp.LocalFireDepartment
+                "two-tone" -> Icons.TwoTone.LocalFireDepartment
+                else -> {
+                    context.log.warn("Error setting icon style $getIconStyle")
+                    Icons.Rounded.LocalFireDepartment
+                }
+            }
+        } else {
+            Icons.Rounded.LocalFireDepartment
+        }
+
+        val groupIconStyle = if (getIconStyle != null) {
+            when (getIconStyle) {
+                "outlined" -> Icons.Outlined.Group
+                "filled" -> Icons.Filled.Group
+                "sharp" -> Icons.Sharp.Group
+                "two-tone" -> Icons.TwoTone.Group
+                else -> {
+                    context.log.warn("Error setting icon style $getIconStyle")
+                    Icons.Rounded.Group
+                }
+            }
+        } else {
+            Icons.Rounded.Group
+        }
+
+        val messageIconStyle = if (getIconStyle != null) {
+            when (getIconStyle) {
+                "outlined" -> Icons.AutoMirrored.Outlined.Message
+                "filled" -> Icons.AutoMirrored.Filled.Message
+                "sharp" -> Icons.AutoMirrored.Sharp.Message
+                "two-tone" -> Icons.AutoMirrored.TwoTone.Message
+                else -> {
+                    context.log.warn("Error setting icon style $getIconStyle")
+                    Icons.AutoMirrored.Rounded.Message
+                }
+            }
+        } else {
+            Icons.AutoMirrored.Rounded.Message
+        }
+
+        val moreVertIconStyle = if (getIconStyle != null) {
+            when (getIconStyle) {
+                "outlined" -> Icons.Outlined.MoreVert
+                "filled" -> Icons.Filled.MoreVert
+                "sharp" -> Icons.Sharp.MoreVert
+                "two-tone" -> Icons.TwoTone.MoreVert
+                else -> {
+                    context.log.warn("Error setting icon style $getIconStyle")
+                    Icons.Rounded.MoreVert
+                }
+            }
+        } else {
+            Icons.Rounded.MoreVert
         }
 
         withContext(Dispatchers.Main) {
@@ -247,9 +332,9 @@ class FriendFeedInfoMenu : AbstractMenu() {
                             modifier = Modifier.weight(1f),
                         ) {
                             friendInfo?.let { friendInfo ->
-                                Entry(Icons.Rounded.Person, friendInfo.displayName?.let { "$it (${friendInfo.usernameForSorting})" } ?: friendInfo.usernameForSorting, true)
+                                Entry(personIconStyle, friendInfo.displayName?.let { "$it (${friendInfo.usernameForSorting})" } ?: friendInfo.usernameForSorting, true)
                                 friendInfo.streakExpirationTimestamp.takeIf { it > 0L && friendInfo.streakLength > 0 && System.currentTimeMillis() < it }?.let { timestamp ->
-                                    Entry(Icons.Rounded.LocalFireDepartment, context.translation.format("conversation_preview.streak_expiration",
+                                    Entry(localFireDepartmentIconStyle, context.translation.format("conversation_preview.streak_expiration",
                                         "day" to ((timestamp - System.currentTimeMillis()) / 1000 / 60 / 60 / 24).toString(),
                                         "hour" to ((timestamp - System.currentTimeMillis()) / 1000 / 60 / 60 % 24).toString(),
                                         "minute" to ((timestamp - System.currentTimeMillis()) / 1000 / 60 % 60).toString()
@@ -257,9 +342,9 @@ class FriendFeedInfoMenu : AbstractMenu() {
                                 }
                             }
                             conversationInfo?.let {
-                                Entry(Icons.Rounded.Group, (it.feedDisplayName ?: it.key).toString(), true)
+                                Entry(groupIconStyle, (it.feedDisplayName ?: it.key).toString(), true)
                             }
-                            Entry(Icons.AutoMirrored.Rounded.Message, context.translation.format("conversation_preview.total_messages", "count" to totalMessages.toString()), false)
+                            Entry(messageIconStyle, context.translation.format("conversation_preview.total_messages", "count" to totalMessages.toString()), false)
                         }
                         friendInfo?.let {
                             IconButton(
@@ -267,7 +352,7 @@ class FriendFeedInfoMenu : AbstractMenu() {
                                     coroutineScope.launch(Dispatchers.IO) { showProfileInfo(it) }
                                 }
                             ) {
-                                Icon(Icons.Rounded.MoreVert, contentDescription = null)
+                                Icon(moreVertIconStyle, contentDescription = null)
                             }
                         }
                     }
@@ -423,6 +508,81 @@ class FriendFeedInfoMenu : AbstractMenu() {
         val friendFeedMenuOptions by context.config.userInterface.friendFeedMenuButtons
         if (friendFeedMenuOptions.isEmpty()) return
 
+        val removeRedEyeIconStyle = if (getIconStyle != null) {
+            when (getIconStyle) {
+                "outlined" -> Icons.Outlined.RemoveRedEye
+                "filled" -> Icons.Filled.RemoveRedEye
+                "sharp" -> Icons.Sharp.RemoveRedEye
+                "two-tone" -> Icons.TwoTone.RemoveRedEye
+                else -> {
+                    context.log.warn("Error setting icon style $getIconStyle")
+                    Icons.Rounded.RemoveRedEye
+                }
+            }
+        } else {
+            Icons.Rounded.RemoveRedEye
+        }
+
+        val checkCircleOutlineIconStyle = if (getIconStyle != null) {
+            when (getIconStyle) {
+                "outlined" -> Icons.Outlined.CheckCircleOutline
+                "filled" -> Icons.Filled.CheckCircleOutline
+                "sharp" -> Icons.Sharp.CheckCircleOutline
+                "two-tone" -> Icons.TwoTone.CheckCircleOutline
+                else -> {
+                    context.log.warn("Error setting icon style $getIconStyle")
+                    Icons.Rounded.CheckCircleOutline
+                }
+            }
+        } else {
+            Icons.Rounded.CheckCircleOutline
+        }
+
+        val notInterestedIconStyle = if (getIconStyle != null) {
+            when (getIconStyle) {
+                "outlined" -> Icons.Outlined.NotInterested
+                "filled" -> Icons.Filled.NotInterested
+                "sharp" -> Icons.Sharp.NotInterested
+                "two-tone" -> Icons.TwoTone.NotInterested
+                else -> {
+                    context.log.warn("Error setting icon style $getIconStyle")
+                    Icons.Rounded.NotInterested
+                }
+            }
+        } else {
+            Icons.Rounded.NotInterested
+        }
+
+        val editNoteIconStyle = if (getIconStyle != null) {
+            when (getIconStyle) {
+                "outlined" -> Icons.Outlined.EditNote
+                "filled" -> Icons.Filled.EditNote
+                "sharp" -> Icons.Sharp.EditNote
+                "two-tone" -> Icons.TwoTone.EditNote
+                else -> {
+                    context.log.warn("Error setting icon style $getIconStyle")
+                    Icons.Rounded.EditNote
+                }
+            }
+        } else {
+            Icons.Rounded.EditNote
+        }
+
+        val infoIconStyle = if (getIconStyle != null) {
+            when (getIconStyle) {
+                "outlined" -> Icons.Outlined.Info
+                "filled" -> Icons.Filled.Info
+                "sharp" -> Icons.Sharp.Info
+                "two-tone" -> Icons.TwoTone.Info
+                else -> {
+                    context.log.warn("Error setting icon style $getIconStyle")
+                    Icons.Rounded.Info
+                }
+            }
+        } else {
+            Icons.Rounded.Info
+        }
+
         val messaging = context.feature(Messaging::class)
         val conversationId = messaging.lastFocusedConversationId ?: return
         val targetUser by lazy { context.database.getDMOtherParticipant(conversationId) }
@@ -445,7 +605,7 @@ class FriendFeedInfoMenu : AbstractMenu() {
                 if (friendFeedMenuOptions.contains("conversation_info")) {
                     MenuElement(
                         remember { elementIndex++ },
-                        Icons.Rounded.RemoveRedEye,
+                        removeRedEyeIconStyle,
                         translation["preview"],
                         onClick = {
                             context.coroutineScope.launch {
@@ -465,7 +625,7 @@ class FriendFeedInfoMenu : AbstractMenu() {
                         state = !ruleFeature.getState(conversationId)
                         ruleFeature.setState(conversationId, state)
                         context.inAppOverlay.showStatusToast(
-                            if (state) Icons.Rounded.CheckCircleOutline else Icons.Rounded.NotInterested,
+                            if (state) checkCircleOutlineIconStyle else notInterestedIconStyle,
                             context.translation.format("rules.toasts.${if (state) "enabled" else "disabled"}", "ruleName" to context.translation[ruleFeature.ruleType.translateOptionKey(ruleState.key)]),
                             durationMs = 1500
                         )
@@ -493,7 +653,7 @@ class FriendFeedInfoMenu : AbstractMenu() {
                 if (friendFeedMenuOptions.contains("mark_snaps_as_seen")) {
                     MenuElement(
                         remember { elementIndex++ },
-                        Icons.Rounded.EditNote,
+                        editNoteIconStyle,
                         translation["mark_snaps_as_seen"],
                         onClick = {
                             context.apply {
@@ -509,13 +669,13 @@ class FriendFeedInfoMenu : AbstractMenu() {
 
                     MenuElement(
                         remember { elementIndex++ },
-                        Icons.Rounded.RemoveRedEye,
+                        removeRedEyeIconStyle,
                         translation["mark_stories_as_seen_locally"],
                         onClick = {
                             context.apply {
                                 closeMenu()
                                 inAppOverlay.showStatusToast(
-                                    Icons.Rounded.Info,
+                                    infoIconStyle,
                                     if (database.setStoriesViewedState(targetUser!!, true)) markAsSeenTranslation["seen_toast"]
                                     else markAsSeenTranslation["already_seen_toast"],
                                     durationMs = 2500
@@ -527,7 +687,7 @@ class FriendFeedInfoMenu : AbstractMenu() {
                                 context.apply {
                                     closeMenu()
                                     inAppOverlay.showStatusToast(
-                                        Icons.Rounded.Info,
+                                        infoIconStyle,
                                         if (database.setStoriesViewedState(targetUser!!, false)) markAsSeenTranslation["unseen_toast"]
                                         else markAsSeenTranslation["already_unseen_toast"],
                                         durationMs = 2500
