@@ -537,6 +537,10 @@
                         "name": "Disable Spotlight",
                         "description": "Disables the Spotlight page"
                     },
+                    "custom_chat_label": {
+                        "name": "Custom Chat Label",
+                        "description": "Changes the label on the friend feed"
+                    },
                     "friend_feed_menu_buttons": {
                         "name": "Friend Feed Menu Buttons",
                         "description": "Select which buttons to show in the Friend Feed Menu"

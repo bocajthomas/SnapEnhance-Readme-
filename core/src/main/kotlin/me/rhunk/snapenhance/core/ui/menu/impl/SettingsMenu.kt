@@ -21,6 +21,14 @@ class SettingsMenu : AbstractMenu() {
     }
 
     override fun init() {
+        val getCustomChatLabel = context.config.userInterface.customChatLabel.get()
+
+        val chatLabel = if (getCustomChatLabel.isNotEmpty()) {
+            getCustomChatLabel
+        } else {
+            "SE Extended"
+        }
+
         context.androidContext.classLoader.loadClass("com.snap.ui.view.SnapFontTextView").hook("setText", HookStage.BEFORE) { param ->
             val view = param.thisObject<View>()
             if ((view.parent as? FrameLayout)?.findViewById<View>(hovaHeaderSearchIconId) != null) {
@@ -29,9 +37,12 @@ class SettingsMenu : AbstractMenu() {
                         context.bridgeClient.openOverlay(OverlayType.SETTINGS)
                     }
                 }
-
-                if (param.argNullable<String>(0) == ngsChatLabel) {
-                    param.setArg(0, "SE Extended")
+                if (getCustomChatLabel == "disabled") {
+                    context.log.verbose("Custom Chat Label is off")
+                } else {
+                    if (param.argNullable<String>(0) == ngsChatLabel) {
+                        param.setArg(0, chatLabel)
+                    }
                 }
             }
         }
