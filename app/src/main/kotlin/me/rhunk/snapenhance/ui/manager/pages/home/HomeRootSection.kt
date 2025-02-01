@@ -211,7 +211,6 @@ class HomeRootSection : Routes.Route() {
 
                 ExternalLinkIcon(
                     size = 40.dp,
-                    modifier = Modifier.offset(x = (-3).dp),
                     imageVector = Icons.Rounded.Paid,
                     link = "https://ko-fi.com/seextended"
                 )
