@@ -21,10 +21,10 @@ class SettingsMenu : AbstractMenu() {
     }
 
     override fun init() {
-        val getCustomChatLabel = context.config.userInterface.customChatLabel.get()
+        val getCustomFriendFeedLabel = context.config.userInterface.customFriendFeedLabel.get()
 
-        val chatLabel = if (getCustomChatLabel.isNotEmpty()) {
-            getCustomChatLabel
+        val customLabel = if (getCustomFriendFeedLabel.isNotEmpty()) {
+            getCustomFriendFeedLabel
         } else {
             "SE Extended"
         }
@@ -37,12 +37,8 @@ class SettingsMenu : AbstractMenu() {
                         context.bridgeClient.openOverlay(OverlayType.SETTINGS)
                     }
                 }
-                if (getCustomChatLabel == "disabled") {
-                    context.log.verbose("Custom Chat Label is off")
-                } else {
-                    if (param.argNullable<String>(0) == ngsChatLabel) {
-                        param.setArg(0, chatLabel)
-                    }
+                if (param.argNullable<String>(0) == ngsChatLabel) {
+                    param.setArg(0, customLabel)
                 }
             }
         }
