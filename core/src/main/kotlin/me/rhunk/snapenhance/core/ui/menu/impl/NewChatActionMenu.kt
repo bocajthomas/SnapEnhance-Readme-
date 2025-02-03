@@ -13,6 +13,10 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.outlined.*
+import androidx.compose.material.icons.sharp.*
+import androidx.compose.material.icons.twotone.*
 import androidx.compose.material.icons.rounded.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -303,6 +307,97 @@ class NewChatActionMenu : AbstractMenu() {
                     Font(context.userInterface.getFontResource(600) ?: throw IllegalStateException("Font not found"), FontWeight.Medium)
                 )
             }
+            val getIconStyle = context.config.userInterface.iconStyle.getNullable()
+
+            val removeRedEyeIconStyle = if (getIconStyle != null) {
+                when (getIconStyle) {
+                    "outlined" -> Icons.Outlined.RemoveRedEye
+                    "filled" -> Icons.Filled.RemoveRedEye
+                    "sharp" -> Icons.Sharp.RemoveRedEye
+                    "two-tone" -> Icons.TwoTone.RemoveRedEye
+                    else -> {
+                        context.log.warn("Error setting icon style $getIconStyle")
+                        Icons.Rounded.RemoveRedEye
+                    }
+                }
+            } else {
+                Icons.Rounded.RemoveRedEye
+            }
+
+            val downloadIconStyle = if (getIconStyle != null) {
+                when (getIconStyle) {
+                    "outlined" -> Icons.Outlined.Download
+                    "filled" -> Icons.Filled.Download
+                    "sharp" -> Icons.Sharp.Download
+                    "two-tone" -> Icons.TwoTone.Download
+                    else -> {
+                        context.log.warn("Error setting icon style $getIconStyle")
+                        Icons.Rounded.Download
+                    }
+                }
+            } else {
+                Icons.Rounded.Download
+            }
+
+            val editIconStyle = if (getIconStyle != null) {
+                when (getIconStyle) {
+                    "outlined" -> Icons.Outlined.Edit
+                    "filled" -> Icons.Filled.Edit
+                    "sharp" -> Icons.Sharp.Edit
+                    "two-tone" -> Icons.TwoTone.Edit
+                    else -> {
+                        context.log.warn("Error setting icon style $getIconStyle")
+                        Icons.Rounded.Edit
+                    }
+                }
+            } else {
+                Icons.Rounded.Edit
+            }
+
+            val historyIconStyle = if (getIconStyle != null) {
+                when (getIconStyle) {
+                    "outlined" -> Icons.Outlined.History
+                    "filled" -> Icons.Filled.History
+                    "sharp" -> Icons.Sharp.History
+                    "two-tone" -> Icons.TwoTone.History
+                    else -> {
+                        context.log.warn("Error setting icon style $getIconStyle")
+                        Icons.Rounded.History
+                    }
+                }
+            } else {
+                Icons.Rounded.History
+            }
+
+            val bookmarkRemoveIconStyle = if (getIconStyle != null) {
+                when (getIconStyle) {
+                    "outlined" -> Icons.Outlined.BookmarkRemove
+                    "filled" -> Icons.Filled.BookmarkRemove
+                    "sharp" -> Icons.Sharp.BookmarkRemove
+                    "two-tone" -> Icons.TwoTone.BookmarkRemove
+                    else -> {
+                        context.log.warn("Error setting icon style $getIconStyle")
+                        Icons.Rounded.BookmarkRemove
+                    }
+                }
+            } else {
+                Icons.Rounded.BookmarkRemove
+            }
+
+            val imageIconStyle = if (getIconStyle != null) {
+                when (getIconStyle) {
+                    "outlined" -> Icons.Outlined.Image
+                    "filled" -> Icons.Filled.Image
+                    "sharp" -> Icons.Sharp.Image
+                    "two-tone" -> Icons.TwoTone.Image
+                    else -> {
+                        context.log.warn("Error setting icon style $getIconStyle")
+                        Icons.Rounded.Image
+                    }
+                }
+            } else {
+                Icons.Rounded.Image
+            }
 
             @Composable
             fun ListButton(
@@ -336,11 +431,11 @@ class NewChatActionMenu : AbstractMenu() {
                 modifier = Modifier.fillMaxWidth(),
             ) {
                 if (context.config.downloader.downloadContextMenu.get()) {
-                    ListButton(icon = Icons.Rounded.RemoveRedEye, text = context.translation["chat_action_menu.preview_button"], modifier = Modifier.clickable {
+                    ListButton(icon = removeRedEyeIconStyle, text = context.translation["chat_action_menu.preview_button"], modifier = Modifier.clickable {
                         closeActionMenu()
                         mediaDownloader.onMessageActionMenu(true)
                     })
-                    ListButton(icon = Icons.Rounded.Download, text = context.translation["chat_action_menu.download_button"], modifier = Modifier.pointerInput(Unit) {
+                    ListButton(icon = downloadIconStyle, text = context.translation["chat_action_menu.download_button"], modifier = Modifier.pointerInput(Unit) {
                         detectTapGestures(
                             onTap = {
                                 closeActionMenu()
@@ -355,7 +450,7 @@ class NewChatActionMenu : AbstractMenu() {
                 }
 
                 if (context.config.experimental.editMessage.get() && messaging.conversationManager?.isEditMessageSupported() == true) {
-                    ListButton(icon = Icons.Rounded.Edit, text = context.translation["chat_action_menu.edit_message"], modifier = Modifier.clickable {
+                    ListButton(icon = editIconStyle, text = context.translation["chat_action_menu.edit_message"], modifier = Modifier.clickable {
                         editCurrentMessage(event.view.context) {
                             context.runOnUiThread {
                                 closeActionMenu()
@@ -373,13 +468,13 @@ class NewChatActionMenu : AbstractMenu() {
                     }
 
                     if (chatEdits != null && chatEdits?.isNotEmpty() == true) {
-                        ListButton(icon = Icons.Rounded.History, text = context.translation["chat_action_menu.show_chat_edit_history"], modifier = Modifier.clickable {
+                        ListButton(icon = historyIconStyle, text = context.translation["chat_action_menu.show_chat_edit_history"], modifier = Modifier.clickable {
                             closeActionMenu()
                             showChatEditHistory(chatEdits!!)
                         })
                     }
 
-                    ListButton(icon = Icons.Rounded.BookmarkRemove, text = context.translation["chat_action_menu.delete_logged_message_button"], modifier = Modifier.clickable {
+                    ListButton(icon = bookmarkRemoveIconStyle, text = context.translation["chat_action_menu.delete_logged_message_button"], modifier = Modifier.clickable {
                         closeActionMenu()
                         context.executeAsync {
                             messageLogger.deleteMessage(messaging.openedConversationUUID.toString(), messaging.lastFocusedMessageId)
@@ -388,7 +483,7 @@ class NewChatActionMenu : AbstractMenu() {
                 }
 
                 if (context.config.experimental.convertMessageLocally.get()) {
-                    ListButton(icon = Icons.Rounded.Image, text = context.translation["chat_action_menu.convert_message"], modifier = Modifier.clickable {
+                    ListButton(icon = imageIconStyle, text = context.translation["chat_action_menu.convert_message"], modifier = Modifier.clickable {
                         closeActionMenu()
                         messaging.conversationManager?.fetchMessage(
                             messaging.openedConversationUUID.toString(),

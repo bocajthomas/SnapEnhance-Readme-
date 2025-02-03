@@ -10,7 +10,6 @@ import me.rhunk.snapenhance.common.data.FriendLinkType
 import me.rhunk.snapenhance.common.database.impl.FriendInfo
 import me.rhunk.snapenhance.core.event.events.impl.NetworkApiRequestEvent
 import me.rhunk.snapenhance.core.features.Feature
-
 import me.rhunk.snapenhance.core.util.EvictingMap
 import java.io.InputStreamReader
 import java.util.Calendar

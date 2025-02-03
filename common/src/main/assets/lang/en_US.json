@@ -457,6 +457,10 @@
                         "name": "Custom Theme",
                         "description": "Customize Snapchat's Colors\nNote: if you choose a dark theme (like AMOLED), You may need to enable the dark mode on the App Appearance settings for better results"
                     },
+                    "icon_style": {
+                        "name": "Icon Style",
+                        "description": "Changes the style of material icons\n\nFeatures Supported:\n - Opera Download Button \n - Mark Snap As Seen Button \n - Friend Feed Menu Buttons\n - COF Experiments\n - Message Indicators"
+                    },
                     "friend_feed_message_preview": {
                         "name": "Friend Feed Message Preview",
                         "description": "Shows a preview of the last messages in the Friend Feed",
@@ -532,6 +536,10 @@
                     "disable_spotlight": {
                         "name": "Disable Spotlight",
                         "description": "Disables the Spotlight page"
+                    },
+                    "custom_friend_feed_label": {
+                        "name": "Custom Friend Feed Label",
+                        "description": "Changes the page label on the friend feed"
                     },
                     "friend_feed_menu_buttons": {
                         "name": "Friend Feed Menu Buttons",
@@ -1419,10 +1427,16 @@
                 "bitmoji_background_changes": "Notify when someone changes their Bitmoji background",
                 "bitmoji_scene_changes": "Notify when someone changes their Bitmoji scene"
             },
-            "snapchat_plus":{
+            "snapchat_plus": {
                 "not_subscribed": "Not Subscribed",
                 "basic": "Basic",
                 "ad_free": "Ad Free"
+            },
+            "icon_style": {
+                "outlined": "Outlined",
+                "filled": "Filled",
+                "sharp": "Sharp",
+                "two-tone": "Two Tone"
             }
         }
     },

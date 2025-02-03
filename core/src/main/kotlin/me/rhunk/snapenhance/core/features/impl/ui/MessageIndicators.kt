@@ -6,7 +6,11 @@ import android.widget.LinearLayout
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.outlined.*
 import androidx.compose.material.icons.rounded.*
+import androidx.compose.material.icons.sharp.*
+import androidx.compose.material.icons.twotone.*
 import androidx.compose.material3.Text
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -30,6 +34,82 @@ class MessageIndicators : Feature("Message Indicators") {
         val messageIndicatorsConfig = context.config.userInterface.messageIndicators.getNullable() ?: return
         if (messageIndicatorsConfig.isEmpty()) return
 
+        val getIconStyle = context.config.userInterface.iconStyle.getNullable()
+        val locationOnIconStyle = if (getIconStyle != null) {
+            when (getIconStyle) {
+                "outlined" -> Icons.Outlined.LocationOn
+                "filled" -> Icons.Filled.LocationOn
+                "sharp" -> Icons.Sharp.LocationOn
+                "two-tone" -> Icons.TwoTone.LocationOn
+                else -> {
+                    context.log.warn("Error setting icon style $getIconStyle")
+                    Icons.Rounded.LocationOn
+                }
+            }
+        } else {
+            Icons.Rounded.LocationOn
+        }
+
+        val laptopIconStyle = if (getIconStyle != null) {
+            when (getIconStyle) {
+                "outlined" -> Icons.Outlined.Laptop
+                "filled" -> Icons.Filled.Laptop
+                "sharp" -> Icons.Sharp.Laptop
+                "two-tone" -> Icons.TwoTone.Laptop
+                else -> {
+                    context.log.warn("Error setting icon style $getIconStyle")
+                    Icons.Rounded.Laptop
+                }
+            }
+        } else {
+            Icons.Rounded.Laptop
+        }
+
+        val androidIconStyle = if (getIconStyle != null) {
+            when (getIconStyle) {
+                "outlined" -> Icons.Outlined.Android
+                "filled" -> Icons.Filled.Android
+                "sharp" -> Icons.Sharp.Android
+                "two-tone" -> Icons.TwoTone.Android
+                else -> {
+                    context.log.warn("Error setting icon style $getIconStyle")
+                    Icons.Rounded.Android
+                }
+            }
+        } else {
+            Icons.Rounded.Android
+        }
+
+        val lockIconStyle = if (getIconStyle != null) {
+            when (getIconStyle) {
+                "outlined" -> Icons.Outlined.Lock
+                "filled" -> Icons.Filled.Lock
+                "sharp" -> Icons.Sharp.Lock
+                "two-tone" -> Icons.TwoTone.Lock
+                else -> {
+                    context.log.warn("Error setting icon style $getIconStyle")
+                    Icons.Rounded.Lock
+                }
+            }
+        } else {
+            Icons.Rounded.Lock
+        }
+
+        val editIconStyle = if (getIconStyle != null) {
+            when (getIconStyle) {
+                "outlined" -> Icons.Outlined.Edit
+                "filled" -> Icons.Filled.Edit
+                "sharp" -> Icons.Sharp.Edit
+                "two-tone" -> Icons.TwoTone.Edit
+                else -> {
+                    context.log.warn("Error setting icon style $getIconStyle")
+                    Icons.Rounded.Edit
+                }
+            }
+        } else {
+            Icons.Rounded.Edit
+        }
+
         val messageInfoTag = Random.nextLong().toString()
         onNextActivityCreate {
             val appleLogo = AppleLogo
@@ -42,6 +122,8 @@ class MessageIndicators : Feature("Message Indicators") {
                     val message = event.databaseMessage ?: return@chatMessage
                     if (message.contentType != ContentType.SNAP.id && message.contentType != ContentType.EXTERNAL_MEDIA.id) return@chatMessage
                     val reader = ProtoReader(message.messageContent ?: return@chatMessage)
+
+
 
                     createComposeView(event.view.context) {
                         Box(
@@ -72,12 +154,13 @@ class MessageIndicators : Feature("Message Indicators") {
                                 } == true || reader.getByteArray(4, 4, 11, 13, 4, 1, 2, 12, 27, 1) != null
                             }
 
+                            /*TODO: feat: message indicator icon color - Support theming with the icons */
                             Row(
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
                                 if (sentWithLocation && messageIndicatorsConfig.contains("location_indicator")) {
                                     Image(
-                                        imageVector = Icons.Rounded.LocationOn,
+                                        imageVector = locationOnIconStyle,
                                         colorFilter = ColorFilter.tint(Color.Green),
                                         contentDescription = null,
                                         modifier = Modifier.size(15.dp)
@@ -86,9 +169,9 @@ class MessageIndicators : Feature("Message Indicators") {
                                 if (messageIndicatorsConfig.contains("platform_indicator")) {
                                     Image(
                                         imageVector = when {
-                                            sentFromWebApp -> Icons.Rounded.Laptop
+                                            sentFromWebApp -> laptopIconStyle
                                             sentFromIosDevice -> appleLogo
-                                            else -> Icons.Rounded.Android
+                                            else -> androidIconStyle
                                         },
                                         colorFilter = ColorFilter.tint(Color.Green),
                                         contentDescription = null,
@@ -97,7 +180,7 @@ class MessageIndicators : Feature("Message Indicators") {
                                 }
                                 if (hasEncryption && messageIndicatorsConfig.contains("encryption_indicator")) {
                                     Image(
-                                        imageVector = Icons.Rounded.Lock,
+                                        imageVector = lockIconStyle,
                                         colorFilter = ColorFilter.tint(Color.Green),
                                         contentDescription = null,
                                         modifier = Modifier.size(15.dp)
@@ -105,7 +188,7 @@ class MessageIndicators : Feature("Message Indicators") {
                                 }
                                 if (sentUsingDirectorMode && messageIndicatorsConfig.contains("director_mode_indicator")) {
                                     Image(
-                                        imageVector = Icons.Rounded.Edit,
+                                        imageVector = editIconStyle,
                                         colorFilter = ColorFilter.tint(Color.Red),
                                         contentDescription = null,
                                         modifier = Modifier.size(15.dp)

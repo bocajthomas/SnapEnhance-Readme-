@@ -21,6 +21,14 @@ class SettingsMenu : AbstractMenu() {
     }
 
     override fun init() {
+        val getCustomFriendFeedLabel = context.config.userInterface.customFriendFeedLabel.get()
+
+        val customLabel = if (getCustomFriendFeedLabel.isNotEmpty()) {
+            getCustomFriendFeedLabel
+        } else {
+            "SE Extended"
+        }
+
         context.androidContext.classLoader.loadClass("com.snap.ui.view.SnapFontTextView").hook("setText", HookStage.BEFORE) { param ->
             val view = param.thisObject<View>()
             if ((view.parent as? FrameLayout)?.findViewById<View>(hovaHeaderSearchIconId) != null) {
@@ -29,9 +37,8 @@ class SettingsMenu : AbstractMenu() {
                         context.bridgeClient.openOverlay(OverlayType.SETTINGS)
                     }
                 }
-
                 if (param.argNullable<String>(0) == ngsChatLabel) {
-                    param.setArg(0, "SE Extended")
+                    param.setArg(0, customLabel)
                 }
             }
         }
