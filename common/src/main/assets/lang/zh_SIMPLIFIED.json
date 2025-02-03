@@ -635,6 +635,14 @@
                     "hide_quick_add_suggestions": {
                         "name": "隐藏快速建议",
                         "description": "删除快速添加好友建议"
+                    },
+                    "custom_friend_feed_label": {
+                        "name": "自定义好友动态标签",
+                        "description": "更改好友提要上的页面标签"
+                    },
+                    "icon_style": {
+                        "name": "图标风格",
+                        "description": "更改材质图标的样式\n\n支持的功能:\n- Opera 下载按钮\n- 将捕捉标记为“已见”按钮\n- 好友动态菜单按钮\n- COF实验\n- 消息指示器"
                     }
                 },
                 "description": "更改 Snapchat 的外观和风格",
@@ -1500,6 +1508,12 @@
                 "not_subscribed": "未订阅",
                 "basic": "基本的",
                 "ad_free": "无广告"
+            },
+            "icon_style": {
+                "outlined": "概述",
+                "filled": "充满",
+                "sharp": "锋利的",
+                "two-tone": "二音"
             }
         }
     },
@@ -1663,10 +1677,47 @@
     "theming_attributes": {
         "sigColorChatChat": "主要好友提要文本颜色",
         "sigColorTextPrimary": "主要文字颜色",
-        "ringStartColor": "开始"
+        "ringStartColor": "开始",
+        "sigColorChatSnapWithSound": "带有声音文本颜色的快照",
+        "recipientPillBackgroundDrawable": "受药丸背景",
+        "sigColorChatConversationsLine": "对话线条颜色",
+        "sigColorIconPrimary": "操作菜单图标颜色",
+        "sigColorIconSecondary": "辅助图标颜色",
+        "scButtonColor": "Snapchat 按钮颜色",
+        "pstsDividerColor": "PSTS 分隔线颜色",
+        "editTextColor": "编辑文字颜色",
+        "chipBackgroundColor": "芯片背景颜色",
+        "strokeColor": "描边颜色",
+        "sigColorLayoutPlaceholder": "布局占位符颜色",
+        "actionSheetRoundedBackgroundDrawable": "操作菜单圆形背景颜色",
+        "listDivider": "列表分隔线颜色",
+        "actionSheetBackgroundDrawable": "操作菜单背景颜色",
+        "sigExceptionColorCameraGridLines": "相机网格线颜色",
+        "itemShapeFillColor": "项目形状填充颜色",
+        "boxBackgroundColor": "框背景颜色",
+        "pstsIndicatorColor": "PSTS 指示灯颜色",
+        "statusBarBackground": "状态栏背景颜色",
+        "sigColorButtonPrimary": "主按钮颜色",
+        "sigColorBackgroundSurfaceTranslucent": "半透明背景表面颜色",
+        "sigColorStoryRingDiscoverTabThumbnailStoryRing": "故事环“发现”选项卡缩略图故事环颜色",
+        "sigColorChatPendingSending": "次要好友提要文本颜色",
+        "rangeFillColor": "范围填充颜色",
+        "sigColorBackgroundSurface": "背景表面颜色",
+        "statusBarForeground": "状态栏前景色",
+        "sigColorBaseAppYellow": "基础应用程序黄色",
+        "sigColorStoryRingFriendsFeedStoryRing": "故事环好友动态 故事环颜色",
+        "tabTextColor": "选项卡文本颜色",
+        "sigColorChatSnapWithoutSound": "没有声音的快照文本颜色",
+        "actionSheetDescriptionTextColor": "操作菜单说明文本颜色",
+        "sigColorBackgroundMain": "背景颜色",
+        "ringColor": "戒指颜色",
+        "recipientInputStyle": "收件人输入方式",
+        "storyReplayViewRingColor": "故事重播视图 戒指颜色",
+        "listBackgroundDrawable": "对话列表背景",
+        "pstsTabBackground": "PSTS 选项卡背景"
     },
     "material3_strings": {
-        "date_range_picker_start_headline": "摘自",
+        "date_range_picker_start_headline": "从",
         "date_range_picker_end_headline": "致",
         "date_range_picker_title": "选定日期范围",
         "date_picker_switch_to_calendar_mode": "日历",
@@ -1677,15 +1728,28 @@
         "date_input_invalid_year_range": "无效年份",
         "date_input_invalid_for_pattern": "无效日期",
         "date_input_invalid_not_allowed": "无效日期",
-        "date_range_input_invalid_range_input": "无效日期范围"
+        "date_range_input_invalid_range_input": "无效日期范围",
+        "date_range_picker_day_in_range": "已选择"
     },
     "auto_open_snaps": {
-        "title": "自动打开 snaps"
+        "title": "自动打开 snaps",
+        "notification_content": "{count} 按扣打开"
     },
     "friend_mutation_observer": {
         "birthday_removed": "{username} 移除了他的生日 ({birthday})",
         "birthday_added": "{username} 添加了他的生日 ({birthday})",
         "birthday_changed": "{username} 把他的生日从 ({oldBirthday}) 改成了 ({newBirthday})",
-        "friend_removed": "{username} 把你从好友列表移除了"
+        "friend_removed": "{username} 把你从好友列表移除了",
+        "bitmoji_avatar_changed": "{username} 更改了 Bitmoji 头像",
+        "bitmoji_scene_changed": "{username} 改变了他们的 Bitmoji 场景",
+        "bitmoji_background_changed": "{username} 更改了 Bitmoji 背景",
+        "notification_channel_name": "朋友突变观察者",
+        "bitmoji_selfie_changed": "{username} 改变了他们的 Bitmoji 自拍照"
+    },
+    "send_override_dialog": {
+        "saveable_snap_hint": "使 Snap 在聊天中可保存",
+        "unlimited_duration": "无限",
+        "title": "将媒体发送为 {type}",
+        "duration": "期间: {duration}"
     }
 }
