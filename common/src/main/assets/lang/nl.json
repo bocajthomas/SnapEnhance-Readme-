@@ -176,7 +176,7 @@
             "manage_rule_feature": {
                 "disable_state_subtext": "Geen vrienden/groepen zullen worden beïnvloed",
                 "disable_state_option": "Uitgeschakeld",
-                "dialog_clear_confirmation_text": "Weet je zeker dat je je lijst wilt opruimen?",
+                "dialog_clear_confirmation_text": "Weet je zeker dat je de lijst wilt opruimen?",
                 "whitelist_state_option": "Niemand behalve ...",
                 "whitelist_state_button": "Selecteer toegestane vrienden/groepen",
                 "blacklist_state_option": "Iedereen behalve ...",
@@ -478,8 +478,8 @@
                         "description": "Stelt de verticale verhalen kijker in voor alle verhalen"
                     },
                     "enable_friend_feed_menu_bar": {
-                        "name": "Vrienden Feed Menu Bar",
-                        "description": "Stelt de nieuwe Vrienden Feed Menu Bar in"
+                        "name": "Vriendenoverzicht Menu Balk",
+                        "description": "Zet de nieuwe Vriendenoverzicht Menu Balk aan"
                     },
                     "message_indicators": {
                         "name": "Berichten indicators",
@@ -496,6 +496,13 @@
                     "hide_quick_add_suggestions": {
                         "name": "Verstop Quick Add suggesties",
                         "description": "Verwijdert quick add vriend suggesties"
+                    },
+                    "custom_friend_feed_label": {
+                        "name": "Aangepast Vriendenoverzicht Label",
+                        "description": "Veranderd het paginabijschrift op het vriendenoverzicht"
+                    },
+                    "icon_style": {
+                        "description": "Verander de stijl van de materiaaliconen\n\nOndersteunde functies:\n- Opera Download Knop\n- Markeer Snap Als Gezien Knoppen\n- Vrienden Feed Menu Knoppen\n- COF Experimenten\n- Bericht Indicatoren"
                     }
                 },
                 "name": "Gebruikersomgeving"
@@ -525,12 +532,12 @@
                     "half_swipe_notifier": {
                         "properties": {
                             "min_duration": {
-                                "description": "De minimale duratie van de half swipe (in seconden)",
+                                "description": "De minimale duur van de half swipe (in seconden)",
                                 "name": "Minimale Duratie"
                             },
                             "max_duration": {
                                 "name": "Maximale duratie",
-                                "description": "De maximale duratie van de half swipe (in seconden)"
+                                "description": "De maximale duur van de half swipe (in seconden)"
                             }
                         },
                         "name": "Half Swipe Melder",
@@ -558,7 +565,7 @@
                     },
                     "disable_replay_in_ff": {
                         "name": "Schakel Herhaling Uit in FF",
-                        "description": "Zet de vaardigheid uit om opnieuw te kunnen afspelen in de Vrienden Feed"
+                        "description": "Zet de mogelijkheid om iets opnieuw af te spelen als je er lang op drukt in het vriendenoverzicht uit"
                     },
                     "unlimited_snap_view_time": {
                         "name": "Oneindige Snap Bekijk Tijd",
@@ -569,7 +576,92 @@
                         "description": "Voorkomt je Bitmoji van opduiken wanneer je in de chat bent"
                     },
                     "unlimited_conversation_pinning": {
-                        "name": "Pin Oneindig Veel Conversaties"
+                        "name": "Pin Oneindig Veel Conversaties",
+                        "description": "Zorgt ervoor dat je oneindig veel conversaties kunt vastpinnen (enkel lokaal!)"
+                    },
+                    "prevent_message_sending": {
+                        "description": "Voorkomt het sturen van bepaalde soorten signalen",
+                        "name": "Voorkom het sturen van berichten"
+                    },
+                    "friend_mutation_notifier": {
+                        "name": "Vriend Aanpassing Melder",
+                        "description": "Meldt wanneer er iets veranderd in het profiel van een vriend"
+                    },
+                    "better_notifications": {
+                        "properties": {
+                            "group_notifications": {
+                                "description": "Voegt alle meldingen samen in 1 melding",
+                                "name": "Groepeer meldingen"
+                            },
+                            "media_preview": {
+                                "description": "Toont een voorbeeld van de geselecteerde mediatypes in de melding",
+                                "name": "Media Preview"
+                            },
+                            "media_caption": {
+                                "name": "Media Ondertitel",
+                                "description": "Toont de bijschrift van de media in de melding"
+                            },
+                            "stacked_media_messages": {
+                                "description": "Voegt meerdere mediaberichten samen in 1 tekstmelding als er geen voorbeeld getoond kan worden. Gebruik in combinatie met Chat Preview",
+                                "name": "Gestapelde Mediaberichten"
+                            },
+                            "friend_add_source": {
+                                "description": "Toont de methode van een vriendschapsverzoek in de melding",
+                                "name": "Toevoegmethode Vriend"
+                            },
+                            "smart_replies": {
+                                "name": "Slimme Reacties",
+                                "description": "Voegt voorgestelde antwoorden toe aan meldingen(Android 10+). Gebruik in combinatie met Antwoordknop"
+                            },
+                            "chat_preview": {
+                                "description": "Toont een voorbeeld van het ontvangen bericht in de melding",
+                                "name": "Chat Preview"
+                            },
+                            "mark_as_read_and_save_in_chat": {
+                                "description": "Voegt een markeer als gelezen en sla op in chat-knop toe aan de melding",
+                                "name": "Markeer als Gelezen en Sla op in Chat"
+                            },
+                            "reply_button": {
+                                "name": "Antwoordknop",
+                                "description": "Voegt een antwoordknop toe aan de melding"
+                            },
+                            "download_button": {
+                                "name": "Downloadknop",
+                                "description": "Zorgt ervoor dat je de media kunt download van in de melding"
+                            },
+                            "mark_as_read_button": {
+                                "name": "Markeer als gelezen-knop",
+                                "description": "Zorgt ervoor dat je een bericht als gelezen kunt markeren van in de melding"
+                            }
+                        },
+                        "name": "Betere meldingen",
+                        "description": "Voegt meer info toe aan meldingen"
+                    },
+                    "auto_save_messages_in_conversations": {
+                        "description": "Slaat elk bericht automatisch op in conversaties",
+                        "name": "Sla berichten automatisch op"
+                    },
+                    "message_logger": {
+                        "name": "Berichtenlogger",
+                        "properties": {
+                            "keep_my_own_messages": {
+                                "name": "Sla mijn eigen berichten op",
+                                "description": "Zorgt ervoor dat je eigen berichten niet verwijderd worden"
+                            },
+                            "message_filter": {
+                                "name": "Berichtenfilter",
+                                "description": "Selecteer welke berichten gelogd moeten worden (leeg is alle berichten)"
+                            },
+                            "auto_purge": {
+                                "name": "Automatisch opschonen",
+                                "description": "Verwijderd gecachte berichten automatisch na een bepaalde tijd"
+                            }
+                        },
+                        "description": "Zorgt ervoor dat berichten niet verwijderd worden"
+                    },
+                    "notification_blacklist": {
+                        "description": "Selecteer meldingen die geblokkeerd moeten worden",
+                        "name": "Melding Blacklist"
                     }
                 },
                 "description": "Verander hoe je interacteerd met je vrienden",
