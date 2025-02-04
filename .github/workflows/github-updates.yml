@@ -1,6 +1,8 @@
 name: Github Updates
 on:
   push:
+    branches:
+      - dev
   watch:
 
 jobs:
