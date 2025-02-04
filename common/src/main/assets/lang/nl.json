@@ -540,7 +540,7 @@
                                 "description": "De maximale duur van de half swipe (in seconden)"
                             }
                         },
-                        "name": "Half Swipe Melder",
+                        "name": "\"Half Swipe\" Melder",
                         "description": "Informeert je wanneer iemand half swiped in je conversatie"
                     },
                     "anonymous_story_viewing": {
@@ -576,7 +576,7 @@
                         "description": "Voorkomt je Bitmoji van opduiken wanneer je in de chat bent"
                     },
                     "unlimited_conversation_pinning": {
-                        "name": "Pin Oneindig Veel Conversaties",
+                        "name": "Pin Oneindig Veel Gesprekken",
                         "description": "Zorgt ervoor dat je oneindig veel conversaties kunt vastpinnen (enkel lokaal!)"
                     },
                     "prevent_message_sending": {
@@ -662,6 +662,10 @@
                     "notification_blacklist": {
                         "description": "Selecteer meldingen die geblokkeerd moeten worden",
                         "name": "Melding Blacklist"
+                    },
+                    "strip_media_metadata": {
+                        "name": "Verwijder Metadata Media",
+                        "description": "Verwijdert de metadata van media voor het verstuurd wordt"
                     }
                 },
                 "description": "Verander hoe je interacteerd met je vrienden",
