@@ -666,10 +666,87 @@
                     "strip_media_metadata": {
                         "name": "Verwijder Metadata Media",
                         "description": "Verwijdert de metadata van media voor het verstuurd wordt"
+                    },
+                    "remove_groups_locked_status": {
+                        "description": "Zorgt ervoor dat je de groepsinfo kunt zien nadat je gekickt bent"
                     }
                 },
                 "description": "Verander hoe je interacteerd met je vrienden",
                 "name": "Berichten"
+            },
+            "global": {
+                "properties": {
+                    "better_location": {
+                        "properties": {
+                            "spoof_location": {
+                                "name": "Spoof locatie",
+                                "description": "Spooft je locatie naar iets wat je zelf kiest"
+                            },
+                            "walk_radius": {
+                                "name": "Wandel Radius",
+                                "description": "Wandel willekeurig rond in deze radius (ft)"
+                            },
+                            "suspend_location_updates": {
+                                "name": "Blokkeer Locatie Updates",
+                                "description": "Zorgt dat je locatie niet wordt geüpdatet"
+                            },
+                            "spoof_headphones": {
+                                "name": "Spoof koptelefoon",
+                                "description": "Spooft dat je muziek aan het luisteren bent op de kaart"
+                            },
+                            "show_battery_level": {
+                                "name": "Toon batterijniveau",
+                                "description": "Toont het batterijniveau van je vrienden op de kaart"
+                            },
+                            "coordinates": {
+                                "description": "Stel de coördinaten voor de gespoofde locatie in",
+                                "name": "Coördinaten"
+                            },
+                            "always_update_location": {
+                                "name": "Update Locatie Altijd",
+                                "description": "Forceert Snapchat om je locatie up te daten, ook al is er geen GPS data ontvangen"
+                            },
+                            "spoof_battery_level": {
+                                "name": "Spoof batterijniveau",
+                                "description": "Spooft je batterijniveau op de kaart\nNummer moet tussen 0 en 100 liggen"
+                            }
+                        },
+                        "name": "Betere locatie",
+                        "description": "Verbetert Snapchats locatie"
+                    },
+                    "media_upload_quality": {
+                        "properties": {
+                            "force_video_upload_source_quality": {
+                                "description": "Forceer Snapchat om de bronkwaliteit te gebruiken bij het uploaden van video's\nAandacht: metadata wordt hierdoor misschien niet verwijderd",
+                                "name": "Forceer bronkwaliteit bij het uploaden van een video"
+                            },
+                            "custom_image_upload_format": {
+                                "name": "Aangepast Upload Formaat voor Foto's",
+                                "description": "Stelt een aangepast fotoformaat in\nSelecteer een lossless-formaat (zoals PNG) voor de beste kwaliteit"
+                            },
+                            "disable_image_compression": {
+                                "description": "Zorgt ervoor dat foto's niet gecompresseerd worden als ze geupload worden",
+                                "name": "Schakel Fotocompressie Uit"
+                            }
+                        },
+                        "name": "Media Upload Kwaliteit",
+                        "description": "Passt de uploadkwaliteit van media aan"
+                    },
+                    "snapchat_plus": {
+                        "name": "Snapchat Plus",
+                        "description": "Schakelt sommige Snapchat Plus functies in\nSommige server-side dingen werken mogelijks niet"
+                    },
+                    "auto_updater": {
+                        "name": "Automatische updates",
+                        "description": "Checkt vanzelf voor nieuwe updates"
+                    },
+                    "disable_metrics": {
+                        "name": "Schakel metrics uit",
+                        "description": "Zorgt dat Snapchat bepaalde analytische info niet meer stuurt"
+                    }
+                },
+                "name": "Globaal",
+                "description": "Pas Snapchats globale instellingen aan"
             }
         },
         "options": {
@@ -822,5 +899,11 @@
     "content_type": {
         "CHAT": "Bericht",
         "FAMILY_CENTER_ACCEPT": "Familie centrum accepteren"
+    },
+    "send_override_dialog": {
+        "title": "Stuur media als {type}",
+        "unlimited_duration": "Onbeperkt",
+        "saveable_snap_hint": "Maakt een snap opslabaar in chat",
+        "duration": "Duur: {duration}"
     }
 }
