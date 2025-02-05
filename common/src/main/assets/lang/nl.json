@@ -778,10 +778,51 @@
                     },
                     "video_playback_rate_slider": {
                         "name": "Video Afspeelsnelheid Slider"
+                    },
+                    "disable_snap_splitting": {
+                        "description": "Zorgt ervoor dat Snaps niet in meerdere delen worden opgesplitst\nFoto's die je stuurt worden in videos veranderd",
+                        "name": "Schakel gesplitste snaps uit"
+                    },
+                    "disable_custom_tabs": {
+                        "description": "Open links in ondersteunde apps in plaats van de Web Browser",
+                        "name": "Schakel aangepast tabbladen uit"
                     }
                 },
                 "name": "Globaal",
                 "description": "Pas Snapchats globale instellingen aan"
+            },
+            "camera": {
+                "properties": {
+                    "black_photos": {
+                        "name": "Zware Fotos",
+                        "description": "Vervangt getrokken foto's met een zwarte achtergrond\nDit gebeurd niet bij video's"
+                    },
+                    "custom_resolution": {
+                        "name": "Aangepaste Resolutie",
+                        "description": "Stel een aangepaste cameraresolutie in, breedte x hoogte (bv. 1920x1080).\nDe aangepaste resolutie moet door je apparaat ondersteund worden"
+                    },
+                    "disable_cameras": {
+                        "name": "Schakel Cameras Uit",
+                        "description": "Zorgt ervoor dat Snapchat de geselecteerde cameras niet kan gebruiken"
+                    }
+                },
+                "name": "Camera"
+            },
+            "streaks_reminder": {
+                "description": "Herinnert je op bepaalde tijdstippen aan je streaks",
+                "properties": {
+                    "interval": {
+                        "name": "Interval",
+                        "description": "Het interval tussen elke herinnering (in uren)"
+                    },
+                    "remaining_hours": {
+                        "name": "Resterende Tijd"
+                    }
+                },
+                "name": "Streaks Herinnering"
+            },
+            "rules": {
+                "name": "Regels"
             }
         },
         "options": {
