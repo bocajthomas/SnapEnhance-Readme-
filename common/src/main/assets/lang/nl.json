@@ -743,6 +743,41 @@
                     "disable_metrics": {
                         "name": "Schakel metrics uit",
                         "description": "Zorgt dat Snapchat bepaalde analytische info niet meer stuurt"
+                    },
+                    "disable_permission_requests": {
+                        "description": "Zorgt dat Snapchat niet om bepaalde machtigingen vraagt",
+                        "name": "Schakel machtigingsverzoeken uit"
+                    },
+                    "spotlight_comments_username": {
+                        "name": "Toon Naam bij Spotlight Comments",
+                        "description": "Toont de gebruikersnaam van de auteur bij de Spotlight reacties"
+                    },
+                    "default_volume_controls": {
+                        "description": "Forceert Snapchat om de volumebesturing van het systeem te gebruiken",
+                        "name": "Standaard Volume Besturingen"
+                    },
+                    "disable_telecom_framework": {
+                        "description": "Zorgt ervoor dat Snapchat het Android Telecom Framework niet kan gebruiken\nHierdoor kan je naar muziek luisteren terwijl je aan het bellen bent",
+                        "name": "Schakel Telecomnetwerk uit"
+                    },
+                    "hide_active_music": {
+                        "name": "Verberg Actieve Muziek",
+                        "description": "Zorgt ervoor dat Snapchat niet weet da je muziek aan het luisteren bent\nDit zorgt ervoor dat je snaps kunt nemen met je volumeknoppen terwijl je muziek aan het luisteren bent"
+                    },
+                    "default_video_playback_rate": {
+                        "description": "Stelt de standaarsnelheid in waarmee videos afspelen in\nNummer moet tussen 0.1 en 4.0 liggen",
+                        "name": "Standaard afspeelsnelheid van Videos"
+                    },
+                    "block_ads": {
+                        "name": "Blokkeer Ads",
+                        "description": "Zorgt dat er geen advertenties getoond worden"
+                    },
+                    "bypass_video_length_restriction": {
+                        "description": "Single: stuur een enkele video\nSplit: splits de video na het bewerken",
+                        "name": "Omzeil Videoduratie Restricties"
+                    },
+                    "video_playback_rate_slider": {
+                        "name": "Video Afspeelsnelheid Slider"
                     }
                 },
                 "name": "Globaal",
