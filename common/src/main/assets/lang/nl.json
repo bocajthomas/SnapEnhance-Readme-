@@ -877,7 +877,16 @@
                                 "description": "Zorgt dat alle audioberichten kunnen ondertiteld worden"
                             },
                             "preferred_transcription_lang": {
-                                "name": "Voorkeurstaal voor Ondertitels"
+                                "name": "Voorkeurstaal voor Ondertitels",
+                                "description": "De voorkeurstaal voor de ondertiteling (b.v. EN, ES, FR, NL)"
+                            },
+                            "enhanced_transcript": {
+                                "name": "Verbeterde Ondertitels",
+                                "description": "Verbetert de ondertitels met gebruik van DeepL\nZorg dat je hun privacy policy hebt gelezen voor je deze functie gebruikt."
+                            },
+                            "enhanced_transcript_in_notifications": {
+                                "name": "Verbeterde Ondertitels in Meldingen",
+                                "description": "Voegt ondertitels vertaald met DeepL toe aan meldingen. Hiervoor moet Chat Preview aanstaan bij Betere Meldingen"
                             }
                         },
                         "description": "Verbetert de ondertitels van spraakberichten"
@@ -921,6 +930,30 @@
                     "call_recorder": {
                         "name": "Gesprekken Opnemen",
                         "description": "Neemt automatisch alle audiogesprekken op"
+                    },
+                    "best_friend_pinning": {
+                        "description": "Hiermee kun je een vriend vastzetten als je nummer één beste vriend. Alleen jij kunt de vastgezette beste vriend zien.",
+                        "name": "Beste Vriend Vastzetten"
+                    },
+                    "friend_notes": {
+                        "name": "Vrienden Notities",
+                        "description": "Zorgt ervoor dat je notities kunt toevoegen aan je vriendenprofielen"
+                    },
+                    "cof_experiments": {
+                        "name": "COF Experimenten",
+                        "description": "Schakelt beta/niet uitgebrachte Snapchatfuncties in"
+                    },
+                    "no_friend_score_delay": {
+                        "description": "Verwijderd de vertraging wanneer je een score van een vriend wil bekijken",
+                        "name": "Vriendenscore zonder vertraging"
+                    },
+                    "e2ee": {
+                        "description": "Encrypt al je berichten met AES door middel van een gedeelde geheime sleutel\nZorg dat je je sleutel ergens veilig opslaat!",
+                        "name": "End-To-End Encryptie"
+                    },
+                    "voice_note_auto_play": {
+                        "description": "Speelt het volgende audiobericht automatisch af als het vorige bericht gedaan is",
+                        "name": "Audiobericht Auto Play"
                     }
                 },
                 "description": "Experimentele Functies",
