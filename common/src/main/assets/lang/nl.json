@@ -823,6 +823,108 @@
             },
             "rules": {
                 "name": "Regels"
+            },
+            "experimental": {
+                "properties": {
+                    "native_hooks": {
+                        "properties": {
+                            "disable_bitmoji": {
+                                "description": "Schakelt Bitmojis uit op het Profiel van Vrienden",
+                                "name": "Schakel Bitmoji Uit"
+                            },
+                            "composer_hooks": {
+                                "properties": {
+                                    "show_first_created_username": {
+                                        "description": "Toont de eerste gebruikersnaam naast de huidige gebruikersnaam op de profielpagina",
+                                        "name": "Toon Eerst Aangemaakte Gebruikersnaam"
+                                    },
+                                    "composer_console": {
+                                        "description": "Zorgt ervoor dat je JavaScript code in Composer kunt uitvoeren(enkel bij ARM64)",
+                                        "name": "Composer Console"
+                                    },
+                                    "composer_logs": {
+                                        "name": "Composer Logboeken",
+                                        "description": "Stuurt de consolelogboeken van Composer naar de SE Extended-console"
+                                    },
+                                    "bypass_camera_roll_limit": {
+                                        "description": "Verhoogt het maximale aantal aan media dat je vanuit je Camera Roll kunt sturen"
+                                    }
+                                },
+                                "description": "Injecteert Code in het Composer cross-platform UI framework",
+                                "name": "Composer Hooks"
+                            },
+                            "custom_shared_library": {
+                                "name": "Aangepaste Shared Library",
+                                "description": "Laad een aangepaste Shared Library in Snapchat. Deze functie is enkel om dingen te testen"
+                            },
+                            "custom_emoji_font": {
+                                "name": "Aangepast Lettertype voor Emojis",
+                                "description": "Zorgt ervoor dat je een aangepast lettertype voor emojis kunt gebruiken. Werkt enkel met .ttf lettertypes"
+                            }
+                        },
+                        "name": "Native Hooks",
+                        "description": "Onveilige Opties die Snapchats Code van Binnen uit Aanpassen"
+                    },
+                    "media_file_picker": {
+                        "name": "Mediabestand Kiezer",
+                        "description": "Zorgt ervoor dat je elke video/foto uit je gallerij kunt kiezen"
+                    },
+                    "better_transcript": {
+                        "name": "Betere Ondertitels",
+                        "properties": {
+                            "force_transcription": {
+                                "name": "Forceer Ondertitels bij Audioberichten",
+                                "description": "Zorgt dat alle audioberichten kunnen ondertiteld worden"
+                            },
+                            "preferred_transcription_lang": {
+                                "name": "Voorkeurstaal voor Ondertitels"
+                            }
+                        },
+                        "description": "Verbetert de ondertitels van spraakberichten"
+                    },
+                    "spoof": {
+                        "properties": {
+                            "randomize_persistent_device_token": {
+                                "name": "Maak je Persistent Device Token willekeurig",
+                                "description": "Genereert een random token elke keer dat je inlogt"
+                            },
+                            "fingerprint": {
+                                "name": "Vingerafdruk van Apparaat",
+                                "description": "Spooft de apparaatvingerafdruk"
+                            },
+                            "android_id": {
+                                "description": "Spooft je Android ID naar het gegeven ID",
+                                "name": "Android ID"
+                            },
+                            "remove_vpn_transport_flag": {
+                                "name": "Verwijder VPN Transportvlag",
+                                "description": "Zorgt ervoor dat Snapchat je VPN niet kan detecteren"
+                            },
+                            "remove_mock_location_flag": {
+                                "name": "Verwijder \"Mock Location\" vlag",
+                                "description": "Zorgt ervoor dat Snapchat een \"Mock Location\"(= valse locatie) niet kan detecteren"
+                            }
+                        },
+                        "description": "Spooft sommige informatie over jou",
+                        "name": "Spoof"
+                    },
+                    "account_switcher": {
+                        "properties": {
+                            "auto_backup_current_account": {
+                                "description": "Backt het huidig account vanzelf up als je uitlogt of switch van account",
+                                "name": "Huidig Account vanzelf Backuppen"
+                            }
+                        },
+                        "name": "Account Wisselaar",
+                        "description": "Zorgt ervoor dat je kunt wisselen van account zonder uit te loggen\nLang drukken op het zoekicoontje naast je Bitmojiprofiel om het menu te openen\nDeze functie is experimenteel en zal waarschijnlijk veranderen in de toekomst"
+                    },
+                    "call_recorder": {
+                        "name": "Gesprekken Opnemen",
+                        "description": "Neemt automatisch alle audiogesprekken op"
+                    }
+                },
+                "description": "Experimentele Functies",
+                "name": "Experimenteel"
             }
         },
         "options": {
