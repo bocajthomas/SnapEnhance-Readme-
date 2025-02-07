@@ -804,6 +804,30 @@
                     "disable_cameras": {
                         "name": "Schakel Cameras Uit",
                         "description": "Zorgt ervoor dat Snapchat de geselecteerde cameras niet kan gebruiken"
+                    },
+                    "override_front_resolution": {
+                        "name": "Overschrijf Resolutie Voorkant",
+                        "description": "Overschrijft de cameraresolutie voor de camera aan de voorkant van je toestel"
+                    },
+                    "override_back_resolution": {
+                        "description": "Overschrijft de cameraresolutie voor de camera aan de achterkant van het toestel",
+                        "name": "Overschrijf Resolutie Achterkant"
+                    },
+                    "front_custom_frame_rate": {
+                        "description": "Overschrijft de framerate van de camera aan de voorkant van het toestel",
+                        "name": "Aangepaste Framerate Voorkant"
+                    },
+                    "force_camera_source_encoding": {
+                        "description": "Forceert de bron-encodering van de camera",
+                        "name": "Forceer Bron-encodering van Camera"
+                    },
+                    "hevc_recording": {
+                        "name": "HEVC Opnames",
+                        "description": "Gebruikt de HEVC (H.265) codec voor het opnemen van videos"
+                    },
+                    "back_custom_frame_rate": {
+                        "name": "Aangepaste Framerate Achterkant",
+                        "description": "Overschrijft de framerate van de camera aan de achterkant van het toestel"
                     }
                 },
                 "name": "Camera"
@@ -816,7 +840,12 @@
                         "description": "Het interval tussen elke herinnering (in uren)"
                     },
                     "remaining_hours": {
-                        "name": "Resterende Tijd"
+                        "name": "Resterende Tijd",
+                        "description": "Hoeveel tijd er over moet zijn voor er een melding getoond wordt (uren)"
+                    },
+                    "group_notifications": {
+                        "name": "Groepeer Meldingen",
+                        "description": "Groepeert alle meldingen in één enkele melding"
                     }
                 },
                 "name": "Streaks Herinnering"
@@ -847,7 +876,8 @@
                                         "description": "Stuurt de consolelogboeken van Composer naar de SE Extended-console"
                                     },
                                     "bypass_camera_roll_limit": {
-                                        "description": "Verhoogt het maximale aantal aan media dat je vanuit je Camera Roll kunt sturen"
+                                        "description": "Verhoogt het maximale aantal aan media dat je vanuit je Camera Roll kunt sturen",
+                                        "name": "Omzeil Camera Roll Limiet"
                                     }
                                 },
                                 "description": "Injecteert Code in het Composer cross-platform UI framework",
@@ -954,6 +984,18 @@
                     "voice_note_auto_play": {
                         "description": "Speelt het volgende audiobericht automatisch af als het vorige bericht gedaan is",
                         "name": "Audiobericht Auto Play"
+                    },
+                    "edit_message": {
+                        "name": "Bewerkbare Berichten",
+                        "description": "Zorgt ervoor dat je berichten kunt bewerken in gesprekken"
+                    },
+                    "convert_message_locally": {
+                        "description": "Converteerd snaps naar externe media in de chat (enkel lokaal). Deze knop is te vinden bij het chat download menu",
+                        "name": "Converteer Bericht Lokaal"
+                    },
+                    "app_lock": {
+                        "name": "App Vergrendeling",
+                        "description": "Vergrendeld Snapchat met je apparaatvergrendeling (vingerafdruk, gezichtsherkenning, ...)"
                     }
                 },
                 "description": "Experimentele Functies",
