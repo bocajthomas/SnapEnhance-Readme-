@@ -979,7 +979,17 @@
                     },
                     "e2ee": {
                         "description": "Encrypt al je berichten met AES door middel van een gedeelde geheime sleutel\nZorg dat je je sleutel ergens veilig opslaat!",
-                        "name": "End-To-End Encryptie"
+                        "name": "End-To-End Encryptie",
+                        "properties": {
+                            "force_message_encryption": {
+                                "name": "Forceer Berichtversleuteling",
+                                "description": "Voorkomt het sturen van versleutelde berichten naar mensen die E2E Versleuteling niet aan hebben staan"
+                            },
+                            "encrypted_message_indicator": {
+                                "name": "Indicator Voor Versleutelde Berichten",
+                                "description": "Voegt een 🔒-emoji toe naast een versleuteld bericht"
+                            }
+                        }
                     },
                     "voice_note_auto_play": {
                         "description": "Speelt het volgende audiobericht automatisch af als het vorige bericht gedaan is",
@@ -990,12 +1000,23 @@
                         "description": "Zorgt ervoor dat je berichten kunt bewerken in gesprekken"
                     },
                     "convert_message_locally": {
-                        "description": "Converteerd snaps naar externe media in de chat (enkel lokaal). Deze knop is te vinden bij het chat download menu",
+                        "description": "Converteert Snaps naar externe media in de chat (enkel lokaal). Deze knop is te vinden bij het chat download menu",
                         "name": "Converteer Bericht Lokaal"
                     },
                     "app_lock": {
                         "name": "App Vergrendeling",
                         "description": "Vergrendeld Snapchat met je apparaatvergrendeling (vingerafdruk, gezichtsherkenning, ...)"
+                    },
+                    "infinite_story_boost": {
+                        "name": "Oneindige Story Boost",
+                        "description": "Omzeilt het Story Boost limiet"
+                    },
+                    "meo_passcode_bypass": {
+                        "name": "My Eyes Only Pincode Omzeiling",
+                        "description": "Omzeilt de pincode van My Eyes Only\nDit werkt enkel als de pincode al eens eerder correct ingevuld is"
+                    },
+                    "hidden_snapchat_plus_features": {
+                        "name": "Verborgen Snapchat+ Functies"
                     }
                 },
                 "description": "Experimentele Functies",
