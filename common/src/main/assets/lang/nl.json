@@ -479,7 +479,7 @@
                     },
                     "enable_friend_feed_menu_bar": {
                         "name": "Vriendenoverzicht Menu Balk",
-                        "description": "Zet de nieuwe Vriendenoverzicht Menu Balk aan"
+                        "description": "Schakelt de nieuwe vriendenfeed-menubalk in"
                     },
                     "message_indicators": {
                         "name": "Berichten indicators",
@@ -541,7 +541,7 @@
                                 "description": "De maximale duur van de half swipe (in seconden)"
                             }
                         },
-                        "name": "\"Half Swipe\" Melder",
+                        "name": "\"Half Swipe\" Melding",
                         "description": "Informeert je wanneer iemand half swiped in je conversatie"
                     },
                     "anonymous_story_viewing": {
@@ -581,11 +581,11 @@
                         "description": "Zorgt ervoor dat je oneindig veel conversaties kunt vastpinnen (enkel lokaal!)"
                     },
                     "prevent_message_sending": {
-                        "description": "Voorkomt het sturen van bepaalde soorten signalen",
+                        "description": "Voorkomt het sturen van bepaalde soorten berichten",
                         "name": "Voorkom het sturen van berichten"
                     },
                     "friend_mutation_notifier": {
-                        "name": "Vriend Aanpassing Melder",
+                        "name": "Melding bij wijzigin in Vriendschap",
                         "description": "Meldt wanneer er iets veranderd in het profiel van een vriend"
                     },
                     "better_notifications": {
@@ -607,7 +607,7 @@
                                 "name": "Gestapelde Mediaberichten"
                             },
                             "friend_add_source": {
-                                "description": "Toont de methode van een vriendschapsverzoek in de melding",
+                                "description": "Toont de afkomst van een vriendschapsverzoek in de melding",
                                 "name": "Toevoegmethode Vriend"
                             },
                             "smart_replies": {
@@ -669,7 +669,19 @@
                         "description": "Verwijdert de metadata van media voor het verstuurd wordt"
                     },
                     "remove_groups_locked_status": {
-                        "description": "Zorgt ervoor dat je de groepsinfo kunt zien nadat je gekickt bent"
+                        "description": "Zorgt ervoor dat je de groepsinfo kunt zien nadat je gekickt bent",
+                        "name": "Ontgrendel Groepen"
+                    },
+                    "gallery_media_send_override": {
+                        "description": "Spooft de mediabron bij het verzenden vanuit de galerij",
+                        "name": "Override voor het verzenden van Gallerijmedia"
+                    },
+                    "bypass_message_retention_policy": {
+                        "name": "Omzeil het verwijderen van berichten",
+                        "description": "Zorgt dat berichten niet verwijderd worden nadat je ze bekeken hebt"
+                    },
+                    "bypass_message_action_restrictions": {
+                        "description": "Zorgt ervoor dat je kunt reageren op een snap zonder die te openen of een onopslabaar bericht op te slaan"
                     }
                 },
                 "description": "Verander hoe je interacteerd met je vrienden",
@@ -1485,7 +1497,8 @@
     },
     "half_swipe_notifier": {
         "notification_channel_name": "\"Half Swipe\"",
-        "notification_content_dm": "{friend} heeft zojuist in je chat gehalf-swiped voor {duration} seconden"
+        "notification_content_dm": "{friend} heeft zojuist in je chat gehalf-swiped voor {duration} seconden",
+        "notification_content_group": "{friend} heeft zojuist in {groep} gehalf-swiped voor {duration} seconden"
     },
     "call_start_confirmation": {
         "dialog_message": "Ben je zeker dat je een oproep wilt starten?",
@@ -1493,5 +1506,97 @@
     },
     "media_download_source": {
         "voice_call": "Audio-oproep"
+    },
+    "end_to_end_encryption": {
+        "native_hooks_send_failure_toast": "Verzenden mislukt! Zet Native Hook alsjeblieft aan in de instellingen.",
+        "accept_secret_key_failure_toast": "Geheime sleutel accepteren mislukt",
+        "outgoing_pk_message": "Sleuteluitwisselingsverzoek",
+        "toolbox": {
+            "shared_key_fingerprint": "Je vingerafdruk is:\n\n{fingerprint}\n\nZorg dat deze overeenkomt met die van je vriend!",
+            "initiate_exchange_button": "Begin Sleuteluitwisseling",
+            "no_shared_key": "Je hebt nog geen gedeelde geheime sleutel met deze vriend. Klik hieronder om een nieuwe sleutel te genereren."
+        },
+        "confirmation_dialogs": {
+            "title": "End-to-end versleuteling",
+            "confirmation_1": "WAARSCHUWING: Dit gaat je bestaande sleutel overschrijven. Je gaat toegang verliezen tot alle versleutelde berichten van deze vriend. Ben je zeker dat je wilt doorgaan?",
+            "confirmation_2": "Ben je HEEL zeker dat je door wilt gaan? Dit is je laatste kans om je terug te trekken."
+        },
+        "unencrypted_conversation_send_failure_toast": "Je kunt geen versleutelde content sturen naar versleutelde en onversleuteld gesprekken tegelijk!",
+        "accept_public_key_success_toast": "Public key succesvol geaccepteerd!",
+        "accept_public_key_failure_toast": "Openbare Sleutel accepteren mislukt",
+        "accept_secret_button": "Accepteer geheime sleutel",
+        "no_participants_to_encrypt_toast": "Je hebt geen vrienden in dit gesprek om berichten mee te versleutelen!",
+        "incoming_pk_message": "Je hebt zojuist een openbare sleutel-verzoek gekregen. Klik hieronder om dit te accepteren.",
+        "encryption_failed_toast": "Versleutelen van bericht mislukt! Check logcat voor meer details.",
+        "accept_secret_key_success_toast": "Klaar! Nu kan je versleutelde berichten sturen en ontvangen met deze vriend.",
+        "accept_public_key_button": "Accepteer Publieke Sleutel",
+        "outgoing_secret_message": "Sleuteluitwisselingsantwoord",
+        "incoming_secret_message": "Je vriend heeft zojuist je openbare sleutel geaccepteerd. Klik hieronder om de geheime sleutel te accepteren."
+    },
+    "material3_strings": {
+        "date_range_input_invalid_range_input": "Ongeldig datumbereik",
+        "date_range_picker_scroll_to_previous_month": "Vorige maand",
+        "date_picker_today_description": "Vandaag",
+        "date_input_invalid_for_pattern": "Ongeldige datum",
+        "date_input_invalid_year_range": "Ongeldig jaar",
+        "date_input_invalid_not_allowed": "Ongeldige datum",
+        "date_range_picker_start_headline": "Van",
+        "date_range_picker_end_headline": "Tot",
+        "date_range_picker_title": "Selecteer datumbereik",
+        "date_picker_switch_to_calendar_mode": "Kalender",
+        "date_range_picker_scroll_to_next_month": "Volgende maand",
+        "date_range_picker_day_in_range": "Geselecteerd",
+        "date_picker_switch_to_input_mode": "Invoeren"
+    },
+    "download_processor": {
+        "no_attachments_toast": "Geen bijlages gevonden!",
+        "processing_toast": "{path} aan het verwerken...",
+        "already_queued_toast": "Media zit al in de wachtrij!",
+        "content_saved_toast": "Opgeslaan!",
+        "failed_generic_toast": "Downloaden mislukt",
+        "attachment_type": {
+            "external_media": "Externe Media",
+            "note": "Audiobericht",
+            "snap": "Snap",
+            "original_story": "Origineel Verhaal",
+            "gif": "GIF",
+            "sticker": "Sticker"
+        },
+        "select_attachments_title": "Selecteer Bijlages",
+        "download_started_toast": "Download Gestart",
+        "unsupported_content_type_toast": "Niet-ondersteund inhoudstype!",
+        "failed_no_longer_available_toast": "Media is niet meer beschikbaar",
+        "failed_to_create_preview_toast": "Voorbeeld creeëren mislukt",
+        "failed_processing_toast": "Verwerking mislukt: {error}",
+        "dash_dialog": {
+            "download_all": "Alles Downloaden"
+        },
+        "failed_gallery_toast": "Opslaan naar gallerij mislukt: {error}",
+        "dash_no_chapter": "Geen hoofdstuk gevonden",
+        "already_downloaded_toast": "Media is al gedownload!",
+        "download_toast": "{path} aan het downloaden..."
+    },
+    "auto_open_snaps": {
+        "notification_content": "{count} Snaps geopend",
+        "title": "Open Snaps Automatisch"
+    },
+    "biometric_auth": {
+        "subtitle": "Verifieer jezelf om Snapchat te ontgrendelen",
+        "unlock_button": "Ontgrendel",
+        "title": "Ontgrendel Snapchat"
+    },
+    "friend_mutation_observer": {
+        "friend_removed": "{username} heeft je verwijderd als vriend",
+        "birthday_removed": "{username} heeft zijn/haar verjaardag verwijderd ({birthday})",
+        "birthday_added": "{username} heeft zijn/haar verjaardag toegevoegd ({birthday})",
+        "birthday_changed": "{username} heeft zijn/haar verjaardag veranderd van {oldBirthday} naar {newBirthday}",
+        "bitmoji_selfie_changed": "{username} heeft zijn/haar Bitmoji-selfie aangepast",
+        "bitmoji_avatar_changed": "{username} heeft zijn/haar Bitmoji-avatar aangepast",
+        "bitmoji_background_changed": "{username} heeft zijn/haar Bitmoji-achtergrond aangepast",
+        "bitmoji_scene_changed": "{username} heeft zijn/haar Bitmoji-pose aangepast"
+    },
+    "streaks_reminder": {
+        "notification_title": "Streaks",
+        "notification_text": "Je gaat je Streak met {friend} verliezen binnen {hoursLeft} uren"
     }
 }
