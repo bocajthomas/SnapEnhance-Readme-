@@ -681,7 +681,8 @@
                         "description": "Zorgt dat berichten niet verwijderd worden nadat je ze bekeken hebt"
                     },
                     "bypass_message_action_restrictions": {
-                        "description": "Zorgt ervoor dat je kunt reageren op een snap zonder die te openen of een onopslabaar bericht op te slaan"
+                        "description": "Zorgt ervoor dat je kunt reageren op een snap zonder die te openen of een onopslabaar bericht op te slaan",
+                        "name": "Omzeil Restricties voor Berichtacties"
                     }
                 },
                 "description": "Verander hoe je interacteerd met je vrienden",
@@ -798,7 +799,18 @@
                     },
                     "disable_custom_tabs": {
                         "description": "Open links in ondersteunde apps in plaats van de Web Browser",
-                        "name": "Schakel aangepast tabbladen uit"
+                        "name": "Schakel In-App Tabbladen uit"
+                    },
+                    "disable_confirmation_dialogs": {
+                        "description": "Bevestigt de geselecteerde acties automatisch",
+                        "name": "Schakel bevestigingsdialoogvensters uit"
+                    },
+                    "disable_story_sections": {
+                        "description": "Verwijderd onderdelen van de verhaalpagina\nHeeft misschien een refresh nodig om correct te werken",
+                        "name": "Schakel Onderdelen uit op de Verhaalpagina"
+                    },
+                    "disable_memories_snap_feed": {
+                        "name": "Schakel het \"Memories\"-overzicht uit"
                     }
                 },
                 "name": "Globaal",
