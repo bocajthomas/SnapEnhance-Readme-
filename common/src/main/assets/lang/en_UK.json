@@ -557,6 +557,10 @@
                     "icon_style": {
                         "name": "Icon Style",
                         "description": "Changes the style of material icons\n\nFeatures Supported:\n - Opera Download Button \n - Mark Snap As Seen Button \n - Friend Feed Menu Buttons\n - COF Experiments\n - Message Indicators"
+                    },
+                    "custom_friend_feed_label": {
+                        "description": "Changes the page label on the friend feed",
+                        "name": "Custom Friend Feed Label"
                     }
                 },
                 "name": "User Interface",
@@ -1422,6 +1426,12 @@
             "simple_snapchat": {
                 "always_enabled": "Always Enabled",
                 "always_disabled": "Always Disabled"
+            },
+            "icon_style": {
+                "outlined": "Outlined",
+                "filled": "Filled",
+                "sharp": "Sharp",
+                "two-tone": "Two Tone"
             }
         }
     },
