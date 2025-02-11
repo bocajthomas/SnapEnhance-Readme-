@@ -1091,6 +1091,9 @@
                     },
                     "integrated_ui": {
                         "name": "Geïntegreerde UI"
+                    },
+                    "disable_log_anonymization": {
+                        "description": "Schakelt het anonimiseren van logs uit"
                     }
                 },
                 "name": "Scripts"
@@ -1100,8 +1103,18 @@
                     "allow_running_in_background": {
                         "name": "Sta Uitvoeren op Achtergrond toe",
                         "description": "Zorgt ervoor dat de tracker op de achtergrond kan lopen. Dit zorgt ervoor dat je batterij snel leeg gaat!"
+                    },
+                    "record_messaging_events": {
+                        "description": "Registreer berichtevenementen zoals het openen van een snap, het lezen van een bericht, etc...",
+                        "name": "Registreer berichtevenementen"
+                    },
+                    "auto_purge": {
+                        "name": "Automatisch Opschonen",
+                        "description": "Verwijderd automatisch opgeslagen gebeurtenissen ouder dan de gegeven [leeftijd]"
                     }
-                }
+                },
+                "name": "Vriendentracker",
+                "description": "Neem de activiteit van een vriend op Snapchat op"
             }
         },
         "options": {
@@ -1322,6 +1335,9 @@
                 "not_subscribed": "Niet geabonneerd",
                 "basic": "Basis",
                 "ad_free": "Reclamevrij"
+            },
+            "auto_mark_as_read": {
+                "snap_reply": "Markeer snaps als gelezen als je erop antwoord"
             }
         }
     },
@@ -1387,7 +1403,9 @@
         "anti_auto_save": "Anti auto. opslaan",
         "mark_stories_as_seen_locally": "Markeer Verhalen als gezien (enkel lokaal)",
         "mark_snaps_as_seen": "Markeer Snaps als gezien",
-        "preview": "Voorbeeld"
+        "preview": "Voorbeeld",
+        "stealth_mode": "Onzichtbare Modus",
+        "auto_download_blacklist": "Blacklist voor Automatisch Downloaden"
     },
     "content_type": {
         "CHAT": "Bericht",
@@ -1401,7 +1419,9 @@
         "SHARE": "Gedeeld",
         "STATUS": "Status",
         "LOCATION": "Locatie",
-        "STICKER": "Sticker"
+        "STICKER": "Sticker",
+        "STATUS_CALL_MISSED_AUDIO": "Gemist Audiogesprek",
+        "STATUS_CALL_MISSED_VIDEO": "Gemist Videogesprek"
     },
     "send_override_dialog": {
         "title": "Stuur media als {type}",
@@ -1424,7 +1444,7 @@
         "selection_dialog_continue_button": "Verdergaan",
         "confirmation_dialog": {
             "title": "Ben je zeker?",
-            "message": ""
+            "message": "Deze actie beïnvloed alle geselecteerde vrienden. Deze actie kan niet ongedaan gemaakt worden."
         },
         "actions": {
             "remove_friends": "Verwijder vrienden",
@@ -1501,7 +1521,10 @@
     "chat_action_menu": {
         "edit_message": "Bewerk bericht",
         "preview_button": "Voorbeeld",
-        "download_button": "Download"
+        "download_button": "Download",
+        "convert_message": "Converteer Bericht",
+        "delete_logged_message_button": "Verwijder Geregistreerd Bericht",
+        "show_chat_edit_history": "Toon Bewerkingsgeschiedenis van Chat"
     },
     "opera_context_menu": {
         "show_debug_info": "Toon Debug Info",
@@ -1516,7 +1539,8 @@
         "already_unseen_toast": "Al gemarkeerd als niet gezien!",
         "seen_toast": "Gemarkeerd als gelezen!",
         "unseen_toast": "Gemarkeerd als niet gelezen!",
-        "already_seen_toast": "Al gemarkeerd als gezien!"
+        "already_seen_toast": "Al gemarkeerd als gezien!",
+        "no_unseen_snaps_toast": "Geen ongelezen Snaps gevonden!"
     },
     "modal_option": {
         "profile_info": "Profielinfo",
@@ -1532,7 +1556,16 @@
         "dialog_title": "Start audiogesprek"
     },
     "media_download_source": {
-        "voice_call": "Audio-oproep"
+        "voice_call": "Audio-oproep",
+        "message_logger": "Berichtenlogger",
+        "chat_media": "Chatmedia",
+        "story": "Verhaal",
+        "public_story": "Publiek Verhaal",
+        "none": "Geen",
+        "pending": "Bezig",
+        "spotlight": "Spotlight",
+        "profile_picture": "Profielfoto",
+        "story_logger": "Verhaallogger"
     },
     "end_to_end_encryption": {
         "native_hooks_send_failure_toast": "Verzenden mislukt! Zet Native Hook alsjeblieft aan in de instellingen.",
@@ -1625,5 +1658,8 @@
     "streaks_reminder": {
         "notification_title": "Streaks",
         "notification_text": "Je gaat je Streak met {friend} verliezen binnen {hoursLeft} uren"
+    },
+    "gallery_media_send_override": {
+        "multiple_media_toast": "Je kunt maar 1 mediaelement tegelijk sturen"
     }
 }
