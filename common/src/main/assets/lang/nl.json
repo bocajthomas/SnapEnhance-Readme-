@@ -853,6 +853,9 @@
                     "back_custom_frame_rate": {
                         "name": "Aangepaste Framerate Achterkant",
                         "description": "Overschrijft de framerate van de camera aan de achterkant van het toestel"
+                    },
+                    "immersive_camera_preview": {
+                        "description": "Voorkomt dat Snapchat de Camera-preview bijsnijdt\nDit kan de camera laten flikkeren op sommige apparaten"
                     }
                 },
                 "name": "Camera"
@@ -918,7 +921,7 @@
                             }
                         },
                         "name": "Native Hooks",
-                        "description": "Onveilige Opties die Snapchats Code van Binnen uit Aanpassen"
+                        "description": "Onveilige Opties die Snapchats Code \"hooken\""
                     },
                     "media_file_picker": {
                         "name": "Mediabestand Kiezer",
@@ -967,9 +970,13 @@
                             "remove_mock_location_flag": {
                                 "name": "Verwijder \"Mock Location\" vlag",
                                 "description": "Zorgt ervoor dat Snapchat een \"Mock Location\"(= valse locatie) niet kan detecteren"
+                            },
+                            "play_store_installer_package_name": {
+                                "description": "Overschrijft de naam van het installatiepakket naar com.android.vending",
+                                "name": "Play Store Installer Pakketnaam"
                             }
                         },
-                        "description": "Spooft sommige informatie over jou",
+                        "description": "Spooft bepaalde informatie over jou",
                         "name": "Spoof"
                     },
                     "account_switcher": {
@@ -1054,6 +1061,14 @@
                     },
                     "add_friend_source_spoof": {
                         "description": "Spooft de afkomst van een vriendschapsverzoek"
+                    },
+                    "story_logger": {
+                        "name": "Story Logger",
+                        "description": "Voorziet een geschiedenis voor verhalen van je vrienden"
+                    },
+                    "context_menu_fix": {
+                        "name": "Context Menu Fix",
+                        "description": "Probeert het vriendenoverzichtmenu te fixen omdat dit soms niet goed weergeven wordt als het apparaat offline is"
                     }
                 },
                 "description": "Experimentele Functies",
