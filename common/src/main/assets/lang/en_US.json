@@ -469,7 +469,7 @@
                     },
                     "icon_style": {
                         "name": "Icon Style",
-                        "description": "Changes the style of material icons\n\nFeatures Supported:\n - Opera Download Button \n - Mark Snap As Seen Button \n - Friend Feed Menu Buttons\n - COF Experiments\n - Message Indicators"
+                        "description": "Changes the style of material icons\n\nFeatures Supported:\n - Opera Download Button \n - Mark Snap As Seen Button \n - Friend Feed Menu Buttons\n - COF Experiments\n - Message Indicators\n - Logging"
                     },
                     "friend_feed_message_preview": {
                         "name": "Friend Feed Message Preview",
