@@ -3,6 +3,7 @@ package me.rhunk.snapenhance.common.config.impl
 import me.rhunk.snapenhance.common.config.ConfigContainer
 import me.rhunk.snapenhance.common.config.ConfigFlag
 import me.rhunk.snapenhance.common.config.FeatureNotice
+import me.rhunk.snapenhance.common.config.PropertyValue
 
 class DownloaderConfig : ConfigContainer() {
     inner class FFMpegOptions : ConfigContainer() {
@@ -15,6 +16,13 @@ class DownloaderConfig : ConfigContainer() {
         val audioBitrate = integer("audio_bitrate", 128)
         val customVideoCodec = string("custom_video_codec") { addFlags(ConfigFlag.NO_TRANSLATE) }
         val customAudioCodec = string("custom_audio_codec") { addFlags(ConfigFlag.NO_TRANSLATE) }
+    }
+
+    class LoggingOptions : ConfigContainer() {
+        val logging = multiple("logging", "started", "success", "progress", "failure").apply {
+            set(mutableListOf("success", "progress", "failure"))
+        }
+        val disappearingRate: PropertyValue<Int> =  integer("disappearing_rate", defaultValue = 1300) { inputCheck = { (it.toIntOrNull() ?: 1300) in 100..3000} }
     }
 
     val saveFolder = string("save_folder") { addFlags(ConfigFlag.FOLDER, ConfigFlag.SENSITIVE); requireRestart() }
@@ -46,8 +54,6 @@ class DownloaderConfig : ConfigContainer() {
     val operaDownloadButton = boolean("opera_download_button") { requireRestart() }
     val downloadContextMenu = boolean("download_context_menu")
     val ffmpegOptions = container("ffmpeg_options", FFMpegOptions()) { addNotices(FeatureNotice.UNSTABLE) }
-    val logging = multiple("logging", "started", "success", "progress", "failure").apply {
-        set(mutableListOf("success", "progress", "failure"))
-    }
+    val loggingOptions = container("logging_options", LoggingOptions())
     val customPathFormat = string("custom_path_format") { addNotices(FeatureNotice.UNSTABLE) }
 }

@@ -81,7 +81,8 @@ class MediaDownloader : MessagingRuleFeature("MediaDownloader", MessagingRuleTyp
 
         val iconUrl = BitmojiSelfie.getBitmojiSelfie(friendInfo?.bitmojiSelfieId, friendInfo?.bitmojiAvatarId, BitmojiSelfie.BitmojiSelfieType.NEW_THREE_D)
 
-        val downloadLogging by context.config.downloader.logging
+        val downloadLogging by context.config.downloader.loggingOptions.logging
+        val disappearingRate by context.config.downloader.loggingOptions.disappearingRate
         if (downloadLogging.contains("started")) {
             context.shortToast(translations["download_started_toast"])
         }
@@ -109,7 +110,7 @@ class MediaDownloader : MessagingRuleFeature("MediaDownloader", MessagingRuleTyp
                     context.log.verbose("onSuccess: outputFile=$outputFile")
                     context.inAppOverlay.showStatusToast(
                         icon = Icons.Rounded.DownloadDone,
-                        durationMs = 1300,
+                        durationMs = disappearingRate,
                         text = translations["content_saved_toast"].also {
                             if (context.isMainActivityPaused) {
                                 context.shortToast(it)
@@ -123,7 +124,7 @@ class MediaDownloader : MessagingRuleFeature("MediaDownloader", MessagingRuleTyp
                     context.log.verbose("onProgress: message=$message")
                     context.inAppOverlay.showStatusToast(
                         icon = Icons.Rounded.Info,
-                        durationMs = 1300,
+                        durationMs = disappearingRate,
                         text = message,
                     )
                     if (context.isMainActivityPaused) {
@@ -147,7 +148,7 @@ class MediaDownloader : MessagingRuleFeature("MediaDownloader", MessagingRuleTyp
 
                     context.inAppOverlay.showStatusToast(
                         icon = Icons.Rounded.Warning,
-                        durationMs = 1300,
+                        durationMs = disappearingRate,
                         text = message,
                     )
                 }
