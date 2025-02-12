@@ -503,7 +503,7 @@
                     },
                     "icon_style": {
                         "description": "Verander de stijl van de materiaaliconen\n\nOndersteunde functies:\n- Opera Download Knop\n- Markeer Snap Als Gezien Knoppen\n- Vrienden Feed Menu Knoppen\n- COF Experimenten\n- Bericht Indicatoren",
-                        "name": "Icoon Stijl"
+                        "name": "Icoonstijl"
                     }
                 },
                 "name": "Gebruikersomgeving"
@@ -810,7 +810,12 @@
                         "name": "Schakel Onderdelen uit op de Verhaalpagina"
                     },
                     "disable_memories_snap_feed": {
-                        "name": "Schakel het \"Memories\"-overzicht uit"
+                        "name": "Schakel het \"Memories\"-overzicht uit",
+                        "description": "Voorkomt dat Snapchat het overzicht van recente Herinneringen toont als je omhoog veegt bij de camera"
+                    },
+                    "disable_google_play_dialogs": {
+                        "name": "Schakel Google Play Services-dialoogvensters uit",
+                        "description": "Voorkomt dat Google Play Services dialoogvensters kan tonen"
                     }
                 },
                 "name": "Globaal",
@@ -858,7 +863,8 @@
                         "description": "Voorkomt dat Snapchat de Camera-preview bijsnijdt\nDit kan de camera laten flikkeren op sommige apparaten"
                     }
                 },
-                "name": "Camera"
+                "name": "Camera",
+                "description": "Pas de juiste instellingen aan voor de perfecte snap"
             },
             "streaks_reminder": {
                 "description": "Herinnert je op bepaalde tijdstippen aan je streaks",
@@ -879,7 +885,8 @@
                 "name": "Streaks Herinnering"
             },
             "rules": {
-                "name": "Regels"
+                "name": "Regels",
+                "description": "Beheer automatisch functies per persoon"
             },
             "experimental": {
                 "properties": {
@@ -1090,10 +1097,15 @@
                         "description": "Herlaad scripts automatisch als ze aangepast worden"
                     },
                     "integrated_ui": {
-                        "name": "Geïntegreerde UI"
+                        "name": "Geïntegreerde UI",
+                        "description": "Sta toe dat scripts aangepaste UI-componenten toevoegen aan Snapchat"
                     },
                     "disable_log_anonymization": {
-                        "description": "Schakelt het anonimiseren van logs uit"
+                        "description": "Schakelt het anonimiseren van logs uit",
+                        "name": "Schakel het anonimiseren van logs uit"
+                    },
+                    "old_tool_box_add_view": {
+                        "description": "Gebruik de oude \"add view\" om de toolbox aan Snapchat toe te voegen.\nDeze functie is tijdelijk"
                     }
                 },
                 "name": "Scripts"
@@ -1329,7 +1341,18 @@
                 "hide_snap_filters": "Verberg Filters"
             },
             "hide_ui_components": {
-                "hide_profile_call_buttons": ""
+                "hide_profile_call_buttons": "Verberg de Oproepknoppen van het profiel",
+                "hide_chat_gallery_button": "Verberg de Gallerijknop in de chat",
+                "hide_post_to_story_buttons": "Verberg de Post op Verhaal-knoppen",
+                "hide_chat_camera_button": "Verberg de Cameraknop in de chat",
+                "hide_map_reactions": "Verberg de Kaartreacties",
+                "hide_voice_record_button": "Verberg de Audio-opneemknop",
+                "hide_live_location_share_button": "Verberg de knop \"Live Locatie Delen\"",
+                "hide_unread_chat_hint": "Verberg de Tip voor Ongelezen Chat",
+                "hide_gift_snapchat_plus_reminders": "Verberg de \"Geef Snapchat+ cadeau\"-herinneringen",
+                "hide_stickers_button": "Verberg de Stickers-knop",
+                "hide_snap_create_group_buttons": "Verwijder de ...",
+                "hide_chat_call_buttons": "Verberg de Oproepknoppen in de chat"
             },
             "snapchat_plus": {
                 "not_subscribed": "Niet geabonneerd",
