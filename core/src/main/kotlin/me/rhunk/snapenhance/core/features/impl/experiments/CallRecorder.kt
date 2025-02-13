@@ -23,14 +23,13 @@ import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.CopyOnWriteArrayList
 
 class CallRecorder : Feature("Call Recorder") {
-    private val httpServer = HttpServer(
-        timeout = Integer.MAX_VALUE
-    )
+    private val httpServer = HttpServer(timeout = Integer.MAX_VALUE)
 
     override fun init() {
         if (!context.config.experimental.callRecorder.get()) return
 
-        val streamHandlers = ConcurrentHashMap<Int, MutableList<(data: ByteArray) -> Unit>>() // audioTrack -> handlers
+        val streamHandlers = ConcurrentHashMap<Int, MutableList<(data: ByteArray) -> Unit>>()
+        val localStreamHandler = ConcurrentHashMap<Int, MutableList<(data: ByteArray) -> Unit>>()
         val participants = CopyOnWriteArrayList<String>()
 
         findClass("com.snapchat.talkcorev3.CallingSessionState").hookConstructor(HookStage.AFTER) { param ->
@@ -58,12 +57,12 @@ class CallRecorder : Feature("Call Recorder") {
 
                 lateinit var streamUrl: String
                 streamUrl = httpServer.ensureServerStarted()?.putContent(
-                    object: HttpServer.HttpContent() {
+                    object : HttpServer.HttpContent() {
                         override val contentType: String = "audio/wav"
                         override val chunked: Boolean = true
                         override val contentLength: Long? = null
                         override val newBody: () -> HttpServer.HttpBody = {
-                            object: HttpServer.HttpBody() {
+                            object : HttpServer.HttpBody() {
                                 val outputStream = PipedOutputStream()
                                 val inputStream = PipedInputStream(outputStream)
 
@@ -103,7 +102,7 @@ class CallRecorder : Feature("Call Recorder") {
                     }
                 ) ?: return@hook
 
-                context.log.verbose("streaming url = $streamUrl, sampleRate = ${audioFormat.sampleRate}, audioFormat = ${audioFormat.encoding}")
+                context.log.verbose("Remote audio streaming url = $streamUrl, sampleRate = ${audioFormat.sampleRate}, audioFormat = ${audioFormat.encoding}")
 
                 context.feature(MediaDownloader::class).provideDownloadManagerClient(
                     UUID.randomUUID().toString(),
@@ -114,7 +113,8 @@ class CallRecorder : Feature("Call Recorder") {
             }
 
             getMethod("write", ByteBuffer::class.java, Int::class.javaPrimitiveType, Int::class.javaPrimitiveType).hook(HookStage.BEFORE) { param ->
-                streamHandlers[param.thisObject<Any>().hashCode()]?.let { handlers ->
+                val hashCode = param.thisObject<Any>().hashCode()
+                streamHandlers[hashCode]?.let { handlers ->
                     val byteBuffer = param.arg<ByteBuffer>(0)
                     val position = byteBuffer.position()
                     val buffer = ByteArray(param.arg(1))
@@ -126,6 +126,82 @@ class CallRecorder : Feature("Call Recorder") {
 
             hook("release", HookStage.BEFORE) {
                 streamHandlers.remove(it.thisObject<Any>().hashCode())?.forEach { it(ByteArray(0)) }
+            }
+        }
+
+        val audioRecordClass = findClass("android.media.AudioRecord")
+
+        audioRecordClass.apply {
+            getConstructor(
+                Int::class.javaPrimitiveType,
+                Int::class.javaPrimitiveType,
+                Int::class.javaPrimitiveType,
+                Int::class.javaPrimitiveType
+            ).hook(HookStage.BEFORE) { param ->
+                val sampleRate = param.arg<Int>(1)
+                val channelConfig = param.arg<Int>(2)
+                val audioFormat =
+                    if (channelConfig == AudioFormat.CHANNEL_IN_MONO) AudioFormat.ENCODING_PCM_16BIT else AudioFormat.ENCODING_PCM_16BIT
+                val hashCode = param.thisObject<Any>().hashCode()
+
+                lateinit var streamUrl: String
+                streamUrl = httpServer.ensureServerStarted()?.putContent(
+                    object : HttpServer.HttpContent() {
+                        override val contentType: String = "audio/wav"
+                        override val chunked: Boolean = true
+                        override val contentLength: Long? = null
+                        override val newBody: () -> HttpServer.HttpBody = {
+                            object : HttpServer.HttpBody() {
+                                val outputStream = PipedOutputStream()
+                                val inputStream = PipedInputStream(outputStream)
+
+                                val handler: (byteArray: ByteArray) -> Unit = handler@{ byteArray ->
+                                    if (byteArray.isEmpty()) {
+                                        httpServer.removeUrl(streamUrl)
+                                        return@handler
+                                    }
+                                    runCatching {
+                                        outputStream.write(byteArray)
+                                        outputStream.flush()
+                                    }.onFailure {
+                                        context.log.warn("Failed to write to streaming url ${it.localizedMessage}")
+                                    }
+                                }
+
+                                override val onOpen: () -> Unit = {
+                                    localStreamHandler.getOrPut(hashCode) { CopyOnWriteArrayList() }
+                                        .add(handler)
+                                }
+
+                                override val readBytes: (byteArray: ByteArray) -> Int =
+                                    { byteArray ->
+                                        runBlocking {
+                                            withTimeoutOrNull(3000L) {
+                                                inputStream.read(byteArray)
+                                            } ?: -1
+                                        }
+                                    }
+
+                                override val onClose: () -> Unit = {
+                                    context.log.verbose("Local audio streaming url closed")
+                                    localStreamHandler[hashCode]?.remove(handler)
+                                    outputStream.close()
+                                    inputStream.close()
+                                }
+                            }
+                        }
+                    }
+                ) ?: return@hook
+
+                context.log.verbose("Local audio streaming url = $streamUrl, sampleRate = $sampleRate, audioFormat = $audioFormat")
+
+                context.feature(MediaDownloader::class).provideDownloadManagerClient(
+                    UUID.randomUUID().toString(),
+                    "local-" + participants.mapNotNull { context.database.getFriendInfo(it)?.mutableUsername }
+                        .joinToString("-"),
+                    System.currentTimeMillis(),
+                    MediaDownloadSource.VOICE_CALL
+                ).downloadStream(streamUrl, AudioStreamFormat(1, sampleRate, audioFormat))
             }
         }
     }
