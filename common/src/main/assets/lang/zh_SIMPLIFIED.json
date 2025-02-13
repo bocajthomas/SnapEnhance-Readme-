@@ -511,10 +511,6 @@
                         "description": "为下载的媒体指定自定义路径格式\n\n可用变量:\n- ％用户名％\n- ％来源％\n- %哈希%\n- ％约会时间％",
                         "name": "自定义路径格式"
                     },
-                    "logging": {
-                        "description": "下载媒体时显示 toast",
-                        "name": "记录"
-                    },
                     "auto_download_voice_notes": {
                         "description": "播放语音笔记时自动下载",
                         "name": "自动下载语音笔记"

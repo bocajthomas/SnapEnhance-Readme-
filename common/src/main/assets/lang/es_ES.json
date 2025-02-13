@@ -508,10 +508,6 @@
                         "name": "Descargar menú contextual",
                         "description": "Te permite descargar/hacer una vista previa desde una conversación o historia usando el menú contextual.\nUn pulso largo en los botones forzará la descarga"
                     },
-                    "logging": {
-                        "name": "Registrando",
-                        "description": "muestra toasts mientras multimedia se está descargando"
-                    },
                     "custom_path_format": {
                         "name": "Ruta de archivo personalizada",
                         "description": "Especificar una ruta de archivo personalizada para multimedia descargada\n\nVariables disponibles:\n - %username%\n - %source%\n - %hash%\n - %date_time%"

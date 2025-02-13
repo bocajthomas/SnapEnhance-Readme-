@@ -356,10 +356,6 @@
                             }
                         }
                     },
-                    "logging": {
-                        "name": "Naplózás",
-                        "description": "Üzenet megjelenítése média letöltésekor"
-                    },
                     "opera_download_button": {
                         "description": "Hozzáad egy letöltés gombot a jobb felső sarokban, amikor egy Snapet nézel.\nA gombok hosszú megnyomása kikényszeríti a letöltést",
                         "name": "Letöltés Operával Gomb"

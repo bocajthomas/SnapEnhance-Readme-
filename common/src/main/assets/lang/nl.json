@@ -367,10 +367,6 @@
                         "description": "Geef een aangepast padformaat op voor gedownloade media\n\nBeschikbare variabelen:\n - %username%\n - %source%\n - %hash%\n - %date_time%",
                         "name": "Aangepaste padindeling"
                     },
-                    "logging": {
-                        "description": "Toont toast wanneer media worden gedownload",
-                        "name": "Loggen"
-                    },
                     "opera_download_button": {
                         "name": "Opera-downloadknop",
                         "description": "Voegt een downloadknop toe in de rechterbovenhoek wanneer je een Snap bekijkt.\nAls u lang op de knoppen drukt, wordt het downloaden geforceerd"
