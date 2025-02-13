@@ -38,7 +38,7 @@ Please note that this project is currently in development, So bugs and crashes m
 - `Opera Download Button`
 - `Download Context Menu`
 - `FFmpeg Options`
-- `Logging`
+- `Logging Options` (Logging & Disappearing Rate)
 - `Custom Path Format`
 </details>
 
@@ -230,7 +230,8 @@ Thanks to everyone involved
 
 **Translations:**
 - Bengali - [suryadip2008](https://github.com/suryadip2008)
-- Dutch - [BogusMosquito77](https://github.com/BogusMosquito7), [dnlweijers](https://github.com/dnlweijers)
+- Dutch - [BogusMosquito77](https://github.com/BogusMosquito7), [dnlweijers](https://github.com/dnlweijers),
+  [appelmoesgg](https://github.com/appelmoesgg)
 - Urdu - [Beingzain](https://github.com/Beingzain)
 - Danish - [comradekingu](https://github.com/comradekingu), [MHaaning](https://github.com/MHaaning)
 - Japanese - [scrodingerspet](https://github.com/schrodingerspet)
@@ -245,6 +246,7 @@ Thanks to everyone involved
 - German - [Brokoli5191](https://github.com/Brokoli5191)
 - English (UK) - [JJGatchalian](https://github.com/JJGatchalian)
 - Spanish - [Lorena-trad](https://github.com/Lorena-trad)
+- Ukrainian - [Maksim2005UA](https://github.com/Maksim2005UA)
 
 You can help translate SE Extended on [Hosted Weblate](https://hosted.weblate.org/projects/se-extended/se-extended/).
 

@@ -12,6 +12,10 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.*
+import androidx.compose.material.icons.filled.*
+import androidx.compose.material.icons.outlined.*
+import androidx.compose.material.icons.sharp.*
+import androidx.compose.material.icons.twotone.*
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import me.rhunk.snapenhance.bridge.DownloadCallback
@@ -81,7 +85,66 @@ class MediaDownloader : MessagingRuleFeature("MediaDownloader", MessagingRuleTyp
 
         val iconUrl = BitmojiSelfie.getBitmojiSelfie(friendInfo?.bitmojiSelfieId, friendInfo?.bitmojiAvatarId, BitmojiSelfie.BitmojiSelfieType.NEW_THREE_D)
 
-        val downloadLogging by context.config.downloader.logging
+        val downloadLogging by context.config.downloader.loggingOptions.logging
+        val disappearingRate by context.config.downloader.loggingOptions.disappearingRate
+        val getIconStyle = context.config.userInterface.iconStyle.getNullable()
+        val downloadDoneIconStyle = if (getIconStyle != null) {
+            when (getIconStyle) {
+                "outlined" -> Icons.Outlined.DownloadDone
+                "filled" -> Icons.Filled.DownloadDone
+                "sharp" -> Icons.Sharp.DownloadDone
+                "two-tone" -> Icons.TwoTone.DownloadDone
+                else -> {
+                    context.log.warn("Error setting icon style $getIconStyle")
+                    Icons.Rounded.DownloadDone
+                }
+            }
+        } else {
+            Icons.Rounded.DownloadDone
+        }
+        val infoIconStyle = if (getIconStyle != null) {
+            when (getIconStyle) {
+                "outlined" -> Icons.Outlined.Info
+                "filled" -> Icons.Filled.Info
+                "sharp" -> Icons.Sharp.Info
+                "two-tone" -> Icons.TwoTone.Info
+                else -> {
+                    context.log.warn("Error setting icon style $getIconStyle")
+                    Icons.Rounded.Info
+                }
+            }
+        } else {
+            Icons.Rounded.Info
+        }
+        val errorIconStyle = if (getIconStyle != null) {
+            when (getIconStyle) {
+                "outlined" -> Icons.Outlined.Error
+                "filled" -> Icons.Filled.Error
+                "sharp" -> Icons.Sharp.Error
+                "two-tone" -> Icons.TwoTone.Error
+                else -> {
+                    context.log.warn("Error setting icon style $getIconStyle")
+                    Icons.Rounded.Error
+                }
+            }
+        } else {
+            Icons.Rounded.Error
+        }
+        val warningIconStyle = if (getIconStyle != null) {
+            when (getIconStyle) {
+                "outlined" -> Icons.Outlined.Warning
+                "filled" -> Icons.Filled.Warning
+                "sharp" -> Icons.Sharp.Warning
+                "two-tone" -> Icons.TwoTone.Warning
+                else -> {
+                    context.log.warn("Error setting icon style $getIconStyle")
+                    Icons.Rounded.Warning
+                }
+            }
+        } else {
+            Icons.Rounded.Warning
+        }
+
         if (downloadLogging.contains("started")) {
             context.shortToast(translations["download_started_toast"])
         }
@@ -108,8 +171,8 @@ class MediaDownloader : MessagingRuleFeature("MediaDownloader", MessagingRuleTyp
                     if (!downloadLogging.contains("success")) return
                     context.log.verbose("onSuccess: outputFile=$outputFile")
                     context.inAppOverlay.showStatusToast(
-                        icon = Icons.Rounded.DownloadDone,
-                        durationMs = 1300,
+                        icon = downloadDoneIconStyle,
+                        durationMs = disappearingRate,
                         text = translations["content_saved_toast"].also {
                             if (context.isMainActivityPaused) {
                                 context.shortToast(it)
@@ -122,8 +185,8 @@ class MediaDownloader : MessagingRuleFeature("MediaDownloader", MessagingRuleTyp
                     if (!downloadLogging.contains("progress")) return
                     context.log.verbose("onProgress: message=$message")
                     context.inAppOverlay.showStatusToast(
-                        icon = Icons.Rounded.Info,
-                        durationMs = 1300,
+                        icon = infoIconStyle,
+                        durationMs = disappearingRate,
                         text = message,
                     )
                     if (context.isMainActivityPaused) {
@@ -139,15 +202,15 @@ class MediaDownloader : MessagingRuleFeature("MediaDownloader", MessagingRuleTyp
                     }
                     throwable?.let { t ->
                         context.inAppOverlay.showStatusToast(
-                            icon = Icons.Rounded.Error,
+                            icon = errorIconStyle,
                             text = message + t.takeIf { it.isNotEmpty() }?.let { " $it" }.orEmpty(),
                         )
                         return
                     }
 
                     context.inAppOverlay.showStatusToast(
-                        icon = Icons.Rounded.Warning,
-                        durationMs = 1300,
+                        icon = warningIconStyle,
+                        durationMs = disappearingRate,
                         text = message,
                     )
                 }

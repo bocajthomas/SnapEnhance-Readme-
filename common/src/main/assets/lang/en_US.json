@@ -435,9 +435,19 @@
                             }
                         }
                     },
-                    "logging": {
-                        "name": "Logging",
-                        "description": "Shows toasts when media is downloading"
+                    "logging_options": {
+                        "name": "Logging Options",
+                        "description": "Logging Toast Settings",
+                        "properties": {
+                            "logging": {
+                                "name": "Logging",
+                                "description": "Shows toasts when media is downloading"
+                            },
+                            "disappearing_rate": {
+                                "name": "Disappearing Rate",
+                                "description": "Sets the disappearing rate of toasts in (in milliseconds)\nValue must be between 100 and 3000"
+                            }
+                        }
                     },
                     "custom_path_format": {
                         "name": "Custom Path Format",
@@ -459,7 +469,7 @@
                     },
                     "icon_style": {
                         "name": "Icon Style",
-                        "description": "Changes the style of material icons\n\nFeatures Supported:\n - Opera Download Button \n - Mark Snap As Seen Button \n - Friend Feed Menu Buttons\n - COF Experiments\n - Message Indicators"
+                        "description": "Changes the style of material icons\n\nFeatures Supported:\n - Opera Download Button \n - Mark Snap As Seen Button \n - Friend Feed Menu Buttons\n - COF Experiments\n - Message Indicators\n - Logging"
                     },
                     "friend_feed_message_preview": {
                         "name": "Friend Feed Message Preview",
