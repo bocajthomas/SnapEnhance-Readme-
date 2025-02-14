@@ -375,6 +375,19 @@
                     "auto_download_voice_notes": {
                         "name": "Hangüzenetek Automatikus Letöltése",
                         "description": "Automatikusan letölti a hangüzeneteket, amikor lejátsza őket"
+                    },
+                    "logging_options": {
+                        "name": "Naplózási Beállítások",
+                        "properties": {
+                            "logging": {
+                                "name": "Naplózás",
+                                "description": "Értesítéseket jelenít meg, amikor médiafájlok töltődnek le"
+                            },
+                            "disappearing_rate": {
+                                "name": "Eltűnési Arány"
+                            }
+                        },
+                        "description": "Naplózási Értesítések Beállításai"
                     }
                 }
             },
@@ -1716,7 +1729,7 @@
         "statusBarBackground": "Állapotsor Háttérszíne",
         "storyReplayViewRingColor": "Történet Újrajátszás Gyűrű Színe",
         "actionSheetBackgroundDrawable": "Akció Menü Háttér Színe",
-        "actionSheetRoundedBackgroundDrawable": "Akció Menü Kerek Sáttér Színe",
+        "actionSheetRoundedBackgroundDrawable": "Akció Menü Kerek Háttér Színe",
         "listBackgroundDrawable": "Beszélgetés lista Háttér",
         "sigColorChatConversationsLine": "Beszélgetések Vonal Színe",
         "rangeFillColor": "Sáv Színe",
