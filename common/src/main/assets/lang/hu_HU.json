@@ -51,7 +51,7 @@
                 "saved_config_snackbar": "Beállításfájl elmentve",
                 "export_option": "Exportálás",
                 "config_export_failure_toast": "Nem sikerült a configot exportálni {error}",
-                "newer_required": "Ehhez a funkcióhoz a Snapchat v{version} vagy újabb verziója szügséges hogy helyesen működjön.",
+                "newer_required": "Ehhez a funkcióhoz a Snapchat v{version} vagy újabb verziója szügséges hogy helyesen működjön",
                 "older_required": "Ehhez a funkcióhoz a Snapchat v{version} vagy régebbi verziója szügséges"
             },
             "social": {
@@ -172,15 +172,15 @@
             },
             "manage_rule_feature": {
                 "disable_state_option": "Kikapcsolva",
-                "disable_state_subtext": "Egyetlen barátot vagy csoportot sem érint.",
+                "disable_state_subtext": "Egyetlen barátot vagy csoportot sem érint",
                 "whitelist_state_option": "Senki, kivéve ...",
-                "whitelist_state_subtext": "Csak {count} barátot/csoportot érint ez a szabály.",
+                "whitelist_state_subtext": "Csak {count} barátot/csoportot érint ez a szabály",
                 "dialog_clear_confirmation_text": "Biztos vagy benne, hogy törölni akarod a listát?",
-                "blacklist_state_subtext": "Mindenkit érint ez a szabály, kivéve {count} barátot/csoportot.",
-                "blacklist_state_button": "Válassza ki a kizárt barátokat/csoportokat.",
-                "clear_list_button": "Törölje a barátok/csoportok listáját.",
+                "blacklist_state_subtext": "Mindenkit érint ez a szabály, kivéve {count} barátot/csoportot",
+                "blacklist_state_button": "Válassza ki a kizárt barátokat/csoportokat",
+                "clear_list_button": "Törölje a barátok/csoportok listáját",
                 "blacklist_state_option": "Mindenki kivéve ...",
-                "whitelist_state_button": "Válassza ki az engedélyezett barátokat/csoportokat."
+                "whitelist_state_button": "Válassza ki az engedélyezett barátokat/csoportokat"
             },
             "theming": {
                 "no_themes_hint": "Nem található téma"
@@ -384,7 +384,8 @@
                                 "description": "Értesítéseket jelenít meg, amikor médiafájlok töltődnek le"
                             },
                             "disappearing_rate": {
-                                "name": "Eltűnési Arány"
+                                "name": "Eltűnési Arány",
+                                "description": "Beállítja a toast üzenetek eltűnési sebességét (ezredmásodpercben)\nAz értéknek 100 és 3000 között kell lennie"
                             }
                         },
                         "description": "Naplózási Értesítések Beállításai"
@@ -496,7 +497,7 @@
                     },
                     "icon_style": {
                         "name": "Ikon Stílus",
-                        "description": "Megváltoztatja az anyag ikonok stílusát.\n\nTámogatott funkciók:\n- Opera letöltés gomb\n- Snap megjelölése mint \"megnézve\" gomb\n- Barátok hírcsatornája menü gombjai\n- COF kísérletek\n- Üzenet jelzők"
+                        "description": "Megváltoztatja az anyag ikonok stílusát.\n\nTámogatott funkciók:\n- Opera letöltés gomb\n- Snap megjelölése mint \"megnézve\" gomb\n- Barátok hírcsatornája menü gombjai\n- COF kísérletek\n- Üzenet jelzők\n - Naplózás"
                     },
                     "custom_friend_feed_label": {
                         "name": "Egyedi Barátok Hírcsatorna címke",
@@ -688,7 +689,7 @@
                     },
                     "skip_when_marking_as_seen": {
                         "name": "Kihagyás Látottként Jelöléskor",
-                        "description": "Automatikusan továbblép a következő Snapre, amikor egy Snapet látottként jelöl.  \nHasználd a Jelöld a Snapet Látottként Gomb kombinációjával"
+                        "description": "Automatikusan továbblép a következő Snapre, amikor egy Snapet látottként jelöl.\nHasználd a Jelöld a Snapet Látottként Gomb kombinációjával"
                     },
                     "mark_snap_as_seen_button": {
                         "name": "Jelöld a Snapet Látottként Gomb",
@@ -1168,7 +1169,7 @@
                 "friend_snaps": "Barát Snap-ek",
                 "friend_stories": "Barát történetek",
                 "public_stories": "Nyilvános történetek",
-                "spotlight": "Spotlight"
+                "spotlight": "Reflektorfény"
             },
             "logging": {
                 "started": "Elkezdődött",
@@ -1182,7 +1183,7 @@
                 "snap_replay": "Snap újrajátszás",
                 "chat": "Chat",
                 "chat_reply": "Chat Válasz",
-                "snap": "Snap",
+                "snap": "Pillanatkép",
                 "typing": "Gépel",
                 "stories": "Történetek",
                 "initiate_audio": "Bejövő hívás",
@@ -1196,7 +1197,7 @@
             },
             "gallery_media_send_override": {
                 "ORIGINAL": "Eredeti Média",
-                "SNAP": "Snap",
+                "SNAP": "Pillanatkép",
                 "NOTE": "Hangüzenet",
                 "always_ask": "Mindig kérdezze meg",
                 "SAVEABLE_SNAP": "Menthető Snap"
@@ -1221,7 +1222,7 @@
                 "chat": "Chat",
                 "camera": "Kamera",
                 "discover": "Felfedezés",
-                "spotlight": "Spotlight"
+                "spotlight": "Reflektorfény"
             },
             "disable_story_sections": {
                 "friends": "Barátok",
@@ -1479,7 +1480,7 @@
     },
     "download_processor": {
         "attachment_type": {
-            "snap": "Snap",
+            "snap": "Pillanatkép",
             "sticker": "Matrica",
             "external_media": "Külső média",
             "note": "Megjegyzés",
@@ -1601,7 +1602,7 @@
         "LOCATION": "Helyszín",
         "NOTE": "Hangüzenet",
         "CHAT": "Csevegés",
-        "SNAP": "Snap",
+        "SNAP": "Pillanatkép",
         "STATUS": "Állapot",
         "STATUS_CALL_MISSED_VIDEO": "Nem fogadott videóhívás",
         "FAMILY_CENTER_ACCEPT": "Családi központ elfogadás",
@@ -1737,7 +1738,7 @@
         "statusBarForeground": "Állapotsor Előtérszíne",
         "sigColorBackgroundSurfaceTranslucent": "Áttetsző Háttér Felület Színe",
         "sigColorStoryRingFriendsFeedStoryRing": "Történet Gyűrű Barátok Hírfolyam Történet Gyűrű Színe",
-        "sigColorStoryRingDiscoverTabThumbnailStoryRing": "Történet Gyűrű Felfedezés Lap Képnézet Történet Gyűrű Színe.",
+        "sigColorStoryRingDiscoverTabThumbnailStoryRing": "Történet Gyűrű Felfedezés Lap Képnézet Történet Gyűrű Színe",
         "actionSheetDescriptionTextColor": "Akció Menü Leírás Szöveg Színe",
         "sigColorBackgroundMain": "Háttér Szín",
         "sigColorChatPendingSending": "Másodlagos Barátok Hírcsatorna Szöveg Színe",
@@ -1750,7 +1751,7 @@
         "sigColorChatSnapWithoutSound": "Hang Nélküli Snap Szöveg Színe",
         "sigColorIconPrimary": "Akció Menü Ikon Színe",
         "scButtonColor": "Snapchat Gomb Színe",
-        "recipientPillBackgroundDrawable": "Recipient Pill Background",
+        "recipientPillBackgroundDrawable": "Címzett Kapszula Háttér",
         "sigColorChatSnapWithSound": "Hanggal Rendelkező Snap Szöveg Színe",
         "boxBackgroundColor": "Doboz Háttérszíne",
         "sigColorBaseAppYellow": "Alap Alkalmazás Sárga Szín"
