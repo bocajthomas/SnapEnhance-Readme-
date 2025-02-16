@@ -36,7 +36,7 @@ object Updater {
     }.getOrNull()
 
     private fun fetchLatestDebugCI() = runCatching {
-        val actionRuns = OkHttpClient().newCall(Request.Builder().url("https://api.github.com/repos/bocajthomas/SE-Extended/actions/runs?event=workflow_dispatch").build()).execute().use {
+        val actionRuns = OkHttpClient().newCall(Request.Builder().url("https://api.github.com/repos/bocajthomas/SE-Extended/actions/runs?event=workflow_dispatch&branch=dev").build()).execute().use {
             if (!it.isSuccessful) throw Throwable("Failed to fetch CI runs: ${it.code}")
             JsonParser.parseString(it.body.string()).asJsonObject
         }
