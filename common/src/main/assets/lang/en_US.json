@@ -547,9 +547,35 @@
                         "name": "Disable Spotlight",
                         "description": "Disables the Spotlight page"
                     },
-                    "custom_friend_feed_label": {
-                        "name": "Custom Friend Feed Label",
-                        "description": "Changes the page label on the friend feed"
+                    "custom_page_label": {
+                        "name": "Custom Page Labels",
+                        "description": "Changes the page labels",
+                        "properties": {
+                            "friend_feed_label": {
+                                "name": "Friend Feed Label",
+                                "description": "Sets the friend feed label"
+                            },
+                            "custom_camera_label": {
+                                "name": "Camera Label",
+                                "description": "Sets the camera label"
+                            },
+                            "stories_label": {
+                                "name": "Stories Label",
+                                "description": "Sets the stories label"
+                            },
+                            "discover_label": {
+                                "name": "Discover Label",
+                                "description": "Sets the discover label"
+                            },
+                            "map_label": {
+                                "name": "Map Label",
+                                "description": "Sets the map label"
+                            },
+                            "spotlight_label": {
+                                "name": "Spotlight Label",
+                                "description": "Sets the spotlight label"
+                            }
+                        }
                     },
                     "friend_feed_menu_buttons": {
                         "name": "Friend Feed Menu Buttons",

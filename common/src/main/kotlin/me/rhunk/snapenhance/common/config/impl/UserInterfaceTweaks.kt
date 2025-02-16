@@ -20,6 +20,15 @@ class UserInterfaceTweaks : ConfigContainer() {
         val amount = integer("amount", defaultValue = 1)
     }
 
+    class CustomPageLabels : ConfigContainer() {
+        val friendFeedLabel = string("friend_feed_label") { requireRestart() }
+        val cameraLabel = string("camera_label") { requireRestart() }
+        val storiesLabel = string("stories_label") { requireRestart() }
+        val discoverLabel = string("discover_label") { requireRestart() }
+        val mapLabel = string("map_label") { requireRestart() }
+        val spotlightLabel = string("spotlight_label") { requireRestart() }
+    }
+
 
     val friendFeedMenuButtons = multiple(
         "friend_feed_menu_buttons","conversation_info", "mark_snaps_as_seen", "mark_stories_as_seen_locally", *MessagingRuleType.entries.filter { it.showInFriendMenu }.map { it.key }.toTypedArray()
@@ -68,7 +77,7 @@ class UserInterfaceTweaks : ConfigContainer() {
         "modern_farmhouse",
     ) { addNotices(FeatureNotice.UNSTABLE); requireRestart(); versionCheck = RES_OBF_VERSION_CHECK.copy(isDisabled = true)  }
     val friendFeedMessagePreview = container("friend_feed_message_preview", FriendFeedMessagePreview()) { requireRestart() }
-    val customFriendFeedLabel = string("custom_friend_feed_label") { requireRestart() }
+    val customPageLabels = container("custom_page_label",  CustomPageLabels()) { requireRestart() }
     val iconStyle = unique("icon_style","outlined", "filled", "sharp", "two-tone") {  requireRestart() }
     val snapPreview = boolean("snap_preview") { addNotices(FeatureNotice.UNSTABLE); requireRestart() }
     val bootstrapOverride = container("bootstrap_override", BootstrapOverride()) { requireRestart() }
